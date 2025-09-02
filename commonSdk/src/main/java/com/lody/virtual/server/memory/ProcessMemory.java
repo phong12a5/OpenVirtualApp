@@ -14,7 +14,7 @@ public class ProcessMemory {
 
     public ProcessMemory(int pid) throws IOException {
         this.pid = pid;
-        this.memFile = new RandomAccessFile(String.format(Locale.ENGLISH, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My06KmozLyVIDg01KgcMDw==")), pid), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj0mVg==")));
+        this.memFile = new RandomAccessFile(String.format(Locale.ENGLISH, "/proc/%d/mem", pid), "rw");
     }
 
     public void write(long offset, byte[] bytes) throws IOException {

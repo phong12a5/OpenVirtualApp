@@ -99,15 +99,15 @@ public class HttpWorker {
     }
 
     private boolean LoginSync(String username, String password) throws Exception {
-        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4AKmoVRTdhJBpF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OQgqOXw0ODdPVhpF"))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQgYPA==")), username), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KhcmPA==")), password), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRg+KWUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oi5SVg==")))};
-        String info = OkHttpUtil.postSyncString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAihsHlkgKi4pKmwVRSQ=")), rs, new OkHttpUtil.RequestData[0]);
+        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("formhash", "5dc76a08"), new OkHttpUtil.RequestData("uid", username), new OkHttpUtil.RequestData("pwd", password), new OkHttpUtil.RequestData("task", "3")};
+        String info = OkHttpUtil.postSyncString("https://pc.woozooo.com/mlogin.php", rs, new OkHttpUtil.RequestData[0]);
         String url = "";
-        JSONObject jsonObject = new JSONArray(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg==")) + info + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg=="))).getJSONObject(0);
-        url = jsonObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgcPmozSFo=")));
-        if (url.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwpcAkZJWh9YKRshAhxABw==")))) {
+        JSONObject jsonObject = new JSONArray("[" + info + "]").getJSONObject(0);
+        url = jsonObject.getString("info");
+        if (url.equals("成功登录")) {
             return true;
         }
-        if (url.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Bz8VIUNNDwhYEg8rA1cNPQ==")))) {
+        if (url.equals("登陆失败")) {
             MyCookieJar.resetCookies();
             return false;
         }
@@ -118,16 +118,16 @@ public class HttpWorker {
     public List<FileItem> getFolderInfoSync(String folder_id) throws Exception {
         ArrayList<FileItem> list = new ArrayList<FileItem>();
         list.clear();
-        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRg+KWUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OV4mVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4ADmgFNARsJAYw")), folder_id)};
-        String response = OkHttpUtil.postSyncString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAi9sJwo5KT4uO2tSBiRlDjxF")), rs, new OkHttpUtil.RequestData[0]);
-        JSONObject jsonObject = new JSONArray(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg==")) + response + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg=="))).getJSONObject(0);
-        String folderInfo = jsonObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRguIGwFSFo=")));
-        HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4ADmgFNARrDlk+KioIVg==")) + folderInfo);
+        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("task", "47"), new OkHttpUtil.RequestData("folder_id", folder_id)};
+        String response = OkHttpUtil.postSyncString("https://pc.woozooo.com/doupload.php", rs, new OkHttpUtil.RequestData[0]);
+        JSONObject jsonObject = new JSONArray("[" + response + "]").getJSONObject(0);
+        String folderInfo = jsonObject.getString("text");
+        HVLog.i("folderInfo:" + folderInfo);
         JSONArray folderJsonArray = new JSONArray(folderInfo);
         for (int i = 0; i < folderJsonArray.length(); ++i) {
             JSONObject folderObject = folderJsonArray.getJSONObject(i);
-            String name = folderObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4+DWgVSFo=")));
-            String fol_id = folderObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4ADmYzAiw=")));
+            String name = folderObject.getString("name");
+            String fol_id = folderObject.getString("fol_id");
             list.add(new FileItem(name, 1, fol_id));
         }
         return list;
@@ -137,22 +137,22 @@ public class HttpWorker {
         ArrayList<FileItem> list = new ArrayList<FileItem>();
         list.clear();
         for (int page = 1; page < 200; ++page) {
-            OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRg+KWUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OQhSVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4ADmgFNARsJAYw")), folder_id), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KhgmVg==")), String.valueOf(page))};
-            String data2 = OkHttpUtil.postSyncString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAi9sJwo5KT4uO2tSBiRlDjxF")), rs, new OkHttpUtil.RequestData[0]);
-            JSONObject jsonObject = new JSONArray(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg==")) + data2 + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg=="))).getJSONObject(0);
-            String text = jsonObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRguIGwFSFo=")));
+            OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("task", "5"), new OkHttpUtil.RequestData("folder_id", folder_id), new OkHttpUtil.RequestData("pg", String.valueOf(page))};
+            String data2 = OkHttpUtil.postSyncString("https://pc.woozooo.com/doupload.php", rs, new OkHttpUtil.RequestData[0]);
+            JSONObject jsonObject = new JSONArray("[" + data2 + "]").getJSONObject(0);
+            String text = jsonObject.getString("text");
             if (text.length() == 2) break;
             JSONArray jsonArray = new JSONArray(text);
             for (int i = 0; i < jsonArray.length(); ++i) {
                 JSONObject fileObject = jsonArray.getJSONObject(i);
-                String name = fileObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4+DWgYGjdgHlFF")));
-                String file_id = fileObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgqVg==")));
+                String name = fileObject.getString("name_all");
+                String file_id = fileObject.getString("id");
                 String fileUrl = this.getFileHrefSync(file_id);
                 FileItem item = new FileItem(name, 0, file_id);
                 item.setFileUrl(fileUrl);
-                item.setTime(fileObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRgYDWgVSFo="))));
-                item.setSizes(fileObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YImgVSFo="))));
-                item.setDowns(fileObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgALWogLFo="))));
+                item.setTime(fileObject.getString("time"));
+                item.setSizes(fileObject.getString("size"));
+                item.setDowns(fileObject.getString("downs"));
                 list.add(item);
             }
         }
@@ -161,61 +161,61 @@ public class HttpWorker {
 
     public boolean setNewFolderSync(String uri, String folder_name) throws Exception {
         OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[3];
-        String[] folder_ids = uri.split(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PwhSVg==")));
+        String[] folder_ids = uri.split("=");
         String parent_id = folder_ids[folder_ids.length - 1];
-        rs[0] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRg+KWUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oj5SVg==")));
-        rs[1] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Khg+KmgVBgZsJAYw")), parent_id);
-        rs[2] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4ADmgFNARsJFk7KgcMVg==")), folder_name);
-        String data = OkHttpUtil.postSyncString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAi9sJwo5KT4uO2tSBiRlDjxF")), rs, new OkHttpUtil.RequestData[0]);
+        rs[0] = new OkHttpUtil.RequestData("task", "2");
+        rs[1] = new OkHttpUtil.RequestData("parent_id", parent_id);
+        rs[2] = new OkHttpUtil.RequestData("folder_name", folder_name);
+        String data = OkHttpUtil.postSyncString("https://pc.woozooo.com/doupload.php", rs, new OkHttpUtil.RequestData[0]);
         String info = "";
-        JSONArray jsonArray = new JSONArray(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg==")) + data + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg==")));
+        JSONArray jsonArray = new JSONArray("[" + data + "]");
         JSONObject jsonObject = jsonArray.getJSONObject(0);
-        info = jsonObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgcPmozSFo=")));
-        return info.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxpcG0ZbQjJYAB8CAhkFHQ==")));
+        info = jsonObject.getString("info");
+        return info.equals("创建成功");
     }
 
     public boolean uploadFileSync(String file_uri, String folder_id, final UpLoadCallbackListener listener) throws Exception {
         OkHttpClient client = OkHttpUtil.getmOkHttpClient2();
         File file = new File(file_uri);
-        String[] str = file_uri.split(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")));
+        String[] str = file_uri.split("/");
         String name = str[str.length - 1];
-        FileProgressRequestBody fileBody = new FileProgressRequestBody(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGoFAil9AQozKi0XDWg3PD1vJCMeLi4ACGAOQTBlNF0uKRgYKWsVNDB5NzA/OwgqOm4FLyllJBoxMwNfVg==")), file, new FileProgressRequestBody.ProgressListener(){
+        FileProgressRequestBody fileBody = new FileProgressRequestBody("application/x-www-form-urlencoded;charset=utf-8", file, new FileProgressRequestBody.ProgressListener(){
 
             @Override
             public void transferred(double size) {
                 listener.Progress(size);
             }
         });
-        MultipartBody mBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YImgVSFo=")), String.valueOf(file.length())).addFormDataPart(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRg+KWUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OghSVg=="))).addFormDataPart(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4ADmgFNARsJAYw")), folder_id).addFormDataPart(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4+DWgVSFo=")), name).addFormDataPart(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQc6DmozJCxsJDwzKhcMVg==")), name, (RequestBody)fileBody).build();
-        Request request = new Request.Builder().url(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAiFvDl0uIy1WKmwVRSQ="))).post((RequestBody)mBody).build();
+        MultipartBody mBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("size", String.valueOf(file.length())).addFormDataPart("task", "1").addFormDataPart("folder_id", folder_id).addFormDataPart("name", name).addFormDataPart("upload_file", name, (RequestBody)fileBody).build();
+        Request request = new Request.Builder().url("https://pc.woozooo.com/fileup.php").post((RequestBody)mBody).build();
         Response response = client.newCall(request).execute();
         String data = response.body().string();
-        return data.indexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JxctLGhTIDdsETMgKDotKmMwBT58MDs7IActCU83GiE="))) != -1;
+        return data.indexOf("\\u4e0a\\u4f20\\u6210\\u529f") != -1;
     }
 
     private boolean deleteFolderSync(String holder_id) throws Exception {
-        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRg+KWUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oi5SVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4ADmgFNARsJAYw")), holder_id)};
-        String data = OkHttpUtil.postSyncString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAi9sJwo5KT4uO2tSBiRlDjxF")), rs, new OkHttpUtil.RequestData[0]);
+        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("task", "3"), new OkHttpUtil.RequestData("folder_id", holder_id)};
+        String data = OkHttpUtil.postSyncString("https://pc.woozooo.com/doupload.php", rs, new OkHttpUtil.RequestData[0]);
         String info = "";
-        JSONArray jsonArray = new JSONArray(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg==")) + data + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg==")));
+        JSONArray jsonArray = new JSONArray("[" + data + "]");
         JSONObject jsonObject = jsonArray.getJSONObject(0);
-        info = jsonObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgcPmozSFo=")));
-        return info.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxpcOENNDyxYAB8CAhkFHQ==")));
+        info = jsonObject.getString("info");
+        return info.equals("删除成功");
     }
 
     private boolean deleteFileSync(String file_id) throws Exception {
-        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRg+KWUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OT5SVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4YDmgYGi9iEVRF")), file_id)};
-        String data = OkHttpUtil.postSyncString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAi9sJwo5KT4uO2tSBiRlDjxF")), rs, new OkHttpUtil.RequestData[0]);
+        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("task", "6"), new OkHttpUtil.RequestData("file_id", file_id)};
+        String data = OkHttpUtil.postSyncString("https://pc.woozooo.com/doupload.php", rs, new OkHttpUtil.RequestData[0]);
         String info = "";
-        JSONArray jsonArray = new JSONArray(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg==")) + data + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg==")));
+        JSONArray jsonArray = new JSONArray("[" + data + "]");
         JSONObject jsonObject = jsonArray.getJSONObject(0);
-        info = jsonObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgcPmozSFo=")));
-        return info.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxsjKkZJRihZExsw")));
+        info = jsonObject.getString("info");
+        return info.equals("已删除");
     }
 
     public long downFileSync(String fileName, String fileId) throws Exception {
         String fileHref = this.getFileHrefSync(fileId);
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzNYAzETAlcBLH43TChrNx4dLhZfCGIKIiodTQ5F")) + fileHref);
+        HVLog.d("下载文件   fileHref：" + fileHref);
         LanzouHelper.Lanzou lanZouRealLink = LanzouHelper.getLanZouRealLink(fileHref);
         return this.downLoadDatabase(lanZouRealLink.getDlLink(), fileName);
     }
@@ -232,35 +232,35 @@ public class HttpWorker {
     }
 
     private void testkook(String url) throws IOException {
-        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2LGUVGiY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgALWogIARgJCg/Iy4qVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4uKQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OghSVg==")))};
+        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("action", "downprocess"), new OkHttpUtil.RequestData("ves", "1")};
         OkHttpUtil.RequestData[] header = new OkHttpUtil.RequestData[13];
-        header[0] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgg2OWgaIAY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGoFAil9AQozKi0XDWwaAiVlMwUrKgguPGZTAi1pATgqLAgYCGoKICB6DT89CCkEVg==")));
-        header[1] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgg2OWgaIAZODDA2Ly1fPmwjMC0=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS1XCW8JGShiHjA+KhciLmknOyhoNApF")));
-        header[2] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgg2OWgaIAZODFE7Kj06LW4jEis=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KD5eDWMxASRnNB0hIwRWKn9TLFo=")));
-        header[3] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4ACGojNClmHgY1Kj5SVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LC4uM28JEjdgHgYuKAhSVg==")));
-        header[4] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4ACGwFNCZmV10OKAcYM2UzFlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OgM9Kg==")));
-        header[5] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4ACGwFNCZmV11LLQgmPQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGoFAil9AQozKi0XDWg3PD1vJCMeLi4ACGAOQTBlNF0uKRgYKWsVNDA=")));
-        header[6] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBgAKWwFSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ixg+CGkjGgVhIFk5Ki1XVg==")));
-        header[9] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii4uOXobOCtmHig0OgVXDWkzGlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4AKm8zSFo=")));
-        header[10] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii4uOXobOCtmHig0OgYqMWUzGlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4+DWhSEiVhNAY9KQcYVg==")));
-        header[11] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQc2M28nEhFiJDA2LBhSVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwgAImUVHiR9ChEvOjolOnw2Ei9lNywcKj01JGgxESN1DSMdPDk9JGcjAgR8IC8uDRgbPXpTATZmJFEdIxguB2gVFgtjAQ01PAQpI39TDT54VllNOwUqAWhTTCNsHhoaLypXG2sFLD1qMxE3Iy0cOWwgTTF/CgEhMzk5CH80RAJ3ClgrMyotOmIFQS5oDgoaPDktD0wkRDZ6N1RF")));
-        header[12] = new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IF8IDGgaJAViASggKAc1D30FLAZqEVRF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IBYIQH0KMAZhHyw/IwgMPWoKBlo=")));
+        header[0] = new OkHttpUtil.RequestData("Accept", "application/json, text/javascript, */*");
+        header[1] = new OkHttpUtil.RequestData("Accept-Encoding", "gzip, deflate, br");
+        header[2] = new OkHttpUtil.RequestData("Accept-Language", "zh-CN,zh;q=0.9");
+        header[3] = new OkHttpUtil.RequestData("Connection", "keep-alive");
+        header[4] = new OkHttpUtil.RequestData("Content-Length", "112");
+        header[5] = new OkHttpUtil.RequestData("Content-Type", "application/x-www-form-urlencoded");
+        header[6] = new OkHttpUtil.RequestData("Host", "lanzous.com");
+        header[9] = new OkHttpUtil.RequestData("Sec-Fetch-Mode", "cors");
+        header[10] = new OkHttpUtil.RequestData("Sec-Fetch-Site", "same-origin");
+        header[11] = new OkHttpUtil.RequestData("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36");
+        header[12] = new OkHttpUtil.RequestData("X-Requested-With", "XMLHttpRequest");
         String data = OkHttpUtil.postSyncString(url, rs, header);
-        FileTools.saveAsFileWriter(this.getSavePath() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqDWoJBgZnEQpF")), data);
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRg+LGtTTVo=")) + data);
+        FileTools.saveAsFileWriter(this.getSavePath() + "html.txt", data);
+        HVLog.d("data:" + data);
     }
 
     private String GetDownUri(String fileSecondHref) throws Exception {
-        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2LGUVGiY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgALWogIARgJCg/Iy4qVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4uKQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OghSVg==")))};
-        OkHttpUtil.RequestData[] header = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgg2OWgaIAY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGoFAil9AQozKi0XDWwaAiVlMwUrKgguPGZTAi1pATgqLAgYCGoKICB6DT89CCkEVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgg2OWgaIAZODDA2Ly1fPmwjMC0=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS1XCW8JGShiHjA+KhciLmknOyhoNApF"))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgg2OWgaIAZODFE7Kj06LW4jEis=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KD5eDWMxASRnNB0hIwRWKn9TLFo="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4ACGojNClmHgY1Kj5SVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LC4uM28JEjdgHgYuKAhSVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4ACGwFNCZmV10OKAcYM2UzFlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OgM9Kg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4ACGwFNCZmV11LLQgmPQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGoFAil9AQozKi0XDWg3PD1vJCMeLi4ACGAOQTBlNF0uKRgYKWsVNDA="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBgAKWwFSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ixg+CGkjGgVhIFk5Ki1XVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oy0MCWgzAiY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4tLC4pDm8zQSZuNwYwIyocJWAgQVo="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ij4uPmgaFithN1RF")), fileSecondHref), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii4uOXobOCtmHig0OgVXDWkzGlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4AKm8zSFo="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii4uOXobOCtmHig0OgYqMWUzGlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4+DWhSEiVhNAY9KQcYVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQc2M28nEhFiJDA2LBhSVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwgAImUVHiR9ChEvOjolOnw2Ei9lNywcKj01JGgxESN1DSMdPDk9JGcjAgR8IC8uDRgbPXpTATZmJFEdIxguB2gVFgtjAQ01PAQpI39TDT54VllNOwUqAWhTTCNsHhoaLypXG2sFLD1qMxE3Iy0cOWwgTTF/CgEhMzk5CH80RAJ3ClgrMyotOmIFQS5oDgoaPDktD0wkRDZ6N1RF"))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IF8IDGgaJAViASggKAc1D30FLAZqEVRF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IBYIQH0KMAZhHyw/IwgMPWoKBlo=")))};
-        String data = OkHttpUtil.postSyncString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4tLC4pDm8zQSZuNwYwIyocJWAgQCo=")), rs, header);
-        FileTools.saveAsFileWriter(this.getSavePath() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqDWoJBgZnEQpF")), data);
-        JSONObject jsonObject = new JSONArray(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg==")) + data + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg=="))).getJSONObject(0);
-        return jsonObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQcMDg==")));
+        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("action", "downprocess"), new OkHttpUtil.RequestData("ves", "1")};
+        OkHttpUtil.RequestData[] header = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("Accept", "application/json, text/javascript, */*"), new OkHttpUtil.RequestData("Accept-Encoding", "gzip, deflate, br"), new OkHttpUtil.RequestData("Accept-Language", "zh-CN,zh;q=0.9"), new OkHttpUtil.RequestData("Connection", "keep-alive"), new OkHttpUtil.RequestData("Content-Length", "112"), new OkHttpUtil.RequestData("Content-Type", "application/x-www-form-urlencoded"), new OkHttpUtil.RequestData("Host", "lanzous.com"), new OkHttpUtil.RequestData("Origin", "https://wws.lanzouj.com"), new OkHttpUtil.RequestData("Referer", fileSecondHref), new OkHttpUtil.RequestData("Sec-Fetch-Mode", "cors"), new OkHttpUtil.RequestData("Sec-Fetch-Site", "same-origin"), new OkHttpUtil.RequestData("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36"), new OkHttpUtil.RequestData("X-Requested-With", "XMLHttpRequest")};
+        String data = OkHttpUtil.postSyncString("https://wws.lanzouj.com/", rs, header);
+        FileTools.saveAsFileWriter(this.getSavePath() + "html.txt", data);
+        JSONObject jsonObject = new JSONArray("[" + data + "]").getJSONObject(0);
+        return jsonObject.getString("url");
     }
 
     public String getSavePath() {
-        String path = Build.VERSION.SDK_INT > 29 ? App.getApp().getExternalFilesDir(null).getAbsolutePath() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")) : Environment.getExternalStorageDirectory().getPath() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg=="));
+        String path = Build.VERSION.SDK_INT > 29 ? App.getApp().getExternalFilesDir(null).getAbsolutePath() + "/" : Environment.getExternalStorageDirectory().getPath() + "/";
         return path;
     }
 
@@ -274,9 +274,9 @@ public class HttpWorker {
             this.mOkHttpClient = this.mOkHttpClientBuilder.build();
         }
         Request.Builder builder = new Request.Builder().url(url);
-        String HONEYCOMB_USERAGENT = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwgAImUVHiR9ChEvOjolOnwxOC9lNCgzPzo6XHckOA5sNDA7KQg2IHhTLwR/V1w3JAdeJGoFMyt+Mgo6Iy4HOGMgNC9gHg01IRVXXXpTBS94Hzg7KQgEJ24gLCVnJBo9OQMfD39SASN/Mz8/LSscWGQIQAR+NyQwLC4tOGAzNCljJBEzPxY+PWoaAi9lJx0cOgQbDksbNCRuNCQ7KiotCXwkMwR/VzBF"));
-        builder.addHeader(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4ACGwFNCZmV11LLQgmPQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGoFAil9AQozKi0XDWg3PD1vJCMeLi4ACGAOQTBlNF0uKRgYKWsVNDA=")));
-        builder.addHeader(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQc2M28nEhFiJDA2LBhSVg==")), HONEYCOMB_USERAGENT);
+        String HONEYCOMB_USERAGENT = "Mozilla/5.0 (Linux; U; Android 3.1; en-us; Xoom Build/HMJ25) AppleWebKit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13";
+        builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+        builder.addHeader("User-Agent", HONEYCOMB_USERAGENT);
         Request request = builder.get().build();
         Call call = this.mOkHttpClient.newCall(request);
         Response response = call.execute();
@@ -286,7 +286,7 @@ public class HttpWorker {
     private static SSLSocketFactory createSSLSocketFactory() {
         SSLSocketFactory ssfFactory = null;
         try {
-            SSLContext sc = SSLContext.getInstance(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRYEAw==")));
+            SSLContext sc = SSLContext.getInstance("TLS");
             sc.init(null, new TrustManager[]{new OkHttpUtil.TrustAllCerts()}, new SecureRandom());
             ssfFactory = sc.getSocketFactory();
         }
@@ -297,55 +297,55 @@ public class HttpWorker {
     }
 
     public String getFileHrefSync(String file_id) throws Exception {
-        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRg+KWUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OjkMVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4YDmgYGi9iEVRF")), file_id)};
+        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("task", "22"), new OkHttpUtil.RequestData("file_id", file_id)};
         String uri = "";
-        String response = OkHttpUtil.postSyncString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAi9sJwo5KT4uO2tSBiRlDjxF")), rs, new OkHttpUtil.RequestData[0]);
-        JSONObject jsonObject = new JSONArray(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg==")) + response + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg=="))).getJSONObject(0);
-        String info = jsonObject.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgcPmozSFo=")));
-        JSONObject jsonObject2 = new JSONArray(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg==")) + info + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg=="))).getJSONObject(0);
-        String f_id = jsonObject2.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LTsACWgFSFo=")));
-        uri = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4tLC4pDm8zQSZuNwYwIyocJWAgQCo=")) + f_id;
+        String response = OkHttpUtil.postSyncString("https://pc.woozooo.com/doupload.php", rs, new OkHttpUtil.RequestData[0]);
+        JSONObject jsonObject = new JSONArray("[" + response + "]").getJSONObject(0);
+        String info = jsonObject.getString("info");
+        JSONObject jsonObject2 = new JSONArray("[" + info + "]").getJSONObject(0);
+        String f_id = jsonObject2.getString("f_id");
+        uri = "https://wws.lanzouj.com/" + f_id;
         return uri;
     }
 
     private String getFileSecondHref(String file_href) throws Exception {
         String data = OkHttpUtil.getSyncString(file_href);
-        if (data.contains(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwkFM0YyD1dYEws+OjkXDkdNGxdBX149AEQdX1gBLRVEEBtKAQs3LUFbWlc=")))) {
+        if (data.contains("来晚啦...文件取消分享了")) {
             throw new IOException();
         }
         Document document = Jsoup.parse((String)data);
-        Elements element = document.getElementsByClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgiKn8jSFo=")));
-        return element.attr(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0MOQ==")));
+        Elements element = document.getElementsByClass("ifr2");
+        return element.attr("src");
     }
 
     private String GetDownKey(String fileSecondHref) throws Exception {
-        String uri = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4tLC4pDm8zQSZuNwYwIyocJWAgQVo=")) + fileSecondHref;
+        String uri = "https://wws.lanzouj.com" + fileSecondHref;
         String data = OkHttpUtil.getSyncString(uri);
         Document document = Jsoup.parse((String)data);
-        String str = document.getElementsByTag(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki42KmUaIAY="))).toString().trim();
-        int a = str.indexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LghXP2kFMDdmHiM8PgMlMw==")));
-        int b = str.indexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LisAOQ==")));
-        return str.substring(a + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LghXP2kFMDdmHiM8PgMlMw==")).length(), b + 3);
+        String str = document.getElementsByTag("script").toString().trim();
+        int a = str.indexOf("ajaxdata = '");
+        int b = str.indexOf("c_c");
+        return str.substring(a + "ajaxdata = '".length(), b + 3);
     }
 
     private String GetDownUri(String fileSecondHref, String sign) throws Exception {
-        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2LGUVGiY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgALWogIARgJCg/Iy4qVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YPWojSFo=")), sign), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4uKQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OghSVg==")))};
-        OkHttpUtil.RequestData[] header = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgg2OWgaIAY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGoFAil9AQozKi0XDWwaAiVlMwUrKgguPGZTAi1pATgqLAgYCGoKICB6DT89CCkEVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgg2OWgaIAZODDA2Ly1fPmwjMC0=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS1XCW8JGShiHjA+KhciLmknOyhoNApF"))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgg2OWgaIAZODFE7Kj06LW4jEis=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KD5eDWMxASRnNB0hIwRWKn9TLFo="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4ACGojNClmHgY1Kj5SVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LC4uM28JEjdgHgYuKAhSVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4ACGwFNCZmV10OKAcYM2UzFlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OgM9Kg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4ACGwFNCZmV11LLQgmPQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGoFAil9AQozKi0XDWg3PD1vJCMeLi4ACGAOQTBlNF0uKRgYKWsVNDA="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBgAKWwFSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ixg+CGkjGgVhIFk5Ki1XVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oy0MCWgzAiY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4tLC45Dm8zQSZuNwYwKTocJWAgQVo="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ij4uPmgaFithN1RF")), fileSecondHref), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii4uOXobOCtmHig0OgVXDWkzGlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4AKm8zSFo="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii4uOXobOCtmHig0OgYqMWUzGlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4+DWhSEiVhNAY9KQcYVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQc2M28nEhFiJDA2LBhSVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwgAImUVHiR9ChEvOjolOnw2Ei9lNywcKj01JGgxESN1DSMdPDk9JGcjAgR8IC8uDRgbPXpTATZmJFEdIxguB2gVFgtjAQ01PAQpI39TDT54VllNOwUqAWhTTCNsHhoaLypXG2sFLD1qMxE3Iy0cOWwgTTF/CgEhMzk5CH80RAJ3ClgrMyotOmIFQS5oDgoaPDktD0wkRDZ6N1RF"))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IF8IDGgaJAViASggKAc1D30FLAZqEVRF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IBYIQH0KMAZhHyw/IwgMPWoKBlo=")))};
+        OkHttpUtil.RequestData[] rs = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("action", "downprocess"), new OkHttpUtil.RequestData("sign", sign), new OkHttpUtil.RequestData("ves", "1")};
+        OkHttpUtil.RequestData[] header = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("Accept", "application/json, text/javascript, */*"), new OkHttpUtil.RequestData("Accept-Encoding", "gzip, deflate, br"), new OkHttpUtil.RequestData("Accept-Language", "zh-CN,zh;q=0.9"), new OkHttpUtil.RequestData("Connection", "keep-alive"), new OkHttpUtil.RequestData("Content-Length", "112"), new OkHttpUtil.RequestData("Content-Type", "application/x-www-form-urlencoded"), new OkHttpUtil.RequestData("Host", "lanzous.com"), new OkHttpUtil.RequestData("Origin", "https://www.lanzous.com"), new OkHttpUtil.RequestData("Referer", fileSecondHref), new OkHttpUtil.RequestData("Sec-Fetch-Mode", "cors"), new OkHttpUtil.RequestData("Sec-Fetch-Site", "same-origin"), new OkHttpUtil.RequestData("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36"), new OkHttpUtil.RequestData("X-Requested-With", "XMLHttpRequest")};
         return "";
     }
 
     public String GetDownSecondUri(String downUri) throws Exception {
-        String address = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4uKQglDmk0TCZoNzgaLgcuDn0KRClpJFkcOQgEI2UVNwM=")) + downUri;
-        String path = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My4iCWoFNyU=")) + downUri;
-        OkHttpUtil.RequestData[] header = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LgcuLGUFGgRjAQoZ")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKHojMwJONCw7KQc2LWozQSZ1NzAcLBhSVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwguLGUFGiw=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSwuBg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Khg+LGUFSFo=")), path), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki42CmgVEis=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLFo="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2OWgaIAY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRguIGwJGiBmHl0oOhciKmozOC9oJzg/IxgAKk4jBitqHlEbOgcML2VSHjNvDjw7JQcuKGoaBgFvVigvIwgDIW9THQJOMxkoKQdXOWkFBSVvJygpKQQEI2AKPCJuClkqLD4qIXVSTAN1IF0eMgQhJXtTQTVqNFE7LAg2P2wFAiVgMB4pKQc6DmkjASNrDlkqIwg+KmIgLz5qM1ErPAM+DXkOIwR5EVRF"))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2OWgaIAZODjA2Ly1fPmwjMC0=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS1XCW8JGShiHjA+KhciLmknOyhoNApF"))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2OWgaIAZODlE7Kj06LW4jEis=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KD5eDWMxASRnNB0hIwRWKn9TLFo="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4uOXoVOCtmHig0OgdXDWkzGlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4+LmUVPDdmHjBF"))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4uOXoVOCtmHig0OggqMWUzGlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4ACGgVSFo="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQc6PW8jJCxiCl0zKj4qPW4KGgRrDQ45Lhc+CWIFND9lJ1RF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OghSVg=="))), new OkHttpUtil.RequestData(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQc2M28nEjdiJDA2LBhSVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwgAImUVHiR9ChEvOjolOnw2Ei9lNywcKj01JGgxESN1DSMdPDk9JGcjAgR8IC8uDRgbPXpTATZmJFEdIxguB2gVFgtjAQ01PAQpI39TDT54VllNOwUqAWhTTCNsHhoaLypXG2sFLD1qMxE3Iy0cOWwgTTF/CgEgMzk5CH80DQZMClgrMwQ5OmIFQS5oDgoaPDktD0wkRDZ6N1RF")))};
+        String address = "https://vip.d0.baidupan.com/file/" + downUri;
+        String path = "/file/" + downUri;
+        OkHttpUtil.RequestData[] header = new OkHttpUtil.RequestData[]{new OkHttpUtil.RequestData("authority", "vip.d0.baidupan.com"), new OkHttpUtil.RequestData("method", "GET"), new OkHttpUtil.RequestData("path", path), new OkHttpUtil.RequestData("scheme", "https"), new OkHttpUtil.RequestData("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"), new OkHttpUtil.RequestData("accept-encoding", "gzip, deflate, br"), new OkHttpUtil.RequestData("accept-language", "zh-CN,zh;q=0.9"), new OkHttpUtil.RequestData("sec-fetch-mode", "navigate"), new OkHttpUtil.RequestData("sec-fetch-site", "none"), new OkHttpUtil.RequestData("upgrade-insecure-requests", "1"), new OkHttpUtil.RequestData("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36")};
         return OkHttpUtil.getSync(address, header).request().url().toString();
     }
 
     private long downLoadDatabase(String downSecondUri, String fileName) {
-        String[] filename = downSecondUri.split(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PwhSVg==")));
+        String[] filename = downSecondUri.split("=");
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse((String)downSecondUri));
-        DownloadManager downloadManager = (DownloadManager)App.getApp().getSystemService(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgALWojHiV9DgpF")));
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwwFOUZbGw9YXh8XA1dAJQ==")));
+        DownloadManager downloadManager = (DownloadManager)App.getApp().getSystemService("download");
+        HVLog.d("正式下载");
         return downloadManager.enqueue(request);
     }
 
@@ -353,7 +353,7 @@ public class HttpWorker {
         return ResponseProgram.defer().when(() -> {
             try {
                 boolean cookiesActivation = MyCookieJar.isCookiesActivation();
-                HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4AD2UzAithIiA5LBccLG4gBi9lJx0x")) + cookiesActivation);
+                HVLog.i("cookiesActivation:" + cookiesActivation);
                 if (cookiesActivation) {
                     return true;
                 }
@@ -573,7 +573,7 @@ public class HttpWorker {
     }
 
     static {
-        FROM_DATA = MediaType.parse((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwcuDmwFAgJ9ASwgOi0+DWoVPyNrETg/LRhSVg==")));
+        FROM_DATA = MediaType.parse((String)"multipart/form-data");
     }
 
     public static interface UpLoadCallbackListener {

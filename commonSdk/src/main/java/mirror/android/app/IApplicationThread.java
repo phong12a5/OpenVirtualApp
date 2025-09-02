@@ -18,7 +18,7 @@ import mirror.RefClass;
 import mirror.RefMethod;
 
 public class IApplicationThread {
-    public static Class<?> TYPE = RefClass.load(IApplicationThread.class, StringFog.decrypt("EgsWBAoHO10CHwJeIC4eAwkbFQQaNhwNOxoCDA4K"));
+    public static Class<?> TYPE = RefClass.load(IApplicationThread.class, "android.app.IApplicationThread");
     @MethodParams(value={List.class, IBinder.class})
     public static RefMethod<Void> scheduleNewIntent;
     @MethodParams(value={IBinder.class, ServiceInfo.class})

@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IJobScheduler {
-    public static Class<?> TYPE = RefClass.load(IJobScheduler.class, StringFog.decrypt("EgsWBAoHO10CHwJeAwAMXSw4GQc9PBsGCwccDB0="));
+    public static Class<?> TYPE = RefClass.load(IJobScheduler.class, "android.app.job.IJobScheduler");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10CHwJeAwAMXSw4GQc9PBsGCwccDB1KIBEHFA=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.app.job.IJobScheduler$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

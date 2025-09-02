@@ -26,7 +26,7 @@ import mirror.RefMethod;
 import mirror.RefStaticMethod;
 
 public class PackageParserTiramisu {
-    public static Class<?> TYPE = RefClass.load(PackageParserTiramisu.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhc="));
+    public static Class<?> TYPE = RefClass.load(PackageParserTiramisu.class, "android.content.pm.PackageParser");
     public static RefConstructor<PackageParser> ctor;
     @MethodReflectParams(value={"android.content.pm.PackageParser$Activity", "int", "android.content.pm.pkg.FrameworkPackageUserState", "int"})
     public static RefStaticMethod<ActivityInfo> generateActivityInfo;

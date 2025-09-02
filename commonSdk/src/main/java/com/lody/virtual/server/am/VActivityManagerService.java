@@ -396,9 +396,9 @@ extends IActivityManager.Stub {
             return -1;
         }
         if (stubProcessName.startsWith(StubManifest.EXT_PACKAGE_NAME)) {
-            prefix = StubManifest.EXT_PACKAGE_NAME + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD06Vg=="));
+            prefix = StubManifest.EXT_PACKAGE_NAME + ":p";
         } else if (stubProcessName.startsWith(StubManifest.PACKAGE_NAME)) {
-            prefix = VirtualCore.get().getHostPkg() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD06Vg=="));
+            prefix = VirtualCore.get().getHostPkg() + ":p";
         } else {
             return -1;
         }
@@ -444,28 +444,28 @@ extends IActivityManager.Stub {
         if (permission2 == null) {
             return -1;
         }
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCw+H2UmAlVkNTAOISxbDGALPFRnJ1RF")).equals(permission2)) {
+        if ("android.permission.ACCOUNT_MANAGER".equals(permission2)) {
             return 0;
         }
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUmLBZiMgoOIBYuA2cYGh9iNQ5TLhU2WGYILFo=")).equals(permission2)) {
+        if ("android.permission.RECEIVE_BOOT_COMPLETED".equals(permission2)) {
             return 0;
         }
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCwMHWUmElV9EVRF")).equals(permission2)) {
+        if ("android.permission.BACKUP".equals(permission2)) {
             return 0;
         }
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCwYDG4YLB9hDCwTJQZbH2QxGg9nMgZPLys2E30jSFo=")).equals(permission2) || StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCwYDG4YLB9hDCwTJQZbH2QxGg9nMgZPLys2E30hRVV9JSQR")).equals(permission2)) {
+        if ("android.permission.INTERACT_ACROSS_USERS".equals(permission2) || "android.permission.INTERACT_ACROSS_USERS_FULL".equals(permission2)) {
             return -1;
         }
         if (uid == 0) {
             return 0;
         }
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUIFl9mHAoVIiwYGWEhLF5iJSQWLC5SVg==")).equals(permission2)) {
+        if ("android.permission.READ_DEVICE_CONFIG".equals(permission2)) {
             return 0;
         }
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsmU2sLFgpgIjBJOxY2H2MIGh9iNRoXLQU+Vg==")).equals(permission2)) {
+        if ("android.permission.WRITE_DEVICE_CONFIG".equals(permission2)) {
             return 0;
         }
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCwAGGkmLB9iMgoOJwVfHX02MBNnJShMLisIBmAhPFZiHyAWIis2XGIxBl4=")).equals(permission2)) {
+        if ("android.permission.OBSERVE_GRANT_REVOKE_PERMISSIONS".equals(permission2)) {
             return 0;
         }
         return VPackageManagerService.get().checkUidPermission(isExt, permission2, uid);
@@ -497,12 +497,12 @@ extends IActivityManager.Stub {
         PackageSetting ps = PackageCacheManager.getSetting(packageName);
         boolean isExt = ps.isRunInExtProcess();
         if (isExt && !VirtualCore.get().isExtPackageInstalled()) {
-            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMExhNB45KAgqL2QjHgBrASgvLhgpJGIwPCxsHgotOD4cCWsJICBqMzw0IRgLL2UaODNsAV0yLQQ6CGowMyhjDlkpLBciCG83MyZ1NDwsLT5bO2IgLBNpDlEuPhhSVg==")) + packageName);
+            VLog.e(TAG, "startProcessIfNeeded failed due to ext package not install...packageName:" + packageName);
             return null;
         }
         ApplicationInfo info = VPackageManagerService.get().getApplicationInfo(packageName, 0, userId);
         if (ps == null || info == null) {
-            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMExhNB45KAgqL2QjHgBrASgvLhgpJGIwPCxsHgotOD4cCWsJICBqMzwoJxghL2wwRSJ+NzA5Ki0qP2oFGSZOMFksLwcqCW4jEit9NzgeLl5XVg==")) + packageName);
+            VLog.e(TAG, "startProcessIfNeeded failed due to app not install...packageName:" + packageName);
             return null;
         }
         if (!ps.isLaunched(userId)) {
@@ -531,9 +531,9 @@ extends IActivityManager.Stub {
             if (app != null) {
                 return app;
             }
-            if (processName.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojPCVgJDgoKAMYOW8VBgRlJx4vPC4mL2EkRTNuASg8Ki0YCmsFBiA=")))) {
-                Intent intent = new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42JBJ9JVlNIRY2XWILJEx9HFEKLBhSVg==")));
-                intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmYFNCBlNVkhKC4qIGUVNFo=")), userId);
+            if (processName.equals("com.google.android.gms.persistent")) {
+                Intent intent = new Intent("android.intent.action.GMS_INITIALIZED");
+                intent.putExtra("android.intent.extra.user_handle", userId);
                 VirtualCore.get().getContext().sendBroadcast(intent);
             }
             HashSet<Integer> blackList = new HashSet<Integer>(3);
@@ -542,7 +542,7 @@ extends IActivityManager.Stub {
                 vpid = this.queryFreeStubProcess(isExt, blackList);
                 if (vpid == -1) {
                     this.killAllApps();
-                    VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4fOGggFitiCiQuIxccPn83TQRvAR0rJjw1JGAwAjJ8MBEd")));
+                    VLog.e(TAG, "no free vpid, run GC now...");
                     SystemClock.sleep((long)500L);
                     continue;
                 }
@@ -567,10 +567,10 @@ extends IActivityManager.Stub {
     }
 
     private void sendFirstLaunchBroadcast(PackageSetting ps, int userId) {
-        Intent intent = new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk4xOA5hIgIAJwYAE2MxAgBnMiwALhUmWWQ2MFM=")), Uri.fromParts((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+OWUzJC1iAVRF")), (String)ps.packageName, null));
+        Intent intent = new Intent("android.intent.action.PACKAGE_FIRST_LAUNCH", Uri.fromParts((String)"package", (String)ps.packageName, null));
         intent.setPackage(ps.packageName);
-        intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49Km4IGgk=")), VUserHandle.getUid(ps.appId, userId));
-        intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmYFNCBlNVkhKC4qIGUVNFo=")), userId);
+        intent.putExtra("android.intent.extra.UID", VUserHandle.getUid(ps.appId, userId));
+        intent.putExtra("android.intent.extra.user_handle", userId);
         this.sendBroadcastAsUser(intent, new VUserHandle(userId));
     }
 
@@ -614,14 +614,14 @@ extends IActivityManager.Stub {
     private boolean initProcessLocked(final ProcessRecord app) {
         this.requestPermissionIfNeed(app);
         Bundle extras = new Bundle();
-        extras.putParcelable(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99JFEzKAcYLmMFAiVlNyQaLjsAVg==")), (Parcelable)app.getClientConfig());
-        extras.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99JB4qKAZfKmwjBh8=")), Process.myPid());
-        Bundle res = ProviderCall.callSafely(app.getProviderAuthority(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlkzLBZfKmoVNClrDjA6ID5SVg==")), null, extras, 0);
+        extras.putParcelable("_VA_|_client_config_", (Parcelable)app.getClientConfig());
+        extras.putInt("_VA_|_core_pid_", Process.myPid());
+        Bundle res = ProviderCall.callSafely(app.getProviderAuthority(), "_VA_|_init_process_", null, extras, 0);
         if (res == null) {
             return false;
         }
-        app.pid = res.getInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9hHgYwJi5SVg==")));
-        final IBinder clientBinder = BundleCompat.getBinder(res, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99JFEzKAcYLmMFSFo=")));
+        app.pid = res.getInt("_VA_|_pid_");
+        final IBinder clientBinder = BundleCompat.getBinder(res, "_VA_|_client_");
         IVClient client = IVClient.Stub.asInterface(clientBinder);
         if (client == null) {
             app.kill();
@@ -646,7 +646,7 @@ extends IActivityManager.Stub {
         catch (RemoteException e) {
             e.printStackTrace();
         }
-        VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMyhgNDAtPxgmKG8FAitsJDMrPyo6Vg==")) + app.processName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phc6CWgOTCg=")) + app.pid, new Object[0]);
+        VLog.w(TAG, "start new process : " + app.processName + " pid: " + app.pid, new Object[0]);
         return true;
     }
 
@@ -862,7 +862,7 @@ extends IActivityManager.Stub {
     public void sendOrderedBroadcastAsUser(Intent intent, VUserHandle user, String receiverPermission, BroadcastReceiver resultReceiver, Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
         Context context = VirtualCore.get().getContext();
         if (user != null) {
-            intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), user.getIdentifier());
+            intent.putExtra("_VA_|_user_id_", user.getIdentifier());
         }
         context.sendOrderedBroadcast(intent, null, resultReceiver, scheduler, initialCode, initialData, initialExtras);
     }
@@ -871,7 +871,7 @@ extends IActivityManager.Stub {
         SpecialComponentList.protectIntent(intent);
         Context context = VirtualCore.get().getContext();
         if (user != null) {
-            intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), user.getIdentifier());
+            intent.putExtra("_VA_|_user_id_", user.getIdentifier());
         }
         context.sendBroadcast(intent);
     }
@@ -880,7 +880,7 @@ extends IActivityManager.Stub {
         SpecialComponentList.protectIntent(intent);
         Context context = VirtualCore.get().getContext();
         if (user != null) {
-            intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), user.getIdentifier());
+            intent.putExtra("_VA_|_user_id_", user.getIdentifier());
         }
         context.sendBroadcast(intent);
     }
@@ -888,9 +888,9 @@ extends IActivityManager.Stub {
     @Override
     public void notifyBadgerChange(BadgerInfo info) {
         Intent intent = new Intent(Constants.ACTION_BADGER_CHANGE);
-        intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28hAiw=")), info.userId);
-        intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+OWUzJC1iDFk7KgcMVg==")), info.packageName);
-        intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+PGgzNARlJB4vKj42Vg==")), info.badgerCount);
+        intent.putExtra("userId", info.userId);
+        intent.putExtra("packageName", info.packageName);
+        intent.putExtra("badgerCount", info.badgerCount);
         VirtualCore.get().getContext().sendBroadcast(intent);
     }
 
@@ -901,7 +901,7 @@ extends IActivityManager.Stub {
     public void setAppInactive(String packageName, boolean idle, int userId) {
         Map<String, Boolean> map = this.sIdeMap;
         synchronized (map) {
-            this.sIdeMap.put(packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JhhSVg==")) + userId, idle);
+            this.sIdeMap.put(packageName + "@" + userId, idle);
         }
     }
 
@@ -912,7 +912,7 @@ extends IActivityManager.Stub {
     public boolean isAppInactive(String packageName, int userId) {
         Map<String, Boolean> map = this.sIdeMap;
         synchronized (map) {
-            Boolean idle = this.sIdeMap.get(packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JhhSVg==")) + userId);
+            Boolean idle = this.sIdeMap.get(packageName + "@" + userId);
             return idle != null && idle == false;
         }
     }

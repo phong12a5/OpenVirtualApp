@@ -28,11 +28,11 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IIntentReceiver {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSw7GBELMQcxChEVABkLAQ==");
+        private static final String DESCRIPTOR = "android.content.IIntentReceiver";
         static final int TRANSACTION_performReceive = 1;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSw7GBELMQcxChEVABkLAQ=="));
+            this.attachInterface(this, "android.content.IIntentReceiver");
         }
 
         public static IIntentReceiver asInterface(IBinder obj) {
@@ -76,7 +76,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IIntentReceiver impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -103,7 +103,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSw7GBELMQcxChEVABkLAQ==");
+                return "android.content.IIntentReceiver";
             }
 
             /*
@@ -114,7 +114,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSw7GBELMQcxChEVABkLAQ=="));
+                    _data.writeInterfaceToken("android.content.IIntentReceiver");
                     if (intent != null) {
                         _data.writeInt(1);
                         intent.writeToParcel(_data, 0);

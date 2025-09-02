@@ -23,13 +23,13 @@ import mirror.android.app.ISearchManager;
 public class SearchManagerStub
 extends BinderInvocationProxy {
     public SearchManagerStub() {
-        super(ISearchManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uP28jLCA=")));
+        super(ISearchManager.Stub.asInterface, "search");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+I2ojLCBoHjA9LwcqIWYgAgNqDjA/"))));
+        this.addMethodProxy(new StaticMethodProxy("launchLegacyAssist"));
         this.addMethodProxy(new GetSearchableInfo());
     }
 
@@ -40,7 +40,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGczNDdhNCg0LwcuCGkhLCZrNwZF"));
+            return "getSearchableInfo";
         }
 
         @Override

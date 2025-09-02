@@ -48,7 +48,7 @@ extends IAppInstallerSession.Stub {
     @Override
     public void commit(IntentSender statusReceiver) {
         if (this.mCacneled) {
-            throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgQ6OWsVBiliDlE/KF4mL2kgAgNqAQYbPQg2O2AwRSpqVyArLypXJWUjEgFlHiwZJAcLJQ==")));
+            throw new IllegalStateException("A canceled session cannot be committed.");
         }
         this.mCommited = true;
         this.mStatusReceiver = statusReceiver;
@@ -63,7 +63,7 @@ extends IAppInstallerSession.Stub {
     @Override
     public void cancel() {
         if (this.mCommited) {
-            throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uKW8zAiVgMCQgKRciLn4zFjdvNysrLRgECGIKPC9rCiArLy4AKngVLANqEQ4wIBgMLG5TPDNuJyw5Iy0pOGsjNyh9JCA2Ly0MCG8zGix1N1RF")));
+            throw new IllegalStateException("Session that have already been committed cannot be cancelled.");
         }
         this.mCacneled = true;
     }

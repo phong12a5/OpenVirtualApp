@@ -27,13 +27,13 @@ import mirror.android.app.IAlarmManager;
 public class AlarmManagerStub
 extends BinderInvocationProxy {
     public AlarmManagerStub() {
-        super(IAlarmManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggEP28jElo=")));
+        super(IAlarmManager.Stub.asInterface, "alarm");
     }
 
     @Override
     public void inject() throws Throwable {
         super.inject();
-        AlarmManager alarmManager = (AlarmManager)VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggEP28jElo=")));
+        AlarmManager alarmManager = (AlarmManager)VirtualCore.get().getContext().getSystemService("alarm");
         if (mirror.android.app.AlarmManager.mService != null) {
             try {
                 mirror.android.app.AlarmManager.mService.set(alarmManager, (IInterface)((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());
@@ -50,8 +50,8 @@ extends BinderInvocationProxy {
         this.addMethodProxy(new Set());
         this.addMethodProxy(new SetTime());
         this.addMethodProxy(new SetTimeZone());
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGczLCBiDgovKhcMWmgzQSlvHzgdLRcML2EjSFo="))));
-        this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+KWczLCBiDgovKhcMWmgzQSlvHzgdLRcMLw=="))));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("canScheduleExactAlarms"));
+        this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy("hasScheduleExactAlarm"));
     }
 
     private static class GetNextAlarmClock
@@ -61,7 +61,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGIjNDBmHCAoLwguD2YFOCVoJ11F"));
+            return "getNextAlarmClock";
         }
 
         @Override
@@ -78,7 +78,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLA=="));
+            return "set";
         }
 
         @Override
@@ -112,7 +112,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQFAiNiAVRF"));
+            return "setTime";
         }
 
         @Override
@@ -131,7 +131,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQFAiNiDwI1Kj0MVg=="));
+            return "setTimeZone";
         }
 
         @Override

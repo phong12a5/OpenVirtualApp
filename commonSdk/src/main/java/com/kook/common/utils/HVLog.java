@@ -139,7 +139,7 @@ public class HVLog {
         String className = HVLog.getSimpleName(element.getClassName());
         String methodName = element.getMethodName();
         int lineNumber = element.getLineNumber();
-        String tag = TAG + StringFog.decrypt("RjQ=") + className + StringFog.decrypt("NjQ=") + methodName + StringFog.decrypt("NjQ=") + lineNumber + StringFog.decrypt("Ng==");
+        String tag = TAG + "5Q" + className + "EQ" + methodName + "EQ" + lineNumber + "E";
         return tag;
     }
 
@@ -147,7 +147,7 @@ public class HVLog {
         if (LOG_SWITCH.booleanValue()) {
             if (!TAG.equals(tag)) {
                 boolean bit = false;
-                tag = bit ? TAG + StringFog.decrypt("Rg==") + tag : TAG + StringFog.decrypt("Rg==") + tag;
+                tag = bit ? TAG + "5" + tag : TAG + "5" + tag;
             }
             int logLevel = HVLog.getSystemSettings();
             Object tagList = null;
@@ -189,7 +189,7 @@ public class HVLog {
         }
         catch (IOException e) {
             e.printStackTrace();
-            Log.e((String)TAG, (String)(StringFog.decrypt("BwAIS8jk7IKow4zE6YrX0xc=") + e.toString()));
+            Log.e((String)TAG, (String)("log 写入异常:" + e.toString()));
         }
     }
 
@@ -212,14 +212,14 @@ public class HVLog {
     public static void printException(String subtag, Exception e) {
         StackTraceElement[] stackTrace = e.getStackTrace();
         Throwable cause = e.getCause();
-        HVLog.d(subtag, StringFog.decrypt("KRoGB0lMIyJ/NSA3JUE8L2Y9PCl5RlRY") + Build.VERSION.SDK_INT);
+        HVLog.d(subtag, "Build.VERSION.SDK_INT = " + Build.VERSION.SDK_INT);
         if (cause != null) {
             String stackTraceString = Log.getStackTraceString((Throwable)cause);
-            HVLog.e(subtag, StringFog.decrypt("jtPtjpXaVQRMExodUQ==") + stackTraceString);
+            HVLog.e(subtag, "异常 cause:" + stackTraceString);
         } else {
-            Log.e((String)subtag, (String)(StringFog.decrypt("jtPtjpXaTw==") + e.toString() + StringFog.decrypt("S09PSw0BFBJeA0kRGE8BHkEOVVg=") + (cause == null)));
+            Log.e((String)subtag, (String)("异常:" + e.toString() + "8*==hoKa=l;aq om$|#=" + (cause == null)));
             for (int i = 0; i < stackTrace.length; ++i) {
-                HVLog.e(subtag, StringFog.decrypt("LhcMDl0WHAhDRgxC") + stackTrace[i].toString());
+                HVLog.e(subtag, "]r~x8xC{ )~2" + stackTrace[i].toString());
             }
         }
     }
@@ -227,28 +227,28 @@ public class HVLog {
     public static void printException(Exception e) {
         StackTraceElement[] stackTrace = e.getStackTrace();
         Throwable cause = e.getCause();
-        HVLog.d(StringFog.decrypt("KRoGB0lMIyJ/NSA3JUE8L2Y9PCl5RlRY") + Build.VERSION.SDK_INT);
+        HVLog.d("Build.VERSION.SDK_INT = " + Build.VERSION.SDK_INT);
         if (cause != null) {
             String stackTraceString = Log.getStackTraceString((Throwable)cause);
-            HVLog.e(StringFog.decrypt("jtPtjpXaVQRMExodQx8dAkMWMB9OAxkMAgABQhc=") + stackTraceString);
+            HVLog.e("异常 cause(printException):" + stackTraceString);
         } else {
-            HVLog.e(StringFog.decrypt("jtPtjpXaTw==") + e.toString() + StringFog.decrypt("S09PSw0BFBJeA0kRGE8BHkEOVVg=") + (cause == null));
+            HVLog.e("异常:" + e.toString() + "8*==hoKa=l;aq om$|#=" + (cause == null));
             for (int i = 0; i < stackTrace.length; ++i) {
-                HVLog.e(StringFog.decrypt("LhcMDl0WHAhDRgxC") + stackTrace[i].toString());
+                HVLog.e("]r~x8xC{ )~2" + stackTrace[i].toString());
             }
         }
     }
 
     public static void printThrowable(Throwable throwable) {
         String stackTraceString = Log.getStackTraceString((Throwable)throwable);
-        HVLog.d(StringFog.decrypt("KRoGB0lMIyJ/NSA3JUE8L2Y9PCl5RlRY") + Build.VERSION.SDK_INT);
-        HVLog.e(TAG, StringFog.decrypt("Gx0GBVk2HRVCEQgaBwpPDhc=") + stackTraceString);
+        HVLog.d("Build.VERSION.SDK_INT = " + Build.VERSION.SDK_INT);
+        HVLog.e(TAG, "hxts<XBf!~zjne!}r" + stackTraceString);
     }
 
     public static void printThrowable(String subtag, Throwable throwable) {
         String stackTraceString = Log.getStackTraceString((Throwable)throwable);
-        HVLog.d(StringFog.decrypt("KRoGB0lMIyJ/NSA3JUE8L2Y9PCl5RlRY") + Build.VERSION.SDK_INT);
-        HVLog.e(subtag, StringFog.decrypt("Gx0GBVk2HRVCEQgaBwpPDhc=") + stackTraceString);
+        HVLog.d("Build.VERSION.SDK_INT = " + Build.VERSION.SDK_INT);
+        HVLog.e(subtag, "hxts<XBf!~zjne!}r" + stackTraceString);
     }
 
     public static void printInfo() {
@@ -257,7 +257,7 @@ public class HVLog {
         if (stackElements != null) {
             for (int i = 0; i < stackElements.length; ++i) {
                 StackTraceElement stackTraceElement = stackElements[i];
-                String output = String.format(StringFog.decrypt("ThxHQhdHBksNQxpYQ0ocQg=="), stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), HVLog.getSimpleName(stackTraceElement.getClassName()), HVLog.getPackageName(stackTraceElement.getClassName()));
+                String output = String.format("=y54r)Y8n,h(*%r1", stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), HVLog.getSimpleName(stackTraceElement.getClassName()), HVLog.getPackageName(stackTraceElement.getClassName()));
                 Log.i((String)TAG, (String)output);
             }
         }
@@ -269,7 +269,7 @@ public class HVLog {
         if (stackElements != null) {
             for (int i = 0; i < stackElements.length; ++i) {
                 StackTraceElement stackTraceElement = stackElements[i];
-                String output = String.format(StringFog.decrypt("ThxHQhdHBksNQxpYQ0ocQg=="), stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), HVLog.getSimpleName(stackTraceElement.getClassName()), HVLog.getPackageName(stackTraceElement.getClassName()));
+                String output = String.format("=y54r)Y8n,h(*%r1", stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), HVLog.getSimpleName(stackTraceElement.getClassName()), HVLog.getPackageName(stackTraceElement.getClassName()));
                 HVLog.i(tag, output);
             }
         }
@@ -295,8 +295,8 @@ public class HVLog {
 
     static Context getApplication() {
         try {
-            Class<?> activityThreadClass = Class.forName(StringFog.decrypt("CgELGUILEUlMFhlWKgwbAlsLAR55DhsdCgs="));
-            Method currentApplicationMethod = activityThreadClass.getMethod(StringFog.decrypt("CBodGUgMASZdFgURCA4bAkIM"), new Class[0]);
+            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
+            Method currentApplicationMethod = activityThreadClass.getMethod("currentApplication", new Class[0]);
             Object application = currentApplicationMethod.invoke(null, new Object[0]);
             return (Context)application;
         }
@@ -316,15 +316,15 @@ public class HVLog {
     }
 
     static {
-        SIMPLE_NAME = StringFog.decrypt("AAAAAEENEg==");
+        SIMPLE_NAME = "serv$cM";
         LOG_SWITCH = true;
         LOG_WRITE_TO_FILE = false;
-        LOG_PATH_SDCARD_DIR = StringFog.decrypt("RBwLCEwQEUh5DgwVDg==");
+        LOG_PATH_SDCARD_DIR = "/sdcard/Theme";
         SDCARD_LOG_FILE_SAVE_DAYS = 0;
         LOG_FILE_NAME = "";
-        myLogSdf = new SimpleDateFormat(StringFog.decrypt("EhYWEgAvOEpJAkkwI1UCBhcRBg=="));
-        logfile = new SimpleDateFormat(StringFog.decrypt("EhYWEgAvOEpJAg=="));
-        TAG = StringFog.decrypt("AAAAAEENEkp/CQQVBAwE");
+        myLogSdf = new SimpleDateFormat("asddeAg9*m;@J:lurcp");
+        logfile = new SimpleDateFormat("asddeAg9*m");
+        TAG = "kooklog-Rommock";
         DEBUG = true;
     }
 }

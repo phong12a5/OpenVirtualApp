@@ -24,7 +24,7 @@ public class ZipTools {
      */
     public static int compressZip(String src, String dest, ZipCallback zipCallback) {
         ZipOutputStream out = null;
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BlcJMUZJAwtYK0YzIy4uP3gVSFo=")) + src + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsKTS9hUx8cRCUJWB1WEz0eLy01UwNXVg==")) + dest);
+        HVLog.d("被压缩src:" + src + "    zip输出路径:" + dest);
         try {
             File outFile = new File(dest);
             File fileOrDirectory = new File(src);
@@ -55,9 +55,9 @@ public class ZipTools {
     }
 
     private static String checkString(String sourceFileName) {
-        if (sourceFileName.indexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz5SVg=="))) > 0) {
+        if (sourceFileName.indexOf(".") > 0) {
             sourceFileName = sourceFileName.substring(0, sourceFileName.length() - 4);
-            HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li5fM2szQV5mESwzKj05IH47GygdCRMhQABcOR8oIVIbESweIy1fJWsLOAVqASgfOwdbLEQHBwFFEjlI")) + sourceFileName);
+            HVLog.i("checkString: 校验过的sourceFileName是：" + sourceFileName);
         }
         return sourceFileName;
     }
@@ -72,7 +72,7 @@ public class ZipTools {
             Enumeration<? extends ZipEntry> e = zipFile.entries();
             ZipEntry zipEntry = null;
             File dest = new File(outputDirectory);
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhgqM28wMyh3N1RF")) + dest.exists());
+            HVLog.d(" dest :" + dest.exists());
             if (!dest.exists()) {
                 dest.mkdirs();
             }
@@ -82,7 +82,7 @@ public class ZipTools {
                 InputStream in = null;
                 FileOutputStream out = null;
                 unZipCallback.callbackName(entryName);
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhguCGwKFj9oNCA3KAMlIA==")) + entryName);
+                HVLog.d(" entryName :" + entryName);
                 try {
                     int c;
                     File df;
@@ -94,12 +94,12 @@ public class ZipTools {
                         f.mkdirs();
                         continue;
                     }
-                    int index = entryName.lastIndexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JxhSVg==")));
+                    int index = entryName.lastIndexOf("\\");
                     if (index != -1) {
                         df = new File(outputDirectory + File.separator + entryName.substring(0, index));
                         df.mkdirs();
                     }
-                    if ((index = entryName.lastIndexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")))) != -1) {
+                    if ((index = entryName.lastIndexOf("/")) != -1) {
                         df = new File(outputDirectory + File.separator + entryName.substring(0, index));
                         df.mkdirs();
                     }
@@ -115,7 +115,7 @@ public class ZipTools {
                 catch (IOException ex) {
                     ex.printStackTrace();
                     HVLog.printException(ex);
-                    throw new IOException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BlcjOUZJAwtYEg8rA1cNPUUWJVc=")) + ex.toString());
+                    throw new IOException("解压失败：" + ex.toString());
                 }
                 finally {
                     if (in != null) {
@@ -172,7 +172,7 @@ public class ZipTools {
             } else {
                 File[] entries = fileOrDirectory.listFiles();
                 for (int i = 0; i < entries.length; ++i) {
-                    ZipTools.zipFileOrDirectory(out, entries[i], curPath + fileOrDirectory.getName() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")), zipCallback);
+                    ZipTools.zipFileOrDirectory(out, entries[i], curPath + fileOrDirectory.getName() + "/", zipCallback);
                 }
             }
         }
@@ -192,7 +192,7 @@ public class ZipTools {
     }
 
     static {
-        SECRET_KEY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4uKW8kJwFPVjhF"));
+        SECRET_KEY = "sesr1107";
         result = 0;
     }
 

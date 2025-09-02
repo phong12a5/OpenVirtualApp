@@ -21,14 +21,14 @@ import mirror.com.android.internal.app.IAppOpsService;
 public class AppOpsManagerStub
 extends BinderInvocationProxy {
     public AppOpsManagerStub() {
-        super(IAppOpsService.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KGowIAM=")));
+        super(IAppOpsService.Stub.asInterface, "appops");
     }
 
     @Override
     public void inject() throws Throwable {
         super.inject();
         if (AppOpsManager.mService != null) {
-            android.app.AppOpsManager appOpsManager = (android.app.AppOpsManager)VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KGowIAM=")));
+            android.app.AppOpsManager appOpsManager = (android.app.AppOpsManager)VirtualCore.get().getContext().getSystemService("appops");
             try {
                 AppOpsManager.mService.set(appOpsManager, (IInterface)((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());
             }

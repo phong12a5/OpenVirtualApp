@@ -21,17 +21,17 @@ import mirror.android.app.IUsageStatsManager;
 public class UsageStatsManagerStub
 extends BinderInvocationProxy {
     public UsageStatsManagerStub() {
-        super(IUsageStatsManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2P2gzNANmHiAgIy5SVg==")));
+        super(IUsageStatsManager.Stub.asInterface, "usagestats");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJpJwo7Kj02OGghRQVoJ10gKghSVg=="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KgcuM28gAlBhJCA9KAYqLm4gBgM="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KgcuM28gAhNgJFk+KQc6LWoVQQZqAQYbKT5SVg=="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KgcuM28gAhVmNDA2LBgqVg=="))));
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaIAJrDlk7Ly42MWUVGlo="))){
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getAppStandbyBucket"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("queryUsageStats"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("queryConfigurations"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("queryEvents"));
+        this.addMethodProxy(new StaticMethodProxy("setAppInactive"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) {
@@ -40,7 +40,7 @@ extends BinderInvocationProxy {
                 return 0;
             }
         });
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2EW8KIAlgNCA5LBccLGkjSFo="))){
+        this.addMethodProxy(new StaticMethodProxy("isAppInactive"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) {
@@ -48,11 +48,11 @@ extends BinderInvocationProxy {
                 return VActivityManager.get().isAppInactive((String)args[0], userId);
             }
         });
-        this.addMethodProxy(new ReplacePkgAndUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS5fCWwFNCRjASggJwgmKn0zGiNsEQY5LRcMI2AVGlo="))));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaIAJpJwo7Kj02OGghRQVoJ10gKghSVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaIAJpJwo7Kj02OGghRQVoJ10gKgc2Vg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwRIxgmB2oFQS1rDwYpKT4uCGYwLDU=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcKmgVPC9hJwo/IzsiKmo2GgNoASAgJD4MD2IFMDFuAShF")), null));
+        this.addMethodProxy(new ReplacePkgAndUserIdMethodProxy("whitelistAppTemporarily"));
+        this.addMethodProxy(new ResultStaticMethodProxy("setAppStandbyBucket", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("setAppStandbyBuckets", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("registerAppUsageObserver", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("unregisterAppUsageObserver", null));
     }
 
     private class ReplacePkgAndUserIdMethodProxy

@@ -31,7 +31,7 @@ public class DialogHooker {
         }
         String packageName = VClient.get().getCurrentPackage();
         String clzName = thiz.getClass().getName();
-        Log.e((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgYP2oFGi1rHh41KS0MKA==")), (String)(packageName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhYqCWsVHiViICQpKRdfI34zSFo=")) + thiz));
+        Log.e((String)"DialogHooker", (String)(packageName + " Dialog show " + thiz));
         thiz.cancel();
     }
 }

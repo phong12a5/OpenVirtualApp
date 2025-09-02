@@ -50,30 +50,30 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 public class SyncStorageEngine extends Handler {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg=="));
+    private static final String TAG = "SyncManager";
     private static final boolean DEBUG = false;
-    private static final String TAG_FILE = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguWWwjOCs="));
-    private static final String XML_ATTR_NEXT_AUTHORITY_ID = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4uIGwLJAVmHho1Iz0cLmghLCw="));
-    private static final String XML_ATTR_LISTEN_FOR_TICKLES = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYKWwFNCZODjw1IzlXLmwjAiFlESg6"));
-    private static final String XML_ATTR_SYNC_RANDOM_OFFSET = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4iPm8zNAZrDlkPKAcqDW8VBgM="));
-    private static final String XML_ATTR_ENABLED = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcP2sjHitiEVRF"));
-    private static final String XML_ATTR_USER = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28jSFo="));
-    private static final String XML_TAG_LISTEN_FOR_TICKLES = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYKWwFNCZqNB4qJBccP2wFOCtsJ1RF"));
+    private static final String TAG_FILE = "SyncManagerFile";
+    private static final String XML_ATTR_NEXT_AUTHORITY_ID = "nextAuthorityId";
+    private static final String XML_ATTR_LISTEN_FOR_TICKLES = "listen-for-tickles";
+    private static final String XML_ATTR_SYNC_RANDOM_OFFSET = "offsetInSeconds";
+    private static final String XML_ATTR_ENABLED = "enabled";
+    private static final String XML_ATTR_USER = "user";
+    private static final String XML_TAG_LISTEN_FOR_TICKLES = "listenForTickles";
     private static final long DEFAULT_POLL_FREQUENCY_SECONDS = 86400L;
     private static final double DEFAULT_FLEX_PERCENT_SYNC = 0.04;
     private static final long DEFAULT_MIN_FLEX_ALLOWED_SECS = 5L;
     public static final int EVENT_START = 0;
     public static final int EVENT_STOP = 1;
-    public static final String[] EVENTS = new String[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IisqEWcmMFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IisqUmcFSFo="))};
+    public static final String[] EVENTS = new String[]{"START", "STOP"};
     public static final int SOURCE_SERVER = 0;
     public static final int SOURCE_LOCAL = 1;
     public static final int SOURCE_POLL = 2;
     public static final int SOURCE_USER = 3;
     public static final int SOURCE_PERIODIC = 4;
     public static final long NOT_IN_BACKOFF_MODE = -1L;
-    public static final String[] SOURCES = new String[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IiwuDGQhNF8=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OxYAE2MbHlo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhYAQGIFSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQU2WGcjSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhYuDH0bGhZrDChF"))};
-    public static final String MESG_SUCCESS = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0uOWszNANhJ1RF"));
-    public static final String MESG_CANCELED = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRiDgpF"));
+    public static final String[] SOURCES = new String[]{"SERVER", "LOCAL", "POLL", "USER", "PERIODIC"};
+    public static final String MESG_SUCCESS = "success";
+    public static final String MESG_CANCELED = "canceled";
     public static final int MAX_HISTORY = 100;
     private static final int MSG_WRITE_STATUS = 1;
     private static final long WRITE_STATUS_DELAY = 600000L;
@@ -111,11 +111,11 @@ public class SyncStorageEngine extends Handler {
     public static final int STATUS_FILE_END = 0;
     public static final int STATUS_FILE_ITEM = 100;
     public static final int PENDING_OPERATION_VERSION = 3;
-    private static final String XML_ATTR_AUTHORITYID = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUFGgRjAQoZJi0cPg=="));
-    private static final String XML_ATTR_SOURCE = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4AI28jLCs="));
-    private static final String XML_ATTR_EXPEDITED = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfKGgVMC9mHjAw"));
-    private static final String XML_ATTR_REASON = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uP28zGiY="));
-    private static final String XML_ATTR_VERSION = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4uKm8zAiVgN1RF"));
+    private static final String XML_ATTR_AUTHORITYID = "authority_id";
+    private static final String XML_ATTR_SOURCE = "source";
+    private static final String XML_ATTR_EXPEDITED = "expedited";
+    private static final String XML_ATTR_REASON = "reason";
+    private static final String XML_ATTR_VERSION = "version";
     public static final int STATISTICS_FILE_END = 0;
     public static final int STATISTICS_FILE_ITEM_OLD = 100;
     public static final int STATISTICS_FILE_ITEM = 101;
@@ -123,13 +123,13 @@ public class SyncStorageEngine extends Handler {
     private SyncStorageEngine(Context context, File syncDir) {
         this.mContext = context;
         sSyncStorageEngine = this;
-        this.mCal = Calendar.getInstance(TimeZone.getTimeZone(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JSwIBnU0IFo="))));
+        this.mCal = Calendar.getInstance(TimeZone.getTimeZone("GMT+0"));
         this.mDefaultMasterSyncAutomatically = false;
         this.maybeDeleteLegacyPendingInfoLocked(syncDir);
-        this.mAccountInfoFile = new AtomicFile(new File(syncDir, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmESs2LRdXCA=="))));
-        this.mStatusFile = new AtomicFile(new File(syncDir, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2wKNANONCwzKj5SVg=="))));
-        this.mPendingFile = new AtomicFile(new File(syncDir, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguCGgFAiZiIFkaKgdbVg=="))));
-        this.mStatisticsFile = new AtomicFile(new File(syncDir, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2wKLyZ9NAY2"))));
+        this.mAccountInfoFile = new AtomicFile(new File(syncDir, "accounts.xml"));
+        this.mStatusFile = new AtomicFile(new File(syncDir, "status.bin"));
+        this.mPendingFile = new AtomicFile(new File(syncDir, "pending.xml"));
+        this.mStatisticsFile = new AtomicFile(new File(syncDir, "stats.bin"));
         this.readAccountInfoLocked();
         this.readStatusLocked();
         this.readPendingOperationsLocked();
@@ -151,7 +151,7 @@ public class SyncStorageEngine extends Handler {
 
     public static SyncStorageEngine getSingleton() {
         if (sSyncStorageEngine == null) {
-            throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALHsFAiZjAQozLwdbMWgVGiw=")));
+            throw new IllegalStateException("not initialized");
         } else {
             return sSyncStorageEngine;
         }
@@ -253,7 +253,7 @@ public class SyncStorageEngine extends Handler {
 
                 return true;
             } else {
-                AuthorityInfo authority = this.getAuthorityLocked(account, userId, providerName, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcwAiZ9IiAvLBdfD24gBi9oJzgdLAcYVg==")));
+                AuthorityInfo authority = this.getAuthorityLocked(account, userId, providerName, "getSyncAutomatically");
                 return authority != null && authority.enabled;
             }
         }
@@ -280,7 +280,7 @@ public class SyncStorageEngine extends Handler {
     public int getIsSyncable(Account account, int userId, String providerName) {
         synchronized(this.mAuthorities) {
             if (account != null) {
-                AuthorityInfo authority = this.getAuthorityLocked(account, userId, providerName, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLH0aLF5nDlk5LwcuCGkjSFo=")));
+                AuthorityInfo authority = this.getAuthorityLocked(account, userId, providerName, "getIsSyncable");
                 return authority == null ? -1 : authority.syncable;
             } else {
                 int i = this.mAuthorities.size();
@@ -326,7 +326,7 @@ public class SyncStorageEngine extends Handler {
 
     public Pair<Long, Long> getBackoff(Account account, int userId, String providerName) {
         synchronized(this.mAuthorities) {
-            AuthorityInfo authority = this.getAuthorityLocked(account, userId, providerName, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMjJCljJB4+KD5SVg==")));
+            AuthorityInfo authority = this.getAuthorityLocked(account, userId, providerName, "getBackoff");
             return authority != null && authority.backoffTime >= 0L ? Pair.create(authority.backoffTime, authority.backoffDelay) : null;
         }
     }
@@ -438,7 +438,7 @@ public class SyncStorageEngine extends Handler {
 
     public long getDelayUntilTime(Account account, int userId, String providerName) {
         synchronized(this.mAuthorities) {
-            AuthorityInfo authority = this.getAuthorityLocked(account, userId, providerName, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAFNCR9AQZKKj42MW8zSFo=")));
+            AuthorityInfo authority = this.getAuthorityLocked(account, userId, providerName, "getDelayUntil");
             return authority == null ? 0L : authority.delayUntil;
         }
     }
@@ -446,11 +446,11 @@ public class SyncStorageEngine extends Handler {
     private void updateOrRemovePeriodicSync(PeriodicSync toUpdate, int userId, boolean add) {
         synchronized(this.mAuthorities) {
             if (toUpdate.period <= 0L && add) {
-                Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmUVGixLVlA8M15aOmoFFiVvAQIvPQgcJ2YwLDV5HgYqLD1XJ2U3IAVqIzwaJxcMKGoaFkhqHFk0IwgALmgYICthNAY1KBccP2IKLCZoIFArLRgqIE4FSFo=")) + add);
+                Log.e(TAG, "period < 0, should never happen in updateOrRemovePeriodicSync: add-" + add);
             }
 
             if (toUpdate.extras == null) {
-                Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDmoJICtnEQoqLwgpCH4wAiBlJCgdLgQ6KmIFICBlMCAhKC1XDmsFATRlER03IAgiI2kFLDFnDllALQgID2wjNExiASwzKi02MW4IAj9lNzMxPQg+IGJTQVo=")) + add);
+                Log.e(TAG, "null extras, should never happen in updateOrRemovePeriodicSync: add-" + add);
             }
 
             try {
@@ -469,7 +469,7 @@ public class SyncStorageEngine extends Handler {
                             if (status != null) {
                                 status.removePeriodicSyncTime(i);
                             } else {
-                                Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IRcMCWgVMyhhNDA3Ki4+MW8VHShsJB4bLTo6D2YaPD9qAS8pKQgpJGwzNAFqNCQ0DRgiLGUwBgFpNzA2Phc2J2ojLyh9NzAgKBccPn4zMCVvVjwtIxgcIEsaGj98N1RF")));
+                                Log.e(TAG, "Tried removing sync status on remove periodic sync butdid not find it.");
                             }
                         } else {
                             ++i;
@@ -522,7 +522,7 @@ public class SyncStorageEngine extends Handler {
     public List<PeriodicSync> getPeriodicSyncs(Account account, int userId, String providerName) {
         ArrayList<PeriodicSync> syncs = new ArrayList();
         synchronized(this.mAuthorities) {
-            AuthorityInfo authority = this.getAuthorityLocked(account, userId, providerName, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFNARjDh4wKQcqAWgjMClsJ1RF")));
+            AuthorityInfo authority = this.getAuthorityLocked(account, userId, providerName, "getPeriodicSyncs");
             if (authority != null) {
                 Iterator var7 = authority.periodicSyncs.iterator();
 
@@ -621,7 +621,7 @@ public class SyncStorageEngine extends Handler {
                     this.mNumPendingFinished = 0;
                 }
 
-                AuthorityInfo authority = this.getAuthorityLocked(op.account, op.userId, op.authority, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguDmgaMCtqNyw1KgYmPW8VBi9lNyBF")));
+                AuthorityInfo authority = this.getAuthorityLocked(op.account, op.userId, op.authority, "deleteFromPending");
                 if (authority != null) {
                     int N = this.mPendingOperations.size();
                     boolean morePending = false;
@@ -750,7 +750,7 @@ public class SyncStorageEngine extends Handler {
     public long insertStartSyncEvent(Account accountName, int userId, int reason, String authorityName, long now, int source, boolean initialization, Bundle extras) {
         long id;
         synchronized(this.mAuthorities) {
-            AuthorityInfo authority = this.getAuthorityLocked(accountName, userId, authorityName, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcKWgaFgZpJwo7Iz42AWgjMCljDiQgLC0qVg==")));
+            AuthorityInfo authority = this.getAuthorityLocked(accountName, userId, authorityName, "insertStartSyncEvent");
             if (authority == null) {
                 return -1L;
             }
@@ -797,7 +797,7 @@ public class SyncStorageEngine extends Handler {
             }
 
             if (item == null) {
-                Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qD28ILD9gNCgVLD0MDmU0IyhlNxkrIwgYD2YaAjVrCiAvKQdeJGoFMzQ=")) + historyId);
+                Log.w(TAG, "stopSyncEvent: no history for id " + historyId);
                 return;
             }
 
@@ -1143,7 +1143,7 @@ public class SyncStorageEngine extends Handler {
         }
 
         if (!found) {
-            Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgmCGowFi9gNDs8Iy0MLmIzGgRqAQYvIxg2UmcKRSZiHhocLypXCGsKJC9oHjAZDRc6JmU0PDV+NB4gIz41OGwFRTdmVyQwKi0ML34zMCVvVjwgLwgYD2ZTRCNhAQo9Kj4uCGoKMCt5IzxF")) + authorityInfo.authority);
+            Log.w(TAG, "Ignoring setPeriodicSyncTime request for a sync that does not exist. Authority: " + authorityInfo.authority);
         }
 
     }
@@ -1196,7 +1196,7 @@ public class SyncStorageEngine extends Handler {
         label313: {
             try {
                 fis = this.mAccountInfoFile.openRead();
-                Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uP2gFAiZiICRF")) + this.mAccountInfoFile.getBaseFile());
+                Log.v(TAG, "Reading " + this.mAccountInfoFile.getBaseFile());
                 XmlPullParser parser = Xml.newPullParser();
                 parser.setInput(fis, (String)null);
 
@@ -1205,7 +1205,7 @@ public class SyncStorageEngine extends Handler {
                 }
 
                 String tagName = parser.getName();
-                if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEShF")).equals(tagName)) {
+                if ("accounts".equals(tagName)) {
                     String listen = parser.getAttributeValue((String)null, XML_ATTR_LISTEN_FOR_TICKLES);
                     String versionString = parser.getAttributeValue((String)null, XML_ATTR_VERSION);
 
@@ -1246,7 +1246,7 @@ public class SyncStorageEngine extends Handler {
                         if (eventType == 2) {
                             tagName = parser.getName();
                             if (parser.getDepth() == 2) {
-                                if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUFGgRjAQoZ")).equals(tagName)) {
+                                if ("authority".equals(tagName)) {
                                     authority = this.parseAuthority(parser, version);
                                     periodicSync = null;
                                     if (authority.ident > highestAuthorityId) {
@@ -1256,10 +1256,10 @@ public class SyncStorageEngine extends Handler {
                                     this.parseListenForTickles(parser);
                                 }
                             } else if (parser.getDepth() == 3) {
-                                if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmUVGixjDigPLQcYPw==")).equals(tagName) && authority != null) {
+                                if ("periodicSync".equals(tagName) && authority != null) {
                                     periodicSync = this.parsePeriodicSync(parser, authority);
                                 }
-                            } else if (parser.getDepth() == 4 && periodicSync != null && StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfLG8jJFo=")).equals(tagName)) {
+                            } else if (parser.getDepth() == 4 && periodicSync != null && "extra".equals(tagName)) {
                                 this.parseExtra(parser, periodicSync.extras);
                             }
                         }
@@ -1269,14 +1269,14 @@ public class SyncStorageEngine extends Handler {
                 }
                 break label313;
             } catch (XmlPullParserException var29) {
-                Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShhNDA7KBccDmkJTTdoJzAcKhgcCmEjSFo=")), var29);
+                Log.w(TAG, "Error reading accounts", var29);
             } catch (IOException var30) {
                 if (fis == null) {
-                    Log.i(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4fOGUVBi9mHgY7Kl4mOW4FAiVvARo/KT5SVg==")));
+                    Log.i(TAG, "No initial accounts");
                     return;
                 }
 
-                Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShhNDA7KBccDmkJTTdoJzAcKhgcCmEjSFo=")), var30);
+                Log.w(TAG, "Error reading accounts", var30);
                 return;
             } finally {
                 this.mNextAuthorityId = Math.max(highestAuthorityId + 1, this.mNextAuthorityId);
@@ -1296,7 +1296,7 @@ public class SyncStorageEngine extends Handler {
     }
 
     private void maybeDeleteLegacyPendingInfoLocked(File syncDir) {
-        File file = new File(syncDir, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguCGgFAiZiIFk6KQcYVg==")));
+        File file = new File(syncDir, "pending.bin");
         if (file.exists()) {
             file.delete();
         }
@@ -1313,7 +1313,7 @@ public class SyncStorageEngine extends Handler {
             String newAuthorityName = (String)sAuthorityRenames.get(authority.authority);
             if (newAuthorityName != null) {
                 authoritiesToRemove.add(authority);
-                if (authority.enabled && this.getAuthorityLocked(authority.account, authority.userId, newAuthorityName, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EM2sVBgVhEVRF"))) == null) {
+                if (authority.enabled && this.getAuthorityLocked(authority.account, authority.userId, newAuthorityName, "cleanup") == null) {
                     AuthorityInfo newAuthority = this.getOrCreateAuthorityLocked(authority.account, authority.userId, newAuthorityName, -1, false);
                     newAuthority.enabled = true;
                     writeNeeded = true;
@@ -1336,9 +1336,9 @@ public class SyncStorageEngine extends Handler {
         try {
             userId = Integer.parseInt(user);
         } catch (NumberFormatException var6) {
-            Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQcMKmowEShhHiAqIy0cDmkJTQZqESsrKhc2J2E0OCFsJyspKT42D28VNAR6ESQ6JzlbM28KMAVvNwYc")), var6);
+            Log.e(TAG, "error parsing the user for listen-for-tickles", var6);
         } catch (NullPointerException var7) {
-            Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRhfM3sKNANiAS88KQcXOm8zLANvESgbPBgiKWE0QT9vDiwaKT4AD3gVAiV7ARoaJhdXVg==")), var7);
+            Log.e(TAG, "the user in listen-for-tickles is null", var7);
         }
 
         String enabled = parser.getAttributeValue((String)null, XML_ATTR_ENABLED);
@@ -1351,32 +1351,32 @@ public class SyncStorageEngine extends Handler {
         int id = -1;
 
         try {
-            id = Integer.parseInt(parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgqVg=="))));
+            id = Integer.parseInt(parser.getAttributeValue((String)null, "id"));
         } catch (NumberFormatException var14) {
-            Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQcMKmowEShhHiAqIy0cDmkJTQZqESsrIxgpJGAgIyNqHgYuOD5bCW8VRQNvJx4ZIQhSVg==")), var14);
+            Log.e(TAG, "error parsing the id of the authority", var14);
         } catch (NullPointerException var15) {
-            Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRhfM3sFAixLHh4+Pxg2MmknTTdvDiwZLD0MI2YVBSNvAS8pKRcAKGUVSFo=")), var15);
+            Log.e(TAG, "the id of the authority is null", var15);
         }
 
         if (id >= 0) {
-            String authorityName = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUFGgRjAQoZ")));
+            String authorityName = parser.getAttributeValue((String)null, "authority");
             String enabled = parser.getAttributeValue((String)null, XML_ATTR_ENABLED);
-            String syncable = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YCGszJCpgHjBF")));
-            String accountName = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEVRF")));
-            String accountType = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcYKGgVSFo=")));
+            String syncable = parser.getAttributeValue((String)null, "syncable");
+            String accountName = parser.getAttributeValue((String)null, "account");
+            String accountType = parser.getAttributeValue((String)null, "type");
             String user = parser.getAttributeValue((String)null, XML_ATTR_USER);
-            String packageName = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+OWUzJC1iAVRF")));
-            String className = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EP28wLFo=")));
+            String packageName = parser.getAttributeValue((String)null, "package");
+            String className = parser.getAttributeValue((String)null, "class");
             int userId = user == null ? 0 : Integer.parseInt(user);
             if (accountType == null) {
-                accountType = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojPCVgJDgoKAhSVg=="));
-                syncable = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcMWojGj1gN1RF"));
+                accountType = "com.google";
+                syncable = "unknown";
             }
 
             authority = (AuthorityInfo)this.mAuthorities.get(id);
-            Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JggqPGUVBi1LHiAvLBcADWoVLAZuClArLRg2JWAjLClqVlFF")) + accountName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phg+I2wFRDM=")) + authorityName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcuKWgaETM=")) + userId + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhguCGsVFiRiDg0d")) + enabled + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phc2J2ojLDd9NFE/PghSVg==")) + syncable);
+            Log.v(TAG, "Adding authority: account=" + accountName + " auth=" + authorityName + " user=" + userId + " enabled=" + enabled + " syncable=" + syncable);
             if (authority == null) {
-                Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji0MM2saMC9gNDs8KAcYLmoaLFo=")));
+                Log.v(TAG, "Creating entry");
                 if (accountName != null && accountType != null) {
                     authority = this.getOrCreateAuthorityLocked(new Account(accountName, accountType), userId, authorityName, id, false);
                 } else {
@@ -1390,13 +1390,13 @@ public class SyncStorageEngine extends Handler {
 
             if (authority != null) {
                 authority.enabled = enabled == null || Boolean.parseBoolean(enabled);
-                if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcMWojGj1gN1RF")).equals(syncable)) {
+                if ("unknown".equals(syncable)) {
                     authority.syncable = -1;
                 } else {
                     authority.syncable = syncable != null && !Boolean.parseBoolean(syncable) ? 0 : 1;
                 }
             } else {
-                Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JT4+CWoKNARiCiQ7KBc2MW8VHShoDig/IwgACGMFFgZ7MCAqKAgYKW8FBiB+EVRF")) + accountName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phg+I2wFRDM=")) + authorityName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhguCGsVFiRiDg0d")) + enabled + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phc2J2ojLDd9NFE/PghSVg==")) + syncable);
+                Log.w(TAG, "Failure adding authority: account=" + accountName + " auth=" + authorityName + " enabled=" + enabled + " syncable=" + syncable);
             }
         }
 
@@ -1405,17 +1405,17 @@ public class SyncStorageEngine extends Handler {
 
     private PeriodicSync parsePeriodicSync(XmlPullParser parser, AuthorityInfo authority) {
         Bundle extras = new Bundle();
-        String periodValue = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmUVGiw=")));
-        String flexValue = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4EM2kFSFo=")));
+        String periodValue = parser.getAttributeValue((String)null, "period");
+        String flexValue = parser.getAttributeValue((String)null, "flex");
 
         long period;
         try {
             period = Long.parseLong(periodValue);
         } catch (NumberFormatException var13) {
-            Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQcMKmowEShhHiAqIy0cDmkJTQZqESsrKQguCGMKAi95HlkvOD5aJGwVNCZlEQYzJQctL2UjBgJuAVRF")), var13);
+            Log.e(TAG, "error parsing the period of a periodic sync", var13);
             return null;
         } catch (NullPointerException var14) {
-            Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRhfM3sKICthNAY1KF4mDWlSTTd4HjwgKS4YKWIaGiZ5ESwyKRgXJGoKLzRqJCg7JhhSVg==")), var14);
+            Log.e(TAG, "the period of a periodic sync is null", var14);
             return null;
         }
 
@@ -1423,11 +1423,11 @@ public class SyncStorageEngine extends Handler {
         try {
             flextime = Long.parseLong(flexValue);
         } catch (NumberFormatException var11) {
-            Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShiNB4qKgciLmUzLCZrIzw9LRgECWIOODNpASg8Ly4bJGszGiZ7Djw0Jz0AJm4aBjN+NB4gIz41OGgjHitnVgU8")) + flexValue);
+            Log.e(TAG, "Error formatting value parsed for periodic sync flex: " + flexValue);
             flextime = calculateDefaultFlexTime(period);
         } catch (NullPointerException var12) {
             flextime = calculateDefaultFlexTime(period);
-            Log.d(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4fOGgjHitnVyQgKQdXPX4wAgJrATAaLi4YJ2JTOCFsJyspIz4MI2wnICVpERo2CF4iPGUgBgJpDVEoPhgqM2gjJAVgEQ02PxgmPWoVLCVrV1Ar")) + period + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgiDmgaRDJLEVRF")) + flextime);
+            Log.d(TAG, "No flex time specified for this sync, using a default. period: " + period + " flex: " + flextime);
         }
 
         PeriodicSync periodicSync = new PeriodicSync(authority.account, authority.authority, extras, period);
@@ -1437,46 +1437,46 @@ public class SyncStorageEngine extends Handler {
     }
 
     private void parseExtra(XmlPullParser parser, Bundle extras) {
-        String name = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+DWgVSFo=")));
-        String type = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcYKGgVSFo=")));
-        String value1 = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+DmwVNwE=")));
-        String value2 = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+DmwVNwQ=")));
+        String name = parser.getAttributeValue((String)null, "name");
+        String type = parser.getAttributeValue((String)null, "type");
+        String value1 = parser.getAttributeValue((String)null, "value1");
+        String value2 = parser.getAttributeValue((String)null, "value2");
 
         try {
-            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgACGgzSFo=")).equals(type)) {
+            if ("long".equals(type)) {
                 extras.putLong(name, Long.parseLong(value1));
-            } else if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcLGgVPCthN1RF")).equals(type)) {
+            } else if ("integer".equals(type)) {
                 extras.putInt(name, Integer.parseInt(value1));
-            } else if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgAI2sjHis=")).equals(type)) {
+            } else if ("double".equals(type)) {
                 extras.putDouble(name, Double.parseDouble(value1));
-            } else if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4ED2saMFo=")).equals(type)) {
+            } else if ("float".equals(type)) {
                 extras.putFloat(name, Float.parseFloat(value1));
-            } else if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4AD2oFNDdgN1RF")).equals(type)) {
+            } else if ("boolean".equals(type)) {
                 extras.putBoolean(name, Boolean.parseBoolean(value1));
-            } else if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qKmUVBi0=")).equals(type)) {
+            } else if ("string".equals(type)) {
                 extras.putString(name, value1);
-            } else if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEVRF")).equals(type)) {
+            } else if ("account".equals(type)) {
                 extras.putParcelable(name, new Account(value1, value2));
             }
         } catch (NumberFormatException var8) {
-            Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQcMKmowEShhHiAqIy0cDmkJTSpvARovLAgtJGYwPDdqDgpF")), var8);
+            Log.e(TAG, "error parsing bundle value", var8);
         } catch (NullPointerException var9) {
-            Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQcMKmowEShhHiAqIy0cDmkJTSpvARovLAgtJGYwPDdqDgpF")), var9);
+            Log.e(TAG, "error parsing bundle value", var9);
         }
 
     }
 
     private void writeAccountInfoLocked() {
-        Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IS0MCWwFAiZiICQ2KAg5Og==")) + this.mAccountInfoFile.getBaseFile());
+        Log.v(TAG, "Writing new " + this.mAccountInfoFile.getBaseFile());
         FileOutputStream fos = null;
 
         try {
             fos = this.mAccountInfoFile.startWrite();
             XmlSerializer out = new FastXmlSerializer();
-            out.setOutput(fos, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQcqPnpTRVo=")));
+            out.setOutput(fos, "utf-8");
             out.startDocument((String)null, true);
-            out.setFeature(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBcqLG8OTCVOJxo3KhgmLW8zOyZlJAouPD0hDU4gFippIFkvLy5bCm8KFj9vMxo/IBdbO3kgBgJpNwY5KV8ID2waMAJmAQpF")), true);
-            out.startTag((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEShF")));
+            out.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
+            out.startTag((String)null, "accounts");
             out.attribute((String)null, XML_ATTR_VERSION, Integer.toString(2));
             out.attribute((String)null, XML_ATTR_NEXT_AUTHORITY_ID, Integer.toString(this.mNextAuthorityId));
             out.attribute((String)null, XML_ATTR_SYNC_RANDOM_OFFSET, Integer.toString(this.mSyncRandomOffset));
@@ -1497,46 +1497,46 @@ public class SyncStorageEngine extends Handler {
 
             for(i = 0; i < N; ++i) {
                 AuthorityInfo authority = (AuthorityInfo)this.mAuthorities.valueAt(i);
-                out.startTag((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUFGgRjAQoZ")));
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgqVg==")), Integer.toString(authority.ident));
+                out.startTag((String)null, "authority");
+                out.attribute((String)null, "id", Integer.toString(authority.ident));
                 out.attribute((String)null, XML_ATTR_USER, Integer.toString(authority.userId));
                 out.attribute((String)null, XML_ATTR_ENABLED, Boolean.toString(authority.enabled));
                 if (authority.service == null) {
-                    out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEVRF")), authority.account.name);
-                    out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcYKGgVSFo=")), authority.account.type);
-                    out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUFGgRjAQoZ")), authority.authority);
+                    out.attribute((String)null, "account", authority.account.name);
+                    out.attribute((String)null, "type", authority.account.type);
+                    out.attribute((String)null, "authority", authority.authority);
                 } else {
-                    out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+OWUzJC1iAVRF")), authority.service.getPackageName());
-                    out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EP28wLFo=")), authority.service.getClassName());
+                    out.attribute((String)null, "package", authority.service.getPackageName());
+                    out.attribute((String)null, "class", authority.service.getClassName());
                 }
 
                 if (authority.syncable < 0) {
-                    out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YCGszJCpgHjBF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcMWojGj1gN1RF")));
+                    out.attribute((String)null, "syncable", "unknown");
                 } else {
-                    out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YCGszJCpgHjBF")), Boolean.toString(authority.syncable != 0));
+                    out.attribute((String)null, "syncable", Boolean.toString(authority.syncable != 0));
                 }
 
                 Iterator var7 = authority.periodicSyncs.iterator();
 
                 while(var7.hasNext()) {
                     PeriodicSync periodicSync = (PeriodicSync)var7.next();
-                    out.startTag((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmUVGixjDigPLQcYPw==")));
-                    out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmUVGiw=")), Long.toString(periodicSync.period));
+                    out.startTag((String)null, "periodicSync");
+                    out.attribute((String)null, "period", Long.toString(periodicSync.period));
                     long flexTime = mirror.android.content.PeriodicSync.flexTime.get(periodicSync);
-                    out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4EM2kFSFo=")), Long.toString(flexTime));
+                    out.attribute((String)null, "flex", Long.toString(flexTime));
                     Bundle extras = periodicSync.extras;
                     this.extrasToXml(out, extras);
-                    out.endTag((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmUVGixjDigPLQcYPw==")));
+                    out.endTag((String)null, "periodicSync");
                 }
 
-                out.endTag((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUFGgRjAQoZ")));
+                out.endTag((String)null, "authority");
             }
 
-            out.endTag((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEShF")));
+            out.endTag((String)null, "accounts");
             out.endDocument();
             this.mAccountInfoFile.finishWrite(fos);
         } catch (IOException var12) {
-            Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShmJywzLBccDmkJTTdoJzAcKhgcCmEjSFo=")), var12);
+            Log.w(TAG, "Error writing accounts", var12);
             if (fos != null) {
                 this.mAccountInfoFile.failWrite(fos);
             }
@@ -1553,7 +1553,7 @@ public class SyncStorageEngine extends Handler {
     }
 
     private void readAndDeleteLegacyAccountInfoLocked() {
-        File file = this.mContext.getDatabasePath(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YCGszEjdgNCA9KAgtDmkzRVo=")));
+        File file = this.mContext.getDatabasePath("syncmanager.db");
         if (file.exists()) {
             String path = file.getPath();
             SQLiteDatabase db = null;
@@ -1565,31 +1565,31 @@ public class SyncStorageEngine extends Handler {
 
             if (db != null) {
                 boolean hasType = db.getVersion() >= 11;
-                Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uP2gFAiZiICQoKAc6OW4KLyhsJB4bLTo6O30gNCpqDh49LARXIGgzSFo=")));
+                Log.v(TAG, "Reading legacy sync accounts db");
                 SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-                qb.setTables(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2wKLyRLESggLwg2LWoFSFo=")));
+                qb.setTables("stats, status");
                 HashMap<String, String> map = new HashMap();
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jy4YPA==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2wKNANONR4zKF4mOWoJTR9qASxF")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEVRF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2wKLyZ9Dig5Ki4MDmU3TTdsIzwsLT42KWYKRT8=")));
+                map.put("_id", "status._id as _id");
+                map.put("account", "stats.account as account");
                 if (hasType) {
-                    map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmHx4gLQgmPQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2wKLyZ9Dig5Ki4MDmU2NAZuDjwgPQg+D0saPCZpJFk+KRccE28aAiRoEVRF")));
+                    map.put("account_type", "stats.account_type as account_type");
                 }
 
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUFGgRjAQoZ")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2wKLyZ9ATAgKRdfKGwgBj94ETg6PQg+CWYaBiplNBo9Li5SVg==")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRgALGsVHhVgHiAsIy0MPn0zLCNrAVRF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRgALGsVHhVgHiAsIy0MPn0zLCNrAVRF")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWcwAiZ9JyhF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWcwAiZ9JyhF")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/IhdfP24jOFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/IhdfP24jOFo=")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/OxdfCG8zSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/OxdfCG8zSFo=")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/Oy0MKGUVGgQ=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/Oy0MKGUVGgQ=")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/JAgqPWoVSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/JAgqPWoVSFo=")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwILAV9JCg/Iy4qAW8KGgRoJyhF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwILAV9JCg/Iy4qAW8KGgRoJyhF")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwILAV9JCg/Iy4qAGwjPCs=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwILAV9JCg/Iy4qAGwjPCs=")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwLODdjDlEvIz0MAW8KGgRoJyhF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwLODdjDlEvIz0MAW8KGgRoJyhF")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwLODdjDlEvIz0MAGwjPCs=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwLODdjDlEvIz0MAGwjPCs=")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwLODdjDlEvIz0MUmkgAi0=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwLODdjDlEvIz0MUmkgAi0=")));
-                map.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguCGgFAiZiJ1RF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguCGgFAiZiJ1RF")));
+                map.put("authority", "stats.authority as authority");
+                map.put("totalElapsedTime", "totalElapsedTime");
+                map.put("numSyncs", "numSyncs");
+                map.put("numSourceLocal", "numSourceLocal");
+                map.put("numSourcePoll", "numSourcePoll");
+                map.put("numSourceServer", "numSourceServer");
+                map.put("numSourceUser", "numSourceUser");
+                map.put("lastSuccessSource", "lastSuccessSource");
+                map.put("lastSuccessTime", "lastSuccessTime");
+                map.put("lastFailureSource", "lastFailureSource");
+                map.put("lastFailureTime", "lastFailureTime");
+                map.put("lastFailureMesg", "lastFailureMesg");
+                map.put("pending", "pending");
                 qb.setProjectionMap(map);
-                qb.appendWhere(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2wKLyZsJAYwP19WOmoKBjdvHig6PC02Cn0FFjZgJBot")));
+                qb.appendWhere("stats._id = status.stats_id");
                 Cursor c = qb.query(db, (String[])null, (String)null, (String[])null, (String)null, (String)null, (String)null);
 
                 while(true) {
@@ -1601,7 +1601,7 @@ public class SyncStorageEngine extends Handler {
                         if (!c.moveToNext()) {
                             c.close();
                             qb = new SQLiteQueryBuilder();
-                            qb.setTables(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGwFAiZiJyhF")));
+                            qb.setTables("settings");
                             c = qb.query(db, (String[])null, (String)null, (String[])null, (String)null, (String)null, (String)null);
 
                             while(true) {
@@ -1615,14 +1615,14 @@ public class SyncStorageEngine extends Handler {
                                             return;
                                         }
 
-                                        name = c.getString(c.getColumnIndex(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+DWgVSFo="))));
-                                        value = c.getString(c.getColumnIndex(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+DmwVNFo="))));
+                                        name = c.getString(c.getColumnIndex("name"));
+                                        value = c.getString(c.getColumnIndex("value"));
                                     } while(name == null);
 
-                                    if (name.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYKWwFNCZsJDw1IzxfLmwjAiFlESg6")))) {
+                                    if (name.equals("listen_for_tickles")) {
                                         this.setMasterSyncAutomatically(value == null || Boolean.parseBoolean(value), 0);
-                                    } else if (name.startsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YCGs2GgJhNB4uKQc2PWoYNFo=")))) {
-                                        provider = name.substring(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YCGs2GgJhNB4uKQc2PWoYNFo=")).length(), name.length());
+                                    } else if (name.startsWith("sync_provider_")) {
+                                        provider = name.substring("sync_provider_".length(), name.length());
                                         int i = this.mAuthorities.size();
 
                                         while(true) {
@@ -1643,13 +1643,13 @@ public class SyncStorageEngine extends Handler {
                             }
                         }
 
-                        name = c.getString(c.getColumnIndex(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEVRF"))));
-                        value = hasType ? c.getString(c.getColumnIndex(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmHx4gLQgmPQ==")))) : null;
+                        name = c.getString(c.getColumnIndex("account"));
+                        value = hasType ? c.getString(c.getColumnIndex("account_type")) : null;
                         if (value == null) {
-                            value = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojPCVgJDgoKAhSVg=="));
+                            value = "com.google";
                         }
 
-                        provider = c.getString(c.getColumnIndex(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUFGgRjAQoZ"))));
+                        provider = c.getString(c.getColumnIndex("authority"));
                         authority = this.getOrCreateAuthorityLocked(new Account(name, value), 0, provider, -1, false);
                     } while(authority == null);
 
@@ -1671,26 +1671,26 @@ public class SyncStorageEngine extends Handler {
                         this.mSyncStatus.put(authority.ident, st);
                     }
 
-                    st.totalElapsedTime = getLongColumn(c, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRgALGsVHhVgHiAsIy0MPn0zLCNrAVRF")));
-                    st.numSyncs = getIntColumn(c, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWcwAiZ9JyhF")));
-                    st.numSourceLocal = getIntColumn(c, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/IhdfP24jOFo=")));
-                    st.numSourcePoll = getIntColumn(c, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/OxdfCG8zSFo=")));
-                    st.numSourceServer = getIntColumn(c, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/Oy0MKGUVGgQ=")));
-                    st.numSourceUser = getIntColumn(c, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWczGgVhNCg/JAgqPWoVSFo=")));
+                    st.totalElapsedTime = getLongColumn(c, "totalElapsedTime");
+                    st.numSyncs = getIntColumn(c, "numSyncs");
+                    st.numSourceLocal = getIntColumn(c, "numSourceLocal");
+                    st.numSourcePoll = getIntColumn(c, "numSourcePoll");
+                    st.numSourceServer = getIntColumn(c, "numSourceServer");
+                    st.numSourceUser = getIntColumn(c, "numSourceUser");
                     st.numSourcePeriodic = 0;
-                    st.lastSuccessSource = getIntColumn(c, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwILAV9JCg/Iy4qAW8KGgRoJyhF")));
-                    st.lastSuccessTime = getLongColumn(c, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwILAV9JCg/Iy4qAGwjPCs=")));
-                    st.lastFailureSource = getIntColumn(c, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwLODdjDlEvIz0MAW8KGgRoJyhF")));
-                    st.lastFailureTime = getLongColumn(c, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwLODdjDlEvIz0MAGwjPCs=")));
-                    st.lastFailureMesg = c.getString(c.getColumnIndex(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwLODdjDlEvIz0MUmkgAi0="))));
-                    st.pending = getIntColumn(c, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguCGgFAiZiJ1RF"))) != 0;
+                    st.lastSuccessSource = getIntColumn(c, "lastSuccessSource");
+                    st.lastSuccessTime = getLongColumn(c, "lastSuccessTime");
+                    st.lastFailureSource = getIntColumn(c, "lastFailureSource");
+                    st.lastFailureTime = getLongColumn(c, "lastFailureTime");
+                    st.lastFailureMesg = c.getString(c.getColumnIndex("lastFailureMesg"));
+                    st.pending = getIntColumn(c, "pending") != 0;
                 }
             }
         }
     }
 
     private void readStatusLocked() {
-        Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uP2gFAiZiICRF")) + this.mStatusFile.getBaseFile());
+        Log.v(TAG, "Reading " + this.mStatusFile.getBaseFile());
 
         try {
             byte[] data = this.mStatusFile.readFully();
@@ -1701,25 +1701,25 @@ public class SyncStorageEngine extends Handler {
             int token;
             while((token = in.readInt()) != 0) {
                 if (token != 100) {
-                    Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcMWojGj1gMCQpLBciLmUgDShvEQYiLhgbPksVSFo=")) + token);
+                    Log.w(TAG, "Unknown status token: " + token);
                     break;
                 }
 
                 SyncStatusInfo status = new SyncStatusInfo(in);
                 if (this.mAuthorities.indexOfKey(status.authorityId) >= 0) {
                     status.pending = false;
-                    Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JggqPGUVBi1LESggLwg2LWoJTS5lJA0rIxgpJA==")) + status.authorityId);
+                    Log.v(TAG, "Adding status for id " + status.authorityId);
                     this.mSyncStatus.put(status.authorityId, status);
                 }
             }
         } catch (IOException var5) {
-            Log.i(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4fOGUVBi9mHgY7Kl4mL2UzQQZvDjBF")));
+            Log.i(TAG, "No initial status");
         }
 
     }
 
     private void writeStatusLocked() {
-        Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IS0MCWwFAiZiICQ2KAg5Og==")) + this.mStatusFile.getBaseFile());
+        Log.v(TAG, "Writing new " + this.mStatusFile.getBaseFile());
         this.removeMessages(1);
         FileOutputStream fos = null;
 
@@ -1739,7 +1739,7 @@ public class SyncStorageEngine extends Handler {
             out.recycle();
             this.mStatusFile.finishWrite(fos);
         } catch (IOException var6) {
-            Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShmJywzLBccDmkJTQNvETg/Khc2Vg==")), var6);
+            Log.w(TAG, "Error writing status", var6);
             if (fos != null) {
                 this.mStatusFile.failWrite(fos);
             }
@@ -1750,7 +1750,7 @@ public class SyncStorageEngine extends Handler {
     private void readPendingOperationsLocked() {
         FileInputStream fis = null;
         if (!this.mPendingFile.getBaseFile().exists()) {
-            Log.v(TAG_FILE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4fOG8FNCZiHgY2KCkmDWozGgRoDiwaLD4bJGIwGjduCh5F")));
+            Log.v(TAG_FILE, "No pending operation file.");
         } else {
             try {
                 fis = this.mPendingFile.openRead();
@@ -1769,11 +1769,11 @@ public class SyncStorageEngine extends Handler {
                         if (eventType == 2) {
                             try {
                                 tagName = parser.getName();
-                                if (parser.getDepth() == 1 && StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy06Vg==")).equals(tagName)) {
+                                if (parser.getDepth() == 1 && "op".equals(tagName)) {
                                     String versionString = parser.getAttributeValue((String)null, XML_ATTR_VERSION);
                                     if (versionString == null || Integer.parseInt(versionString) != 3) {
-                                        Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcMWojGj1gMCQsKAcYPmwjMC14EQY7LhcMO2YaGipsMCA/Ly1fD2oFGgR7AVRF")) + versionString);
-                                        throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcMWojGj1gMCQuKAguL2wjNCZ1N1RF")));
+                                        Log.w(TAG, "Unknown pending operation version " + versionString);
+                                        throw new IOException("Unknown version.");
                                     }
 
                                     int authorityId = Integer.valueOf(parser.getAttributeValue((String)null, XML_ATTR_AUTHORITYID));
@@ -1786,16 +1786,16 @@ public class SyncStorageEngine extends Handler {
                                         pop = new PendingOperation(authority.account, authority.userId, reason, syncSource, authority.authority, new Bundle(), expedited);
                                         pop.flatExtras = null;
                                         this.mPendingOperations.add(pop);
-                                        Log.v(TAG_FILE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JggqPGUVBi1LESQ/Kj02MW8VHShlJD8xPQhSVg==")) + pop.authority + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phc2Kms0Elo=")) + pop.syncSource + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcMM2saLCVgM11F")) + pop.reason + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhguIG8FNCxjAQo/KF9XVg==")) + pop.expedited);
+                                        Log.v(TAG_FILE, "Adding pending op: " + pop.authority + " src=" + pop.syncSource + " reason=" + pop.reason + " expedited=" + pop.expedited);
                                     } else {
                                         pop = null;
-                                        Log.v(TAG_FILE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4fOGsaNAZjHh4qKQg2IX4zHiVvARovPQgiKWE0OFo=")) + authorityId + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KWUzAgJhHgY2KC5SVg==")));
+                                        Log.v(TAG_FILE, "No authority found for " + authorityId + ", skipping");
                                     }
-                                } else if (parser.getDepth() == 2 && pop != null && StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfLG8jJFo=")).equals(tagName)) {
+                                } else if (parser.getDepth() == 2 && pop != null && "extra".equals(tagName)) {
                                     this.parseExtra(parser, pop.extras);
                                 }
                             } catch (NumberFormatException var24) {
-                                Log.d(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQwLwg2OX4zLCZ4HlkeLAQ6ImMKTSB8N1RF")), var24);
+                                Log.d(TAG, "Invalid data in xml file.", var24);
                             }
                         }
 
@@ -1805,10 +1805,10 @@ public class SyncStorageEngine extends Handler {
                     return;
                 }
             } catch (IOException var25) {
-                Log.w(TAG_FILE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShhNDA7KBccDmkJTQJrARovIxgcIUsaFiRqHicd")), var25);
+                Log.w(TAG_FILE, "Error reading pending data.", var25);
                 return;
             } catch (XmlPullParserException var26) {
-                Log.w(TAG_FILE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShhHiAqIy0cDmkJTQJrARovIxgcIUsaAjNlICAxKS4hKg==")), var26);
+                Log.w(TAG_FILE, "Error parsing pending ops xml.", var26);
                 return;
             } finally {
                 if (fis != null) {
@@ -1829,15 +1829,15 @@ public class SyncStorageEngine extends Handler {
 
         try {
             if (N == 0) {
-                Log.v(TAG_FILE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IRcMI2ojLDdmHgY2KCkmVg==")) + this.mPendingFile.getBaseFile());
+                Log.v(TAG_FILE, "Truncating " + this.mPendingFile.getBaseFile());
                 this.mPendingFile.truncate();
                 return;
             }
 
-            Log.v(TAG_FILE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IS0MCWwFAiZiICQ2KAg5Og==")) + this.mPendingFile.getBaseFile());
+            Log.v(TAG_FILE, "Writing new " + this.mPendingFile.getBaseFile());
             fos = this.mPendingFile.startWrite();
             XmlSerializer out = new FastXmlSerializer();
-            out.setOutput(fos, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQcqPnpTRVo=")));
+            out.setOutput(fos, "utf-8");
 
             for(int i = 0; i < N; ++i) {
                 PendingOperation pop = (PendingOperation)this.mPendingOperations.get(i);
@@ -1847,7 +1847,7 @@ public class SyncStorageEngine extends Handler {
             out.endDocument();
             this.mPendingFile.finishWrite(fos);
         } catch (IOException var6) {
-            Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShmJywzLBccDmkJTQJrARovIxgcIUsaAjNuASgqIz42KWUwLFo=")), var6);
+            Log.w(TAG, "Error writing pending operations", var6);
             if (fos != null) {
                 this.mPendingFile.failWrite(fos);
             }
@@ -1856,36 +1856,36 @@ public class SyncStorageEngine extends Handler {
     }
 
     private void writePendingOperationLocked(PendingOperation pop, XmlSerializer out) throws IOException {
-        out.startTag((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy06Vg==")));
+        out.startTag((String)null, "op");
         out.attribute((String)null, XML_ATTR_VERSION, Integer.toString(3));
         out.attribute((String)null, XML_ATTR_AUTHORITYID, Integer.toString(pop.authorityId));
         out.attribute((String)null, XML_ATTR_SOURCE, Integer.toString(pop.syncSource));
         out.attribute((String)null, XML_ATTR_EXPEDITED, Boolean.toString(pop.expedited));
         out.attribute((String)null, XML_ATTR_REASON, Integer.toString(pop.reason));
         this.extrasToXml(out, pop.extras);
-        out.endTag((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy06Vg==")));
+        out.endTag((String)null, "op");
     }
 
     private void appendPendingOperationLocked(PendingOperation op) {
-        Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgc6KGgVBixjDlk9Pxg2DX4zSFo=")) + this.mPendingFile.getBaseFile());
+        Log.v(TAG, "Appending to " + this.mPendingFile.getBaseFile());
         FileOutputStream fos = null;
 
         try {
             fos = this.mPendingFile.openAppend();
         } catch (IOException var15) {
-            Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JT4+CWoFNCxLHiAsIxcMDmk0JyhvJAoaKggYKmIkOCFqDl0bOD4EI2UVNFo=")));
+            Log.v(TAG, "Failed append; writing full file");
             this.writePendingOperationsLocked();
             return;
         }
 
         try {
             XmlSerializer out = new FastXmlSerializer();
-            out.setOutput(fos, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQcqPnpTRVo=")));
+            out.setOutput(fos, "utf-8");
             this.writePendingOperationLocked(op, out);
             out.endDocument();
             this.mPendingFile.finishWrite(fos);
         } catch (IOException var13) {
-            Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShmJywzLBccDmkJTTdsHjwgLC4qI2AwJyNsJyAuLBhbCmoFGgQ=")), var13);
+            Log.w(TAG, "Error writing appending operation", var13);
             this.mPendingFile.failWrite(fos);
         } finally {
             try {
@@ -1929,33 +1929,33 @@ public class SyncStorageEngine extends Handler {
     }
 
     private void extrasToXml(XmlSerializer out, Bundle extras) throws IOException {
-        for(Iterator var3 = extras.keySet().iterator(); var3.hasNext(); out.endTag((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfLG8jJFo=")))) {
+        for(Iterator var3 = extras.keySet().iterator(); var3.hasNext(); out.endTag((String)null, "extra")) {
             String key = (String)var3.next();
-            out.startTag((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfLG8jJFo=")));
-            out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+DWgVSFo=")), key);
+            out.startTag((String)null, "extra");
+            out.attribute((String)null, "name", key);
             Object value = extras.get(key);
             if (value instanceof Long) {
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcYKGgVSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgACGgzSFo=")));
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+DmwVNwE=")), value.toString());
+                out.attribute((String)null, "type", "long");
+                out.attribute((String)null, "value1", value.toString());
             } else if (value instanceof Integer) {
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcYKGgVSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcLGgVPCthN1RF")));
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+DmwVNwE=")), value.toString());
+                out.attribute((String)null, "type", "integer");
+                out.attribute((String)null, "value1", value.toString());
             } else if (value instanceof Boolean) {
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcYKGgVSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4AD2oFNDdgN1RF")));
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+DmwVNwE=")), value.toString());
+                out.attribute((String)null, "type", "boolean");
+                out.attribute((String)null, "value1", value.toString());
             } else if (value instanceof Float) {
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcYKGgVSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4ED2saMFo=")));
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+DmwVNwE=")), value.toString());
+                out.attribute((String)null, "type", "float");
+                out.attribute((String)null, "value1", value.toString());
             } else if (value instanceof Double) {
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcYKGgVSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgAI2sjHis=")));
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+DmwVNwE=")), value.toString());
+                out.attribute((String)null, "type", "double");
+                out.attribute((String)null, "value1", value.toString());
             } else if (value instanceof String) {
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcYKGgVSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qKmUVBi0=")));
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+DmwVNwE=")), value.toString());
+                out.attribute((String)null, "type", "string");
+                out.attribute((String)null, "value1", value.toString());
             } else if (value instanceof Account) {
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcYKGgVSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEVRF")));
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+DmwVNwE=")), ((Account)value).name);
-                out.attribute((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+DmwVNwQ=")), ((Account)value).type);
+                out.attribute((String)null, "type", "account");
+                out.attribute((String)null, "value1", ((Account)value).name);
+                out.attribute((String)null, "value2", ((Account)value).type);
             }
         }
 
@@ -1981,7 +1981,7 @@ public class SyncStorageEngine extends Handler {
             int token;
             while((token = in.readInt()) != 0) {
                 if (token != 101 && token != 100) {
-                    Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcMWojGj1gMCQpLBciLmoJTQZlJ10gLClWJA==")) + token);
+                    Log.w(TAG, "Unknown stats token: " + token);
                     break;
                 }
 
@@ -2001,13 +2001,13 @@ public class SyncStorageEngine extends Handler {
                 }
             }
         } catch (IOException var7) {
-            Log.i(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4fOGUVBi9mHgY7Kl4mL2UzQQZqDjA/Ixg2Dw==")));
+            Log.i(TAG, "No initial statistics");
         }
 
     }
 
     private void writeStatisticsLocked() {
-        Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IS0MCWwFAiZiICQ2KAg5Og==")) + this.mStatisticsFile.getBaseFile());
+        Log.v(TAG, "Writing new " + this.mStatisticsFile.getBaseFile());
         this.removeMessages(2);
         FileOutputStream fos = null;
 
@@ -2035,7 +2035,7 @@ public class SyncStorageEngine extends Handler {
             out.recycle();
             this.mStatisticsFile.finishWrite(fos);
         } catch (IOException var6) {
-            Log.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShmJywzLBccDmkJTQNvETg/KT5SVg==")), var6);
+            Log.w(TAG, "Error writing stats", var6);
             if (fos != null) {
                 this.mStatisticsFile.failWrite(fos);
             }
@@ -2044,19 +2044,21 @@ public class SyncStorageEngine extends Handler {
     }
 
     public void dumpPendingOperations(StringBuilder sb) {
-        sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhguCGgFAiZiICQLIxgpIH4zSFo="))).append(this.mPendingOperations.size()).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgAKGgaFjdmHgY1KjkAL3wlIFo=")));
+        sb.append("Pending Ops: ").append(this.mPendingOperations.size()).append(" operation(s)
+");
         Iterator var2 = this.mPendingOperations.iterator();
 
         while(var2.hasNext()) {
             PendingOperation pop = (PendingOperation)var2.next();
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PBhSVg==")) + pop.account).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Iw==")) + pop.userId).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Vg==")) + pop.authority).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Vg==")) + pop.extras).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PAJXVg==")));
+            sb.append("(" + pop.account).append(", u" + pop.userId).append(", " + pop.authority).append(", " + pop.extras).append(")
+");
         }
 
     }
 
     static {
-        sAuthorityRenames.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGwFJClmEShF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1Dm4FNCZvETgqKgc2Vg==")));
-        sAuthorityRenames.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+DmgVBix9ASxF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1Dm4FQSRrARovLRcMVg==")));
+        sAuthorityRenames.put("contacts", "com.android.contacts");
+        sAuthorityRenames.put("calendar", "com.android.calendar");
         sSyncStorageEngine = null;
     }
 

@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class ILocationManager {
-    public static Class<?> TYPE = RefClass.load(ILocationManager.class, StringFog.decrypt("EgsWBAoHO10PABERHQYBHUs7OgoNPgcKABw9CAEPFAAA"));
+    public static Class<?> TYPE = RefClass.load(ILocationManager.class, "android.location.ILocationManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10PABERHQYBHUs7OgoNPgcKABw9CAEPFAAAUjYaKhE="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.location.ILocationManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

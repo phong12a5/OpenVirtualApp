@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IBluetooth {
-    public static Class<?> TYPE = RefClass.load(IBluetooth.class, StringFog.decrypt("EgsWBAoHO10BAwcVHQABBw1cPycCKhYXAB0EAQ=="));
+    public static Class<?> TYPE = RefClass.load(IBluetooth.class, "android.bluetooth.IBluetooth");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10BAwcVHQABBw1cPycCKhYXAB0EAUs9BxAQ"));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.bluetooth.IBluetooth$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

@@ -12,23 +12,23 @@ import mirror.com.android.internal.telephony.IMms;
 public class MmsStub
 extends BinderInvocationProxy {
     public MmsStub() {
-        super(IMms.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgIDW8zSFo=")));
+        super(IMms.Stub.asInterface, "imms");
     }
 
     @Override
     protected void onBindMethods() {
-        this.addMethodProxy(new ReplaceSpecPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uCGgLEithJyg7KC0MVg==")), 1));
-        this.addMethodProxy(new ReplaceSpecPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgALWojHiV9DgoNKAgqL24jEis=")), 1));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgIKGowFgZuHjAaLBVXPWoKAjdrJyhF"))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgIKGowFgZoATAoLBccD2kjBi9oDw4gKT02O2IgLFo="))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguDmgaMCtpJwo1Iz0MPmcjGgNsJzguLhhSVg=="))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguDmgaMCtpJwo1Iz0MPmYFNCZvNyg5KT4+CmMKAik="))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtpJwo1Iz0MPmcjGgNsJzguLhU2Cn0FFjBlJ1RF"))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMOWUFAj5iDyggKi4uPWkxAiVlNCQgKS02O2YaGipsN1RF"))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGQFNDBmHF0/Iy4qOWkFGhZsNzgtKghSVg=="))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGIaNCRmHgY3KAc2MW4hPCtsJDAsLj4uGmEwPCFqEVRF"))));
-        this.addMethodProxy(new ReplaceSpecPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uCGgILAZgJyw/KBVXPWoKAjdrJyhF")), 1));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaNAZgJSQ/Iz4qMWoKBi9lNyBF"))));
+        this.addMethodProxy(new ReplaceSpecPkgMethodProxy("sendMessage", 1));
+        this.addMethodProxy(new ReplaceSpecPkgMethodProxy("downloadMessage", 1));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("importTextMessage"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("importMultimediaMessage"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("deleteStoredMessage"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("deleteStoredConversation"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("updateStoredMessageStatus"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("archiveStoredConversation"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("addTextMessageDraft"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("addMultimediaMessageDraft"));
+        this.addMethodProxy(new ReplaceSpecPkgMethodProxy("sendStoredMessage", 1));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("setAutoPersisting"));
     }
 }
 

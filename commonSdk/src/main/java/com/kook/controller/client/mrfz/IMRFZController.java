@@ -26,12 +26,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IMRFZController {
-        private static final String DESCRIPTOR = StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeBB0ICUs7OzcoBTAMAQYCBgMCFhc=");
+        private static final String DESCRIPTOR = "com.kook.controller.client.mrfz.IMRFZController";
         static final int TRANSACTION_switchChange = 1;
         static final int TRANSACTION_setViewValue = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeBB0ICUs7OzcoBTAMAQYCBgMCFhc="));
+            this.attachInterface(this, "com.kook.controller.client.mrfz.IMRFZController");
         }
 
         public static IMRFZController asInterface(IBinder obj) {
@@ -78,7 +78,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IMRFZController impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -105,7 +105,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeBB0ICUs7OzcoBTAMAQYCBgMCFhc=");
+                return "com.kook.controller.client.mrfz.IMRFZController";
             }
 
             /*
@@ -116,7 +116,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeBB0ICUs7OzcoBTAMAQYCBgMCFhc="));
+                    _data.writeInterfaceToken("com.kook.controller.client.mrfz.IMRFZController");
                     _data.writeInt(viewIndex);
                     _data.writeInt(value ? 1 : 0);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
@@ -140,7 +140,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeBB0ICUs7OzcoBTAMAQYCBgMCFhc="));
+                    _data.writeInterfaceToken("com.kook.controller.client.mrfz.IMRFZController");
                     _data.writeInt(viewIndex);
                     _data.writeFloat(value);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);

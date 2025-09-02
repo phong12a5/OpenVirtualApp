@@ -52,20 +52,20 @@ public class FileUploadService {
 
     public void uploadDevices(File file, String deviceNo, String uploadVersion, FileUploadObserver<ResponseBody> fileUploadObserver) {
         HashMap<String, RequestBody> params = new HashMap<String, RequestBody>();
-        params.put(StringFog.decrypt("M0IiLxg="), RequestBody.create((MediaType)MediaType.parse((String)StringFog.decrypt("BhoDH0QSFBVZSQ8XGQJCD0wWFA==")), (String)MD5Utils.fileMD5Sync(file)));
-        params.put(StringFog.decrypt("DwoZAk4HOwg="), RequestBody.create((MediaType)MediaType.parse((String)StringFog.decrypt("BhoDH0QSFBVZSQ8XGQJCD0wWFA==")), (String)deviceNo));
-        params.put(StringFog.decrypt("Hh8DBEwGIwJfFQAXBQ=="), RequestBody.create((MediaType)MediaType.parse((String)StringFog.decrypt("BhoDH0QSFBVZSQ8XGQJCD0wWFA==")), (String)uploadVersion));
-        RequestBody requestFile = RequestBody.create((MediaType)MediaType.parse((String)StringFog.decrypt("BhoDH0QSFBVZSQ8XGQJCD0wWFA==")), (File)file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData((String)StringFog.decrypt("DQYDDg=="), (String)file.getName(), (RequestBody)requestFile);
+        params.put("@'PY}", RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (String)MD5Utils.fileMD5Sync(file)));
+        params.put("|okt+id{", RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (String)deviceNo));
+        params.put("mzqr)h|q<zrgl", RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (String)uploadVersion));
+        RequestBody requestFile = RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (File)file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData((String)"~cqx", (String)file.getName(), (RequestBody)requestFile);
         mApiService.uploadDevices(body, params).filter(responseBody -> this.handleResponse((ResponseBody)responseBody)).compose(HttpManager.io_main()).doOnError((Consumer)new ErrorAction()).subscribe(fileUploadObserver);
     }
 
     public void uploadAvatar2(File file, String usercode, FileUploadObserver<ResponseBody> fileUploadObserver) {
         ArrayMap uploadInfo = new ArrayMap();
         UploadFileRequestBody uploadFileRequestBody = new UploadFileRequestBody(file, fileUploadObserver);
-        uploadInfo.put(StringFog.decrypt("AgIODEhATkdLDwUdBQ4CDhBA") + file.getName() + "", uploadFileRequestBody);
+        uploadInfo.put("image\"; filename=\"" + file.getName() + "", uploadFileRequestBody);
         if (!TextUtils.isEmpty((CharSequence)usercode)) {
-            uploadInfo.put(StringFog.decrypt("HhwKGU4NEQI="), RequestBody.create((MediaType)MediaType.parse((String)StringFog.decrypt("HwoXHwISGQZECA==")), (String)usercode.trim()));
+            uploadInfo.put("myxo+cNq", RequestBody.create((MediaType)MediaType.parse((String)"loeig|Fu'g"), (String)usercode.trim()));
         }
         mApiService.uploadAvatar2((Map<String, RequestBody>)uploadInfo).filter(responseBody -> this.handleResponse((ResponseBody)responseBody)).compose(HttpManager.io_main()).doOnError((Consumer)new ErrorAction()).subscribe(fileUploadObserver);
     }
@@ -75,13 +75,13 @@ public class FileUploadService {
         try {
             source.request(Long.MAX_VALUE);
             Buffer buffer = source.buffer();
-            Charset charset = Charset.forName(StringFog.decrypt("PjspRhU="));
+            Charset charset = Charset.forName("M^[0p");
             MediaType contentType = responseBody.contentType();
             if (contentType != null) {
                 charset = contentType.charset(charset);
             }
             String body = buffer.clone().readString(charset);
-            HVLog.d(StringFog.decrypt("jfDKjLHpndi5g/LmjvTxjbDHkv2pRkkaBAsWUQ==") + body);
+            HVLog.d("查看返回回来的  body:" + body);
             MessageEntity messageEntity = (MessageEntity)JSON.parseObject((String)body, MessageEntity.class);
             if (messageEntity.getCode() != 4000) {
                 throw new ApiException(messageEntity.getMsg(), String.valueOf(messageEntity.getCode()), messageEntity.getCode());

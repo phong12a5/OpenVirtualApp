@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IAutoFillManager {
-    public static Class<?> TYPE = RefClass.load(IAutoFillManager.class, StringFog.decrypt("EgsWBAoHO10VBhcHRw4bBwoUHwkCcToiGgYfLwYCHygTGAQJOgE="));
+    public static Class<?> TYPE = RefClass.load(IAutoFillManager.class, "android.view.autofill.IAutoFillManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10VBhcHRw4bBwoUHwkCcToiGgYfLwYCHygTGAQJOgFHPAYFCw=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.view.autofill.IAutoFillManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IContextHubService {
-    public static Class<?> TYPE = RefClass.load(IContextHubService.class, StringFog.decrypt("EgsWBAoHO10LDgAUHg4cFkseGQYPKxoMAVw5KgAABwAKAi0bPSAGHQQZCgo="));
+    public static Class<?> TYPE = RefClass.load(IContextHubService.class, "android.hardware.location.IContextHubService");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10LDgAUHg4cFkseGQYPKxoMAVw5KgAABwAKAi0bPSAGHQQZCgpKIBEHFA=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.hardware.location.IContextHubService$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

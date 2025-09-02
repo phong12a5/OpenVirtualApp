@@ -51,7 +51,7 @@ extends ContentProvider {
     private static DatabaseHelper mOpenHelper;
 
     public static String getAUTHORITY(String packageName) {
-        String AUTHORITY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogLClgJywsKQdfDn8aTQRlJCQaLgguCA=="));
+        String AUTHORITY = "com.scorpion.provider";
         return AUTHORITY;
     }
 
@@ -62,14 +62,14 @@ extends ContentProvider {
 
     @Nullable
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Phc+I2gaFj9LVyQvIz0bOngVSFo=")) + uri.toString());
+        HVLog.d(" query  uri :" + uri.toString());
         SqlArguments args = new SqlArguments(uri, selection, selectionArgs);
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables(args.table);
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         Cursor result = qb.query(db, projection, args.where, args.args, null, null, sortOrder);
         result.setNotificationUri(this.getContext().getContentResolver(), uri);
-        Toast.makeText((Context)this.getContext(), (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4qPmgKLFo=")), (int)1).show();
+        Toast.makeText((Context)this.getContext(), (CharSequence)"sdfds", (int)1).show();
         return result;
     }
 
@@ -77,9 +77,9 @@ extends ContentProvider {
     public String getType(@NonNull Uri uri) {
         SqlArguments args = new SqlArguments(uri, null, null);
         if (TextUtils.isEmpty((CharSequence)args.where)) {
-            return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4cPHojJCZiESw1KQc1Dm4KGgRsJwY5PC4qI2E0Alo=")) + args.table;
+            return "vnd.android.cursor.dir/" + args.table;
         }
-        return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4cPHojJCZiESw1KQc1Dm4KGgRsJwY5PC4YCmIKQCo=")) + args.table;
+        return "vnd.android.cursor.item/" + args.table;
     }
 
     @Nullable
@@ -163,14 +163,14 @@ extends ContentProvider {
 
     private void sendNotify(Uri uri) {
         String notify = uri.getQueryParameter(PARAMETER_NOTIFY);
-        if (notify == null || com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRcMI2gVSFo=")).equals(notify)) {
+        if (notify == null || "true".equals(notify)) {
             this.getContext().getContentResolver().notifyChange(uri, null);
         }
     }
 
     static {
-        PARAMETER_NOTIFY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4ALGUVOD8="));
-        DATABASE_NAME = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki42D28gIC9gJFg2KBcuVg=="));
+        PARAMETER_NOTIFY = "notify";
+        DATABASE_NAME = "scorpion.db";
     }
 
     public static class SqlArguments {
@@ -185,20 +185,20 @@ extends ContentProvider {
                 this.args = args;
             } else {
                 if (url.getPathSegments().size() != 2) {
-                    throw new IllegalArgumentException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcLmsVHi9iVyRKOzsbIH4zSFo=")) + url);
+                    throw new IllegalArgumentException("Invalid URI: " + url);
                 }
                 if (!TextUtils.isEmpty((CharSequence)where)) {
-                    throw new UnsupportedOperationException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ISxfWGchNyh9JFE7LAgqPX4zMCVvVjw6Khc6DmAjMD9uDjMzOD5SVg==")) + url);
+                    throw new UnsupportedOperationException("WHERE clause not supported: " + url);
                 }
                 this.table = (String)url.getPathSegments().get(0);
-                this.where = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4YPH4VSFo=")) + ContentUris.parseId((Uri)url);
+                this.where = "_id=" + ContentUris.parseId((Uri)url);
                 this.args = null;
             }
         }
 
         public SqlArguments(Uri url) {
             if (url.getPathSegments().size() != 1) {
-                throw new IllegalArgumentException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcLmsVHi9iVyRKOzsbIH4zSFo=")) + url);
+                throw new IllegalArgumentException("Invalid URI: " + url);
             }
             this.table = (String)url.getPathSegments().get(0);
             this.where = null;

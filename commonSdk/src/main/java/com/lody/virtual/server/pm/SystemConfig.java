@@ -20,7 +20,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 public class SystemConfig {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YKWwFNCNlJB42KD0cMw=="));
+    private static final String TAG = "SystemConfig";
     private final Map<String, SharedLibraryEntry> mSharedLibraries = new HashMap();
 
     public SystemConfig() {
@@ -28,10 +28,10 @@ public class SystemConfig {
 
     public void load() {
         long beforeTime = System.currentTimeMillis();
-        File permissionsDir = new File(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4uLGs3GgJiASw3KQgqL2wjNCZsIwZF")));
+        File permissionsDir = new File("/etc/permissions/");
         this.readSharedLibraries(permissionsDir);
         long costTime = System.currentTimeMillis() - beforeTime;
-        VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgAP2gJIClgJyggPxg2MW8jBTJ4EVRF")) + costTime + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwc1CA==")));
+        VLog.e(TAG, "load cost time: " + costTime + "ms.");
     }
 
     public SharedLibraryEntry getSharedLibrary(String name) {
@@ -43,11 +43,11 @@ public class SystemConfig {
         try {
             permReader = new FileReader(permFile);
         } catch (FileNotFoundException var16) {
-            VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMCZIJw08KD0cDmk3TSVsMzwcKQguKksVOCBlNFEiLAcYI2UjBiV7ASQwJhc1Lw==")) + permFile, new Object[0]);
+            VLog.w(TAG, "Couldn't find or open permissions file " + permFile, new Object[0]);
             return;
         }
 
-        VLog.i(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uP2gFAiZiICQsKAguD2wgAgNqAQYbKTo6ImEwAih5EVRF")) + permFile, new Object[0]);
+        VLog.i(TAG, "Reading permissions from " + permFile, new Object[0]);
         XmlPullParser parser = Xml.newPullParser();
 
         try {
@@ -58,11 +58,11 @@ public class SystemConfig {
             }
 
             if (type != 2) {
-                throw new XmlPullParserException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4fOG8wMDdhNw08LBciM34zHiVvARov")));
+                throw new XmlPullParserException("No start tag found");
             }
 
-            if (!parser.getName().equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmoVAgNhJAY1Kj4qVg=="))) && !parser.getName().equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGgjAi0=")))) {
-                throw new XmlPullParserException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcM2kKICt9Jwo/KF4mL2UzQQRvVjw/LRglJGMKRCM=")) + permFile + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ODo6PmowNCZiVyRF")) + parser.getName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186M2kKICt9Jwo/KF4lM2ozGgRlAR46KT4YKWAzNyJ5Hlk7ODoIJWUjBjJlESMy")));
+            if (!parser.getName().equals("permissions") && !parser.getName().equals("config")) {
+                throw new XmlPullParserException("Unexpected start tag in " + permFile + ": found " + parser.getName() + ", expected 'permissions' or 'config'");
             }
 
             while(true) {
@@ -78,21 +78,21 @@ public class SystemConfig {
                     byte var7 = -1;
                     switch (name.hashCode()) {
                         case 166208699:
-                            if (name.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOm8jJARnAVRF")))) {
+                            if (name.equals("library")) {
                                 var7 = 0;
                             }
                         default:
                             switch (var7) {
                                 case 0:
-                                    String lname = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+DWgVSFo=")));
-                                    String lfile = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YDmgVSFo=")));
-                                    String ldependency = parser.getAttributeValue((String)null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguKGgVBixiDlk5LQhSVg==")));
+                                    String lname = parser.getAttributeValue((String)null, "name");
+                                    String lfile = parser.getAttributeValue((String)null, "file");
+                                    String ldependency = parser.getAttributeValue((String)null, "dependency");
                                     if (lname == null) {
-                                        VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PxhSVg==")) + name + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pzo6LWUaMCBgJzAgPxcYOW8jBShqAR0r")) + permFile + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phg+LHsFSFo=")) + parser.getPositionDescription(), new Object[0]);
+                                        VLog.w(TAG, "<" + name + "> without name in " + permFile + " at " + parser.getPositionDescription(), new Object[0]);
                                     } else if (lfile == null) {
-                                        VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PxhSVg==")) + name + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pzo6LWUaMCBgJzAgPxc+MW8zBShqAR0r")) + permFile + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phg+LHsFSFo=")) + parser.getPositionDescription(), new Object[0]);
+                                        VLog.w(TAG, "<" + name + "> without file in " + permFile + " at " + parser.getPositionDescription(), new Object[0]);
                                     } else {
-                                        SharedLibraryEntry entry = new SharedLibraryEntry(lname, lfile, ldependency == null ? new String[0] : ldependency.split(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD5SVg=="))));
+                                        SharedLibraryEntry entry = new SharedLibraryEntry(lname, lfile, ldependency == null ? new String[0] : ldependency.split(":"));
                                         this.mSharedLibraries.put(lname, entry);
                                     }
 
@@ -119,7 +119,7 @@ public class SystemConfig {
 
             for(int var5 = 0; var5 < var4; ++var5) {
                 File permissionFile = var3[var5];
-                if (permissionFile.isFile() && permissionFile.getName().endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz1fDWoFSFo=")))) {
+                if (permissionFile.isFile() && permissionFile.getName().endsWith(".xml")) {
                     this.readPermissionsFromXml(permissionFile);
                 }
             }

@@ -44,7 +44,7 @@ public class VirtualRuntime {
     public static String getInstructionSet(String abi) {
         String instructionSet = ABI_TO_INSTRUCTION_SET_MAP.get(abi);
         if (instructionSet == null) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcKWwaIAJgJywgKAc1OmYhRQl+MzxF")) + abi);
+            throw new IllegalArgumentException("Unsupported ABI: " + abi);
         }
         return instructionSet;
     }
@@ -65,7 +65,7 @@ public class VirtualRuntime {
 
     public static <T> T crash(Throwable e) throws RuntimeException {
         e.printStackTrace();
-        throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcMP2ogLDd9Jw08Iz0MD28KBit4HjAgKS0iJ2E0OCFpDhobLy4cVg==")), e);
+        throw new RuntimeException("transact remote server failed", e);
     }
 
     public static boolean is64bit() {
@@ -79,25 +79,25 @@ public class VirtualRuntime {
         if (VirtualCore.get().isMainPackage()) {
             return libName;
         }
-        return libName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jy4uIGwFSFo="));
+        return libName + "_ext";
     }
 
     public static void exit() {
-        VLog.d(VirtualRuntime.class.getSimpleName(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQdfCWwJIAJhNB45KAgqL340Iyh7DjMrMwQuD0kORVo=")), VirtualRuntime.getProcessName(), VirtualCore.get().getProcessName());
+        VLog.d(VirtualRuntime.class.getSimpleName(), "Exit process : %s (%s).", VirtualRuntime.getProcessName(), VirtualCore.get().getProcessName());
         Process.killProcess((int)Process.myPid());
     }
 
     public static boolean isArt() {
-        return System.getProperty(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4+LmtSBj5gClkuKAguL2wjNCY="))).startsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oj5SVg==")));
+        return System.getProperty("java.vm.version").startsWith("2");
     }
 
     static {
         ABI_TO_INSTRUCTION_SET_MAP = new HashMap<String, String>(16);
-        ABI_TO_INSTRUCTION_SET_MAP.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDWgVJCpjAVRF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDQ==")));
-        ABI_TO_INSTRUCTION_SET_MAP.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDWgVJCpjCl0uPC0iVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDQ==")));
-        ABI_TO_INSTRUCTION_SET_MAP.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwgYKG8zSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwgYKG8zSFo=")));
-        ABI_TO_INSTRUCTION_SET_MAP.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwgYKG80OwY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwgYKG80OwY=")));
-        ABI_TO_INSTRUCTION_SET_MAP.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDXwkMyNmMxo7")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDXwkMFo=")));
+        ABI_TO_INSTRUCTION_SET_MAP.put("armeabi", "arm");
+        ABI_TO_INSTRUCTION_SET_MAP.put("armeabi-v7a", "arm");
+        ABI_TO_INSTRUCTION_SET_MAP.put("mips", "mips");
+        ABI_TO_INSTRUCTION_SET_MAP.put("mips64", "mips64");
+        ABI_TO_INSTRUCTION_SET_MAP.put("arm64-v8a", "arm64");
     }
 }
 

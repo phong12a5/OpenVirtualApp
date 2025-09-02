@@ -21,7 +21,7 @@ import mirror.android.content.ClipboardManagerOreo;
 public class ClipBoardStub
 extends BinderInvocationProxy {
     public ClipBoardStub() {
-        super(ClipBoardStub.getInterface(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ECW8FFiV9ASww")));
+        super(ClipBoardStub.getInterface(), "clipboard");
     }
 
     private static IInterface getInterface() {
@@ -29,7 +29,7 @@ extends BinderInvocationProxy {
             return mirror.android.content.ClipboardManager.getService.call(new Object[0]);
         }
         if (ClipboardManagerOreo.mService != null) {
-            ClipboardManager cm = (ClipboardManager)VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ECW8FFiV9ASww")));
+            ClipboardManager cm = (ClipboardManager)VirtualCore.get().getContext().getSystemService("clipboard");
             return ClipboardManagerOreo.mService.get(cm);
         }
         if (ClipboardManagerOreo.sService != null) {
@@ -41,14 +41,14 @@ extends BinderInvocationProxy {
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcKFi9gDiAqLQUqCGwgTVo="))));
+        this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy("getPrimaryClip"));
         if (Build.VERSION.SDK_INT > 17) {
-            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGcKFi9gDiAqLQUqCGwgTVo="))));
-            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcKFi9gDiAqLQUqCGwgTRZrDjAqKS4YDmYaGipsN1RF"))));
-            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+KWcKFi9gDiAqLQUqCGwgTVo="))));
-            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGcKFi9gDiAqLQUqCGwgTRNqETgbLj4uIGgaGjZqHgodLy1fVg=="))));
-            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtpESwzKgciKGghAiRqDjwAIwg+KmIgLC9kHho8Iz4AKmsKFlo="))));
-            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+KWMzHi9hHiw1LwguPn0zGjBvEVRF"))));
+            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy("setPrimaryClip"));
+            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy("getPrimaryClipDescription"));
+            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy("hasPrimaryClip"));
+            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy("addPrimaryClipChangedListener"));
+            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy("removePrimaryClipChangedListener"));
+            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy("hasClipboardText"));
         }
     }
 
@@ -56,7 +56,7 @@ extends BinderInvocationProxy {
     public void inject() throws Throwable {
         super.inject();
         if (ClipboardManagerOreo.mService != null) {
-            ClipboardManager cm = (ClipboardManager)VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ECW8FFiV9ASww")));
+            ClipboardManager cm = (ClipboardManager)VirtualCore.get().getContext().getSystemService("clipboard");
             ClipboardManagerOreo.mService.set(cm, (IInterface)((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());
         } else if (ClipboardManagerOreo.sService != null) {
             ClipboardManagerOreo.sService.set((IInterface)((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());

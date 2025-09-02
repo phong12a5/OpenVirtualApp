@@ -24,10 +24,10 @@ public class CoordinatesConvert {
             break;
         }
         Map<String, Double> location = this.converter(x, y, cF);
-        location.put(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IxgcPQ==")), location.get(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KBhSVg=="))));
-        location.remove(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KBhSVg==")));
-        location.put(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ixg+LA==")), location.get(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAhSVg=="))));
-        location.remove(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAhSVg==")));
+        location.put("lng", location.get("x"));
+        location.remove("x");
+        location.put("lat", location.get("y"));
+        location.remove("y");
         return location;
     }
 
@@ -49,13 +49,13 @@ public class CoordinatesConvert {
             }
         }
         Map<String, Double> map = this.converter(lng, lat, cE);
-        double x = map.get(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KBhSVg==")));
-        double y = map.get(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAhSVg==")));
+        double x = map.get("x");
+        double y = map.get("y");
         BigDecimal xTemp = new BigDecimal(x);
         BigDecimal yTemp = new BigDecimal(y);
         String tempX = xTemp.setScale(8, 4).toPlainString();
         String tempY = yTemp.setScale(10, 4).toPlainString();
-        return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KF4IVg==")) + tempX + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PT0XOw==")) + tempY;
+        return "x=" + tempX + "&y=" + tempY;
     }
 
     private Map<String, Double> converter(double x, double y, double[] cE) {
@@ -68,8 +68,8 @@ public class CoordinatesConvert {
         BigDecimal tempY = new BigDecimal(yTemp *= (double)n);
         xTemp = tempX.setScale(8, 4).doubleValue();
         yTemp = tempY.setScale(8, 4).doubleValue();
-        location.put(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KBhSVg==")), xTemp);
-        location.put(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAhSVg==")), yTemp);
+        location.put("x", xTemp);
+        location.put("y", yTemp);
         return location;
     }
 

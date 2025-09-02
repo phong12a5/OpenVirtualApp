@@ -18,12 +18,12 @@ import mirror.RefMethod;
 import mirror.RefStaticMethod;
 
 public class ILocationListener {
-    public static Class<?> TYPE = RefClass.load(ILocationListener.class, StringFog.decrypt("EgsWBAoHO10PABERHQYBHUs7OgoNPgcKABw8ABwaFgsXBA=="));
+    public static Class<?> TYPE = RefClass.load(ILocationListener.class, "android.location.ILocationListener");
     @MethodParams(value={Location.class})
     public static RefMethod<Void> onLocationChanged;
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10PABERHQYBHUs7OgoNPgcKABw8ABwaFgsXBEE9KwYB"));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.location.ILocationListener$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

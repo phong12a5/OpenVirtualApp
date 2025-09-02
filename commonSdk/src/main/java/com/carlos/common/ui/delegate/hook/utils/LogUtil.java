@@ -24,9 +24,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LogUtil {
-    private static String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS5fD28wMFo="));
+    private static String TAG = "ghost";
     private static boolean LOG_DEBUG = true;
-    private static final String LINE_SEPARATOR = System.getProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IxgYCGhSBgNiASQ7Iz0iLm8KRVo=")));
+    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
     private static final int VERBOSE = 2;
     private static final int DEBUG = 3;
     private static final int INFO = 4;
@@ -62,7 +62,7 @@ public class LogUtil {
         StringBuilder sb = new StringBuilder();
         for (Object obj : msg) {
             sb.append(obj);
-            sb.append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("MxhSVg==")));
+            sb.append(",");
         }
         LogUtil.log(4, null, String.valueOf(sb));
     }
@@ -71,7 +71,7 @@ public class LogUtil {
         StringBuilder sb = new StringBuilder();
         for (Object obj : msg) {
             sb.append(obj);
-            sb.append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("MxhSVg==")));
+            sb.append(",");
         }
         LogUtil.log(3, null, String.valueOf(sb));
     }
@@ -201,17 +201,17 @@ public class LogUtil {
         String[] lines;
         String message;
         if (TextUtils.isEmpty((CharSequence)json)) {
-            LogUtil.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JQgIKGwKDSVoNzAoKl4mCmoFNCZ4ETAcLC0qJ2AzFlo=")));
+            LogUtil.d("Empty/Null json content");
             return;
         }
         if (TextUtils.isEmpty((CharSequence)tag)) {
             tag = TAG;
         }
         try {
-            if (json.startsWith(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KC5SVg==")))) {
+            if (json.startsWith("{")) {
                 JSONObject jsonObject = new JSONObject(json);
                 message = jsonObject.toString(4);
-            } else if (json.startsWith(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg==")))) {
+            } else if (json.startsWith("[")) {
                 JSONArray jsonArray = new JSONArray(json);
                 message = jsonArray.toString(4);
             } else {
@@ -224,7 +224,7 @@ public class LogUtil {
         LogUtil.printLine(tag, true);
         message = headString + LINE_SEPARATOR + message;
         for (String line : lines = message.split(LINE_SEPARATOR)) {
-            LogUtil.printSub(3, tag, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LxhSVg==")) + line);
+            LogUtil.printSub(3, tag, "|" + line);
         }
         LogUtil.printLine(tag, false);
     }
@@ -239,22 +239,23 @@ public class LogUtil {
                 StreamSource xmlInput = new StreamSource(new StringReader(xml));
                 StreamResult xmlOutput = new StreamResult(new StringWriter());
                 Transformer transformer = TransformerFactory.newInstance().newTransformer();
-                transformer.setOutputProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgcPGgVBgY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAguKQ==")));
-                transformer.setOutputProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KC5fLGwKIzJOIB4aKgdaDm4gTTdoJ1kgPC4ACGIkAgVlJF09LS42KmsVNARsDQ4oJgcYPGwzLFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oj5SVg==")));
+                transformer.setOutputProperty("indent", "yes");
+                transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
                 transformer.transform(xmlInput, xmlOutput);
-                xml = xmlOutput.getWriter().toString().replaceFirst(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pz5SVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PzhXVg==")));
+                xml = xmlOutput.getWriter().toString().replaceFirst(">", ">
+");
             }
             catch (Throwable e) {
                 e.printStackTrace();
             }
             xml = headString + "\n" + xml;
         } else {
-            xml = headString + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OxgAPXsKPC9mHh08Kj4MCG83TSVoN1EgLT0qVg=="));
+            xml = headString + "Log with null object";
         }
         LogUtil.printLine(tag, true);
         for (String line : lines = xml.split(LINE_SEPARATOR)) {
             if (TextUtils.isEmpty((CharSequence)line)) continue;
-            LogUtil.printSub(3, tag, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LxhSVg==")) + line);
+            LogUtil.printSub(3, tag, "|" + line);
         }
         LogUtil.printLine(tag, false);
     }
@@ -267,8 +268,8 @@ public class LogUtil {
         if (TextUtils.isEmpty((CharSequence)tag)) {
             tag = TAG;
         }
-        if ((classNameInfo = (className = (targetElement = (stackTrace = Thread.currentThread().getStackTrace())[5]).getClassName()).split(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("J18cVg==")))).length > 0) {
-            className = classNameInfo[classNameInfo.length - 1] + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz5XP2wjJFo="));
+        if ((classNameInfo = (className = (targetElement = (stackTrace = Thread.currentThread().getStackTrace())[5]).getClassName()).split("\\.")).length > 0) {
+            className = classNameInfo[classNameInfo.length - 1] + ".java";
         }
         String methodName = targetElement.getMethodName();
         int lineNumber = targetElement.getLineNumber();
@@ -276,8 +277,8 @@ public class LogUtil {
             lineNumber = 0;
         }
         String methodNameShort = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
-        String msg = objects == null ? com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OxgAPXsKPC9mHh08Kj4MCG83TSVoN1EgLT0qVg==")) : LogUtil.getObjectsString(objects);
-        String headString = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ICpfVg==")) + className + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OD5SVg==")) + lineNumber + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PAQ2Vg==")) + methodNameShort + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhUHOA=="));
+        String msg = objects == null ? "Log with null object" : LogUtil.getObjectsString(objects);
+        String headString = "[(" + className + ":" + lineNumber + ")#" + methodNameShort + " ] ";
         return new String[]{tag, msg, headString};
     }
 
@@ -288,22 +289,22 @@ public class LogUtil {
             for (int i = 0; i < objects.length; ++i) {
                 Object object = objects[i];
                 if (object == null) {
-                    stringBuilder.append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Khg+KmsVElo="))).append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg=="))).append(i).append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg=="))).append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl4HOA=="))).append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz0uDmoFSFo="))).append("\n");
+                    stringBuilder.append("param").append("[").append(i).append("]").append(" = ").append("null").append("\n");
                     continue;
                 }
-                stringBuilder.append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Khg+KmsVElo="))).append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg=="))).append(i).append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg=="))).append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl4HOA=="))).append(object.toString()).append("\n");
+                stringBuilder.append("param").append("[").append(i).append("]").append(" = ").append(object.toString()).append("\n");
             }
             return stringBuilder.toString();
         }
         Object object = objects[0];
-        return object == null ? com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz0uDmoFSFo=")) : object.toString();
+        return object == null ? "null" : object.toString();
     }
 
     private static void printLine(String tag, boolean isTop) {
         if (isTop) {
-            Log.d((String)tag, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("AAkrBkEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEUcHEwBESRtTAAkrAkEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEUcHEwBESRtTAAkrAkEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEUcHEwBESRtTAAkrAkEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEUcHEwBESRtTAAkrAkEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEUcHEwBESRtTAAkrAkEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEQ==")));
+            Log.d((String)tag, (String)"╔═══════════════════════════════════════════════════════════════════════════════════════");
         } else {
-            Log.d((String)tag, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("AAkrBEEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEUcHEwBESRtTAAkrAkEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEUcHEwBESRtTAAkrAkEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEUcHEwBESRtTAAkrAkEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEUcHEwBESRtTAAkrAkEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEUcHEwBESRtTAAkrAkEyMUxbAwsCAQoJDERNB0xGAC0RBz8rQFsHFx1HAw8fAkAdQEYEMQ5BNi1THQoNEQ==")));
+            Log.d((String)tag, (String)"╚═══════════════════════════════════════════════════════════════════════════════════════");
         }
     }
 }

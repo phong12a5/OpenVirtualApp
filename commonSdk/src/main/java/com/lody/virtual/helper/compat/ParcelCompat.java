@@ -105,7 +105,7 @@ public class ParcelCompat {
             }
             default: {
                 int off = this.parcel.dataPosition() - 4;
-                throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ihg+KmszNCRLEVRF")) + this + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ODo6BWojEjdhNyg0LwdbCGwjMC14HigbIz4cKWYgRCNqERo5LypXJWUjMD97AVRF")) + type + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phg+LHsFGi5iNyg/LF4mVg==")) + off);
+                throw new RuntimeException("Parcel " + this + ": Unmarshalling unknown type code " + type + " at offset " + off);
             }
             case 11: {
                 return this.parcel.readArrayList(loader);

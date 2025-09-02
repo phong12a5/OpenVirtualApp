@@ -25,7 +25,7 @@ public class GuardHooker {
     @HookMethod(value="handleMessage")
     @MethodParams(value={Message.class})
     public static void m1(Message v1) throws Throwable {
-        Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4+LGgaLAY=")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JS0uP28jMApgJB4xKAgtOm4gBgZoATAZJS4+D2IINCpsNzAuLj0cVg==")));
+        Log.d((String)"vatest", (String)"GuardHooker attachBaseContext");
     }
 }
 

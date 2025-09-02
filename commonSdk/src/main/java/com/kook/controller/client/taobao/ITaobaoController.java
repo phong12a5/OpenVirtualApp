@@ -28,13 +28,13 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements ITaobaoController {
-        private static final String DESCRIPTOR = StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHQ4BEQQdWCw6PhwBDh0zBgEaAQoeGgAc");
+        private static final String DESCRIPTOR = "com.kook.controller.client.taobao.ITaobaoController";
         static final int TRANSACTION_checkLogin = 1;
         static final int TRANSACTION_doLogin = 2;
         static final int TRANSACTION_testFun = 3;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHQ4BEQQdWCw6PhwBDh0zBgEaAQoeGgAc"));
+            this.attachInterface(this, "com.kook.controller.client.taobao.ITaobaoController");
         }
 
         public static ITaobaoController asInterface(IBinder obj) {
@@ -87,7 +87,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(ITaobaoController impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -114,7 +114,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHQ4BEQQdWCw6PhwBDh0zBgEaAQoeGgAc");
+                return "com.kook.controller.client.taobao.ITaobaoController";
             }
 
             /*
@@ -126,7 +126,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHQ4BEQQdWCw6PhwBDh0zBgEaAQoeGgAc"));
+                    _data.writeInterfaceToken("com.kook.controller.client.taobao.ITaobaoController");
                     _data.writeStrongBinder(ibinder);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -151,7 +151,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHQ4BEQQdWCw6PhwBDh0zBgEaAQoeGgAc"));
+                    _data.writeInterfaceToken("com.kook.controller.client.taobao.ITaobaoController");
                     _data.writeStrongBinder(ibinder);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -174,7 +174,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHQ4BEQQdWCw6PhwBDh0zBgEaAQoeGgAc"));
+                    _data.writeInterfaceToken("com.kook.controller.client.taobao.ITaobaoController");
                     _data.writeStrongBinder(ibinder);
                     boolean _status = this.mRemote.transact(3, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {

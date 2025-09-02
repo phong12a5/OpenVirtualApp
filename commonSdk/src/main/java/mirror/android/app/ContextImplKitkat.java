@@ -9,7 +9,7 @@ import mirror.RefClass;
 import mirror.RefObject;
 
 public class ContextImplKitkat {
-    public static Class<?> TYPE = RefClass.load(ContextImplKitkat.class, StringFog.decrypt("EgsWBAoHO10CHwJeKgAABwAKAiwDLx8="));
+    public static Class<?> TYPE = RefClass.load(ContextImplKitkat.class, "android.app.ContextImpl");
     public static RefObject<File[]> mExternalCacheDirs;
     public static RefObject<File[]> mExternalFilesDirs;
     public static RefObject<String> mOpPackageName;

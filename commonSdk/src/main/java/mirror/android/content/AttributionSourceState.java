@@ -16,7 +16,7 @@ import mirror.RefClass;
 import mirror.RefObject;
 
 public class AttributionSourceState {
-    public static Class<?> TYPE = RefClass.load(AttributionSourceState.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSQGAhcHPQYXBh0eOgAbAQYXJREPKxY="));
+    public static Class<?> TYPE = RefClass.load(AttributionSourceState.class, "android.content.AttributionSourceState");
     public static RefObject<Parcelable[]> next;
     public static RefObject<String> packageName;
     public static RefObject<Integer> pid;

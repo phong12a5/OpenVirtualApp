@@ -16,7 +16,7 @@ public final class ArraySet<E>
 implements Collection<E>,
 Set<E> {
     private static final boolean DEBUG = false;
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcMKmsaAl5iAQpF"));
+    private static final String TAG = "ArraySet";
     private static final int BASE_SIZE = 4;
     private static final int CACHE_SIZE = 10;
     static Object[] mBaseCache;
@@ -400,20 +400,20 @@ Set<E> {
 
     public String toString() {
         if (this.isEmpty()) {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KC0IVg=="));
+            return "{}";
         }
         StringBuilder buffer = new StringBuilder(this.mSize * 14);
         buffer.append('{');
         for (int i = 0; i < this.mSize; ++i) {
             E value;
             if (i > 0) {
-                buffer.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Vg==")));
+                buffer.append(", ");
             }
             if ((value = this.valueAt(i)) != this) {
                 buffer.append(value);
                 continue;
             }
-            buffer.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PBcqCmUaLyhpJDAgOQhSVg==")));
+            buffer.append("(this Set)");
         }
         buffer.append('}');
         return buffer.toString();
@@ -445,7 +445,7 @@ Set<E> {
 
                 @Override
                 protected Map<E, E> colGetMap() {
-                    throw new UnsupportedOperationException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALHsFJyhgDiAs")));
+                    throw new UnsupportedOperationException("not a map");
                 }
 
                 @Override
@@ -455,7 +455,7 @@ Set<E> {
 
                 @Override
                 protected E colSetValue(int index, E value) {
-                    throw new UnsupportedOperationException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALHsFJyhgDiAs")));
+                    throw new UnsupportedOperationException("not a map");
                 }
 
                 @Override

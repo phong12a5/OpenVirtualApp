@@ -71,7 +71,7 @@ import mirror.android.content.pm.PackageParser.SigningDetails;
 
 public class PackageParserEx {
     public static final int GET_SIGNING_CERTIFICATES = 134217728;
-    public static final String ORG_APACHE_HTTP_LEGACY = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy0MPXojJAJ9Dig0KAMYMmUwBgJ1NwIgLj4+JWcFSFo="));
+    public static final String ORG_APACHE_HTTP_LEGACY = "org.apache.http.legacy";
     private static final String TAG = PackageParserEx.class.getSimpleName();
     static SparseArray sparseArray = new SparseArray();
 
@@ -85,10 +85,10 @@ public class PackageParserEx {
         }
 
         PackageParser.Package p = PackageParserCompat.parsePackage(parser, packageFile, 0);
-        if (p.requestedPermissions.contains(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCwiHWsmLF99HCQCIgZbG2MIGg99HyAfIwYMWX02Flo="))) && p.mAppMetaData != null && p.mAppMetaData.containsKey(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4+MWhSEgNjDjg2Lwg2LWoVGlo=")))) {
-            String sig = p.mAppMetaData.getString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4+MWhSEgNjDjg2Lwg2LWoVGlo=")));
+        if (p.requestedPermissions.contains("android.permission.FAKE_PACKAGE_SIGNATURE") && p.mAppMetaData != null && p.mAppMetaData.containsKey("fake-signature")) {
+            String sig = p.mAppMetaData.getString("fake-signature");
             buildSignature(p, new Signature[]{new Signature(sig)});
-            VLog.d(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQc2CWojPyhiNCAxKANXL2wjEiZoDiwwKS4tJGIwLCRqEQo7LypXKWU3Iy57AVRF")) + p.packageName, new Object[0]);
+            VLog.d(TAG, "Using fake-signature feature on : " + p.packageName, new Object[0]);
         } else {
             try {
                 int flag = 0;
@@ -133,7 +133,7 @@ public class PackageParserEx {
                 return vPackage;
             }
             try {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQuKAguL2wjNCZ1N1RF")));
+                throw new IllegalStateException("Invalid version.");
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -220,7 +220,7 @@ public class PackageParserEx {
         Object sig = obj == null ? signatures : obj;
         if (sig != null) {
             if (signatureFile.exists() && !signatureFile.delete()) {
-                VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1Pxc2PW8zGgZrDTw/IwgtJGEgGiJsNCQ9Iy1fJ2wnIANoIzxF")) + packageName, new Object[0]);
+                VLog.w(TAG, "Unable to delete the signatures of " + packageName, new Object[0]);
             }
 
             p = Parcel.obtain();
@@ -338,9 +338,9 @@ public class PackageParserEx {
     }
 
     private static void injectXposedModuleInfo(VPackage vPackage) {
-        if (vPackage.mAppMetaData != null && vPackage.mAppMetaData.containsKey(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KBc6D28zNCxgDh4wLAdbPQ==")))) {
+        if (vPackage.mAppMetaData != null && vPackage.mAppMetaData.containsKey("xposedmodule")) {
             VPackage.XposedModule module = new VPackage.XposedModule();
-            Object descriptionRaw = vPackage.mAppMetaData.get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KBc6D28zNCxiHjApLy4uMWowBi9lJxpF")));
+            Object descriptionRaw = vPackage.mAppMetaData.get("xposeddescription");
             String descriptionTmp = null;
             if (descriptionRaw instanceof String) {
                 descriptionTmp = ((String)descriptionRaw).trim();
@@ -355,7 +355,7 @@ public class PackageParserEx {
             }
 
             module.desc = descriptionTmp != null ? descriptionTmp : "";
-            Object minVersionRaw = vPackage.mAppMetaData.get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KBc6D28zNCxgDgY2LD0MKGoFLCVlN1RF")));
+            Object minVersionRaw = vPackage.mAppMetaData.get("xposedminversion");
             if (minVersionRaw instanceof Integer) {
                 module.minVersion = (Integer)minVersionRaw;
             } else if (minVersionRaw instanceof String) {
@@ -399,7 +399,7 @@ public class PackageParserEx {
         PackageSetting ps = PackageCacheManager.getSetting(ai.packageName);
         VPackage pkg = PackageCacheManager.get(ai.packageName);
         if (ps == null) {
-            throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4+CWoFNCxLEQo1Pxc6PWU2AitvHiwaLC4lJGIwAjV7N1RF")) + ai.packageName);
+            throw new IllegalStateException("failed to getSetting for:" + ai.packageName);
         } else {
             ApplicationInfo outsideAppInfo = null;
 
@@ -488,7 +488,7 @@ public class PackageParserEx {
 
             if (config.isEnableIORedirect()) {
                 if (config.isUseRealDataDir(ai.packageName)) {
-                    ai.dataDir = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyViHiAgLwNfVg==")) + ai.packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="));
+                    ai.dataDir = "/data/data/" + ai.packageName + "/";
                 }
 
                 if (config.isUseRealLibDir(ai.packageName)) {
@@ -972,9 +972,9 @@ public class PackageParserEx {
         if (pkg.applicationInfo != null) {
             usesLibraries2 = pkg.usesLibraries;
             usesOptionalLibraries2 = pkg.usesOptionalLibraries;
-            alreadyPresent2 = isLibraryPresent(usesLibraries2, usesOptionalLibraries2, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kgKAgqLn8VRTdsJyhF")));
+            alreadyPresent2 = isLibraryPresent(usesLibraries2, usesOptionalLibraries2, "android.test.base");
             if (!alreadyPresent2) {
-                pkg.usesLibraries.add(0, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kgKAgqLn8VRTdsJyhF")));
+                pkg.usesLibraries.add(0, "android.test.base");
             }
         }
 
@@ -1012,7 +1012,7 @@ public class PackageParserEx {
     }
 
     private static void changeApplicationInfoPathToReal(ApplicationInfo applicationInfo) {
-        String vaPath = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + VirtualCore.get().getContext().getPackageName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My0iCW8gMAV9DlFF"));
+        String vaPath = "/" + VirtualCore.get().getContext().getPackageName() + "/virtual";
         Field[] var3 = applicationInfo.getClass().getDeclaredFields();
         int var4 = var3.length;
 
@@ -1040,7 +1040,7 @@ public class PackageParserEx {
         String mainProcessName = context.getApplicationInfo().processName;
         int pid = Binder.getCallingPid();
         String callingProcessName = null;
-        ActivityManager am = (ActivityManager)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+        ActivityManager am = (ActivityManager)context.getSystemService("activity");
         Iterator<ActivityManager.RunningAppProcessInfo> it = am.getRunningAppProcesses().iterator();
 
         while(it.hasNext()) {

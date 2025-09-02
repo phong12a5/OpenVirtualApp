@@ -16,15 +16,15 @@ import mirror.android.content.IRestrictionsManager;
 public class RestrictionStub
 extends BinderInvocationProxy {
     public RestrictionStub() {
-        super(IRestrictionsManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uKWwKFi99JwozKi0YLw==")));
+        super(IRestrictionsManager.Stub.asInterface, "restrictions");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJgHgY5Lwg2MW8FMF9rDjA/KS4YJWYaGipsNyxF"))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOD9pHjAqKgccL2oFLCVlMgogKT06KWAzNCA="))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uL2wVNANmHyQ/Iz1XMWoKAi9lJxpF"))));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getApplicationRestrictions"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("notifyPermissionResponse"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("requestPermission"));
     }
 }
 

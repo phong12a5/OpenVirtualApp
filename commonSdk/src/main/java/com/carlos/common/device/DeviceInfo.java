@@ -38,12 +38,12 @@ import java.util.Locale;
 import java.util.Map;
 
 public class DeviceInfo {
-    private static String SOFT_CHANNEL_NO = com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("JCwuG31RPA99NTMSICwYW2MhMAA="));
-    private static String SOFT_ID = com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("LC4uIWVQJCA="));
+    private static String SOFT_CHANNEL_NO = "SOFT_CHANNEL_NO";
+    private static String SOFT_ID = "softId";
     static DeviceInfo deviceInfo;
     JSONObject mElement = new JSONObject();
     HashMap<String, String> mHashMap = new LinkedHashMap<String, String>(16);
-    private String terminalDevicesSoftID = com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("IxgAD28JJCprJx0IKhdXOW4jGgRiIyA9KjxaGw=="));
+    private String terminalDevicesSoftID = "terminalDevicesSoftID";
     public int deviceWidth;
     public int deviceHeight;
     public String imei;
@@ -143,7 +143,7 @@ public class DeviceInfo {
         }
         catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-            HVLog.d(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("Ly4ACWcJEjBrJSc1LggIQGozNCRmClkrPT5SVg==")) + e.toString());
+            HVLog.d("getMetaDataFromApp " + e.toString());
         }
         return value;
     }
@@ -151,9 +151,9 @@ public class DeviceInfo {
     public String getSoftId(Context context) {
         String metaDataFromApp = this.getMetaDataFromApp(context, SOFT_ID);
         if (TextUtils.isEmpty((CharSequence)metaDataFromApp)) {
-            throw new NullPointerException(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("DFcrMkcQPSxjJwUyLS42OWkVPChsDSQ9Li09MUoWPTFHAgMtAR4JKHswJyRsJFkqLxhSVg==")));
+            throw new NullPointerException("请在Androidmainfest中添加 softid");
         }
-        return metaDataFromApp.replace(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("LC4uIWVQJCB6J1RF")), "");
+        return metaDataFromApp.replace("softId-", "");
     }
 
     public static int getDeviceWidth(Context context) {
@@ -177,7 +177,7 @@ public class DeviceInfo {
     }
 
     public static String getAndroidId(Context context) {
-        return Settings.Secure.getString((ContentResolver)context.getContentResolver(), (String)com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KAgqJ2o3PCtoMgE9KghSVg==")));
+        return Settings.Secure.getString((ContentResolver)context.getContentResolver(), (String)"android_id");
     }
 
     public static String getIMEI(Context context) {
@@ -209,37 +209,37 @@ public class DeviceInfo {
 
     @RequiresApi(api=26)
     public long getCurrentTimestamp() {
-        ZoneId beijingZoneId = ZoneId.of(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("IAcYLG4FPB9lNzM8Kj4qMWwFSFo=")));
+        ZoneId beijingZoneId = ZoneId.of("Asia/Shanghai");
         ZonedDateTime beijingDateTime = ZonedDateTime.now(beijingZoneId);
         long timestampInSeconds = beijingDateTime.toEpochSecond();
         return timestampInSeconds;
     }
 
     public HashMap<String, String> toMap() {
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("LxgAMWwJQS9kAVwyLggqVg==")), String.valueOf(this.deviceWidth));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("LxgAMWwJQS99NyM9Kj4qJg==")), String.valueOf(this.deviceHeight));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KggmIGwFSFo=")), this.checkString(this.imei));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KD4uJGo3Hlo=")), this.checkString(this.board));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KD4uKmVSMClrJycxLS5SVg==")), this.checkString(this.bootloader));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KD1fJG83Hlo=")), this.checkString(this.brand));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KC1XCmYJTSs=")), this.checkString(this.cpuAbi));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KC1XCmYJTSt/EVRF")), this.checkString(this.cpuAbi2));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("LxgAMWwJQS8=")), this.checkString(this.device));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("Lxg2CGpSMCNpJ1RF")), this.checkString(this.display));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("Lz42KWknEjZvND89KC1fVg==")), this.checkString(this.fingerprint));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KhhbD2lTGiNvESBF")), this.checkString(this.hardware));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KhguCGUVSFo=")), this.checkString(this.host));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("LxgAMWwJQS9mAVwy")), this.checkString(this.device_id));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KQguJ2kJMFo=")), this.checkString(this.model));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KQhbKWUJBiNrDichLS4YIA==")), this.checkString(this.manufacturer));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("LBdfKmlTEiVsN1RF")), this.product);
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("LD5bJ2wJPFo=")), this.checkString(this.radio));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("IxhbImojSFo=")), this.checkString(this.tags));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("Ixc2DWkFSFo=")), this.type);
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("IwcYIGozSFo=")), this.user);
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("LC4cLmQJODA=")), String.valueOf(this.sdkInt));
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("LC4AD2wJAig=")), this.serial);
-        this.mHashMap.put(com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("KAgqJ2o3PCtoMgE9KghSVg==")), this.androidId);
+        this.mHashMap.put("deviceWidth", String.valueOf(this.deviceWidth));
+        this.mHashMap.put("deviceHeight", String.valueOf(this.deviceHeight));
+        this.mHashMap.put("imei", this.checkString(this.imei));
+        this.mHashMap.put("board", this.checkString(this.board));
+        this.mHashMap.put("bootloader", this.checkString(this.bootloader));
+        this.mHashMap.put("brand", this.checkString(this.brand));
+        this.mHashMap.put("cpuAbi", this.checkString(this.cpuAbi));
+        this.mHashMap.put("cpuAbi2", this.checkString(this.cpuAbi2));
+        this.mHashMap.put("device", this.checkString(this.device));
+        this.mHashMap.put("display", this.checkString(this.display));
+        this.mHashMap.put("fingerprint", this.checkString(this.fingerprint));
+        this.mHashMap.put("hardware", this.checkString(this.hardware));
+        this.mHashMap.put("host", this.checkString(this.host));
+        this.mHashMap.put("device_id", this.checkString(this.device_id));
+        this.mHashMap.put("model", this.checkString(this.model));
+        this.mHashMap.put("manufacturer", this.checkString(this.manufacturer));
+        this.mHashMap.put("product", this.product);
+        this.mHashMap.put("radio", this.checkString(this.radio));
+        this.mHashMap.put("tags", this.checkString(this.tags));
+        this.mHashMap.put("type", this.type);
+        this.mHashMap.put("user", this.user);
+        this.mHashMap.put("sdkInt", String.valueOf(this.sdkInt));
+        this.mHashMap.put("serial", this.serial);
+        this.mHashMap.put("android_id", this.androidId);
         return this.mHashMap;
     }
 
@@ -256,7 +256,7 @@ public class DeviceInfo {
         } else if (object instanceof Long) {
             this.mElement.put(property, (Object)((Long)object));
         } else {
-            throw new NullPointerException(property + com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("OF45O34VRVo=")) + object + com.carlos.common.network.StringFog.decrypt(StringFog.decrypt("AVYJAkpUQgFDAhg6DCAnBGwwAiZvN1s9WgsZIh8XFAICEkIyXgAiVg==")));
+            throw new NullPointerException(property + " :   " + object + "不能转成json 格式数据");
         }
     }
 

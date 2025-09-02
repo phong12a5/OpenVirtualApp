@@ -26,12 +26,12 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 public class IniFile {
-    static String STORAGE = Environment.getExternalStorageDirectory() + File.separator + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki42D28gIC9gJFg1"));
+    static String STORAGE = Environment.getExternalStorageDirectory() + File.separator + "scorpion/";
     private String line_separator = "\n";
-    private String charSet = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQUqW3pTRVo="));
+    private String charSet = "UTF-8";
     private Map<String, Section> sections = new LinkedHashMap<String, Section>();
     private File file = null;
-    private static IniFile mIniFile = new IniFile(new File(STORAGE + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki42D28gIC9gJFg2KQcYMQ=="))));
+    private static IniFile mIniFile = new IniFile(new File(STORAGE + "scorpion.ini"));
 
     public void setLineSeparator(String line_separator) {
         this.line_separator = line_separator;
@@ -144,10 +144,10 @@ public class IniFile {
                 File storage = new File(STORAGE);
                 if (!storage.exists()) {
                     boolean mkdirs = storage.mkdirs();
-                    HVLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcCWAjAiRiCiQpLBdfKG4jEit4V1Ar")) + mkdirs);
+                    HVLog.e("IniFile storage : " + mkdirs);
                 }
                 boolean fileNewFile = file.createNewFile();
-                HVLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcCWAjAiRiCic8KD0cCGkhMCtvJSQaLAgtPg==")) + fileNewFile);
+                HVLog.e("IniFile  fileNewFile:" + fileNewFile);
             }
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             this.toIniFile(bufferedReader);
@@ -162,7 +162,7 @@ public class IniFile {
 
     private void toIniFile(BufferedReader bufferedReader) {
         Section section = null;
-        Pattern p = Pattern.compile(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JzsEG3onTR5sCgpF")));
+        Pattern p = Pattern.compile("^\\[.*\\]$");
         try {
             String strLine;
             while ((strLine = bufferedReader.readLine()) != null) {
@@ -173,7 +173,7 @@ public class IniFile {
                     this.sections.put(section.name, section);
                     continue;
                 }
-                String[] keyValue = strLine.split(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PwhSVg==")));
+                String[] keyValue = strLine.split("=");
                 if (keyValue.length != 2) continue;
                 section.set(keyValue[0], keyValue[1]);
             }
@@ -191,7 +191,7 @@ public class IniFile {
                 line_spe = true;
             }
             for (Section section : this.sections.values()) {
-                bufferedWriter.write(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IC5SVg==")) + section.getName() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg==")));
+                bufferedWriter.write("[" + section.getName() + "]");
                 if (line_spe) {
                     bufferedWriter.write(this.line_separator);
                 } else {
@@ -199,7 +199,7 @@ public class IniFile {
                 }
                 for (Map.Entry<String, Object> entry : section.getValues().entrySet()) {
                     bufferedWriter.write(entry.getKey());
-                    bufferedWriter.write(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PwhSVg==")));
+                    bufferedWriter.write("=");
                     bufferedWriter.write(entry.getValue().toString());
                     if (line_spe) {
                         bufferedWriter.write(this.line_separator);

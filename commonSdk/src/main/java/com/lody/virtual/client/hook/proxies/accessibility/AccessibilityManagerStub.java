@@ -12,19 +12,19 @@ import mirror.android.view.accessibility.IAccessibilityManager;
 public class AccessibilityManagerStub
 extends BinderInvocationProxy {
     public AccessibilityManagerStub() {
-        super(IAccessibilityManager.Stub.TYPE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWgaLANjDiwzKhccLmgjSFo=")));
+        super(IAccessibilityManager.Stub.TYPE, "accessibility");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceLastUserIdProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGMzHi9iDlkg"))));
-        this.addMethodProxy(new ReplaceLastUserIdProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uCGgLJCl9JDApIy0cOGwjOC9vHh5LKi4uKmYVSFo="))));
-        this.addMethodProxy(new ReplaceLastUserIdProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLH0VBgNmHiAoKhcMPmYjAilrDjA6IxgMI2AaGj9rDywuLBcEI2gjNExlHjAZ"))));
-        this.addMethodProxy(new ReplaceLastUserIdProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAVBjd9NFE/KBUiP24FGgNsJx4pIxgEI2YVGhBuASg/Ki4YJ30VAiVsAVRF"))));
-        this.addMethodProxy(new ReplaceLastUserIdProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQzAiZiHh4tJBdfCWkjMFo="))));
-        this.addMethodProxy(new ReplaceLastUserIdProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcLGgaFgRmASQg"))));
-        this.addMethodProxy(new ReplaceLastUserIdProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGMVLCliASgpKQcuMW8zLAZuDx4bKgguCH0KND9vDlkdIAguKmUzNDVsAR46Jj5SVg=="))));
+        this.addMethodProxy(new ReplaceLastUserIdProxy("addClient"));
+        this.addMethodProxy(new ReplaceLastUserIdProxy("sendAccessibilityEvent"));
+        this.addMethodProxy(new ReplaceLastUserIdProxy("getInstalledAccessibilityServiceList"));
+        this.addMethodProxy(new ReplaceLastUserIdProxy("getEnabledAccessibilityServiceList"));
+        this.addMethodProxy(new ReplaceLastUserIdProxy("getWindowToken"));
+        this.addMethodProxy(new ReplaceLastUserIdProxy("interrupt"));
+        this.addMethodProxy(new ReplaceLastUserIdProxy("addAccessibilityInteractionConnection"));
     }
 
     private static class ReplaceLastUserIdProxy

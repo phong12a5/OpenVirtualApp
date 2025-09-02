@@ -101,7 +101,7 @@ implements Parcelable {
     }
 
     public String toString() {
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQc2M28hAiZiNB4h")) + this.id + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD5SVg==")) + this.name + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD5SVg==")) + Integer.toHexString(this.flags) + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LwhSVg=="));
+        return "UserInfo{" + this.id + ":" + this.name + ":" + Integer.toHexString(this.flags) + "}";
     }
 
     public int describeContents() {

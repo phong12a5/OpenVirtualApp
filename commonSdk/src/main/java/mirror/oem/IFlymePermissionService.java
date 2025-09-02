@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IFlymePermissionService {
-    public static Class<?> TYPE = RefClass.load(IFlymePermissionService.class, StringFog.decrypt("HgAbDBBALBYAGgAZHRZAOiMeDwgLDxYRAhsDGgYBHTYXBBMHPBY="));
+    public static Class<?> TYPE = RefClass.load(IFlymePermissionService.class, "meizu.security.IFlymePermissionService");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("HgAbDBBALBYAGgAZHRZAOiMeDwgLDxYRAhsDGgYBHTYXBBMHPBZHPAYFCw=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "meizu.security.IFlymePermissionService$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

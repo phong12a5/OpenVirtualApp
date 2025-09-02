@@ -34,7 +34,7 @@ import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLSurface;
 
 public class EglUtils {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JQgmDmQaMC9gEShF"));
+    private static final String TAG = "EglUtils";
 
     private EglUtils() {
     }
@@ -47,7 +47,7 @@ public class EglUtils {
             return EglUtils.getMaxTextureEgl10();
         }
         catch (Exception e) {
-            Log.d((String)TAG, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS4uLGIVJDBuHjAaLBgMKGkmAi9uNysxPQhSVg==")), (Throwable)e);
+            Log.d((String)TAG, (String)"getMaxTextureSize: ", (Throwable)e);
             return 0;
         }
     }

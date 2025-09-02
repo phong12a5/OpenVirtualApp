@@ -48,7 +48,7 @@ public class LanzouHelper {
     static Headers.Builder builder = new Headers.Builder();
 
     public static String getLanZouDownLink(final String filePath, String url) {
-        Headers headers = builder.set(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Kj4uPmgaFithN1RF")), url).build();
+        Headers headers = builder.set("referer", url).build();
         OkHttpClient client = new OkHttpClient();
         FormBody formBody = new FormBody.Builder().build();
         Request request = new Request.Builder().url(url).post((RequestBody)formBody).headers(headers).build();
@@ -67,19 +67,19 @@ public class LanzouHelper {
                         FileOutputStream fos = null;
                         is = response.body().byteStream();
                         String path = filePath;
-                        File file = new File(path, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRguKWwJBjJjASRF")));
+                        File file = new File(path, "test.zip");
                         try {
                             fos = new FileOutputStream(file);
                             byte[] bytes = new byte[1024];
                             int len = 0;
                             long fileSize = response.body().contentLength();
-                            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4YDmgYLC9nNDMi")) + fileSize);
+                            HVLog.d("fileSize:" + fileSize);
                             long sum = 0L;
                             int porSize = 0;
                             while ((len = is.read(bytes)) != -1) {
                                 fos.write(bytes);
                                 porSize = (int)((float)(sum += (long)len) * 1.0f / (float)fileSize * 100.0f);
-                                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PwMHO35THTN0DVwdPgRWJXskPzN5CgEoOF4IVg==")));
+                                HVLog.d("====================");
                             }
                         }
                         catch (Exception e) {
@@ -98,7 +98,7 @@ public class LanzouHelper {
                                 e.printStackTrace();
                             }
                         }
-                        HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzNYAB8CAhkFHQ==")));
+                        HVLog.i("下载成功");
                     }
                 }
             });
@@ -112,68 +112,68 @@ public class LanzouHelper {
 
     public static Lanzou getLanZouRealLink(String url) {
         String fullHost = LanzouHelper.getFullHost(url);
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT0uDmoLRSVhJw0i")) + fullHost);
-        Headers headers = builder.set(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Kj4uPmgaFithN1RF")), url).build();
+        HVLog.d("fullHost:" + fullHost);
+        Headers headers = builder.set("referer", url).build();
         String name = null;
         String size = null;
         try {
             Document doc = Jsoup.connect((String)url).get();
-            Elements title1 = doc.select(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgYLmEwLAZnDlE/Pgc+DW8aASNsJx4xLl5WJE8nODNrVgI9Ly0MCnUFJAJlESA5MTkiKm4KAiJpJFguKhg+PGgFAiZiIwU8PAQ+Kmg3TAJsHlgrOSk6DmdTOzNlERk0JS5SVg==")));
-            name = title1.size() != 0 ? ((Element)title1.get(0)).html() : doc.select(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pi4iCWoFNCZ9DgI7LRhSVg=="))).html();
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4+DWhWBzRVN1RF")) + name);
-            Elements size1 = doc.select(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwguLGsYQSZ9Dl0/Pgc2PWoFAgRqDjw/IxgAKmwFSFo=")));
+            Elements title1 = doc.select("div[style=font-size: 30px;text-align: center;padding: 56px 0px 20px 0px;]");
+            name = title1.size() != 0 ? ((Element)title1.get(0)).html() : doc.select("#filenajax").html();
+            HVLog.d("name：" + name);
+            Elements size1 = doc.select("meta[name=description]");
             if (size1.size() != 0) {
-                size = LanzouHelper.regex(size1.attr(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ACGwFNCZmEVRF"))), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JxgpCGYFMyB0IwU8OQMIGWYnPFdoDQ4xIF9bVg==")));
+                size = LanzouHelper.regex(size1.attr("content"), "\\d.\\d(?: )*[A-Za-z]+");
             }
-            Elements realPage = doc.select(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgiKmsVEis=")));
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Kj4uP2oIIDdiJAg1W0QIVg==")) + realPage);
-            String realUrl = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB5F")) + fullHost + realPage.attr(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0MOQ==")));
+            Elements realPage = doc.select("iframe");
+            HVLog.d("realPage：" + realPage);
+            String realUrl = "https://" + fullHost + realPage.attr("src");
             doc = Jsoup.connect((String)realUrl).get();
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Kj4uP2oINARgUxMeUj5SVg==")) + realUrl);
-            Elements select = doc.select(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki42KmUaIAZvJwoZIxcLJWUzGjBvVgYhLRciO2EgNDVvASA9JS5SVg==")));
+            HVLog.d("realUrl：" + realUrl);
+            Elements select = doc.select("script[type=text/javascript]");
             Element element = (Element)select.get(1);
             String jshtml = element.html();
             String js = ((Element)select.get(1)).html();
             String jsonData = LanzouHelper.matcherJSON(jshtml);
-            String sign = LanzouHelper.getJsonValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YPWojSFo=")), jsonData);
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YPWorBzRVN1RF")) + sign);
-            String ves = LanzouHelper.getJsonValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4uKQ==")), jsonData);
+            String sign = LanzouHelper.getJsonValue("sign", jsonData);
+            HVLog.d("sign：" + sign);
+            String ves = LanzouHelper.getJsonValue("ves", jsonData);
             if (TextUtils.isEmpty((CharSequence)ves)) {
-                ves = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OghSVg=="));
+                ves = "1";
             }
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4uKUAGG1c=")) + ves);
-            String action = LanzouHelper.getJsonValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2LGUVGiY=")), jsonData);
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2LGUVGiZeK0ZN")) + action);
-            String signs = LanzouHelper.getJsonValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LghXP2kFMDdmHiBF")), jsonData);
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YPWogFCUZTQJF")) + signs);
+            HVLog.d("ves：" + ves);
+            String action = LanzouHelper.getJsonValue("action", jsonData);
+            HVLog.d("action：" + action);
+            String signs = LanzouHelper.getJsonValue("ajaxdata", jsonData);
+            HVLog.d("signs：" + signs);
             if (TextUtils.isEmpty((CharSequence)signs)) {
-                signs = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LghXP2kFMDdmHiBF"));
+                signs = "ajaxdata";
             }
-            String webSignKey = LanzouHelper.getJsonValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KS4uOm8zAi1gNA4/LQhSVg==")), jsonData);
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KS4uOmczAi1gMg4/LR9cJhUVSFo=")) + webSignKey);
+            String webSignKey = LanzouHelper.getJsonValue("websignkey", jsonData);
+            HVLog.d("webSignKey：" + webSignKey);
             if (TextUtils.isEmpty((CharSequence)webSignKey)) {
-                webSignKey = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KS4uOmczAi1gMg4/LQhSVg=="));
+                webSignKey = "webSignKey";
             }
             String webSign = "";
-            String apiUrl = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB5F")) + fullHost + LanzouHelper.getJsonValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQcMDg==")), js);
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6CWQaFiReK0ZN")) + apiUrl);
+            String apiUrl = "https://" + fullHost + LanzouHelper.getJsonValue("url", js);
+            HVLog.d("apiUrl：" + apiUrl);
             OkHttpClient client = new OkHttpClient();
-            FormBody formBody = new FormBody.Builder().add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YPWojSFo=")), sign).add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2LGUVGiY=")), action).add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YPWogLFo=")), signs).add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KS4uOm8zAi1gN1RF")), webSign).add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KS4uOm8zAi1gNA4/LQhSVg==")), webSignKey).add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4uKQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OghSVg=="))).build();
+            FormBody formBody = new FormBody.Builder().add("sign", sign).add("action", action).add("signs", signs).add("websign", webSign).add("websignkey", webSignKey).add("ves", "1").build();
             Request request = new Request.Builder().url(apiUrl).post((RequestBody)formBody).headers(headers).build();
             String dl = null;
             try {
                 Response response = client.newCall(request).execute();
                 if (!response.isSuccessful()) {
-                    throw new IOException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQgcM2kKICt9Jwo/KF4mP28FBit4EVRF")) + response);
+                    throw new IOException("Unexpected code " + response);
                 }
                 String body = response.body().string();
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lj4APGlTTVo=")) + body);
-                String dom = LanzouHelper.getJsonValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgADQ==")), body).replace(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("J18AVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")));
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lj4APGlSICxgJFwi")) + dom);
-                String file = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My4iCWoFNyU="));
-                String domurl = LanzouHelper.getJsonValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQcMDg==")), body).replace(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("J18AVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")));
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lj4APGlSICxgJF0vIz1aIA==")) + domurl);
-                dl = LanzouHelper.getJsonValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgADQ==")), body).replace(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("J18AVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg=="))) + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My4iCWoFNyU=")) + LanzouHelper.getJsonValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQcMDg==")), body).replace(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("J18AVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")));
+                HVLog.d("body:" + body);
+                String dom = LanzouHelper.getJsonValue("dom", body).replace("\\/", "/");
+                HVLog.d("body dom:" + dom);
+                String file = "/file/";
+                String domurl = LanzouHelper.getJsonValue("url", body).replace("\\/", "/");
+                HVLog.d("body domurl:" + domurl);
+                dl = LanzouHelper.getJsonValue("dom", body).replace("\\/", "/") + "/file/" + LanzouHelper.getJsonValue("url", body).replace("\\/", "/");
                 return new Lanzou(name, size, dl);
             }
             catch (Exception e) {
@@ -189,16 +189,16 @@ public class LanzouHelper {
 
     public static String matcherJSON(String content) {
         try {
-            Pattern pattern = Pattern.compile(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PBgqP2wFJy90ICciP14AGGgIJB5sIgIQIF9XEmQOTCxgHh5F")));
+            Pattern pattern = Pattern.compile("(data)? : (\\{[\\s\\S]*\\},)\\n");
             Matcher matcher = pattern.matcher(content);
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+LGszRSthMgIPIisXIA==")) + matcher + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsFEjdmHig0KAgtIA==")) + matcher.find() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsFEjdmHig0KAgtDmkKRSVvDjwALD0uKmZTASx7N1RF")) + matcher.groupCount());
+            HVLog.d("matcherJSON:" + matcher + "    matcher:" + matcher.find() + "    matcher.groupCount():" + matcher.groupCount());
             String group = matcher.group(0);
             String[] strings = group.split("\n");
             String requestData = strings[1];
-            int startIndexOf = requestData.indexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KC5SVg==")));
-            int endIndexOf = requestData.indexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LwhSVg==")));
+            int startIndexOf = requestData.indexOf("{");
+            int endIndexOf = requestData.indexOf("}");
             String substring = requestData.substring(startIndexOf, endIndexOf + 1);
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhgIP2wFLCBiAS88KBciLm4nTQNvAQo6KgcMI2AwJz0=")) + substring);
+            HVLog.d(" matcher data substring:" + substring);
             return substring;
         }
         catch (Exception e) {
@@ -208,11 +208,11 @@ public class LanzouHelper {
     }
 
     private static String getJsonValue(String key, String json) {
-        return LanzouHelper.regex(json, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PF4fJH4VSFo=")) + key + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IColOmZTBSBLVxkbJSoHJWMnESh6CgYIPjoMEUkORC54IBkoPSs9IXg2HQU=")));
+        return LanzouHelper.regex(json, "(?<=" + key + "['\"]?( )?[:=]( )?['\"]).+?(?=['\"])");
     }
 
     private static String getMainHost(String url) {
-        Pattern p = Pattern.compile(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PF4fJH4VRQZmESciOilfJmM3My9mIh0bIF9WOWxTRCt4Iw4sKQgmEnUzLARuARo0IBZWJWkgAipvDlkyJ18cOWogHilgJF0eKj0MLmszNARrJAIqLC0EJmMFHgFvDh4vKQciJWggHiBsIx5F")), 2);
+        Pattern p = Pattern.compile("(?<=http://|\\.)[^.]*?\\.(?:com\\.cn|net\\.cn|org\\.cn|com|net|org|cn|biz|info|cc|tv)", 2);
         Matcher matcher = p.matcher(url);
         if (matcher.find()) {
             return matcher.group();
@@ -230,7 +230,7 @@ public class LanzouHelper {
     }
 
     private static String getFullHost(String url) {
-        Pattern p = Pattern.compile(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ICsbD3o2HSJ0JVA2ORcqDW8gOCllNAIbLhcqOGAjMCJoHigiLhciI2UzOANuATA2IhgMPX8FSFo=")), 2);
+        Pattern p = Pattern.compile("[^//]*?\\.(com|cn|net|org|biz|info|cc|tv)", 2);
         Matcher matcher = p.matcher(url);
         if (matcher.find()) {
             return matcher.group();
@@ -240,19 +240,19 @@ public class LanzouHelper {
 
     public static void main(String[] args) {
         ArrayList<String> urls = new ArrayList<String>();
-        urls.add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB43LwcqI2wJMCRoARoxLD0uKU4wNCpsClkiJBYLDm8gPCN/AQEvJBhSVg==")));
-        urls.add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4uKQcYP2kjMAZoDjw7KTocKH0KRT1sJwoeORgYKWUJGgV8DihBCS1XJGVSESBsEVRF")));
+        urls.add("https://macwk.lanzouo.com/iRH0wwq0m8d");
+        urls.add("https://vincentapps.lanzouo.com/i4uS3lmp56j");
         for (String url : urls) {
             System.out.println(LanzouHelper.getLanZouRealLink(url));
         }
     }
 
     static {
-        builder.add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgg2OWgaIAY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRguIGwJGiBmHl0oOhciKmozOC9oJzg/IxgAKk4jBitqHlEbOgcML2VSHjNvDjw7JQcuKGoaBgFvVigvIwgDIW9THQJOMxkoKQdXOWkFBSVvJygpKQQEI2AKPCJuClkqLD4qIXVSTAN1IF0eMgQhJXsVSFo=")));
-        builder.add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgg2OWgaIAZODDA2Ly1fPmwjMC0=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS1XCW8JGShiHjA+KhciLmkjSFo=")));
-        builder.add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQc6PW8jJCxiCl0JKj4qPW4KGgRrDQ4fLhc+CWIFND9lJ1RF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OghSVg==")));
-        builder.add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2OWgaIAZODlE7Kj06LW4jEis=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KD5eDWMxASRnNB0hIwRWKn9TLyRuN1geIgUlPWEJQDN8MxkbLy4pL2cILy1vVwEdCDo9O24KDStqICMdMzkhDmUjJzFhDVwsOjoMVg==")));
-        builder.add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQc2M28nEhFiJDA2LBhSVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwgAImUVHiR9ChEvOjolOnwxPDdoJx4bKggAD2NSHSNnDh49Ly4hJH0FJDV7DwZBDRYbL3UJPBF6IAYAOSoXOGMaIAJgHjBIKAcuXGwgASV/CjM+PCk1MktTBghnHzBBITohJGUVAj1oVjwIJAcuImwkATZmAQobIy4IM3o0DTBOMyc2PF85LXg3MwF8Vw0rIT4+In0FMCx8Iw08MwQpD38zSFo=")));
+        builder.add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+        builder.add("Accept-Encoding", "gzip, deflate");
+        builder.add("Upgrade-Insecure-Requests", "1");
+        builder.add("accept-language", "zh-CN,zh;q=0.9,zh-TW;q=0.8,en-US;q=0.7,en;q=0.6,ja;q=0.5");
+        builder.add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36");
     }
 
     public static class Lanzou {
@@ -267,7 +267,7 @@ public class LanzouHelper {
         }
 
         public String toString() {
-            return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4+DWhTHS0=")) + this.name + '\'' + '\n' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186KWUaTSt0CjhF")) + this.size + '\'' + '\n' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186PGoLHi9gNAEdOC5SVg==")) + this.dlLink + '\'' + '\n';
+            return "name='" + this.name + '\'' + '\n' + ", size='" + this.size + '\'' + '\n' + ", dlLink='" + this.dlLink + '\'' + '\n';
         }
 
         public String getName() {

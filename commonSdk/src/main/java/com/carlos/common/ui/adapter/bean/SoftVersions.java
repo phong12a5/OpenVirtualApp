@@ -98,7 +98,7 @@ public class SoftVersions {
     }
 
     public String toString() {
-        return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii4APmwIOCthNygzKi0YL2gFLCx5DSBF")) + this.id + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186OW8jNDdmHjAWLwg2PXsjSFo=")) + this.createDate + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186PGgVHghgHiA9PghSVg==")) + this.delFlag + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186KmgVEjdhNA4pPgM6Vg==")) + this.remarks + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186CGowMC99JDMdOC5SVg==")) + this.notice + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186CGowODdmHgY1Ij0MP2kgAgNoDgoaLV4IVg==")) + this.novatioNecessaria + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186CGwVEipiAS8dOC5SVg==")) + this.number + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186KWozOAZrDg0dOC5SVg==")) + this.softId + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186I28FMDdmHjBKIz1aJXkFSFo=")) + this.updateUrl + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186KWozOAZoNCA3KARWMw==")) + this.softName + '\'' + '}';
+        return "SoftVersions{id='" + this.id + '\'' + ", createDate=" + this.createDate + ", delFlag=" + this.delFlag + ", remarks='" + this.remarks + '\'' + ", notice='" + this.notice + '\'' + ", novatioNecessaria=" + this.novatioNecessaria + ", number='" + this.number + '\'' + ", softId='" + this.softId + '\'' + ", updateUrl='" + this.updateUrl + '\'' + ", softName='" + this.softName + '\'' + '}';
     }
 }
 

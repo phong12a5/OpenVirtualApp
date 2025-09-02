@@ -75,7 +75,7 @@ extends Thread {
     public static class ANRException
     extends RuntimeException {
         public ANRException() {
-            super(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PwMHO35THTN0DVwdPxUiQGJSTDN5CgEoOF4HP3QJQVo=")) + ANRException.getAnrDesc());
+            super("========= ANR =========" + ANRException.getAnrDesc());
             Thread mainThread = Looper.getMainLooper().getThread();
             this.setStackTrace(mainThread.getStackTrace());
         }

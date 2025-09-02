@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IPhysicalFlingManagerStub {
-    public static Class<?> TYPE = RefClass.load(IPhysicalFlingManagerStub.class, StringFog.decrypt("BQwEGUsPLwNNHxoJGgYNEgkUGgwAOF0qPxoJGgYNEgk0GgwAOD4CARMXDB0="));
+    public static Class<?> TYPE = RefClass.load(IPhysicalFlingManagerStub.class, "vivo.app.physicalfling.IPhysicalFlingManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("BQwEGUsPLwNNHxoJGgYNEgkUGgwAOF0qPxoJGgYNEgk0GgwAOD4CARMXDB1KIBEHFA=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "vivo.app.physicalfling.IPhysicalFlingManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

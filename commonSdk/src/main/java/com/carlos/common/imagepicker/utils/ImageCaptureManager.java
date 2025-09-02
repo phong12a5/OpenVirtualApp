@@ -35,8 +35,8 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ImageCaptureManager {
-    private static final String CAPTURED_PHOTO_PATH_KEY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwY2I28gFitgNwoCKRdfLm8ITTdvEVlF"));
-    public static final String PHOTO_PATH = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KhhfD2wFGh9hHiAgKRhSVg=="));
+    private static final String CAPTURED_PHOTO_PATH_KEY = "mCurrentPhotoPath";
+    public static final String PHOTO_PATH = "photo_path";
     private String mCurrentPhotoPath;
     private Context mContext;
 
@@ -45,11 +45,11 @@ public class ImageCaptureManager {
     }
 
     private File createImageFile() throws IOException {
-        String timeStamp = new SimpleDateFormat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAcYJ2kbEg1iHgpAIRUAD28gAgM=")), Locale.ENGLISH).format(new Date());
-        String imageFileName = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JDs6WGA2Glo=")) + timeStamp + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz5XKGgzSFo="));
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + ".jpg";
         File storageDir = Environment.getExternalStoragePublicDirectory((String)Environment.DIRECTORY_PICTURES);
         if (!storageDir.exists() && !storageDir.mkdir()) {
-            Log.e((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRY+Wg==")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRhfKmowPC9gNDs8IAguKG8KRQN1Mx0bPC5SVg==")));
+            Log.e((String)"TAG", (String)"Throwing Errors....");
             throw new IOException();
         }
         File image = new File(storageDir, imageFileName);
@@ -58,20 +58,20 @@ public class ImageCaptureManager {
     }
 
     public Intent dispatchTakePictureIntent() throws IOException {
-        Intent takePictureIntent = new Intent(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1k3KAc2MW4nMDdoJCwaLD4bKmsIQQ5mIgoOIAZbQGcYNABgEVRF")));
+        Intent takePictureIntent = new Intent("android.media.action.IMAGE_CAPTURE");
         if (takePictureIntent.resolveActivity(this.mContext.getPackageManager()) != null) {
             File file = this.createImageFile();
             Uri photoFile = null;
             if (Build.VERSION.SDK_INT >= 24) {
                 ContentValues contentValues = new ContentValues(1);
-                contentValues.put(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4qP2wFJFo=")), file.getAbsolutePath());
+                contentValues.put("_data", file.getAbsolutePath());
                 Uri uri = this.mContext.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-                takePictureIntent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iy0uLG8KNAY=")), (Parcelable)uri);
+                takePictureIntent.putExtra("output", (Parcelable)uri);
             } else {
                 photoFile = Uri.fromFile((File)file);
             }
             if (photoFile != null) {
-                takePictureIntent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iy0uLG8KNAY=")), (Parcelable)photoFile);
+                takePictureIntent.putExtra("output", (Parcelable)photoFile);
             }
             takePictureIntent.putExtra(PHOTO_PATH, file.getAbsolutePath());
         }
@@ -79,7 +79,7 @@ public class ImageCaptureManager {
     }
 
     public void galleryAddPic() {
-        Intent mediaScanIntent = new Intent(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42QQpmHBoAJQUYH2ALBl9gHAoALysuAmQxRVVkJSQK")));
+        Intent mediaScanIntent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
         if (TextUtils.isEmpty((CharSequence)this.mCurrentPhotoPath)) {
             return;
         }

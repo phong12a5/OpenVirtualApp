@@ -85,7 +85,7 @@ public class FileTools {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public static boolean saveAsFileWriter(String filePath, String content) {
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Bwk/WkYWQj5YXhNTAhtABEctEwJ+N1RF")) + filePath);
+        HVLog.d("文件保存到:" + filePath);
         File file = new File(filePath);
         file.deleteOnExit();
         OutputStreamWriter fwriter = null;
@@ -149,7 +149,7 @@ public class FileTools {
     }
 
     public static void saveBitmap(final Context context, Bitmap bm, boolean updateAlum) {
-        String fileName = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4+LmhSBgJgNDhF"));
+        String fileName = "save.png";
         final File file = new File(Environment.getExternalStoragePublicDirectory((String)""), fileName);
         if (file.exists()) {
             file.delete();
@@ -169,11 +169,11 @@ public class FileTools {
         if (updateAlum) {
             try {
                 MediaStore.Images.Media.insertImage((ContentResolver)context.getContentResolver(), (String)file.getAbsolutePath(), (String)fileName, null);
-                String[] projection = new String[]{com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4YPA==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4qP2wFJFo="))};
-                Cursor cursor = context.getContentResolver().query(MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI, projection, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4YPHsOHSh0J1RF")), new String[]{com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OgMLKQ=="))}, null);
+                String[] projection = new String[]{"_id", "_data"};
+                Cursor cursor = context.getContentResolver().query(MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI, projection, "_id = ?", new String[]{"123"}, null);
                 while (cursor.moveToNext()) {
                 }
-                context.sendBroadcast(new Intent(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42QQpmHBoAJQUYH2ALBl9gHAoALysuAmQxRVVkJSQK")), Uri.parse((String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4YDmhTTCVOJ1RF")) + file.getPath()))));
+                context.sendBroadcast(new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE", Uri.parse((String)("file://" + file.getPath()))));
             }
             catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -182,7 +182,7 @@ public class FileTools {
 
                 @Override
                 public void run() {
-                    String where = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4qP2wFJyhgHgYxKAMlOA==")) + file.getAbsolutePath() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PQQMVg=="));
+                    String where = "_data like \"" + file.getAbsolutePath() + "%\"";
                     int i = context.getContentResolver().delete(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, where, null);
                     if (i > 0) {
                         // empty if block
@@ -197,7 +197,7 @@ public class FileTools {
         try {
             FileInputStream instream = new FileInputStream(filePath);
             if (instream != null) {
-                InputStreamReader inputreader = new InputStreamReader((InputStream)instream, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQUqW3pTRVo=")));
+                InputStreamReader inputreader = new InputStreamReader((InputStream)instream, "UTF-8");
                 BufferedReader buffreader = new BufferedReader(inputreader);
                 char[] chars = new char[1024];
                 int len = 0;
@@ -227,7 +227,7 @@ public class FileTools {
         }
         for (int i = 0; i < currentFiles.length; ++i) {
             if (currentFiles[i].isDirectory()) {
-                FileTools.copyDir(currentFiles[i].getPath() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")), toFile + currentFiles[i].getName() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")));
+                FileTools.copyDir(currentFiles[i].getPath() + "/", toFile + currentFiles[i].getName() + "/");
                 continue;
             }
             FileTools.copyFile(currentFiles[i].getPath(), toFile + currentFiles[i].getName());
@@ -240,8 +240,8 @@ public class FileTools {
         if (path == null) {
             return "";
         }
-        int start = path.lastIndexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")));
-        int n = end = suffix ? path.length() : path.lastIndexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz5SVg==")));
+        int start = path.lastIndexOf("/");
+        int n = end = suffix ? path.length() : path.lastIndexOf(".");
         if (start != -1 && end != -1) {
             return path.substring(start + 1, end);
         }
@@ -253,7 +253,7 @@ public class FileTools {
             return "";
         }
         int start = 0;
-        int end = path.lastIndexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")));
+        int end = path.lastIndexOf("/");
         if (start != -1 && end != -1) {
             return path.substring(start, end + 1);
         }
@@ -271,7 +271,7 @@ public class FileTools {
                 if (temp.isFile()) {
                     int len;
                     FileInputStream input = new FileInputStream(temp);
-                    FileOutputStream output = new FileOutputStream(newPath + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")) + temp.getName().toString());
+                    FileOutputStream output = new FileOutputStream(newPath + "/" + temp.getName().toString());
                     byte[] b = new byte[5120];
                     while ((len = input.read(b)) != -1) {
                         output.write(b, 0, len);
@@ -281,7 +281,7 @@ public class FileTools {
                     input.close();
                 }
                 if (!temp.isDirectory()) continue;
-                FileTools.copyFolder(oldPath + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")) + file[i], newPath + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")) + file[i]);
+                FileTools.copyFolder(oldPath + "/" + file[i], newPath + "/" + file[i]);
             }
         }
         catch (Exception exception) {
@@ -294,7 +294,7 @@ public class FileTools {
             int bytesum = 0;
             int byteread = 0;
             File oldfile = new File(oldPath);
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxwnREZJRj5YEF5KAlcdCkdNGxdBX149PQArBhpSHlo=")) + newPath + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsFGiRiHjwzKhcLDmkgFi9sJCw6MwQXPg==")) + oldfile.exists());
+            HVLog.d("复制单个文件 到:" + newPath + "    oldfile.exists():" + oldfile.exists());
             if (oldfile.exists()) {
                 FileInputStream inStream = new FileInputStream(oldPath);
                 FileOutputStream fs = new FileOutputStream(newPath);
@@ -312,17 +312,17 @@ public class FileTools {
     }
 
     public static String FormetFileSize(long fileS) {
-        DecimalFormat df = new DecimalFormat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PiobKH8FSFo=")));
+        DecimalFormat df = new DecimalFormat("#.00");
         String fileSizeString = "";
-        fileSizeString = fileS < 1024L ? df.format((double)fileS) + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jj5SVg==")) : (fileS < 0x100000L ? df.format((double)fileS / 1024.0) + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JC5SVg==")) : (fileS < 0x40000000L ? df.format((double)fileS / 1048576.0) + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwhSVg==")) : df.format((double)fileS / 1.073741824E9) + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JS5SVg=="))));
+        fileSizeString = fileS < 1024L ? df.format((double)fileS) + "B" : (fileS < 0x100000L ? df.format((double)fileS / 1024.0) + "K" : (fileS < 0x40000000L ? df.format((double)fileS / 1048576.0) + "M" : df.format((double)fileS / 1.073741824E9) + "G"));
         return fileSizeString;
     }
 
     public static String getFileNameWithParams(String path, int type) {
         if (TextUtils.isEmpty((CharSequence)path) || type <= 0 || type > 4) {
-            throw new RuntimeException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PlsnJBwNMRUGFgsLXDU7Bx87BzQVPy0zEQQ6Vg==")));
+            throw new RuntimeException(" 传入参数异常 ");
         }
-        int start = path.lastIndexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")));
+        int start = path.lastIndexOf("/");
         if (start != -1) {
             if (type == 1) {
                 return path.substring(start + 1);
@@ -331,12 +331,12 @@ public class FileTools {
                 return path.substring(0, start + 1);
             }
             if (type == 3) {
-                int index = path.lastIndexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz5SVg==")));
+                int index = path.lastIndexOf(".");
                 return path.substring(index + 1);
             }
             if (type == 4) {
                 String substring = path.substring(0, start);
-                int indexOf = substring.lastIndexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")));
+                int indexOf = substring.lastIndexOf("/");
                 if (indexOf != -1) {
                     return substring.substring(indexOf + 1);
                 }

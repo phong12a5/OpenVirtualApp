@@ -26,15 +26,15 @@ extends MethodInvocationProxy<MethodInvocationStub<IInterface>> {
 
     @Override
     public void onBindMethods() {
-        this.addMethodProxy(new BaseMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPA=="))));
-        this.addMethodProxy(new AddToDisplay(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGQFGhZjASgsKhciIWYgAlBsJyg5"))));
-        this.addMethodProxy(new AddToDisplay(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGQFGhZjASgsKhciIQ=="))));
-        this.addMethodProxy(new BaseMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGQFGhZjASgsKhciIX0FLAZqEQYwKgYYKmEVLD9hJAYqKRgqJ2UVSFo="))));
-        this.addMethodProxy(new BaseMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGQzAgZjHh4vLBUcDmowGgZgJ1ksLC4cJ2AVSFo="))));
-        this.addMethodProxy(new BaseMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDmsaAiVmAQpF"))));
+        this.addMethodProxy(new BaseMethodProxy("add"));
+        this.addMethodProxy(new AddToDisplay("addToDisplayAsUser"));
+        this.addMethodProxy(new AddToDisplay("addToDisplay"));
+        this.addMethodProxy(new BaseMethodProxy("addToDisplayWithoutInputChannel"));
+        this.addMethodProxy(new BaseMethodProxy("addWithoutInputChannel"));
+        this.addMethodProxy(new BaseMethodProxy("relayout"));
         if (BuildCompat.isQ()) {
-            this.addMethodProxy(new BaseMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGQFGhZjASgsKhciIWYgAlBsJyg5"))));
-            this.addMethodProxy(new BaseMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS0MP2ogMAlgNyQvLBUqMm4jMCZrAQJF"))));
+            this.addMethodProxy(new BaseMethodProxy("addToDisplayAsUser"));
+            this.addMethodProxy(new BaseMethodProxy("grantInputChannel"));
         }
     }
 

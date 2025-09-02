@@ -51,12 +51,12 @@ public class PackageParser {
     public static final int PARSE_ENFORCE_CODE = 64;
 
     public static ApkLite parseApkLite(File apkFile, int flags) throws PackageParserException {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 
     @TargetApi(value=29)
     public void setCallback(Callback cb) {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 
     private static abstract class SplitDependencyLoader<E extends Exception> {
@@ -83,7 +83,7 @@ public class PackageParser {
                 if (splitDependency != null) {
                     int depIdx = Arrays.binarySearch(pkg.splitNames, splitDependency);
                     if (depIdx < 0) {
-                        throw new IllegalDependencyException(StringFog.decrypt("IBUeHxFOeA==") + pkg.splitNames[splitIdx] + StringFog.decrypt("VEUAExQbNgEGHFIDGQMHB0VV") + splitDependency + StringFog.decrypt("VElSAQ0HPBtDBgFQBAYdAAwcEUs="));
+                        throw new IllegalDependencyException("Split '" + pkg.splitNames[splitIdx] + "' requires split '" + splitDependency + "', which is missing.");
                     }
                     targetIdx = depIdx + 1;
                 } else {
@@ -99,10 +99,10 @@ public class PackageParser {
                 if (configForSplit != null) {
                     int depIdx = Arrays.binarySearch(pkg.splitNames, configForSplit);
                     if (depIdx < 0) {
-                        throw new IllegalDependencyException(StringFog.decrypt("IBUeHxFOeA==") + pkg.splitNames[splitIdx] + StringFog.decrypt("VEUGFxcJOgcQTwEABQYaU0I=") + configForSplit + StringFog.decrypt("VElSAQ0HPBtDBgFQBAYdAAwcEUs="));
+                        throw new IllegalDependencyException("Split '" + pkg.splitNames[splitIdx] + "' targets split '" + configForSplit + "', which is missing.");
                     }
                     if (!pkg.isFeatureSplits[depIdx]) {
-                        throw new IllegalDependencyException(StringFog.decrypt("IBUeHxFOeA==") + pkg.splitNames[splitIdx] + StringFog.decrypt("VEUWEwYCPgEGHFIZHRwLHwNSFxZOPBwNCRsXHB0PBwwdGEUdLx8KG1IWBh1OEkUcGQtDORYCGwcCDE8dAwkbAkVJ") + pkg.splitNames[depIdx] + StringFog.decrypt("VA=="));
+                        throw new IllegalDependencyException("Split '" + pkg.splitNames[splitIdx] + "' declares itself as configuration split for a non-feature split '" + pkg.splitNames[depIdx] + "'");
                     }
                     targetSplitIdx = depIdx + 1;
                 } else {
@@ -117,7 +117,7 @@ public class PackageParser {
                 bitset.clear();
                 while (splitIdx2 != -1) {
                     if (bitset.get(splitIdx2)) {
-                        throw new IllegalDependencyException(StringFog.decrypt("MBwRGgBOOxYXChEEDAtOGgtSBRUCNgdDCxcADAEKFgsRHwAdcQ=="));
+                        throw new IllegalDependencyException("Cycle detected in split dependencies.");
                     }
                     bitset.set(splitIdx2);
                     int[] deps = (int[])splitDependencies.get(splitIdx2);
@@ -160,7 +160,7 @@ public class PackageParser {
         public boolean useEmbeddedDex;
 
         public String toString() {
-            return StringFog.decrypt("IwQRHQQJOj8KGxcLGQ4NGAQVEysPMhZeSA==") + this.packageName + '\'' + StringFog.decrypt("X0UEExcdNhwNLB0UDFI=") + this.versionCode + StringFog.decrypt("X0UEExcdNhwNLB0UDCIPGQoASw==") + this.versionCodeMajor + StringFog.decrypt("X0UbGBYaPh8PIx0TCBsHHAtP") + this.installLocation + StringFog.decrypt("X0UBBgkHKz0CAhcDVA==") + Arrays.toString(this.splitNames) + StringFog.decrypt("X0UbBSMLPgcWHRcjGQMHBxZP") + Arrays.toString(this.isFeatureSplits) + StringFog.decrypt("X0UHBQAdDAMPBgY+CAILAFg=") + Arrays.toString(this.usesSplitNames) + StringFog.decrypt("X0URGQsINhQlAAAjGQMHB1g=") + Arrays.toString(this.configForSplit) + StringFog.decrypt("X0URGQELDxIXB09X") + this.codePath + '\'' + StringFog.decrypt("X0UQFxYLHBwHCiIRHQdTVA==") + this.baseCodePath + '\'' + StringFog.decrypt("X0UBBgkHKzAMCxcgCBsGAFg=") + Arrays.toString(this.splitCodePaths) + StringFog.decrypt("X0UQFxYLDRYVBgEZBgEtHAEXSw==") + this.baseRevisionCode + StringFog.decrypt("X0UBBgkHKyEGGRsDAAAAMAoWExZT") + Arrays.toString(this.splitRevisionCodes) + StringFog.decrypt("X0URGRcLHgMTUg==") + this.coreApp + StringFog.decrypt("X0UWEwcbOBQCDR4VVA==") + this.debuggable + StringFog.decrypt("X0UfAwkaNjIRDBpN") + this.multiArch + StringFog.decrypt("X0UHBQBdbREKGzMSAFI=") + this.use32bitAbi + StringFog.decrypt("X0UXDhEcPhAXIRMEABkLPwwQBVg=") + this.extractNativeLibs + StringFog.decrypt("X0UbBQoCPgcGCyEABQYaAFg=") + this.isolatedSplits + StringFog.decrypt("X0UCBAoINh8CDR4VKxY9GwAeGlg=") + this.profilableByShell + StringFog.decrypt("X0UbBTYeMxoXPRcBHAYcFgFP") + this.isSplitRequired + StringFog.decrypt("X0UHBQArMhEGCxYVDSsLC1g=") + this.useEmbeddedDex + '}';
+            return "PackageLite{packageName='" + this.packageName + '\'' + ", versionCode=" + this.versionCode + ", versionCodeMajor=" + this.versionCodeMajor + ", installLocation=" + this.installLocation + ", splitNames=" + Arrays.toString(this.splitNames) + ", isFeatureSplits=" + Arrays.toString(this.isFeatureSplits) + ", usesSplitNames=" + Arrays.toString(this.usesSplitNames) + ", configForSplit=" + Arrays.toString(this.configForSplit) + ", codePath='" + this.codePath + '\'' + ", baseCodePath='" + this.baseCodePath + '\'' + ", splitCodePaths=" + Arrays.toString(this.splitCodePaths) + ", baseRevisionCode=" + this.baseRevisionCode + ", splitRevisionCodes=" + Arrays.toString(this.splitRevisionCodes) + ", coreApp=" + this.coreApp + ", debuggable=" + this.debuggable + ", multiArch=" + this.multiArch + ", use32bitAbi=" + this.use32bitAbi + ", extractNativeLibs=" + this.extractNativeLibs + ", isolatedSplits=" + this.isolatedSplits + ", profilableByShell=" + this.profilableByShell + ", isSplitRequired=" + this.isSplitRequired + ", useEmbeddedDex=" + this.useEmbeddedDex + '}';
         }
     }
 
@@ -296,7 +296,7 @@ public class PackageParser {
     public static final class CallbackImpl
     implements Callback {
         public CallbackImpl(PackageManager pm) {
-            throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+            throw new RuntimeException("Stub!");
         }
     }
 

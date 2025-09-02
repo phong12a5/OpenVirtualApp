@@ -46,7 +46,7 @@ extends StepImpl {
             iServerControler.sendKeyEvent(4);
         }
         catch (Exception e) {
-            Log.e((String)StringFog.decrypt("IBEXBiwDLx8="), (String)(StringFog.decrypt("IBEXBjEcOh0HTxYfPQ4dGEU=") + e.toString()));
+            Log.e((String)"StepImpl", (String)("StepTrend doTask " + e.toString()));
         }
     }
 

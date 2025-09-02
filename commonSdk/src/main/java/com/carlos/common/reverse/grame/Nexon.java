@@ -14,11 +14,11 @@ import de.robv.android.xposed.XposedHelpers;
 import java.io.File;
 
 public class Nexon {
-    public static File file = new File(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My02PGszJARiVx4RKj02KG8FLCx1JywsKgg9KX0gAih8NCwqLBgiKWwnBgFsEQIZJQcmP2VTRTBsJyQ0KioAEWojMARgJAYwJi4+OX8OTCVgARovKS4AI2JTAi9pATAqOQgYKWUJBgRoHlk6JjlfJ28FLyR/AVRF")));
+    public static File file = new File("/sdcard/Android/data/com.carlos.multiapp/files/Android_va/0/Android/data/com.nexon.hit2/");
 
     public static void hook(ClassLoader classLoader, Application application) {
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PlsrJBQNMS0cICQ0Ki1fCX4zAiVlDRobLhdfKWA0RStvATM7ODpXVg==")));
-        XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojBitnHh42Oj4mLW5SMCpoDg0bJCtfQH0FFiZvHgo7PzwYKWUzOAVoN1RF")), classLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAc2WWgVFgViIl01KBcMVg==")), new XC_MethodHook(){
+        HVLog.d(" 开始 hook com.nexon.hit2  ");
+        XposedHelpers.findAndHookMethod("com.nexon.pub.bar.NXPatcher$Config", classLoader, "isDebugMode", new XC_MethodHook(){
 
             @Override
             protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {

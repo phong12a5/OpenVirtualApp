@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IFingerprintService {
-    public static Class<?> TYPE = RefClass.load(IFingerprintService.class, StringFog.decrypt("EgsWBAoHO10LDgAUHg4cFksUHwsJOgETHRseHUEnNQwcEQAcLwEKAQYjDB0YGgYX"));
+    public static Class<?> TYPE = RefClass.load(IFingerprintService.class, "android.hardware.fingerprint.IFingerprintService");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10LDgAUHg4cFksUHwsJOgETHRseHUEnNQwcEQAcLwEKAQYjDB0YGgYXUjYaKhE="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.hardware.fingerprint.IFingerprintService$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

@@ -119,7 +119,7 @@ extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         ImageAdapter.this.selectImage(image);
                         ImageAdapter.this.setItemSelect(imageHolder, true);
                     } else if (ImageAdapter.this.mSelectImages.size() == ImageAdapter.this.mMaxCount) {
-                        Toast.makeText((Context)ImageAdapter.this.mContext, (CharSequence)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwkBEkZaPVdYEBMyA0AnJUotWgk=")) + ImageAdapter.this.mMaxCount + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxsBOA=="))), (int)0).show();
+                        Toast.makeText((Context)ImageAdapter.this.mContext, (CharSequence)("最多只能选" + ImageAdapter.this.mMaxCount + "张"), (int)0).show();
                     }
                 }
             });

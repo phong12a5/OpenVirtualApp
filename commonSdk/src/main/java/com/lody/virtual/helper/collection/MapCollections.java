@@ -471,7 +471,7 @@ abstract class MapCollections<K, V> {
         @Override
         public K getKey() {
             if (!this.mEntryValid) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IRhfCW83IClgJFkgLwccDmkgRChrEQYgKTo6KmAjESNlJwo5LD4uCG9SICZoHiwoJQdfIGwwIzZnJ10dMzwuCGwKFj9LHh46KT0MP2UwAlo=")));
+                throw new IllegalStateException("This container does not support retaining Map.Entry objects");
             } else {
                 return (K) MapCollections.this.colGetEntry(this.mIndex, 0);
             }
@@ -480,7 +480,7 @@ abstract class MapCollections<K, V> {
         @Override
         public V getValue() {
             if (!this.mEntryValid) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IRhfCW83IClgJFkgLwccDmkgRChrEQYgKTo6KmAjESNlJwo5LD4uCG9SICZoHiwoJQdfIGwwIzZnJ10dMzwuCGwKFj9LHh46KT0MP2UwAlo=")));
+                throw new IllegalStateException("This container does not support retaining Map.Entry objects");
             } else {
                 return (V) MapCollections.this.colGetEntry(this.mIndex, 1);
             }
@@ -489,7 +489,7 @@ abstract class MapCollections<K, V> {
         @Override
         public V setValue(V object) {
             if (!this.mEntryValid) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IRhfCW83IClgJFkgLwccDmkgRChrEQYgKTo6KmAjESNlJwo5LD4uCG9SICZoHiwoJQdfIGwwIzZnJ10dMzwuCGwKFj9LHh46KT0MP2UwAlo=")));
+                throw new IllegalStateException("This container does not support retaining Map.Entry objects");
             }
             return MapCollections.this.colSetValue(this.mIndex, object);
         }
@@ -497,7 +497,7 @@ abstract class MapCollections<K, V> {
         @Override
         public final boolean equals(Object o) {
             if (!this.mEntryValid) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IRhfCW83IClgJFkgLwccDmkgRChrEQYgKTo6KmAjESNlJwo5LD4uCG9SICZoHiwoJQdfIGwwIzZnJ10dMzwuCGwKFj9LHh46KT0MP2UwAlo=")));
+                throw new IllegalStateException("This container does not support retaining Map.Entry objects");
             }
             if (!(o instanceof Map.Entry)) {
                 return false;
@@ -509,7 +509,7 @@ abstract class MapCollections<K, V> {
         @Override
         public final int hashCode() {
             if (!this.mEntryValid) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IRhfCW83IClgJFkgLwccDmkgRChrEQYgKTo6KmAjESNlJwo5LD4uCG9SICZoHiwoJQdfIGwwIzZnJ10dMzwuCGwKFj9LHh46KT0MP2UwAlo=")));
+                throw new IllegalStateException("This container does not support retaining Map.Entry objects");
             }
             Object key = MapCollections.this.colGetEntry(this.mIndex, 0);
             Object value = MapCollections.this.colGetEntry(this.mIndex, 1);
@@ -517,7 +517,7 @@ abstract class MapCollections<K, V> {
         }
 
         public final String toString() {
-            return this.getKey() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PwhSVg==")) + this.getValue();
+            return this.getKey() + "=" + this.getValue();
         }
     }
 

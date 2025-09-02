@@ -99,34 +99,34 @@ public class NativeEngine {
 
     public static void redirectDirectory(String origPath, String newPath) {
         VirtualCore.getConfig();
-        if (!origPath.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")))) {
-            origPath = origPath + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="));
+        if (!origPath.endsWith("/")) {
+            origPath = origPath + "/";
         }
-        if (!newPath.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")))) {
-            newPath = newPath + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="));
+        if (!newPath.endsWith("/")) {
+            newPath = newPath + "/";
         }
         REDIRECT_LISTS.add((Pair<String, String>)new Pair((Object)origPath, (Object)newPath));
     }
 
     public static void HideSu() {
-        NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J28wMCtgCh47IxglDWIKGgJrDgowKT4uCE4wPDNvJ1RF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J28wMCtgCh47IxglDWIKGgJrDgowKT4uCE4wPDNvIFEvKC4+Jw==")));
-        NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02OmUVASVhJzBF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02OmUVASVhJzM3KD0iCWkjSFo=")));
-        NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J28wMCtgCh46KQcXDWoKGlo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J28wMCtgCh46KQcXDWoKBSNrNzgiLhhSVg==")));
-        NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J28wMCtgCh4aLz0cDn8KAgU=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J28wMCtgCh4aLz0cDn8KAgV1ASQsIz4uVg==")));
-        NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVgHh45LwdaDWgzRS9lMwY6KhhSVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVgHh45LwdaDWgzRS9lMwY6Kl8IIn0KEiA=")));
-        NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVgHh45LwdaDW4VLCZ1JDAw")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVgHh45LwdaDW4VLCZ1JDAwPBgiO2MgLFo=")));
-        NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J28wMCtgCh4pKF5fIm4VLCZ1JDAw")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J28wMCtgCh4pKF5fIm4VLCZ1JDAwPBgiO2MgLFo=")));
-        NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J28wMCtgCh46KQcXDWkVQS9lHjAsLi4tKWEjLFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J28wMCtgCh46KQcXDWkVQS9lHjAsLi4tKWEjLyhuNCQaLy5SVg==")));
-        NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVgHh45LwdaDWoKGlo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVgHh45LwdaDWoKBSNrNzgiLhhSVg==")));
-        NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02I3ozFi9gMB4pLAhSVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02I3ozFi9gMB4pLANXPG4jJCs=")));
+        NativeEngine.redirectFile("/system/app/Superuser.apk", "/system/app/Superuser.apk-fake");
+        NativeEngine.redirectFile("/sbin/su", "/sbin/su-fake");
+        NativeEngine.redirectFile("/system/bin/su", "/system/bin/su-fake");
+        NativeEngine.redirectFile("/system/xbin/su", "/system/xbin/su-fake");
+        NativeEngine.redirectFile("/data/local/xbin/su", "/data/local/xbin/su-fake");
+        NativeEngine.redirectFile("/data/local/bin/su", "/data/local/bin/su-fake");
+        NativeEngine.redirectFile("/system/sd/xbin/su", "/system/sd/xbin/su-fake");
+        NativeEngine.redirectFile("/system/bin/failsafe/su", "/system/bin/failsafe/su-fake");
+        NativeEngine.redirectFile("/data/local/su", "/data/local/su-fake");
+        NativeEngine.redirectFile("/su/bin/su", "/su/bin/su-fake");
     }
 
     public static void redirectFile(String origPath, String newPath) {
         VirtualCore.getConfig();
-        if (origPath.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")))) {
+        if (origPath.endsWith("/")) {
             origPath = origPath.substring(0, origPath.length() - 1);
         }
-        if (newPath.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")))) {
+        if (newPath.endsWith("/")) {
             newPath = newPath.substring(0, newPath.length() - 1);
         }
         REDIRECT_LISTS.add((Pair<String, String>)new Pair((Object)origPath, (Object)newPath));
@@ -150,8 +150,8 @@ public class NativeEngine {
         if (SettingConfig.isUseNativeEngine2(VClient.get().getCurrentPackage())) {
             return;
         }
-        if (!path.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")))) {
-            path = path + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="));
+        if (!path.endsWith("/")) {
+            path = path + "/";
         }
         try {
             NativeEngine.nativeIOReadOnly(path);
@@ -173,8 +173,8 @@ public class NativeEngine {
 
     public static void whitelist(String path) {
         VirtualCore.getConfig();
-        if (!path.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")))) {
-            path = path + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="));
+        if (!path.endsWith("/")) {
+            path = path + "/";
         }
         try {
             NativeEngine.nativeIOWhitelist(path);
@@ -186,8 +186,8 @@ public class NativeEngine {
 
     public static void forbid(String path, boolean file) {
         VirtualCore.getConfig();
-        if (!file && !path.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")))) {
-            path = path + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="));
+        if (!file && !path.endsWith("/")) {
+            path = path + "/";
         }
         try {
             NativeEngine.nativeIOForbid(path);
@@ -198,8 +198,8 @@ public class NativeEngine {
     }
 
     public static String pathCat(String path1, String path2) {
-        if (!TextUtils.isEmpty((CharSequence)path2) && !path1.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")))) {
-            path1 = path1 + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="));
+        if (!TextUtils.isEmpty((CharSequence)path2) && !path1.endsWith("/")) {
+            path1 = path1 + "/";
         }
         path1 = path1 + path2;
         return path1;
@@ -240,8 +240,8 @@ public class NativeEngine {
         }
         try {
             String extSoPath;
-            String soPath = new File(coreAppInfo.nativeLibraryDir, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOmwjFiVnV1kpKi5SVg=="))).getAbsolutePath();
-            String soPath32 = extSoPath = new File(coreAppInfo.nativeLibraryDir, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOmwjFiVnHx4/LRg1DmoFNFo="))).getAbsolutePath();
+            String soPath = new File(coreAppInfo.nativeLibraryDir, "libvbox.so").getAbsolutePath();
+            String soPath32 = extSoPath = new File(coreAppInfo.nativeLibraryDir, "libvbox_ext.so").getAbsolutePath();
             String soPath64 = soPath;
             String nativePath = VEnvironment.getNativeCacheDir(VirtualCore.get().isExtPackage()).getPath();
             NativeEngine.nativeEnableIORedirect(soPath32, soPath64, nativePath, Build.VERSION.SDK_INT, appInfo.packageName, VirtualCore.get().getHostPkg());
@@ -269,16 +269,16 @@ public class NativeEngine {
 
     public static void bypassHiddenAPIEnforcementPolicyIfNeeded() {
         if (BuildCompat.isR()) {
-            HiddenApiBypass.setHiddenApiExemptions(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OxhSVg==")));
+            HiddenApiBypass.setHiddenApiExemptions("L");
         } else if (BuildCompat.isPie()) {
             try {
-                Method forNameMethod = Class.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4AKmIjJCNiAVRF")), String.class);
-                Class clazz = (Class)forNameMethod.invoke(null, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRg+DmwjAiFONygZIy42PW8nMFN9DAowLC0qI2AKLFo=")));
-                Method getMethodMethod = Class.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAFNClgHiAqKAc2UmkgBiBlJyxF")), String.class, Class[].class);
-                Method getRuntime = (Method)getMethodMethod.invoke(clazz, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcgNCZmHgY3KAhSVg==")), new Class[0]);
-                Method setHiddenApiExemptions = (Method)getMethodMethod.invoke(clazz, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLH0FAixiHjA2JwgmMWEgFitlDjw/IxgAKmEjSFo=")), new Class[]{String[].class});
+                Method forNameMethod = Class.class.getDeclaredMethod("forName", String.class);
+                Class clazz = (Class)forNameMethod.invoke(null, "dalvik.system.VMRuntime");
+                Method getMethodMethod = Class.class.getDeclaredMethod("getDeclaredMethod", String.class, Class[].class);
+                Method getRuntime = (Method)getMethodMethod.invoke(clazz, "getRuntime", new Class[0]);
+                Method setHiddenApiExemptions = (Method)getMethodMethod.invoke(clazz, "setHiddenApiExemptions", new Class[]{String[].class});
                 Object runtime = getRuntime.invoke(null, new Object[0]);
-                setHiddenApiExemptions.invoke(runtime, new Object[]{new String[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OxhSVg=="))}});
+                setHiddenApiExemptions.invoke(runtime, new Object[]{new String[]{"L"}});
             }
             catch (Throwable e) {
                 e.printStackTrace();
@@ -287,7 +287,7 @@ public class NativeEngine {
     }
 
     public static boolean onKillProcess(int pid, int signal) {
-        VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LC4YDmoIIARgJCg/Iy4pIH4wTS9rVj8oPQQuIE5TODZvDjwdKC4hJHkJIz9oDRpF")), pid, signal);
+        VLog.e(TAG, "killProcess: pid = %d, signal = %d.", pid, signal);
         if (pid == Process.myPid()) {
             VLog.e(TAG, VLog.getStackTraceString(new Throwable()));
         }
@@ -299,7 +299,7 @@ public class NativeEngine {
             return NativeEngine.onGetCallingUid0(originUid);
         }
         catch (Throwable e) {
-            VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITw+Vg==")), e);
+            VLog.e("VA", e);
             return originUid;
         }
     }
@@ -376,7 +376,7 @@ public class NativeEngine {
     public static long getArtMethod(Member member) {
         if (artMethodField == null) {
             try {
-                artMethodField = NativeEngine.getField(Method.class, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMLGIVNAZjHh4w")));
+                artMethodField = NativeEngine.getField(Method.class, "artMethod");
             }
             catch (NoSuchFieldException noSuchFieldException) {
                 // empty catch block
@@ -406,7 +406,7 @@ public class NativeEngine {
         DexOverride override;
         String dexPath = params[0];
         if (dexPath != null && (override = NativeEngine.findDexOverride(dexCanonicalPath = NativeEngine.getCanonicalPath(dexPath))) != null) {
-            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy0iM28gFi9iHjMiPxhSVg==")) + override.newOdexPath);
+            VLog.e(TAG, "override: " + override.newOdexPath);
             if (override.newDexPath != null) {
                 params[0] = override.newDexPath;
             }
@@ -420,7 +420,7 @@ public class NativeEngine {
                 params[1] = override.newOdexPath;
             }
         }
-        VLog.i(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oy06M2ohMCtnHDwzKhcMQG4gBi9vNysZPSouD0s0TCN5MAo8OF82Vg==")), params[0], params[1]);
+        VLog.i(TAG, "OpenDexFileNative(\"%s\", \"%s\")", params[0], params[1]);
     }
 
     private static String getCanonicalPath(String path) {
@@ -460,14 +460,14 @@ public class NativeEngine {
     }
 
     static {
-        LIB_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4MD2kFSFo="));
+        LIB_NAME = "vbox";
         TAG = NativeEngine.class.getSimpleName();
         sDexOverrides = new ArrayList<DexOverride>();
         sFlag = false;
         sEnabled = false;
         EnablePidInfoCache = false;
         try {
-            System.loadLibrary(VirtualRuntime.adjustLibName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4MD2kFSFo="))));
+            System.loadLibrary(VirtualRuntime.adjustLibName("vbox"));
         }
         catch (Throwable e) {
             VLog.e(TAG, VLog.getStackTraceString(e));
@@ -491,7 +491,7 @@ public class NativeEngine {
         }
 
         public String toString() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhgYPGMzJCljHjAJKj0+DWgKTS9rVw5F")) + this.pid + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186I2UVMzM=")) + this.uid + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186DmsaLAZuHgY3KARXVg==")) + this.lastTime + '}';
+            return "PidCacheInfo{pid=" + this.pid + ", uid=" + this.uid + ", lastTime=" + this.lastTime + '}';
         }
     }
 }

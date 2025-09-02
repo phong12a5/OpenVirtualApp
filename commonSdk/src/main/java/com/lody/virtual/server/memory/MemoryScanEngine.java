@@ -53,7 +53,7 @@ public class MemoryScanEngine {
                 }
             }
             catch (IOException e) {
-                VLog.e(this.getClass().getSimpleName(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1PxguPW4jAShsNyguIxgAKktSGSM=")) + region.description);
+                VLog.e(this.getClass().getSimpleName(), "Unable to read region : " + region.description);
             }
         }
     }

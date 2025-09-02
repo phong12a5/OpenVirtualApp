@@ -26,12 +26,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements ILockSettings {
-        private static final String DESCRIPTOR = StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAKBoHCBcERyYiHAYZJQAaKxoNCAE=");
+        private static final String DESCRIPTOR = "com.android.internal.widget.ILockSettings";
         static final int TRANSACTION_setRecoverySecretTypes = 1;
         static final int TRANSACTION_getRecoverySecretTypes = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAKBoHCBcERyYiHAYZJQAaKxoNCAE="));
+            this.attachInterface(this, "com.android.internal.widget.ILockSettings");
         }
 
         public static ILockSettings asInterface(IBinder obj) {
@@ -76,7 +76,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(ILockSettings impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -103,7 +103,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAKBoHCBcERyYiHAYZJQAaKxoNCAE=");
+                return "com.android.internal.widget.ILockSettings";
             }
 
             /*
@@ -114,7 +114,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAKBoHCBcERyYiHAYZJQAaKxoNCAE="));
+                    _data.writeInterfaceToken("com.android.internal.widget.ILockSettings");
                     _data.writeIntArray(secretTypes);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -138,7 +138,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAKBoHCBcERyYiHAYZJQAaKxoNCAE="));
+                    _data.writeInterfaceToken("com.android.internal.widget.ILockSettings");
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         int[] nArray = Stub.getDefaultImpl().getRecoverySecretTypes();

@@ -29,7 +29,7 @@ import com.kook.librelease.R;
 
 public class NormalTab
 extends TabContainer {
-    String TAG = StringFog.decrypt("PQoAGwQCCxIB");
+    String TAG = "NormalTab";
     FloatTab floatTab;
     Button featuresMenu;
     ILearnController iLearnController;
@@ -77,7 +77,7 @@ extends TabContainer {
 
     @Override
     public void onClick(View view) {
-        HVLog.d(this.TAG, StringFog.decrypt("UwsdBAgPMycCDVIfBywCGgYZVg==") + (view == this.floatTab.getFeaturesMenu()));
+        HVLog.d(this.TAG, " normalTab onClick " + (view == this.floatTab.getFeaturesMenu()));
         IBinder clientBinder = this.floatTab.getClientBinder();
         if (clientBinder == null) {
             return;

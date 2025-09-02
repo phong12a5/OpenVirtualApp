@@ -37,7 +37,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class AppComponentDelegate implements AppCallback {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgc6KGMzGiNhHh42KAcYLmEzGiRrASAsKgguVg=="));
+    private static final String TAG = "AppComponentDelegate";
     public Application mApplication;
     boolean isMainProcess = false;
 
@@ -69,8 +69,8 @@ public class AppComponentDelegate implements AppCallback {
         if (Build.VERSION.SDK_INT >= 21) {
             // empty if block
         }
-        if (packageName.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojQTdjJCA1KC0iD2kgDSZoDgogKT5SVg==")))) {
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("MwQHDXpSHSNOCl05Ki1WDmwFQSFoAQYuLRgIJ2EkRSRlNAo8OSolL3UJHQF6VgE8CANbVg==")));
+        if (packageName.equals("com.kakaogames.ares")) {
+            HVLog.d("--------com.kakaogames.ares-----------");
             ClassLoader classLoader = VClient.get().getClassLoader();
             Ares.hook(classLoader, application, packageName, processName);
         }
@@ -117,34 +117,34 @@ public class AppComponentDelegate implements AppCallback {
     @Override
     public void afterApplicationCreate(String packageName, String processName, Application application) {
         ClassLoader classLoader;
-        if (packageName.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm4jMCxsNwYaLgQcCGMKQSBqEVRF")))) {
-            VLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ITw9DQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxsBEkZaOQtLHho1Ki0DOkcGExFBX1oCACAVUlgUQiR5Vh0dPCk1JHhSIFo=")) + SysUtils.getCurrentProcessName(), new Object[0]);
+        if (packageName.equals("com.alibaba.android.rimet")) {
+            VLog.d("VA-", "开始 hook 丁丁打卡 9.19   " + SysUtils.getCurrentProcessName(), new Object[0]);
             classLoader = VClient.get().getClassLoader();
             DingTalk.hook(classLoader);
         }
-        if (packageName.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojNC1ONCA2KBguDWwjASZgAQIaKQg+M2ojOCtsJB4u")))) {
+        if (packageName.equals("com.eg.android.AlipayGphone")) {
             classLoader = VClient.get().getClassLoader();
         }
-        if (packageName.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogPCtgDiAwKAMYD2wgRSM=")))) {
+        if (packageName.equals("com.wemade.mirm")) {
             classLoader = VClient.get().getClassLoader();
             Grame.hook(classLoader);
         }
-        if (packageName.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojBitnHh42Oj0AMWU0RVo="))) && com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4+DW8wNCZiJ1RF")).equals(Build.BRAND) && Build.VERSION.SDK_INT == 29) {
+        if (packageName.equals("com.nexon.hit2") && "samsung".equals(Build.BRAND) && Build.VERSION.SDK_INT == 29) {
             classLoader = VClient.get().getClassLoader();
         }
-        if (packageName.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojEi9gNAY5KhccKn8VGi9rJ1k/LS4+KGAVOCpsJF1F")))) {
+        if (packageName.equals("com.miniclip.eightballpool")) {
             classLoader = VClient.get().getClassLoader();
             BallPool.hook(classLoader, application);
         }
-        if (packageName.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogRS9gNDgzKjkYImwwAlo=")))) {
+        if (packageName.equals("com.xingin.xhs")) {
             classLoader = VClient.get().getClassLoader();
             XHSHook.hook(classLoader, application);
         }
-        if (packageName.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogMCtgNCg/Kj41Dm8jPFo=")))) {
+        if (packageName.equals("com.tencent.mm")) {
             classLoader = VClient.get().getClassLoader();
             WeChat.hook(classLoader, application);
         }
-        if (packageName.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLCVgDSwvIy0ADW8zBi9lNyA6PC1XJ2AwAilvDicdKC4qIGwzGgVoDRoyJi0YLmwaEQJsDlg5Iz4AKmoVJCQ=")))) {
+        if (packageName.equals("com.com2usholdings.zenonia.android.google.kr.normal")) {
             classLoader = VClient.get().getClassLoader();
             EpicGames.hook(classLoader, application);
         }

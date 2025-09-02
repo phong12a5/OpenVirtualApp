@@ -52,7 +52,7 @@ import mirror.android.content.SyncRequest;
 
 public final class VContentService
 extends IContentService.Stub {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4ACGwFNCZmHyg/Iz4+MW4FGlo="));
+    private static final String TAG = "ContentService";
     private static final VContentService sInstance = new VContentService();
     private Context mContext;
     private final ObserverNode mRootNode = new ObserverNode("");
@@ -75,7 +75,7 @@ extends IContentService.Stub {
                 }
             }
             catch (SQLiteException e) {
-                Log.e((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4+CHgwMyh9Jyw/Lwg2PX42Aj9lNzBXLRgcO2IgLDU=")), (Throwable)e);
+                Log.e((String)TAG, (String)"Can't create SyncManager", (Throwable)e);
             }
             return this.mSyncManager;
         }
@@ -108,7 +108,7 @@ extends IContentService.Stub {
     @Override
     public void registerContentObserver(Uri uri, boolean notifyForDescendants, IContentObserver observer, int VUserHandle2) {
         if (observer == null || uri == null) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IAgAI3sFEgVhJw08IxciL2oJTTd4HiQsLAgYIEsVLDVvCiAqKRgbJGUjFiVoHgohJAgqVg==")));
+            throw new IllegalArgumentException("You must pass a valid uri and observer");
         }
         ObserverNode observerNode = this.mRootNode;
         synchronized (observerNode) {
@@ -126,7 +126,7 @@ extends IContentService.Stub {
     @Override
     public void unregisterContentObserver(IContentObserver observer) {
         if (observer == null) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IAgAI3sFEgVhJw08IxciL2oJTTd4HiQsLAgYIEsaAiVlJAo7IxgACA==")));
+            throw new IllegalArgumentException("You must pass a valid observer");
         }
         ObserverNode observerNode = this.mRootNode;
         synchronized (observerNode) {
@@ -140,7 +140,7 @@ extends IContentService.Stub {
     @Override
     public void notifyChange(Uri uri, IContentObserver observer, boolean observerWantsSelfNotifications, boolean syncToNetwork, int VUserHandle2) {
         if (Log.isLoggable((String)TAG, (int)2)) {
-            Log.v((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4ALGUVOD9jDlk9PxgMKmkzQQZrDTwcLio6Vg==")) + uri + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgiD28nIAVhJDAqPxhSVg==")) + VUserHandle2 + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgiKmozHShgJCwpKAguLGkgRCg=")) + observer + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KWkVBiluHh4MKAg2I28KRSF4EVRF")) + syncToNetwork));
+            Log.v((String)TAG, (String)("Notifying update of " + uri + " for user " + VUserHandle2 + " from observer " + observer + ", syncToNetwork " + syncToNetwork));
         }
         int uid = VBinder.getCallingUid();
         long identityToken = VContentService.clearCallingIdentity();
@@ -157,13 +157,13 @@ extends IContentService.Stub {
                 try {
                     oc.mObserver.onChange(oc.mSelfChange, uri, VUserHandle2);
                     if (!Log.isLoggable((String)TAG, (int)2)) continue;
-                    Log.v((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4ALGUVOC9iDg08")) + oc.mObserver + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgAPnsKNAJiHiAgKAMmOWU3TVo=")) + uri));
+                    Log.v((String)TAG, (String)("Notified " + oc.mObserver + " of update at " + uri));
                     continue;
                 }
                 catch (RemoteException ex) {
                     ObserverNode observerNode2 = this.mRootNode;
                     synchronized (observerNode2) {
-                        Log.w((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JT4AI2ojMyhiHjA7KF4mDW4aAitsNCQgKSoDJGEwLChsJzgiKRgIVg==")));
+                        Log.w((String)TAG, (String)"Found dead observer, removing");
                         IBinder binder = oc.mObserver.asBinder();
                         ArrayList list = oc.mNode.mObservers;
                         int numList = list.size();
@@ -229,7 +229,7 @@ extends IContentService.Stub {
                 String provider = SyncRequest.mAuthority.get(request);
                 if (SyncRequest.mIsPeriodic.get(request)) {
                     if (runAtTime < 60L) {
-                        VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uL2wVNANmHjAwPxgmDW8zOyhrNAogKRcuJ2AwNAZ5HlkvOD5SVg==")) + runAtTime + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phc2M2szGiZiESs8Lz0MMW8VHShsNwYwLC4qJ2JTODBlVyA9KQRWMnxSICVoETA6Jj0MOnwzSFo=")), new Object[0]);
+                        VLog.w(TAG, "Requested poll frequency of " + runAtTime + " seconds being rounded up to 60 seconds.", new Object[0]);
                         runAtTime = 60L;
                     }
                     android.content.PeriodicSync syncToAdd = new android.content.PeriodicSync(account, provider, extras, runAtTime);
@@ -253,7 +253,7 @@ extends IContentService.Stub {
     @Override
     public void cancelSync(Account account, String authority) {
         if (authority != null && authority.length() == 0) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGUFGgRjAQoZPxdXLWoKAShoNysrLC4AKk4KLChlETAy")));
+            throw new IllegalArgumentException("Authority must be non-empty");
         }
         int userId = VUserHandle.getCallingUserId();
         long identityToken = VContentService.clearCallingIdentity();
@@ -312,7 +312,7 @@ extends IContentService.Stub {
     @Override
     public void setSyncAutomatically(Account account, String providerName, boolean sync) {
         if (TextUtils.isEmpty((CharSequence)providerName)) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGUFGgRjAQoZPxdXLWoKAShoNysrLC4AKk4KLChlETAy")));
+            throw new IllegalArgumentException("Authority must be non-empty");
         }
         int userId = VUserHandle.getCallingUserId();
         long identityToken = VContentService.clearCallingIdentity();
@@ -333,14 +333,14 @@ extends IContentService.Stub {
     @Override
     public void addPeriodicSync(Account account, String authority, Bundle extras, long pollFrequency) {
         if (account == null) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgg2OWowNCZmVyQ3LAgqLn4zMCVvVjwpLl86KmYKTTc=")));
+            throw new IllegalArgumentException("Account must not be null");
         }
         if (TextUtils.isEmpty((CharSequence)authority)) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGUFGgRjAQoZPxdXLWoKAShlNwY/PQgMJ0saLChlETAyORhSVg==")));
+            throw new IllegalArgumentException("Authority must not be empty.");
         }
         int userId = VUserHandle.getCallingUserId();
         if (pollFrequency < 60L) {
-            VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uL2wVNANmHjAwPxgmDW8zOyhrNAogKRcuJ2AwNAZ5HlkvOD5SVg==")) + pollFrequency + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phc2M2szGiZiESs8Lz0MMW8VHShsNwYwLC4qJ2JTODBlVyA9KQRWMnxSICVoETA6Jj0MOnwzSFo=")), new Object[0]);
+            VLog.w(TAG, "Requested poll frequency of " + pollFrequency + " seconds being rounded up to 60 seconds.", new Object[0]);
             pollFrequency = 60L;
         }
         long identityToken = VContentService.clearCallingIdentity();
@@ -360,10 +360,10 @@ extends IContentService.Stub {
     @Override
     public void removePeriodicSync(Account account, String authority, Bundle extras) {
         if (account == null) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgg2OWowNCZmVyQ3LAgqLn4zMCVvVjwpLl86KmYKTTc=")));
+            throw new IllegalArgumentException("Account must not be null");
         }
         if (TextUtils.isEmpty((CharSequence)authority)) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGUFGgRjAQoZPxdXLWoKAShlNwY/PQgMJ0saLChlETAy")));
+            throw new IllegalArgumentException("Authority must not be empty");
         }
         int userId = VUserHandle.getCallingUserId();
         long identityToken = VContentService.clearCallingIdentity();
@@ -382,10 +382,10 @@ extends IContentService.Stub {
     @Override
     public List<android.content.PeriodicSync> getPeriodicSyncs(Account account, String providerName) {
         if (account == null) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgg2OWowNCZmVyQ3LAgqLn4zMCVvVjwpLl86KmYKTTc=")));
+            throw new IllegalArgumentException("Account must not be null");
         }
         if (TextUtils.isEmpty((CharSequence)providerName)) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGUFGgRjAQoZPxdXLWoKAShlNwY/PQgMJ0saLChlETAy")));
+            throw new IllegalArgumentException("Authority must not be empty");
         }
         int userId = VUserHandle.getCallingUserId();
         long identityToken = VContentService.clearCallingIdentity();
@@ -424,7 +424,7 @@ extends IContentService.Stub {
     @Override
     public void setIsSyncable(Account account, String providerName, int syncable) {
         if (TextUtils.isEmpty((CharSequence)providerName)) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGUFGgRjAQoZPxdXLWoKAShlNwY/PQgMJ0saLChlETAy")));
+            throw new IllegalArgumentException("Authority must not be empty");
         }
         int userId = VUserHandle.getCallingUserId();
         long identityToken = VContentService.clearCallingIdentity();
@@ -524,7 +524,7 @@ extends IContentService.Stub {
     @Override
     public SyncStatusInfo getSyncStatus(Account account, String authority) {
         if (TextUtils.isEmpty((CharSequence)authority)) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGUFGgRjAQoZPxdXLWoKAShlNwY/PQgMJ0saLChlETAy")));
+            throw new IllegalArgumentException("Authority must not be empty");
         }
         int userId = VUserHandle.getCallingUserId();
         long identityToken = VContentService.clearCallingIdentity();
@@ -635,7 +635,7 @@ extends IContentService.Stub {
             }
             String segment = this.getUriSegment(uri, index);
             if (segment == null) {
-                throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyRKIz0bOnwzSFo=")) + uri + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PAQ6I28zNCxLHjw1IzkmDW4aAitsNCQgKS5SVg==")));
+                throw new IllegalArgumentException("Invalid Uri (" + uri + ") used for observer");
             }
             int N = this.mChildren.size();
             for (int i = 0; i < N; ++i) {

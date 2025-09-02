@@ -74,7 +74,7 @@ public class PackageHelper {
     public static String installStatusToString(int status, String msg) {
         String str = PackageHelper.installStatusToString(status);
         if (msg != null) {
-            return str + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ODo6Vg==")) + msg;
+            return str + ": " + msg;
         }
         return str;
     }
@@ -82,127 +82,127 @@ public class PackageHelper {
     public static String installStatusToString(int status) {
         switch (status) {
             case 1: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4PJAUqEWEhGhZjDyxF"));
+                return "INSTALL_SUCCEEDED";
             }
             case -1: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9gDwIfJhY+Gm8LAgpjHBoSOzsYVg=="));
+                return "INSTALL_FAILED_ALREADY_EXISTS";
             }
             case -2: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9iDxoTJRYEBWobAg59HAJF"));
+                return "INSTALL_FAILED_INVALID_APK";
             }
             case -3: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9iDxoTJRYEBWobAlV9MhpF"));
+                return "INSTALL_FAILED_INVALID_URI";
             }
             case -4: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9iDxoQIhYiBGsINBZmDB4TJQUYXX0mFh1gNShF"));
+                return "INSTALL_FAILED_INSUFFICIENT_STORAGE";
             }
             case -5: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9jHCgRJAYYH2ULFgpgJSAAIAY+HWMhNFo="));
+                return "INSTALL_FAILED_DUPLICATE_PACKAGE";
             }
             case -6: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh99NQYMITxfHWk2LAlgJQoSJytfVg=="));
+                return "INSTALL_FAILED_NO_SHARED_USER";
             }
             case -7: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9nDDxKJRUqGWwmGhNhIllBJDxbXWILFkxgEVRF"));
+                return "INSTALL_FAILED_UPDATE_INCOMPATIBLE";
             }
             case -8: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9kJVkCISwuGmwhLBBmDygOIiwqH30hEg5jHCwWIztXBg=="));
+                return "INSTALL_FAILED_SHARED_USER_INCOMPATIBLE";
             }
             case -9: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh99Dx4QITwYDGohAhBnHCQRJywcE30bAhBnJThAKQhSVg=="));
+                return "INSTALL_FAILED_MISSING_SHARED_LIBRARY";
             }
             case -10: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9kNSgRJAY+H2oLAgBkJQpAJzwqXWEhMFRiDyhOLAhSVg=="));
+                return "INSTALL_FAILED_REPLACE_COULDNT_DELETE";
             }
             case -11: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9jHygJJDs6XQ=="));
+                return "INSTALL_FAILED_DEXOPT";
             }
             case -12: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh99JQJKJhUME2kmFgg="));
+                return "INSTALL_FAILED_OLDER_SDK";
             }
             case -13: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9gJQZAJiwEBWUhFhZkMjwOJDtfA2cxAlVgHApF"));
+                return "INSTALL_FAILED_CONFLICTING_PROVIDER";
             }
             case -14: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh99NSgUJhUME2kmFgg="));
+                return "INSTALL_FAILED_NEWER_SDK";
             }
             case -15: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9nHygQIgUAA2g2TVE="));
+                return "INSTALL_FAILED_TEST_ONLY";
             }
             case -16: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9gIjwWIDw+GGsLAhZkMixXIStXHWcbAhBiDyhF"));
+                return "INSTALL_FAILED_CPU_ABI_INCOMPATIBLE";
             }
             case -17: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh99Dx4QITwYDGohAgtmDCQTOytfGQ=="));
+                return "INSTALL_FAILED_MISSING_FEATURE";
             }
             case -18: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9gJQZAIgY+BWg2LB9gIgoRJBYuUw=="));
+                return "INSTALL_FAILED_CONTAINER_ERROR";
             }
             case -19: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9iDxoTJRYEBWobAhZkNSwTICwiAmEhHl5jNThOLQUYHw=="));
+                return "INSTALL_FAILED_INVALID_INSTALL_LOCATION";
             }
             case -20: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh99DyhKOxY+E24IRQ5iMiRNITxbGH0bNFo="));
+                return "INSTALL_FAILED_MEDIA_UNAVAILABLE";
             }
             case -21: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9nNSgfOxYiBWUmPFRnDFlTJQUcBX0LNF5kHCxF"));
+                return "INSTALL_FAILED_VERIFICATION_TIMEOUT";
             }
             case -22: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9nNSgfOxYiBWUmPFRnDFlTJQYEHWILHglnJShF"));
+                return "INSTALL_FAILED_VERIFICATION_FAILURE";
             }
             case -23: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9kHzgAOzw+G2oLAgBnHCRTJwYAGg=="));
+                return "INSTALL_FAILED_PACKAGE_CHANGED";
             }
             case -24: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9nDx5KIDw2BmUIRQxmDDBF"));
+                return "INSTALL_FAILED_UID_CHANGED";
             }
             case -25: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9nNSgfITwYA2gxAglkJTxTJwVfHWMbNFo="));
+                return "INSTALL_FAILED_VERSION_DOWNGRADE";
             }
             case -100: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4CJwYuAWEmNAhgDx5TJhYqE2g2AlRgIiQfIghSVg=="));
+                return "INSTALL_PARSE_FAILED_NOT_APK";
             }
             case -101: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4CJwYuAWEmNAhgDx5TJhYqE2U2PAlgIlEAIRY2BGMILAo="));
+                return "INSTALL_PARSE_FAILED_BAD_MANIFEST";
             }
             case -102: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4CJwYuAWEmNAhgDx5TJhYqE24IRQpjHyBJIAUcGWMYGlRhDzAKLxYMGmQmAlo="));
+                return "INSTALL_PARSE_FAILED_UNEXPECTED_EXCEPTION";
             }
             case -103: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4CJwYuAWEmNAhgDx5TJhYqE2g2Al9hIgoROzw2BGILLB1kDyhB"));
+                return "INSTALL_PARSE_FAILED_NO_CERTIFICATES";
             }
             case -104: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4CJwYuAWEmNAhgDx5TJhYqE2sIRQBkIh4SIisYXWMLBgpmNTAKLzwMGmY2Bh1mIhoKIi5SVg=="));
+                return "INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES";
             }
             case -105: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4CJwYuAWEmNAhgDx5TJhYqE2UmLB9iHBpKIiwYHWcbNBNgHxoMLisMGmQ2IFo="));
+                return "INSTALL_PARSE_FAILED_CERTIFICATE_ENCODING";
             }
             case -106: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4CJwYuAWEmNAhgDx5TJhYqE2U2PAlgJSAAIAY+HWMhNBNiJTgSLAhSVg=="));
+                return "INSTALL_PARSE_FAILED_BAD_PACKAGE_NAME";
             }
             case -107: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4CJwYuAWEmNAhgDx5TJhYqE2U2PAlgJSxMICtfGWMYGglnNShAKisABQ=="));
+                return "INSTALL_PARSE_FAILED_BAD_SHARED_USER_ID";
             }
             case -108: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4CJwYuAWEmNAhgDx5TJhYqE2gIPBNnDDhJJAUcE30LJExgJQZALgU2BQ=="));
+                return "INSTALL_PARSE_FAILED_MANIFEST_MALFORMED";
             }
             case -109: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4CJwYuAWEmNAhgDx5TJhYqE2gIPBNnDDhJJAUcE2MLEg5kDB5F"));
+                return "INSTALL_PARSE_FAILED_MANIFEST_EMPTY";
             }
             case -110: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9iDxoVJhUMDGUITV9mDygRIQVfVg=="));
+                return "INSTALL_FAILED_INTERNAL_ERROR";
             }
             case -111: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9nDDBLISsAU2oLNFR9MhoCOzwAGg=="));
+                return "INSTALL_FAILED_USER_RESTRICTED";
             }
             case -112: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9jHCgRJAYYH2ULFgpgJSBJJBYmBWQmLFBiNRpF"));
+                return "INSTALL_FAILED_DUPLICATE_PERMISSION";
             }
             case -113: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh99NQYMJBY+XWUmBhZkMjwOICxfBWQjSFo="));
+                return "INSTALL_FAILED_NO_MATCHING_ABIS";
             }
             case -115: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYcA2QLJA5oHx4UJwUcU2EhBh9gDwpBISsqGWoVSFo="));
+                return "INSTALL_FAILED_ABORTED";
             }
         }
         return Integer.toString(status);
@@ -341,7 +341,7 @@ public class PackageHelper {
     }
 
     public static String deleteStatusToString(boolean status) {
-        return status ? StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRYuQGAYMBVsJShKJysqWmEhBhVjEVRF")) : StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRYuQGAYMBVsIjwRIQVbWmEzSFo="));
+        return status ? "DELETE_SUCCEEDED" : "DELETE_FAILED";
     }
 }
 

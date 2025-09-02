@@ -57,7 +57,7 @@ public class VAccountManager {
     }
 
     private Object getStubInterface() {
-        return IAccountManager.Stub.asInterface(ServiceManagerNative.getService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEVRF"))));
+        return IAccountManager.Stub.asInterface(ServiceManagerNative.getService("account"));
     }
 
     public AuthenticatorDescription[] getAuthenticatorTypes(int userId) {
@@ -296,13 +296,13 @@ public class VAccountManager {
 
     public AccountManagerFuture<Bundle> addAccount(final int userId, final String accountType, final String authTokenType, final String[] requiredFeatures, Bundle addAccountOptions, final Activity activity, AccountManagerCallback<Bundle> callback, Handler handler) {
         if (accountType == null) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmHwoZIxcLOmwgDShlNCgdLAhSVg==")));
+            throw new IllegalArgumentException("accountType is null");
         }
         final Bundle optionsIn = new Bundle();
         if (addAccountOptions != null) {
             optionsIn.putAll(addAccountOptions);
         }
-        optionsIn.putString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iHyQ7Ly0EOWkFGgBoAQ4g")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iEVRF")));
+        optionsIn.putString("androidPackageName", "android");
         return new AmsTask(activity, handler, callback){
 
             @Override

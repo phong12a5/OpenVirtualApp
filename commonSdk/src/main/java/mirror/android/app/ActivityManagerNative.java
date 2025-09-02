@@ -13,7 +13,7 @@ import mirror.RefStaticMethod;
 import mirror.RefStaticObject;
 
 public class ActivityManagerNative {
-    public static Class<?> TYPE = RefClass.load(ActivityManagerNative.class, StringFog.decrypt("EgsWBAoHO10CHwJeKAwaGhMbAhwjPh0CCBcCJw4aGhMX"));
+    public static Class<?> TYPE = RefClass.load(ActivityManagerNative.class, "android.app.ActivityManagerNative");
     public static RefStaticObject<Object> gDefault;
     public static RefStaticMethod<IInterface> getDefault;
 }

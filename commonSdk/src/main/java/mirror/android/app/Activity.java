@@ -19,7 +19,7 @@ import mirror.RefInt;
 import mirror.RefObject;
 
 public class Activity {
-    public static Class<?> TYPE = RefClass.load(Activity.class, StringFog.decrypt("EgsWBAoHO10CHwJeKAwaGhMbAhw="));
+    public static Class<?> TYPE = RefClass.load(Activity.class, "android.app.Activity");
     public static RefObject<ActivityInfo> mActivityInfo;
     public static RefBoolean mFinished;
     public static RefObject<android.app.Activity> mParent;

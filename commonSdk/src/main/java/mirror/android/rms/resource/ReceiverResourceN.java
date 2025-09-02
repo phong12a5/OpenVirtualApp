@@ -9,7 +9,7 @@ import mirror.RefClass;
 import mirror.RefObject;
 
 public class ReceiverResourceN {
-    public static Class<?> TYPE = RefClass.load(ReceiverResourceN.class, StringFog.decrypt("EgsWBAoHO10RAgFeGwodHBAAFQBADRYAChsGDB08FhYdAxcNOg=="));
+    public static Class<?> TYPE = RefClass.load(ReceiverResourceN.class, "android.rms.resource.ReceiverResource");
     public static RefObject<List<String>> mWhiteList;
 }
 

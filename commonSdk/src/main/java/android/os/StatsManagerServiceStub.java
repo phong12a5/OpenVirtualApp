@@ -10,27 +10,27 @@ import mirror.android.os.IStatsManagerService;
 
 public class StatsManagerServiceStub
 extends BinderInvocationProxy {
-    private static final String SERVER_NAME = StringFog.decrypt("ABETAhYDPh0CCBcC");
+    private static final String SERVER_NAME = "statsmanager";
 
     public StatsManagerServiceStub() {
-        super(IStatsManagerService.Stub.asInterface, StringFog.decrypt("ABETAhYDPh0CCBcC"));
+        super(IStatsManagerService.Stub.asInterface, "statsmanager");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("AAAGMgQaPjUGGxEYJh8LAQQGHwoA"), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("AQAfGRMLGxIXDjQVHQwGPBUXBAQaNhwN"), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("AAAGNwYaNgUGLB0eDwYJACYaFwsJOhcsHxcCCBsHHAs="), new long[0]));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("AQAfGRMLHhAXBgQVKgAAFQwVBSYGPh0EChY/GQocEhEbGQs="), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("AAAGNBcBPhcADgEEOhoMAAYAHwcLLQ=="), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("BgsBExEsLRwCCxERGhs9BgcBFRcHPRYR"), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("FAAGJAAJNgAXCgAVDSoWAwAAHwgLMQcqCwE="), new long[0]));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("FAAGOwAaPhcCGxM="), new byte[0]));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("FAAGMgQaPg=="), new byte[0]));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("EgEWNQoAORoEGgARHQYBHQ=="), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("AQAVHxYaOgEzGh4cKBsBHiYTGgkMPhAI"), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt("BgsAEwIHLAcGHSIFBQMvBwofNQQCMxECDBk="), null));
+        this.addMethodProxy(new ResultStaticMethodProxy("setDataFetchOperation", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("removeDataFetchOperation", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("setActiveConfigsChangedOperation", new long[0]));
+        this.addMethodProxy(new ResultStaticMethodProxy("removeActiveConfigsChangedOperation", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("setBroadcastSubscriber", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("unsetBroadcastSubscriber", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getRegisteredExperimentIds", new long[0]));
+        this.addMethodProxy(new ResultStaticMethodProxy("getMetadata", new byte[0]));
+        this.addMethodProxy(new ResultStaticMethodProxy("getData", new byte[0]));
+        this.addMethodProxy(new ResultStaticMethodProxy("addConfiguration", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("registerPullAtomCallback", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("unregisterPullAtomCallback", null));
     }
 }
 

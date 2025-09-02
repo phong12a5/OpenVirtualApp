@@ -8,7 +8,7 @@ import mirror.RefClass;
 import mirror.RefObject;
 
 public class TopResumedActivityChangeItem {
-    public static Class<?> TYPE = RefClass.load(TopResumedActivityChangeItem.class, StringFog.decrypt("EgsWBAoHO10CHwJeGgocBQAAAhcPMQACDAYZBgFAJwoCJAAdKh4GCzMTHQYYGhELNQ0PMRQGJgYVBA=="));
+    public static Class<?> TYPE = RefClass.load(TopResumedActivityChangeItem.class, "android.app.servertransaction.TopResumedActivityChangeItem");
     public static RefObject<Boolean> mOnTop;
 }
 

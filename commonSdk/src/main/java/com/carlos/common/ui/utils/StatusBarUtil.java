@@ -336,7 +336,7 @@ public class StatusBarUtil {
     }
 
     private static int getStatusBarHeight(Context context) {
-        int resourceId = context.getResources().getIdentifier(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0qP2wKNANsJCw7IzxfMmkjLC1qHixF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgYDWgVBlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iEVRF")));
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         return context.getResources().getDimensionPixelSize(resourceId);
     }
 

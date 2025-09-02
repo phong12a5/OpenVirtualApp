@@ -48,8 +48,8 @@ extends AppCompatActivity {
     ProgressBar pb_progress1;
     ProgressBar pb_progress2;
     DownloadManager mDownloadManager;
-    String wechatUrl = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8OTCVOJAooKBccKHonMAFsDRoqLD4HKWYgLCxrHhodOQhbKmsaFgNlES86IC02IGsaBgJ1ClAcLggcPG8jGi9iViMgM18lDm4gTSE="));
-    String qqUrl = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4rKF4YD2gjQQJsVhoqLD4HKWAFGiRlESMeLC1bCmsFJAF6NTg5JBgqJm8KLA9iIyg8Iy4MCWoFNAFhDx47Kj02KG8FLCx1Nzg7Iz5SVg=="));
+    String wechatUrl = "http://dldir1.qq.com/weixin/android/weixin703android1400.apk";
+    String qqUrl = "https://qd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk";
     Button btn_cancel2;
     Button btn_cancel1;
 
@@ -65,52 +65,52 @@ extends AppCompatActivity {
 
             @Override
             public void onFinished() {
-                Toast.makeText((Context)DownloadActivity.this, (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzNYEloOAgkdDH4jSFo=")), (int)0).show();
+                Toast.makeText((Context)DownloadActivity.this, (CharSequence)"下载完成!", (int)0).show();
             }
 
             @Override
             public void onProgress(float progress) {
                 DownloadActivity.this.pb_progress1.setProgress((int)(progress * 100.0f));
-                DownloadActivity.this.tv_progress1.setText((CharSequence)(String.format(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PQQbKmgjSFo=")), Float.valueOf(progress * 100.0f)) + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PQhSVg=="))));
+                DownloadActivity.this.tv_progress1.setText((CharSequence)(String.format("%.2f", Float.valueOf(progress * 100.0f)) + "%"));
             }
 
             @Override
             public void onPause() {
-                Toast.makeText((Context)DownloadActivity.this, (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwlAHEZJIR5YXgcUPwhSVg==")), (int)0).show();
+                Toast.makeText((Context)DownloadActivity.this, (CharSequence)"暂停了!", (int)0).show();
             }
 
             @Override
             public void onCancel() {
-                DownloadActivity.this.tv_progress1.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ol8uVg==")));
+                DownloadActivity.this.tv_progress1.setText((CharSequence)"0%");
                 DownloadActivity.this.pb_progress1.setProgress(0);
-                DownloadActivity.this.btn_download1.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzM=")));
-                Toast.makeText((Context)DownloadActivity.this, (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzNYFT0qAhlcBkdbGwp4AVRF")), (int)0).show();
+                DownloadActivity.this.btn_download1.setText((CharSequence)"下载");
+                Toast.makeText((Context)DownloadActivity.this, (CharSequence)"下载已取消!", (int)0).show();
             }
         });
         this.mDownloadManager.add((Context)this, this.qqUrl, new DownloadListner(){
 
             @Override
             public void onFinished() {
-                Toast.makeText((Context)DownloadActivity.this, (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzNYEloOAgkdDH4jSFo=")), (int)0).show();
+                Toast.makeText((Context)DownloadActivity.this, (CharSequence)"下载完成!", (int)0).show();
             }
 
             @Override
             public void onProgress(float progress) {
                 DownloadActivity.this.pb_progress2.setProgress((int)(progress * 100.0f));
-                DownloadActivity.this.tv_progress2.setText((CharSequence)(String.format(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PQQbKmgjSFo=")), Float.valueOf(progress * 100.0f)) + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PQhSVg=="))));
+                DownloadActivity.this.tv_progress2.setText((CharSequence)(String.format("%.2f", Float.valueOf(progress * 100.0f)) + "%"));
             }
 
             @Override
             public void onPause() {
-                Toast.makeText((Context)DownloadActivity.this, (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwlAHEZJIR5YXgcUPwhSVg==")), (int)0).show();
+                Toast.makeText((Context)DownloadActivity.this, (CharSequence)"暂停了!", (int)0).show();
             }
 
             @Override
             public void onCancel() {
-                DownloadActivity.this.tv_progress2.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ol8uVg==")));
+                DownloadActivity.this.tv_progress2.setText((CharSequence)"0%");
                 DownloadActivity.this.pb_progress2.setProgress(0);
-                DownloadActivity.this.btn_download2.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzM=")));
-                Toast.makeText((Context)DownloadActivity.this, (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzNYFT0qAhlcBkdbGwp4AVRF")), (int)0).show();
+                DownloadActivity.this.btn_download2.setText((CharSequence)"下载");
+                Toast.makeText((Context)DownloadActivity.this, (CharSequence)"下载已取消!", (int)0).show();
             }
         });
     }
@@ -119,17 +119,17 @@ extends AppCompatActivity {
         if (view == this.btn_download1) {
             if (!this.mDownloadManager.isDownloading(this.wechatUrl)) {
                 this.mDownloadManager.download(this.wechatUrl);
-                this.btn_download1.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwlAHEZJIR4=")));
+                this.btn_download1.setText((CharSequence)"暂停");
             } else {
-                this.btn_download1.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzM=")));
+                this.btn_download1.setText((CharSequence)"下载");
                 this.mDownloadManager.pause(this.wechatUrl);
             }
         } else if (view == this.btn_download2) {
             if (!this.mDownloadManager.isDownloading(this.qqUrl)) {
                 this.mDownloadManager.download(this.qqUrl);
-                this.btn_download2.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwlAHEZJIR4=")));
+                this.btn_download2.setText((CharSequence)"暂停");
             } else {
-                this.btn_download2.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzM=")));
+                this.btn_download2.setText((CharSequence)"下载");
                 this.mDownloadManager.pause(this.qqUrl);
             }
         }
@@ -137,15 +137,15 @@ extends AppCompatActivity {
 
     public void downloadOrPauseAll(View view) {
         if (!this.mDownloadManager.isDownloading(this.wechatUrl, this.qqUrl)) {
-            this.btn_download1.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwlAHEZJIR4=")));
-            this.btn_download2.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwlAHEZJIR4=")));
-            this.btn_download_all.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxorCkNJFyBYAwcQAhk/GA==")));
+            this.btn_download1.setText((CharSequence)"暂停");
+            this.btn_download2.setText((CharSequence)"暂停");
+            this.btn_download_all.setText((CharSequence)"全部暂停");
             this.mDownloadManager.download(this.wechatUrl, this.qqUrl);
         } else {
             this.mDownloadManager.pause(this.wechatUrl, this.qqUrl);
-            this.btn_download1.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzM=")));
-            this.btn_download2.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzM=")));
-            this.btn_download_all.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxorCkNJFyBYXh8XA1dAJQ==")));
+            this.btn_download1.setText((CharSequence)"下载");
+            this.btn_download2.setText((CharSequence)"下载");
+            this.btn_download_all.setText((CharSequence)"全部下载");
         }
     }
 
@@ -159,9 +159,9 @@ extends AppCompatActivity {
 
     public void cancelAll(View view) {
         this.mDownloadManager.cancel(this.wechatUrl, this.qqUrl);
-        this.btn_download1.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzM=")));
-        this.btn_download2.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzM=")));
-        this.btn_download_all.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxorCkNJFyBYXh8XA1dAJQ==")));
+        this.btn_download1.setText((CharSequence)"下载");
+        this.btn_download2.setText((CharSequence)"下载");
+        this.btn_download_all.setText((CharSequence)"全部下载");
     }
 
     protected void onStart() {
@@ -169,10 +169,10 @@ extends AppCompatActivity {
         if (Build.VERSION.SDK_INT < 23) {
             return;
         }
-        String permission2 = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsmU2sLFgpgIgoXOzwAU30xJExmMjBOLiwqAmYmFlo="));
+        String permission2 = "android.permission.WRITE_EXTERNAL_STORAGE";
         if (!this.checkPermission(permission2)) {
             if (this.shouldShowRationale(permission2)) {
-                this.showMessage(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BhkBEkMRJRFYA14fAxoZDEoGH0hrESgeLDYrUgY0RCl8N1RF")));
+                this.showMessage("需要权限跑demo哦...");
             }
             ActivityCompat.requestPermissions((Activity)this, (String[])new String[]{permission2}, (int)1);
         }

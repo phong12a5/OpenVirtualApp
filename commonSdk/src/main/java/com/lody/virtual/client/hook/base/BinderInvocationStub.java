@@ -63,14 +63,14 @@ implements IBinder {
                 return null;
             }
             if (binder == null) {
-                Log.w((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxcqKGkjQQZrDTw6KgcuJksaMCBpJCQ+LAgfJGgzAgRoASgbDV9aL2wzFgRvMyc3Ki0qI2shLCR9ASgpPghSVg==")) + stubClass));
+                Log.w((String)TAG, (String)("Could not create stub because binder = null, stubClass=" + stubClass));
                 return null;
             }
-            Method asInterface = stubClass.getMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc2XGogMCthNDw7Ly0MVg==")), IBinder.class);
+            Method asInterface = stubClass.getMethod("asInterface", IBinder.class);
             return (IInterface)asInterface.invoke(null, binder);
         }
         catch (Exception e) {
-            Log.d((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxcqKGkjQQZrDTw6KgcuJksVSFo=")) + stubClass.getName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mzo6E2saNANiDQU8")) + e));
+            Log.d((String)TAG, (String)("Could not create stub " + stubClass.getName() + ". Cause: " + e));
             return null;
         }
     }
@@ -129,7 +129,7 @@ implements IBinder {
 
     public IBinder getExtension() throws RemoteException {
         try {
-            Object result = Reflect.on(this.mBaseBinder).call(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAaRQZiDlkpKQdfDg=="))).get();
+            Object result = Reflect.on(this.mBaseBinder).call("getExtension").get();
             return (IBinder)result;
         }
         catch (Throwable e) {
@@ -137,7 +137,7 @@ implements IBinder {
             if (cause instanceof RemoteException) {
                 throw (RemoteException)cause;
             }
-            throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcMWojGj1gMCQ/LRcqPWowBi9lJxpF")), cause);
+            throw new IllegalStateException("Unknown exception", cause);
         }
     }
 
@@ -148,7 +148,7 @@ implements IBinder {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc2HGUVBixiASxF"));
+            return "asBinder";
         }
 
         @Override

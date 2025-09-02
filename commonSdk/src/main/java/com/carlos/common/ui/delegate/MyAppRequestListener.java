@@ -29,25 +29,25 @@ implements VirtualCore.AppRequestListener {
 
     @Override
     public void onRequestInstall(String path) {
-        MyAppRequestListener.info(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii0qP28gMyhjDlkpLBciCG8zLCZrIFAr")) + path);
+        MyAppRequestListener.info("Start installing: " + path);
         VAppInstallerParams params = new VAppInstallerParams();
         VAppInstallerResult res = VirtualCore.get().installPackage(Uri.fromFile((File)new File(path)), params);
         if (res.status == 0) {
-            MyAppRequestListener.info(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcKWwFJCRgVyRF")) + res.packageName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Phc2I2szLCthJys2")));
+            MyAppRequestListener.info("Install " + res.packageName + " success.");
             boolean success = VActivityManager.get().launchApp(0, res.packageName);
-            MyAppRequestListener.info(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ixg+I2ojLCBLHiAsI14mVg==")) + (success ? com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0uOWszNANhIFlF")) : com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4+CWoJBlo="))));
+            MyAppRequestListener.info("launch app " + (success ? "success." : "fail."));
         } else {
-            MyAppRequestListener.info(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcKWwFJCRgVyRF")) + res.packageName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhgiP2UVGSRLHjAqIz1fKH4zAiVrESsxPQhSVg==")) + res.status);
+            MyAppRequestListener.info("Install " + res.packageName + " fail, error code: " + res.status);
         }
     }
 
     private static void info(String msg) {
-        VLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jgc6KH0VBgNmHiAoKhcMKA==")), msg);
+        VLog.e("AppInstaller", msg);
     }
 
     @Override
     public void onRequestUninstall(String pkg) {
-        Toast.makeText((Context)this.mContext, (CharSequence)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcLGgaFiliASQgPxgMDmwjMANvETgdLAQ6CGIFPDBuASw9Pl9XVg==")) + pkg), (int)0).show();
+        Toast.makeText((Context)this.mContext, (CharSequence)("Intercept uninstall request: " + pkg), (int)0).show();
     }
 }
 

@@ -10,7 +10,7 @@ import mirror.RefMethod;
 import mirror.RefStaticObject;
 
 public class Compatibility {
-    public static Class<?> TYPE = RefClass.load(Compatibility.class, StringFog.decrypt("EgsWBAoHO10AAB8ACBtAMAofBgQaNhEKAxsEEA=="));
+    public static Class<?> TYPE = RefClass.load(Compatibility.class, "android.compat.Compatibility");
     public static RefStaticObject<Object> DEFAULT_CALLBACKS;
     public static RefStaticObject<Object> sCallbacks;
     @MethodReflectParams(value={"android.compat.Compatibility$BehaviorChangeDelegate"})

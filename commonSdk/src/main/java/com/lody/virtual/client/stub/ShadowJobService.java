@@ -40,11 +40,11 @@ extends Service {
 
     public void onCreate() {
         super.onCreate();
-        VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii5fP2gFGj1rNB46Oy0MKGUVLClrAVRF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MwMbOGozBhNhNDA7LBcMVg==")));
+        VLog.e("ShadowJobService", "-> onCreate");
     }
 
     public IBinder onBind(Intent intent) {
-        VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii5fP2gFGj1rNB46Oy0MKGUVLClrAVRF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MwMbOGozBhRjDlkwPTkmVg==")) + intent);
+        VLog.e("ShadowJobService", "-> onBind: " + intent);
         return this.mService.asBinder();
     }
 }

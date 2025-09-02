@@ -14,7 +14,7 @@ import mirror.RefClass;
 import mirror.RefMethod;
 
 public class ActivityThreadQ {
-    public static Class<?> Class = RefClass.load(ActivityThreadQ.class, StringFog.decrypt("EgsWBAoHO10CHwJeKAwaGhMbAhw6NwEGDhY="));
+    public static Class<?> Class = RefClass.load(ActivityThreadQ.class, "android.app.ActivityThread");
     @MethodParams(value={IBinder.class, List.class})
     public static RefMethod<Void> handleNewIntent;
 }

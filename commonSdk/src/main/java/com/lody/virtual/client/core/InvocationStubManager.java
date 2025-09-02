@@ -117,7 +117,7 @@ public final class InvocationStubManager {
 
     public void init() throws Throwable {
         if (this.isInit()) {
-            throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmozLDdmHgY1KjwqLmUjRQ1oARosLj4uCEsYBiRlICArLy4AKngVAgRlHiwwOwdXIGswFjJ/EVRF")));
+            throw new IllegalStateException("InvocationStubManager Has been initialized.");
         }
         this.injectInternal();
         if (VirtualCore.get().isVAppProcess()) {

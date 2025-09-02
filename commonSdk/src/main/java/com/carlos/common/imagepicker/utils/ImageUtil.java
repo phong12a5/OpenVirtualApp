@@ -44,7 +44,7 @@ public class ImageUtil {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public static String saveImage(Bitmap bitmap, String path) {
-        String name = DateFormat.format((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAcYJ2kbEg1iHgpAKRcAD28gAgM=")), (Calendar)Calendar.getInstance(Locale.CHINA)) + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz06CGgzSFo="));
+        String name = DateFormat.format((CharSequence)"yyyyMMdd_hhmmss", (Calendar)Calendar.getInstance(Locale.CHINA)) + ".png";
         FileOutputStream b = null;
         File file = new File(path);
         if (!file.exists()) {
@@ -105,7 +105,7 @@ public class ImageUtil {
         int degree = 0;
         try {
             ExifInterface exifInterface = new ExifInterface(pathName);
-            int result = exifInterface.getAttributeInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oy0MCWgVBgZ9AQozKi0YVg==")), 0);
+            int result = exifInterface.getAttributeInt("Orientation", 0);
             switch (result) {
                 case 6: {
                     degree = 90;
@@ -139,7 +139,7 @@ public class ImageUtil {
             return bitmap;
         }
         catch (OutOfMemoryError error) {
-            Log.e((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LQguMw==")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Bxo/WEZaH1VYBS0WAxpYKEUWJRE=")));
+            Log.e((String)"eee", (String)"内存泄露！");
             return null;
         }
     }

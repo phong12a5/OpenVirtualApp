@@ -10,7 +10,7 @@ import mirror.RefClass;
 import mirror.RefConstructor;
 
 public class SigningDetails {
-    public static Class<?> TYPE = RefClass.load(SigningDetails.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDYHOB0KARU0DBsPGgkB"));
+    public static Class<?> TYPE = RefClass.load(SigningDetails.class, "android.content.pm.SigningDetails");
     @MethodParams(value={PackageParser.SigningDetails.class})
     public static RefConstructor<Object> ctor;
 }

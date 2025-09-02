@@ -21,18 +21,18 @@ import retrofit2.HttpException;
 public class ErrorAction
 implements Consumer<Throwable> {
     public void accept(Throwable throwable) throws Exception {
-        HVLog.e(StringFog.decrypt("jtPtjpXak/CIg9bv") + throwable);
+        HVLog.e("异常日志" + throwable);
         HVLog.printThrowable(throwable);
         if (throwable instanceof ConnectException || throwable instanceof UnknownHostException) {
-            HVLog.e(StringFog.decrypt("jNL+jJb+nPO0jsbX"));
+            HVLog.e("网络错误");
         } else if (throwable instanceof SocketTimeoutException) {
-            HVLog.e(StringFog.decrypt("g9DxjaPHndGogP7OhNPjg4LVnOCgjsbt"));
+            HVLog.e("连接超时，请重试");
         } else if (throwable instanceof HttpException) {
-            HVLog.e(StringFog.decrypt("jfPijqfDkP6Fj/3hg8DAQw==") + ((HttpException)throwable).code());
+            HVLog.e("服务器错误(" + ((HttpException)throwable).code());
         } else if (throwable instanceof ApiException) {
             this.onApiError((ApiException)throwable);
         } else if (!TextUtils.isEmpty((CharSequence)throwable.getMessage())) {
-            HVLog.e(StringFog.decrypt("jfPFjLLHnPO0jsbXhNPjjbHikMKQg9n+jurZj5Xok+2IgdLhjfPijqfDksyCidX0j9H0jpHgkN+VgOfqjfDK") + throwable.getMessage());
+            HVLog.e("未知错误，最好将其上报给服务端，供异常排查" + throwable.getMessage());
         }
     }
 

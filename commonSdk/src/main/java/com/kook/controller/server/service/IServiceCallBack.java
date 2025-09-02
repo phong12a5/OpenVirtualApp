@@ -28,13 +28,13 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IServiceCallBack {
-        private static final String DESCRIPTOR = StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snDBYRGRsTDCwPHwkwFwYF");
+        private static final String DESCRIPTOR = "com.kook.controller.server.service.IServiceCallBack";
         static final int TRANSACTION_checkBack = 1;
         static final int TRANSACTION_listenerOptionEvent = 2;
         static final int TRANSACTION_adbDebugFunction = 3;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snDBYRGRsTDCwPHwkwFwYF"));
+            this.attachInterface(this, "com.kook.controller.server.service.IServiceCallBack");
         }
 
         public static IServiceCallBack asInterface(IBinder obj) {
@@ -86,7 +86,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IServiceCallBack impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -113,7 +113,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snDBYRGRsTDCwPHwkwFwYF");
+                return "com.kook.controller.server.service.IServiceCallBack";
             }
 
             /*
@@ -124,7 +124,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snDBYRGRsTDCwPHwkwFwYF"));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IServiceCallBack");
                     _data.writeInt(check ? 1 : 0);
                     _data.writeInt(targetProductIndex);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
@@ -148,7 +148,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snDBYRGRsTDCwPHwkwFwYF"));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IServiceCallBack");
                     _data.writeInt(optionEvt);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -171,7 +171,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snDBYRGRsTDCwPHwkwFwYF"));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IServiceCallBack");
                     boolean _status = this.mRemote.transact(3, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         Stub.getDefaultImpl().adbDebugFunction();

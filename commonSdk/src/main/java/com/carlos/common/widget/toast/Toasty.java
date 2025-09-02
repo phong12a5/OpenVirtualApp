@@ -29,7 +29,7 @@ import com.kook.librelease.R.layout;
 
 @SuppressLint({"InflateParams"})
 public class Toasty {
-    private static final Typeface LOADED_TOAST_TYPEFACE = Typeface.create(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4+CG83EgNiASwzKDlXP28FMCxrARo6LhgqVg==")), Typeface.NORMAL);
+    private static final Typeface LOADED_TOAST_TYPEFACE = Typeface.create("sans-serif-condensed", Typeface.NORMAL);
     private static Typeface currentTypeface;
     private static int textSize;
     private static boolean tintIcon;
@@ -245,7 +245,7 @@ public class Toasty {
     @CheckResult
     public static Toast custom(@NonNull Context context, @NonNull CharSequence message, Drawable icon, @ColorInt int tintColor, @ColorInt int textColor, int duration, boolean withIcon, boolean shouldTint) {
         Toast currentToast = Toast.makeText(context, "", duration);
-        View toastLayout = ((LayoutInflater)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+J2owNAZsJAY2KD1bOWUzGgQ=")))).inflate(layout.toast_layout, (ViewGroup)null);
+        View toastLayout = ((LayoutInflater)context.getSystemService("layout_inflater")).inflate(layout.toast_layout, (ViewGroup)null);
         ImageView toastIcon = (ImageView)toastLayout.findViewById(id.toast_icon);
         TextView toastTextView = (TextView)toastLayout.findViewById(id.toast_text);
         Drawable drawableFrame;
@@ -258,7 +258,7 @@ public class Toasty {
         ToastyUtils.setBackground(toastLayout, drawableFrame);
         if (withIcon) {
             if (icon == null) {
-                throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgciD2UVMyhhHiApIy0cDmkJTC1qATAcLColJH0FNyNsNwobKTpXI2s3IzFsNx4ZJRUAKmwgDT9+NzAcPhc2M2wJIAZgICQgIz4MPQ==")));
+                throw new IllegalArgumentException("Avoid passing 'icon' as null if 'withIcon' is set to true");
             }
 
             ToastyUtils.setBackground(toastIcon, tintIcon ? ToastyUtils.tintIcon(icon, textColor) : icon);

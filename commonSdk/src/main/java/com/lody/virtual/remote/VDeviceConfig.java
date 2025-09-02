@@ -183,7 +183,7 @@ implements Parcelable {
                 sb.append((char)(val + 87));
             }
             if (cur != next || cur == 11) continue;
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD5SVg==")));
+            sb.append(":");
             next += 2;
         }
         return sb.toString();
@@ -191,9 +191,9 @@ implements Parcelable {
 
     @SuppressLint(value={"HardwareIds"})
     private static String generateSerial() {
-        String serial = Build.SERIAL == null || Build.SERIAL.length() <= 0 ? StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ol49Kn80MwVMMzsaPQUiEmYLBhVjN1RF")) : Build.SERIAL;
+        String serial = Build.SERIAL == null || Build.SERIAL.length() <= 0 ? "0123456789ABCDEF" : Build.SERIAL;
         ArrayList<Character> list = new ArrayList<Character>();
-        VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITw9DQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uKmUVJCR3N1RF")) + serial);
+        VLog.e("VA-", "serial:" + serial);
         for (char c : serial.toCharArray()) {
             list.add(Character.valueOf(c));
         }
@@ -202,7 +202,7 @@ implements Parcelable {
         for (Character c : list) {
             sb.append(c.charValue());
         }
-        VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITw9DQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uKmUVJCRLHyggIz0cDmkLRQVqAQIvLhcLPg==")) + sb.toString());
+        VLog.e("VA-", "serial StringBuilder:" + sb.toString());
         return sb.toString();
     }
 
@@ -213,7 +213,7 @@ implements Parcelable {
         File wifiMacFie = VEnvironment.getWifiMacFile(userId, isExt);
         if (!wifiMacFie.exists()) {
             try {
-                RandomAccessFile file = new RandomAccessFile(wifiMacFie, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj0mKQ==")));
+                RandomAccessFile file = new RandomAccessFile(wifiMacFie, "rws");
                 file.write((this.wifiMac + "\n").getBytes());
                 file.close();
             }

@@ -32,13 +32,13 @@ public class ActivityHooker {
     @HookMethod(value="onCreate")
     @MethodParams(value={Bundle.class})
     public static void onCreate(Activity thiz, Bundle bundle) throws Throwable {
-        Log.e((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBgAD2UzNAQ=")), (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBgAD2UzNCxLHh42Jy4uPW4gBit4HjAwLT42J2EjNyM=")) + thiz));
+        Log.e((String)"Hooker", (String)("hooked onCreate success " + thiz));
         SandHook.callOriginByBackup(onCreateBackup, thiz, bundle);
     }
 
     @HookMethod(value="onPause")
     public static void onPause(@ThisObject Activity thiz) throws Throwable {
-        Log.e((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBgAD2UzNAQ=")), (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBgAD2UzNCxLHh42OxciLWoFBShsJCgqLT4uD2EkOFo=")) + thiz));
+        Log.e((String)"Hooker", (String)("hooked onPause success " + thiz));
         onPauseBackup.callOrigin(thiz, new Object[0]);
     }
 }

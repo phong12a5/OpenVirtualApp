@@ -12,7 +12,7 @@ import mirror.RefClass;
 import mirror.RefObject;
 
 public class PermissionManager {
-    public static Class<?> TYPE = RefClass.load(PermissionManager.class, StringFog.decrypt("EgsWBAoHO10MHFwgDB0DGhYBHwoAEhINDhUVGw=="));
+    public static Class<?> TYPE = RefClass.load(PermissionManager.class, "android.os.PermissionManager");
     public static RefObject<IInterface> mPermissionManager;
 }
 

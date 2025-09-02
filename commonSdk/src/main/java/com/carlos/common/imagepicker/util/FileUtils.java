@@ -42,25 +42,25 @@ import java.nio.channels.spi.AbstractInterruptibleChannel;
 import java.util.Locale;
 
 public class FileUtils {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JT4YDmgYNAZjDlEp"));
+    private static final String TAG = "FileUtils";
 
     private FileUtils() {
     }
 
     public static boolean isExternalStorageDocument(Uri uri) {
-        return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmkgFgZrDgobLRgED2YaAjVpDjwuORgcKWggNAFoERoZJy5SVg==")).equals(uri.getAuthority());
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
     public static boolean isDownloadsDocument(Uri uri) {
-        return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmowRSVvNx4vLhcMD04wFipqJB4bKQhbIGwnBjBqNzAaJgc2JWoVMFo=")).equals(uri.getAuthority());
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
     public static boolean isMediaDocument(Uri uri) {
-        return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmowRSVvNx4vLhcMD04wQSBuHhoqORgcKWggNAFoERoZJy5SVg==")).equals(uri.getAuthority());
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
     public static boolean isGooglePhotosUri(Uri uri) {
-        return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojPCVgJDgoKAMYOW8VBgRlJx4vPC4+DmEVNyllHgYeIz4uD3UzLANqJCw0Jj4MVg==")).equals(uri.getAuthority());
+        return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 
     /*
@@ -68,18 +68,18 @@ public class FileUtils {
      */
     public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
         Cursor cursor = null;
-        String column = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4qP2wFJFo="));
-        String[] projection = new String[]{com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4qP2wFJFo="))};
+        String column = "_data";
+        String[] projection = new String[]{"_data"};
         try {
             cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
             if (cursor != null && cursor.moveToFirst()) {
-                int column_index = cursor.getColumnIndexOrThrow(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4qP2wFJFo=")));
+                int column_index = cursor.getColumnIndexOrThrow("_data");
                 String string2 = cursor.getString(column_index);
                 return string2;
             }
         }
         catch (IllegalArgumentException ex) {
-            Log.i((String)TAG, (String)String.format(Locale.getDefault(), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS4uLGAFJAZ9DCg1KhgMD29TIyhhJywsKgg9JE4OOFN+ASwM")), ex.getMessage()));
+            Log.i((String)TAG, (String)String.format(Locale.getDefault(), "getDataColumn: _data - [%s]", ex.getMessage()));
         }
         finally {
             if (cursor != null) {
@@ -96,16 +96,16 @@ public class FileUtils {
         if (isKitKat && DocumentsContract.isDocumentUri((Context)context, (Uri)uri)) {
             if (FileUtils.isExternalStorageDocument(uri)) {
                 String docId = DocumentsContract.getDocumentId((Uri)uri);
-                String[] split = docId.split(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OD5SVg==")));
+                String[] split = docId.split(":");
                 String type = split[0];
-                if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KhcMCWoVJARnAVRF")).equalsIgnoreCase(type)) {
-                    return Environment.getExternalStorageDirectory() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")) + split[1];
+                if ("primary".equalsIgnoreCase(type)) {
+                    return Environment.getExternalStorageDirectory() + "/" + split[1];
                 }
             } else if (FileUtils.isDownloadsDocument(uri)) {
                 String id2 = DocumentsContract.getDocumentId((Uri)uri);
                 if (!TextUtils.isEmpty((CharSequence)id2)) {
                     try {
-                        Uri contentUri = ContentUris.withAppendedId((Uri)Uri.parse((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ACGwFNCZmVgU1Oi02DWUFMCRlJzgvKToADmYKMDdvDiwOLz4uMWUzHgNrESwc"))), (long)Long.valueOf(id2));
+                        Uri contentUri = ContentUris.withAppendedId((Uri)Uri.parse((String)"content://downloads/public_downloads"), (long)Long.valueOf(id2));
                         return FileUtils.getDataColumn(context, contentUri, null, null);
                     }
                     catch (NumberFormatException e) {
@@ -115,28 +115,28 @@ public class FileUtils {
                 }
             } else if (FileUtils.isMediaDocument(uri)) {
                 String docId = DocumentsContract.getDocumentId((Uri)uri);
-                String[] split = docId.split(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OD5SVg==")));
+                String[] split = docId.split(":");
                 String type = split[0];
                 Uri contentUri = null;
-                if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgIP2gzNFo=")).equals(type)) {
+                if ("image".equals(type)) {
                     contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                } else if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YPGgVGlo=")).equals(type)) {
+                } else if ("video".equals(type)) {
                     contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                } else if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LgcuPGUVGlo=")).equals(type)) {
+                } else if ("audio".equals(type)) {
                     contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
-                String selection = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4YPH5TGlo="));
+                String selection = "_id=?";
                 String[] selectionArgs = new String[]{split[1]};
-                return FileUtils.getDataColumn(context, contentUri, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4YPH5TGlo=")), selectionArgs);
+                return FileUtils.getDataColumn(context, contentUri, "_id=?", selectionArgs);
             }
         } else {
-            if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ACGwFNCZmEVRF")).equalsIgnoreCase(uri.getScheme())) {
+            if ("content".equalsIgnoreCase(uri.getScheme())) {
                 if (FileUtils.isGooglePhotosUri(uri)) {
                     return uri.getLastPathSegment();
                 }
                 return FileUtils.getDataColumn(context, uri, null, null);
             }
-            if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4YDmgVSFo=")).equalsIgnoreCase(uri.getScheme())) {
+            if ("file".equalsIgnoreCase(uri.getScheme())) {
                 return uri.getPath();
             }
         }

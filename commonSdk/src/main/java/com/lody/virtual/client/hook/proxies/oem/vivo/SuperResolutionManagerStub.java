@@ -10,21 +10,21 @@ import mirror.oem.vivo.ISuperResolutionManager;
 
 public class SuperResolutionManagerStub
 extends BinderInvocationProxy {
-    private static final String SERVER_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0uKGgaFl9iASg1KhgMLmwjNCZ9ATgbLRgmJ2EzSFo="));
+    private static final String SERVER_NAME = "SuperResolutionManager";
 
     public SuperResolutionManagerStub() {
-        super(ISuperResolutionManager.Stub.TYPE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0uKGgaFl9iASg1KhgMLmwjNCZ9ATgbLRgmJ2EzSFo=")));
+        super(ISuperResolutionManager.Stub.TYPE, "SuperResolutionManager");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwCLwcqCW4jEitkJyg/KggYKmIhND9pATAuIAgMO2UzPD9iAR4cIBc2JW4FNFo="))));
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcDGgVPC9hJwo/IzwmOW4FJDdrJygQLhcqCmMKRSJ9JzAqIz4AH2oVJARoNygRJQguM24KAjFqEVRF"))));
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwPLAgmPWoYRStsJwYdKhcqI2AgRRBqHiQ9LywYLGgFBjFoEVRF"))));
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcDGgVPC9hJwo/IzwqLWozGgRkNyg6LD4ECWYaGipsNSw9KC0cJ2AjRTNqJyA0"))));
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFJCljJCA9KAYqPWUwBi9lNyAQKgg+CmIFSFo="))));
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhcuLGcFJCljJCA9KAYqPWUwBi9lNyAQKgg+CmIFSFo="))));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("registerPackageSettingStateChangeListener"));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("unRegisterPackageSettingStateChangeListener"));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("registerSuperResolutionStateChange"));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("unRegisterSuperResolutionStateChange"));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("getPackageSettingState"));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("putPackageSettingState"));
     }
 }
 

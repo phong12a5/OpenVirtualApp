@@ -30,7 +30,7 @@ extends ContentProvider {
     }
 
     public Bundle call(String method, String arg, Bundle extras) {
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlkzLBZfKmoVNClrDjA6ID5SVg==")).equals(method)) {
+        if ("_VA_|_init_process_".equals(method)) {
             return this.initProcess(extras);
         }
         return null;
@@ -39,14 +39,14 @@ extends ContentProvider {
     private Bundle initProcess(Bundle extras) {
         VirtualCore.get().waitStartup();
         extras.setClassLoader(ClientConfig.class.getClassLoader());
-        ClientConfig clientConfig = (ClientConfig)extras.getParcelable(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99JFEzKAcYLmMFAiVlNyQaLjsAVg==")));
-        int corePid = extras.getInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99JB4qKAZfKmwjBh8=")), -1);
+        ClientConfig clientConfig = (ClientConfig)extras.getParcelable("_VA_|_client_config_");
+        int corePid = extras.getInt("_VA_|_core_pid_", -1);
         VClient client = VClient.get();
         client.initProcess(clientConfig);
         client.setCorePid(corePid);
         Bundle res = new Bundle();
-        BundleCompat.putBinder(res, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99JFEzKAcYLmMFSFo=")), client.asBinder());
-        res.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9hHgYwJi5SVg==")), Process.myPid());
+        BundleCompat.putBinder(res, "_VA_|_client_", client.asBinder());
+        res.putInt("_VA_|_pid_", Process.myPid());
         return res;
     }
 

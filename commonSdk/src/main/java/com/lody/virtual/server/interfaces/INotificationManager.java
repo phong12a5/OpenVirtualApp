@@ -34,7 +34,7 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements INotificationManager {
-        private static final String DESCRIPTOR = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLj0YM28KJD1uAV0ZLAgACGIVJCZ9Djg/Iz5SVg=="));
+        private static final String DESCRIPTOR = "com.lody.virtual.server.interfaces.INotificationManager";
         static final int TRANSACTION_dealNotificationId = 1;
         static final int TRANSACTION_dealNotificationTag = 2;
         static final int TRANSACTION_areNotificationsEnabledForPackage = 3;
@@ -43,7 +43,7 @@ extends IInterface {
         static final int TRANSACTION_cancelAllNotification = 6;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLj0YM28KJD1uAV0ZLAgACGIVJCZ9Djg/Iz5SVg==")));
+            this.attachInterface(this, "com.lody.virtual.server.interfaces.INotificationManager");
         }
 
         public static INotificationManager asInterface(IBinder obj) {
@@ -132,7 +132,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(INotificationManager impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAFNC59ATAoLBUcD2ozOyB6DTwqLRgEKGIKESNqETwiKAgAVg==")));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -159,7 +159,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLj0YM28KJD1uAV0ZLAgACGIVJCZ9Djg/Iz5SVg=="));
+                return "com.lody.virtual.server.interfaces.INotificationManager";
             }
 
             /*
@@ -171,7 +171,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLj0YM28KJD1uAV0ZLAgACGIVJCZ9Djg/Iz5SVg==")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.INotificationManager");
                     _data.writeInt(id2);
                     _data.writeString(packageName);
                     _data.writeString(tag);
@@ -200,7 +200,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLj0YM28KJD1uAV0ZLAgACGIVJCZ9Djg/Iz5SVg==")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.INotificationManager");
                     _data.writeInt(id2);
                     _data.writeString(packageName);
                     _data.writeString(tag);
@@ -229,7 +229,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLj0YM28KJD1uAV0ZLAgACGIVJCZ9Djg/Iz5SVg==")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.INotificationManager");
                     _data.writeString(packageName);
                     _data.writeInt(userId);
                     boolean _status = this.mRemote.transact(3, _data, _reply, 0);
@@ -255,7 +255,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLj0YM28KJD1uAV0ZLAgACGIVJCZ9Djg/Iz5SVg==")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.INotificationManager");
                     _data.writeString(packageName);
                     _data.writeInt(enable ? 1 : 0);
                     _data.writeInt(userId);
@@ -280,7 +280,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLj0YM28KJD1uAV0ZLAgACGIVJCZ9Djg/Iz5SVg==")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.INotificationManager");
                     _data.writeInt(id2);
                     _data.writeString(tag);
                     _data.writeString(packageName);
@@ -306,7 +306,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLj0YM28KJD1uAV0ZLAgACGIVJCZ9Djg/Iz5SVg==")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.INotificationManager");
                     _data.writeString(packageName);
                     _data.writeInt(userId);
                     boolean _status = this.mRemote.transact(6, _data, _reply, 0);

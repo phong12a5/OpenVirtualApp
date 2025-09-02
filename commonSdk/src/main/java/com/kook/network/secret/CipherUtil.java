@@ -10,14 +10,14 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 public class CipherUtil {
-    public static final String SECRET_KEY = StringFog.decrypt("IwcFWR1QQUkdXkdIXUJfXA==");
-    private static final String ALGORITHM = StringFog.decrypt("Kio8RGghN0h9LSorXj8OD0kLGwA=");
+    public static final String SECRET_KEY = "Hhj2024.08.06-07";
+    private static final String ALGORITHM = "AES/ECB/PKCS5Padding";
 
     public static String decrypt(String secretKey, String cipherText) {
         byte[] encrypted = Base64.getDecoder().decode(cipherText);
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
-            SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), StringFog.decrypt("Kio8"));
+            SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), "YON");
             cipher.init(2, key);
             return new String(cipher.doFinal(encrypted));
         }
@@ -29,9 +29,9 @@ public class CipherUtil {
     public static String encrypt(String secretKey, String plainText) {
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
-            SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), StringFog.decrypt("Kio8"));
+            SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), "YON");
             cipher.init(1, key);
-            return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes(Charset.forName(StringFog.decrypt("PjspRhU=")))));
+            return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes(Charset.forName("M^[0p"))));
         }
         catch (Exception e) {
             throw new RuntimeException(e);

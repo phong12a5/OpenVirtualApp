@@ -16,10 +16,10 @@ import mirror.android.os.ServiceManager;
 
 public class SystemUpdateStub
 extends BinderInvocationProxy {
-    private static final String SERVICE_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YKWwFNCNsJzAsKBciLmkjSFo="));
+    private static final String SERVICE_NAME = "system_update";
 
     public SystemUpdateStub() {
-        super(new EmptySystemUpdateManagerImpl(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YKWwFNCNsJzAsKBciLmkjSFo=")));
+        super(new EmptySystemUpdateManagerImpl(), "system_update");
     }
 
     @Override
@@ -37,7 +37,7 @@ extends BinderInvocationProxy {
         @Override
         public Bundle retrieveSystemUpdateInfo() {
             Bundle info = new Bundle();
-            info.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2wKNAM=")), 0);
+            info.putInt("status", 0);
             return info;
         }
 

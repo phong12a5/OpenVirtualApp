@@ -12,7 +12,7 @@ import mirror.RefConstructor;
 import mirror.RefLong;
 
 public class StorageStats {
-    public static Class<?> TYPE = RefClass.load(StorageStats.class, StringFog.decrypt("EgsWBAoHO10CHwJeHBwPFABcJREBLRIECiEECBsd"));
+    public static Class<?> TYPE = RefClass.load(StorageStats.class, "android.app.usage.StorageStats");
     public static RefLong codeBytes;
     public static RefLong dataBytes;
     public static RefLong cacheBytes;

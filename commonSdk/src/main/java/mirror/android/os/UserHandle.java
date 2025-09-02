@@ -9,7 +9,7 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class UserHandle {
-    public static Class<?> TYPE = RefClass.load(UserHandle.class, StringFog.decrypt("EgsWBAoHO10MHFwlGgocOwQcEgkL"));
+    public static Class<?> TYPE = RefClass.load(UserHandle.class, "android.os.UserHandle");
     @MethodParams(value={int.class})
     public static RefStaticMethod<Integer> getUserId;
 }

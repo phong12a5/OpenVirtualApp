@@ -9,7 +9,7 @@ import com.carlos.libcommon.StringFog;
 import java.io.FileInputStream;
 
 public final class SysUtils {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YKWQaMC9gEShF"));
+    private static final String TAG = "SysUtils";
 
     public SysUtils() {
     }
@@ -19,7 +19,7 @@ public final class SysUtils {
 
         try {
             try {
-                String fn = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My06KmozLyVhJDAoKDlfP28jBiRqARog"));
+                String fn = "/proc/self/cmdline";
                 in = new FileInputStream(fn);
                 byte[] buffer = new byte[256];
 
@@ -29,7 +29,7 @@ public final class SysUtils {
                 }
 
                 if (len > 0) {
-                    String s = new String(buffer, 0, len, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQUqW3pTRVo=")));
+                    String s = new String(buffer, 0, len, "UTF-8");
                     return s;
                 }
             } catch (Throwable var10) {

@@ -25,7 +25,7 @@ import mirror.com.android.internal.policy.PhoneWindow;
 public class WindowManagerStub
 extends BinderInvocationProxy {
     public WindowManagerStub() {
-        super(IWindowManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS4YCGgFGj0=")));
+        super(IWindowManager.Stub.asInterface, "window");
     }
 
     @Override
@@ -46,9 +46,9 @@ extends BinderInvocationProxy {
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGMaIAJuHh4xKAcYVg=="))));
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGczLARiDjA2Jy0iKmUwGgRrDywaKT4+JmAaLC8="))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2AmsVLCF9Djg/JC0iLmkgRS5oAQIdJhdfDn0KRS9uDjBF"))));
+        this.addMethodProxy(new StaticMethodProxy("addAppToken"));
+        this.addMethodProxy(new StaticMethodProxy("setScreenCaptureDisabled"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("isPackageWaterfallExpanded"));
     }
 }
 

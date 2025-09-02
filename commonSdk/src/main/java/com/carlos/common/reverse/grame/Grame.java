@@ -15,21 +15,21 @@ import de.robv.android.xposed.XposedHelpers;
 
 public class Grame
 extends ReflectionApplication {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBUhDWAFAiZiJQo7KhcEVg=="));
+    private static final String TAG = "HV-DingTalk";
 
     public static void hook(ClassLoader classLoader) {
         if (!REFLECTION_DTALK) {
             return;
         }
         try {
-            Class<?> Sentry = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgfCG8zNCZmESwZOjwqPW8aBgRuAVRF")), classLoader);
-            Class<?> SentryOptions = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgfCG8zNCZmESwZOjwqPW8aBgRuDwY7KggYKWAzNFo=")), classLoader);
-            Class<?> SentryAndroid = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgfCG8zNCZmESwZOj0iDmkwRSVqAS8bLT4ACGIORRBuDh49LBc2HWUzMCZqNx4z")), classLoader);
-            Class<?> AndroidLogger = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgfCG8zNCZmESwZOj0iDmkwRSVqAS8bLT4ACGIORQ5sNDA7KQg2IH0VGjFoNygb")), classLoader);
-            VLog.d(TAG, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PwMHO35THTN0DVwdPgRWJXskPzN5CgEoOF4HP3QJQAJ4DVA2PSklP3kOHTdlAQY6JSkiLGwwLyl7ICMsPwMHO35THTN0DVwdPgRWJXskPzN5CgEoOF4HP3QJQAJ4DVA2")), new Object[0]);
+            Class<?> Sentry = XposedHelpers.findClass("io.sentry.Sentry", classLoader);
+            Class<?> SentryOptions = XposedHelpers.findClass("io.sentry.SentryOptions", classLoader);
+            Class<?> SentryAndroid = XposedHelpers.findClass("io.sentry.android.core.SentryAndroid", classLoader);
+            Class<?> AndroidLogger = XposedHelpers.findClass("io.sentry.android.core.AndroidLogger", classLoader);
+            VLog.d(TAG, "=================================hook end===============================", new Object[0]);
         }
         catch (Throwable throwable) {
-            Log.e((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PwMHO35THTN0DVwdPgRWJXskPzN5CgEoOF4HP3QJQAJ4DVA2PSklP3kOHTdlAQY6JSpaDngJTCl7ICMsPwMHO35THTN0DVwdPgRWJXskPzN5CgEoOF4HP3QJQVo=")) + throwable.toString()));
+            Log.e((String)TAG, (String)("=================================hook===============================" + throwable.toString()));
             HVLog.printThrowable(throwable);
         }
     }

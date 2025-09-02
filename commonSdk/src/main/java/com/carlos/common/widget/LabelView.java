@@ -57,12 +57,12 @@ extends View {
     private void obtainAttributes(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.LabelView);
         this.mTextContent = ta.getString(R.styleable.LabelView_lv_text);
-        this.mTextColor = ta.getColor(R.styleable.LabelView_lv_text_color, Color.parseColor((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pi4iPmgjOC5iN1RF"))));
+        this.mTextColor = ta.getColor(R.styleable.LabelView_lv_text_color, Color.parseColor((String)"#ffffff"));
         this.mTextSize = ta.getDimension(R.styleable.LabelView_lv_text_size, (float)this.sp2px(11.0f));
         this.mTextBold = ta.getBoolean(R.styleable.LabelView_lv_text_bold, true);
         this.mTextAllCaps = ta.getBoolean(R.styleable.LabelView_lv_text_all_caps, true);
         this.mFillTriangle = ta.getBoolean(R.styleable.LabelView_lv_fill_triangle, false);
-        this.mBackgroundColor = ta.getColor(R.styleable.LabelView_lv_background_color, Color.parseColor((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PiwiW3wOIzBPAVRF"))));
+        this.mBackgroundColor = ta.getColor(R.styleable.LabelView_lv_background_color, Color.parseColor((String)"#FF4081"));
         this.mMinSize = ta.getDimension(R.styleable.LabelView_lv_min_size, this.mFillTriangle ? (float)this.dp2px(35.0f) : (float)this.dp2px(50.0f));
         this.mPadding = ta.getDimension(R.styleable.LabelView_lv_padding, (float)this.dp2px(3.5f));
         this.mGravity = ta.getInt(R.styleable.LabelView_lv_gravity, 51);

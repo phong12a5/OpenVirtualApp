@@ -26,12 +26,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IStopUserCallback {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10CHwJeIDwaHBUnBQAcHBIPAxARCgQ=");
+        private static final String DESCRIPTOR = "android.app.IStopUserCallback";
         static final int TRANSACTION_userStopped = 1;
         static final int TRANSACTION_userStopAborted = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10CHwJeIDwaHBUnBQAcHBIPAxARCgQ="));
+            this.attachInterface(this, "android.app.IStopUserCallback");
         }
 
         public static IStopUserCallback asInterface(IBinder obj) {
@@ -76,7 +76,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IStopUserCallback impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -103,7 +103,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10CHwJeIDwaHBUnBQAcHBIPAxARCgQ=");
+                return "android.app.IStopUserCallback";
             }
 
             /*
@@ -114,7 +114,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10CHwJeIDwaHBUnBQAcHBIPAxARCgQ="));
+                    _data.writeInterfaceToken("android.app.IStopUserCallback");
                     _data.writeInt(userId);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -137,7 +137,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10CHwJeIDwaHBUnBQAcHBIPAxARCgQ="));
+                    _data.writeInterfaceToken("android.app.IStopUserCallback");
                     _data.writeInt(userId);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {

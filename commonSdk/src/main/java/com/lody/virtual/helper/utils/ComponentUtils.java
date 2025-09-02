@@ -55,7 +55,7 @@ import java.util.Set;
 public class ComponentUtils {
     public static String getTaskAffinity(ActivityInfo info) {
         if (info.launchMode == 3) {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MwU2CWojPCRiDAY2Iy42OW8VAit1AVRF")) + info.packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + info.name;
+            return "-SingleInstance-" + info.packageName + "/" + info.name;
         }
         if (info.taskAffinity == null && info.applicationInfo.taskAffinity == null) {
             return info.packageName;
@@ -146,7 +146,7 @@ public class ComponentUtils {
     }
 
     public static String getComponentAction(String packageName, String name) {
-        return String.format(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWY3NANsIDApJikMLw==")), VirtualCore.get().getHostPkg(), packageName, name);
+        return String.format("_VA_%s_%s_%s", VirtualCore.get().getHostPkg(), packageName, name);
     }
 
 
@@ -189,12 +189,12 @@ public class ComponentUtils {
         Bundle extras = fillIn.getExtras();
         if (extras != null) {
             fillIn.getExtras().clear();
-            fillIn.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9iNAYoKhZfMW8YNFo=")), extras);
+            fillIn.putExtra("_VA_|_fill_in_", extras);
         }
         if (options != null) {
-            fillIn.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9gJyQgKQdfDmoINFo=")), options);
+            fillIn.putExtra("_VA_|_options_", options);
         }
-        mirror.android.content.Intent.putExtra.call(fillIn, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99JCAoKhcMKGMFQSlvER49IxcqM2wjSFo=")), resultTo);
+        mirror.android.content.Intent.putExtra.call(fillIn, "_VA_|_caller_activity_", resultTo);
     }
 
     public static IntentSenderInfo parseIntentSenderInfo(Intent proxyIntent, boolean isActivity) {
@@ -203,12 +203,12 @@ public class ComponentUtils {
             return null;
         } else {
             IntentSenderInfo info = new IntentSenderInfo();
-            info.userId = selector.getIntExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), -1);
-            info.targetPkg = selector.getStringExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mHiAqKC0MLmMKTSFrIgZF")));
-            info.originalType = selector.getStringExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9gJywzKC0cDm4jOB9vHh47LhUAVg==")));
-            info.type = selector.getStringExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mEQYsKAZfVg==")));
+            info.userId = selector.getIntExtra("_VA_|_user_id_", -1);
+            info.targetPkg = selector.getStringExtra("_VA_|_target_pkg_");
+            info.originalType = selector.getStringExtra("_VA_|_original_type_");
+            info.type = selector.getStringExtra("_VA_|_type_");
             info.fillIn = proxyIntent.getExtras();
-            Intent realIntent = (Intent)selector.getParcelableExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlkgKAcYLmMFSFo=")));
+            Intent realIntent = (Intent)selector.getParcelableExtra("_VA_|_intent_");
             info.base = realIntent.getExtras();
             Intent intent = proxyIntent.cloneFilter();
             intent.setComponent(realIntent.getComponent());
@@ -227,13 +227,13 @@ public class ComponentUtils {
             }
 
             if (isActivity) {
-                info.callerActivity = (IBinder)mirror.android.content.Intent.getIBinderExtra.call(proxyIntent, new Object[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99JCAoKhcMKGMFQSlvER49IxcqM2wjSFo="))});
-                info.options = proxyIntent.getBundleExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9gJyQgKQdfDmoINFo=")));
-                info.fillIn = proxyIntent.getBundleExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9iNAYoKhZfMW8YNFo=")));
+                info.callerActivity = (IBinder)mirror.android.content.Intent.getIBinderExtra.call(proxyIntent, new Object[]{"_VA_|_caller_activity_"});
+                info.options = proxyIntent.getBundleExtra("_VA_|_options_");
+                info.fillIn = proxyIntent.getBundleExtra("_VA_|_fill_in_");
             }
 
-            intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9iNAYoKhZfMW8YNFo=")), info.fillIn);
-            intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99NCApKAZfVg==")), info.base);
+            intent.putExtra("_VA_|_fill_in_", info.fillIn);
+            intent.putExtra("_VA_|_base_", info.base);
             info.intent = intent;
             return info;
         }
@@ -244,8 +244,8 @@ public class ComponentUtils {
         try {
             Bundle extras = intent.getExtras();
             if (extras != null) {
-                Bundle fillIn = extras.getBundle(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9iNAYoKhZfMW8YNFo=")));
-                Bundle base = extras.getBundle(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99NCApKAZfVg==")));
+                Bundle fillIn = extras.getBundle("_VA_|_fill_in_");
+                Bundle base = extras.getBundle("_VA_|_base_");
                 if (fillIn != null || base != null) {
                     if (fillIn != null) {
                         fillIn.setClassLoader(classLoader);
@@ -272,7 +272,7 @@ public class ComponentUtils {
     @SuppressLint("WrongConstant")
     public static Intent getProxyIntentSenderIntent(int userId, int type, String targetPkg, Intent intent) {
         if (type == 3) {
-            VLog.printStackTrace(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcKWwaIAJgJywgKAc1OmQjMAZrARo/IT4uKmIaLDV5ETAyLD4fPngVSFo=")) + type);
+            VLog.printStackTrace("Unsupported IntentSender type: " + type);
             return null;
         } else {
             Intent proxyIntent = intent.cloneFilter();
@@ -292,9 +292,9 @@ public class ComponentUtils {
 
             String originalType = proxyIntent.getType();
             ComponentName component = proxyIntent.getComponent();
-            String proxyIntentType = originalType == null ? targetPkg : originalType + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD5SVg==")) + targetPkg;
+            String proxyIntentType = originalType == null ? targetPkg : originalType + ":" + targetPkg;
             if (component != null) {
-                proxyIntentType = proxyIntentType + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD5SVg==")) + component.flattenToString();
+                proxyIntentType = proxyIntentType + ":" + component.flattenToString();
             }
 
             proxyIntent.setDataAndType(proxyIntent.getData(), proxyIntentType);
@@ -307,11 +307,11 @@ public class ComponentUtils {
             }
 
             Intent selector = new Intent();
-            selector.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), userId);
-            selector.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlkgKAcYLmMFSFo=")), intent);
-            selector.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mHiAqKC0MLmMKTSFrIgZF")), targetPkg);
-            selector.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9gJywzKC0cDm4jOB9vHh47LhUAVg==")), originalType);
-            selector.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mEQYsKAZfVg==")), proxyIntentType);
+            selector.putExtra("_VA_|_user_id_", userId);
+            selector.putExtra("_VA_|_intent_", intent);
+            selector.putExtra("_VA_|_target_pkg_", targetPkg);
+            selector.putExtra("_VA_|_original_type_", originalType);
+            selector.putExtra("_VA_|_type_", proxyIntentType);
             proxyIntent.setPackage((String)null);
             proxyIntent.setSelector(selector);
             return proxyIntent;
@@ -341,10 +341,10 @@ public class ComponentUtils {
             }
             intent.setClipData(processedClipData);
         }
-        if (intent.hasExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy0uLG8KNAY=")))) {
-            output = intent.getParcelableExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy0uLG8KNAY=")));
+        if (intent.hasExtra("output")) {
+            output = intent.getParcelableExtra("output");
             if (output instanceof Uri) {
-                intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy0uLG8KNAY=")), (Parcelable)ComponentUtils.processOutsideUri(userId, isExt, (Uri)output));
+                intent.putExtra("output", (Parcelable)ComponentUtils.processOutsideUri(userId, isExt, (Uri)output));
             } else if (output instanceof ArrayList) {
                 list = (ArrayList)output;
                 newList = new ArrayList<Uri>();
@@ -353,14 +353,14 @@ public class ComponentUtils {
                     newList.add(ComponentUtils.processOutsideUri(userId, isExt, (Uri)o));
                 }
                 if (!newList.isEmpty()) {
-                    intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy0uLG8KNAY=")), newList);
+                    intent.putExtra("output", newList);
                 }
             }
         }
-        if (intent.hasExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmkhFh9mDCRB")))) {
-            output = intent.getParcelableExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmkhFh9mDCRB")));
+        if (intent.hasExtra("android.intent.extra.STREAM")) {
+            output = intent.getParcelableExtra("android.intent.extra.STREAM");
             if (output instanceof Uri) {
-                intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmkhFh9mDCRB")), (Parcelable)ComponentUtils.processOutsideUri(userId, isExt, (Uri)output));
+                intent.putExtra("android.intent.extra.STREAM", (Parcelable)ComponentUtils.processOutsideUri(userId, isExt, (Uri)output));
             } else if (output instanceof ArrayList) {
                 list = (ArrayList)output;
                 newList = new ArrayList();
@@ -369,7 +369,7 @@ public class ComponentUtils {
                     newList.add(ComponentUtils.processOutsideUri(userId, isExt, (Uri)o));
                 }
                 if (!newList.isEmpty()) {
-                    intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmkhFh9mDCRB")), newList);
+                    intent.putExtra("android.intent.extra.STREAM", newList);
                 }
             }
         }
@@ -377,10 +377,10 @@ public class ComponentUtils {
     }
 
     public static Uri processOutsideUri(int userId, boolean isExt, Uri uri) {
-        if (TextUtils.equals((CharSequence)uri.getScheme(), (CharSequence)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YDmgVSFo=")))) {
+        if (TextUtils.equals((CharSequence)uri.getScheme(), (CharSequence)"file")) {
             return Uri.fromFile((File)new File(NativeEngine.reverseRedirectedPath(uri.getPath())));
         }
-        if (!TextUtils.equals((CharSequence)uri.getScheme(), (CharSequence)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGwFNCZmEVRF")))) {
+        if (!TextUtils.equals((CharSequence)uri.getScheme(), (CharSequence)"content")) {
             return uri;
         }
         String authority = uri.getAuthority();

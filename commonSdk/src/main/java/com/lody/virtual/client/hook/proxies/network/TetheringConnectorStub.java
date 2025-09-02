@@ -12,22 +12,22 @@ import mirror.android.net.ITetheringConnector;
 
 public class TetheringConnectorStub
 extends BinderInvocationProxy {
-    private static final String SERVER_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRguLGUFNARjDlk9"));
+    private static final String SERVER_NAME = "tethering";
 
     public TetheringConnectorStub() {
-        super(ITetheringConnector.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRguLGUFNARjDlk9")));
+        super(ITetheringConnector.Stub.asInterface, "tethering");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2BmgaMCBiASwzKj06AWUgTQJlJAo/LhgqVg=="))){
+        this.addMethodProxy(new StaticMethodProxy("isTetheringSupported"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) throws Throwable {
                 try {
                     Object iIntResultListener = args[2];
-                    Reflect.on(iIntResultListener).call(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cDGgaLAVgEQpF")), 3);
+                    Reflect.on(iIntResultListener).call("onResult", 3);
                 }
                 catch (Exception e) {
                     return super.call(who, method, args);

@@ -53,12 +53,12 @@ extends MultiApplication {
 
         @Override
         public String getMainPackageName() {
-            return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQhSVg=="));
+            return "com.carlos.multiapp";
         }
 
         @Override
         public String getExtPackageName() {
-            return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcJ2cVFlo="));
+            return "com.carlos.multiapp.ext";
         }
 
         @Override
@@ -69,7 +69,7 @@ extends MultiApplication {
         @Override
         public Intent onHandleLauncherIntent(Intent originIntent) {
             Intent intent = new Intent();
-            ComponentName component = new ComponentName(this.getMainPackageName(), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgfCGsgNANgNAY/Iy4pDmUVQCZqEQYeLl8cGH0KNC5nHlkcLyxbJW8VAiJlHiwg")));
+            ComponentName component = new ComponentName(this.getMainPackageName(), "io.busniess.va.home.BackHomeActivity");
             intent.setComponent(component);
             intent.addFlags(0x10000000);
             return intent;
@@ -92,12 +92,12 @@ extends MultiApplication {
 
         @Override
         public boolean isHostIntent(Intent intent) {
-            return intent.getData() != null && com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+KmUzNAY=")).equals(intent.getData().getScheme());
+            return intent.getData() != null && "market".equals(intent.getData().getScheme());
         }
 
         @Override
         public boolean isUseRealApkPath(String packageName) {
-            return packageName.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogLCtiAQY1KjkYP28gTVo=")));
+            return packageName.equals("com.seeyon.cmp");
         }
 
         @Override
@@ -107,7 +107,7 @@ extends MultiApplication {
 
         @Override
         public boolean resumeInstrumentationInMakeApplication(String packageName) {
-            if (packageName.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogLANONCA2KBguDWwjASZvASAqPC4+MWIKQSB8NF0iIz4AVg==")))) {
+            if (packageName.equals("com.ss.android.ugc.aweme.lite")) {
                 return true;
             }
             return super.resumeInstrumentationInMakeApplication(packageName);
@@ -115,7 +115,7 @@ extends MultiApplication {
 
         @Override
         public boolean isUnProtectAction(String action) {
-            if (action.startsWith(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ITw+H2MgFiV9Dgo5LwgqLn0zGgNvHAZF")))) {
+            if (action.startsWith("VA_BroadcastTest_")) {
                 return true;
             }
             return super.isUnProtectAction(action);
@@ -123,8 +123,8 @@ extends MultiApplication {
 
         @Override
         public SettingConfig.FakeWifiStatus getFakeWifiStatus(String packageName, int userId) {
-            String SSID_KEY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki02CWgIGiFiAQZF")) + packageName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + userId;
-            String MAC_KEY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+OWYzQStnAVRF")) + packageName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + userId;
+            String SSID_KEY = "ssid_key" + packageName + "_" + userId;
+            String MAC_KEY = "mac_key" + packageName + "_" + userId;
             String ssid = SPTools.getString(VirtualCore.get().getContext(), SSID_KEY);
             String mac = SPTools.getString(VirtualCore.get().getContext(), MAC_KEY);
             if (TextUtils.isEmpty((CharSequence)ssid) || TextUtils.isEmpty((CharSequence)mac)) {
@@ -197,7 +197,7 @@ extends MultiApplication {
             public void onMainProcess() {
                 AppCompatDelegate.setCompatVectorFromResourcesEnabled((boolean)true);
                 App.this.mAppComponentDelegate.setMainProcess((Context)gApp, true);
-                App.this.registerReceiver(App.this.mGmsInitializeReceiver, new IntentFilter(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42JBJ9JVlNIRY2XWILJEx9HFEKLBhSVg=="))));
+                App.this.registerReceiver(App.this.mGmsInitializeReceiver, new IntentFilter("android.intent.action.GMS_INITIALIZED"));
             }
 
             @Override

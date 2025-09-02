@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class WeChat {
-    private static final String PKG_MM = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogMCtgNCg/Kj41Dm8jPFo="));
+    private static final String PKG_MM = "com.tencent.mm";
     private static HashSet<String> sBinderMapClsNameSet;
 
     private static void cleanMap(String clsName, Application application) {
@@ -22,7 +22,7 @@ public class WeChat {
             for (Field field : Class.forName(clsName, true, application.getClassLoader()).getDeclaredFields()) {
                 HashMap map;
                 field.setAccessible(true);
-                if (!HashMap.class.isAssignableFrom(field.getType()) || (map = (HashMap)field.get(null)).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+OWUzJC1iAVRF"))) == null || map.get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguLmUVLCtsJAYwKAcYLmwjHi9rDgo6"))) == null || map.get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc6CmozBithJzA6KQcYPG8FSFo="))) == null) continue;
+                if (!HashMap.class.isAssignableFrom(field.getType()) || (map = (HashMap)field.get(null)).get("package") == null || map.get("device_identifiers") == null || map.get("iphonesubinfo") == null) continue;
                 map.clear();
                 return;
             }
@@ -44,8 +44,8 @@ public class WeChat {
     static {
         HashSet<String> hashSet = new HashSet<String>();
         sBinderMapClsNameSet = hashSet;
-        hashSet.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogMCtgNCg/Kj41Dm8jPyZsJygbKT4YCmMFICB8NF1F")));
-        sBinderMapClsNameSet.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogMCtgNCg/Kj41Dm8jPyZsJygbKT4YCmMFICB8NFFF")));
+        hashSet.add("com.tencent.mm.sensitive.l");
+        sBinderMapClsNameSet.add("com.tencent.mm.sensitive.m");
     }
 }
 

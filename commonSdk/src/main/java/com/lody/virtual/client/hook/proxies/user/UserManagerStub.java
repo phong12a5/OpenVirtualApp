@@ -20,42 +20,42 @@ import mirror.android.os.IUserManager;
 public class UserManagerStub
 extends BinderInvocationProxy {
     public UserManagerStub() {
-        super(IUserManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28jSFo=")));
+        super(IUserManager.Stub.asInterface, "user");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaIAJgHgY5Lwg2MW8FMF9rDjA/KS4YJWYaGipsNyxF"))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJgHgY5Lwg2MW8FMF9rDjA/KS4YJWYaGipsNyxF"))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJgHgY5Lwg2MW8FMF9rDjA/KS4YJWYaGipsNyxKKQdfXGwjNCY="))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2BW8zNARuDlkoKi0qCWkjBlo="))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2Am8jGi5jDlE/"))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2BW8zNARuDlkoKi0qCWwjMC19JAoWLC4EKX0gEiBuEVRF"))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2RGsVBjdiJDAwOxguDWkVLCRrAVRF"))));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcKFiViNAYoKAYmOWoVGiZvEVRF")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQaLCthMgY5Ki0YVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQaLCthMgY2KD1fVg==")), UserInfo.ctor.newInstance(0, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JggqDWUVBlo=")), UserInfo.FLAG_PRIMARY.get())));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAFNC59ATAoLBU6LWkgAgZkNyg6KgcMI30jFixsJB48")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAFNC59ATAoLBU6LWkgAgZkNyg6KgcMI30jFixsJB48")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtpNDApLBguMW4KBi9lJxo6")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQaLCthNyhF")), Collections.singletonList(UserInfo.ctor.newInstance(0, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JggqDWUVBlo=")), UserInfo.FLAG_PRIMARY.get()))));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtuASg/Iz5SVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtpESw1KD0cCGkhHiVsMig6LhcMVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcKFiViNAYoKAgqVg==")), Collections.EMPTY_LIST));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQaLCthMjA2LwcuCGkjBlo=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtuASg/Iz5SVg==")), false));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQaLCthMlk7KgcMVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQaLCthMgY5Ki0YVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGMVMCxoDh4qKAVXOW8VQS1rASwRKS4AImMKTSBlJ1RF")), false));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQaLCthNSw/Iy42KGwjAgZqAQYbKT5SVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQaLCthNSw/Iy42KGwjAgZqAQYb")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+KmUxPAViASggID1fKGEzGiRrDiwaLD4cVg==")), true));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtpNDApLBguMW4KBitrHDw5LD4iI2AaLFo=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcKFi9gDiAqLQYML2kgRVo=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+KWMjJANiDzApKAguAmkgAgZsNx4qKggYKWAzSFo=")), false));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQaLCthMlk7KgcMVg==")), ""));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGczNCtiHCA5Ly1fLW8aBg9sHiwaLD4cDw==")), null));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("setApplicationRestrictions"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getApplicationRestrictions"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getApplicationRestrictionsForUser"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("isUserUnlocked"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("isProfile"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("isUserUnlockingOrUnlocked"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("isManagedProfile"));
+        this.addMethodProxy(new ResultStaticMethodProxy("getProfileParent", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getUserIcon", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getUserInfo", UserInfo.ctor.newInstance(0, "Admin", UserInfo.FLAG_PRIMARY.get())));
+        this.addMethodProxy(new ResultStaticMethodProxy("getDefaultGuestRestrictions", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("setDefaultGuestRestrictions", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("removeRestrictions", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getUsers", Collections.singletonList(UserInfo.ctor.newInstance(0, "Admin", UserInfo.FLAG_PRIMARY.get()))));
+        this.addMethodProxy(new ResultStaticMethodProxy("createUser", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("createProfileForUser", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getProfiles", Collections.EMPTY_LIST));
+        this.addMethodProxy(new ResultStaticMethodProxy("setUserEnabled", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("removeUser", false));
+        this.addMethodProxy(new ResultStaticMethodProxy("setUserName", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("setUserIcon", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("canAddMoreManagedProfiles", false));
+        this.addMethodProxy(new ResultStaticMethodProxy("setUserRestrictions", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("setUserRestriction", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("markGuestForDeletion", true));
+        this.addMethodProxy(new ResultStaticMethodProxy("createRestrictedProfile", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getPrimaryUser", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("hasBaseUserRestriction", false));
+        this.addMethodProxy(new ResultStaticMethodProxy("getUserName", ""));
+        this.addMethodProxy(new ResultStaticMethodProxy("getSeedAccountOptions", null));
     }
 }
 

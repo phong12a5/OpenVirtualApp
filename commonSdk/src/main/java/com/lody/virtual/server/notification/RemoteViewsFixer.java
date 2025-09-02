@@ -88,23 +88,23 @@ class RemoteViewsFixer {
         try {
             view = LayoutInflater.from((Context)context).inflate(remoteViews.getLayoutId(), null, false);
             try {
-                Reflect.on(view).call(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQFJC1rDlkgKAguDm4jOFo=")), Reflect.on(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmwjMAZrDgobLRgDKmk0FixuEVRF"))).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS4YPGgzNAZsJDwqLwdXPQ=="))), remoteViews.getLayoutId());
+                Reflect.on(view).call("setTagInternal", Reflect.on("com.android.internal.R$id").get("widget_frame"), remoteViews.getLayoutId());
             }
             catch (Exception e2) {
-                VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQFJC1rDlkgKAguDm4jOFo=")), e2);
+                VLog.w(TAG, "setTagInternal", e2);
             }
         }
         catch (Exception e) {
-            VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcPmoFJAZiAVRF")), e);
+            VLog.w(TAG, "inflate", e);
         }
-        if (view != null && (mActions = (ArrayList)Reflect.on(remoteViews).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwY+OWwFAiVgNyhF")))) != null) {
-            VLog.d(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KGoKDSh9DiggKQdfDmoOIFo=")) + mActions.size(), new Object[0]);
+        if (view != null && (mActions = (ArrayList)Reflect.on(remoteViews).get("mActions")) != null) {
+            VLog.d(TAG, "apply actions:" + mActions.size(), new Object[0]);
             for (Object action : mActions) {
                 try {
-                    Reflect.on(action).call(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KGoKAlo=")), view, null, null);
+                    Reflect.on(action).call("apply", view, null, null);
                 }
                 catch (Exception e) {
-                    VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KGoKDSh9DiggKQdfDg==")), e);
+                    VLog.w(TAG, "apply action", e);
                 }
             }
         }
@@ -125,7 +125,7 @@ class RemoteViewsFixer {
         params.gravity = 16;
         frameLayout.addView(view1, (ViewGroup.LayoutParams)params);
         if (view1 instanceof ViewGroup) {
-            VLog.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtuNAY/LCoIPGwgFlFrDlk/Ii4YJ2YjSFo=")));
+            VLog.v(TAG, "createView:fixTextView");
             this.fixTextView((ViewGroup)view1);
         }
         int mode = Integer.MIN_VALUE;
@@ -155,7 +155,7 @@ class RemoteViewsFixer {
     private boolean isSingleLine(TextView textView) {
         boolean singleLine;
         try {
-            singleLine = (Boolean)Reflect.on(textView).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwU2CWojPCRiDFEzKj0MVg==")));
+            singleLine = (Boolean)Reflect.on(textView).get("mSingleLine");
         }
         catch (Exception e) {
             singleLine = (textView.getInputType() & 0x20000) != 0;
@@ -178,7 +178,7 @@ class RemoteViewsFixer {
                 pendIntentCompat.setPendIntent(remoteViews, this.toView(this.mNotificationCompat.getHostContext(), remoteViews, isBig), cache);
             }
             catch (Exception e) {
-                VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGcFNCZiHAY2LBcMDmU3TStsNAocKS5SVg==")), e);
+                VLog.e(TAG, "setPendIntent error", e);
             }
         }
         return remoteViews;
@@ -192,26 +192,26 @@ class RemoteViewsFixer {
         if (this.notification_panel_width == 0) {
             Context systemUi = null;
             try {
-                systemUi = context.createPackageContext(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmoKLANvESgeKhgYVg==")), 2);
+                systemUi = context.createPackageContext("com.android.systemui", 2);
             }
             catch (PackageManager.NameNotFoundException nameNotFoundException) {
                 // empty catch block
             }
-            this.notification_side_padding = Build.VERSION.SDK_INT <= 19 ? 0 : this.getDimem(context, systemUi, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDmMKAi9rESgMKQg+IGIaGiluJ1RF")), R.dimen.notification_side_padding);
-            this.notification_panel_width = this.getDimem(context, systemUi, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDmMKTTdlNygdID0mI2IVFis=")), R.dimen.notification_panel_width);
+            this.notification_side_padding = Build.VERSION.SDK_INT <= 19 ? 0 : this.getDimem(context, systemUi, "notification_side_padding", R.dimen.notification_side_padding);
+            this.notification_panel_width = this.getDimem(context, systemUi, "notification_panel_width", R.dimen.notification_panel_width);
             if (this.notification_panel_width <= 0) {
                 this.notification_panel_width = context.getResources().getDisplayMetrics().widthPixels;
             }
-            this.notification_min_height = this.getDimem(context, systemUi, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDmMFPC9lMgYZLhgYIWMVFlo=")), R.dimen.notification_min_height);
-            this.notification_max_height = this.getDimem(context, systemUi, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDmMFPDduHAYZLhgYIWMVFlo=")), R.dimen.notification_max_height);
-            this.notification_mid_height = this.getDimem(context, systemUi, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDmMFPC9rHAYZLhgYIWMVFlo=")), R.dimen.notification_mid_height);
-            this.notification_padding = this.getDimem(context, systemUi, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDmMKTTdrESwaLC4mVg==")), R.dimen.notification_padding);
+            this.notification_min_height = this.getDimem(context, systemUi, "notification_min_height", R.dimen.notification_min_height);
+            this.notification_max_height = this.getDimem(context, systemUi, "notification_max_height", R.dimen.notification_max_height);
+            this.notification_mid_height = this.getDimem(context, systemUi, "notification_mid_height", R.dimen.notification_mid_height);
+            this.notification_padding = this.getDimem(context, systemUi, "notification_padding", R.dimen.notification_padding);
         }
     }
 
     private int getDimem(Context context, Context sysContext, String name, int defId) {
         int id2;
-        if (sysContext != null && (id2 = sysContext.getResources().getIdentifier(name, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYDWgVBlo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmoKLANvESgeKhgYVg==")))) != 0) {
+        if (sysContext != null && (id2 = sysContext.getResources().getIdentifier(name, "dimen", "com.android.systemui")) != 0) {
             try {
                 return Math.round(sysContext.getResources().getDimension(id2));
             }

@@ -14,8 +14,8 @@ import de.robv.android.xposed.XposedHelpers;
 
 public class BallPool {
     public static void hook(ClassLoader classLoader, Application application) {
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PlsrJBQNMS0cICQ0Ki1fCX4zAiVlDRoeIxgcI30gTSxlVx4uKi4ILG8VFjNqAQIdJi0YO3lTPFo=")));
-        XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojPCVgJDgoKAMYPGwgRStoNzg6Ll8cJWEwPDZvHl0yIz42JWwnBgVqJCw0Jz1fKGxTAl9vAQ4yLQcMVg==")), classLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4+CGIFGi0=")), Integer.TYPE, new XC_MethodHook(){
+        HVLog.d(" 开始 hook com.miniclip.eightballpool  ");
+        XposedHelpers.findAndHookMethod("com.google.firebase.crashlytics.internal.Logger", classLoader, "canLog", Integer.TYPE, new XC_MethodHook(){
 
             @Override
             protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -26,7 +26,7 @@ public class BallPool {
             protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
             }
         });
-        XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojEi9gNAY5KhccKn8VGi9rJ1k/LS4+KGAVOCpsJFwdJy42IWoaMBBrEQI7LxcYJmwYODNlNzAhLAcqJw==")), classLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4+CGIFGi0=")), Integer.TYPE, new XC_MethodHook(){
+        XposedHelpers.findAndHookMethod("com.miniclip.eightballpool.EightBallPoolActivity", classLoader, "canLog", Integer.TYPE, new XC_MethodHook(){
 
             @Override
             protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {

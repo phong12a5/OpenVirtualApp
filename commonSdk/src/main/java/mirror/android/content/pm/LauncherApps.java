@@ -15,7 +15,7 @@ import mirror.RefObject;
 import mirror.com.android.internal.os.UserManager;
 
 public class LauncherApps {
-    public static Class<?> TYPE = RefClass.load(LauncherApps.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCkPKh0ABxcCKB8eAA=="));
+    public static Class<?> TYPE = RefClass.load(LauncherApps.class, "android.content.pm.LauncherApps");
     public static RefObject<PackageManager> mPm;
     public static RefObject<IInterface> mService;
     public static RefObject<UserManager> mUserManager;

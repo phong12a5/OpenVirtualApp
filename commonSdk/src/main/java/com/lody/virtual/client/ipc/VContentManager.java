@@ -53,7 +53,7 @@ public class VContentManager {
     }
 
     private Object getRemoteInterface() {
-        return IContentService.Stub.asInterface(ServiceManagerNative.getService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGwFNCZmEVRF"))));
+        return IContentService.Stub.asInterface(ServiceManagerNative.getService("content"));
     }
 
     public void unregisterContentObserver(IContentObserver observer) throws RemoteException {

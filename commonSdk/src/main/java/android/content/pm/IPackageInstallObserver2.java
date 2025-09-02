@@ -30,12 +30,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IPackageInstallObserver2 {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGioMLBYRGRcCWw==");
+        private static final String DESCRIPTOR = "android.content.pm.IPackageInstallObserver2";
         static final int TRANSACTION_onUserActionRequired = 1;
         static final int TRANSACTION_onPackageInstalled = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGioMLBYRGRcCWw=="));
+            this.attachInterface(this, "android.content.pm.IPackageInstallObserver2");
         }
 
         public static IPackageInstallObserver2 asInterface(IBinder obj) {
@@ -83,7 +83,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IPackageInstallObserver2 impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -110,7 +110,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGioMLBYRGRcCWw==");
+                return "android.content.pm.IPackageInstallObserver2";
             }
 
             /*
@@ -121,7 +121,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGioMLBYRGRcCWw=="));
+                    _data.writeInterfaceToken("android.content.pm.IPackageInstallObserver2");
                     if (intent != null) {
                         _data.writeInt(1);
                         intent.writeToParcel(_data, 0);
@@ -149,7 +149,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGioMLBYRGRcCWw=="));
+                    _data.writeInterfaceToken("android.content.pm.IPackageInstallObserver2");
                     _data.writeString(basePackageName);
                     _data.writeInt(returnCode);
                     _data.writeString(msg);

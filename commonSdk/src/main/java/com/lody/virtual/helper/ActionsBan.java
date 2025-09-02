@@ -14,7 +14,7 @@ public class ActionsBan {
     }
 
     static {
-        sActionsBan.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogOC9mNBE2KRdfLmkVLDBoJwYdLAguJWYVSFo=")));
+        sActionsBan.add("com.vivo.hotfixcollect");
     }
 }
 

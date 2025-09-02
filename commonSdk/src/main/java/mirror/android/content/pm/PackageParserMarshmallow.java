@@ -26,7 +26,7 @@ import mirror.RefMethod;
 import mirror.RefStaticMethod;
 
 public class PackageParserMarshmallow {
-    public static Class<?> TYPE = RefClass.load(PackageParserMarshmallow.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhc="));
+    public static Class<?> TYPE = RefClass.load(PackageParserMarshmallow.class, "android.content.pm.PackageParser");
     @MethodReflectParams(value={"android.content.pm.PackageParser$Package", "int"})
     public static RefMethod<Void> collectCertificates;
     public static RefConstructor<PackageParser> ctor;

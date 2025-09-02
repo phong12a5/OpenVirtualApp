@@ -44,7 +44,7 @@ import mirror.RefStaticMethod;
 import mirror.RefStaticObject;
 
 public class PackageParser {
-    public static Class<?> TYPE = RefClass.load(PackageParser.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhc="));
+    public static Class<?> TYPE = RefClass.load(PackageParser.class, "android.content.pm.PackageParser");
     @MethodReflectParams(value={"android.content.pm.PackageParser$Package", "int"})
     public static RefMethod<Void> collectCertificates;
     @MethodParams(value={String.class})
@@ -63,7 +63,7 @@ public class PackageParser {
     public static RefMethod<android.content.pm.PackageParser.Package> parsePackage;
 
     public static class SigningDetails {
-        public static Class<?> TYPE = RefClass.load(SigningDetails.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhdWJQwJMRoNCDYVHQ4HHxY="));
+        public static Class<?> TYPE = RefClass.load(SigningDetails.class, "android.content.pm.PackageParser$SigningDetails");
         public static RefObject<Signature[]> signatures;
         public static RefObject<Signature[]> pastSigningCertificates;
         public static RefMethod<Boolean> hasPastSigningCertificates;
@@ -73,39 +73,39 @@ public class PackageParser {
     }
 
     public static class Component {
-        public static Class<?> TYPE = RefClass.load(Component.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhdWNQoDLxwNChwE"));
+        public static Class<?> TYPE = RefClass.load(Component.class, "android.content.pm.PackageParser$Component");
         public static RefObject<String> className;
         public static RefObject<ComponentName> componentName;
         public static RefObject<List<IntentFilter>> intents;
     }
 
     public static class PermissionGroup {
-        public static Class<?> TYPE = RefClass.load(PermissionGroup.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhdWJgAcMhoQHBsfBygcHBAC"));
+        public static Class<?> TYPE = RefClass.load(PermissionGroup.class, "android.content.pm.PackageParser$PermissionGroup");
         public static RefObject<PermissionGroupInfo> info;
     }
 
     public static class Permission {
-        public static Class<?> TYPE = RefClass.load(Permission.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhdWJgAcMhoQHBsfBw=="));
+        public static Class<?> TYPE = RefClass.load(Permission.class, "android.content.pm.PackageParser$Permission");
         public static RefObject<PermissionInfo> info;
     }
 
     public static class Service {
-        public static Class<?> TYPE = RefClass.load(Provider.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhdWJQAcKRoACg=="));
+        public static Class<?> TYPE = RefClass.load(Provider.class, "android.content.pm.PackageParser$Service");
         public static RefObject<ServiceInfo> info;
     }
 
     public static class Provider {
-        public static Class<?> TYPE = RefClass.load(Provider.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhdWJhcBKRoHCgA="));
+        public static Class<?> TYPE = RefClass.load(Provider.class, "android.content.pm.PackageParser$Provider");
         public static RefObject<ProviderInfo> info;
     }
 
     public static class Activity {
-        public static Class<?> TYPE = RefClass.load(Activity.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhdWNwYaNgUKGws="));
+        public static Class<?> TYPE = RefClass.load(Activity.class, "android.content.pm.PackageParser$Activity");
         public static RefObject<ActivityInfo> info;
     }
 
     public static class Package {
-        public static Class<?> TYPE = RefClass.load(Package.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhdWJgQNNBIECg=="));
+        public static Class<?> TYPE = RefClass.load(Package.class, "android.content.pm.PackageParser$Package");
         public static RefObject<List> activities;
         public static RefObject<Bundle> mAppMetaData;
         public static RefObject<String> mSharedUserId;

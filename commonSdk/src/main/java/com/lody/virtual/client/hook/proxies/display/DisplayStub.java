@@ -25,7 +25,7 @@ extends MethodInvocationProxy<MethodInvocationStub<IInterface>> {
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtuNAYqLBgMOW8xBi9sJDwdLRcYVg=="))));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("createVirtualDisplay"));
     }
 
     @Override

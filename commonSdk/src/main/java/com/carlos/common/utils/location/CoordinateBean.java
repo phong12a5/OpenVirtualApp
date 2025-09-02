@@ -43,7 +43,7 @@ public class CoordinateBean {
     }
 
     public String toString() {
-        return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ixg+LGUaMAViHjM8PTkmVg==")) + this.latitude + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl5aOGoFGiZiJAYgLAc2PX40Iyg=")) + this.longitude;
+        return "latitude : " + this.latitude + " ; longitude : " + this.longitude;
     }
 }
 

@@ -49,7 +49,7 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IControllerService {
-        private static final String DESCRIPTOR = StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY=");
+        private static final String DESCRIPTOR = "com.kook.controller.server.service.IControllerService";
         static final int TRANSACTION_picCompare = 1;
         static final int TRANSACTION_startCheck = 2;
         static final int TRANSACTION_registerCallBack = 3;
@@ -65,7 +65,7 @@ extends IInterface {
         static final int TRANSACTION_sendKeyEvent = 13;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+            this.attachInterface(this, "com.kook.controller.server.service.IControllerService");
         }
 
         public static IControllerService asInterface(IBinder obj) {
@@ -198,7 +198,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IControllerService impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -225,7 +225,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY=");
+                return "com.kook.controller.server.service.IControllerService";
             }
 
             /*
@@ -237,7 +237,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     _data.writeString(picPathSource);
                     _data.writeString(picPathTarget);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
@@ -263,7 +263,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     _data.writeString(productPicPathSource);
                     _data.writeInt(targetProductIndex);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
@@ -287,7 +287,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     _data.writeStrongBinder(serviceCallBack != null ? serviceCallBack.asBinder() : null);
                     boolean _status = this.mRemote.transact(3, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -310,7 +310,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     _data.writeStrongBinder(serviceCallBack != null ? serviceCallBack.asBinder() : null);
                     boolean _status = this.mRemote.transact(4, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -333,7 +333,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     boolean _status = this.mRemote.transact(5, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         Stub.getDefaultImpl().startFullWakeLock();
@@ -355,7 +355,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     boolean _status = this.mRemote.transact(6, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         Stub.getDefaultImpl().eventDialogTips();
@@ -377,7 +377,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     _data.writeString(action);
                     boolean _status = this.mRemote.transact(7, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -401,7 +401,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     boolean _status = this.mRemote.transact(8, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         String string2 = Stub.getDefaultImpl().getOptionAction();
@@ -426,7 +426,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     _data.writeString(pkg);
                     _data.writeString(processName);
                     boolean _status = this.mRemote.transact(9, _data, _reply, 0);
@@ -453,7 +453,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     boolean _status = this.mRemote.transact(10, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         boolean bl = Stub.getDefaultImpl().isAppOnForeground();
@@ -478,7 +478,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     _data.writeInt(centerX);
                     _data.writeInt(centerY);
                     boolean _status = this.mRemote.transact(11, _data, _reply, 0);
@@ -505,7 +505,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     _data.writeInt(fromX);
                     _data.writeInt(fromY);
                     _data.writeInt(toX);
@@ -535,7 +535,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsdOgEVCgBeGgocBQwRE0snHBwNGwAfBQMLATYXBBMHPBY="));
+                    _data.writeInterfaceToken("com.kook.controller.server.service.IControllerService");
                     _data.writeInt(keycode);
                     boolean _status = this.mRemote.transact(13, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {

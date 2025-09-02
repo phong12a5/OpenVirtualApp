@@ -28,12 +28,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IBinderProxyService {
-        private static final String DESCRIPTOR = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDCgiKRgcJ2w2ICZqNFkgLy02OWowBjNpJ1RF"));
+        private static final String DESCRIPTOR = "com.lody.virtual.server.IBinderProxyService";
         static final int TRANSACTION_getComponent = 1;
         static final int TRANSACTION_getService = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDCgiKRgcJ2w2ICZqNFkgLy02OWowBjNpJ1RF")));
+            this.attachInterface(this, "com.lody.virtual.server.IBinderProxyService");
         }
 
         public static IBinderProxyService asInterface(IBinder obj) {
@@ -83,7 +83,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IBinderProxyService impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAFNC59ATAoLBUcD2ozOyB6DTwqLRgEKGIKESNqETwiKAgAVg==")));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -110,7 +110,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDCgiKRgcJ2w2ICZqNFkgLy02OWowBjNpJ1RF"));
+                return "com.lody.virtual.server.IBinderProxyService";
             }
 
             /*
@@ -122,7 +122,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDCgiKRgcJ2w2ICZqNFkgLy02OWowBjNpJ1RF")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IBinderProxyService");
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         ComponentName componentName = Stub.getDefaultImpl().getComponent();
@@ -147,7 +147,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDCgiKRgcJ2w2ICZqNFkgLy02OWowBjNpJ1RF")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IBinderProxyService");
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         IBinder iBinder = Stub.getDefaultImpl().getService();

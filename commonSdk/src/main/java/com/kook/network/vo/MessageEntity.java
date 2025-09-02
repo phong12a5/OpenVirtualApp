@@ -53,7 +53,7 @@ public class MessageEntity {
     }
 
     public String toString() {
-        return StringFog.decrypt("JgocGEwFECJDEgAMEhQMBEkHSA==") + this.code + StringFog.decrypt("R08MBEkHNARZDwYWVg==") + this.codeAction + StringFog.decrypt("R08CGEpfUg==") + this.msg + '\'' + StringFog.decrypt("R08LClkDSEA=") + this.data + '\'' + StringFog.decrypt("R08bBFkDGTNECwxF") + this.totalTime + '}';
+        return "Uonn)kOQ }r|{{bw,u>" + this.code + "4*~r,ikw:`tf?" + this.codeAction + ", msg='" + this.msg + '\'' + ", data='" + this.data + '\'' + "4*ir<mF@'d~5" + this.totalTime + '}';
     }
 }
 

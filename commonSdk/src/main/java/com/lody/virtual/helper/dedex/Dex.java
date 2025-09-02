@@ -26,7 +26,7 @@ public class Dex {
 
     private void calcSignature(byte[] bytes) {
         try {
-            MessageDigest digest = MessageDigest.getInstance(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IixfEXpTJFo=")));
+            MessageDigest digest = MessageDigest.getInstance("SHA-1");
             digest.reset();
             digest.update(bytes, 32, bytes.length - 32);
             digest.digest(bytes, 12, 20);
@@ -67,8 +67,8 @@ public class Dex {
     }
 
     public static class Header {
-        static final String MAGIC_DEX = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguIA=="));
-        static final String MAGIC_COMPACT_DEX = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4qM2kFSFo="));
+        static final String MAGIC_DEX = "dex";
+        static final String MAGIC_COMPACT_DEX = "cdex";
         final char[] magic_ = new char[4];
         final char[] version_ = new char[4];
         final int checksum_;
@@ -100,14 +100,14 @@ public class Dex {
         public Header(DataReader r) throws IOException {
             r.readBytes(this.magic_);
             this.magic = new String(this.magic_).trim();
-            this.isCompactDex = this.magic.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4qM2kFSFo=")));
-            if (!this.magic.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguIA=="))) && !this.isCompactDex) {
-                throw new IOException(String.format(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQwKAgfOm8jQS1qATMrPjouD0gjSFo=")), this.magic));
+            this.isCompactDex = this.magic.equals("cdex");
+            if (!this.magic.equals("dex") && !this.isCompactDex) {
+                throw new IOException(String.format("Invalid dex magic '%s'", this.magic));
             }
             r.readBytes(this.version_);
             this.version = new String(this.version_).trim();
-            if (!this.isCompactDex && this.version.compareTo(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ol41Iw=="))) < 0) {
-                throw new IOException(String.format(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQwKAgfOmUVGgRsJx4cLCo5IUgFNyI=")), this.version));
+            if (!this.isCompactDex && this.version.compareTo("035") < 0) {
+                throw new IOException(String.format("Invalid dex version '%s'", this.version));
             }
             this.checksum_ = r.readInt();
             r.readBytes(this.signature_);

@@ -14,7 +14,7 @@ import mirror.RefStaticMethod;
 public class ILauncherApps {
 
     public static final class Stub {
-        public static Class<?> TYPE = RefClass.load(ILauncherApps.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCwiPgYNDBoVGy4eAxZWJREbPQ=="));
+        public static Class<?> TYPE = RefClass.load(ILauncherApps.class, "android.content.pm.ILauncherApps$Stub");
         public static RefStaticMethod<IInterface> asInterface;
     }
 }

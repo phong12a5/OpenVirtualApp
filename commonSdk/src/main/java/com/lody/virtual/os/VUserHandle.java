@@ -123,7 +123,7 @@ implements Parcelable {
     public static int getAppIdFromSharedAppGid(int gid) {
         int noUserGid = VUserHandle.getAppId(gid);
         if (noUserGid < 50000 || noUserGid > 59999) {
-            throw new IllegalArgumentException(Integer.toString(gid) + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgYKXsFBiVmVyQ7PxgqMm4gRStrVjwsKQc5JGIgGi8=")));
+            throw new IllegalArgumentException(Integer.toString(gid) + " is not a shared app gid");
         }
         return noUserGid + 10000 - 50000;
     }
@@ -211,7 +211,7 @@ implements Parcelable {
     }
 
     public String toString() {
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITsuKWgaFgp9DlkwKhcMJw==")) + this.mHandle + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LwhSVg=="));
+        return "VUserHandle{" + this.mHandle + "}";
     }
 
     public boolean equals(Object obj) {

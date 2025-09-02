@@ -17,7 +17,7 @@ public class LearnNative {
     public static native void hookLearn(Class var0, Object var1);
 
     static {
-        System.loadLibrary(StringFog.decrypt("HwATBAs="));
+        System.loadLibrary("learn");
     }
 }
 

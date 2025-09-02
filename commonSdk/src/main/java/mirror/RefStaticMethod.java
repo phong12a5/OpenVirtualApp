@@ -26,7 +26,7 @@ public class RefStaticMethod<T> {
                 try {
                     Class realClass;
                     Class.forName(clazz.getName());
-                    types[i] = realClass = (Class)clazz.getField(StringFog.decrypt("JzwiMw==")).get(null);
+                    types[i] = realClass = (Class)clazz.getField("TYPE").get(null);
                     continue;
                 }
                 catch (Throwable e) {
@@ -52,11 +52,11 @@ public class RefStaticMethod<T> {
                         }
                     }
                     types[i] = type;
-                    if (StringFog.decrypt("GQQEF0sbKxoPQToRGgc9FhE=").equals(typeNames[i])) {
+                    if ("java.util.HashSet".equals(typeNames[i])) {
                         arrayset = true;
                         Class<?> type2 = type;
                         try {
-                            type2 = Class.forName(StringFog.decrypt("EgsWBAoHO10WGxscRy4cAQQLJQAa"));
+                            type2 = Class.forName("android.util.ArraySet");
                         }
                         catch (ClassNotFoundException classNotFoundException) {
                             // empty catch block
@@ -94,31 +94,31 @@ public class RefStaticMethod<T> {
     }
 
     static Class<?> getProtoType(String typeName) {
-        if (typeName.equals(StringFog.decrypt("GgsG"))) {
+        if (typeName.equals("int")) {
             return Integer.TYPE;
         }
-        if (typeName.equals(StringFog.decrypt("HwocEQ=="))) {
+        if (typeName.equals("long")) {
             return Long.TYPE;
         }
-        if (typeName.equals(StringFog.decrypt("EQodGgAPMQ=="))) {
+        if (typeName.equals("boolean")) {
             return Boolean.TYPE;
         }
-        if (typeName.equals(StringFog.decrypt("ERwGEw=="))) {
+        if (typeName.equals("byte")) {
             return Byte.TYPE;
         }
-        if (typeName.equals(StringFog.decrypt("AA0dBBE="))) {
+        if (typeName.equals("short")) {
             return Short.TYPE;
         }
-        if (typeName.equals(StringFog.decrypt("EA0TBA=="))) {
+        if (typeName.equals("char")) {
             return Character.TYPE;
         }
-        if (typeName.equals(StringFog.decrypt("FQkdFxE="))) {
+        if (typeName.equals("float")) {
             return Float.TYPE;
         }
-        if (typeName.equals(StringFog.decrypt("FwoHFAkL"))) {
+        if (typeName.equals("double")) {
             return Double.TYPE;
         }
-        if (typeName.equals(StringFog.decrypt("BQobEg=="))) {
+        if (typeName.equals("void")) {
             return Void.TYPE;
         }
         return null;
@@ -148,7 +148,7 @@ public class RefStaticMethod<T> {
     }
 
     public String toString() {
-        return StringFog.decrypt("IQAUJREPKxoAIhcEAQAKCA==") + this.parent + StringFog.decrypt("Mw==") + this.name + StringFog.decrypt("UwMbGAFT") + (this.method != null) + '}';
+        return "RefStaticMethod{" + this.parent + "@" + this.name + " find=" + (this.method != null) + '}';
     }
 }
 

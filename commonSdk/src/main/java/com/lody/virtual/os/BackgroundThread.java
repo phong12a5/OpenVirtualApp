@@ -17,7 +17,7 @@ extends HandlerThread {
     private static Handler sHandler;
 
     private BackgroundThread() {
-        super(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT49CGsVBixhNB4zKF4YOGkFSFo=")), 10);
+        super("va.android.bg", 10);
     }
 
     private static void ensureThreadLocked() {

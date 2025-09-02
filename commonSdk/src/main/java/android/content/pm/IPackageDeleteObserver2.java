@@ -28,12 +28,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IPackageDeleteObserver2 {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVLQoCFhEXOQcdOgEVCgBC");
+        private static final String DESCRIPTOR = "android.content.pm.IPackageDeleteObserver2";
         static final int TRANSACTION_onUserActionRequired = 1;
         static final int TRANSACTION_onPackageDeleted = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVLQoCFhEXOQcdOgEVCgBC"));
+            this.attachInterface(this, "android.content.pm.IPackageDeleteObserver2");
         }
 
         public static IPackageDeleteObserver2 asInterface(IBinder obj) {
@@ -80,7 +80,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IPackageDeleteObserver2 impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -107,7 +107,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVLQoCFhEXOQcdOgEVCgBC");
+                return "android.content.pm.IPackageDeleteObserver2";
             }
 
             /*
@@ -118,7 +118,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVLQoCFhEXOQcdOgEVCgBC"));
+                    _data.writeInterfaceToken("android.content.pm.IPackageDeleteObserver2");
                     if (intent != null) {
                         _data.writeInt(1);
                         intent.writeToParcel(_data, 0);
@@ -146,7 +146,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVLQoCFhEXOQcdOgEVCgBC"));
+                    _data.writeInterfaceToken("android.content.pm.IPackageDeleteObserver2");
                     _data.writeString(packageName);
                     _data.writeInt(returnCode);
                     _data.writeString(msg);

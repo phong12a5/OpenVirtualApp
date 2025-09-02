@@ -28,93 +28,93 @@ public class MirrorDataParse {
 
     public String getBackupData(String packageName, int userId) {
         this.mElement.clear();
-        this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Khg+OWUzJC1iDFk7KgcMVg==")), packageName);
-        this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQc2M28hAiw=")), userId);
+        this.elementAddProperty("packageName", packageName);
+        this.elementAddProperty("userId", userId);
         SettingConfig.FakeWifiStatus fakeWifiStatus = App.getApp().mConfig.getFakeWifiStatus(packageName, userId);
-        this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki02CWgFSFo=")), fakeWifiStatus == null ? "" : fakeWifiStatus.getSSID());
-        this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+OQ==")), fakeWifiStatus == null ? "" : fakeWifiStatus.getMAC());
-        this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lj02KWUVMFo=")), fakeWifiStatus == null ? "" : fakeWifiStatus.getBSSID());
+        this.elementAddProperty("ssid", fakeWifiStatus == null ? "" : fakeWifiStatus.getSSID());
+        this.elementAddProperty("mac", fakeWifiStatus == null ? "" : fakeWifiStatus.getMAC());
+        this.elementAddProperty("bssid", fakeWifiStatus == null ? "" : fakeWifiStatus.getBSSID());
         VLocation location = VLocationManager.get().getLocation(packageName, userId);
         if (location != null) {
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ixg+LGUaMAViHjBF")), location.latitude);
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IxgACGgzAgZmDgo/")), location.longitude);
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggELGUaMAViHjBF")), location.altitude);
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2OWwaFjd9JwZF")), Float.valueOf(location.accuracy));
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki06M2gVMFo=")), Float.valueOf(location.speed));
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lj4uP28jAiZiJ1RF")), Float.valueOf(location.bearing));
+            this.elementAddProperty("latitude", location.latitude);
+            this.elementAddProperty("longitude", location.longitude);
+            this.elementAddProperty("altitude", location.altitude);
+            this.elementAddProperty("accuracy", Float.valueOf(location.accuracy));
+            this.elementAddProperty("speed", Float.valueOf(location.speed));
+            this.elementAddProperty("bearing", Float.valueOf(location.bearing));
         }
         int deviceId = BaseActivity.getDeviceId(packageName, userId);
         VDeviceConfig deviceConfig = VDeviceManager.get().getDeviceConfig(deviceId);
         boolean enable = VDeviceManager.get().isEnable(deviceId);
         if (enable) {
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JjsMEWIhMFo=")), deviceConfig.getProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JjsMEWIhMFo="))));
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwYAWWAbHlo=")), deviceConfig.getProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwYAWWAbHlo="))));
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IhUMUmAINBNuEVRF")), deviceConfig.getProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IhUMUmAINBNuEVRF"))));
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYuAH0bLBU=")), deviceConfig.getProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYuAH0bLBU="))));
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JjwAEWchMFo=")), deviceConfig.getProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JjwAEWchMFo="))));
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYYA2cLHhFvAVRF")), deviceConfig.getProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYYA2cLHhFvAVRF"))));
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAYqVg==")), deviceConfig.getProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAYqVg=="))));
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwY+U2QbOBFlJQpKOzsMAg==")), deviceConfig.getProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwY+U2QbOBFlJQpKOzsMAg=="))));
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JTwYU2AxNF9pHywJIjw2Vg==")), deviceConfig.getProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JTwYU2AxNF9pHywJIjw2Vg=="))));
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4uKmUVJCQ=")), deviceConfig.serial);
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRguLmUVLCtrDgpF")), deviceConfig.deviceId);
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAg2OX0VMFo=")), deviceConfig.iccId);
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KS4YPmUbEjd9J1RF")), deviceConfig.wifiMac);
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iHAYw")), deviceConfig.androidId);
+            this.elementAddProperty("BRAND", deviceConfig.getProp("BRAND"));
+            this.elementAddProperty("MODEL", deviceConfig.getProp("MODEL"));
+            this.elementAddProperty("PRODUCT", deviceConfig.getProp("PRODUCT"));
+            this.elementAddProperty("DEVICE", deviceConfig.getProp("DEVICE"));
+            this.elementAddProperty("BOARD", deviceConfig.getProp("BOARD"));
+            this.elementAddProperty("DISPLAY", deviceConfig.getProp("DISPLAY"));
+            this.elementAddProperty("ID", deviceConfig.getProp("ID"));
+            this.elementAddProperty("MANUFACTURER", deviceConfig.getProp("MANUFACTURER"));
+            this.elementAddProperty("FINGERPRINT", deviceConfig.getProp("FINGERPRINT"));
+            this.elementAddProperty("serial", deviceConfig.serial);
+            this.elementAddProperty("deviceId", deviceConfig.deviceId);
+            this.elementAddProperty("iccId", deviceConfig.iccId);
+            this.elementAddProperty("wifiMac", deviceConfig.wifiMac);
+            this.elementAddProperty("androidId", deviceConfig.androidId);
         } else {
-            this.elementAddProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRguLmUVLCtrDgoVKj0iOG8zGlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4+Dm8zNFo=")));
+            this.elementAddProperty("deviceIdEnable", "false");
         }
         return this.mElement.toString();
     }
 
     public void parseBackupData(String filePath) {
         String readFile = FileTools.readFile(filePath);
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Kj4uP2gLOC9gHjMi")) + readFile + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsFOC9gHjACLwg2MngVSFo=")) + filePath);
+        HVLog.d("readFile:" + readFile + "    filePath:" + filePath);
         JSONObject jsonObject = JSON.parseObject((String)readFile);
         if (jsonObject == null) {
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BlYdGkZJAx9YAwssAglADkcsJRRBEloz")));
+            HVLog.d("还原数据异常");
             return;
         }
-        String packageName = this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Khg+OWUzJC1iDFk7KgcMVg==")));
-        int userId = this.getPropertyInt(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQc2M28hAiw=")));
-        String ssid = this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki02CWgFSFo=")));
-        String mac = this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+OQ==")));
-        String bssid = this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lj02KWUVMFo=")));
-        String SSID_KEY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki02CWgIGiFiAQZF")) + packageName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + userId;
-        String MAC_KEY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+OWYzQStnAVRF")) + packageName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + userId;
+        String packageName = this.getPropertyString(jsonObject, "packageName");
+        int userId = this.getPropertyInt(jsonObject, "userId");
+        String ssid = this.getPropertyString(jsonObject, "ssid");
+        String mac = this.getPropertyString(jsonObject, "mac");
+        String bssid = this.getPropertyString(jsonObject, "bssid");
+        String SSID_KEY = "ssid_key" + packageName + "_" + userId;
+        String MAC_KEY = "mac_key" + packageName + "_" + userId;
         SPTools.putString(VirtualCore.get().getContext(), SSID_KEY, ssid);
         SPTools.putString(VirtualCore.get().getContext(), MAC_KEY, mac);
-        if (jsonObject.containsKey((Object)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ixg+LGUaMAViHjBF"))) || jsonObject.containsKey((Object)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IxgACGgzAgZmDgo/")))) {
+        if (jsonObject.containsKey((Object)"latitude") || jsonObject.containsKey((Object)"longitude")) {
             VLocation mLatLng = new VLocation();
-            mLatLng.latitude = this.getPropertyInt(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ixg+LGUaMAViHjBF")));
-            mLatLng.longitude = this.getPropertyInt(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IxgACGgzAgZmDgo/")));
-            mLatLng.altitude = this.getPropertyInt(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggELGUaMAViHjBF")));
-            mLatLng.accuracy = this.getPropertyInt(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2OWwaFjd9JwZF")));
-            mLatLng.speed = this.getPropertyInt(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki06M2gVMFo=")));
-            mLatLng.bearing = this.getPropertyInt(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lj4uP28jAiZiJ1RF")));
+            mLatLng.latitude = this.getPropertyInt(jsonObject, "latitude");
+            mLatLng.longitude = this.getPropertyInt(jsonObject, "longitude");
+            mLatLng.altitude = this.getPropertyInt(jsonObject, "altitude");
+            mLatLng.accuracy = this.getPropertyInt(jsonObject, "accuracy");
+            mLatLng.speed = this.getPropertyInt(jsonObject, "speed");
+            mLatLng.bearing = this.getPropertyInt(jsonObject, "bearing");
             VirtualLocationManager.get().setMode(userId, packageName, 2);
             VirtualLocationManager.get().setLocation(userId, packageName, mLatLng);
         }
         int deviceId = BaseActivity.getDeviceId(packageName, userId);
         VDeviceConfig deviceConfig = VDeviceManager.get().getDeviceConfig(deviceId);
-        if (!jsonObject.containsKey((Object)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRguLmUVLCtrDgoVKj0iOG8zGlo=")))) {
-            deviceConfig.setProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JjsMEWIhMFo=")), this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JjsMEWIhMFo="))));
-            deviceConfig.setProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwYAWWAbHlo=")), this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwYAWWAbHlo="))));
-            deviceConfig.setProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IhUMUmAINBNuEVRF")), this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IhUMUmAINBNuEVRF"))));
-            deviceConfig.setProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYuAH0bLBU=")), this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYuAH0bLBU="))));
-            deviceConfig.setProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JjwAEWchMFo=")), this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JjwAEWchMFo="))));
-            deviceConfig.setProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYYA2cLHhFvAVRF")), this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYYA2cLHhFvAVRF"))));
-            deviceConfig.setProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAYqVg==")), this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAYqVg=="))));
-            deviceConfig.setProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwY+U2QbOBFlJQpKOzsMAg==")), this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwY+U2QbOBFlJQpKOzsMAg=="))));
-            deviceConfig.setProp(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JTwYU2AxNF9pHywJIjw2Vg==")), this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JTwYU2AxNF9pHywJIjw2Vg=="))));
-            deviceConfig.serial = this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4uKmUVJCQ=")));
-            deviceConfig.deviceId = this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRguLmUVLCtrDgpF")));
-            deviceConfig.iccId = this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAg2OX0VMFo=")));
-            deviceConfig.wifiMac = this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KS4YPmUbEjd9J1RF")));
-            deviceConfig.androidId = this.getPropertyString(jsonObject, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iHAYw")));
+        if (!jsonObject.containsKey((Object)"deviceIdEnable")) {
+            deviceConfig.setProp("BRAND", this.getPropertyString(jsonObject, "BRAND"));
+            deviceConfig.setProp("MODEL", this.getPropertyString(jsonObject, "MODEL"));
+            deviceConfig.setProp("PRODUCT", this.getPropertyString(jsonObject, "PRODUCT"));
+            deviceConfig.setProp("DEVICE", this.getPropertyString(jsonObject, "DEVICE"));
+            deviceConfig.setProp("BOARD", this.getPropertyString(jsonObject, "BOARD"));
+            deviceConfig.setProp("DISPLAY", this.getPropertyString(jsonObject, "DISPLAY"));
+            deviceConfig.setProp("ID", this.getPropertyString(jsonObject, "ID"));
+            deviceConfig.setProp("MANUFACTURER", this.getPropertyString(jsonObject, "MANUFACTURER"));
+            deviceConfig.setProp("FINGERPRINT", this.getPropertyString(jsonObject, "FINGERPRINT"));
+            deviceConfig.serial = this.getPropertyString(jsonObject, "serial");
+            deviceConfig.deviceId = this.getPropertyString(jsonObject, "deviceId");
+            deviceConfig.iccId = this.getPropertyString(jsonObject, "iccId");
+            deviceConfig.wifiMac = this.getPropertyString(jsonObject, "wifiMac");
+            deviceConfig.androidId = this.getPropertyString(jsonObject, "androidId");
             VDeviceManager.get().updateDeviceConfig(deviceId, deviceConfig);
         }
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BlYdGkZJAx9YAwssAglADkcvPQ5BA1oR")));
+        HVLog.d("还原数据完成");
     }
 
     private void elementAddProperty(String property, Object object) {
@@ -134,7 +134,7 @@ public class MirrorDataParse {
         } else if (object instanceof Float) {
             this.mElement.put(property, (Object)((Float)object));
         } else {
-            throw new NullPointerException(property + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl5WOHsJIFo=")) + object + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcREMXFzNZXl4oAgkdDGwaAiVlMz4tWhsCJxlNDCEGFSIvXiIqVg==")));
+            throw new NullPointerException(property + " :   " + object + "不能转成json 格式数据");
         }
     }
 

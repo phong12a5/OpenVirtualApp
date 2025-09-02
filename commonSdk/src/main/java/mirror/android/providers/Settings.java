@@ -18,7 +18,7 @@ public class Settings {
     }
 
     public static class Config {
-        public static Class<?> TYPE = RefClass.load(Config.class, StringFog.decrypt("EgsWBAoHO10THR0GAAsLAUshExEaNh0EHFYzBgEIGgI="));
+        public static Class<?> TYPE = RefClass.load(Config.class, "android.provider.Settings$Config");
         private static RefMethod<Object> getString;
 
         static {
@@ -71,7 +71,7 @@ public class Settings {
     }
 
     public static class ContentProviderHolder {
-        public static Class<?> TYPE = RefClass.load(ContentProviderHolder.class, StringFog.decrypt("EgsWBAoHO10THR0GAAsLAUshExEaNh0EHFYzBgEaFgsGJhcBKRoHCgA4BgMKFhc="));
+        public static Class<?> TYPE = RefClass.load(ContentProviderHolder.class, "android.provider.Settings$ContentProviderHolder");
         public static RefObject<IInterface> mContentProvider;
 
         static {
@@ -87,7 +87,7 @@ public class Settings {
     }
 
     public static class NameValueCacheOreo {
-        public static Class<?> TYPE = RefClass.load(NameValueCacheOreo.class, StringFog.decrypt("EgsWBAoHO10THR0GAAsLAUshExEaNh0EHFY+CAILJQQeAwAtPhALCg=="));
+        public static Class<?> TYPE = RefClass.load(NameValueCacheOreo.class, "android.provider.Settings$NameValueCache");
         public static RefObject<Object> mProviderHolder;
 
         static {
@@ -103,7 +103,7 @@ public class Settings {
     }
 
     public static class NameValueCache {
-        public static Class<?> TYPE = RefClass.load(NameValueCache.class, StringFog.decrypt("EgsWBAoHO10THR0GAAsLAUshExEaNh0EHFY+CAILJQQeAwAtPhALCg=="));
+        public static Class<?> TYPE = RefClass.load(NameValueCache.class, "android.provider.Settings$NameValueCache");
         public static RefObject<Object> mContentProvider;
 
         static {

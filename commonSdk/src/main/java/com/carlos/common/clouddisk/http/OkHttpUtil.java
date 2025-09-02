@@ -86,7 +86,7 @@ public class OkHttpUtil {
     private static SSLSocketFactory createSSLSocketFactory() {
         SSLSocketFactory ssfFactory = null;
         try {
-            SSLContext sc = SSLContext.getInstance(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRYEAw==")));
+            SSLContext sc = SSLContext.getInstance("TLS");
             sc.init(null, new TrustManager[]{new TrustAllCerts()}, new SecureRandom());
             ssfFactory = sc.getSocketFactory();
         }
@@ -98,7 +98,7 @@ public class OkHttpUtil {
 
     private Response _getSync(String url) throws IOException {
         Request request = new Request.Builder().url(url).build();
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQcMDnkjSFo=")) + url);
+        HVLog.d("url:" + url);
         Call call = this.mOkHttpClient.newCall(request);
         Response response = call.execute();
         return response;

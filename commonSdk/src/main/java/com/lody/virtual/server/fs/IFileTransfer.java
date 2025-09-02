@@ -31,12 +31,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IFileTransfer {
-        private static final String DESCRIPTOR = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMyluNy8dIiwEI2UVNApvJzg5Jy06LGUzSFo="));
+        private static final String DESCRIPTOR = "com.lody.virtual.server.fs.IFileTransfer";
         static final int TRANSACTION_listFiles = 1;
         static final int TRANSACTION_openFile = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMyluNy8dIiwEI2UVNApvJzg5Jy06LGUzSFo=")));
+            this.attachInterface(this, "com.lody.virtual.server.fs.IFileTransfer");
         }
 
         public static IFileTransfer asInterface(IBinder obj) {
@@ -88,7 +88,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IFileTransfer impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAFNC59ATAoLBUcD2ozOyB6DTwqLRgEKGIKESNqETwiKAgAVg==")));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -115,7 +115,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMyluNy8dIiwEI2UVNApvJzg5Jy06LGUzSFo="));
+                return "com.lody.virtual.server.fs.IFileTransfer";
             }
 
             /*
@@ -127,7 +127,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMyluNy8dIiwEI2UVNApvJzg5Jy06LGUzSFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.fs.IFileTransfer");
                     _data.writeString(path);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -153,7 +153,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMyluNy8dIiwEI2UVNApvJzg5Jy06LGUzSFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.fs.IFileTransfer");
                     _data.writeString(path);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {

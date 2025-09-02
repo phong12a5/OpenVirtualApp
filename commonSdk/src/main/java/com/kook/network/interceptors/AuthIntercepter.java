@@ -26,14 +26,14 @@ extends BaseInterceptor {
     }
 
     public Response intercept(Interceptor.Chain chain) throws IOException {
-        Request.Builder builder = chain.request().newBuilder().addHeader(StringFog.decrypt("PhwKGQAjEgJDEg=="), this.APP_TAG);
+        Request.Builder builder = chain.request().newBuilder().addHeader("MyxoeMMq }", this.APP_TAG);
         HVLog.d(this.APP_TAG);
         Request request = builder.build();
         Response response = null;
         try {
             response = chain.proceed(request);
             String responseBody = this.getResponse(response);
-            HVLog.d(StringFog.decrypt("GQocG0IMBgJvCQ0BUQ==") + responseBody);
+            HVLog.d("responseBody:" + responseBody);
         }
         catch (IOException e) {
             HVLog.e(e.getMessage());
@@ -45,7 +45,7 @@ extends BaseInterceptor {
         private String appTag;
 
         public Builder getTag() {
-            this.appTag = StringFog.decrypt("AAAAAEENEg==");
+            this.appTag = "serv$cM";
             return this;
         }
 

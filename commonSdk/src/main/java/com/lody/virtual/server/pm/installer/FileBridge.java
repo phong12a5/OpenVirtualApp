@@ -25,7 +25,7 @@ import java.nio.ByteOrder;
 @TargetApi(value=21)
 public class FileBridge
 extends Thread {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JT4YDmgbFgRjDgo9KAhSVg=="));
+    private static final String TAG = "FileBridge";
     private static final int MSG_LENGTH = 8;
     private static final int CMD_WRITE = 1;
     private static final int CMD_FSYNC = 2;
@@ -40,7 +40,7 @@ extends Thread {
             Os.socketpair((int)OsConstants.AF_UNIX, (int)OsConstants.SOCK_STREAM, (int)0, (FileDescriptor)this.mServer, (FileDescriptor)this.mClient);
         }
         catch (ErrnoException e) {
-            throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JT4+CWoFNCxLEQo1PxcqKGkjQQZrDTwpKS4YIGIgLFo=")));
+            throw new RuntimeException("Failed to create bridge");
         }
     }
 
@@ -77,7 +77,7 @@ extends Thread {
                     for (int len = FileUtils.peekInt(temp, 4, ByteOrder.BIG_ENDIAN); len > 0; len -= n) {
                         n = FileBridge.read(this.mServer, temp, 0, Math.min(temp.length, len));
                         if (n == -1) {
-                            throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcM2kKICt9Jwo/KF4mWmcLGTF4HjA/IxgEKEsaLAVlHgosIz4AIHgVSFo=")) + len + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgMJ2wFNAM=")));
+                            throw new IOException("Unexpected EOF; still expected " + len + " bytes");
                         }
                         FileBridge.write(this.mTarget, temp, 0, n);
                     }
@@ -97,7 +97,7 @@ extends Thread {
             }
         }
         catch (ErrnoException | IOException e) {
-            Log.wtf((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JT4+CWoFNCxLHgovIz0cDmkJTSpsNx4vLj4uVg==")), (Throwable)e);
+            Log.wtf((String)TAG, (String)"Failed during bridge", (Throwable)e);
         }
         finally {
             this.forceClose();

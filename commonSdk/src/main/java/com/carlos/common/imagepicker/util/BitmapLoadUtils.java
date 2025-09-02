@@ -39,7 +39,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class BitmapLoadUtils {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jj4YLGoVJAJoHh47KBYMLmwjOAM="));
+    private static final String TAG = "BitmapLoadUtils";
 
     public static void decodeBitmapInBackground(@NonNull Context context, @NonNull Uri uri, @Nullable Uri outputUri, int requiredWidth, int requiredHeight, BitmapLoadCallback loadCallback) {
         new BitmapLoadTask(context, uri, outputUri, requiredWidth, requiredHeight, loadCallback).execute(new Void[0]);
@@ -53,7 +53,7 @@ public class BitmapLoadUtils {
             }
         }
         catch (OutOfMemoryError error) {
-            Log.e((String)TAG, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRcMP2ogLC5gJyw3Jz0cLm8jQQJ+MzxF")), (Throwable)error);
+            Log.e((String)TAG, (String)"transformBitmap: ", (Throwable)error);
         }
         return bitmap;
     }
@@ -81,7 +81,7 @@ public class BitmapLoadUtils {
             BitmapLoadUtils.close(stream);
         }
         catch (IOException e) {
-            Log.e((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS4uLGAaRS9iMh4qKQcMDmUzQQZqAQYbPyo6Vg==")) + imageUri.toString()), (Throwable)e);
+            Log.e((String)TAG, (String)("getExifOrientation: " + imageUri.toString()), (Throwable)e);
         }
         return orientation;
     }
@@ -130,7 +130,7 @@ public class BitmapLoadUtils {
 
     public static int calculateMaxBitmapSize(@NonNull Context context) {
         int maxTextureSize;
-        WindowManager wm = (WindowManager)context.getSystemService(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KS4YCGgFGj0=")));
+        WindowManager wm = (WindowManager)context.getSystemService("window");
         Point size = new Point();
         if (wm != null) {
             Display display = wm.getDefaultDisplay();
@@ -147,7 +147,7 @@ public class BitmapLoadUtils {
         if ((maxTextureSize = EglUtils.getMaxTextureSize()) > 0) {
             maxBitmapSize = Math.min(maxBitmapSize, maxTextureSize);
         }
-        Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+IGMjAgZgDiAsOy0cIGkkIyg=")) + maxBitmapSize));
+        Log.d((String)TAG, (String)("maxBitmapSize: " + maxBitmapSize));
         return maxBitmapSize;
     }
 

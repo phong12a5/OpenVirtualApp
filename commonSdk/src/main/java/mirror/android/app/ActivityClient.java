@@ -14,12 +14,12 @@ import mirror.RefStaticMethod;
 import mirror.RefStaticObject;
 
 public class ActivityClient {
-    public static Class<?> TYPE = RefClass.load(ActivityClient.class, StringFog.decrypt("EgsWBAoHO10CHwJeKAwaGhMbAhwtMxoGAQY="));
+    public static Class<?> TYPE = RefClass.load(ActivityClient.class, "android.app.ActivityClient");
     public static RefStaticMethod<IInterface> getActivityClientController;
     public static RefStaticObject<Object> INTERFACE_SINGLETON;
 
     public static class ActivityClientControllerSingleton {
-        public static Class<?> TYPE = RefClass.load(ActivityClientControllerSingleton.class, StringFog.decrypt("EgsWBAoHO10CHwJeKAwaGhMbAhwtMxoGAQZUKAwaGhMbAhwtMxoGAQYzBgEaAQoeGgAcDBoNCB4VHQAA"));
+        public static Class<?> TYPE = RefClass.load(ActivityClientControllerSingleton.class, "android.app.ActivityClient$ActivityClientControllerSingleton");
         public static RefObject<IInterface> mKnownInstance;
     }
 }

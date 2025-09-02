@@ -28,12 +28,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IJobService {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10CHwJeAwAMXSw4GQc9OgEVBhEV");
+        private static final String DESCRIPTOR = "android.app.job.IJobService";
         static final int TRANSACTION_startJob = 1;
         static final int TRANSACTION_stopJob = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10CHwJeAwAMXSw4GQc9OgEVBhEV"));
+            this.attachInterface(this, "android.app.job.IJobService");
         }
 
         public static IJobService asInterface(IBinder obj) {
@@ -78,7 +78,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IJobService impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -105,7 +105,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10CHwJeAwAMXSw4GQc9OgEVBhEV");
+                return "android.app.job.IJobService";
             }
 
             /*
@@ -116,7 +116,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10CHwJeAwAMXSw4GQc9OgEVBhEV"));
+                    _data.writeInterfaceToken("android.app.job.IJobService");
                     if (jobParams != null) {
                         _data.writeInt(1);
                         jobParams.writeToParcel(_data, 0);
@@ -144,7 +144,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10CHwJeAwAMXSw4GQc9OgEVBhEV"));
+                    _data.writeInterfaceToken("android.app.job.IJobService");
                     if (jobParams != null) {
                         _data.writeInt(1);
                         jobParams.writeToParcel(_data, 0);

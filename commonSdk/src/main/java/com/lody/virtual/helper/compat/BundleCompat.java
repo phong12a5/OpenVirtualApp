@@ -28,14 +28,14 @@ public class BundleCompat {
 
     public static void putBinder(Intent intent, String key, IBinder value) {
         Bundle bundle = new Bundle();
-        BundleCompat.putBinder(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4YCGgFNAQ=")), value);
+        BundleCompat.putBinder(bundle, "binder", value);
         intent.putExtra(key, bundle);
     }
 
     public static IBinder getBinder(Intent intent, String key) {
         Bundle bundle = intent.getBundleExtra(key);
         if (bundle != null) {
-            return BundleCompat.getBinder(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4YCGgFNAQ=")));
+            return BundleCompat.getBinder(bundle, "binder");
         }
         return null;
     }

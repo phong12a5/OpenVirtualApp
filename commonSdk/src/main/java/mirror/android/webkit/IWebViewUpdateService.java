@@ -8,7 +8,7 @@ import mirror.RefClass;
 import mirror.RefMethod;
 
 public class IWebViewUpdateService {
-    public static Class<?> TYPE = RefClass.load(IWebViewUpdateService.class, StringFog.decrypt("EgsWBAoHO10UChAbABtAOjIXFDMHOgQ2HxYRHQo9FhcEHwYL"));
+    public static Class<?> TYPE = RefClass.load(IWebViewUpdateService.class, "android.webkit.IWebViewUpdateService");
     public static RefMethod<Object> waitForAndGetProvider;
 }
 

@@ -48,7 +48,7 @@ import java.io.OutputStream;
 
 public class BitmapLoadTask
 extends AsyncTask<Void, Void, BitmapLoadTask.BitmapWorkerResult> {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jj4YLGoVJAJuJB4qKS0MKH0zQQNqJ1RF"));
+    private static final String TAG = "BitmapWorkerTask";
     private final Context mContext;
     private Uri mInputUri;
     private Uri mOutputUri;
@@ -69,7 +69,7 @@ extends AsyncTask<Void, Void, BitmapLoadTask.BitmapWorkerResult> {
     protected BitmapWorkerResult doInBackground(Void ... params) {
         ParcelFileDescriptor parcelFileDescriptor;
         if (this.mInputUri == null) {
-            return new BitmapWorkerResult(new NullPointerException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcKGwaMyhuASwzPxcqOW8VMCVvVjwpLl86KmYKTTc="))));
+            return new BitmapWorkerResult(new NullPointerException("Input Uri cannot be null"));
         }
         try {
             this.processInputUri();
@@ -78,20 +78,20 @@ extends AsyncTask<Void, Void, BitmapLoadTask.BitmapWorkerResult> {
             return new BitmapWorkerResult(e);
         }
         try {
-            parcelFileDescriptor = this.mContext.getContentResolver().openFileDescriptor(this.mInputUri, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Kj5SVg==")));
+            parcelFileDescriptor = this.mContext.getContentResolver().openFileDescriptor(this.mInputUri, "r");
         }
         catch (FileNotFoundException e) {
             return new BitmapWorkerResult(e);
         }
         if (parcelFileDescriptor == null) {
-            return new BitmapWorkerResult(new NullPointerException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ihg+KmszNCRqNAYoKAU2PWoFAgRqDjw/LD0LJGYgPDZ5Hh4+KT4hJGszGiZ7ASAwID02JXkbFiRsID83IC5SVg==")) + this.mInputUri + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg=="))));
+            return new BitmapWorkerResult(new NullPointerException("ParcelFileDescriptor was null for given Uri: [" + this.mInputUri + "]"));
         }
         FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFileDescriptor((FileDescriptor)fileDescriptor, null, (BitmapFactory.Options)options);
         if (options.outWidth == -1 || options.outHeight == -1) {
-            return new BitmapWorkerResult(new IllegalArgumentException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jj4AI2ojMANLHjw1IzkmOGwgBiNoDj8rLT4ACWAaESNsNFk9OD5fJ3gaFj9sDgowJAg6LG5TPDBqESg8PhcqCmhSIFBhNBkiPxYEVg==")) + this.mInputUri + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg=="))));
+            return new BitmapWorkerResult(new IllegalArgumentException("Bounds for bitmap could not be retrieved from the Uri: [" + this.mInputUri + "]"));
         }
         options.inSampleSize = BitmapLoadUtils.calculateInSampleSize(options, this.mRequiredWidth, this.mRequiredHeight);
         options.inJustDecodeBounds = false;
@@ -103,12 +103,12 @@ extends AsyncTask<Void, Void, BitmapLoadTask.BitmapWorkerResult> {
                 decodeAttemptSuccess = true;
             }
             catch (OutOfMemoryError error) {
-                Log.e((String)TAG, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgAXGohFjd9JA49Iz1fLW8VATJ4HwoaKggIO2EYICRpJzAeLBc1KmsVNDVqNyw0LD0AO24ILDFqAR4bLAc6LGowETJLEVRF")), (Throwable)error);
+                Log.e((String)TAG, (String)"doInBackground: BitmapFactory.decodeFileDescriptor: ", (Throwable)error);
                 options.inSampleSize *= 2;
             }
         }
         if (decodeSampledBitmap == null) {
-            return new BitmapWorkerResult(new IllegalArgumentException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jj4YLGoVJAJLHig1LAdbPn4zMCVvVjwpLl86IGIKNCpuHgotOD4ECGUjHTRsAVk0DRY2OW8JHTZgAVRF")) + this.mInputUri + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JwhSVg=="))));
+            return new BitmapWorkerResult(new IllegalArgumentException("Bitmap could not be decoded from the Uri: [" + this.mInputUri + "]"));
         }
         if (Build.VERSION.SDK_INT >= 16) {
             BitmapLoadUtils.close((Closeable)parcelFileDescriptor);
@@ -132,16 +132,16 @@ extends AsyncTask<Void, Void, BitmapLoadTask.BitmapWorkerResult> {
 
     private void processInputUri() throws NullPointerException, IOException {
         String inputUriScheme = this.mInputUri.getScheme();
-        Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQcMCXsKLCljHjA3KAQHOg==")) + inputUriScheme));
-        if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8FSFo=")).equals(inputUriScheme) || com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLFo=")).equals(inputUriScheme)) {
+        Log.d((String)TAG, (String)("Uri scheme: " + inputUriScheme));
+        if ("http".equals(inputUriScheme) || "https".equals(inputUriScheme)) {
             try {
                 this.downloadFile(this.mInputUri, this.mOutputUri);
             }
             catch (IOException | NullPointerException e) {
-                Log.e((String)TAG, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgALWojHiV9DgozKj05OmkVQS9lESgv")), (Throwable)e);
+                Log.e((String)TAG, (String)"Downloading failed", (Throwable)e);
                 throw e;
             }
-        } else if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ACGwFNCZmEVRF")).equals(inputUriScheme)) {
+        } else if ("content".equals(inputUriScheme)) {
             String path = this.getFilePath();
             if (!TextUtils.isEmpty((CharSequence)path) && new File(path).exists()) {
                 this.mInputUri = Uri.fromFile((File)new File(path));
@@ -150,18 +150,18 @@ extends AsyncTask<Void, Void, BitmapLoadTask.BitmapWorkerResult> {
                     this.copyFile(this.mInputUri, this.mOutputUri);
                 }
                 catch (IOException | NullPointerException e) {
-                    Log.e((String)TAG, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4AKGkVAiZiICQ+LwccCGkjBlo=")), (Throwable)e);
+                    Log.e((String)TAG, (String)"Copying failed", (Throwable)e);
                     throw e;
                 }
             }
-        } else if (!com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4YDmgVSFo=")).equals(inputUriScheme)) {
-            Log.e((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcLmsVHi9iVyRKIz0bOmoFAiBrAQ4gPQhSVg==")) + inputUriScheme));
-            throw new IllegalArgumentException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcLmsVHi9iVyRKIz0bOmoFAiBrAQ4g")) + inputUriScheme);
+        } else if (!"file".equals(inputUriScheme)) {
+            Log.e((String)TAG, (String)("Invalid Uri scheme " + inputUriScheme));
+            throw new IllegalArgumentException("Invalid Uri scheme" + inputUriScheme);
         }
     }
 
     private String getFilePath() {
-        if (ContextCompat.checkSelfPermission((Context)this.mContext, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUIFl9mDwYTJytfDGALHhNnMiwQLzsmAGYFSFo="))) == 0) {
+        if (ContextCompat.checkSelfPermission((Context)this.mContext, (String)"android.permission.READ_EXTERNAL_STORAGE") == 0) {
             return FileUtils.getPath(this.mContext, this.mInputUri);
         }
         return null;
@@ -171,9 +171,9 @@ extends AsyncTask<Void, Void, BitmapLoadTask.BitmapWorkerResult> {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     private void copyFile(@NonNull Uri inputUri, @Nullable Uri outputUri) throws NullPointerException, IOException {
-        Log.d((String)TAG, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4AKGkbOC9gHjBF")));
+        Log.d((String)TAG, (String)"copyFile");
         if (outputUri == null) {
-            throw new NullPointerException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oy0uLG8KNAZLHzAqKQMmMWoJTSZvAQIdPQQHJH0gPClsNFk9OD4YKWwaDTRlEQ4oJC02Vg==")));
+            throw new NullPointerException("Output Uri is null - cannot copy image");
         }
         InputStream inputStream = null;
         FileOutputStream outputStream = null;
@@ -182,7 +182,7 @@ extends AsyncTask<Void, Void, BitmapLoadTask.BitmapWorkerResult> {
             inputStream = this.mContext.getContentResolver().openInputStream(inputUri);
             outputStream = new FileOutputStream(new File(outputUri.getPath()));
             if (inputStream == null) {
-                throw new NullPointerException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcKGwaMF5mESw/LwdWOmkVNAR4ESAaKi4uKksaGillEQo9ODsACGoJIAVvMzw5IAdXOw==")));
+                throw new NullPointerException("InputStream for given input Uri is null");
             }
             byte[] buffer = new byte[1024];
             while ((length = inputStream.read(buffer)) > 0) {

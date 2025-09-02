@@ -48,17 +48,17 @@ import org.jdeferred.Promise;
 
 public class FloatWindowServices
 extends EventService {
-    public static final String TAG = StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBQ==");
+    public static final String TAG = "FloatWindowServices";
     ServerController serverController;
     private FloatBallManager mFloatballManager;
     LayoutInflater layoutInflater;
     private final BroadcastReceiver homeListenerReceiver = new BroadcastReceiver(){
-        final String SYSTEM_DIALOG_REASON_KEY = StringFog.decrypt("AQATBQoA");
-        final String SYSTEM_DIALOG_REASON_HOME_KEY = StringFog.decrypt("GwofEw4LJg==");
+        final String SYSTEM_DIALOG_REASON_KEY = "reason";
+        final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey";
 
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            HVLog.e(StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBQ=="), StringFog.decrypt("EgYGHwoAZQ==") + action);
+            HVLog.e("FloatWindowServices", "action:" + action);
             FloatWindowServices.this.hide();
         }
     };
@@ -67,9 +67,9 @@ extends EventService {
     @RequiresApi(api=16)
     public void onCreate() {
         super.onCreate();
-        HVLog.i(TAG, StringFog.decrypt("lefekNDAuNn0T5f49IrJ+ID+4A=="));
+        HVLog.i(TAG, "悬浮窗 初始化");
         if (Build.VERSION.SDK_INT >= 26) {
-            NotificationManager notificationManager = (NotificationManager)this.getSystemService(StringFog.decrypt("HQoGHwMHPBIXBh0e"));
+            NotificationManager notificationManager = (NotificationManager)this.getSystemService("notification");
             NotificationChannel channel = new NotificationChannel(TAG, (CharSequence)TAG, 3);
             notificationManager.createNotificationChannel(channel);
         }
@@ -77,8 +77,8 @@ extends EventService {
         this.serverController = new ServerController(this);
         this.init();
         TabContainerFactory.getInstance().initTag(this.layoutInflater, this.mFloatballManager);
-        IntentFilter homeFilter = new IntentFilter(StringFog.decrypt("EgsWBAoHO10KAQYVBxtAEgYGHwoAcTAvICE1Njw3IDE3OzoqFjIvIDUj"));
-        homeFilter.addAction(StringFog.decrypt("EAofWA4BMBhNDhEEAAAA"));
+        IntentFilter homeFilter = new IntentFilter("android.intent.action.CLOSE_SYSTEM_DIALOGS");
+        homeFilter.addAction("com.kook.action");
         this.registerReceiver(this.homeListenerReceiver, homeFilter);
     }
 
@@ -86,10 +86,10 @@ extends EventService {
         boolean closeFloat = false;
         boolean showFloat = false;
         if (intent != null) {
-            closeFloat = intent.getBooleanExtra(StringFog.decrypt("EAkdBQAoMxwCGw=="), false);
-            showFloat = intent.getBooleanExtra(StringFog.decrypt("AA0dASMCMBIX"), false);
+            closeFloat = intent.getBooleanExtra("closeFloat", false);
+            showFloat = intent.getBooleanExtra("showFloat", false);
         }
-        HVLog.d(TAG, StringFog.decrypt("HAshAgQcKzAMAh8RBwtO") + this.getPackageName() + StringFog.decrypt("U0URGgodOjUPABMESVVO") + closeFloat + StringFog.decrypt("U0VSVhYGMAQlAx0RHVU=") + showFloat);
+        HVLog.d(TAG, "onStartCommand " + this.getPackageName() + "  closeFloat : " + closeFloat + "    showFloat:" + showFloat);
         if (closeFloat) {
             this.hide();
         }
@@ -101,8 +101,8 @@ extends EventService {
 
     private void init() {
         int ballSize = DensityUtil.dip2px((Context)this, 45.0f);
-        Drawable ballIcon = BackGroudSeletor.getdrawble(StringFog.decrypt("GgYtEAkBPgcBDh4c"), (Context)this);
-        HVLog.d(TAG, StringFog.decrypt("ltjhk+zjuu/lis/SgeDylujnk8HJusPsTxARBQM9Gh8Xmdn0") + ballSize + "    " + ballIcon);
+        Drawable ballIcon = BackGroudSeletor.getdrawble("ic_floatball", (Context)this);
+        HVLog.d(TAG, "当前圆形菜单大小 ballSize：" + ballSize + "    " + ballIcon);
         FloatBallCfg ballCfg = new FloatBallCfg(ballSize, ballIcon, FloatBallCfg.Gravity.RIGHT_CENTER);
         ballCfg.setHideHalfLater(false);
         int menuSize = DensityUtil.dip2px((Context)this, 180.0f);
@@ -114,9 +114,9 @@ extends EventService {
     public void show(String packageName, IBinder binder) {
         try {
             List<TabChild> tabChildren = TabContainerFactory.getInstance().getTabChildListByPackageName(packageName);
-            HVLog.i(TAG, StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBUVOLBsMGElQCwYAFwAATA==") + binder + StringFog.decrypt("U0VSVhUPPBgCCBc+CAILSQ==") + packageName);
+            HVLog.i(TAG, "FloatWindowServices  show; binder:" + binder + "    packageName:" + packageName);
             if (tabChildren == null) {
-                HVLog.i(TAG, StringFog.decrypt("lt/mkfHGZQ==") + packageName + StringFog.decrypt("lfnYkOzQuvvThu7wgcnvlvXdk+/GuOnnh/3sjOL7"));
+                HVLog.i(TAG, "应用:" + packageName + "未找到需要启动的菜单");
                 return;
             }
             this.mFloatballManager.addTabChilds(tabChildren).buildTabChild();
@@ -135,34 +135,34 @@ extends EventService {
 
     public void hide() {
         try {
-            HVLog.i(TAG, StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBUVOfxsKCxc="));
+            HVLog.i(TAG, "FloatWindowServices   hide");
             if (this.mFloatballManager.isShowing()) {
                 this.mFloatballManager.hide();
             }
         }
         catch (Exception e) {
-            HVLog.e(TAG, StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBUUdNxwUTxcICgoeBwwdGF8=") + e.toString());
+            HVLog.e(TAG, "FloatWindowServices show exception:" + e.toString());
         }
     }
 
     public Promise<Void, Throwable, Void> hideControllerContainer() {
-        HVLog.i(TAG, StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBUVOfxsKCxczBgEaAQoeGgAcHBwNGxMZBwoc"));
+        HVLog.i(TAG, "FloatWindowServices   hideControllerContainer");
         this.mFloatballManager.reset();
         return ResponseProgram.defer().when(() -> {
             while (this.mFloatballManager.getFloatTab().isAdded()) {
                 this.sleep(100L);
             }
-            HVLog.i(TAG, StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBUVOfxsKCxczBgEaAQoeGgAcHBwNGxMZBwocUwAcEg=="));
+            HVLog.i(TAG, "FloatWindowServices   hideControllerContainer end");
         });
     }
 
     public Promise<Void, Throwable, Void> showControllerContainer() {
-        HVLog.i(TAG, StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBUVOfxsKCxczBgEaAQoeGgAcHBwNGxMZBwoc"));
+        HVLog.i(TAG, "FloatWindowServices   hideControllerContainer");
         return ResponseProgram.defer().when(() -> {
             while (!this.mFloatballManager.getFloatTab().isAdded()) {
                 this.sleep(100L);
             }
-            HVLog.i(TAG, StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBUVOfxsKCxczBgEaAQoeGgAcHBwNGxMZBwocUwAcEg=="));
+            HVLog.i(TAG, "FloatWindowServices   hideControllerContainer end");
         });
     }
 
@@ -175,14 +175,14 @@ extends EventService {
     }
 
     public IBinder onBind(Intent intent) {
-        HVLog.e(TAG, StringFog.decrypt("HAswHwsKfxoNGxceHVU=") + intent.toString());
+        HVLog.e(TAG, "onBind intent:" + intent.toString());
         return this.serverController.asBinder();
     }
 
     public void unbindService(ServiceConnection conn) {
         super.unbindService(conn);
         this.mFloatballManager.hide();
-        HVLog.e(TAG, StringFog.decrypt("TlhPS1hTYk5eUk9NVFJTTlhPSxAAPRoNCyEVGxkHEABSVgYBMR1Z") + conn);
+        HVLog.e(TAG, "===================unbindService  conn:" + conn);
         this.unregisterReceiver(this.homeListenerReceiver);
     }
 

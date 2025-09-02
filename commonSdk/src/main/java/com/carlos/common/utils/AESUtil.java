@@ -13,17 +13,17 @@ import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 
 public class AESUtil {
-    private static final String SECRET_KEY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4uKW8kJwFPVjhF"));
+    private static final String SECRET_KEY = "sesr1107";
 
     public static void main(String[] args) {
         String content = "";
-        String key = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ojk5L3w0JwFPDThF"));
+        String key = "20171117";
         System.currentTimeMillis();
-        System.out.println(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxpAOEZaBwhYEBsNDCJYGg==")) + content);
+        System.out.println("加密前：" + content);
         byte[] encrypted = AESUtil.desEncrypt(content.getBytes(), key.getBytes());
-        System.out.println(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxpAOEZaBwhYEzkMDCJYGg==")) + AESUtil.byteToHexString(encrypted));
+        System.out.println("加密后：" + AESUtil.byteToHexString(encrypted));
         byte[] decrypted = AESUtil.desDecrypt(encrypted, key.getBytes());
-        System.out.println(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BlcjOUZaBwhYEzkMDCJYGg==")) + new String(decrypted));
+        System.out.println("解密后：" + new String(decrypted));
     }
 
     public static String desEncrypt(String content) {
@@ -34,21 +34,21 @@ public class AESUtil {
     private static byte[] desEncrypt(byte[] content, byte[] keyBytes) {
         try {
             DESKeySpec keySpec = new DESKeySpec(keyBytes);
-            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYuAw==")));
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
             SecretKey key = keyFactory.generateSecret(keySpec);
-            Cipher cipher = Cipher.getInstance(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYuA3oxLBRlIB4CISsqAXUmTTdrESwaLC4mVg==")));
+            Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
             cipher.init(1, (Key)key, new IvParameterSpec(keySpec.getKey()));
             byte[] result = cipher.doFinal(content);
             return result;
         }
         catch (Exception e) {
-            System.out.println(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LQdfOWgaIAZjDh42PT5SVg==")) + e.toString());
+            System.out.println("exception:" + e.toString());
             return null;
         }
     }
 
     public static String desDecrypt(String content) {
-        VLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ITw9DWAILBY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Phg2D2ogMCtgNw08P18hKXonTCh+N1RF")) + content);
+        VLog.e("VA-DSD", " content  111  :" + content);
         byte[] bytes = AESUtil.hexStringToByteArray(content);
         byte[] desDecrypt = AESUtil.desDecrypt(bytes, SECRET_KEY.getBytes());
         if (desDecrypt == null) {
@@ -66,15 +66,15 @@ public class AESUtil {
     private static byte[] desDecrypt(byte[] content, byte[] keyBytes) {
         try {
             DESKeySpec keySpec = new DESKeySpec(keyBytes);
-            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYuAw==")));
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
             SecretKey key = keyFactory.generateSecret(keySpec);
-            Cipher cipher = Cipher.getInstance(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRYuA3oxLBRlIB4CISsqAXUmTTdrESwaLC4mVg==")));
+            Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
             cipher.init(2, (Key)key, new IvParameterSpec(keyBytes));
             byte[] result = cipher.doFinal(content);
             return result;
         }
         catch (Exception e) {
-            VLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ITw9DWAILBY=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhgqM28xMCt9JywZIxg1OmkgFilrDjw/IxgAKktTOz0=")) + e.toString());
+            VLog.e("VA-DSD", " desDecrypt exception  :" + e.toString());
             return null;
         }
     }

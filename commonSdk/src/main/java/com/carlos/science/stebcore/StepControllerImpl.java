@@ -24,7 +24,7 @@ import java.util.Queue;
 
 public abstract class StepControllerImpl<T extends IStep>
 implements IStepController {
-    public static final String TAG = StringFog.decrypt("IBEXBiYBMQcRAB4cDB0nHhUe");
+    public static final String TAG = "StepControllerImpl";
     protected List<IStepController.StepStatusListener> mStepStatusListeners = new ArrayList<IStepController.StepStatusListener>();
     protected Queue<IStepInfo<T>> mStepInfos = new LinkedList<IStepInfo<T>>();
     protected ClientActivityLifecycle clientActivityLifecycle;
@@ -64,7 +64,7 @@ implements IStepController {
     @Override
     public final boolean hasNext() {
         boolean res = !this.mStepInfos.isEmpty();
-        Log.i((String)TAG, (String)(StringFog.decrypt("GwQBOAAWK0lD") + res + StringFog.decrypt("U0VSVhYHJRZZ") + this.mStepInfos.size()));
+        Log.i((String)TAG, (String)("hasNext: " + res + "    size:" + this.mStepInfos.size()));
         return res;
     }
 
@@ -78,7 +78,7 @@ implements IStepController {
             this.notifyAllStepsFinished();
         }
         if (poll != null) {
-            Log.d((String)TAG, (String)(StringFog.decrypt("lu/tnubTud7GhtjUj+HJlu3Ek/zGf5bf75fX4onn1I3T+kWL4uCG5v+WxMqH2cFI") + poll + StringFog.decrypt("U0VSUQ==") + poll.getTitle() + StringFog.decrypt("VA==")));
+            Log.d((String)TAG, (String)("功能步骤控制器 开始执行 当前步骤:" + poll + "   '" + poll.getTitle() + "'"));
             this.doTask(poll);
         }
     }

@@ -19,9 +19,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OemPermissionHelper {
-    private static List<ComponentName> EMUI_AUTO_START_COMPONENTS = Arrays.asList(new ComponentName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRQV9ATg/KQMYL2ggAgZrAQ4eLRgcO2IgLDU=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRQV9ATg/KQMYL2ggAgZrAQ4eLRgcO2IgLDV8Nyw9KC1fCm8KIAFoNA05IAcfJX0jLDVqHhoaKhYcD28jEjdgHCAsIxVbMWoKBhFoJCwaKi4YCmcFSFo="))), new ComponentName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRQV9ATg/KQMYL2ggAgZrAQ4eLRgcO2IgLDU=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRQV9ATg/KQMYL2ggAgZrAQ4eLRgcO2IgLDV8NFk5Iz42L2oKTT96Jwo6Ji4MOmoaOCRlMywLIy4ALGcwMDdhNwoRLy42MWUVLAZuAVRF"))), new ComponentName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRQV9ATg/KQMYL2ggAgZrAQ4eLRgcO2IgLDU=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRQV9ATg/KQMYL2ggAgZrAQ4eLRgcO2IgLDV8NCQ5LD4YKWUwMCZqNwU5OwcuM28FJD1lNDM5Ii0qP28gMAVhHCAsIxUqDW8aBgRlJwICLT0qI2YwGj9rAVRF"))), new ComponentName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRQV9ATg/KQMYL2ggAgZrAQ4eLRgcO2IgLDU=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRQV9ATg/KQMYL2ggAgZrAQ4eLRgcO2IgLDV8Nyw9KC1fCm8KIAFoNA05IAcfJX0jLDVqHhoaKhY+LWsVQStiHCAsIxVbMWoKBhFoJCwaKi4YCmcFSFo="))));
-    private static List<ComponentName> FLYME_AUTO_START_COMPONENTS = Arrays.asList(new ComponentName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojEitjAQIvOj4qOWkVGlo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojEitjAQIvOj4qOWkVBSZsESg5LBgYD2EgGipsMB4SKS5bCG8bFlZjETAZJQg6IGoVBlo="))), new ComponentName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojEitjAQIvOj4qOWkVGlo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojEitjAQIvOj4qOWkVBSZsJygqKhcMI2YVBSlnHlkcLyxbJW8VAiJlHiwg"))));
-    private static List<ComponentName> VIVO_AUTO_START_COMPONENTS = Arrays.asList(new ComponentName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojAgFgJBE2Iy0MP2UgRSs=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojAgFgJBE2Iy0MP2UgRSt1NCgaPC06LGAgRSBsJyA9Ki4mI24zNwRjJyBBIBcmOWobFiZnJ105LggmM28jSFo="))), new ComponentName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogOC9mNBE2IxcMKG8jLANsJx4cLC4IO2AwPCJuAShF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogOC9mNBE2IxcMKG8jLANsJx4cLC4IO2AwPCJuASsdKC4YCmoKOAVsDhE5Lxg2OWowBjFlDBooLjw+OWwFAj5jAQoZ"))), new ComponentName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogOC9mNBE2IxcMKG8jLANsJx4cLC4IO2AwPCJuAShF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogOC9mNBE2IxcMKG8jLANsJx4cLC4IO2AwPCJuASsdKC4YCmoKOAVsDhE5Ly0YLWobPDFqESAwKi02CWozBhZiAQo7KQdbE24KBi9vNx4/LxhSVg=="))), new ComponentName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogOC9mNBE2IxcMKG8jLANsJx4cLC4IO2AwPCJuAShF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogOC9mNBE2IxcMKG8jLANsJx4cLC4IO2AwPCJuASsdKC4YCmoKOAVsDhE5Lxg2OWowBjFlD102KRgYLmUaMD8="))));
+    private static List<ComponentName> EMUI_AUTO_START_COMPONENTS = Arrays.asList(new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.startupmgr.ui.StartupNormalAppListActivity"), new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.optimize.bootstart.BootStartActivity"), new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.appcontrol.activity.StartupAppControlActivity"), new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.startupmgr.ui.StartupAwakedAppListActivity"));
+    private static List<ComponentName> FLYME_AUTO_START_COMPONENTS = Arrays.asList(new ComponentName("com.meizu.safe", "com.meizu.safe.permission.SmartBGActivity"), new ComponentName("com.meizu.safe", "com.meizu.safe.security.HomeActivity"));
+    private static List<ComponentName> VIVO_AUTO_START_COMPONENTS = Arrays.asList(new ComponentName("com.iqoo.secure", "com.iqoo.secure.ui.phoneoptimize.BgStartUpManager"), new ComponentName("com.vivo.permissionmanager", "com.vivo.permissionmanager.activity.PurviewTabActivity"), new ComponentName("com.vivo.permissionmanager", "com.vivo.permissionmanager.activity.SoftPermissionDetailActivity"), new ComponentName("com.vivo.permissionmanager", "com.vivo.permissionmanager.activity.PurviewActivity"));
 
     public static Intent getPermissionActivityIntent(Context context) {
         BuildCompat.ROMType romType = BuildCompat.getROMType();
@@ -39,7 +39,7 @@ public class OemPermissionHelper {
             case MIUI: {
                 Intent intent = new Intent();
                 intent.addFlags(0x10000000);
-                intent.setClassName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojEi9mDhk2Iy0MP2UgRS9vHh4qLhgcCmIFMFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojEi9mDhk2IxcMKG8jAitlNCwgKSocO2YFFiplJzAqLBcbKmAKNCBqMjAZOwgqM2QKOAJuJw40IwguCGwLJClmHgYuKQg2IQ==")));
+                intent.setClassName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity");
                 if (!OemPermissionHelper.verifyIntent(context, intent)) break;
                 return intent;
             }
@@ -56,14 +56,14 @@ public class OemPermissionHelper {
             case COLOR_OS: {
                 Intent intent = new Intent();
                 intent.addFlags(0x10000000);
-                intent.setClassName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojLCVgHh4qKi4pDmoFQS5rATAgLC0qJ2EzSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojLCVgHh4qKi4pDmoFQS5rATAgLC0qJ2E0RTZqHiQ7Iz0ADmgKICR6IjAZOwgqM2oFPB9qNFERLAc2LGMVLAZjATwzLBgcVg==")));
+                intent.setClassName("com.coloros.safecenter", "com.coloros.safecenter.startupapp.StartupAppListActivity");
                 if (!OemPermissionHelper.verifyIntent(context, intent)) break;
                 return intent;
             }
             case LETV: {
                 Intent intent = new Intent();
                 intent.addFlags(0x10000000);
-                intent.setClassName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHitmET82LwcYPmoVNC9rVhodLhcqMmEgPCFuAVRF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHitmET82LwcYPmoVNC9rVhodLhcqMmEgPCFuCh4AIy0cKWgzGgNsDw4oJj0mLm4IODNlNzAhLAcqJw==")));
+                intent.setClassName("com.letv.android.letvsafe", "com.letv.android.letvsafe.AutobootManageActivity");
                 if (!OemPermissionHelper.verifyIntent(context, intent)) break;
                 return intent;
             }
@@ -80,7 +80,7 @@ public class OemPermissionHelper {
             case _360: {
                 Intent intent = new Intent();
                 intent.addFlags(0x10000000);
-                intent.setClassName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogJC9jHh41Myo9Kn8VPCVoNx4dLhc2O2IwLFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogJC9jHh41Myo9Kn8VPCVoNx4dLhc2O2IwLylqDh0dKi4qIGsKRARjHjwdLAdfM24FNB9uDhowKT4YLGkVSFo=")));
+                intent.setClassName("com.qihoo360.mobilesafe", "com.qihoo360.mobilesafe.ui.index.AppEnterActivity");
                 if (!OemPermissionHelper.verifyIntent(context, intent)) break;
                 return intent;
             }

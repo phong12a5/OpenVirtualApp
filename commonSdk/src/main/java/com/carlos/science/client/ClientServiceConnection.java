@@ -30,7 +30,7 @@ import com.kook.controller.server.IServerController;
 public class ClientServiceConnection
 extends ForegroundCallbacks
 implements ServiceConnection {
-    String TAG = StringFog.decrypt("MAkbEwsaDBYRGRsTDCwBHQsXFREHMB0=");
+    String TAG = "ClientServiceConnection";
     Application mApplication;
     IServerController mIServerController;
     IVirtualController mVirtualControllerImpl;
@@ -38,7 +38,7 @@ implements ServiceConnection {
     private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient(){
 
         public void binderDied() {
-            HVLog.e(ClientServiceConnection.this.TAG, StringFog.decrypt("ldbak+Piu8vji8raj8LVl9/Tkt7NuOPliu7YgdD3muL+"));
+            HVLog.e(ClientServiceConnection.this.TAG, "注册一个死亡代理在这里");
         }
     };
     ForegroundCallbacks.Listener mListener = new ForegroundCallbacks.Listener(){
@@ -52,13 +52,13 @@ implements ServiceConnection {
                 return;
             }
             String packageName = activity.getPackageName();
-            HVLog.d(ClientServiceConnection.this.TAG, StringFog.decrypt("l978k/XguvzTiunujOfeluz/k+retu/jh9Txj+bJm8T+kf/qtvPYh8zhSQ==") + ClientServiceConnection.this.getClientIBinder(packageName));
+            HVLog.d(ClientServiceConnection.this.TAG, "从后台回到前台需要执行的逻辑 " + ClientServiceConnection.this.getClientIBinder(packageName));
             try {
                 IBinder service = ClientServiceConnection.this.getService(packageName);
                 if (ClientServiceConnection.this.mIServerController != null && service != null) {
                     ClientServiceConnection.this.mIServerController.show(activity.getPackageName(), service);
                 } else {
-                    HVLog.e(StringFog.decrypt("HAswEwYPMhYlAAAVDh0BBgsWVggnDBYRGRcCKgAABxcdGgAcfxoQTxwfHU8HHQwG"));
+                    HVLog.e("onBecameForeground mIServerControler is not init");
                 }
             }
             catch (RemoteException e) {
@@ -69,11 +69,11 @@ implements ServiceConnection {
         @Override
         public void onBecameBackground() {
             try {
-                HVLog.d(ClientServiceConnection.this.TAG, StringFog.decrypt("ltjhk+zjuNvoisj/jOfplejQk+3euuPtiv3A"));
+                HVLog.d(ClientServiceConnection.this.TAG, "当前程序切换到后台");
                 if (ClientServiceConnection.this.mIServerController != null) {
                     ClientServiceConnection.this.mIServerController.hide();
                 } else {
-                    HVLog.d(ClientServiceConnection.this.TAG, StringFog.decrypt("HAswEwYPMhYhDhEbDh0BBgsWVggnDBYRGRcCKgAABxcdGgAcfxoQTxwfHU8HHQwG"));
+                    HVLog.d(ClientServiceConnection.this.TAG, "onBecameBackground mIServerControler is not init");
                 }
             }
             catch (RemoteException e) {
@@ -100,7 +100,7 @@ implements ServiceConnection {
                 String packageName = this.mApplication.getPackageName();
                 IBinder service = this.getService(packageName);
                 this.iBinder = iBinder;
-                HVLog.i(this.TAG, StringFog.decrypt("m9rrn+Lif5vc8ZT+zIvW+YHI8EVONjEKARYVG1U=") + iBinder);
+                HVLog.i(this.TAG, "这里 连接上了  iBinder:" + iBinder);
                 if (service instanceof ClientActivityLifecycle) {
                     ClientActivityLifecycle clientActivityLifecycle = (ClientActivityLifecycle)service;
                     if (this.mIServerController != null) {
@@ -118,7 +118,7 @@ implements ServiceConnection {
                     this.mIServerController.setClientApplication(packageName, this.getClientIBinder(packageName));
                 }
             } else {
-                HVLog.d(StringFog.decrypt("HiQCBgkHPBIXBh0eSQYdUwsHGgk="));
+                HVLog.d("mApplication is null");
             }
         }
         catch (RemoteException e) {
@@ -132,7 +132,7 @@ implements ServiceConnection {
     }
 
     public void onServiceDisconnected(ComponentName componentName) {
-        HVLog.i(this.TAG, StringFog.decrypt("m9rrn+Lif5vc8ZT+zIvW3oPk24HU2Q=="));
+        HVLog.i(this.TAG, "这里 连接中断了");
     }
 
     @Override

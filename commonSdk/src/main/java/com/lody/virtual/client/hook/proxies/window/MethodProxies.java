@@ -44,7 +44,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaIAJpJwo7Iz42MW8VElJqARovLD0mVg=="));
+            return "setAppStartingWindow";
         }
     }
 
@@ -55,7 +55,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy0iM28gFi9iHjACKAcYPmwjMC1gDjw7IgcMO2AzNCxqHhoeKRY2KmQVHjNrNyhF"));
+            return "overridePendingAppTransitionInPlace";
         }
 
         @Override
@@ -74,7 +74,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy0iM28gFi9iHjACKAcYPmwjMC1gDjw7IgcMO2AzNCxqHhoeKRhSVg=="));
+            return "overridePendingAppTransition";
         }
 
         @Override
@@ -93,7 +93,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy06M2omLCthJygzKi0YVg=="));
+            return "openSession";
         }
     }
 }

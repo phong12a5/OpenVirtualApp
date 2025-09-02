@@ -32,11 +32,11 @@ public class Unsafe {
     public native long getLong(long var1);
 
     public int arrayBaseOffset(Class clazz) {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 
     public long objectFieldOffset(Field field) {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 }
 

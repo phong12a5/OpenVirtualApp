@@ -30,7 +30,7 @@ extends StepImpl {
 
     @Override
     public void onActivityResumed(Activity activity) {
-        Log.d((String)StringFog.decrypt("IBEXBiwDLx8="), (String)(StringFog.decrypt("ltjhk+zjuevMiu7Y") + activity.getLocalClassName() + StringFog.decrypt("lPD+n/jMc5bk6ZfU7ofR6ID300UKMCcCHBlQ")));
+        Log.d((String)"StepImpl", (String)("当前是在" + activity.getLocalClassName() + "界面,准备进入 doTask "));
         this.task();
     }
 
@@ -43,7 +43,7 @@ extends StepImpl {
     public boolean task() {
         Activity activity = this.getActivity();
         String localClassName = activity.getLocalClassName();
-        Log.d((String)StringFog.decrypt("IBEXBiwDLx8="), (String)(StringFog.decrypt("ltjhk+zjuevMiu7Y") + localClassName + StringFog.decrypt("lPD+n/jM")));
+        Log.d((String)"StepImpl", (String)("当前是在" + localClassName + "界面"));
         if (localClassName.equals(this.className)) {
             ResponseProgram.defer().when(() -> {
                 boolean attachedToWindow;
@@ -68,7 +68,7 @@ extends StepImpl {
             iServerControler.sendKeyEvent(4);
         }
         catch (Exception e) {
-            Log.e((String)StringFog.decrypt("IBEXBiwDLx8="), (String)(StringFog.decrypt("IBEXBjEcOh0HTxYfPQ4dGEU=") + e.toString()));
+            Log.e((String)"StepImpl", (String)("StepTrend doTask " + e.toString()));
         }
     }
 

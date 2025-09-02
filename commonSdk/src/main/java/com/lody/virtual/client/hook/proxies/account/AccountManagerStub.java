@@ -31,15 +31,15 @@ extends BinderInvocationProxy {
     private static VAccountManager Mgr = VAccountManager.get();
 
     public AccountManagerStub() {
-        super(IAccountManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEVRF")));
+        super(IAccountManager.Stub.asInterface, "account");
     }
 
     @Override
     public void inject() throws Throwable {
         super.inject();
         try {
-            AccountManager accountManager = (AccountManager)this.getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEVRF")));
-            Reflect.on(accountManager).set(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwU2M28gOC99JDBF")), ((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());
+            AccountManager accountManager = (AccountManager)this.getContext().getSystemService("account");
+            Reflect.on(accountManager).set("mService", ((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());
         }
         catch (Throwable e) {
             e.printStackTrace();
@@ -106,7 +106,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcKmgVPC9hJwo/IzsiP24FNAVlNCxTIxc2CmIKRSBlN1RF"));
+            return "unregisterAccountListener";
         }
 
         @Override
@@ -124,7 +124,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwRLy0qDWUjMAZ9ER46KgguKmIFMFo="));
+            return "registerAccountListener";
         }
 
         @Override
@@ -142,7 +142,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMFBhHgo7LBcMEWoVGixrARo/Ixg+KGEhNCBlJywiKQgqVg=="));
+            return "startUpdateCredentialsSession";
         }
 
         @Override
@@ -160,7 +160,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMBFiHgoRLy0qDWUjMAZkJyg6KT4YKWAzSFo="));
+            return "startAddAccountSession";
         }
 
         @Override
@@ -178,7 +178,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMVLClgJzA2LBY+MWoFLCpqAQIaKgcYVg=="));
+            return "setAccountVisibility";
         }
 
         @Override
@@ -195,7 +195,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFJCljJCA9KAgqE28VBlNqDjAaLS4YKGMFFgZmNFk7IC4YJWUgNARsAVRF"));
+            return "getPackagesAndVisibilityForAccount";
         }
 
         @Override
@@ -212,7 +212,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLClgJzA2LBgqE28VBlNqDjAaLS4YKGMFFgZmNFk7JD5bJWojJDFoEVRF"));
+            return "getAccountsAndVisibilityForPackage";
         }
 
         @Override
@@ -229,7 +229,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGMVLClgJzA2LBUMImozOC9oJx4/LAcYXmMFFitiNBo8Ki5fI2UVAiBpEVRF"));
+            return "addAccountExplicitlyWithVisibility";
         }
 
         @Override
@@ -246,7 +246,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLClgJzA2LBY+MWoFLCpqAQIaKgcYVg=="));
+            return "getAccountVisibility";
         }
 
         @Override
@@ -263,7 +263,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YCGUaLCBpJDApIy0cDW8bQQNnDjAgKS5SVg=="));
+            return "finishSessionAsUser";
         }
 
         @Override
@@ -281,7 +281,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2E28jNCxiDlkgKQciCGoIGgJrETg/LhU2CWIgJCBlJzAuLz5SVg=="));
+            return "isCredentialsUpdateSuggested";
         }
 
         @Override
@@ -298,7 +298,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uCGsVEitpJBo7Iz0MPmYjAillJCgbKgY+D24FNCBlN1RF"));
+            return "renameSharedAccountAsUser";
         }
 
         @Override
@@ -317,7 +317,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcKFitmNAY1LAgqQG4jPCs="));
+            return "getPreviousName";
         }
 
         @Override
@@ -334,7 +334,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uCGsVEitlDig5Ki4MDmUzSFo="));
+            return "renameAccount";
         }
 
         @Override
@@ -354,7 +354,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtpJBo7Iz0MPmYjAillJCgbKgY+D24FNCBlN1RF"));
+            return "removeSharedAccountAsUser";
         }
 
         @Override
@@ -372,7 +372,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGczRTdhNDAwJwcqP28KGiZvHjACKTsuD2IFMFo="));
+            return "getSharedAccountsAsUser";
         }
 
         @Override
@@ -389,7 +389,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGczRTdhNDAwJwcqP28KGiZvHzg6Ihc2J2EzSFo="));
+            return "addSharedAccountAsUser";
         }
 
         @Override
@@ -407,7 +407,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaNAZjHwo1KS0MDmczQSprAQJF"));
+            return "getAuthTokenLabel";
         }
 
         @Override
@@ -427,7 +427,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmHCAvLBcAPW8aBi9oJzg/LhgqVg=="));
+            return "accountAuthenticated";
         }
 
         @Override
@@ -444,7 +444,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGgjAgRgDCgqKAc2PW8aBi9oAQI6JRc2XGEgLDU="));
+            return "confirmCredentialsAsUser";
         }
 
         @Override
@@ -465,7 +465,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgqCWwIIARgJyQ/Iz42MWkgAlo="));
+            return "editProperties";
         }
 
         @Override
@@ -485,7 +485,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtlJyw/KBcMDmUzLDdlHjBF"));
+            return "updateCredentials";
         }
 
         @Override
@@ -507,7 +507,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGMVLClgJzA2LBUiL30gAitsN1RF"));
+            return "addAccountAsUser";
         }
 
         @Override
@@ -530,7 +530,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGMVLClgJzA2LBhSVg=="));
+            return "addAccount";
         }
 
         @Override
@@ -553,7 +553,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaNAZjHwo1KS0MDg=="));
+            return "getAuthToken";
         }
 
         @Override
@@ -576,7 +576,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtlASQsOxcMKG8jLANsJx4cLC5SVg=="));
+            return "updateAppPermission";
         }
 
         @Override
@@ -597,7 +597,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQaLCthMgo7LBciVg=="));
+            return "setUserData";
         }
 
         @Override
@@ -617,7 +617,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EM2saFkx9ASgpLC1fKGkzSFo="));
+            return "clearPassword";
         }
 
         @Override
@@ -635,7 +635,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGcFJANhJzg1Iz02Vg=="));
+            return "setPassword";
         }
 
         @Override
@@ -654,7 +654,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaNAZjHwo1KS0MDg=="));
+            return "setAuthToken";
         }
 
         @Override
@@ -674,7 +674,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguM2UxJAVmHhpLKi0EPW8VSFo="));
+            return "peekAuthToken";
         }
 
         @Override
@@ -692,7 +692,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcLmsVHi9iHiAgKAUiLWUzFlFlJ10gLC5SVg=="));
+            return "invalidateAuthToken";
         }
 
         @Override
@@ -711,7 +711,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4AKGkbJCl9JB4vKj42AG8IGgNrDgpF"));
+            return "copyAccountToUser";
         }
 
         @Override
@@ -732,7 +732,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtlDig5Ki4MDmUxGjBsEQIaLT4YCmAVGlo="));
+            return "removeAccountExplicitly";
         }
 
         @Override
@@ -749,7 +749,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtlDig5Ki4MDmUxQQNnDjAgKS5SVg=="));
+            return "removeAccountAsUser";
         }
 
         @Override
@@ -769,7 +769,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtlDig5Ki4MDmUzSFo="));
+            return "removeAccount";
         }
 
         @Override
@@ -789,7 +789,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGMVLClgJzA2LBUMImozOC9oJx4/LAcYVg=="));
+            return "addAccountExplicitly";
         }
 
         @Override
@@ -808,7 +808,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLClgJzA2LBgqEmghHitoDiwwKS4uDw=="));
+            return "getAccountsByFeatures";
         }
 
         @Override
@@ -828,7 +828,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+KWAjNDdmETAqKAgqVg=="));
+            return "hasFeatures";
         }
 
         @Override
@@ -848,7 +848,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLClgJzA2LBgqE2oIGgNrDgpF"));
+            return "getAccountsAsUser";
         }
 
         @Override
@@ -865,7 +865,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLClgJzA2LBUuIX0wLAJrDzgbLgYiJ30FFjBlNAo8"));
+            return "getAccountByTypeAndFeatures";
         }
 
         @Override
@@ -883,7 +883,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLClgJzA2LBgqEmgmBj9sEShILD0MQH0KNC5pDjwu"));
+            return "getAccountsByTypeForPackage";
         }
 
         @Override
@@ -901,7 +901,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLClgJzA2LBgqWW8KRUxoATAiLRgmJw=="));
+            return "getAccountsForPackage";
         }
 
         @Override
@@ -918,7 +918,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLClgJzA2LBgqVg=="));
+            return "getAccounts";
         }
 
         @Override
@@ -935,7 +935,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaNAZjHjA2LBccP24gBiVsMiw0KQguDw=="));
+            return "getAuthenticatorTypes";
         }
 
         @Override
@@ -951,7 +951,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQaLCthMgo7LBciVg=="));
+            return "getUserData";
         }
 
         @Override
@@ -969,7 +969,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFJANhJzg1Iz02Vg=="));
+            return "getPassword";
         }
 
         @Override

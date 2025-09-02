@@ -36,9 +36,9 @@ public class NotificationChannelCompat {
     public static void checkOrCreateChannel(Context context, String channelId, String name) {
         NotificationManager manager;
         NotificationChannel channel;
-        if (Build.VERSION.SDK_INT >= 26 && (channel = (manager = (NotificationManager)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDg==")))).getNotificationChannel(channelId)) == null) {
+        if (Build.VERSION.SDK_INT >= 26 && (channel = (manager = (NotificationManager)context.getSystemService("notification")).getNotificationChannel(channelId)) == null) {
             channel = new NotificationChannel(channelId, (CharSequence)name, 4);
-            channel.setDescription(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4ADW8FJAZjDiwzKhccLmgnTSVrMzwcLAgpJGYwLDVlJBoeKRcYVg==")));
+            channel.setDescription("Compatibility of old versions");
             channel.setSound(null, null);
             channel.setShowBadge(false);
             try {

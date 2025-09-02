@@ -23,20 +23,20 @@ public class EmailReceive {
     }
 
     public void sendCode(LeaveMessage leaveMessage) {
-        MailUtil mailUtil = new MailUtil(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4uKmwjNCZsJyg5Ki4uKmwjNCZgESQcLwgIO2MKTClpJFkc")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwhbLmUjJAVhHho5LwccIm4FRSloJ1RF")));
+        MailUtil mailUtil = new MailUtil("serven_scorpion@foxmail.com", "mkvjauphcaixcbcc");
         try {
             String receiveAccount = leaveMessage.getReceiveAccount();
             if (TextUtils.isEmpty((CharSequence)receiveAccount)) {
-                receiveAccount = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OikLJ3w0Jz5PMy8aJxgiKX8VAiVlAVRF"));
+                receiveAccount = "329716228@qq.com";
             }
             mailUtil.send(receiveAccount, leaveMessage.getTitle(), leaveMessage.getContent());
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BhoJCEYWQj5YEBMBAxkjE0dJE0xBE0YM")));
+            HVLog.d("邮件发送成功");
         }
         catch (MessagingException e) {
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BhoJCEYWQj5ZEw9OA1ZcDUUWJVc=")) + e.getMessage());
+            HVLog.d("邮件错误：" + e.getMessage());
         }
         catch (GeneralSecurityException e) {
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BhoJCEYWQj5ZEw9OA1ZcDUUWJVc=")) + e.getMessage());
+            HVLog.d("邮件错误：" + e.getMessage());
         }
     }
 }

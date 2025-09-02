@@ -56,7 +56,7 @@ public class Folder {
     }
 
     public String toString() {
-        return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JT4ADmgFNARnJFk7KgcLJXkFSFo=")) + this.name + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186CWoVJC1iASsd")) + this.images + '}';
+        return "Folder{name='" + this.name + '\'' + ", images=" + this.images + '}';
     }
 }
 

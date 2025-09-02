@@ -89,7 +89,7 @@ public class FileItem {
     }
 
     public String toString() {
-        return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JT4YDmgbAgZiDl0hKD0cCGkjMDdlASsoPj5SVg==")) + this.filename + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186PmUVHitoJSwKKi1bPmkgRDM=")) + this.fileORHolder + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186CWgOHS0=")) + this.id + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186CW8xLCBiDigxPghSVg==")) + this.isCheck + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186PGowPCZhI1w9")) + this.downs + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186LGUVEit0CjhF")) + this.time + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186KWUaTSthI1w9")) + this.sizes + '\'' + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186PmUVHituASwoPgM6Vg==")) + this.fileUrl + '\'' + '}';
+        return "FileItem{filename='" + this.filename + '\'' + ", fileORHolder=" + this.fileORHolder + ", id='" + this.id + '\'' + ", isCheck=" + this.isCheck + ", downs='" + this.downs + '\'' + ", time='" + this.time + '\'' + ", sizes='" + this.sizes + '\'' + ", fileUrl='" + this.fileUrl + '\'' + '}';
     }
 }
 

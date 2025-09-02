@@ -13,7 +13,7 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class SplitDependencyLoader {
-    public static Class<?> TYPE = RefClass.load(SplitDependencyLoader.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWBYeMxoXQSEABQYaNwACEwsKOh0AFj4fCAsLAQ=="));
+    public static Class<?> TYPE = RefClass.load(SplitDependencyLoader.class, "android.content.pm.split.SplitDependencyLoader");
     @MethodReflectParams(value={"android.content.pm.PackageParser$PackageLite"})
     public static RefStaticMethod<SparseArray<int[]>> createDependenciesFromPackage;
 }

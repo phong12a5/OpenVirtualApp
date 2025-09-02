@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IStorageManager {
-    public static Class<?> Class = RefClass.load(IStorageManager.class, StringFog.decrypt("EgsWBAoHO10MHFwDHQAcEgIXWCw9KxwRDhUVJA4AEgIXBA=="));
+    public static Class<?> Class = RefClass.load(IStorageManager.class, "android.os.storage.IStorageManager");
 
     public static class Stub {
-        public static Class<?> Class = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10MHFwDHQAcEgIXWCw9KxwRDhUVJA4AEgIXBEE9KwYB"));
+        public static Class<?> Class = RefClass.load(Stub.class, "android.os.storage.IStorageManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

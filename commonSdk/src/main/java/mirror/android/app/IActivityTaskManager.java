@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IActivityTaskManager {
-    public static Class<?> TYPE = RefClass.load(IActivityTaskManager.class, StringFog.decrypt("EgsWBAoHO10CHwJeIC4NBwwEHxEXCxIQBD8RBw4JFhc="));
+    public static Class<?> TYPE = RefClass.load(IActivityTaskManager.class, "android.app.IActivityTaskManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10CHwJeIC4NBwwEHxEXCxIQBD8RBw4JFhdWJREbPQ=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.app.IActivityTaskManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

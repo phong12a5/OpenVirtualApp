@@ -17,7 +17,7 @@ import mirror.RefStaticMethod;
 import mirror.RefStaticObject;
 
 public class ServiceManager {
-    public static Class<?> TYPE = RefClass.load(ServiceManager.class, StringFog.decrypt("EgsWBAoHO10MHFwjDB0YGgYXOwQAPhQGHQ=="));
+    public static Class<?> TYPE = RefClass.load(ServiceManager.class, "android.os.ServiceManager");
     @MethodParams(value={String.class, IBinder.class})
     public static RefStaticMethod<Void> addService;
     public static RefStaticMethod<IBinder> checkService;

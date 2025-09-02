@@ -16,7 +16,7 @@ import mirror.RefInt;
 import mirror.RefObject;
 
 public class ServiceStartArgs {
-    public static Class<?> TYPE = RefClass.load(ServiceStartArgs.class, StringFog.decrypt("EgsWBAoHO10CHwJeOgocBQwREzYaPgEXLgAXGg=="));
+    public static Class<?> TYPE = RefClass.load(ServiceStartArgs.class, "android.app.ServiceStartArgs");
     @MethodParams(value={boolean.class, int.class, int.class, Intent.class})
     public static RefConstructor<Object> ctor;
     public static RefBoolean taskRemoved;

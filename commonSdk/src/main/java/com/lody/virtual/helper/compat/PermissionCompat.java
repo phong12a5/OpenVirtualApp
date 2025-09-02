@@ -23,35 +23,35 @@ import java.util.Set;
 public class PermissionCompat {
     public static Set<String> DANGEROUS_PERMISSION = new HashSet<String>(){
         {
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUIFl9hIiRAJywqGmAIFlo=")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsmU2sLFgpgIiwAITwADGMbJAA=")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCw2HWgILB9hAVRF")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUIFl9hIllTOzxbH2cYLFo=")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsmU2sLFgpgIixXIRUcHWAmMA8=")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCwmGW4bAg5hIixXOywqXWQjSFo=")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCw+H2UmLBB9JVlKIiwqGWEhHl5jNThOLQUYHw==")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCw+H2UmLBB9JVkCIQZbU2QhNBNiDwYMIwYMGmQmAlo=")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUIFl99HAZXIRYAE2QmMB1kDyhF")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCw2HWgYTV99HAZXIRYAVg==")));
+            this.add("android.permission.READ_CALENDAR");
+            this.add("android.permission.WRITE_CALENDAR");
+            this.add("android.permission.CAMERA");
+            this.add("android.permission.READ_CONTACTS");
+            this.add("android.permission.WRITE_CONTACTS");
+            this.add("android.permission.GET_ACCOUNTS");
+            this.add("android.permission.ACCESS_FINE_LOCATION");
+            this.add("android.permission.ACCESS_COARSE_LOCATION");
+            this.add("android.permission.READ_PHONE_STATE");
+            this.add("android.permission.CALL_PHONE");
             if (Build.VERSION.SDK_INT >= 16) {
-                this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUIFl9hIiRAITsuAn0hPFo=")));
-                this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsmU2sLFgpgIiwAITwiE30bGlY=")));
+                this.add("android.permission.READ_CALL_LOG");
+                this.add("android.permission.WRITE_CALL_LOG");
             }
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmUVNC9oJygeLRgYKE4zOCBlNFEiLAcYI2UjAQRjHywJKiw6GGcIMFZnJV0WOxhSVg==")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsuUmoLAhBnDyBF")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCs6U2gmNAp9JSwOIQUAXWMhGlBiJSAAIysmHWQbMFo=")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCs2GWg2Fl99IlES")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUmLBZiMgoOJAYmUg==")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUIFl99IlES")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUmLBZiMgoOOwZbQGEmIAlnNVlF")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUmLBZiMgoOISwmUg==")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUmAh9mH1kAOywcBX0jSFo=")));
-            this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsmU2sLFgpgIgoXOzwAU30xJExmMjBOLiwqAmYmFlo=")));
+            this.add("com.android.voicemail.permission.ADD_VOICEMAIL");
+            this.add("android.permission.USE_SIP");
+            this.add("android.permission.PROCESS_OUTGOING_CALLS");
+            this.add("android.permission.SEND_SMS");
+            this.add("android.permission.RECEIVE_SMS");
+            this.add("android.permission.READ_SMS");
+            this.add("android.permission.RECEIVE_WAP_PUSH");
+            this.add("android.permission.RECEIVE_MMS");
+            this.add("android.permission.RECORD_AUDIO");
+            this.add("android.permission.WRITE_EXTERNAL_STORAGE");
             if (Build.VERSION.SDK_INT >= 16) {
-                this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUIFl9mDwYTJytfDGALHhNnMiwQLzsmAGYFSFo=")));
+                this.add("android.permission.READ_EXTERNAL_STORAGE");
             }
             if (Build.VERSION.SDK_INT >= 20) {
-                this.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCwMA2obGl99IgpTJAYuU2QjSFo=")));
+                this.add("android.permission.BODY_SENSORS");
             }
         }
     };

@@ -15,7 +15,7 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class ContentProviderNative {
-    public static Class<?> TYPE = RefClass.load(ContentProviderNative.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSYdGBELMQczHR0GAAsLASsTAgwYOg=="));
+    public static Class<?> TYPE = RefClass.load(ContentProviderNative.class, "android.content.ContentProviderNative");
     @MethodParams(value={IBinder.class})
     public static RefStaticMethod<IInterface> asInterface;
 }

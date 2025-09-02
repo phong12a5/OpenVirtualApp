@@ -29,13 +29,13 @@ public class PlayGamesHooker {
     @HookMethod("onCreate")
     @MethodParams({Bundle.class})
     public static void m1(Object thiz, Bundle v1) throws Throwable {
-        Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4YPWohAiZlDiggKQg+MWUwLFo=")));
+        Log.d("vatest", "SignInActivity");
         Set<String> keys = v1.keySet();
         Iterator var3 = keys.iterator();
 
         while(var3.hasNext()) {
             String key = (String)var3.next();
-            Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LC4uJ3kjSFo=")) + key);
+            Log.d("vatest", "key:" + key);
             v1.get(key);
         }
 

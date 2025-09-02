@@ -50,13 +50,13 @@ public class ActivityManagerStub extends MethodInvocationProxy<MethodInvocationS
 
         BinderInvocationStub hookAMBinder = new BinderInvocationStub((IInterface)this.getInvocationStub().getBaseInterface());
         hookAMBinder.copyMethodProxies(this.getInvocationStub());
-        ((Map)ServiceManager.sCache.get()).put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")), hookAMBinder);
+        ((Map)ServiceManager.sCache.get()).put("activity", hookAMBinder);
     }
 
     protected void onBindMethods() {
         super.onBindMethods();
         if (VirtualCore.get().isVAppProcess()) {
-            this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGcjNAFmDjApLBcMPmcKRS9rARo/LRcqI2AgRVo="))) {
+            this.addMethodProxy(new StaticMethodProxy("setRequestedOrientation") {
                 public Object call(Object who, Method method, Object... args) throws Throwable {
                     try {
                         return super.call(who, method, args);
@@ -66,34 +66,34 @@ public class ActivityManagerStub extends MethodInvocationProxy<MethodInvocationS
                     }
                 }
             });
-            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLH0FAgNmHh4qKQcqOW82TQRlJzAgKT02GWcaGj99NAoqLAguKmwjSFo="))));
-            this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASxKKQc2RG4aAitsNCQgKS5SVg==")), 0));
-            this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcKmgVPC9hJwo/IzwMMWkxNCpsJyg5Ki4uCA==")), 0));
-            this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJpJwo7Iz42Um8FBis="))));
-            this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4YCGgKNAJiHiAgKAUqDW8VHi9rJCg5LRcqI2AgRVo=")), 0));
-            this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaIAJoHh45KS0MPn0VGgRqASQ0IxgcIQ=="))));
-            this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uKGowFgZrNzA2KSs+KG8FPBFsHjxF"))));
-            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2W2owFiliDgoJKgdXPWoaAi9vNyhIKhgEKGkgNDVuDgod"))));
-            this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQYAKAgqLW8jGiw="))) {
+            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy("getHistoricalProcessExitReasons"));
+            this.addMethodProxy(new ResultStaticMethodProxy("registerUidObserver", 0));
+            this.addMethodProxy(new ResultStaticMethodProxy("unregisterUidObserver", 0));
+            this.addMethodProxy(new ReplaceLastPkgMethodProxy("getAppStartMode"));
+            this.addMethodProxy(new ResultStaticMethodProxy("bindupdateConfiguration", 0));
+            this.addMethodProxy(new ReplaceCallingPkgMethodProxy("setAppLockedVerifying"));
+            this.addMethodProxy(new ReplaceCallingPkgMethodProxy("reportJunkFromApp"));
+            this.addMethodProxy(new ReplaceCallingPkgAndLastUserIdMethodProxy("isForcedImmersiveFullScreen"));
+            this.addMethodProxy(new StaticMethodProxy("activityResumed") {
                 public Object call(Object who, Method method, Object... args) throws Throwable {
                     IBinder token = (IBinder)args[0];
                     VActivityManager.get().onActivityResumed(token);
                     return super.call(who, method, args);
                 }
             });
-            this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQYWKAgqLmoVND9rASxF"))) {
+            this.addMethodProxy(new StaticMethodProxy("activityDestroyed") {
                 public Object afterCall(Object who, Method method, Object[] args, Object result) throws Throwable {
                     IBinder token = (IBinder)args[0];
                     VActivityManager.get().onActivityDestroy(token);
                     return super.afterCall(who, method, args, result);
                 }
             });
-            this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQVBhNAYCKAguD2wgAgNqAQYb"))) {
+            this.addMethodProxy(new StaticMethodProxy("checkUriPermission") {
                 public Object call(Object who, Method method, Object... args) throws Throwable {
-                    return args[0] instanceof Uri && args[0].toString().equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGwFNCZmVgU1Oi42PW8zGgJqEQYbL18AJX0FMDVvDgo7LAQuDmwzNDJoHgooJxdfVg=="))) ? VirtualCore.get().checkSelfPermission(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Owg+CGUVOCthJw02IxcMKG8jLANsJx4cLCocXmk2GlRmD1kAJDwqE2QhNApkDx4fLCwuVg==")), VirtualCore.get().isExtPackage()) ? 0 : -1 : 0;
+                    return args[0] instanceof Uri && args[0].toString().equals("content://telephony/carriers/preferapn") ? VirtualCore.get().checkSelfPermission("Manifest.permission.WRITE_APN_SETTINGS", VirtualCore.get().isExtPackage()) ? 0 : -1 : 0;
                 }
             });
-            this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YCGUaLCBlDiggKQg+MWUwLFo="))) {
+            this.addMethodProxy(new StaticMethodProxy("finishActivity") {
                 public Object call(Object who, Method method, Object... args) throws Throwable {
                     IBinder token = (IBinder)args[0];
                     VActivityManager.get().onFinishActivity(token);
@@ -104,7 +104,7 @@ public class ActivityManagerStub extends MethodInvocationProxy<MethodInvocationS
                     return isAppProcess();
                 }
             });
-            this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YCGUaLCBlDiggKQg+MWUwLBFrNyQaLC4YCmcFSFo="))) {
+            this.addMethodProxy(new StaticMethodProxy("finishActivityAffinity") {
                 public Object call(Object who, Method method, Object... args) {
                     IBinder token = (IBinder)args[0];
                     return VActivityManager.get().finishActivityAffinity(getAppUserId(), token);
@@ -116,7 +116,7 @@ public class ActivityManagerStub extends MethodInvocationProxy<MethodInvocationS
             });
         }
 
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLH0VBgZiDlkgOy0MDmkzGgRnJx4/IwYiJ30FFjBlNApF"))));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getIntentSenderWithFeature"));
     }
 
     public boolean isEnvBad() {
@@ -128,7 +128,7 @@ public class ActivityManagerStub extends MethodInvocationProxy<MethodInvocationS
         }
 
         public final String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj0MD2sVMCl9ASggIQcYLmkjMAZnJx4/IwYiJ30FFjBlNApF"));
+            return "broadcastIntentWithFeature";
         }
 
         public final Object call(Object who, Method method, Object[] args) throws Throwable {

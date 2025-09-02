@@ -26,11 +26,11 @@ public class BackHomeActivity
 extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityManager am = (ActivityManager)this.getSystemService(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+        ActivityManager am = (ActivityManager)this.getSystemService("activity");
         boolean existTask = false;
         Class<?> homeActivityClz = null;
         try {
-            homeActivityClz = Class.forName(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYMm8FPCt1NVkcLBguHX0jFixqNBo9Li5SVg==")));
+            homeActivityClz = Class.forName("com.carlos.home.HomeActivity");
         }
         catch (ClassNotFoundException e) {
             e.printStackTrace();

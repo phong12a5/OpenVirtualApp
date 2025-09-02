@@ -63,8 +63,8 @@ extends IPackageInstallerSession.Stub {
     public static final int INSTALL_FAILED_ABORTED = -115;
     public static final int INSTALL_SUCCEEDED = 1;
     public static final int INSTALL_FAILED_INVALID_APK = -2;
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ihg+OWUzJC1iDAY2Iy42OW8zOCtsN1RF"));
-    private static final String REMOVE_SPLIT_MARKER_EXTENSION = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz0MM2oVGj5iDgpF"));
+    private static final String TAG = "PackageInstaller";
+    private static final String REMOVE_SPLIT_MARKER_EXTENSION = ".removed";
     private static final int MSG_COMMIT = 0;
     private final VPackageInstallerService.InternalCallback mCallback;
     private final Context mContext;
@@ -109,7 +109,7 @@ extends IPackageInstallerSession.Stub {
                 }
                 catch (PackageManagerException e) {
                     String completeMsg = PackageInstallerSession.getCompleteMessage(e);
-                    VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ihg+OWUzJC1iDAY2Iy42OW8zOCtsN1RF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4ADWoVAgZLHh4+PxgqPWoKAi9lJx0r")) + PackageInstallerSession.this.sessionId + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgiP2UVHitiVgU8")) + completeMsg);
+                    VLog.e("PackageInstaller", "Commit of session " + PackageInstallerSession.this.sessionId + " failed: " + completeMsg);
                     PackageInstallerSession.this.destroyInternal();
                     PackageInstallerSession.this.dispatchSessionFinished(e.error, completeMsg, null);
                 }
@@ -155,10 +155,10 @@ extends IPackageInstallerSession.Stub {
 
     private void commitLocked() throws PackageManagerException {
         if (this.mDestroyed) {
-            throw new PackageManagerException(-110, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uKW8zAiVgMCQwKAgqLmoVND9rASxF")));
+            throw new PackageManagerException(-110, "Session destroyed");
         }
         if (!this.mSealed) {
-            throw new PackageManagerException(-110, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uKW8zAiVgMCQ2Ki41OmoFGjdlESgv")));
+            throw new PackageManagerException(-110, "Session not sealed");
         }
         try {
             this.resolveStageDir();
@@ -171,7 +171,7 @@ extends IPackageInstallerSession.Stub {
         this.computeProgressLocked(true);
         boolean success = false;
         for (File file : this.stageDir.listFiles()) {
-            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4AI2ojMyh9ASQxPxccDn4wAgZoASAgPQgqI2E3GSM=")) + file.getPath());
+            VLog.e(TAG, "found apk in stage dir: " + file.getPath());
             VAppInstallerResult res = VAppManagerService.get().installPackage(Uri.fromFile((File)file), new VAppInstallerParams());
             if (res.status != 0) continue;
             success = true;
@@ -186,12 +186,12 @@ extends IPackageInstallerSession.Stub {
         this.mResolvedStagedFiles.clear();
         File[] addedFiles = this.mResolvedStageDir.listFiles();
         if (addedFiles == null || addedFiles.length == 0) {
-            throw new PackageManagerException(-2, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4fOG8FJCljJCA9KAgpOmoKBjdrJygv")));
+            throw new PackageManagerException(-2, "No packages staged");
         }
         int i = 0;
         for (File addedFile : addedFiles) {
             if (addedFile.isDirectory()) continue;
-            String targetName = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+KWgYGlo=")) + i + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz4+KGUzSFo="));
+            String targetName = "base_" + i + ".apk";
             File targetFile = new File(this.mResolvedStageDir, targetName);
             if (!addedFile.equals(targetFile)) {
                 addedFile.renameTo(targetFile);
@@ -201,7 +201,7 @@ extends IPackageInstallerSession.Stub {
             ++i;
         }
         if (this.mResolvedBaseFile == null) {
-            throw new PackageManagerException(-2, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JT0uDmoJIC9gNyggLwdbCH4zPAVsJC8rIxgcJWAVLC9uCiAqOD5fO2wjNzRvATg2JS0mLm4FSFo=")));
+            throw new PackageManagerException(-2, "Full install must include a base package");
         }
     }
 
@@ -243,7 +243,7 @@ extends IPackageInstallerSession.Stub {
 
     @Override
     public String[] getNames() throws RemoteException {
-        this.assertPreparedAndNotSealed(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGIjJCNiAShF")));
+        this.assertPreparedAndNotSealed("getNames");
         try {
             return this.resolveStageDir().list();
         }
@@ -285,10 +285,10 @@ extends IPackageInstallerSession.Stub {
         Object object = this.mLock;
         synchronized (object) {
             if (!this.mPrepared) {
-                throw new IllegalStateException(cookie + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgMM2gjGgRiCiQsIz0MKm4gRStrEVRF")));
+                throw new IllegalStateException(cookie + " before prepared");
             }
             if (this.mSealed) {
-                throw new SecurityException(cookie + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgcD2wJIDdgHlE1LC0MPn4zQS5vESg5PQg2KWAKQSxqEVRF")));
+                throw new SecurityException(cookie + " not allowed after commit");
             }
         }
     }
@@ -300,7 +300,7 @@ extends IPackageInstallerSession.Stub {
         FileBridge bridge;
         Object object = this.mLock;
         synchronized (object) {
-            this.assertPreparedAndNotSealed(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy06M2omPARjAQo/")));
+            this.assertPreparedAndNotSealed("openWrite");
             bridge = new FileBridge();
             this.mBridges.add(bridge);
         }
@@ -333,10 +333,10 @@ extends IPackageInstallerSession.Stub {
     }
 
     private ParcelFileDescriptor openReadInternal(String name) throws IOException {
-        this.assertPreparedAndNotSealed(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy06M2omFit9DgpF")));
+        this.assertPreparedAndNotSealed("openRead");
         try {
             if (!FileUtils.isValidExtFilename(name)) {
-                throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQ2LwdXPXhSTVo=")) + name);
+                throw new IllegalArgumentException("Invalid name: " + name);
             }
             File target = new File(this.resolveStageDir(), name);
             FileDescriptor targetFd = Os.open((String)target.getAbsolutePath(), (int)OsConstants.O_RDONLY, (int)0);
@@ -350,7 +350,7 @@ extends IPackageInstallerSession.Stub {
     @Override
     public void removeSplit(String splitName) throws RemoteException {
         if (TextUtils.isEmpty((CharSequence)this.params.appPackageName)) {
-            throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OwcuKWwJIANhHjA5KQc+IX4wTTdoJ10sLj4tJGAwPChuCiA9KQRXCGsFEgNsJys3OwMiOmUaQT1lN1RF")));
+            throw new IllegalStateException("Must specify package name to remove a split");
         }
         try {
             this.createRemoveSplitMarker(splitName);
@@ -364,7 +364,7 @@ extends IPackageInstallerSession.Stub {
         try {
             String markerName = splitName + REMOVE_SPLIT_MARKER_EXTENSION;
             if (!FileUtils.isValidExtFilename(markerName)) {
-                throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQ3LwguCWkgRDJ4EVRF")) + markerName);
+                throw new IllegalArgumentException("Invalid marker: " + markerName);
             }
             File target = new File(this.resolveStageDir(), markerName);
             target.createNewFile();
@@ -399,7 +399,7 @@ extends IPackageInstallerSession.Stub {
             if (!this.mSealed) {
                 for (FileBridge bridge : this.mBridges) {
                     if (bridge.isClosed()) continue;
-                    throw new SecurityException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JT4YDmgaLyhhJwozKhdaOm8KTStlN1RF")));
+                    throw new SecurityException("Files still open");
                 }
                 this.mSealed = true;
             }
@@ -417,7 +417,7 @@ extends IPackageInstallerSession.Stub {
     @Override
     public void abandon() throws RemoteException {
         this.destroyInternal();
-        this.dispatchSessionFinished(-115, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uKW8zAiVgMCQtLwgpOm4jRTdlNywcLC4uIA==")), null);
+        this.dispatchSessionFinished(-115, "Session was abandoned", null);
     }
 
     @Override
@@ -471,7 +471,7 @@ extends IPackageInstallerSession.Stub {
      */
     void setPermissionsResult(boolean accepted) {
         if (!this.mSealed) {
-            throw new SecurityException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OwcuKWwJICpiCiQpKAciCGkjAShvERkrLRg2JWIFOD95ESAuLBgmI2wgLAVqNxoc")));
+            throw new SecurityException("Must be sealed to accept permissions");
         }
         if (accepted) {
             Object object = this.mLock;
@@ -481,7 +481,7 @@ extends IPackageInstallerSession.Stub {
             this.mHandler.obtainMessage(0).sendToTarget();
         } else {
             this.destroyInternal();
-            this.dispatchSessionFinished(-115, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQc2M28nIARiDgI/Ly42PWk3TQJrDgoeIxc2D2MKAillJ1RF")), null);
+            this.dispatchSessionFinished(-115, "User rejected permissions", null);
         }
     }
 
@@ -496,7 +496,7 @@ extends IPackageInstallerSession.Stub {
         synchronized (object) {
             if (!this.mPrepared) {
                 if (this.stageDir == null) {
-                    throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQdfP2swMCRnCiQ1Kj0LOm8FGShsJCwsLj4uGmMFMyNsJyspLAccO2sjNB9lES83Jy4MKG4gETZvJAYcKV86OmhSIANiAQpF")));
+                    throw new IllegalArgumentException("Exactly one of stageDir or stageCid stage must be set");
                 }
                 this.mPrepared = true;
                 this.mCallback.onSessionPrepared(this);
@@ -508,7 +508,7 @@ extends IPackageInstallerSession.Stub {
         StringBuilder builder = new StringBuilder();
         builder.append(t.getMessage());
         while ((t = t.getCause()) != null) {
-            builder.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ODo6Vg=="))).append(t.getMessage());
+            builder.append(": ").append(t.getMessage());
         }
         return builder.toString();
     }

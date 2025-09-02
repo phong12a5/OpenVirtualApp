@@ -54,8 +54,8 @@ import java.util.Map;
 
 public class ChooseAccountTypeActivity
 extends Activity {
-    public static final String KEY_USER_ID = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28hAiw="));
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgg2OWowNCZmHCg0Ki1fL2kgRVo="));
+    public static final String KEY_USER_ID = "userId";
+    private static final String TAG = "AccountChooser";
     private static final boolean DEBUG = false;
     private HashMap<String, AuthInfo> mTypeToAuthenticatorInfo = new HashMap();
     private ArrayList<AuthInfo> mAuthenticatorInfosToDisplay;
@@ -69,7 +69,7 @@ extends Activity {
             return;
         }
         HashSet setOfAllowableAccountTypes = null;
-        String[] validAccountTypes = this.getIntent().getStringArrayExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggEDmowPDd9NFE/JwcqP28KGiZvHCw0KQguDw==")));
+        String[] validAccountTypes = this.getIntent().getStringArrayExtra("allowableAccountTypes");
         if (validAccountTypes != null) {
             setOfAllowableAccountTypes = new HashSet(validAccountTypes.length);
             Collections.addAll(setOfAllowableAccountTypes, validAccountTypes);
@@ -84,7 +84,7 @@ extends Activity {
         }
         if (this.mAuthenticatorInfosToDisplay.isEmpty()) {
             Bundle bundle = new Bundle();
-            bundle.putString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQcMKmowFg1iASgpLwc6PQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4fOGsVHiRgJzg7Lz1bPX4zQSloJwYwLC0pJGYVGjNuASxF")));
+            bundle.putString("errorMessage", "no allowable account types");
             this.setResult(-1, new Intent().putExtras(bundle));
             this.finish();
             return;
@@ -108,7 +108,7 @@ extends Activity {
 
     private void setResultAndFinish(String type) {
         Bundle bundle = new Bundle();
-        bundle.putString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmHwoZIxcMVg==")), type);
+        bundle.putString("accountType", type);
         this.setResult(-1, new Intent().putExtras(bundle));
         this.finish();
     }
@@ -125,7 +125,7 @@ extends Activity {
                 name = sequence.toString();
             }
             catch (Resources.NotFoundException e) {
-                VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4fOGUVLCVgMCQqKAgqDWUgRSlrDTwtLD0LJH0KNCZsJwodIzpXCm4KID97AVRF")) + desc.type, new Object[0]);
+                VLog.w(TAG, "No icon resource for account type " + desc.type, new Object[0]);
             }
             AuthInfo authInfo = new AuthInfo(desc, name, icon);
             this.mTypeToAuthenticatorInfo.put(desc.type, authInfo);
@@ -140,7 +140,7 @@ extends Activity {
         AccountArrayAdapter(Context context, int textViewResourceId, ArrayList<AuthInfo> infos) {
             super(context, textViewResourceId, infos);
             this.mInfos = infos;
-            this.mLayoutInflater = (LayoutInflater)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+J2owNAZsJAY2KD1bOWUzGgQ=")));
+            this.mLayoutInflater = (LayoutInflater)context.getSystemService("layout_inflater");
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {

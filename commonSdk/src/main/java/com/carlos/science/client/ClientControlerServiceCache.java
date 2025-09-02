@@ -31,12 +31,12 @@ public class ClientControlerServiceCache {
         if (sCache.containsKey(name)) {
             return sCache.get(name);
         }
-        return sCache.get(StringFog.decrypt("FwAU"));
+        return sCache.get("def");
     }
 
     static {
-        ClientControlerServiceCache.addService(StringFog.decrypt("FwAU"), (IBinder)LearnControllerImpl.get());
-        ClientControlerServiceCache.addService(StringFog.decrypt("EAofWAsLKxYCHBdeARYWF0sXAQQA"), (IBinder)HYXDControllerImpl.get());
+        ClientControlerServiceCache.addService("def", (IBinder)LearnControllerImpl.get());
+        ClientControlerServiceCache.addService("com.netease.hyxd.ewan", (IBinder)HYXDControllerImpl.get());
     }
 }
 

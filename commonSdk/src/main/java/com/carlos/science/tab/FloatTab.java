@@ -62,7 +62,7 @@ import java.util.List;
 public class FloatTab
 extends FrameLayout
 implements View.OnClickListener {
-    String TAG = StringFog.decrypt("NQkdFxE6PhE=");
+    String TAG = "FloatTab";
     private SegmentTabLayout tabTitle;
     private ViewPager tabContext;
     Button featuresMenu;
@@ -132,7 +132,7 @@ implements View.OnClickListener {
             layoutInflater.inflate(R.layout.float_windows_tab, (ViewGroup)this, true);
         }
         this.floatBallManager = floatBallManager;
-        Log.d((String)this.TAG, (String)(StringFog.decrypt("FQkdFxEaPhFDCR4fCBssEgkeOwQAPhQGHVIZGk8=") + floatBallManager));
+        Log.d((String)this.TAG, (String)("floattab floatBallManager is " + floatBallManager));
         this.mLayoutParams.height = floatBallManager.mScreenHeight * 2 / 6;
         this.mLayoutParams.width = floatBallManager.mScreenWidth * 2 / 3;
         int halfSize = (int)(Math.sqrt(Math.pow(this.mLayoutParams.height, 2.0) + Math.pow(this.mLayoutParams.width, 2.0)) / 2.0);
@@ -230,10 +230,10 @@ implements View.OnClickListener {
         WindowManager windowManager = this.floatBallManager.getWindowManager();
         int mScreenWidth = this.floatBallManager.getWindowManager().getDefaultDisplay().getWidth();
         int mScreenHeight = this.floatBallManager.getWindowManager().getDefaultDisplay().getHeight();
-        HVLog.d(StringFog.decrypt("FQkdFxEjOh0WTwUZDRsGSQ==") + width + StringFog.decrypt("U0VSHgAHOBsXVQ==") + height + StringFog.decrypt("U0VSGzYNLRYGASUZDRsGSQ==") + mScreenWidth + StringFog.decrypt("U0UfJQYcOhYNJxcZDgcaSQ==") + mScreenHeight + StringFog.decrypt("U0VSVhIHMRcMGD8RBw4JFhdI") + (windowManager != null));
+        HVLog.d("floatMenu width:" + width + "   height:" + height + "   mScreenWidth:" + mScreenWidth + "  mScreenHeight:" + mScreenHeight + "    windowManager:" + (windowManager != null));
         this.mLayoutParams.x = 0;
         this.mLayoutParams.y = mScreenHeight / 2 - height / 2;
-        HVLog.d(StringFog.decrypt("HikTDwobKyMCHRMdGk8=") + this.mLayoutParams.x + "   " + this.mLayoutParams.y);
+        HVLog.d("mLayoutParams " + this.mLayoutParams.x + "   " + this.mLayoutParams.y);
         if (windowManager != null) {
             windowManager.updateViewLayout((View)this, (ViewGroup.LayoutParams)this.mLayoutParams);
         }
@@ -258,7 +258,7 @@ implements View.OnClickListener {
                 this.mLayoutParams.y = mScreenHeight / 2 - this.mLayoutParams.height / 2;
             }
             this.toggle(this.mDuration);
-            HVLog.d(StringFog.decrypt("HikTDwobKyMCHRMdGk8=") + this.mLayoutParams.x + "   " + this.mLayoutParams.y + StringFog.decrypt("lc3Ykc74usLsgM7q") + IS_HORIZONTAL + StringFog.decrypt("U0VSGyEbLRIXBh0eUw==") + this.mDuration);
+            HVLog.d("mLayoutParams " + this.mLayoutParams.x + "   " + this.mLayoutParams.y + "横竖屏：" + IS_HORIZONTAL + "   mDuration:" + this.mDuration);
             windowManager.addView((View)this, (ViewGroup.LayoutParams)this.mLayoutParams);
             this.isAdded = true;
         }
@@ -271,11 +271,11 @@ implements View.OnClickListener {
         if (tabContainer != null) {
             tabContainer.onAttachedToWindow(this);
         }
-        Log.d((String)this.TAG, (String)(StringFog.decrypt("FQkdFxE6PhFDABwxHRsPEA0XEjEBCBoNCx0HSQ==") + currentItem));
+        Log.d((String)this.TAG, (String)("floatTab onAttachedToWindow " + currentItem));
     }
 
     public void refreshToWindowsw(WindowManager windowManager) {
-        Log.d((String)this.TAG, (String)StringFog.decrypt("UxcXEBcLLBs3ACUZBwsBBBYF"));
+        Log.d((String)this.TAG, (String)" refreshToWindowsw");
         windowManager.updateViewLayout((View)this, (ViewGroup.LayoutParams)this.mLayoutParams);
     }
 
@@ -289,7 +289,7 @@ implements View.OnClickListener {
     }
 
     public void detachFromWindow(WindowManager windowManager) {
-        HVLog.d(this.TAG, StringFog.decrypt("FwAGFwYGGQEMAiUZBwsBBEUbBSQKOxYHVQ==") + this.isAdded);
+        HVLog.d(this.TAG, "detachFromWindow isAdded:" + this.isAdded);
         if (this.isAdded) {
             this.toggle(0);
             this.setVisibility(8);
@@ -362,7 +362,7 @@ implements View.OnClickListener {
         }
         layoutParams.x = layoutX;
         layoutParams.y = layoutY;
-        Log.d((String)this.TAG, (String)(StringFog.decrypt("HwQLGRAaB0k=") + layoutX + StringFog.decrypt("U0VSVgkPJhwWGytK") + layoutY + StringFog.decrypt("U0VSVgcPMx8gChwEDB02SQ==") + ballCenterX + StringFog.decrypt("U0VSVgcPMx8gChwEDB03SQ==") + ballCenterY));
+        Log.d((String)this.TAG, (String)("layoutX:" + layoutX + "    layoutY:" + layoutY + "    ballCenterX:" + ballCenterX + "    ballCenterY:" + ballCenterY));
     }
 
     private int getPadding() {
@@ -381,7 +381,7 @@ implements View.OnClickListener {
             TabContainer tabContainer = tabChild.getTabContainer();
             tabContainer.initContainer();
             this.containerArrayList.add(tabContainer);
-            HVLog.d(this.TAG, StringFog.decrypt("FQkdFxE6PhFDierOjsvUlP/2AgQMHBwNGxMZBwocnNno") + tabContainer);
+            HVLog.d(this.TAG, "floatTab 显示的tabContainer：" + tabContainer);
         }
         this.tabTitle.setTabData(titles);
         if (this.tabContext.getAdapter() == null) {
@@ -491,7 +491,7 @@ implements View.OnClickListener {
         if (view == this.featuresMenu) {
             int currentItem = this.tabContext.getCurrentItem();
             TabContainer tabContainer = this.containerArrayList.get(currentItem);
-            Log.d((String)this.TAG, (String)(StringFog.decrypt("ltjhk+zjuevMiu7YSYDS6Q==") + tabContainer + StringFog.decrypt("l93fkOzJt9LviPDJjOjV")));
+            Log.d((String)this.TAG, (String)("当前是在 ：" + tabContainer + "中执行点击"));
             tabContainer.onClick(view);
         }
     }

@@ -12,14 +12,14 @@ import mirror.android.content.pm.ICrossProfileApps;
 public class CrossProfileAppsStub
 extends BinderInvocationProxy {
     public CrossProfileAppsStub() {
-        super(ICrossProfileApps.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MD28wLAJhNB4+KQdbPW4gTQJsJ1RF")));
+        super(ICrossProfileApps.Stub.asInterface, "crossprofileapps");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQFJARiJDAgJAgqPWoYTQRlJyQaLAguDw=="))));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMBF9JwozLD0cLmghQQNnDjAgKS5SVg==")), null));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getTargetUserProfiles"));
+        this.addMethodProxy(new ResultStaticMethodProxy("startActivityAsUser", null));
     }
 }
 

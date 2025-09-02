@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IVivoPermissonService {
-    public static Class<?> TYPE = RefClass.load(IVivoPermissonService.class, StringFog.decrypt("BQwEGUsPLwNNHBcTHB0HBxxcPzMHKRwzCgAdABwdGgocJQAcKRoACg=="));
+    public static Class<?> TYPE = RefClass.load(IVivoPermissonService.class, "vivo.app.security.IVivoPermissionService");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("BQwEGUsPLwNNHBcTHB0HBxxcPzMHKRwzCgAdABwdGgocJQAcKRoAClYjHRoM"));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "vivo.app.security.IVivoPermissionService$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

@@ -23,26 +23,26 @@ import mirror.com.android.internal.view.inputmethod.InputMethodManager;
 public class InputMethodManagerStub
 extends BinderInvocationProxy {
     public InputMethodManagerStub() {
-        super(InputMethodManager.mService.get(VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcKGwaMB9gDjAgKRdfPg==")))), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcKGwaMB9gDjAgKRdfPg==")));
+        super(InputMethodManager.mService.get(VirtualCore.get().getContext().getSystemService("input_method")), "input_method");
     }
 
     @Override
     public void inject() throws Throwable {
-        Object inputMethodManager = this.getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcKGwaMB9gDjAgKRdfPg==")));
+        Object inputMethodManager = this.getContext().getSystemService("input_method");
         InputMethodManager.mService.set(inputMethodManager, (IInterface)((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());
-        ((BinderInvocationStub)this.getInvocationStub()).replaceService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcKGwaMB9gDjAgKRdfPg==")));
+        ((BinderInvocationStub)this.getInvocationStub()).replaceService("input_method");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLH0VBgJmAQoNKAg2Mm8FBg5qDjA/"))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAVBjd9NFE/KBUcDmowGgZ9ASg/IwgAIGgaGjZqEVRF"))));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("getInputMethodList"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("getEnabledInputMethodList"));
     }
 
     @Override
     public boolean isEnvBad() {
-        Object inputMethodManager = this.getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcKGwaMB9gDjAgKRdfPg==")));
+        Object inputMethodManager = this.getContext().getSystemService("input_method");
         return InputMethodManager.mService.get(inputMethodManager) != ((BinderInvocationStub)this.getInvocationStub()).getBaseInterface();
     }
 }

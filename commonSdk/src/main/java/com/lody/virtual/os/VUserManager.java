@@ -22,12 +22,12 @@ import com.lody.virtual.server.interfaces.IUserManager;
 import java.util.List;
 
 public class VUserManager {
-    private static String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITsuKWgaFg19Dlk7KC0MKA=="));
+    private static String TAG = "VUserManager";
     private IUserManager mService;
     private static final VUserManager sInstance = new VUserManager();
 
     private Object getRemoteInterface() {
-        return IUserManager.Stub.asInterface(ServiceManagerNative.getService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28jSFo="))));
+        return IUserManager.Stub.asInterface(ServiceManagerNative.getService("user"));
     }
 
     /*
@@ -63,7 +63,7 @@ public class VUserManager {
             return this.getService().getUserInfo((int)this.getUserHandle()).name;
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxc6PWU3TQVsJyg5PQgcO2AKLFo=")), (Throwable)re);
+            Log.w((String)TAG, (String)"Could not get user name", (Throwable)re);
             return "";
         }
     }
@@ -77,7 +77,7 @@ public class VUserManager {
             return this.getService().getUserInfo(handle);
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxc6PWU3TQVsJyg5PQgYKmIwAlo=")), (Throwable)re);
+            Log.w((String)TAG, (String)"Could not get user info", (Throwable)re);
             return null;
         }
     }
@@ -96,7 +96,7 @@ public class VUserManager {
             return this.getService().createUser(name, flags);
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxcqKGkjQQZrDTwsPQcuD2IFMFo=")), (Throwable)re);
+            Log.w((String)TAG, (String)"Could not create a user", (Throwable)re);
             return null;
         }
     }
@@ -112,7 +112,7 @@ public class VUserManager {
         }
         catch (RemoteException re) {
             re.printStackTrace();
-            Log.w((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxc6PWU3TQVsJyg5PQgEI2EjFlo=")), (Throwable)re);
+            Log.w((String)TAG, (String)"Could not get user list", (Throwable)re);
             return null;
         }
     }
@@ -122,7 +122,7 @@ public class VUserManager {
             return this.getService().getUsers(excludeDying);
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxc6PWU3TQVsJyg5PQgEI2EjFlo=")), (Throwable)re);
+            Log.w((String)TAG, (String)"Could not get user list", (Throwable)re);
             return null;
         }
     }
@@ -132,7 +132,7 @@ public class VUserManager {
             return this.getService().removeUser(handle);
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxguPW8jND5rDTwwKT4uCEsVSFo=")), (Throwable)re);
+            Log.w((String)TAG, (String)"Could not remove user ", (Throwable)re);
             return false;
         }
     }
@@ -142,7 +142,7 @@ public class VUserManager {
             this.getService().setUserName(handle, name);
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxgqPWU3TQZqESsrKhc2J2E0OClpDlEuOD5SVg==")), (Throwable)re);
+            Log.w((String)TAG, (String)"Could not set the user name ", (Throwable)re);
         }
     }
 
@@ -151,7 +151,7 @@ public class VUserManager {
             this.getService().setUserIcon(handle, icon);
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxgqPWU3TQZqESsrKhc2J2E0OCxpJFkdOD5SVg==")), (Throwable)re);
+            Log.w((String)TAG, (String)"Could not set the user icon ", (Throwable)re);
         }
     }
 
@@ -160,7 +160,7 @@ public class VUserManager {
             return this.getService().getUserIcon(handle);
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxc6PWU3TQZqESsrKhc2J2E0OCxpJFkdOD5SVg==")), (Throwable)re);
+            Log.w((String)TAG, (String)"Could not get the user icon ", (Throwable)re);
             return null;
         }
     }
@@ -170,7 +170,7 @@ public class VUserManager {
             this.getService().setGuestEnabled(enable);
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxcqMm4jMC1rDTwuKhguD2ZTOCRpJCweIy4qCngVJCJrER47OwcqIGwaBiJoI1EZIyo6Vg==")) + enable));
+            Log.w((String)TAG, (String)("Could not change guest account availability to " + enable));
         }
     }
 
@@ -179,7 +179,7 @@ public class VUserManager {
             return this.getService().isGuestEnabled();
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxguPWUwRS9rDiQgPQgmCWIFND95HgodKC5fKGsFMzRvNCwoIBc2Vg==")));
+            Log.w((String)TAG, (String)"Could not retrieve guest enabled state");
             return false;
         }
     }
@@ -189,7 +189,7 @@ public class VUserManager {
             this.getService().wipeUser(handle);
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxg6MWozBShvDjAgKSo6Vg==")) + handle));
+            Log.w((String)TAG, (String)("Could not wipe user " + handle));
         }
     }
 
@@ -202,7 +202,7 @@ public class VUserManager {
             return this.getService().getUserSerialNumber(handle);
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxc6PWU3TQNrDgoaLRgDJGAzLChpNAo7OD4EKWw3IC9vNygbDRhSVg==")) + handle));
+            Log.w((String)TAG, (String)("Could not get serial number for user " + handle));
             return -1;
         }
     }
@@ -212,7 +212,7 @@ public class VUserManager {
             return this.getService().getUserHandle(userSerialNumber);
         }
         catch (RemoteException re) {
-            Log.w((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4AI2oFMyhgNB4gPxc6PWU3TVNnDjAgKSxfO2AwFjduCiAvKQdeJG8KLD9vIzxF")) + userSerialNumber));
+            Log.w((String)TAG, (String)("Could not get VUserHandle for user " + userSerialNumber));
             return -1;
         }
     }

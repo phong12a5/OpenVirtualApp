@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IPopupCameraManager {
-    public static Class<?> TYPE = RefClass.load(IPopupCameraManager.class, StringFog.decrypt("BQwEGUsPLwNNHx0AHB8NEggXBARAFiMMHwcAKg4DFhcTOwQAPhQGHQ=="));
+    public static Class<?> TYPE = RefClass.load(IPopupCameraManager.class, "vivo.app.popupcamera.IPopupCameraManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("BQwEGUsPLwNNHx0AHB8NEggXBARAFiMMHwcAKg4DFhcTOwQAPhQGHVYjHRoM"));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "vivo.app.popupcamera.IPopupCameraManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

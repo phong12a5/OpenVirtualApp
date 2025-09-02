@@ -35,7 +35,7 @@ extends Activity {
         if (info != null && info.userId != -1) {
             ActivityInfo activityInfo = VirtualCore.get().resolveActivityInfo(info.intent, info.userId);
             if (activityInfo == null) {
-                VLog.e(ShadowPendingActivity.class.getSimpleName(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4+CWoFNCxLEQo1PxguPWoFNCRvNysrIxgcCmIKRT97MCBF")) + intent);
+                VLog.e(ShadowPendingActivity.class.getSimpleName(), "failed to resolve intent: " + intent);
                 return;
             }
             if (info.callerActivity == null || this.isTaskRoot()) {

@@ -61,7 +61,7 @@ extends BinderInvocationProxy {
     @Override
     public void inject() throws Throwable {
         super.inject();
-        WifiManager wifiManager = (WifiManager)VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS4YPmUVSFo=")));
+        WifiManager wifiManager = (WifiManager)VirtualCore.get().getContext().getSystemService("wifi");
         if (mirror.android.net.wifi.WifiManager.mService != null) {
             try {
                 mirror.android.net.wifi.WifiManager.mService.set(wifiManager, (IInterface)((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());
@@ -80,7 +80,7 @@ extends BinderInvocationProxy {
     }
 
     public WifiManagerStub() {
-        super(IWifiManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS4YPmUVSFo=")));
+        super(IWifiManager.Stub.asInterface, "wifi");
     }
 
     @Override
@@ -90,7 +90,7 @@ extends BinderInvocationProxy {
 
             @Override
             public String getMethodName() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2B2UVOC9qDlk7Lz1bPWkzSFo="));
+                return "isWifiEnabled";
             }
 
             @Override
@@ -106,7 +106,7 @@ extends BinderInvocationProxy {
 
             @Override
             public String getMethodName() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQzAi5jDDA2LwcuCGkjBl5vETg/LhhSVg=="));
+                return "getWifiEnabledState";
             }
 
             @Override
@@ -122,7 +122,7 @@ extends BinderInvocationProxy {
 
             @Override
             public String getMethodName() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtqHho5IxUcDmkVNFo="));
+                return "createDhcpInfo";
             }
 
             @Override
@@ -137,37 +137,37 @@ extends BinderInvocationProxy {
         });
         this.addMethodProxy(new GetConnectionInfo());
         this.addMethodProxy(new GetScanResults());
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMjJAZ9JBo/KBYqP24jMF9rDjAwLAcqDw=="))));
-        this.addMethodProxy(new RemoveWorkSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2L2wVAgRiDzgzKD0cU28FAiE="))));
-        this.addMethodProxy(new RemoveWorkSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtuJAY+KQVbDW4FJFJlJAoiIT4ACWEwNCA="))));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getBatchedScanResults"));
+        this.addMethodProxy(new RemoveWorkSourceMethodProxy("acquireWifiLock"));
+        this.addMethodProxy(new RemoveWorkSourceMethodProxy("updateWifiLockWorkSource"));
         if (Build.VERSION.SDK_INT > 21) {
-            this.addMethodProxy(new RemoveWorkSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMA5gJCg7LBccDW8YRStsJCw5Ixg2CmIKFhBpJCQd"))));
+            this.addMethodProxy(new RemoveWorkSourceMethodProxy("startLocationRestrictedScan"));
         }
         if (Build.VERSION.SDK_INT >= 19) {
-            this.addMethodProxy(new RemoveWorkSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uL2wVNANmHCw7LBcqMmkjBl5oJzgb"))));
+            this.addMethodProxy(new RemoveWorkSourceMethodProxy("requestBatchedScan"));
         }
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQzAi5jDDA2LwcuCGkjBlo="))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMzGiZiNAY9LAguPWkxMCtvHiAcKS5bDw=="))));
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQzAi5jDCAsJy1fDmkVLC1vDgosKggYKWAzSFo="))){
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("setWifiEnabled"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getConfiguredNetworks"));
+        this.addMethodProxy(new StaticMethodProxy("getWifiApConfiguration"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) throws Throwable {
-                List configurations = ((WifiManager)WifiManagerStub.this.getContext().getApplicationContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS4YPmUVSFo=")))).getConfiguredNetworks();
+                List configurations = ((WifiManager)WifiManagerStub.this.getContext().getApplicationContext().getSystemService("wifi")).getConfiguredNetworks();
                 if (!configurations.isEmpty()) {
                     return configurations.get(0);
                 }
                 WifiConfiguration wifiConfiguration = new WifiConfiguration();
-                wifiConfiguration.SSID = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JggcPG8jGi9iHCACJi5SVg==")) + new Random().nextInt(9000) + 1000;
+                wifiConfiguration.SSID = "AndroidAP_" + new Random().nextInt(9000) + 1000;
                 wifiConfiguration.allowedKeyManagement.set(4);
                 String uuid = UUID.randomUUID().toString();
                 wifiConfiguration.preSharedKey = uuid.substring(0, 8) + uuid.substring(9, 13);
                 return wifiConfiguration;
             }
         });
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQzAi5jDCAsJy1fDmkVLC1vDgosKggYKWAzSFo=")), 0));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMA5gJCg7KhVfDm8wLAplJCw6KQgACg=="))));
+        this.addMethodProxy(new ResultStaticMethodProxy("setWifiApConfiguration", 0));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("startLocalOnlyHotspot"));
         if (BuildCompat.isOreo()) {
-            this.addMethodProxy(new RemoveWorkSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMF59JCA2"))){
+            this.addMethodProxy(new RemoveWorkSourceMethodProxy("startScan"){
 
                 @Override
                 public Object call(Object who, Method method, Object ... args) throws Throwable {
@@ -176,7 +176,7 @@ extends BinderInvocationProxy {
                 }
             });
         } else if (Build.VERSION.SDK_INT >= 19) {
-            this.addMethodProxy(new RemoveWorkSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMF59JCA2"))));
+            this.addMethodProxy(new RemoveWorkSourceMethodProxy("startScan"));
         }
     }
 
@@ -184,7 +184,7 @@ extends BinderInvocationProxy {
         Parcel p = Parcel.obtain();
         scanResult.writeToParcel(p, 0);
         p.setDataPosition(0);
-        ScanResult newScanResult = (ScanResult)Reflect.on(scanResult).field(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JisMWGMYMA9pN1RF"))).call(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtqNyw1KgYmOWoVAitlEVRF")), p).get();
+        ScanResult newScanResult = (ScanResult)Reflect.on(scanResult).field("CREATOR").call("createFromParcel", p).get();
         p.recycle();
         return newScanResult;
     }
@@ -215,7 +215,7 @@ extends BinderInvocationProxy {
     }
 
     private static boolean isIPv4Address(String input) {
-        Pattern IPV4_PATTERN = Pattern.compile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JzpeKnwYQAJODTBTLl8uGXo3PwZhDAIvKAVaDk4JPEx4JV0tPQUiIHoJRRJ6I1gbCgYHP3wJFhNrMFlJOl8HLGYYHixkHwEsOgQiH3sIOCx5IgIvM18YPU8jQC8=")));
+        Pattern IPV4_PATTERN = Pattern.compile("^(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}$");
         return IPV4_PATTERN.matcher(input).matches();
     }
 
@@ -282,7 +282,7 @@ extends BinderInvocationProxy {
     private final class GetScanResults
     extends ReplaceCallingPkgMethodProxy {
         public GetScanResults() {
-            super(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGczLDdgNSw/Iy4MCGUwAlo=")));
+            super("getScanResults");
         }
 
         @Override
@@ -301,7 +301,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMzGiZgNDA5LBccDW8bLCZrNwZF"));
+            return "getConnectionInfo";
         }
 
         @Override
@@ -314,8 +314,8 @@ extends BinderInvocationProxy {
             android.net.wifi.WifiInfo wifiInfo = (android.net.wifi.WifiInfo)method.invoke(who, args);
             if (wifiInfo != null) {
                 if (GetConnectionInfo.isFakeLocationEnable()) {
-                    WifiInfo.mBSSID.set(wifiInfo, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ol45In8OIzJPViciM18lIHo0TDJ8VzxF")));
-                    WifiInfo.mMacAddress.set(wifiInfo, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ol45In8OIzJPViciM18lIHo0TDJ8VzxF")));
+                    WifiInfo.mBSSID.set(wifiInfo, "00:00:00:00:00:00");
+                    WifiInfo.mMacAddress.set(wifiInfo, "00:00:00:00:00:00");
                 } else {
                     String mac;
                     VDeviceConfig config = GetConnectionInfo.getDeviceConfig();

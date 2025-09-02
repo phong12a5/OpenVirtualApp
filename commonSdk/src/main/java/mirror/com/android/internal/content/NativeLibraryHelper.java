@@ -10,14 +10,14 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class NativeLibraryHelper {
-    public static Class<?> TYPE = RefClass.load(NativeLibraryHelper.class, StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAPBwNGxceHUEgEhEbAAAiNhERDgAJIQoCAwAA"));
+    public static Class<?> TYPE = RefClass.load(NativeLibraryHelper.class, "com.android.internal.content.NativeLibraryHelper");
     @MethodParams(value={Handle.class, File.class, String.class})
     public static RefStaticMethod<Integer> copyNativeBinaries;
     @MethodParams(value={Handle.class, String[].class})
     public static RefStaticMethod<Integer> findSupportedAbi;
 
     public static class Handle {
-        public static Class<?> TYPE = RefClass.load(Handle.class, StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAPBwNGxceHUEgEhEbAAAiNhERDgAJIQoCAwAAUi0PMRcPCg=="));
+        public static Class<?> TYPE = RefClass.load(Handle.class, "com.android.internal.content.NativeLibraryHelper$Handle");
         @MethodParams(value={File.class})
         public static RefStaticMethod<Object> create;
     }

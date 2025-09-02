@@ -18,10 +18,10 @@ public class StorageManagerCompat {
     }
 
     public static String[] getAllPoints(Context context) {
-        StorageManager manager = (StorageManager)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qD28jJC1iAVRF")));
+        StorageManager manager = (StorageManager)context.getSystemService("storage");
         String[] points = null;
         try {
-            Method method = manager.getClass().getMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQjGiRmDl0/OxciLmwwAlo=")), new Class[0]);
+            Method method = manager.getClass().getMethod("getVolumePaths", new Class[0]);
             points = (String[])method.invoke(manager, new Object[0]);
         }
         catch (Exception e) {
@@ -34,11 +34,11 @@ public class StorageManagerCompat {
         if (point == null) {
             return false;
         }
-        StorageManager manager = (StorageManager)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qD28jJC1iAVRF")));
+        StorageManager manager = (StorageManager)context.getSystemService("storage");
         try {
-            Method method = manager.getClass().getMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQjGiRmDl0/Oy42OWUzGlo=")), String.class);
+            Method method = manager.getClass().getMethod("getVolumeState", String.class);
             String state = (String)method.invoke(manager, point);
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwgAI2ogMCtiEVRF")).equals(state);
+            return "mounted".equals(state);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -47,16 +47,16 @@ public class StorageManagerCompat {
     }
 
     public static ArrayList<String> getMountedPoints(Context context) {
-        StorageManager manager = (StorageManager)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qD28jJC1iAVRF")));
+        StorageManager manager = (StorageManager)context.getSystemService("storage");
         ArrayList<String> mountedPoints = new ArrayList<String>();
         try {
-            Method getVolumePaths = manager.getClass().getMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQjGiRmDl0/OxciLmwwAlo=")), new Class[0]);
+            Method getVolumePaths = manager.getClass().getMethod("getVolumePaths", new Class[0]);
             String[] points = (String[])getVolumePaths.invoke(manager, new Object[0]);
             if (points != null && points.length > 0) {
-                Method getVolumeState = manager.getClass().getMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQjGiRmDl0/Oy42OWUzGlo=")), String.class);
+                Method getVolumeState = manager.getClass().getMethod("getVolumeState", String.class);
                 for (String point : points) {
                     String state = (String)getVolumeState.invoke(manager, point);
-                    if (!StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwgAI2ogMCtiEVRF")).equals(state)) continue;
+                    if (!"mounted".equals(state)) continue;
                     mountedPoints.add(point);
                 }
                 return mountedPoints;

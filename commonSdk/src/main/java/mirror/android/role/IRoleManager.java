@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IRoleManager {
-    public static Class<?> TYPE = RefClass.load(IRoleManager.class, StringFog.decrypt("EgsWBAoHO10CHwJeGwACFks7JAoCOj4CARMXDB0="));
+    public static Class<?> TYPE = RefClass.load(IRoleManager.class, "android.app.role.IRoleManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10CHwJeGwACFks7JAoCOj4CARMXDB1KIBEHFA=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.app.role.IRoleManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

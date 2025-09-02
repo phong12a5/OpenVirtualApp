@@ -47,7 +47,7 @@ extends IJobService.Stub {
     private static final int JOB_FILE_VERSION = 1;
     private final Map<JobId, JobConfig> mJobStore = new HashMap<JobId, JobConfig>();
     private int mNextJobId = 1;
-    private final JobScheduler mScheduler = (JobScheduler)VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4AOm8zLCBiDgovKhcMKA==")));
+    private final JobScheduler mScheduler = (JobScheduler)VirtualCore.get().getContext().getSystemService("jobscheduler");
     private final ComponentName mJobProxyComponent = new ComponentName(VirtualCore.get().getHostPkg(), StubManifest.STUB_JOB);
     private static final Singleton<VJobSchedulerService> gDefault = new Singleton<VJobSchedulerService>(){
 
@@ -131,13 +131,13 @@ extends IJobService.Stub {
             int len = fis.read(bytes);
             fis.close();
             if (len != bytes.length) {
-                throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1PxguPW4jAShqNwYpPQg2KWAwICxuIB5F")));
+                throw new IOException("Unable to read job config.");
             }
             p.unmarshall(bytes, 0, bytes.length);
             p.setDataPosition(0);
             int version = p.readInt();
             if (version != 1) {
-                throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj4+PHsKOCthNygzKi0XOm8FGShqNwYpPQgiI2AaLz15EVRF")) + version);
+                throw new IOException("Bad version of job file: " + version);
             }
             if (!this.mJobStore.isEmpty()) {
                 this.mJobStore.clear();

@@ -86,7 +86,7 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IContentService {
-        private static final String DESCRIPTOR = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo="));
+        private static final String DESCRIPTOR = "com.lody.virtual.server.interfaces.IContentService";
         static final int TRANSACTION_unregisterContentObserver = 1;
         static final int TRANSACTION_registerContentObserver = 2;
         static final int TRANSACTION_notifyChange = 3;
@@ -111,7 +111,7 @@ extends IInterface {
         static final int TRANSACTION_removeStatusChangeListener = 22;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+            this.attachInterface(this, "com.lody.virtual.server.interfaces.IContentService");
         }
 
         public static IContentService asInterface(IBinder obj) {
@@ -333,7 +333,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IContentService impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAFNC59ATAoLBUcD2ozOyB6DTwqLRgEKGIKESNqETwiKAgAVg==")));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -360,7 +360,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo="));
+                return "com.lody.virtual.server.interfaces.IContentService";
             }
 
             /*
@@ -371,7 +371,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     _data.writeStrongBinder(observer != null ? observer.asBinder() : null);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -394,7 +394,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (uri != null) {
                         _data.writeInt(1);
                         uri.writeToParcel(_data, 0);
@@ -425,7 +425,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (uri != null) {
                         _data.writeInt(1);
                         uri.writeToParcel(_data, 0);
@@ -457,7 +457,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -492,7 +492,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (request != null) {
                         _data.writeInt(1);
                         request.writeToParcel(_data, 0);
@@ -520,7 +520,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -550,7 +550,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -581,7 +581,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -612,7 +612,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -643,7 +643,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -679,7 +679,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -715,7 +715,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -746,7 +746,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -776,7 +776,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     _data.writeInt(flag ? 1 : 0);
                     boolean _status = this.mRemote.transact(14, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -800,7 +800,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     boolean _status = this.mRemote.transact(15, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         boolean bl = Stub.getDefaultImpl().getMasterSyncAutomatically();
@@ -825,7 +825,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -857,7 +857,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     boolean _status = this.mRemote.transact(17, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         List<SyncInfo> list = Stub.getDefaultImpl().getCurrentSyncs();
@@ -882,7 +882,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     boolean _status = this.mRemote.transact(18, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         SyncAdapterType[] syncAdapterTypeArray = Stub.getDefaultImpl().getSyncAdapterTypes();
@@ -907,7 +907,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -939,7 +939,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     if (account != null) {
                         _data.writeInt(1);
                         account.writeToParcel(_data, 0);
@@ -970,7 +970,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     _data.writeInt(mask);
                     _data.writeStrongBinder(callback != null ? callback.asBinder() : null);
                     boolean _status = this.mRemote.transact(21, _data, _reply, 0);
@@ -994,7 +994,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWIy0YJWoaFgJlMh40Kj0iCWszNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IContentService");
                     _data.writeStrongBinder(callback != null ? callback.asBinder() : null);
                     boolean _status = this.mRemote.transact(22, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {

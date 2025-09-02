@@ -54,8 +54,8 @@ public class Vdex {
         public Header(DataReader r) throws IOException {
             r.readBytes(this.magic_);
             String magic = new String(this.magic_);
-            if (!StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4qM2kFSFo=")).equals(magic)) {
-                throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQwKAgfOm8jQS1qATMrPj5SVg==")) + magic + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PS5SVg==")));
+            if (!"vdex".equals(magic)) {
+                throw new IOException("Invalid dex magic '" + magic + "'");
             }
             r.readBytes(this.version_);
             this.version = DataReader.toInt(new String(this.version_));

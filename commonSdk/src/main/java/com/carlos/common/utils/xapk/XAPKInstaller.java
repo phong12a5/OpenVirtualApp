@@ -37,7 +37,7 @@ public class XAPKInstaller {
         ZipUtil.unpack((File)xapkFile, (File)unzipOutputDir, (NameMapper)new NameMapper(){
 
             public String map(String name) {
-                if (name.endsWith(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4+KGUzSFo=")))) {
+                if (name.endsWith(".apk")) {
                     return name;
                 }
                 return null;
@@ -46,11 +46,11 @@ public class XAPKInstaller {
         File[] files = unzipOutputDir.listFiles();
         int apkSize = 0;
         for (File file : files) {
-            if (!file.isFile() || !file.getName().endsWith(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4+KGUzSFo=")))) continue;
+            if (!file.isFile() || !file.getName().endsWith(".apk")) continue;
             ++apkSize;
         }
         XAPKInstaller.unzipObbToAndroidObbDir(xapkFile, new File(XAPKInstaller.getMobileAndroidObbDir()));
-        HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAdXCg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6MWczAjJiDQU8PxhSVg==")) + apkSize);
+        HVLog.i("yzh", "apkSize:  " + apkSize);
         if (apkSize > 0) {
             XAPKInstaller.doInstallApk(context, xapkFilePath, unzipOutputDir);
         }
@@ -68,7 +68,7 @@ public class XAPKInstaller {
     }
 
     private static boolean unzipObbToAndroidObbDir(File xapkFile, File unzipOutputDir) {
-        final String prefix = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JggcPG8jGi9iVx41Lz0uVg=="));
+        final String prefix = "Android/obb";
         ZipUtil.unpack((File)xapkFile, (File)unzipOutputDir, (NameMapper)new NameMapper(){
 
             public String map(String name) {
@@ -82,13 +82,13 @@ public class XAPKInstaller {
     }
 
     public static String getMobileAndroidObbDir() {
-        String path = XAPKInstaller.isSDCardEnableByEnvironment() ? Environment.getExternalStorageDirectory().getPath() + File.separator + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JggcPG8jGi9iEVRF")) + File.separator + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iy4MOg==")) : Environment.getDataDirectory().getParent().toString() + File.separator + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JggcPG8jGi9iEVRF")) + File.separator + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iy4MOg=="));
+        String path = XAPKInstaller.isSDCardEnableByEnvironment() ? Environment.getExternalStorageDirectory().getPath() + File.separator + "Android" + File.separator + "obb" : Environment.getDataDirectory().getParent().toString() + File.separator + "Android" + File.separator + "obb";
         XAPKUtils.createOrExistsDir(path);
         return path;
     }
 
     private static boolean isSDCardEnableByEnvironment() {
-        return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwgAI2ogMCtiEVRF")) == Environment.getExternalStorageState();
+        return "mounted" == Environment.getExternalStorageState();
     }
 
     private static void doInstallApk(Context context, String xapkPath, File xapkUnzipOutputDir) {
@@ -99,12 +99,12 @@ public class XAPKInstaller {
             }
             ArrayList<String> apkFilePaths = new ArrayList<String>();
             for (File file : files) {
-                if (file == null || !file.isFile() || !file.getName().endsWith(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4+KGUzSFo=")))) continue;
+                if (file == null || !file.isFile() || !file.getName().endsWith(".apk")) continue;
                 apkFilePaths.add(file.getAbsolutePath());
             }
-            Intent intent = new Intent(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42GillJzAqKT4iHWggMAVsJx4ZIQhSVg==")));
-            intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KBg+KGU2GgJ9AQo0")), xapkPath);
-            intent.putStringArrayListExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6MWYwIDdmHhpF")), apkFilePaths);
+            Intent intent = new Intent("android.intent.action.InstallActivity");
+            intent.putExtra("xapk_path", xapkPath);
+            intent.putStringArrayListExtra("apk_path", apkFilePaths);
             intent.addFlags(0x10000000);
             context.startActivity(intent);
         }

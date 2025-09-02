@@ -10,7 +10,7 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class RenderScriptCacheDir {
-    public static Class<?> TYPE = RefClass.load(RenderScriptCacheDir.class, StringFog.decrypt("EgsWBAoHO10RChwUDB0dEBcbBhFADRYNCxcCOgwcGhUGNQQNNxYnBgA="));
+    public static Class<?> TYPE = RefClass.load(RenderScriptCacheDir.class, "android.renderscript.RenderScriptCacheDir");
     @MethodParams(value={File.class})
     public static RefStaticMethod<Void> setupDiskCache;
 }

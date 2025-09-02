@@ -34,14 +34,14 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IAppInstallerSession {
-        private static final String DESCRIPTOR = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylpASA5ORY2HWwaIFBqJDAZOwdXO24FNA1pJB4cLAgACA=="));
+        private static final String DESCRIPTOR = "com.lody.virtual.server.app.IAppInstallerSession";
         static final int TRANSACTION_addPackage = 1;
         static final int TRANSACTION_addSplit = 2;
         static final int TRANSACTION_commit = 3;
         static final int TRANSACTION_cancel = 4;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylpASA5ORY2HWwaIFBqJDAZOwdXO24FNA1pJB4cLAgACA==")));
+            this.attachInterface(this, "com.lody.virtual.server.app.IAppInstallerSession");
         }
 
         public static IAppInstallerSession asInterface(IBinder obj) {
@@ -99,7 +99,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IAppInstallerSession impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAFNC59ATAoLBUcD2ozOyB6DTwqLRgEKGIKESNqETwiKAgAVg==")));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -126,7 +126,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylpASA5ORY2HWwaIFBqJDAZOwdXO24FNA1pJB4cLAgACA=="));
+                return "com.lody.virtual.server.app.IAppInstallerSession";
             }
 
             /*
@@ -137,7 +137,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylpASA5ORY2HWwaIFBqJDAZOwdXO24FNA1pJB4cLAgACA==")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.app.IAppInstallerSession");
                     if (uri != null) {
                         _data.writeInt(1);
                         uri.writeToParcel(_data, 0);
@@ -165,7 +165,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylpASA5ORY2HWwaIFBqJDAZOwdXO24FNA1pJB4cLAgACA==")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.app.IAppInstallerSession");
                     if (uri != null) {
                         _data.writeInt(1);
                         uri.writeToParcel(_data, 0);
@@ -193,7 +193,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylpASA5ORY2HWwaIFBqJDAZOwdXO24FNA1pJB4cLAgACA==")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.app.IAppInstallerSession");
                     if (statusReceiver != null) {
                         _data.writeInt(1);
                         statusReceiver.writeToParcel(_data, 0);
@@ -221,7 +221,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylpASA5ORY2HWwaIFBqJDAZOwdXO24FNA1pJB4cLAgACA==")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.app.IAppInstallerSession");
                     boolean _status = this.mRemote.transact(4, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         Stub.getDefaultImpl().cancel();

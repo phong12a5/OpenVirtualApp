@@ -49,19 +49,19 @@ public class UCrop {
     public static final int REQUEST_CROP = 69;
     public static final int RESULT_ERROR = 96;
     public static final int MIN_SIZE = 10;
-    private static final String EXTRA_PREFIX = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQhSVg=="));
-    public static final String EXTRA_INPUT_URI = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcBWAzODBqHwo7Ki5SVg=="));
-    public static final String EXTRA_OUTPUT_URI = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcA2YFFjNqATAULBg2Vg=="));
-    public static final String EXTRA_OUTPUT_CROP_ASPECT_RATIO = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcH2EwAjNhASw5Ly4YCmQzJCBlEQZF"));
-    public static final String EXTRA_OUTPUT_IMAGE_WIDTH = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcBWAKPCJuDzwiLz0cLA=="));
-    public static final String EXTRA_OUTPUT_IMAGE_HEIGHT = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcBWAKPCJuDAYuKi4ILG8VSFo="));
-    public static final String EXTRA_OUTPUT_OFFSET_X = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcA2IwIDZuATAX"));
-    public static final String EXTRA_OUTPUT_OFFSET_Y = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcA2IwIDZuATAI"));
-    public static final String EXTRA_ERROR = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcGWEzMCplN1RF"));
-    public static final String EXTRA_ASPECT_RATIO_X = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcHWEjOCBpJzARKC0cI2UmRVo="));
-    public static final String EXTRA_ASPECT_RATIO_Y = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcHWEjOCBpJzARKC0cI2UmAlo="));
-    public static final String EXTRA_MAX_SIZE_X = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcAX0FBhBvAQ4uJj5SVg=="));
-    public static final String EXTRA_MAX_SIZE_Y = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcAX0FBhBvAQ4uJi5SVg=="));
+    private static final String EXTRA_PREFIX = "com.carlos.multiapp";
+    public static final String EXTRA_INPUT_URI = "com.carlos.multiapp.InputUri";
+    public static final String EXTRA_OUTPUT_URI = "com.carlos.multiapp.OutputUri";
+    public static final String EXTRA_OUTPUT_CROP_ASPECT_RATIO = "com.carlos.multiapp.CropAspectRatio";
+    public static final String EXTRA_OUTPUT_IMAGE_WIDTH = "com.carlos.multiapp.ImageWidth";
+    public static final String EXTRA_OUTPUT_IMAGE_HEIGHT = "com.carlos.multiapp.ImageHeight";
+    public static final String EXTRA_OUTPUT_OFFSET_X = "com.carlos.multiapp.OffsetX";
+    public static final String EXTRA_OUTPUT_OFFSET_Y = "com.carlos.multiapp.OffsetY";
+    public static final String EXTRA_ERROR = "com.carlos.multiapp.Error";
+    public static final String EXTRA_ASPECT_RATIO_X = "com.carlos.multiapp.AspectRatioX";
+    public static final String EXTRA_ASPECT_RATIO_Y = "com.carlos.multiapp.AspectRatioY";
+    public static final String EXTRA_MAX_SIZE_X = "com.carlos.multiapp.MaxSizeX";
+    public static final String EXTRA_MAX_SIZE_Y = "com.carlos.multiapp.MaxSizeY";
     private Intent mCropIntent;
     private Bundle mCropOptionsBundle;
 
@@ -74,14 +74,14 @@ public class UCrop {
             this.mCropIntent = new Intent();
         } else {
             this.mCropIntent = intent;
-            String packageName = intent.getStringExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Khg+OWUzJC1iDFk7KgcMVg==")));
-            int userId = intent.getIntExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGwaLCthNAYw")), -1);
-            Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBUhDQ==")), (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQY2KmowIBF9JwozLD0cLmgnTChsETgqIz4+IWIIRSRsDg0z")) + packageName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsKNANiASwJKF8IVg==")) + userId));
+            String packageName = intent.getStringExtra("packageName");
+            int userId = intent.getIntExtra("appuserid", -1);
+            Log.d((String)"HV-", (String)("UCropActivity  packageName:" + packageName + "    userId:" + userId));
         }
         this.mCropOptionsBundle = new Bundle();
-        this.mCropOptionsBundle.putParcelable(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcBWAzODBqHwo7Ki5SVg==")), (Parcelable)source);
-        this.mCropOptionsBundle.putParcelable(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcA2YFFjNqATAULBg2Vg==")), (Parcelable)destination);
-        this.mCropOptionsBundle.putParcelable(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcBWAzODBqHwo7Ki5SVg==")), (Parcelable)source);
+        this.mCropOptionsBundle.putParcelable("com.carlos.multiapp.InputUri", (Parcelable)source);
+        this.mCropOptionsBundle.putParcelable("com.carlos.multiapp.OutputUri", (Parcelable)destination);
+        this.mCropOptionsBundle.putParcelable("com.carlos.multiapp.InputUri", (Parcelable)source);
     }
 
     public UCrop withAspectRatio(float x, float y) {
@@ -168,35 +168,35 @@ public class UCrop {
     }
 
     public static class Options {
-        public static final String EXTRA_COMPRESSION_FORMAT_NAME = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcH2AgQTNlNAo8LAg2KWUxOANvJw4oIBVfKGwKFlo="));
-        public static final String EXTRA_COMPRESSION_QUALITY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcH2AgQTNlNAo8LAg2KWU2JC9rEQIwIBgAVg=="));
-        public static final String EXTRA_ALLOWED_GESTURES = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcHWAaTSpqJAotJwgAD28aNCZoHjBF"));
-        public static final String EXTRA_MAX_BITMAP_SIZE = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcAX0FBg9vATAcKC1XUmoKTT8="));
-        public static final String EXTRA_MAX_SCALE_MULTIPLIER = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcAX0FBhBpJCQbLywmCWUaMAVvAQIwJAgqVg=="));
-        public static final String EXTRA_IMAGE_TO_CROP_BOUNDS_ANIM_DURATION = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcBWAKPCJuDzAeIAdfKWwbFgNsERozJysmJW8KTVdlJFkoKRgYD2ojSFo="));
-        public static final String EXTRA_DIMMED_LAYER_COLOR = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcGmMKQShuDjBAKC02J2wxLANqAQYb"));
-        public static final String EXTRA_CIRCLE_DIMMED_LAYER = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcH2MFMCZsHgpIKi4mL2sFMExrHh40Jz5SVg=="));
-        public static final String EXTRA_SHOW_CROP_FRAME = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcUmMaAjJhJygeLDwECGgFEj8="));
-        public static final String EXTRA_CROP_FRAME_COLOR = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcH2EwAjNmNygqKS4AH2UjHgNvJ1RF"));
-        public static final String EXTRA_CROP_FRAME_STROKE_WIDTH = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcH2EwAjNmNygqKS4AUm8aFgNlNyhNJQcMM28VSFo="));
-        public static final String EXTRA_SHOW_CROP_GRID = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcUmMaAjJhJygeLDwICGoFMFo="));
-        public static final String EXTRA_CROP_GRID_ROW_COUNT = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcH2EwAjNmJygiLztfKW8hLANsERoZ"));
-        public static final String EXTRA_CROP_GRID_COLUMN_COUNT = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcH2EwAjNmJygiLzwYKWUaNAFqJTA6IAdfMw=="));
-        public static final String EXTRA_CROP_GRID_COLOR = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcH2EwAjNmJygiLzwYKWUVGiY="));
-        public static final String EXTRA_CROP_GRID_STROKE_WIDTH = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcH2EwAjNmJygiLzsYCmwzGj1oHCAwJBgMJw=="));
-        public static final String EXTRA_TOOL_BAR_COLOR = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcXWAgAjdpNCQ7IAguKGUgFlo="));
-        public static final String EXTRA_STATUS_BAR_COLOR = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcUmYaPD9qASwBKC1fH2UjHgNvJ1RF"));
-        public static final String EXTRA_UCROP_COLOR_WIDGET_ACTIVE = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcXH0jMCplHCweKT4uCGcjAjBoNygZIwcuM28FJDE="));
-        public static final String EXTRA_UCROP_WIDGET_COLOR_TOOLBAR = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcXH0jMCplHzAeKQgiJmgKFgtlESwyJAgMDGwgQQFqEVRF"));
-        public static final String EXTRA_UCROP_TITLE_TEXT_TOOLBAR = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcXH0jMCplHzAeKQgiJmgKFgplHiw7JAYMLGsVLFo="));
-        public static final String EXTRA_UCROP_WIDGET_CANCEL_DRAWABLE = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcXH0jMCplHzAeKQgiJmgKFh9rERo2JAdXBWUwOC9uJ1k7LQhSVg=="));
-        public static final String EXTRA_UCROP_WIDGET_CROP_DRAWABLE = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcXH0jMCplHzAeKQgiJmgKFh9vJwYdLBgqKGogODRvNwZF"));
-        public static final String EXTRA_UCROP_LOGO_COLOR = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcXH0jMCplHF0eLwguH2UjHgNvJ1RF"));
-        public static final String EXTRA_HIDE_BOTTOM_CONTROLS = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcBmMKFiBhNFk9Iz4uL2AjGgRsDgo6JhguVg=="));
-        public static final String EXTRA_FREE_STYLE_CROP = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcBGEwLCB9JzAyKT4AH2wzGiQ="));
-        public static final String EXTRA_ASPECT_RATIO_SELECTED_BY_DEFAULT = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcHWEjOCBpJzARKC0cI2UmLD9qASg2IBc2I2EzBldpJwIoKQgELA=="));
-        public static final String EXTRA_ASPECT_RATIO_OPTIONS = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcHWEjOCBpJzARKC0cI2UhGiRsAR46Jj4uVg=="));
-        public static final String EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcXH0jMCplHygeKQccX2oFNCFjJzg2JS0+OWwjFgJpNR46IxgAKg=="));
+        public static final String EXTRA_COMPRESSION_FORMAT_NAME = "com.carlos.multiapp.CompressionFormatName";
+        public static final String EXTRA_COMPRESSION_QUALITY = "com.carlos.multiapp.CompressionQuality";
+        public static final String EXTRA_ALLOWED_GESTURES = "com.carlos.multiapp.AllowedGestures";
+        public static final String EXTRA_MAX_BITMAP_SIZE = "com.carlos.multiapp.MaxBitmapSize";
+        public static final String EXTRA_MAX_SCALE_MULTIPLIER = "com.carlos.multiapp.MaxScaleMultiplier";
+        public static final String EXTRA_IMAGE_TO_CROP_BOUNDS_ANIM_DURATION = "com.carlos.multiapp.ImageToCropBoundsAnimDuration";
+        public static final String EXTRA_DIMMED_LAYER_COLOR = "com.carlos.multiapp.DimmedLayerColor";
+        public static final String EXTRA_CIRCLE_DIMMED_LAYER = "com.carlos.multiapp.CircleDimmedLayer";
+        public static final String EXTRA_SHOW_CROP_FRAME = "com.carlos.multiapp.ShowCropFrame";
+        public static final String EXTRA_CROP_FRAME_COLOR = "com.carlos.multiapp.CropFrameColor";
+        public static final String EXTRA_CROP_FRAME_STROKE_WIDTH = "com.carlos.multiapp.CropFrameStrokeWidth";
+        public static final String EXTRA_SHOW_CROP_GRID = "com.carlos.multiapp.ShowCropGrid";
+        public static final String EXTRA_CROP_GRID_ROW_COUNT = "com.carlos.multiapp.CropGridRowCount";
+        public static final String EXTRA_CROP_GRID_COLUMN_COUNT = "com.carlos.multiapp.CropGridColumnCount";
+        public static final String EXTRA_CROP_GRID_COLOR = "com.carlos.multiapp.CropGridColor";
+        public static final String EXTRA_CROP_GRID_STROKE_WIDTH = "com.carlos.multiapp.CropGridStrokeWidth";
+        public static final String EXTRA_TOOL_BAR_COLOR = "com.carlos.multiapp.ToolbarColor";
+        public static final String EXTRA_STATUS_BAR_COLOR = "com.carlos.multiapp.StatusBarColor";
+        public static final String EXTRA_UCROP_COLOR_WIDGET_ACTIVE = "com.carlos.multiapp.UcropColorWidgetActive";
+        public static final String EXTRA_UCROP_WIDGET_COLOR_TOOLBAR = "com.carlos.multiapp.UcropToolbarWidgetColor";
+        public static final String EXTRA_UCROP_TITLE_TEXT_TOOLBAR = "com.carlos.multiapp.UcropToolbarTitleText";
+        public static final String EXTRA_UCROP_WIDGET_CANCEL_DRAWABLE = "com.carlos.multiapp.UcropToolbarCancelDrawable";
+        public static final String EXTRA_UCROP_WIDGET_CROP_DRAWABLE = "com.carlos.multiapp.UcropToolbarCropDrawable";
+        public static final String EXTRA_UCROP_LOGO_COLOR = "com.carlos.multiapp.UcropLogoColor";
+        public static final String EXTRA_HIDE_BOTTOM_CONTROLS = "com.carlos.multiapp.HideBottomControls";
+        public static final String EXTRA_FREE_STYLE_CROP = "com.carlos.multiapp.FreeStyleCrop";
+        public static final String EXTRA_ASPECT_RATIO_SELECTED_BY_DEFAULT = "com.carlos.multiapp.AspectRatioSelectedByDefault";
+        public static final String EXTRA_ASPECT_RATIO_OPTIONS = "com.carlos.multiapp.AspectRatioOptions";
+        public static final String EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR = "com.carlos.multiapp.UcropRootViewBackgroundColor";
         private final Bundle mOptionBundle = new Bundle();
 
         @NonNull
@@ -310,7 +310,7 @@ public class UCrop {
 
         public void setAspectRatioOptions(int selectedByDefault, AspectRatio ... aspectRatio) {
             if (selectedByDefault > aspectRatio.length) {
-                throw new IllegalArgumentException(String.format(Locale.US, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcPGgaRChvJyg/KhcMP2UzGixgNB5KLhgiO2YKTT95VlApPy4cEXgVLDNqJxo6IF4iKW4OPD5sJw4/LQcLOGwFRTdgMCQ7Iy4mPW4KAShsNzg/IxgfJGAjOD9vDlkdLARXJWUgNARsDTxJOy0YPGwzLzZ7I1A0LRUHCA==")), selectedByDefault, aspectRatio.length));
+                throw new IllegalArgumentException(String.format(Locale.US, "Index [selectedByDefault = %d] cannot be higher than aspect ratio options count [count = %d].", selectedByDefault, aspectRatio.length));
             }
             this.mOptionBundle.putInt(EXTRA_ASPECT_RATIO_SELECTED_BY_DEFAULT, selectedByDefault);
             this.mOptionBundle.putParcelableArrayList(EXTRA_ASPECT_RATIO_OPTIONS, new ArrayList<AspectRatio>(Arrays.asList(aspectRatio)));
@@ -321,18 +321,18 @@ public class UCrop {
         }
 
         public void withAspectRatio(float x, float y) {
-            this.mOptionBundle.putFloat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcHWEjOCBpJzARKC0cI2UmRVo=")), x);
-            this.mOptionBundle.putFloat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcHWEjOCBpJzARKC0cI2UmAlo=")), y);
+            this.mOptionBundle.putFloat("com.carlos.multiapp.AspectRatioX", x);
+            this.mOptionBundle.putFloat("com.carlos.multiapp.AspectRatioY", y);
         }
 
         public void useSourceImageAspectRatio() {
-            this.mOptionBundle.putFloat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcHWEjOCBpJzARKC0cI2UmRVo=")), 0.0f);
-            this.mOptionBundle.putFloat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcHWEjOCBpJzARKC0cI2UmAlo=")), 0.0f);
+            this.mOptionBundle.putFloat("com.carlos.multiapp.AspectRatioX", 0.0f);
+            this.mOptionBundle.putFloat("com.carlos.multiapp.AspectRatioY", 0.0f);
         }
 
         public void withMaxResultSize(@IntRange(from=10L) int width, @IntRange(from=10L) int height) {
-            this.mOptionBundle.putInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcAX0FBhBvAQ4uJj5SVg==")), width);
-            this.mOptionBundle.putInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcAX0FBhBvAQ4uJi5SVg==")), height);
+            this.mOptionBundle.putInt("com.carlos.multiapp.MaxSizeX", width);
+            this.mOptionBundle.putInt("com.carlos.multiapp.MaxSizeY", height);
         }
     }
 }

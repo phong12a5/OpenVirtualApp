@@ -16,17 +16,17 @@ import mirror.android.hardware.fingerprint.IFingerprintService;
 public class FingerprintManagerStub
 extends BinderInvocationProxy {
     public FingerprintManagerStub() {
-        super(IFingerprintService.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YCGgzNARhESwzKj42Vg==")));
+        super(IFingerprintService.Stub.asInterface, "fingerprint");
     }
 
     @Override
     protected void onBindMethods() {
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2XWsaFixmJCAqKAU2PWUzGilvESgv"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+KWAVBgRgJFEoKAc2WWwjMC1rDgo7KS4YKmYVNFo="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUFNCZmHgY5Lwg2PQ=="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRlATAgKRcMDmUzLCloDiwaLD4cVg=="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAVBgRgJFEoKAc2WWwjMC1rDgo7KS4YKmYVNFo="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaNAZjHjA2LBccP24gBiVsNR4v"))));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("isHardwareDetected"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("hasEnrolledFingerprints"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("authenticate"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("cancelAuthentication"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("getEnrolledFingerprints"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("getAuthenticatorId"));
     }
 }
 

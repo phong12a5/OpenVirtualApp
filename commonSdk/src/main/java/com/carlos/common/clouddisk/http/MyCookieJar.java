@@ -49,9 +49,9 @@ implements CookieJar {
     }
 
     public static void print() {
-        Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4AD2UzAis=")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz0uDmoFSFo=")));
+        Log.d((String)"cookie", (String)"null");
         for (Cookie s : cache) {
-            Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4AD2UzAis=")), (String)s.toString());
+            Log.d((String)"cookie", (String)s.toString());
         }
     }
 }

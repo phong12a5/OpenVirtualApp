@@ -14,7 +14,7 @@ import mirror.RefConstructor;
 import mirror.RefStaticObject;
 
 public class CompatibilityInfo {
-    public static Class<?> TYPE = RefClass.load(CompatibilityInfo.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRcXBUstMB4TDgYZCwYCGhELPwsIMA=="));
+    public static Class<?> TYPE = RefClass.load(CompatibilityInfo.class, "android.content.res.CompatibilityInfo");
     @MethodParams(value={ApplicationInfo.class, int.class, int.class, boolean.class})
     public static RefConstructor ctor;
     @MethodParams(value={ApplicationInfo.class, int.class, int.class, boolean.class, int.class})

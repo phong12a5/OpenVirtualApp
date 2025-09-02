@@ -53,7 +53,7 @@ public class SyncAdaptersCache {
     }
 
     public void refreshServiceCache(String packageName) {
-        Intent intent = new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k5Ki0YLmkjMAZ1MjA0LC42HWIaPDNqHgo7")));
+        Intent intent = new Intent("android.content.SyncAdapter");
         if (packageName != null) {
             intent.setPackage(packageName);
         }
@@ -66,7 +66,7 @@ public class SyncAdaptersCache {
     public SyncAdapterInfo getServiceInfo(Account account, String providerName) {
         Map<String, SyncAdapterInfo> map = this.mSyncAdapterInfos;
         synchronized (map) {
-            return this.mSyncAdapterInfos.get(account.type + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + providerName);
+            return this.mSyncAdapterInfos.get(account.type + "/" + providerName);
         }
     }
 
@@ -76,7 +76,7 @@ public class SyncAdaptersCache {
 
     private void generateServicesMap(List<ResolveInfo> services, Map<String, SyncAdapterInfo> map, RegisteredServicesParser accountParser) {
         for (ResolveInfo info : services) {
-            XmlResourceParser parser = accountParser.getParser(this.mContext, info.serviceInfo, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k5Ki0YLmkjMAZ1MjA0LC42HWIaPDNqHgo7")));
+            XmlResourceParser parser = accountParser.getParser(this.mContext, info.serviceInfo, "android.content.SyncAdapter");
             if (parser == null) continue;
             try {
                 android.content.SyncAdapterType adapterType;
@@ -84,8 +84,8 @@ public class SyncAdaptersCache {
                 AttributeSet attributeSet = Xml.asAttributeSet((XmlPullParser)parser);
                 while ((type = parser.next()) != 1 && type != 2) {
                 }
-                if (!StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YCGs3EjdiHiAsLBcMKA==")).equals(parser.getName()) || (adapterType = this.parseSyncAdapterType(accountParser.getResources(this.mContext, info.serviceInfo.applicationInfo), attributeSet)) == null) continue;
-                String key = adapterType.accountType + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + adapterType.authority;
+                if (!"sync-adapter".equals(parser.getName()) || (adapterType = this.parseSyncAdapterType(accountParser.getResources(this.mContext, info.serviceInfo.applicationInfo), attributeSet)) == null) continue;
+                String key = adapterType.accountType + "/" + adapterType.authority;
                 map.put(key, new SyncAdapterInfo(adapterType, info.serviceInfo));
             }
             catch (Exception e) {

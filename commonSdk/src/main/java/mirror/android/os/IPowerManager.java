@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IPowerManager {
-    public static Class<?> TYPE = RefClass.load(IPowerManager.class, StringFog.decrypt("EgsWBAoHO10MHFw5OQAZFhc/FwsPOBYR"));
+    public static Class<?> TYPE = RefClass.load(IPowerManager.class, "android.os.IPowerManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10MHFw5OQAZFhc/FwsPOBYRSyEEHA0="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.os.IPowerManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

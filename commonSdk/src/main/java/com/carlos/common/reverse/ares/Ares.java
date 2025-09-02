@@ -27,8 +27,8 @@ public class Ares {
     }
 
     public static void hook(ClassLoader classLoader, Application application, String packageName, String processName) {
-        if (!StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojPCVgJDgoKAMYOW8VBgRlJx4vPC4mL2EjSFo=")).equals(packageName) && !StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojPCVgJDgoKAMYOW8VBgRlJx4vPC4mD2IzSFo=")).equals(packageName) && !StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmUVGiZrER4bLj5SVg==")).equals(packageName)) {
-            Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4uPmowFitlASQsKhccP24gBi9lJxoAKS4uO2YaLz0=")) + packageName);
+        if (!"com.google.android.gms".equals(packageName) && !"com.google.android.gsf".equals(packageName) && !"com.android.vending".equals(packageName)) {
+            Log.d("vatest", "beforeApplicationCreate:" + packageName);
             testDev(application, packageName);
             initHooker(application, packageName);
         }
@@ -45,28 +45,28 @@ public class Ares {
         List<Class> listHook = new ArrayList();
         listHook.add(DialogFragmentHooker.class);
         listHook.add(DialogHooker.class);
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojQTdjJCA1KC0iD2kgDSZoDgogKT5SVg==")).equals(packageName)) {
+        if ("com.kakaogames.ares".equals(packageName)) {
             listHook.add(GoogleServiceHooker.class);
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHi99ASQsOj4AVg==")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("GRsKGh8QQgFEAl9PEwhSVg==")), new Object[]{new XC_MethodReplacement() {
+            XposedHelpers.findAndHookMethod("com.liapp.x", application.getClassLoader(), "ݲج۱֭ة", new Object[]{new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OF5eIHkORDB3Vh0aPV8fIg==")));
+                    Log.d("vatest", "888888888888");
                     Thread.dumpStack();
                     return null;
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHi99ASQsOg5AL15aOlIeKlocGSJaJA==")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cE2sVBiliDlFF")), new Object[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k5Ki0YLmkjMAZ1NSwaLRgEKWImGilqHgo7LxhbJWsFSFo=")), new XC_MethodReplacement() {
+            XposedHelpers.findAndHookMethod("com.liapp.ݳڬׯدګ ", application.getClassLoader(), "onCancel", new Object[]{"android.content.DialogInterface", new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cE2sVBiliDlFF")));
+                    Log.d("vatest", "onCancel");
                     return null;
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHi99ASQsOg47L1kBMlNaBDk/GRs5JA==")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cE2oFAiljJ1RF")), new Object[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k5Ki0YLmkjMAZ1NSwaLRgEKWImGilqHgo7LxhbJWsFSFo=")), Integer.TYPE, new XC_MethodReplacement() {
+            XposedHelpers.findAndHookMethod("com.liapp.ֳܮֲִذ ", application.getClassLoader(), "onClick", new Object[]{"android.content.DialogInterface", Integer.TYPE, new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cE2sVBiliDlFF")));
+                    Log.d("vatest", "onCancel");
                     return null;
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4+LmtSBiR9Dlk9OjwuLW8aBi9lAShF")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2szSFo=")), new Object[]{String[].class, String[].class, File.class, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod("java.lang.Runtime", application.getClassLoader(), "exec", new Object[]{String[].class, String[].class, File.class, new XC_MethodHook() {
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     super.beforeHookedMethod(param);
                 }
@@ -75,7 +75,7 @@ public class Ares {
                     super.afterHookedMethod(param);
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4+LmtSBiR9Dlk9OjwuLW8aBi9lAShF")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2szSFo=")), new Object[]{String.class, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod("java.lang.Runtime", application.getClassLoader(), "exec", new Object[]{String.class, new XC_MethodHook() {
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     super.beforeHookedMethod(param);
                 }
@@ -84,7 +84,7 @@ public class Ares {
                     super.afterHookedMethod(param);
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4+LmtSBiR9Dlk9OjwuLW8aBi9lAShF")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2szSFo=")), new Object[]{String.class, String[].class, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod("java.lang.Runtime", application.getClassLoader(), "exec", new Object[]{String.class, String[].class, new XC_MethodHook() {
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     super.beforeHookedMethod(param);
                 }
@@ -93,7 +93,7 @@ public class Ares {
                     super.afterHookedMethod(param);
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4+LmtSBiR9Dlk9OjwuLW8aBi9lAShF")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2szSFo=")), new Object[]{String[].class, String[].class, File.class, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod("java.lang.Runtime", application.getClassLoader(), "exec", new Object[]{String[].class, String[].class, File.class, new XC_MethodHook() {
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     super.beforeHookedMethod(param);
                 }
@@ -102,13 +102,13 @@ public class Ares {
                     super.afterHookedMethod(param);
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4+LmtSBiR9Dlk9OjwuLW8aBi9lAShF")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2szSFo=")), new Object[]{String[].class, String[].class, File.class, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod("java.lang.Runtime", application.getClassLoader(), "exec", new Object[]{String[].class, String[].class, File.class, new XC_MethodHook() {
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     super.beforeHookedMethod(param);
                 }
 
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij0uCGwFAiNiCiQ/LRcMP340AShsNyg6KhgECnczSFo=")) + param.getResult());
+                    Log.d("vatest", "Runtime exec 4 result:" + param.getResult());
                     super.afterHookedMethod(param);
                 }
             }});
@@ -116,57 +116,57 @@ public class Ares {
             listHook.add(GoogleServiceHooker.class);
         }
 
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojTSVnDigzLBgbDmkKBlo=")).equals(packageName) || StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogPCtgDiAwKAMYD2wgRSM=")).equals(packageName) || StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojLCVgDSwvIy0ADW8zBi9lNyA6PC1XJ2AwAilvDicdKC4qIGwzGgVoDRoyJi0YLmwaEQJsDlg5Iz4AKmoVJCQ=")).equals(packageName)) {
+        if ("com.joycity.gt".equals(packageName) || "com.wemade.mirm".equals(packageName) || "com.com2usholdings.zenonia.android.google.kr.normal".equals(packageName)) {
             listHook.add(GoogleServiceHooker.class);
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRS9mNDM2LwgMLmwwGQZ1NTgwKghfX0wbJCBpNTgiLy0IGmoFJAJqNyBF")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtuJDA6JD0cPWULBi9oAQIcLj5SVg==")), new Object[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRS9mNDM2LAcbDmQzLD5rDCAgLSsiI2IFJABsHhouKRccVg==")), new XC_MethodReplacement() {
+            XposedHelpers.findAndHookMethod("com.hive.authv4.AuthV4WebViewDialog", application.getClassLoader(), "createWebViewDialog", new Object[]{"com.hive.ui.HiveWebViewClient", new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtuJDA6JD0cPWULBi9oAQIcLjo6Vg==")));
+                    Log.d("vatest", "createWebViewDialog ");
                     return null;
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojAiZ9JCM2Iy0MP2UgRS9vHhEbIQcMKWcVBSlvDBoiIi42BWoLAgVlEVRF")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAYYCX0bAi9rDgYzIQhSVg==")), new Object[]{Context.class, Object.class, new XC_MethodReplacement() {
+            XposedHelpers.findAndHookMethod("com.inca.security.Proxy.iIiIiIiIii", application.getClassLoader(), "iIiIIiIiiI", new Object[]{Context.class, Object.class, new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhcMD2kKDShrDgYJKQccXmwhLC9iDTxF")));
+                    Log.d("vatest", "Proxy IiIiiIiIiI ");
                     return null;
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojAiZ9JCM2Iy0MP2UgRS9vHhEbJC4+CmMFICB8MiQ5LDwICWgKFjBnDgo0IwguOm8FMCJuJywZOz4+LGUaOCs=")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgYXGUVAgljDAYzIQhSVg==")), new Object[]{Context.class, new XC_MethodReplacement() {
+            XposedHelpers.findAndHookMethod("com.inca.security.Native.AppGuardPreAssistantNative", application.getClassLoader(), "IiIiiIiIiI", new Object[]{Context.class, new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgc6KGAwNDdhNAoCIz0ME2oKAi9sJCwsLC0qDH0FFixqNA0pIi42BWoFAlBlHx4wLQMiVg==")));
+                    Log.d("vatest", "AppGuardPreAssistantNative IiIiiIiIiI ");
                     return null;
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojAiZ9JCM2Iy0MP2UgRS9vHhEbIQcMKWcVBSlhASA5JwcAO2wzMFdvJwY5IBUmP2UaQT1uAV0ZLAgACA==")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgYXGUbAi9jDAYJIQhSVg==")), new Object[]{Integer.TYPE, new XC_MethodReplacement() {
+            XposedHelpers.findAndHookMethod("com.inca.security.Proxy.AppGuardFrontApplication", application.getClassLoader(), "IiIiIiiIII", new Object[]{Integer.TYPE, new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgc6KGAwNDdhNAoUIz1fDmUxQQJsEQIaLT4+CmMKAil5HBoiIi42I2IFAlBlHxE3")));
+                    Log.d("vatest", "AppGuardFrontApplication IiIiiIiIiI ");
                     return null;
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojAiZ9JCM2Iy0MP2UgRS9vHhEbIQcMKWcVBSlhASA5JwcAO2wzMFdvJwY5IBUmP2UaQT1uAV0ZLAgACA==")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAYYXGUVAi9jDAYzIQhSVg==")), new Object[]{new XC_MethodReplacement() {
+            XposedHelpers.findAndHookMethod("com.inca.security.Proxy.AppGuardFrontApplication", application.getClassLoader(), "iIIiiiiIiI", new Object[]{new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgc6KGAwNDdhNAoUIz1fDmUxQQJsEQIaLT4+CmMKAil5HhpNIi42I2oFAlBlHxE3CT5SVg==")));
+                    Log.d("vatest", "AppGuardFrontApplication iIIiiiiIiI 2");
                     return null;
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojAiZ9JCM2Iy0MP2UgRS9vHhEbIQcMKWcVBSlhASA5JwcAO2wzMFdvJwY5IBUmP2UaQT1uAV0ZLAgACA==")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAYYXGUbAglrDAYzKQhSVg==")), new Object[]{new XC_MethodReplacement() {
+            XposedHelpers.findAndHookMethod("com.inca.security.Proxy.AppGuardFrontApplication", application.getClassLoader(), "IIIiIIIIii", new Object[]{new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgc6KGAwNDdhNAoUIz1fDmUxQQJsEQIaLT4+CmMKAil5HhpNIi42I2oFAlBlHxE3CS5SVg==")));
+                    Log.d("vatest", "AppGuardFrontApplication iIIiiiiIiI 3");
                     return null;
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojAiZ9JCM2Iy0MP2UgRS9vHhEbIQcMKWcVBSlhASA5JwcAO2wzMFdvJwY5IBUmP2UaQT1uAV0ZLAgACA==")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAYYCX0bAgljDgYzKQhSVg==")), new Object[]{new XC_MethodReplacement() {
+            XposedHelpers.findAndHookMethod("com.inca.security.Proxy.AppGuardFrontApplication", application.getClassLoader(), "iIiIIIiiii", new Object[]{new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgc6KGAwNDdhNAoUIz1fDmUxQQJsEQIaLT4+CmMKAil5HhpNKiw2BWIFAgVlERE3CQhSVg==")));
+                    Log.d("vatest", "AppGuardFrontApplication iIiIIIiiii 1");
                     return null;
                 }
             }});
-            XposedHelpers.findAndHookMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojAiZ9JCM2Iy0MP2UgRS9vHhEbIQcMKWcVBSlhASA5JwcAO2wzMFdvJwY5IBUmP2UaQT1uAV0ZLAgACA==")), application.getClassLoader(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAYYCX0bAgljDgYzKQhSVg==")), new Object[]{String.class, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod("com.inca.security.Proxy.AppGuardFrontApplication", application.getClassLoader(), "iIiIIIiiii", new Object[]{String.class, new XC_MethodHook() {
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAYYCX0bAgljDgYzKQMlLX4zSFo=")) + param.args[0].toString());
+                    Log.d("vatest", "iIiIIIiiii 5 " + param.args[0].toString());
                 }
 
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Log.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAYYCX0bAgljDgYzKQMlLX4zSFo=")) + param.getResult());
+                    Log.d("vatest", "iIiIIIiiii 5 " + param.getResult());
                     super.afterHookedMethod(param);
                 }
             }});
@@ -175,7 +175,7 @@ public class Ares {
         try {
             SandHook.addHookClass(application.getApplicationContext().getClassLoader(), (Class[])listHook.toArray(new Class[0]));
         } catch (Exception var4) {
-            Log.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+LGgaLAY=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IixeOGAYFl93N1RF")) + var4.getMessage());
+            Log.e("vatest", "SH ERR:" + var4.getMessage());
             var4.printStackTrace();
         }
 

@@ -21,23 +21,23 @@ import java.lang.reflect.Proxy;
 
 public class DingTalk
 extends ReflectionApplication {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBUhDWAFAiZiJQo7KhcEVg=="));
+    private static final String TAG = "HV-DingTalk";
 
     public static void hook(ClassLoader classLoader) {
         if (!REFLECTION_DTALK) {
             return;
         }
         try {
-            Class<?> ActionRequest = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm8zLC1qHiwsKQc5KmEzLClqHhocLyoqHWggMAVqNxpAJAgmPG4FMCI=")), classLoader);
-            Class<?> Plugin = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm8zLC1qHiwsKQc5KmEzLClqHhocLyoqQGUaNDFlERpF")), classLoader);
-            Class<?> Method2 = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LD4+LmtSBiR9Dlk9Oj4uPWkVOCtoJC8bJBguCmMaAi8=")), classLoader);
-            Class<?> TheOneActivityBase = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm8zLC1qHiwsKQc5KmEzLClqHhocLyoqO2wzAiJoHg05KBccLGQgAjFmJx4ZLAciCWwKAhR9ASg/")), classLoader);
-            XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm4jMCxsNwYaLgQcIGMKRSJqHiQbKghfO2wjNwRgAR45JC4MKGwaHh5uJB40Jgg2LGUaOC9mEQZF")), classLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iy4cU2gaPAlgNwo/Kj42Vg==")), Intent.class, new XC_MethodHook(){
+            Class<?> ActionRequest = XposedHelpers.findClass("com.alibaba.lightapp.runtime.ActionRequest", classLoader);
+            Class<?> Plugin = XposedHelpers.findClass("com.alibaba.lightapp.runtime.Plugin", classLoader);
+            Class<?> Method2 = XposedHelpers.findClass("java.lang.reflect.Method", classLoader);
+            Class<?> TheOneActivityBase = XposedHelpers.findClass("com.alibaba.lightapp.runtime.ariver.TheOneActivityBase", classLoader);
+            XposedHelpers.findAndHookMethod("com.alibaba.android.dingtalkbase.DingtalkBaseActivity", classLoader, "onNewIntent", Intent.class, new XC_MethodHook(){
 
                 @Override
                 public void afterHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) throws Throwable {
                     super.afterHookedMethod(methodHookParam);
-                    VLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBUhDWAFAiZiJQo7KhcEVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgYCGgwMDdgHg4QLwgqPWYjAgZqDiQaKgcXJEsaJCBqHBodIz4AKm9TTVo=")) + methodHookParam.getResult(), new Object[0]);
+                    VLog.d("HV-DingTalk", "DingtalkBaseActivity  getIntent:" + methodHookParam.getResult(), new Object[0]);
                 }
 
                 @Override
@@ -45,13 +45,13 @@ extends ReflectionApplication {
                     super.beforeHookedMethod(methodHookParam);
                 }
             });
-            XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm8zLC1qHiwsKQc5KmEzLClqHhocLyoqDmUaNDFlER05JQdfM24FNAJuJyc5IQcqCWoFSFo=")), classLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS4uLGQwNDc=")), ActionRequest, new XC_MethodHook(){
+            XposedHelpers.findAndHookMethod("com.alibaba.lightapp.runtime.plugin.internal.Util", classLoader, "getWua", ActionRequest, new XC_MethodHook(){
 
                 @Override
                 public void afterHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) throws Throwable {
                     super.afterHookedMethod(methodHookParam);
-                    VLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBUhDWAFAiZiJQo7KhcEVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwkdM0YEGwtZXhNLAhoBHngVSFo=")) + methodHookParam.getResult(), new Object[0]);
-                    VLog.printStackTrace(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS4uLGQwNDc=")));
+                    VLog.d("HV-DingTalk", "查看返回:" + methodHookParam.getResult(), new Object[0]);
+                    VLog.printStackTrace("getWua");
                     methodHookParam.setResult(null);
                 }
 
@@ -60,13 +60,13 @@ extends ReflectionApplication {
                     super.beforeHookedMethod(methodHookParam);
                 }
             });
-            XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm8zLC1qHiwsKQc5KmEzLClqHhocLyoqDmUaNDFlER05JQdfM24FNAJuJyc5IQcqCWoFSFo=")), classLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS4uLGILFl5uJzA7")), ActionRequest, new XC_MethodHook(){
+            XposedHelpers.findAndHookMethod("com.alibaba.lightapp.runtime.plugin.internal.Util", classLoader, "getLBSWua", ActionRequest, new XC_MethodHook(){
 
                 @Override
                 public void afterHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) throws Throwable {
                     super.afterHookedMethod(methodHookParam);
-                    VLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBUhDWAFAiZiJQo7KhcEVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwkdM0YEGwtZXhNLAhoBHngVSFo=")) + methodHookParam.getResult(), new Object[0]);
-                    VLog.printStackTrace(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS4uLGILFl5uJzA7")));
+                    VLog.d("HV-DingTalk", "查看返回:" + methodHookParam.getResult(), new Object[0]);
+                    VLog.printStackTrace("getLBSWua");
                     methodHookParam.setResult(null);
                 }
 
@@ -76,10 +76,10 @@ extends ReflectionApplication {
                     super.beforeHookedMethod(methodHookParam);
                 }
             });
-            Class<?> apiPermissionInfo = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm4gRS9vNyg5PC06J2EwQSxlJywiKQgpKmUFGjBoEQU5IwgiIH0aFiRvJzAcKi4YD2ohAiZiNB5F")), classLoader);
-            Class<?> apiPermissionCheckResult = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm4gRS9vNyg5PC5bJ2EwRSBsVx4qLD41KmwjNDVsHgowIBgfJWEFPD1iNwYbIwgYKW8zAiVgMig0KAcqCWIVGgNvAQI/")), classLoader);
+            Class<?> apiPermissionInfo = XposedHelpers.findClass("com.alibaba.ariver.permission.model.ApiPermissionInfo", classLoader);
+            Class<?> apiPermissionCheckResult = XposedHelpers.findClass("com.alibaba.ariver.kernel.api.security.ApiPermissionCheckResult", classLoader);
             final Object[] enumConstants = apiPermissionCheckResult.getEnumConstants();
-            XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm4gRS9vNyg5PC06J2EwQSxlJywiKQgpKmwjNCZsJx42JANfBW4KJDVlJyQZJgcuLGUFNCZmHgY5Lwg2MW8FMExsNwYzLxYYL2EaTVo=")), classLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBg+KWcFNARgDgYpIy0cDW8VSFo=")), apiPermissionInfo, String.class, String.class, new XC_MethodHook(){
+            XposedHelpers.findAndHookMethod("com.alibaba.ariver.permission.service.DefaultAuthenticationProxyImpl", classLoader, "hasPermission", apiPermissionInfo, String.class, String.class, new XC_MethodHook(){
 
                 @Override
                 public void afterHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) throws Throwable {
@@ -93,30 +93,30 @@ extends ReflectionApplication {
             });
         }
         catch (Throwable throwable) {
-            Log.e((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgYCGg2MDdgHgE8KRdfDWwJTStuETAgKQcqI2AgRD15EVRF")) + throwable.toString()));
+            Log.e((String)TAG, (String)("DingTalk hook exception: " + throwable.toString()));
             HVLog.printThrowable(throwable);
         }
     }
 
     private static void hookInterface(ClassLoader classLoader, Object pthis) {
         try {
-            Class<?> previewCallback = classLoader.loadClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1k0LwguPmUFQQRrDRoALRgIJ2EwPy99ESguIxg2J28hLDNqAQI1OwcuIg==")));
+            Class<?> previewCallback = classLoader.loadClass("android.hardware.Camera$PreviewCallback");
             Object obj_proxy = Proxy.newProxyInstance(classLoader, new Class[]{previewCallback}, new InvocationHandler(){
 
                 @Override
                 public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
-                    HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("MwQHDXpSHSNOClw3OgNWD38nTSNrDiwZLD4pJA==")) + method.getName());
+                    HVLog.i("------------- method " + method.getName());
                     return null;
                 }
             });
-            HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwguLGUFGixLV1w3OgNWD38nPyN1DQEePF8HL04OQCh8ClAcOSolL3UJHQF6VgE8CANaJHwOTAN/IyM8MwQHDXsFSFo=")));
-            XposedHelpers.callMethod(pthis, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LghSVg==")), obj_proxy);
+            HVLog.i("method ----------------------------------------- ");
+            XposedHelpers.callMethod(pthis, "a", obj_proxy);
         }
         catch (NoClassDefFoundError fe) {
-            HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4tOA==")) + fe.getMessage());
+            HVLog.i("fe " + fe.getMessage());
         }
         catch (Exception e) {
-            HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LQQ6Vg==")) + e.getMessage());
+            HVLog.i("e " + e.getMessage());
         }
     }
 }

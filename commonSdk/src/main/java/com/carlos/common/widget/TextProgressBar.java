@@ -36,8 +36,8 @@ import com.kook.librelease.StringFog;
 
 public class TextProgressBar
 extends LinearLayout {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRguIGwIIARgJDgqKAgqL2YVQQQ="));
-    String text = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OhhSVg=="));
+    private static final String TAG = "TextProgressBar";
+    String text = "0";
     Paint mPaint;
     private Rect textRect;
     private RectF textBackRectF;
@@ -68,7 +68,7 @@ extends LinearLayout {
         super.onDraw(canvas);
         this.progress = this.progressBar.getProgress();
         if (this.progress != 0) {
-            this.text = (int)((double)this.progress / (double)this.progressBar.getMax() * 100.0) + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PQhSVg=="));
+            this.text = (int)((double)this.progress / (double)this.progressBar.getMax() * 100.0) + "%";
         }
         this.mPaint.getTextBounds(this.text, 0, this.text.length(), this.textRect);
         this.proWidth = this.progressBar.getWidth() - this.progressBar.getPaddingLeft() - this.progressBar.getPaddingRight();
@@ -84,7 +84,7 @@ extends LinearLayout {
         if (this.textBackRectF == null) {
             this.textBackRectF = new RectF();
         }
-        this.mPaint.setColor(Color.parseColor((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PiwiW2MkLBNlN1RF"))));
+        this.mPaint.setColor(Color.parseColor((String)"#FFB3CB"));
         this.textBackRectF.set((float)(tvx - this.mTextMargin), (float)(tvy + this.mTextMargin), (float)(tvx + this.textRect.width() + this.mTextMargin), (float)(this.textRect.height() + this.mTextMarginTop));
         canvas.drawRoundRect(this.textBackRectF, 10.0f, 10.0f, this.mPaint);
         if (this.path == null) {
@@ -108,7 +108,7 @@ extends LinearLayout {
         this.setWillNotDraw(false);
         this.mPaint = new Paint();
         this.mPaint.setAntiAlias(true);
-        this.mPaint.setColor(Color.parseColor((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PiwiW2MkLBNlN1RF"))));
+        this.mPaint.setColor(Color.parseColor((String)"#FFB3CB"));
         this.mPaint.setTextSize(25.0f);
         this.textRect = new Rect();
     }

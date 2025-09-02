@@ -21,8 +21,8 @@ extends Activity {
         this.finish();
         Intent intent = this.getIntent();
         if (intent != null) {
-            int userid = intent.getIntExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/Iz0cPmMFSFo=")), -1);
-            String pkg = intent.getStringExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9hHiA5KS0iM2kmNFo=")));
+            int userid = intent.getIntExtra("_VA_|_userid_", -1);
+            String pkg = intent.getStringExtra("_VA_|_package_");
             if (userid >= 0 && pkg != null && !pkg.isEmpty()) {
                 VActivityManager.get().launchApp(userid, pkg);
             }

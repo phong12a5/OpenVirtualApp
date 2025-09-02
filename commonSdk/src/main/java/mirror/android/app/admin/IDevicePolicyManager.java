@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IDevicePolicyManager {
-    public static Class<?> TYPE = RefClass.load(IDevicePolicyManager.class, StringFog.decrypt("EgsWBAoHO10CHwJeCAsDGgtcPyELKRoACiIfBQYNCigTGAQJOgE="));
+    public static Class<?> TYPE = RefClass.load(IDevicePolicyManager.class, "android.app.admin.IDevicePolicyManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10CHwJeCAsDGgtcPyELKRoACiIfBQYNCigTGAQJOgFHPAYFCw=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.app.admin.IDevicePolicyManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

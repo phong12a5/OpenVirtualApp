@@ -45,15 +45,15 @@ public class StubManifest {
             ComponentName name = new ComponentName(targetInfo.packageName, targetInfo.name);
             ActivityInfo info = VPackageManagerService.get().getActivityInfo(name, 0, 0);
             boolean isFixedOrientationLandscape = StubManifest.isFixedOrientationLandscape(info);
-            VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITw9DQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcwMAV9MiA5LBccLGwgBj99NzgeLl86I2EmICxrHgotIQdfI2sFBiBrHiwwJi1fHWkKAjJqAR4oKhgtIg==")) + isFixedOrientationLandscape + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MxgYCGgjBTI=")) + info + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MxgYCGgFNDB3N1RF")) + index, new Object[0]);
+            VLog.d("VA-", "getStubActivityName isFixedOrientationLandscape:" + isFixedOrientationLandscape + ",info:" + info + ",index:" + index, new Object[0]);
             if (isFixedOrientationLandscape) {
-                return String.format(Locale.ENGLISH, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PQc1PGcJNCxsIlE7Kj02Vg==")), STUB_ACTIVITY, index);
+                return String.format(Locale.ENGLISH, "%s$P%d_Land", STUB_ACTIVITY, index);
             }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        return String.format(Locale.ENGLISH, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PQc1PGcJNCw=")), STUB_ACTIVITY, index);
+        return String.format(Locale.ENGLISH, "%s$P%d", STUB_ACTIVITY, index);
     }
 
     public static String getStubDialogName(int index, ActivityInfo targetInfo) {
@@ -61,27 +61,27 @@ public class StubManifest {
             ComponentName name = new ComponentName(targetInfo.packageName, targetInfo.name);
             ActivityInfo info = VPackageManagerService.get().getActivityInfo(name, 0, 0);
             boolean isFixedOrientationLandscape = StubManifest.isFixedOrientationLandscape(info);
-            VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITw9DQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcwMAV9MgozLwdbDWkLMDdlASsrIxc2BGMFBiBuHFk7Ki4AKm8VJCBlEQY5LhcmJW4VMDNuJFE0OD5SVg==")) + isFixedOrientationLandscape + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MxgYCGgjBTI=")) + info + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MxgYCGgFNDB3N1RF")) + index, new Object[0]);
+            VLog.d("VA-", "getStubDialogName isFixedOrientationLandscape:" + isFixedOrientationLandscape + ",info:" + info + ",index:" + index, new Object[0]);
             if (isFixedOrientationLandscape) {
-                return String.format(Locale.ENGLISH, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PQc1PGcJNCxsIlE7Kj02Vg==")), STUB_DIALOG, index);
+                return String.format(Locale.ENGLISH, "%s$P%d_Land", STUB_DIALOG, index);
             }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        return String.format(Locale.ENGLISH, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PQc1PGcJNCw=")), STUB_DIALOG, index);
+        return String.format(Locale.ENGLISH, "%s$P%d", STUB_DIALOG, index);
     }
 
     public static String getStubContentProviderName(int index) {
-        return String.format(Locale.ENGLISH, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PQc1PGcJNCw=")), STUB_CP, index);
+        return String.format(Locale.ENGLISH, "%s$P%d", STUB_CP, index);
     }
 
     public static String getStubServiceName(int index) {
-        return String.format(Locale.ENGLISH, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PQc1PGcJNCw=")), STUB_SERVICE, index);
+        return String.format(Locale.ENGLISH, "%s$P%d", STUB_SERVICE, index);
     }
 
     public static String getStubAuthority(int index, boolean isExt) {
-        return String.format(Locale.ENGLISH, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PQc1M2gFSFo=")), isExt ? EXT_STUB_CP_AUTHORITY : STUB_CP_AUTHORITY, index);
+        return String.format(Locale.ENGLISH, "%s%d", isExt ? EXT_STUB_CP_AUTHORITY : STUB_CP_AUTHORITY, index);
     }
 
     public static String getProxyAuthority(boolean isExt) {

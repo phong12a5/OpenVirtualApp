@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class ITelephony {
-    public static Class<?> TYPE = RefClass.load(ITelephony.class, StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAKxYPCgIYBgEXXSwmEwkLLxsMAQs="));
+    public static Class<?> TYPE = RefClass.load(ITelephony.class, "com.android.internal.telephony.ITelephony");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAKxYPCgIYBgEXXSwmEwkLLxsMAQtUOhsbEQ=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "com.android.internal.telephony.ITelephony$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

@@ -38,8 +38,8 @@ extends Activity {
             intent.setClassName(StubManifest.PACKAGE_NAME, RequestPermissionsActivity.class.getName());
         }
         intent.setFlags(0x10000000);
-        intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmoVAgNhJAY1Kj4qVg==")), permissions);
-        BundleCompat.putBinder(intent, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+DmoFFjd9JA5F")), callback.asBinder());
+        intent.putExtra("permissions", permissions);
+        BundleCompat.putBinder(intent, "callback", callback.asBinder());
         context.startActivity(intent);
     }
 
@@ -50,8 +50,8 @@ extends Activity {
             this.finish();
             return;
         }
-        String[] permissions = intent.getStringArrayExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmoVAgNhJAY1Kj4qVg==")));
-        IBinder binder = BundleCompat.getBinder(intent, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+DmoFFjd9JA5F")));
+        String[] permissions = intent.getStringArrayExtra("permissions");
+        IBinder binder = BundleCompat.getBinder(intent, "callback");
         if (binder == null || permissions == null) {
             this.finish();
             return;
@@ -70,7 +70,7 @@ extends Activity {
 
                         @Override
                         public void run() {
-                            Toast.makeText((Context)RequestPermissionsActivity.this, (CharSequence)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uL2wVNANmVyQsKAguD2wgAgNqAQYbPQgiO2MKTSBuVx5F")), (int)0).show();
+                            Toast.makeText((Context)RequestPermissionsActivity.this, (CharSequence)"Request permission failed.", (int)0).show();
                         }
                     });
                 }

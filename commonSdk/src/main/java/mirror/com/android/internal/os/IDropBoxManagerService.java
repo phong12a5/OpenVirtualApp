@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IDropBoxManagerService {
-    public static Class<?> TYPE = RefClass.load(IDropBoxManagerService.class, StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAMABNJjYCBh8sHB0/FwsPOBYRPBcCHwYNFg=="));
+    public static Class<?> TYPE = RefClass.load(IDropBoxManagerService.class, "com.android.internal.os.IDropBoxManagerService");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAMABNJjYCBh8sHB0/FwsPOBYRPBcCHwYNFkEhAhAM"));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "com.android.internal.os.IDropBoxManagerService$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

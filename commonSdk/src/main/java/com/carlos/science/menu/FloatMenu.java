@@ -42,7 +42,7 @@ import com.carlos.science.menu.MenuLayout;
 
 public class FloatMenu
 extends FrameLayout {
-    String TAG = StringFog.decrypt("NQkdFxEjOh0W");
+    String TAG = "FloatMenu";
     private MenuLayout mMenuLayout;
     private ImageView mIconView;
     private int mPosition;
@@ -129,7 +129,7 @@ extends FrameLayout {
     }
 
     public void detachFromWindow(WindowManager windowManager) {
-        Log.d((String)this.TAG, (String)StringFog.decrypt("FwAGFwYGGQEMAiUZBwsBBA=="));
+        Log.d((String)this.TAG, (String)"detachFromWindow");
         if (this.isAdded) {
             this.toggle(0);
             this.mMenuLayout.setVisibility(8);

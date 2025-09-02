@@ -29,13 +29,13 @@ public final class Compatibility {
 
     @SystemApi(client=SystemApi.Client.MODULE_LIBRARIES)
     public static boolean isChangeEnabled(long changeId) {
-        Log.d((String)StringFog.decrypt("GAodHQ=="), (String)StringFog.decrypt("U0UxGQgePgcKDRscABsXU0UbBSYGPh0ECjceCA0CFgFS"));
+        Log.d((String)"kook", (String)"  Compatibility  isChangeEnabled ");
         return sCallbacks.isChangeEnabled(changeId);
     }
 
     @SystemApi(client=SystemApi.Client.MODULE_LIBRARIES)
     public static void setBehaviorChangeDelegate(BehaviorChangeDelegate callbacks) {
-        Log.d((String)StringFog.decrypt("GAodHQ=="), (String)StringFog.decrypt("U0UxGQgePgcKDRscABsXU0UBExEsOhsCGRsfGywGEgsVEyELMxYEDgYVSQ=="));
+        Log.d((String)"kook", (String)"  Compatibility  setBehaviorChangeDelegate ");
         sCallbacks = Objects.requireNonNull(callbacks);
     }
 
@@ -47,7 +47,7 @@ public final class Compatibility {
     @SystemApi(client=SystemApi.Client.MODULE_LIBRARIES)
     public static void setOverrides(ChangeConfig overrides) {
         if (sCallbacks instanceof OverrideCallbacks) {
-            throw new IllegalStateException(StringFog.decrypt("AAAGORMLLQEKCxcDSQcPAEUTGhcLPhcaTxAVDAFOEAQeGgAKfg=="));
+            throw new IllegalStateException("setOverrides has already been called!");
         }
         sCallbacks = new OverrideCallbacks(sCallbacks, overrides);
     }
@@ -55,7 +55,7 @@ public final class Compatibility {
     @SystemApi(client=SystemApi.Client.MODULE_LIBRARIES)
     public static void clearOverrides() {
         if (!(sCallbacks instanceof OverrideCallbacks)) {
-            throw new IllegalStateException(StringFog.decrypt("PQpSGRMLLQEKCxcDSRwLBw=="));
+            throw new IllegalStateException("No overrides set");
         }
         sCallbacks = ((OverrideCallbacks)sCallbacks).delegate;
     }
@@ -104,7 +104,7 @@ public final class Compatibility {
             HashSet<Long> intersection = new HashSet<Long>(enabled);
             intersection.retainAll(disabled);
             if (!intersection.isEmpty()) {
-                throw new IllegalArgumentException(StringFog.decrypt("MAQcGAoafxsCGRdQCgcPHQIXBUU=") + intersection + StringFog.decrypt("UwAcFwcCOhdDDhwUSQsHAAQQGgAKfg=="));
+                throw new IllegalArgumentException("Cannot have changes " + intersection + " enabled and disabled!");
             }
         }
 
@@ -168,7 +168,7 @@ public final class Compatibility {
         }
 
         public String toString() {
-            return StringFog.decrypt("MA0TGAILHBwNCRsXEgoAEgceEwFT") + this.enabled + StringFog.decrypt("X0UWHxYPPR8GC08=") + this.disabled + '}';
+            return "ChangeConfig{enabled=" + this.enabled + ", disabled=" + this.disabled + '}';
         }
     }
 
@@ -176,12 +176,12 @@ public final class Compatibility {
     public static interface BehaviorChangeDelegate {
         @SystemApi(client=SystemApi.Client.MODULE_LIBRARIES)
         default public void onChangeReported(long changeId) {
-            Log.d((String)StringFog.decrypt("GAodHQ=="), (String)StringFog.decrypt("UwocNQ0PMRQGPRcABh0aFgFS"));
+            Log.d((String)"kook", (String)" onChangeReported ");
         }
 
         @SystemApi(client=SystemApi.Client.MODULE_LIBRARIES)
         default public boolean isChangeEnabled(long changeId) {
-            Log.d((String)StringFog.decrypt("GAodHQ=="), (String)StringFog.decrypt("Uw4dGQ5OuNTYidb9jtzVlN7tHAQYPg=="));
+            Log.d((String)"kook", (String)" kook 移植系统java");
             return true;
         }
     }

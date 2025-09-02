@@ -34,19 +34,19 @@ public class ToastHooker {
         if (map != null && map.size() != 0) {
             for (Thread eachThread : map.keySet()) {
                 StackTraceElement[] array = map.get(eachThread);
-                System.out.println(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("MwQHDXpSHSNYAhMLAlcdCkcWLTVBK1pNAAlAGlgXDz1EA14bAQsrO0EHIQM=")));
-                System.out.println(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PlsjIlQ7OSAcLAsCXx83Mx87MTQbN1RF")) + eachThread.getName());
-                System.out.println(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhU2LGsVLCFuESw7Ly0MWm8zGiNrARo/JzsHKmAaLCluJzAhPS5SVg==")) + array.length);
-                System.out.println(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PlsjIlQ7OSAcLD1NXVo3XR5WGxIVCRs3XC5SVg==")) + (Object)((Object)eachThread.getState()));
+                System.out.println("------每个线程的基本信息");
+                System.out.println(" 线程名称：" + eachThread.getName());
+                System.out.println(" StackTraceElement[].length=" + array.length);
+                System.out.println(" 线程的状态：" + (Object)((Object)eachThread.getState()));
                 if (array.length != 0) {
-                    System.out.println(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PltcJhg7MRcYNSggLwcqCX0wRTdoJyhLLAguL2IKRT9jJUIvRCFEIVQtMj8VXyIzXxosIx0sOjAbKyo6EUBXVg==")));
+                    System.out.println(" 输出StackTraceElement[]数组具体信息：");
                     for (int i = 0; i < array.length; ++i) {
                         StackTraceElement eachElement = array[i];
                         System.out.println(" " + eachElement.getClassName() + " " + eachElement.getMethodName() + " " + eachElement.getFileName() + " " + eachElement.getLineNumber());
                     }
                     continue;
                 }
-                System.out.println(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pls/KhxWJR4cDyggLwcqCX0wRTdoJyhLLAguL2IKRT9jJUItWhxZIhURBANUEwQ0EyEgIxxaHD8dXyoyWURbVg==")) + eachThread.getName() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcDUYEWhZhJwo7Ly0EAGoVQSlrDygdLhgIJ2AzFlNgCh4bLy4qIW8VRDd+EVRF")) + array.length);
+                System.out.println(" 没有StackTraceElement[]信息，因为线程" + eachThread.getName() + "中的stackTraceElement[].length==" + array.length);
             }
         }
     }
@@ -54,7 +54,7 @@ public class ToastHooker {
     @HookMethod(value="makeText")
     @MethodParams(value={Context.class, CharSequence.class, int.class})
     public static Toast makeText(Context context, CharSequence cs, int d) throws Throwable {
-        Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRgAP28wMApgJB4xKAguVg==")), (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+MWgYMCtnEQ0i")) + cs.toString() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Phc6P2szQTdiJDAMLwdXPXgVSFo=")) + context.getPackageName() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRhfKmgVJCx3N1RF")) + Thread.currentThread().getClass().getName()));
+        Log.d((String)"ToastHooker", (String)("makeText:" + cs.toString() + " packageName:" + context.getPackageName() + "Thread:" + Thread.currentThread().getClass().getName()));
         ToastHooker.e();
         return (Toast)SandHook.callOriginByBackup(method_m2, null, context, cs, d);
     }
@@ -62,7 +62,7 @@ public class ToastHooker {
     @HookMethod(value="show")
     public static void show(Toast thiz) throws Throwable {
         try {
-            Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRgAP28wMApgJB4xKAguVg==")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Phc2CmowPFo=")));
+            Log.d((String)"ToastHooker", (String)" show");
         }
         catch (Exception e) {
             e.printStackTrace();

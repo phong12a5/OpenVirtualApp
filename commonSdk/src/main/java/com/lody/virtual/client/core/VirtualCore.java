@@ -140,8 +140,8 @@ public final class VirtualCore {
     private final BroadcastReceiver mDownloadCompleteReceiver = new BroadcastReceiver(){
 
         public void onReceive(Context context, Intent intent) {
-            VLog.w(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRgALWojHiV9DgoNLwcYOWkFGgQ=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uOWgVAj5iCiQwKi46Dm8zNDdrVjwqLD4IDmAaLD9uDjMpKBdfKWsVLDNvNC8tDRhSVg==")) + intent, new Object[0]);
-            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42FhRiIh5AIQZbGmEhLF5iHDwRLAYMBg==")).equals(intent.getAction())) {
+            VLog.w("DownloadManager", "receive download completed brodcast: " + intent, new Object[0]);
+            if ("android.intent.action.DOWNLOAD_COMPLETE".equals(intent.getAction())) {
                 VActivityManager.get().handleDownloadCompleteIntent(intent);
             }
         }
@@ -149,7 +149,7 @@ public final class VirtualCore {
     boolean scanned = false;
 
     private VirtualCore() {
-        HandlerThread handlerThread = new HandlerThread(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwZfP2ojMCRiASwROy4cPw==")));
+        HandlerThread handlerThread = new HandlerThread("mHandlerASyc");
         handlerThread.start();
         this.mHandlerASyc = new Handler(handlerThread.getLooper());
     }
@@ -293,11 +293,11 @@ public final class VirtualCore {
     public void startup(Application application, Context context, SettingConfig config) throws Throwable {
         if (!this.isStartUp) {
             if (Looper.myLooper() != Looper.getMainLooper()) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IT4YKmwKNDdgHCg1Iz0LDmoKBjdsNCwwKQReI0saQTBlJzMpKAhbKGUVNDB7AR45DRdbKG8KDTZlNwobLQg+PHojSFo=")));
+                throw new IllegalStateException("VirtualCore.startup() must called in main thread.");
             }
 
             if (!context.getPackageName().equals(config.getMainPackageName()) && !context.getPackageName().equals(config.getExtPackageName())) {
-                throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4uCWwFRSthMCQgKRcLOm8jQS9lMzw7LRg2LX0KJCB5Hh4eLF9XCmoVNzRoHlkZJAdfOm8KRQJ+NFEoLi5bP2gzNyRLEQY1LAMmL2kjGiN4HiwcPQhfO2YwLyNpJFkdLxg2IW8KFj9oDTwZJRc1L2ojNAFvEQE3Khg+OWUzJC1iCiQ2LwdXPX83TStuHjwgLT0qJ2JTOFo=")) + config.getMainPackageName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgAKnsFSFo=")) + config.getExtPackageName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186OmwaMyhiJB4gPxhSVg==")) + context.getPackageName());
+                throw new IllegalArgumentException("Neither the main package nor the extension package, you seem to have configured the wrong package name, expected " + config.getMainPackageName() + " or " + config.getExtPackageName() + ", but got " + context.getPackageName());
             }
 
             this.mInitLock = new ConditionVariable();
@@ -306,21 +306,21 @@ public final class VirtualCore {
             String ext_packageName = config.getExtPackageName();
             Constants.ACTION_SHORTCUT = packageName + Constants.ACTION_SHORTCUT;
             Constants.ACTION_BADGER_CHANGE = packageName + Constants.ACTION_BADGER_CHANGE;
-            StubManifest.STUB_CP_AUTHORITY = packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz0iCW8gMAV9DlFAIy42LW4YNFo="));
-            StubManifest.PROXY_CP_AUTHORITY = packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz06KmowOC9iHjAqJi4mKG8KFj8="));
+            StubManifest.STUB_CP_AUTHORITY = packageName + ".virtual_stub_";
+            StubManifest.PROXY_CP_AUTHORITY = packageName + ".provider_proxy";
             File externalFilesDir = context.getExternalFilesDir(config.getVirtualSdcardAndroidDataName());
             if (!externalFilesDir.exists()) {
                 externalFilesDir.mkdirs();
             }
 
             if (ext_packageName == null) {
-                ext_packageName = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OzwAH2AYRVE="));
+                ext_packageName = "NO_EXT";
             }
 
             StubManifest.PACKAGE_NAME = packageName;
             StubManifest.EXT_PACKAGE_NAME = ext_packageName;
-            StubManifest.EXT_STUB_CP_AUTHORITY = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcMmMFMD9qDiQbJQcYCm8FFhNoHlkZKi5SVg=="));
-            StubManifest.EXT_PROXY_CP_AUTHORITY = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcDmEwAjFvDjAuLBUuDmwzGixpHAY0IRgMVg=="));
+            StubManifest.EXT_STUB_CP_AUTHORITY = "com.carlos.multiapp.virtual_stub_ext_";
+            StubManifest.EXT_PROXY_CP_AUTHORITY = "com.carlos.multiapp.provider_proxy_ext";
             this.context = context;
             this.isMainPackage = context.getPackageName().equals(StubManifest.PACKAGE_NAME);
             NativeEngine.bypassHiddenAPIEnforcementPolicyIfNeeded();
@@ -330,7 +330,7 @@ public final class VirtualCore {
             if (this.isVAppProcess()) {
                 this.mainThread = ActivityThread.currentActivityThread.call(new Object[0]);
                 if (this.mainThread != null && BuildCompat.isT()) {
-                    VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KGoFAil9AQozKi0YEW8FMAZrDlk/PQNXVg==")) + application);
+                    VLog.e("HV-", "applicationContext :" + application);
                     ActivityThread.mInitialApplication.set(this.mainThread, application);
                 }
 
@@ -359,15 +359,15 @@ public final class VirtualCore {
             if (this.isVAppProcess() || this.isExtHelperProcess()) {
                 ServiceManagerNative.linkToDeath(new IBinder.DeathRecipient() {
                     public void binderDied() {
-                        VLog.e(VirtualCore.TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uKmwjNARLETg7IykmPmkjQSx1VjwiIxgEKEsVODVsJCwuLAcXPngVSFo=")) + VirtualCore.this.processType.name());
+                        VLog.e(VirtualCore.TAG, "Server was dead, kill process: " + VirtualCore.this.processType.name());
                         Process.killProcess(Process.myPid());
                     }
                 });
             }
 
             if (this.isServerProcess() || this.isExtHelperProcess()) {
-                VLog.w(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRgALWojHiV9DgoNLwcYOWkFGgQ=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OxgYKWwFNCZjDlk9PxU2DWUFMCRlJzgvJBg+Kn0KJCBlMCAqKAccI2UjATR7AR45DRgiOWwgMDFqDhEtPhhSVg==")) + this.processType, new Object[0]);
-                IntentFilter filter = new IntentFilter(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42FhRiIh5AIQZbGmEhLF5iHDwRLAYMBg==")));
+                VLog.w("DownloadManager", "Listening DownloadManager action  in process: " + this.processType, new Object[0]);
+                IntentFilter filter = new IntentFilter("android.intent.action.DOWNLOAD_COMPLETE");
 
                 try {
                     context.registerReceiver(this.mDownloadCompleteReceiver, filter);
@@ -396,7 +396,7 @@ public final class VirtualCore {
         if (!BinderProvider.scanApps) {
             this.scanApps();
         }
-        ActivityManager am = (ActivityManager)this.context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+        ActivityManager am = (ActivityManager)this.context.getSystemService("activity");
         String engineProcessName = this.getEngineProcessName();
         for (ActivityManager.RunningAppProcessInfo info : am.getRunningAppProcesses()) {
             if (!info.processName.endsWith(engineProcessName)) continue;
@@ -406,7 +406,7 @@ public final class VirtualCore {
     }
 
     public List<ActivityManager.RunningAppProcessInfo> getRunningAppProcessesEx() {
-        ActivityManager am = (ActivityManager)this.context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+        ActivityManager am = (ActivityManager)this.context.getSystemService("activity");
         ArrayList<ActivityManager.RunningAppProcessInfo> list = new ArrayList<ActivityManager.RunningAppProcessInfo>(am.getRunningAppProcesses());
         if (!VirtualCore.get().isSharedUserId()) {
             List<ActivityManager.RunningAppProcessInfo> list64 = VExtPackageAccessor.getRunningAppProcesses();
@@ -425,7 +425,7 @@ public final class VirtualCore {
     }
 
     public List<ActivityManager.RunningTaskInfo> getRunningTasksEx(int maxNum) {
-        ActivityManager am = (ActivityManager)this.context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+        ActivityManager am = (ActivityManager)this.context.getSystemService("activity");
         ArrayList<ActivityManager.RunningTaskInfo> list = new ArrayList<ActivityManager.RunningTaskInfo>(am.getRunningTasks(maxNum));
         if (!VirtualCore.get().isSharedUserId()) {
             List<ActivityManager.RunningTaskInfo> list64 = VExtPackageAccessor.getRunningTasks(maxNum);
@@ -435,7 +435,7 @@ public final class VirtualCore {
     }
 
     public List<ActivityManager.RecentTaskInfo> getRecentTasksEx(int maxNum, int flags) {
-        ActivityManager am = (ActivityManager)this.context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+        ActivityManager am = (ActivityManager)this.context.getSystemService("activity");
         ArrayList<ActivityManager.RecentTaskInfo> list = new ArrayList<ActivityManager.RecentTaskInfo>(am.getRecentTasks(maxNum, flags));
         if (!VirtualCore.get().isSharedUserId()) {
             List<ActivityManager.RecentTaskInfo> list64 = VExtPackageAccessor.getRecentTasks(maxNum, flags);
@@ -450,7 +450,7 @@ public final class VirtualCore {
 
     public void initialize(VirtualInitializer initializer) {
         if (initializer == null) {
-            throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcCWwFAjdgHgYiKAgtOnsnTQBnDwJT")));
+            throw new IllegalStateException("Initializer = NULL");
         }
         switch (this.processType) {
             case Main: {
@@ -477,14 +477,14 @@ public final class VirtualCore {
     private static String getProcessName(Context context) {
         int pid = Process.myPid();
         String processName = null;
-        ActivityManager am = (ActivityManager)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+        ActivityManager am = (ActivityManager)context.getSystemService("activity");
         for (ActivityManager.RunningAppProcessInfo info : am.getRunningAppProcesses()) {
             if (info.pid != pid) continue;
             processName = info.processName;
             break;
         }
         if (processName == null) {
-            throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhcMD2szNANhIlk7KgcLOnsnTSZvAQId")));
+            throw new RuntimeException("processName = null");
         }
         return processName;
     }
@@ -511,7 +511,7 @@ public final class VirtualCore {
     }
 
     private Object getStubInterface() {
-        return IAppManager.Stub.asInterface(ServiceManagerNative.getService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KA=="))));
+        return IAppManager.Stub.asInterface(ServiceManagerNative.getService("app"));
     }
 
     public boolean isVAppProcess() {
@@ -570,13 +570,13 @@ public final class VirtualCore {
 
     public Intent getLaunchIntent(String packageName, int userId) {
         VPackageManager pm = VPackageManager.get();
-        Intent intentToResolve = new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42QQ5nDB5F")));
-        intentToResolve.addCategory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoJzg/LhgmKWEzBSlnDB5KIQhSVg==")));
+        Intent intentToResolve = new Intent("android.intent.action.MAIN");
+        intentToResolve.addCategory("android.intent.category.INFO");
         intentToResolve.setPackage(packageName);
         List<ResolveInfo> ris = pm.queryIntentActivities(intentToResolve, intentToResolve.resolveType(this.context), 0, userId);
         if (ris == null || ris.size() <= 0) {
-            intentToResolve.removeCategory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoJzg/LhgmKWEzBSlnDB5KIQhSVg==")));
-            intentToResolve.addCategory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoJzg/LhgmKWEzBSlkHCQUIRYYBmMIFlo=")));
+            intentToResolve.removeCategory("android.intent.category.INFO");
+            intentToResolve.addCategory("android.intent.category.LAUNCHER");
             intentToResolve.setPackage(packageName);
             ris = pm.queryIntentActivities(intentToResolve, intentToResolve.resolveType(this.context), 0, userId);
         }
@@ -626,7 +626,7 @@ public final class VirtualCore {
         }
         Intent shortcutIntent = this.wrapperShortcutIntent(targetIntent, splash, packageName, userId);
         if (Build.VERSION.SDK_INT >= 26) {
-            ShortcutInfo likeShortcut = new ShortcutInfo.Builder(this.getContext(), packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JhhSVg==")) + userId).setLongLabel((CharSequence)name).setShortLabel((CharSequence)name).setIcon(Icon.createWithBitmap((Bitmap)icon)).setIntent(shortcutIntent).build();
+            ShortcutInfo likeShortcut = new ShortcutInfo.Builder(this.getContext(), packageName + "@" + userId).setLongLabel((CharSequence)name).setShortLabel((CharSequence)name).setIcon(Icon.createWithBitmap((Bitmap)icon)).setIntent(shortcutIntent).build();
             ShortcutManager shortcutManager = (ShortcutManager)this.getContext().getSystemService(ShortcutManager.class);
             if (shortcutManager != null) {
                 try {
@@ -638,10 +638,10 @@ public final class VirtualCore {
             }
         } else {
             Intent addIntent = new Intent();
-            addIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmEgBiplNzAsIy0bKmILBgpgHxpO")), (Parcelable)shortcutIntent);
-            addIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmEgBiplNzAsIy0bKn0xJEhgEVRF")), name);
-            addIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmEgBiplNzAsIy0bKmILLF5iJ1RF")), (Parcelable)BitmapUtils.warrperIcon(icon, 256, 256));
-            addIntent.setAction(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1Dm8zQQVlNzAZLhcLKn0KND9vDlkdORY2DGQmMB1iDwIALyscGH0xLB19IhpF")));
+            addIntent.putExtra("android.intent.extra.shortcut.INTENT", (Parcelable)shortcutIntent);
+            addIntent.putExtra("android.intent.extra.shortcut.NAME", name);
+            addIntent.putExtra("android.intent.extra.shortcut.ICON", (Parcelable)BitmapUtils.warrperIcon(icon, 256, 256));
+            addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
             try {
                 this.context.sendBroadcast(addIntent);
             }
@@ -678,9 +678,9 @@ public final class VirtualCore {
         Intent shortcutIntent = this.wrapperShortcutIntent(targetIntent, splash, packageName, userId);
         if (Build.VERSION.SDK_INT < 26) {
             Intent addIntent = new Intent();
-            addIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmEgBiplNzAsIy0bKmILBgpgHxpO")), (Parcelable)shortcutIntent);
-            addIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmEgBiplNzAsIy0bKn0xJEhgEVRF")), name);
-            addIntent.setAction(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1Dm8zQQVlNzAZLhcLKn0KND9vDlkdORUADGILBg9kDzgRLhYYHGcYRQ59NR5PIRhSVg==")));
+            addIntent.putExtra("android.intent.extra.shortcut.INTENT", (Parcelable)shortcutIntent);
+            addIntent.putExtra("android.intent.extra.shortcut.NAME", name);
+            addIntent.setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");
             this.context.sendBroadcast(addIntent);
         }
         return true;
@@ -688,15 +688,15 @@ public final class VirtualCore {
 
     public Intent wrapperShortcutIntent(Intent intent, Intent splash, String packageName, int userId) {
         Intent shortcutIntent = new Intent();
-        shortcutIntent.addCategory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoJzg/LhgmKWEzBSlmHApKICsAAmcVSFo=")));
+        shortcutIntent.addCategory("android.intent.category.DEFAULT");
         shortcutIntent.setAction(Constants.ACTION_SHORTCUT);
         shortcutIntent.setPackage(this.getHostPkg());
         if (splash != null) {
-            shortcutIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9hJyQoLwgqMmMFSFo=")), splash.toUri(0));
+            shortcutIntent.putExtra("_VA_|_splash_", splash.toUri(0));
         }
-        shortcutIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9hHg49Ji5SVg==")), packageName);
-        shortcutIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASwzJi5SVg==")), intent.toUri(0));
-        shortcutIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), userId);
+        shortcutIntent.putExtra("_VA_|_pkg_", packageName);
+        shortcutIntent.putExtra("_VA_|_uri_", intent.toUri(0));
+        shortcutIntent.putExtra("_VA_|_user_id_", userId);
         return shortcutIntent;
     }
 

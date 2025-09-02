@@ -58,7 +58,7 @@ public class VLocationManager {
     private final Map<Object, UpdateLocationTask> mLocationTaskMap = new HashMap<Object, UpdateLocationTask>();
 
     private VLocationManager() {
-        android.location.LocationManager locationManager = (android.location.LocationManager)VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgAOWsaMC9gJFlF")));
+        android.location.LocationManager locationManager = (android.location.LocationManager)VirtualCore.get().getContext().getSystemService("location");
         MockLocationHelper.fakeGpsStatus(locationManager);
     }
 
@@ -75,7 +75,7 @@ public class VLocationManager {
             vLocationManager = this;
             synchronized (vLocationManager) {
                 if (this.mHandlerThread == null) {
-                    this.mHandlerThread = new HandlerThread(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgAOWYwMCBhNDA7KBhSVg==")));
+                    this.mHandlerThread = new HandlerThread("loc_thread");
                     this.mHandlerThread.start();
                 }
             }
@@ -113,7 +113,7 @@ public class VLocationManager {
     }
 
     public boolean isProviderEnabled(String provider) {
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS06KQ==")).equals(provider);
+        return "gps".equals(provider);
     }
 
     public VLocation getLocation(String packageName, int userId) {
@@ -204,12 +204,12 @@ public class VLocationManager {
         int index = Build.VERSION.SDK_INT >= 17 ? 1 : args.length - 1;
         Object listenerTransport = args[index];
         if (listenerTransport == null) {
-            Log.e((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITwED2szSFo=")), (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OxgYKWwFNCZiASxLIz0iDmoKTSVsNC8xLC0uKGAVSFo=")));
+            Log.e((String)"VLoc", (String)"ListenerTransport:null");
         } else {
             long mInterval;
             if (Build.VERSION.SDK_INT >= 17) {
                 try {
-                    mInterval = (Long)Reflect.on(args[0]).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwYYCGwFNARmNCAo")));
+                    mInterval = (Long)Reflect.on(args[0]).get("mInterval");
                 }
                 catch (Throwable e) {
                     mInterval = 60000L;

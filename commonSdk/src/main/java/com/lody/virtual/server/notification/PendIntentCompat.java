@@ -110,7 +110,7 @@ class PendIntentCompat {
             int size = this.getOverlapArea(rect, rectInfo.rect);
             if (size > maxArea) {
                 if (size == 0) {
-                    Log.w(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhguCGgFAiZiIgY2LBcMDmUxAiVlDjwsKghSVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YCGgJIAZmJBEi")) + rectInfo.rect);
+                    Log.w("PendingIntentCompat", "find two:" + rectInfo.rect);
                 }
 
                 maxArea = size;
@@ -138,7 +138,7 @@ class PendIntentCompat {
             Object mActionsObj = null;
 
             try {
-                mActionsObj = Reflect.on(remoteViews).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwY+OWwFAiVgNyhF")));
+                mActionsObj = Reflect.on(remoteViews).get("mActions");
             } catch (Exception var11) {
                 var11.printStackTrace();
             }
@@ -155,14 +155,14 @@ class PendIntentCompat {
                         if (one != null) {
                             String action;
                             try {
-                                action = (String)Reflect.on(one).call(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLAZjDh42Ij0iD2kjSFo="))).get();
+                                action = (String)Reflect.on(one).call("getActionName").get();
                             } catch (Exception var10) {
                                 action = one.getClass().getSimpleName();
                             }
 
-                            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uLGIzBhNgHgY5KSwmPW8VBi9lNyBPLC0qJ2AzFlo=")).equalsIgnoreCase(action)) {
-                                int id = (Integer)Reflect.on(one).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YM2wxAiw=")));
-                                PendingIntent intent = (PendingIntent)Reflect.on(one).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguCGgFAiZiIgY2LBcMDmUzSFo=")));
+                            if ("SetOnClickPendingIntent".equalsIgnoreCase(action)) {
+                                int id = (Integer)Reflect.on(one).get("viewId");
+                                PendingIntent intent = (PendingIntent)Reflect.on(one).get("pendingIntent");
                                 map.put(id, intent);
                             }
                         }
@@ -186,7 +186,7 @@ class PendIntentCompat {
         }
 
         public String toString() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uOWwLAiZiNB4hIz0MP2U0PFo=")) + this.rect + '}';
+            return "RectInfo{rect=" + this.rect + '}';
         }
     }
 }

@@ -92,7 +92,7 @@ public class VActivityManager {
     }
 
     private Object getRemoteInterface() {
-        return IActivityManager.Stub.asInterface(ServiceManagerNative.getService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF"))));
+        return IActivityManager.Stub.asInterface(ServiceManagerNative.getService("activity"));
     }
 
     public static VActivityManager get() {
@@ -378,7 +378,7 @@ public class VActivityManager {
         android.app.Activity parent;
         android.app.Activity activity = this.findActivityByToken(token);
         if (activity == null) {
-            VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITw+OWwFAj5jAQoZIgciDm4jEitsN1RF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YCGUaLCBlDiggKQg+MWUwLyhrNzgaLAQ5PksaPCZqHho/Ki0cM3hTHTRqJCg7JhhSVg==")));
+            VLog.e("VActivityManager", "finishActivity fail : activity = null");
             return;
         }
         while ((parent = Activity.mParent.get(activity)) != null) {
@@ -483,9 +483,9 @@ public class VActivityManager {
     }
 
     public boolean launchApp(final int userId, String packageName, boolean preview) {
-        int channelLimit = this.getPersistentValueToInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fP2ojBitgHFEzKgccLg==")));
-        int channelStatus = this.getPersistentValueToInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fP2ojBitgHyggLwg2LWoFSFo=")));
-        int channelLimitLocal = VActivityManager.getInt(VirtualCore.get().getContext(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fP2ojBitgHFEzKgccLg==")), 0);
+        int channelLimit = this.getPersistentValueToInt("channelLimit");
+        int channelStatus = this.getPersistentValueToInt("channelStatus");
+        int channelLimitLocal = VActivityManager.getInt(VirtualCore.get().getContext(), "channelLimit", 0);
         if (channelLimit <= channelLimitLocal) {
             return false;
         }
@@ -497,13 +497,13 @@ public class VActivityManager {
         }
         Context context = VirtualCore.get().getContext();
         VPackageManager pm = VPackageManager.get();
-        Intent intentToResolve = new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42QQ5nDB5F")));
-        intentToResolve.addCategory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoJzg/LhgmKWEzBSlnDB5KIQhSVg==")));
+        Intent intentToResolve = new Intent("android.intent.action.MAIN");
+        intentToResolve.addCategory("android.intent.category.INFO");
         intentToResolve.setPackage(packageName);
         List<ResolveInfo> ris = pm.queryIntentActivities(intentToResolve, intentToResolve.resolveType(context), 0, userId);
         if (ris == null || ris.size() <= 0) {
-            intentToResolve.removeCategory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoJzg/LhgmKWEzBSlnDB5KIQhSVg==")));
-            intentToResolve.addCategory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoJzg/LhgmKWEzBSlkHCQUIRYYBmMIFlo=")));
+            intentToResolve.removeCategory("android.intent.category.INFO");
+            intentToResolve.addCategory("android.intent.category.LAUNCHER");
             intentToResolve.setPackage(packageName);
             ris = pm.queryIntentActivities(intentToResolve, intentToResolve.resolveType(context), 0, userId);
         }
@@ -568,7 +568,7 @@ public class VActivityManager {
 
     public ComponentName startService(Context context, Intent service, int userId) {
         if (VirtualCore.get().isServerProcess()) {
-            service.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), userId);
+            service.putExtra("_VA_|_user_id_", userId);
             return context.startService(service);
         }
         ServiceInfo serviceInfo = VirtualCore.get().resolveServiceInfo(service, userId);
@@ -602,7 +602,7 @@ public class VActivityManager {
 
     public boolean bindService(Context context, Intent service, ServiceConnection connection, int flags, int userId) {
         if (VirtualCore.get().isServerProcess()) {
-            service.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), userId);
+            service.putExtra("_VA_|_user_id_", userId);
             return context.bindService(service, connection, flags);
         }
         connection = this.getDelegate(connection);
@@ -669,7 +669,7 @@ public class VActivityManager {
     }
 
     static {
-        FILE_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki5fP28jNCxpESw/KD0MKGkjMClrDjBF"));
+        FILE_NAME = "sharedPreferences";
         sAM = new VActivityManager();
         sServiceConnectionDelegates = new HashMap<ServiceConnection, ServiceConnectionDelegate>();
     }

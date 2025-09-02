@@ -31,10 +31,10 @@ public class ShadowActivityInfo {
 
     public ShadowActivityInfo(Intent stub) {
         try {
-            this.intent = (Intent)stub.getParcelableExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlkgKAcYLmMFSFo=")));
-            this.info = (ActivityInfo)stub.getParcelableExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlk+KixfVg==")));
-            this.userId = stub.getIntExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), -1);
-            this.virtualToken = BundleCompat.getBinder(stub, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mHh4xKAcYHQ==")));
+            this.intent = (Intent)stub.getParcelableExtra("_VA_|_intent_");
+            this.info = (ActivityInfo)stub.getParcelableExtra("_VA_|_info_");
+            this.userId = stub.getIntExtra("_VA_|_user_id_", -1);
+            this.virtualToken = BundleCompat.getBinder(stub, "_VA_|_token_");
         }
         catch (Throwable e) {
             e.printStackTrace();
@@ -42,10 +42,10 @@ public class ShadowActivityInfo {
     }
 
     public void saveToIntent(Intent stub) {
-        stub.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlkgKAcYLmMFSFo=")), (Parcelable)this.intent);
-        stub.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlk+KixfVg==")), (Parcelable)this.info);
-        stub.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), this.userId);
-        BundleCompat.putBinder(stub, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mHh4xKAcYHQ==")), this.virtualToken);
+        stub.putExtra("_VA_|_intent_", (Parcelable)this.intent);
+        stub.putExtra("_VA_|_info_", (Parcelable)this.info);
+        stub.putExtra("_VA_|_user_id_", this.userId);
+        BundleCompat.putBinder(stub, "_VA_|_token_", this.virtualToken);
     }
 }
 

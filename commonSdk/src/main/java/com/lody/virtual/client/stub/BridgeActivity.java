@@ -20,8 +20,8 @@ extends Activity {
         this.finish();
         Intent intent = this.getIntent();
         if (intent != null) {
-            Intent targetIntent = (Intent)intent.getParcelableExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlkgKAcYLmMFSFo=")));
-            Bundle targetOptions = (Bundle)intent.getParcelableExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99NzA2KBdbPWMFSFo=")));
+            Intent targetIntent = (Intent)intent.getParcelableExtra("_VA_|_intent_");
+            Bundle targetOptions = (Bundle)intent.getParcelableExtra("_VA_|_bundle_");
             if (targetIntent != null && targetOptions != null) {
                 this.startActivity(targetIntent, targetOptions);
             }

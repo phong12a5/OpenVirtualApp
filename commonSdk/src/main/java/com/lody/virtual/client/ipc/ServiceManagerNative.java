@@ -23,19 +23,19 @@ import com.lody.virtual.server.ServiceCache;
 import com.lody.virtual.server.interfaces.IServiceFetcher;
 
 public class ServiceManagerNative {
-    public static final String PACKAGE = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+OWUzJC1iAVRF"));
-    public static final String ACTIVITY = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF"));
-    public static final String USER = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28jSFo="));
-    public static final String APP = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KA=="));
-    public static final String ACCOUNT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEVRF"));
-    public static final String CONTENT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGwFNCZmEVRF"));
-    public static final String JOB = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4AOg=="));
-    public static final String NOTIFICATION = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDg=="));
-    public static final String VS = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT02Vg=="));
-    public static final String DEVICE = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguLmUVLCs="));
-    public static final String VIRTUAL_LOC = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV10oKi0qVg=="));
-    public static final String FILE_TRANSFER = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YDmhSEgZhNCA2Iy0+PWoVSFo="));
-    public static final String PERMISSION = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmoVAgNhJAY1Kj5SVg=="));
+    public static final String PACKAGE = "package";
+    public static final String ACTIVITY = "activity";
+    public static final String USER = "user";
+    public static final String APP = "app";
+    public static final String ACCOUNT = "account";
+    public static final String CONTENT = "content";
+    public static final String JOB = "job";
+    public static final String NOTIFICATION = "notification";
+    public static final String VS = "vs";
+    public static final String DEVICE = "device";
+    public static final String VIRTUAL_LOC = "virtual-loc";
+    public static final String FILE_TRANSFER = "file-transfer";
+    public static final String PERMISSION = "permission";
     private static final String TAG = ServiceManagerNative.class.getSimpleName();
     private static IServiceFetcher sFetcher;
 
@@ -53,9 +53,9 @@ public class ServiceManagerNative {
         Class<ServiceManagerNative> clazz = ServiceManagerNative.class;
         synchronized (ServiceManagerNative.class) {
             Context context = VirtualCore.get().getContext();
-            Bundle response = new ProviderCall.Builder(context, ServiceManagerNative.getAuthority()).methodName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JhhSVg=="))).callSafely();
+            Bundle response = new ProviderCall.Builder(context, ServiceManagerNative.getAuthority()).methodName("@").callSafely();
             if (response == null) return sFetcher;
-            IBinder binder = BundleCompat.getBinder(response, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99NAY2KBcMKGMFSFo=")));
+            IBinder binder = BundleCompat.getBinder(response, "_VA_|_binder_");
             ServiceManagerNative.linkBinderDied(binder);
             sFetcher = IServiceFetcher.Stub.asInterface(binder);
             // ** MonitorExit[var0] (shouldn't be in output)
@@ -64,7 +64,7 @@ public class ServiceManagerNative {
     }
 
     public static void ensureServerStarted() {
-        new ProviderCall.Builder(VirtualCore.get().getContext(), ServiceManagerNative.getAuthority()).methodName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcKWwaFitsJCgqKAciLmkjBlo="))).callSafely();
+        new ProviderCall.Builder(VirtualCore.get().getContext(), ServiceManagerNative.getAuthority()).methodName("ensure_created").callSafely();
     }
 
     public static void clearServerFetcher() {
@@ -99,7 +99,7 @@ public class ServiceManagerNative {
                 e.printStackTrace();
             }
         }
-        VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JS4uLGczNARmNAY5KAMfPWoJLyhsNyg/KhcMKksaRTBsHlwd")), name);
+        VLog.e(TAG, "GetService(%s) return null.", name);
         return null;
     }
 

@@ -84,26 +84,26 @@ implements Parcelable {
     }
 
     public String toString() {
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITwED2szJAZjDh42LS1bOWUzLAZvASwgOBhSVg==")) + this.latitude + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186DmozBi1jAQovKBcLJQ==")) + this.longitude + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186P2oKMC9mETAwKARXVg==")) + this.altitude + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186P2szLAVhNCA5LQRXVg==")) + this.accuracy + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KW8FNCtiVl1F")) + this.speed + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186OmgVJARjDlk9PghSVg==")) + this.bearing + '}';
+        return "VLocation{latitude=" + this.latitude + ", longitude=" + this.longitude + ", altitude=" + this.altitude + ", accuracy=" + this.accuracy + ", speed=" + this.speed + ", bearing=" + this.bearing + '}';
     }
 
     public Location toSysLocation() {
-        Location location = new Location(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS06KQ==")));
+        Location location = new Location("gps");
         location.setAccuracy(8.0f);
         Bundle extraBundle = new Bundle();
         location.setBearing(this.bearing);
-        Reflect.on(location).call(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLH0aLAhhNB43IgdfP2wITQRlJCQaLgguCA==")), false);
+        Reflect.on(location).call("setIsFromMockProvider", false);
         location.setLatitude(this.latitude);
         location.setLongitude(this.longitude);
         location.setSpeed(this.speed);
         location.setTime(System.currentTimeMillis());
         int svCount = VirtualGPSSatalines.get().getSvCount();
-        extraBundle.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4+LGgVHiRjAQo/Iy5SVg==")), svCount);
-        extraBundle.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4+LGgVHiRjAQo/Iy4+OW8wGis=")), svCount);
+        extraBundle.putInt("satellites", svCount);
+        extraBundle.putInt("satellitesvalue", svCount);
         location.setExtras(extraBundle);
         if (Build.VERSION.SDK_INT >= 17) {
             try {
-                Reflect.on(location).call(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+MWgbLCVgASQoKAg2PQ==")));
+                Reflect.on(location).call("makeComplete");
             }
             catch (Exception e) {
                 location.setTime(System.currentTimeMillis());

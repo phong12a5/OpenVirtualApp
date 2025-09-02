@@ -29,7 +29,7 @@ import com.kook.controller.client.hyxd.IHYXDController;
 
 public class HYXDTab4
 extends TabContainer {
-    String TAG = StringFog.decrypt("PQoAGwQCCxIB");
+    String TAG = "NormalTab";
     public static final int CHECKLAYOUT_SWICH_ID_41 = 41;
     public static final int CHECKLAYOUT_SWICH_ID_42 = 42;
     public static final int CHECKLAYOUT_SWICH_ID_43 = 43;
@@ -50,17 +50,17 @@ extends TabContainer {
 
     @Override
     protected void initViews(ViewGroup view) {
-        view.addView((View)this.getCheckLayout().setText(StringFog.decrypt("lsHVk+vru8vuifzYgeL+U0Wb1fuG/v+G5dKZ6fA=")).setOnCheckedChangeListener(this).setSwitchId(41));
-        view.addView((View)this.getCheckLayout().setText(StringFog.decrypt("lsHVk+vru8vuifzYgeL+U0WV0feG0tyF3cmX//g=")).setOnCheckedChangeListener(this).setSwitchId(42));
-        view.addView((View)this.getCheckLayout().setText(StringFog.decrypt("l97JkOHhu8vuifzYgeL+U0Wa+uaLxMeK+/OX/d0=")).setOnCheckedChangeListener(this).setSwitchId(43));
-        view.addView((View)this.getCheckLayout().setText(StringFog.decrypt("m/XPk/nef1NDi8jKjubHmuTzk/nef5bz45vp7YfR4oHIzIzzwZbz45TA3YrXwILIyY3JzZvq3ZfM64rWyw==")).setOnCheckedChangeListener(this).setSwitchId(44));
-        view.addView((View)this.getCheckLayout().setText(StringFog.decrypt("m/XPk/neuf3Lh//gSU9OluvJn/zKuu/8iu7A")).setOnCheckedChangeListener(this).setSwitchId(45));
-        view.addView((View)this.getCheckLayout().setText(StringFog.decrypt("m/XPk/neuf3Lh//gSU9OleTQk8Hjuu/8iu7A")).setOnCheckedChangeListener(this).setSwitchId(46));
+        view.addView((View)this.getCheckLayout().setText("大厅不推荐  飞行加速").setOnCheckedChangeListener(this).setSwitchId(41));
+        view.addView((View)this.getCheckLayout().setText("大厅不推荐  秒药治疗").setOnCheckedChangeListener(this).setSwitchId(42));
+        view.addView((View)this.getCheckLayout().setText("任意不推荐  范围锁甲").setOnCheckedChangeListener(this).setSwitchId(43));
+        view.addView((View)this.getCheckLayout().setText("落地   人物遁地 同附近人非同水平线角色异常").setOnCheckedChangeListener(this).setSwitchId(44));
+        view.addView((View)this.getCheckLayout().setText("落地推荐   去除土地").setOnCheckedChangeListener(this).setSwitchId(45));
+        view.addView((View)this.getCheckLayout().setText("落地推荐   恢复土地").setOnCheckedChangeListener(this).setSwitchId(46));
     }
 
     IHYXDController getHYXDController() {
         IBinder binder = this.floatTab.getClientBinder();
-        HVLog.i(this.TAG, StringFog.decrypt("UwIXAi03BzcgABwEGwACHwAAVgcHMRcGHUg=") + binder + StringFog.decrypt("U0VSVgwdHRoNCxcCKAMHBQBITA==") + binder.isBinderAlive());
+        HVLog.i(this.TAG, " getHYXDController binder:" + binder + "    isBinderAlive::" + binder.isBinderAlive());
         return IHYXDController.Stub.asInterface(binder);
     }
 
@@ -72,73 +72,73 @@ extends TabContainer {
         MemorySRWData memorySRWData = null;
         switch (buttonView.getId()) {
             case 41: {
-                memorySRWData = MemorySRWData.AddMemorySearch(StringFog.decrypt("Q0tD"), MemorySRWData.SearchValueType.f64);
-                memorySRWData.append(StringFog.decrypt("XlVcRw=="), 16);
-                memorySRWData.append(StringFog.decrypt("Q0tE"), 32);
-                memorySRWData.append(StringFog.decrypt("Q0tG"), 48);
-                memorySRWData.append(StringFog.decrypt("QlU="), 64);
-                memorySRWData.append(StringFog.decrypt("Q0tA"), 80);
-                memorySRWData.append(StringFog.decrypt("Q0tGRVM="), 96);
-                memorySRWData.append(StringFog.decrypt("Q0tFR1I="), 112);
-                memorySRWData.append(StringFog.decrypt("QktAQw=="), 128);
-                memorySRWData.writeValue(StringFog.decrypt("Qw=="), StringFog.decrypt("QVVC"));
-                memorySRWData.writeValue(StringFog.decrypt("QlM="), StringFog.decrypt("QVVC"));
+                memorySRWData = MemorySRWData.AddMemorySearch("0.1", MemorySRWData.SearchValueType.f64);
+                memorySRWData.append("-0.1", 16);
+                memorySRWData.append("0.6", 32);
+                memorySRWData.append("0.4", 48);
+                memorySRWData.append("10", 64);
+                memorySRWData.append("0.2", 80);
+                memorySRWData.append("0.436", 96);
+                memorySRWData.append("0.717", 112);
+                memorySRWData.append("1.25", 128);
+                memorySRWData.writeValue("0", "200");
+                memorySRWData.writeValue("16", "200");
                 this.setMemorySRWdata(memorySRWData);
                 break;
             }
             case 42: {
-                memorySRWData = MemorySRWData.AddMemorySearch(StringFog.decrypt("QktFTlJaZkpaX0ZGWgk="), MemorySRWData.SearchValueType.f32);
-                memorySRWData.append(StringFog.decrypt("QUtETlJbOQ=="), 64);
-                memorySRWData.append(StringFog.decrypt("QUtERFAI"), 80);
-                memorySRWData.append(StringFog.decrypt("QUtHEA=="), 112);
-                memorySRWData.append(StringFog.decrypt("QUtBQVAI"), 144);
-                memorySRWData.append(StringFog.decrypt("QUtDRFAI"), 208);
-                memorySRWData.writeValue(StringFog.decrypt("Qx1HRkU="), StringFog.decrypt("Q0tD"));
-                memorySRWData.writeValue(StringFog.decrypt("Qx1FRkU="), StringFog.decrypt("Q0tD"));
-                memorySRWData.writeValue(StringFog.decrypt("Qx1LRg=="), StringFog.decrypt("Q0tD"));
-                memorySRWData.writeValue(StringFog.decrypt("Qx02RkU="), StringFog.decrypt("Q0tD"));
+                memorySRWData = MemorySRWData.AddMemorySearch("1.78749990463f", MemorySRWData.SearchValueType.f32);
+                memorySRWData.append("2.6875f", 64);
+                memorySRWData.append("2.625f", 80);
+                memorySRWData.append("2.5f", 112);
+                memorySRWData.append("2.375f", 144);
+                memorySRWData.append("2.125f", 208);
+                memorySRWData.writeValue("0x50 ", "0.1");
+                memorySRWData.writeValue("0x70 ", "0.1");
+                memorySRWData.writeValue("0x90", "0.1");
+                memorySRWData.writeValue("0xD0 ", "0.1");
                 this.setMemorySRWdata(memorySRWData);
                 break;
             }
             case 43: {
-                memorySRWData = MemorySRWData.AddMemorySearch(StringFog.decrypt("QktCEA=="), MemorySRWData.SearchValueType.f32);
-                memorySRWData.append(StringFog.decrypt("QktGRlRcZktXWUZDW1tWFkhGQwNO"), 12);
-                memorySRWData.append(StringFog.decrypt("Q0tDRlVeb0NTX0NEUF9fQQM="), 40);
-                memorySRWData.append(StringFog.decrypt("U1U="), 44);
-                memorySRWData.append(StringFog.decrypt("Q0U="), 48);
-                memorySRWData.append(StringFog.decrypt("Q0U="), 52);
-                memorySRWData.append(StringFog.decrypt("QktCEA=="), 56);
-                memorySRWData.writeValue(StringFog.decrypt("Qx1ATkU="), StringFog.decrypt("Rg=="));
+                memorySRWData = MemorySRWData.AddMemorySearch("1.0f", MemorySRWData.SearchValueType.f32);
+                memorySRWData.append("1.4012984643248e-45f ", 12);
+                memorySRWData.append("0.10000000149012f", 40);
+                memorySRWData.append(" 0", 44);
+                memorySRWData.append("0 ", 48);
+                memorySRWData.append("0 ", 52);
+                memorySRWData.append("1.0f", 56);
+                memorySRWData.writeValue("0x28 ", "5");
                 this.setMemorySRWdata(memorySRWData);
                 break;
             }
             case 44: {
-                memorySRWData = MemorySRWData.AddMemorySearch(StringFog.decrypt("Q0tERFRYb0paV0dIW1ddSlxFEA=="), MemorySRWData.SearchValueType.f32);
-                memorySRWData.append(StringFog.decrypt("Q0tFRlJfb0VbXUpGUVZbRFBAEEU="), -16);
-                memorySRWData.append(StringFog.decrypt("QktCEA=="), -8);
-                memorySRWData.append(StringFog.decrypt("Q0tCRlxXZkpaVktHXllaS1dHTlcI"), 4);
-                memorySRWData.writeValue(StringFog.decrypt("Xl0="), StringFog.decrypt("QA=="));
+                memorySRWData = MemorySRWData.AddMemorySearch("0.6216099858283997f", MemorySRWData.SearchValueType.f32);
+                memorySRWData.append("0.7071068286895752f ", -16);
+                memorySRWData.append("1.0f", -8);
+                memorySRWData.append("0.009999999776482582f", 4);
+                memorySRWData.writeValue("-8", "3");
                 this.setMemorySRWdata(memorySRWData);
                 break;
             }
             case 45: {
-                memorySRWData = MemorySRWData.AddMemorySearch(StringFog.decrypt("QktCEA=="), MemorySRWData.SearchValueType.f32);
-                memorySRWData.append(StringFog.decrypt("XlZARlVAbxVD"), 4);
-                memorySRWData.append(StringFog.decrypt("XldCQktZaEdQXUBFWVZZRAM="), 8);
-                memorySRWData.append(StringFog.decrypt("XlZARlVAbxU="), 12);
-                memorySRWData.append(StringFog.decrypt("QktCEA=="), 20);
-                memorySRWData.writeValue(StringFog.decrypt("Rw=="), StringFog.decrypt("Qw=="));
+                memorySRWData = MemorySRWData.AddMemorySearch("1.0f", MemorySRWData.SearchValueType.f32);
+                memorySRWData.append("-3200.0f ", 4);
+                memorySRWData.append("-204.77432250977f", 8);
+                memorySRWData.append("-3200.0f", 12);
+                memorySRWData.append("1.0f", 20);
+                memorySRWData.writeValue("4", "0");
                 this.setMemorySRWdata(memorySRWData);
                 break;
             }
             case 46: {
-                memorySRWData = MemorySRWData.AddMemorySearch(StringFog.decrypt("QktCEA=="), MemorySRWData.SearchValueType.f32);
+                memorySRWData = MemorySRWData.AddMemorySearch("1.0f", MemorySRWData.SearchValueType.f32);
                 memorySRWData.setAddressPermission(true);
-                memorySRWData.writeValue(StringFog.decrypt("Qw=="), StringFog.decrypt("SlxLTl1W"));
+                memorySRWData.writeValue("0", "999888");
                 this.setMemorySRWdata(memorySRWData);
-                memorySRWData = MemorySRWData.AddMemorySearch(StringFog.decrypt("QktCEEU="), MemorySRWData.SearchValueType.f32);
+                memorySRWData = MemorySRWData.AddMemorySearch("1.0f ", MemorySRWData.SearchValueType.f32);
                 memorySRWData.setAddressPermission(true);
-                memorySRWData.writeValue(StringFog.decrypt("Qw=="), StringFog.decrypt("SlxLTl1W"));
+                memorySRWData.writeValue("0", "999888");
                 this.setMemorySRWdata(memorySRWData);
             }
         }

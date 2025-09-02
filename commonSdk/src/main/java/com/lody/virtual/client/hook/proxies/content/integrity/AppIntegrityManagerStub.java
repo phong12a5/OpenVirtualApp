@@ -12,20 +12,20 @@ import mirror.android.content.integrity.IAppIntegrityManager;
 
 public class AppIntegrityManagerStub
 extends BinderInvocationProxy {
-    private static final String SERVER_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KGYzAiZmHjA9Iz0cLmgjSFo="));
+    private static final String SERVER_NAME = "app_integrity";
 
     public AppIntegrityManagerStub() {
-        super(IAppIntegrityManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KGYzAiZmHjA9Iz0cLmgjSFo=")));
+        super(IAppIntegrityManager.Stub.asInterface, "app_integrity");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtpNzAoKAYqPWUzSFo=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMwNARhNDA2LBYuLW8zGl5rDiwTLhcMD2MKAik=")), ""));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMwNARhNDA2LBYuLW8zGl5rDiwRKS4AMmMKFiBlN1RF")), ""));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMwNARhNDA2LBYuLW8zGgM=")), ParceledListSliceCompat.create(Collections.emptyList())));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQzRS9mHjAoKQgqLmkjBl9vAQIgIQcMKWYwGi9uASg8")), Collections.emptyList()));
+        this.addMethodProxy(new ResultStaticMethodProxy("updateRuleSet", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getCurrentRuleSetVersion", ""));
+        this.addMethodProxy(new ResultStaticMethodProxy("getCurrentRuleSetProvider", ""));
+        this.addMethodProxy(new ResultStaticMethodProxy("getCurrentRules", ParceledListSliceCompat.create(Collections.emptyList())));
+        this.addMethodProxy(new ResultStaticMethodProxy("getWhitelistedRuleProviders", Collections.emptyList()));
     }
 }
 

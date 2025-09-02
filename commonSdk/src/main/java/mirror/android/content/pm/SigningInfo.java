@@ -11,7 +11,7 @@ import mirror.RefClass;
 import mirror.RefConstructor;
 
 public class SigningInfo {
-    public static Class<?> TYPE = RefClass.load(SigningInfo.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDYHOB0KARU5BwkB"));
+    public static Class<?> TYPE = RefClass.load(SigningInfo.class, "android.content.pm.SigningInfo");
     @MethodParams(value={PackageParser.SigningDetails.class})
     public static RefConstructor<Object> ctor;
     @MethodReflectParams(value={"android.content.pm.SigningDetails"})

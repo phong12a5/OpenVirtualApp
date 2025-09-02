@@ -68,8 +68,8 @@ public class JsoupUtil {
             return null;
         }
         Document doc = Jsoup.parseBodyFragment((String)html);
-        Element image = doc.select(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgIPQ=="))).first();
-        return image == null ? null : image.attr(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0MOQ==")));
+        Element image = doc.select("img").first();
+        return image == null ? null : image.attr("src");
     }
 }
 

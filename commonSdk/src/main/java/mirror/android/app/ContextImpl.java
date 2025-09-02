@@ -17,7 +17,7 @@ import mirror.RefMethod;
 import mirror.RefObject;
 
 public class ContextImpl {
-    public static Class<?> TYPE = RefClass.load(ContextImpl.class, StringFog.decrypt("EgsWBAoHO10CHwJeKgAABwAKAiwDLx8="));
+    public static Class<?> TYPE = RefClass.load(ContextImpl.class, "android.app.ContextImpl");
     @MethodParams(value={Context.class})
     public static RefObject<String> mBasePackageName;
     public static RefObject<Object> mPackageInfo;

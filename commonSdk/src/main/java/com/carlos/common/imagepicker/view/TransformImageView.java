@@ -39,7 +39,7 @@ import com.kook.librelease.StringFog;
 
 public class TransformImageView
 extends ImageView {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRcMP2ogLC5gJyw3IQdXOWkFGlNqASg+"));
+    private static final String TAG = "TransformImageView";
     private static final int RECT_CORNER_POINTS_COORDS = 8;
     private static final int RECT_CENTER_POINT_COORDS = 2;
     private static final int MATRIX_VALUES_COUNT = 9;
@@ -80,7 +80,7 @@ extends ImageView {
         if (scaleType == ImageView.ScaleType.MATRIX) {
             super.setScaleType(scaleType);
         } else {
-            Log.w((String)TAG, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcLmsVHi9iVyQPLy0iCGkmBj9sESsbPQYAKmAVBSN9JCwqKT4AXW4KID96JQ4OKBYqGmNTPDNuJy83Lj4tOGwaLCtiEVRF")));
+            Log.w((String)TAG, (String)"Invalid ScaleType. Only ScaleType.MATRIX can be used");
         }
     }
 
@@ -126,7 +126,7 @@ extends ImageView {
 
             @Override
             public void onFailure(@NonNull Exception bitmapWorkerException) {
-                Log.e((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRcMP2ogLC5gJyw3IQdXOWkFGlNqASg+")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iy4cW2sVAiRmASw/PTkmL2kgBgllATguLhUuCGMFSFo=")), (Throwable)bitmapWorkerException);
+                Log.e((String)"TransformImageView", (String)"onFailure: setImageUri", (Throwable)bitmapWorkerException);
                 if (TransformImageView.this.mTransformImageListener != null) {
                     TransformImageView.this.mTransformImageListener.onLoadFailure(bitmapWorkerException);
                 }
@@ -215,7 +215,7 @@ extends ImageView {
         }
         float w = drawable2.getIntrinsicWidth();
         float h = drawable2.getIntrinsicHeight();
-        Log.d((String)TAG, (String)String.format(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgIP2gzNyhhJAYiKAQHOmAJGix+MygvIBhSVg==")), (int)w, (int)h));
+        Log.d((String)TAG, (String)String.format("Image size: [%d:%d]", (int)w, (int)h));
         RectF initialImageRect = new RectF(0.0f, 0.0f, w, h);
         this.mInitialImageCorners = RectUtils.getCornersFromRect(initialImageRect);
         this.mInitialImageCenter = RectUtils.getCenterFromRect(initialImageRect);
@@ -235,7 +235,7 @@ extends ImageView {
         float y = this.getMatrixValue(matrix, 5);
         float rScale = this.getMatrixScale(matrix);
         float rAngle = this.getMatrixAngle(matrix);
-        Log.d((String)TAG, (String)(logPrefix + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ODo6DWsaMARjAR0iPxgDOmg0Iyg=")) + x + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186J3knIFo=")) + y + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186KWszJCRiDQU8")) + rScale + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186P2ojPCRiDQU8")) + rAngle + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhcIVg=="))));
+        Log.d((String)TAG, (String)(logPrefix + ": matrix: { x: " + x + ", y: " + y + ", scale: " + rScale + ", angle: " + rAngle + " }"));
     }
 
     private void updateCurrentImagePoints() {

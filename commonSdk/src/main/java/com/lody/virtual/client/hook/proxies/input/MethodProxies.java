@@ -23,7 +23,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMAlgNyQvLBVfKH0FLCZrEQY+Jj4+I2AwLC9mNFksIy0YVg=="));
+            return "startInputOrWindowGainedFocus";
         }
 
         @Override
@@ -44,7 +44,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS4YCGgFGj1qJCAzKj0MPmEVNClvDjBF"));
+            return "windowGainedFocus";
         }
     }
 
@@ -55,7 +55,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMAlgNyQvLBhSVg=="));
+            return "startInput";
         }
     }
 }

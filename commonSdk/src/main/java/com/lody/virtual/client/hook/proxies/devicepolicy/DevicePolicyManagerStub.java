@@ -18,7 +18,7 @@ import mirror.android.app.admin.IDevicePolicyManager;
 public class DevicePolicyManagerStub
 extends BinderInvocationProxy {
     public DevicePolicyManagerStub() {
-        super(IDevicePolicyManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguLmUVLCtsJyQ1KhccP2gjSFo=")));
+        super(IDevicePolicyManager.Stub.asInterface, "device_policy");
     }
 
     @Override
@@ -32,7 +32,7 @@ extends BinderInvocationProxy {
         this.addMethodProxy(new SetPasswordQuality());
         this.addMethodProxy(new GetFactoryResetProtectionPolicy());
         this.addMethodProxy(new IsDeviceProvisioned());
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2BW8zFhZ9AQo7Oy0cM28VQSRqARouJhgcO30wTSBuEVRF"))));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("isUsbDataSignalingEnabled"));
     }
 
     private static class IsDeviceProvisioned
@@ -42,7 +42,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAc2WWgaOC99JDACIz1fLGwgAi9lJxogLghSVg=="));
+            return "IsDeviceProvisioned";
         }
 
         @Override
@@ -58,7 +58,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAjJClmHh4qLQYuPWoFGgZkHgocKgguJWYaGipsNSAeKT42JW4FSFo="));
+            return "getFactoryResetProtectionPolicy";
         }
 
         @Override
@@ -74,7 +74,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uLGcFJANhJzg1Iz02A2UjQSRqDiw0"));
+            return "SetPasswordQuality";
         }
 
         @Override
@@ -90,7 +90,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcKFiViNAYoKAVfI28VGgR9NzgeLhhSVg=="));
+            return "getProfileOwnerName";
         }
 
         @Override
@@ -106,7 +106,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAFND5jDig/Ii46DmkgRQBoAQ4g"));
+            return "getDeviceOwnerName";
         }
 
         @Override
@@ -122,7 +122,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOD9pHjA2KBccDmkIAj9sJCwgLBUuDmIaPD9uAVRF"));
+            return "notifyPendingSystemUpdate";
         }
 
         @Override
@@ -138,7 +138,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcwMCVhNCA9KAUMDm4KRT9sHiwaLD4cUmYaPD9qASxF"));
+            return "getStorageEncryptionStatus";
         }
 
         @Override
@@ -156,7 +156,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAFND5jDig/Ii46DmkgRRNlJw47LD4cJ2AzFlo="));
+            return "getDeviceOwnerComponent";
         }
 
         @Override

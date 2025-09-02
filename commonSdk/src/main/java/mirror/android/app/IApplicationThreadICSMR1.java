@@ -19,7 +19,7 @@ import mirror.RefMethod;
 import mirror.android.content.res.CompatibilityInfo;
 
 public class IApplicationThreadICSMR1 {
-    public static Class<?> TYPE = RefClass.load(IApplicationThreadICSMR1.class, StringFog.decrypt("EgsWBAoHO10CHwJeIC4eAwkbFQQaNhwNOxoCDA4K"));
+    public static Class<?> TYPE = RefClass.load(IApplicationThreadICSMR1.class, "android.app.IApplicationThread");
     @MethodReflectParams(value={"android.content.Intent", "android.content.pm.ActivityInfo", "android.content.res.CompatibilityInfo", "int", "java.lang.String", "android.os.Bundle", "boolean"})
     public static RefMethod<Void> scheduleReceiver;
     @MethodParams(value={IBinder.class, ServiceInfo.class, CompatibilityInfo.class})

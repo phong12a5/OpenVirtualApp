@@ -20,10 +20,10 @@ public class PrivilegeAppOptimizer {
     private final List<String> privilegeProcessNames = new ArrayList<String>();
 
     private PrivilegeAppOptimizer() {
-        this.privilegeApps.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojPCVgJDgoKAMYOW8VBgRlJx4vPC4mL2EjSFo=")));
-        this.privilegeApps.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojPCVgJDgoKAMYOW8VBgRlJx4vPC4mD2IzSFo=")));
-        this.privilegeProcessNames.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojPCVgJDgoKAMYOW8VBgRlJx4vPC4mL2EkRTNuASg8Ki0YCmsFBiA=")));
-        this.privilegeProcessNames.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojPCVgJDgoKAMYKmoVNClrDjA6PC4mO2EVODY=")));
+        this.privilegeApps.add("com.google.android.gms");
+        this.privilegeApps.add("com.google.android.gsf");
+        this.privilegeProcessNames.add("com.google.android.gms.persistent");
+        this.privilegeProcessNames.add("com.google.process.gapps");
     }
 
     public static PrivilegeAppOptimizer get() {
@@ -60,13 +60,13 @@ public class PrivilegeAppOptimizer {
         if (!this.isPrivilegeApp(packageName)) {
             return false;
         }
-        VActivityManagerService.get().sendBroadcastAsUser(this.specifyApp(new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42MBRkJTAOIAYuAWQbHlRkDygJ")), null), packageName, userId), new VUserHandle(userId));
+        VActivityManagerService.get().sendBroadcastAsUser(this.specifyApp(new Intent("android.intent.action.BOOT_COMPLETED", null), packageName, userId), new VUserHandle(userId));
         return true;
     }
 
     private Intent specifyApp(Intent intent, String packageName, int userId) {
-        intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9hESwzLD0cCGkjEithJDwiLjsAVg==")), packageName);
-        intent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), userId);
+        intent.putExtra("_VA_|_privilege_pkg_", packageName);
+        intent.putExtra("_VA_|_user_id_", userId);
         return intent;
     }
 }

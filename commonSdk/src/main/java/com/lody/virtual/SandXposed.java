@@ -44,7 +44,7 @@ public class SandXposed {
             }
         });
         SandHook.disableVMInline();
-        XposedCompat.cacheDir = new File(VirtualCore.get().getContext().getCacheDir(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4+CGgFRSVgJA5ALy0iP2wzGh9rJygbLhcMO2AVSFo=")));
+        XposedCompat.cacheDir = new File(VirtualCore.get().getContext().getCacheDir(), "sandhook_cache_general");
     }
 
     public static void initForXposed(Context context, String processName) {

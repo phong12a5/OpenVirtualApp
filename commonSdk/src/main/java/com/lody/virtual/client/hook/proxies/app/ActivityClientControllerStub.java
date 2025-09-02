@@ -50,21 +50,21 @@ public class ActivityClientControllerStub extends MethodInvocationProxy<MethodIn
 
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQYWKAgqLmoVND9rASxF"))) {
+        this.addMethodProxy(new StaticMethodProxy("activityDestroyed") {
             public Object afterCall(Object who, Method method, Object[] args, Object result) throws Throwable {
                 IBinder token = (IBinder)args[0];
                 VActivityManager.get().onActivityDestroy(token);
                 return super.afterCall(who, method, args, result);
             }
         });
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQYAKAgqLW8jGiw="))) {
+        this.addMethodProxy(new StaticMethodProxy("activityResumed") {
             public Object call(Object who, Method method, Object... args) throws Throwable {
                 IBinder token = (IBinder)args[0];
                 VActivityManager.get().onActivityResumed(token);
                 return super.call(who, method, args);
             }
         });
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YCGUaLCBlDiggKQg+MWUwLFo="))) {
+        this.addMethodProxy(new StaticMethodProxy("finishActivity") {
             public Object call(Object who, Method method, Object... args) throws Throwable {
                 IBinder token = (IBinder)args[0];
                 Intent intent = (Intent)args[2];
@@ -80,7 +80,7 @@ public class ActivityClientControllerStub extends MethodInvocationProxy<MethodIn
                 return isAppProcess();
             }
         });
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YCGUaLCBlDiggKQg+MWUwLBFrNyQaLC4YCmcFSFo="))) {
+        this.addMethodProxy(new StaticMethodProxy("finishActivityAffinity") {
             public Object call(Object who, Method method, Object... args) {
                 IBinder token = (IBinder)args[0];
                 return VActivityManager.get().finishActivityAffinity(getAppUserId(), token);
@@ -91,7 +91,7 @@ public class ActivityClientControllerStub extends MethodInvocationProxy<MethodIn
             }
         });
         if (BuildCompat.isSamsung()) {
-            this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMBFhESQOKi0qCWIFGgRvNx4qLhhSVg=="))) {
+            this.addMethodProxy(new StaticMethodProxy("startAppLockService") {
                 public Object call(Object who, Method method, Object... args) {
                     return 0;
                 }

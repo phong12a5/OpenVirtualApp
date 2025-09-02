@@ -30,12 +30,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements ISystemUpdateManager {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10MHFw5OhYdBwAfIxUKPgcGIhMeCAgLAQ==");
+        private static final String DESCRIPTOR = "android.os.ISystemUpdateManager";
         static final int TRANSACTION_retrieveSystemUpdateInfo = 1;
         static final int TRANSACTION_updateSystemUpdateInfo = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10MHFw5OhYdBwAfIxUKPgcGIhMeCAgLAQ=="));
+            this.attachInterface(this, "android.os.ISystemUpdateManager");
         }
 
         public static ISystemUpdateManager asInterface(IBinder obj) {
@@ -85,7 +85,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(ISystemUpdateManager impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -112,7 +112,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10MHFw5OhYdBwAfIxUKPgcGIhMeCAgLAQ==");
+                return "android.os.ISystemUpdateManager";
             }
 
             /*
@@ -124,7 +124,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10MHFw5OhYdBwAfIxUKPgcGIhMeCAgLAQ=="));
+                    _data.writeInterfaceToken("android.os.ISystemUpdateManager");
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         Bundle bundle = Stub.getDefaultImpl().retrieveSystemUpdateInfo();
@@ -148,7 +148,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10MHFw5OhYdBwAfIxUKPgcGIhMeCAgLAQ=="));
+                    _data.writeInterfaceToken("android.os.ISystemUpdateManager");
                     if (data != null) {
                         _data.writeInt(1);
                         data.writeToParcel(_data, 0);

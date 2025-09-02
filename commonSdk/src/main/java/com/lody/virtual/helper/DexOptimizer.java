@@ -26,14 +26,14 @@ public class DexOptimizer {
                 File oatFile = new File(oatFilePath);
                 FileUtils.ensureDirCreate(oatFile.getParentFile());
                 ArrayList<String> commandAndParams = new ArrayList<String>();
-                commandAndParams.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguIH8jGjdmEVRF")));
-                commandAndParams.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MwQIPGgaRCNiNAYoKARXVg==")) + dexFilePath);
-                commandAndParams.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MwQID2saMyNiNAYoKARXVg==")) + oatFilePath);
-                commandAndParams.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MwQICWogLAZhNzA5LBccDW9SPANrDi8o")) + VirtualRuntime.getCurrentInstructionSet());
+                commandAndParams.add("dex2oat");
+                commandAndParams.add("--dex-file=" + dexFilePath);
+                commandAndParams.add("--oat-file=" + oatFilePath);
+                commandAndParams.add("--instruction-set=" + VirtualRuntime.getCurrentInstructionSet());
                 if (Build.VERSION.SDK_INT > 25) {
-                    commandAndParams.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MwQIOWozEgJjDlE/IzlXPGwjOAZrDg0oKRcuI30gEiBsN1RF")));
+                    commandAndParams.add("--compiler-filter=quicken");
                 } else {
-                    commandAndParams.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MwQIOWozEgJjDlE/IzlXPGwjOAZrDg0oIxgcCmIFMDNlNAo9OS4uKmUaAlo=")));
+                    commandAndParams.add("--compiler-filter=interpret-only");
                 }
                 ProcessBuilder pb = new ProcessBuilder(commandAndParams);
                 pb.redirectErrorStream(true);
@@ -43,12 +43,12 @@ public class DexOptimizer {
                 try {
                     int ret = dex2oatProcess.waitFor();
                     if (ret != 0) {
-                        throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguIH8jGjdmVyQtKi4uCWoJTQVlNDAwLT42J2EjNCFqDl0bLiohJGsKRQVsDTw2Ji0MLHs0PFo=")) + ret);
+                        throw new IOException("dex2oat works unsuccessfully, exit code: " + ret);
                     }
                     break block6;
                 }
                 catch (InterruptedException e) {
-                    throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguIH8jGjdmVyQzIykmMW8aBitsNAowKQcqJ2JTTCNsASwgPl9XVg==")) + e.getMessage(), e);
+                    throw new IOException("dex2oat is interrupted, msg: " + e.getMessage(), e);
                 }
             }
             DexFile.loadDex((String)dexFilePath, (String)oatFilePath, (int)0).close();

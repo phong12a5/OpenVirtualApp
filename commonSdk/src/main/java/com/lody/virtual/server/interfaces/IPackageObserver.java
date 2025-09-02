@@ -30,14 +30,14 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IPackageObserver {
-        private static final String DESCRIPTOR = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxcmKm8gOD9pJSg1Ki4uKmwjNAQ="));
+        private static final String DESCRIPTOR = "com.lody.virtual.server.interfaces.IPackageObserver";
         static final int TRANSACTION_onPackageInstalled = 1;
         static final int TRANSACTION_onPackageUninstalled = 2;
         static final int TRANSACTION_onPackageInstalledAsUser = 3;
         static final int TRANSACTION_onPackageUninstalledAsUser = 4;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxcmKm8gOD9pJSg1Ki4uKmwjNAQ=")));
+            this.attachInterface(this, "com.lody.virtual.server.interfaces.IPackageObserver");
         }
 
         public static IPackageObserver asInterface(IBinder obj) {
@@ -98,7 +98,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IPackageObserver impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAFNC59ATAoLBUcD2ozOyB6DTwqLRgEKGIKESNqETwiKAgAVg==")));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -125,7 +125,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxcmKm8gOD9pJSg1Ki4uKmwjNAQ="));
+                return "com.lody.virtual.server.interfaces.IPackageObserver";
             }
 
             /*
@@ -136,7 +136,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxcmKm8gOD9pJSg1Ki4uKmwjNAQ=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IPackageObserver");
                     _data.writeString(packageName);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -159,7 +159,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxcmKm8gOD9pJSg1Ki4uKmwjNAQ=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IPackageObserver");
                     _data.writeString(packageName);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -182,7 +182,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxcmKm8gOD9pJSg1Ki4uKmwjNAQ=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IPackageObserver");
                     _data.writeInt(userId);
                     _data.writeString(packageName);
                     boolean _status = this.mRemote.transact(3, _data, _reply, 0);
@@ -206,7 +206,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxcmKm8gOD9pJSg1Ki4uKmwjNAQ=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IPackageObserver");
                     _data.writeInt(userId);
                     _data.writeString(packageName);
                     boolean _status = this.mRemote.transact(4, _data, _reply, 0);

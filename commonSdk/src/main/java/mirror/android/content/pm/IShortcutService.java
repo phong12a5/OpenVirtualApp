@@ -14,7 +14,7 @@ import mirror.RefStaticMethod;
 public class IShortcutService {
 
     public static final class Stub {
-        public static Class<?> TYPE = RefClass.load(IShortcutService.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw9NxwRGxEFHTwLARMbFQBKDAcWDQ=="));
+        public static Class<?> TYPE = RefClass.load(IShortcutService.class, "android.content.pm.IShortcutService$Stub");
         public static RefStaticMethod<IInterface> asInterface;
     }
 }

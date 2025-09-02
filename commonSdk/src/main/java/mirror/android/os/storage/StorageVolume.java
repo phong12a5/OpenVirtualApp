@@ -10,7 +10,7 @@ import mirror.RefMethod;
 import mirror.RefObject;
 
 public class StorageVolume {
-    public static Class<?> TYPE = RefClass.load(StorageVolume.class, StringFog.decrypt("EgsWBAoHO10MHFwDHQAcEgIXWDYaMAECCBcmBgMbHgA="));
+    public static Class<?> TYPE = RefClass.load(StorageVolume.class, "android.os.storage.StorageVolume");
     public static RefObject<File> mPath;
     public static RefObject<File> mInternalPath;
     public static RefObject<String> mDescription;

@@ -29,7 +29,7 @@ import org.jdeferred.Promise;
 
 public class ServerController
 extends IServerController.Stub {
-    String TAG = StringFog.decrypt("IAAAAAAcHBwNGwAfBQoc");
+    String TAG = "ServerControler";
     public static FloatWindowServices floatWindowServices;
     public static int cpid;
     private boolean isOpened = false;
@@ -41,12 +41,12 @@ extends IServerController.Stub {
     private Handler handler = new Handler(){
 
         public void dispatchMessage(Message msg) {
-            HVLog.i(ServerController.this.TAG, StringFog.decrypt("IAAAAAAcHBwNGwAfBQMLAUUaFwsKMxYRT1I=") + msg.what);
+            HVLog.i(ServerController.this.TAG, "ServerController handler  " + msg.what);
             Bundle bundle = msg.getData();
             switch (msg.what) {
                 case 3: {
-                    String pkgName = bundle.getString(StringFog.decrypt("Aw4VOAQDOg=="));
-                    IBinder iBinder = bundle.getBinder(StringFog.decrypt("GicbGAELLQ=="));
+                    String pkgName = bundle.getString("pkgName");
+                    IBinder iBinder = bundle.getBinder("iBinder");
                     ServerController.getServices().show(pkgName, iBinder);
                     break;
                 }
@@ -55,22 +55,22 @@ extends IServerController.Stub {
                     break;
                 }
                 case 5: {
-                    int centerX = bundle.getInt(StringFog.decrypt("EAAcAgAcBw=="));
-                    int centerY = bundle.getInt(StringFog.decrypt("EAAcAgAcBg=="));
+                    int centerX = bundle.getInt("centerX");
+                    int centerY = bundle.getInt("centerY");
                     ServerController.getServices().emulatorClick(centerX, centerY);
                     break;
                 }
                 case 6: {
-                    int fromX = bundle.getInt(StringFog.decrypt("FRcdGz0="));
-                    int fromY = bundle.getInt(StringFog.decrypt("FRcdGzw="));
-                    int toX = bundle.getInt(StringFog.decrypt("Bwoq"));
-                    int toY = bundle.getInt(StringFog.decrypt("Bwor"));
-                    boolean direction = bundle.getBoolean(StringFog.decrypt("FwwAEwYaNhwN"));
+                    int fromX = bundle.getInt("fromX");
+                    int fromY = bundle.getInt("fromY");
+                    int toX = bundle.getInt("toX");
+                    int toY = bundle.getInt("toY");
+                    boolean direction = bundle.getBoolean("direction");
                     ServerController.getServices().emulatorTouch(fromX, fromY, toX, toY, direction);
                     break;
                 }
                 case 7: {
-                    int keycode = bundle.getInt(StringFog.decrypt("GAALFQoKOg=="));
+                    int keycode = bundle.getInt("keycode");
                     ServerController.getServices().emulatorKey(keycode);
                 }
             }
@@ -83,7 +83,7 @@ extends IServerController.Stub {
 
     public static FloatWindowServices getServices() {
         if (floatWindowServices == null) {
-            throw new NullPointerException(StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBUUHLFMNGh4c"));
+            throw new NullPointerException("FloatWindowServices is null");
         }
         return floatWindowServices;
     }
@@ -92,12 +92,12 @@ extends IServerController.Stub {
     @RequiresApi(api=18)
     public void setClientApplication(String packageName, IBinder iBinder) throws RemoteException {
         List<TabChild> tabChildList = TabContainerFactory.getInstance().getTabChildListByPackageName(packageName);
-        HVLog.i(this.TAG, StringFog.decrypt("MAkbEwsaHBwNGwAfBQocUxYXAiYCNhYNGzMAGQMHEAQGHwoAf1MTDhEbCAgLPQQfE18=") + packageName + StringFog.decrypt("U0VSVgwsNh0HCgBK") + iBinder);
+        HVLog.i(this.TAG, "ClientControler setClientApplication  packageName:" + packageName + "    iBinder:" + iBinder);
         if (tabChildList != null && tabChildList.size() > 0) {
             Message message = this.handler.obtainMessage(3);
             Bundle bundle = new Bundle();
-            bundle.putString(StringFog.decrypt("Aw4VOAQDOg=="), packageName);
-            bundle.putBinder(StringFog.decrypt("GicbGAELLQ=="), iBinder);
+            bundle.putString("pkgName", packageName);
+            bundle.putBinder("iBinder", iBinder);
             message.setData(bundle);
             this.handler.sendMessage(message);
         }
@@ -125,12 +125,12 @@ extends IServerController.Stub {
         List<String> controlerApplication = TabContainerFactory.getInstance().getControlerApplication();
         boolean isShow = controlerApplication != null && controlerApplication.contains(pkgName);
         List<TabChild> children = TabContainerFactory.getInstance().getTabChildListByPackageName(pkgName);
-        HVLog.d(this.TAG, StringFog.decrypt("IAAAAAAcHBwNGwAfBQMLAUUBHgoZf0gTBBU+CAILSQ==") + pkgName + StringFog.decrypt("U0VSVgwMNh0HCgBK") + ibinder + "    " + ibinder.getInterfaceDescriptor());
+        HVLog.d(this.TAG, "ServerController show ;pkgName:" + pkgName + "    ibinder:" + ibinder + "    " + ibinder.getInterfaceDescriptor());
         if (isShow || children.size() > 0) {
             Message message = this.handler.obtainMessage(3);
             Bundle bundle = new Bundle();
-            bundle.putString(StringFog.decrypt("Aw4VOAQDOg=="), pkgName);
-            bundle.putBinder(StringFog.decrypt("GicbGAELLQ=="), ibinder);
+            bundle.putString("pkgName", pkgName);
+            bundle.putBinder("iBinder", ibinder);
             message.setData(bundle);
             this.handler.sendMessage(message);
         } else {
@@ -141,7 +141,7 @@ extends IServerController.Stub {
 
     @Override
     public void hide() throws RemoteException {
-        HVLog.d(this.TAG, StringFog.decrypt("IAAAAAAcHBwNGwAfBQMLAUUaHwELf5bZ+5rfzIn23IDI4oL695br6Jf42Yr+/YD9xoDg5JfZ6Q=="));
+        HVLog.d(this.TAG, "ServerController hide 应该是应用切到后台去了");
         Message message = this.handler.obtainMessage(4);
         this.handler.sendMessage(message);
     }
@@ -158,8 +158,8 @@ extends IServerController.Stub {
     public boolean virtualClick(int centerX, int centerY) throws RemoteException {
         Message message = this.handler.obtainMessage(5);
         Bundle bundle = new Bundle();
-        bundle.putInt(StringFog.decrypt("EAAcAgAcBw=="), centerX);
-        bundle.putInt(StringFog.decrypt("EAAcAgAcBg=="), centerY);
+        bundle.putInt("centerX", centerX);
+        bundle.putInt("centerY", centerY);
         message.setData(bundle);
         this.handler.sendMessage(message);
         return true;
@@ -167,14 +167,14 @@ extends IServerController.Stub {
 
     @Override
     public boolean virtualTouch(int fromX, int fromY, int toX, int toY, boolean direction) throws RemoteException {
-        HVLog.i(this.TAG, StringFog.decrypt("BQwAAhAPMycMGhEYSQsHAQARAgwBMUk=") + direction);
+        HVLog.i(this.TAG, "virtualTouch direction:" + direction);
         Message message = this.handler.obtainMessage(6);
         Bundle bundle = new Bundle();
-        bundle.putInt(StringFog.decrypt("FRcdGz0="), fromX);
-        bundle.putInt(StringFog.decrypt("FRcdGzw="), fromY);
-        bundle.putInt(StringFog.decrypt("Bwoq"), toX);
-        bundle.putInt(StringFog.decrypt("Bwor"), toY);
-        bundle.putBoolean(StringFog.decrypt("FwwAEwYaNhwN"), direction);
+        bundle.putInt("fromX", fromX);
+        bundle.putInt("fromY", fromY);
+        bundle.putInt("toX", toX);
+        bundle.putInt("toY", toY);
+        bundle.putBoolean("direction", direction);
         message.setData(bundle);
         this.handler.sendMessage(message);
         return true;
@@ -182,10 +182,10 @@ extends IServerController.Stub {
 
     @Override
     public boolean sendKeyEvent(int keycode) throws RemoteException {
-        HVLog.i(this.TAG, StringFog.decrypt("AAAcEi4LJjYVChwESQQLCgYdEgBU") + keycode);
+        HVLog.i(this.TAG, "sendKeyEvent keycode:" + keycode);
         Message message = this.handler.obtainMessage(7);
         Bundle bundle = new Bundle();
-        bundle.putInt(StringFog.decrypt("GAALFQoKOg=="), keycode);
+        bundle.putInt("keycode", keycode);
         message.setData(bundle);
         this.handler.sendMessage(message);
         return true;

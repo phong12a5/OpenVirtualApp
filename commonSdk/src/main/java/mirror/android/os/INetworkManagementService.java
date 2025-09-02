@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class INetworkManagementService {
-    public static Class<?> TYPE = RefClass.load(INetworkManagementService.class, StringFog.decrypt("EgsWBAoHO10MHFw5JwoaBAoAHSgPMRIECh8VBxs9FhcEHwYL"));
+    public static Class<?> TYPE = RefClass.load(INetworkManagementService.class, "android.os.INetworkManagementService");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10MHFw5JwoaBAoAHSgPMRIECh8VBxs9FhcEHwYLeyAXGhA="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.os.INetworkManagementService$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

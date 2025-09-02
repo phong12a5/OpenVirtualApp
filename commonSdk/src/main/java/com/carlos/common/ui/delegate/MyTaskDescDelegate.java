@@ -23,7 +23,7 @@ implements TaskDescriptionDelegate {
             return null;
         }
         int userId = VUserManager.get().getUserHandle();
-        String suffix = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl9fVg==")) + (userId + 1) + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PAhSVg=="));
+        String suffix = " (" + (userId + 1) + ")";
         String string2 = oldLabel = oldTaskDescription.getLabel() != null ? oldTaskDescription.getLabel() : "";
         if (!oldLabel.endsWith(suffix)) {
             return new ActivityManager.TaskDescription(oldTaskDescription.getLabel() + suffix, oldTaskDescription.getIcon(), oldTaskDescription.getPrimaryColor());

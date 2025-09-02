@@ -32,7 +32,7 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IPackageInstallerCallback {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGgAcHBIPAxARCgQ=");
+        private static final String DESCRIPTOR = "android.content.pm.IPackageInstallerCallback";
         static final int TRANSACTION_onSessionCreated = 1;
         static final int TRANSACTION_onSessionBadgingChanged = 2;
         static final int TRANSACTION_onSessionActiveChanged = 3;
@@ -40,7 +40,7 @@ extends IInterface {
         static final int TRANSACTION_onSessionFinished = 5;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGgAcHBIPAxARCgQ="));
+            this.attachInterface(this, "android.content.pm.IPackageInstallerCallback");
         }
 
         public static IPackageInstallerCallback asInterface(IBinder obj) {
@@ -109,7 +109,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IPackageInstallerCallback impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -136,7 +136,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGgAcHBIPAxARCgQ=");
+                return "android.content.pm.IPackageInstallerCallback";
             }
 
             /*
@@ -147,7 +147,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGgAcHBIPAxARCgQ="));
+                    _data.writeInterfaceToken("android.content.pm.IPackageInstallerCallback");
                     _data.writeInt(sessionId);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -170,7 +170,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGgAcHBIPAxARCgQ="));
+                    _data.writeInterfaceToken("android.content.pm.IPackageInstallerCallback");
                     _data.writeInt(sessionId);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -193,7 +193,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGgAcHBIPAxARCgQ="));
+                    _data.writeInterfaceToken("android.content.pm.IPackageInstallerCallback");
                     _data.writeInt(sessionId);
                     _data.writeInt(active ? 1 : 0);
                     boolean _status = this.mRemote.transact(3, _data, _reply, 0);
@@ -217,7 +217,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGgAcHBIPAxARCgQ="));
+                    _data.writeInterfaceToken("android.content.pm.IPackageInstallerCallback");
                     _data.writeInt(sessionId);
                     _data.writeFloat(progress);
                     boolean _status = this.mRemote.transact(4, _data, _reply, 0);
@@ -241,7 +241,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGgAcHBIPAxARCgQ="));
+                    _data.writeInterfaceToken("android.content.pm.IPackageInstallerCallback");
                     _data.writeInt(sessionId);
                     _data.writeInt(success ? 1 : 0);
                     boolean _status = this.mRemote.transact(5, _data, _reply, 0);

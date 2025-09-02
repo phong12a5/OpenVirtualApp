@@ -38,9 +38,9 @@ class ReflectionActionCompat {
     }
 
     static {
-        ReflectionAction = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uPmoFNClmHgY1KjsiP2UzLCVlN1RF"));
+        ReflectionAction = "ReflectionAction";
         try {
-            ReflectionActionClass = Class.forName(RemoteViews.class.getName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PRhSVg==")) + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uPmoFNClmHgY1KjsiP2UzLCVlN1RF")));
+            ReflectionActionClass = Class.forName(RemoteViews.class.getName() + "$" + "ReflectionAction");
         }
         catch (ClassNotFoundException classNotFoundException) {
             // empty catch block

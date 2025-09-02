@@ -15,7 +15,7 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class ApplicationThreadNative {
-    public static Class<?> TYPE = RefClass.load(ApplicationThreadNative.class, StringFog.decrypt("EgsWBAoHO10CHwJeKB8eHwwRFxEHMB03BwAVCAsgEhEbAAA="));
+    public static Class<?> TYPE = RefClass.load(ApplicationThreadNative.class, "android.app.ApplicationThreadNative");
     @MethodParams(value={IBinder.class})
     public static RefStaticMethod<IInterface> asInterface;
 }

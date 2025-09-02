@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IUriGrantsManager {
-    public static Class<?> TYPE = RefClass.load(IUriGrantsManager.class, StringFog.decrypt("EgsWBAoHO10CHwJeIDocGiIAFwsaLD4CARMXDB0="));
+    public static Class<?> TYPE = RefClass.load(IUriGrantsManager.class, "android.app.IUriGrantsManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10CHwJeIDocGiIAFwsaLD4CARMXDB1KIBEHFA=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.app.IUriGrantsManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

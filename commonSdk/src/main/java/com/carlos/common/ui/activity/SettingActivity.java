@@ -83,17 +83,17 @@ implements View.OnClickListener {
     }
 
     public static void copy(String content, Context context) {
-        ClipboardManager cmb = (ClipboardManager)context.getSystemService(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ECW8FFiV9ASww")));
+        ClipboardManager cmb = (ClipboardManager)context.getSystemService("clipboard");
         cmb.setText((CharSequence)content.trim());
-        Toasty.success(context, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ByEBAEYBLRFYFT0qAhsNUkctEz4=")), 1);
+        Toasty.success(context, "编码已复制", 1);
     }
 
     public void initData() {
         DeviceInfo instance = DeviceInfo.getInstance((Context)this);
-        this.toolbar_title.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BlcZJkYGHyY=")));
-        this.txtVersionCode.setText((CharSequence)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PFsrOxg7MQkdFj0JXlo7GFUzSFo=")) + instance.getVersionName((Context)this) + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PAhSVg==")) + instance.getVersionCode()));
-        this.txtQQNumber.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BlcdLUYHEz9YED0hA0A/AEcWDzFBFR8pAD8BAWkLPyNEEyVTARs7L0EHGx1GAl48HgoFM0QHISZ/Pw86EyYrPBorMSxVPAsVWCU7L1ozSFo=")));
-        this.activationTv.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwsdEkYsPTFYNgcuAgkjEw==")));
+        this.toolbar_title.setText((CharSequence)"设置");
+        this.txtVersionCode.setText((CharSequence)("(当前版本" + instance.getVersionName((Context)this) + ")" + instance.getVersionCode()));
+        this.txtQQNumber.setText((CharSequence)"请点击联系客服QQ 后续持续更新,请多多关注");
+        this.activationTv.setText((CharSequence)"激活状态");
         this.activationTv.setOnClickListener(view -> {
             this.devicesNo.setText((CharSequence)instance.getDevicesNo());
             SettingActivity.copy(instance.getDevicesNo(), (Context)this);
@@ -101,7 +101,7 @@ implements View.OnClickListener {
     }
 
     public static String timeMillisToFormat(long timestamp) {
-        String time = new SimpleDateFormat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAcYJ2lWMT8bHF0NAgpYX2kzAC4YKysrOwZdIlQvIChsFg9MXBcYD0EvOQA="))).format(new Date(timestamp));
+        String time = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒").format(new Date(timestamp));
         return time;
     }
 
@@ -120,20 +120,20 @@ implements View.OnClickListener {
         if (view.getId() == R.id.toolbar_left_menu) {
             this.finish();
         } else if (view.getId() == R.id.txtAddFriend) {
-            if (SettingActivity.isAppInstall(this.getPackageManager(), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogMCtgNCg/Kj41Dm8jNCpqAQIgKRc+Vg==")))) {
-                String url = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwc+L2wwIDd3MBE1KQdWDW4FFjdvVwYqIwg+CmwjFgZlHg02IwdXO3swNAVqIAEvCTotOHsJNyV1N1RF"));
-                this.startActivity(new Intent(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk4xIBZmDzxF")), Uri.parse((String)url)));
+            if (SettingActivity.isAppInstall(this.getPackageManager(), "com.tencent.mobileqq")) {
+                String url = "mqqwpa://im/chat?chat_type=wpa&uin=82319214";
+                this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse((String)url)));
             } else {
-                Toasty.info((Context)this, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BlcdLUZaAwlZXy0VOwYgPVVaRy4GXyIuWAwAVg=="))).show();
+                Toasty.info((Context)this, "请安装QQ客户端").show();
             }
         } else if (view.getId() == R.id.relaQuestions) {
-            Toasty.success((Context)this, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxsBEkZJB0hYXh83KQcYMw=="))).show();
+            Toasty.success((Context)this, "开发中ing").show();
         } else if (view.getId() == R.id.relaUpdate) {
             if (this.isUpgrade()) {
                 if (this.mSoftVersions != null) {
                     String updateUrl = this.mSoftVersions.getUpdateUrl();
                     Uri uri = Uri.parse((String)updateUrl);
-                    Intent intent = new Intent(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk4xIBZmDzxF")), uri);
+                    Intent intent = new Intent("android.intent.action.VIEW", uri);
                     this.startActivity(intent);
                 }
             } else {

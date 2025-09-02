@@ -15,7 +15,7 @@ import mirror.RefClass;
 import mirror.RefMethod;
 
 public class IServiceConnectionO {
-    public static Class<?> TYPE = RefClass.load(IServiceConnectionO.class, StringFog.decrypt("EgsWBAoHO10CHwJeIDwLARMbFQAtMB0NChEEAAAA"));
+    public static Class<?> TYPE = RefClass.load(IServiceConnectionO.class, "android.app.IServiceConnection");
     @MethodParams(value={ComponentName.class, IBinder.class, boolean.class})
     public static RefMethod<Void> connected;
 }

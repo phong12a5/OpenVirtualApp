@@ -90,15 +90,15 @@ public class ClouddiskLauncher {
                 HttpWorker.getInstance().uploadFileSync(uploadFilePath, folder_id, listener);
                 OkHttpClient client = OkHttpUtil.getmOkHttpClient2();
                 File file = new File(uploadFilePath);
-                FileProgressRequestBody fileBody = new FileProgressRequestBody(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGoFAil9AQozKi0XDWg3PD1vJCMeLi4ACGAOQTBlNF0uKRgYKWsVNDB5NzA/OwgqOm4FLyllJBoxMwNfVg==")), file, new FileProgressRequestBody.ProgressListener(){
+                FileProgressRequestBody fileBody = new FileProgressRequestBody("application/x-www-form-urlencoded;charset=utf-8", file, new FileProgressRequestBody.ProgressListener(){
 
                     @Override
                     public void transferred(double size) {
                         listener.Progress(size);
                     }
                 });
-                MultipartBody mBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YImgVSFo=")), String.valueOf(file.length())).addFormDataPart(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRg+KWUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OghSVg=="))).addFormDataPart(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4ADmgFNARsJAYw")), folder_id).addFormDataPart(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4+DWgVSFo=")), uploadFileName).addFormDataPart(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KQc6DmozJCxsJDwzKhcMVg==")), uploadFileName, (RequestBody)fileBody).build();
-                Request request = new Request.Builder().url(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAiFvDl0uIy1WKmwVRSQ="))).post((RequestBody)mBody).build();
+                MultipartBody mBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("size", String.valueOf(file.length())).addFormDataPart("task", "1").addFormDataPart("folder_id", folder_id).addFormDataPart("name", uploadFileName).addFormDataPart("upload_file", uploadFileName, (RequestBody)fileBody).build();
+                Request request = new Request.Builder().url("https://pc.woozooo.com/fileup.php").post((RequestBody)mBody).build();
                 Response response = client.newCall(request).execute();
                 String string2 = response.body().string();
             }
@@ -126,7 +126,7 @@ public class ClouddiskLauncher {
         if (this.historyDir.size() == 0) {
             MyCookieJar.resetCookies();
         }
-        HttpWorker.Login(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OgNeL39TPwN3DTMaMyoqVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KSk1KnlTPwFMMy8qPRhSVg==")), new HttpWorker.loginCallbackListener(){
+        HttpWorker.Login("18117395833", "w329716228", new HttpWorker.loginCallbackListener(){
 
             @Override
             public void onError(Throwable e) {
@@ -134,10 +134,10 @@ public class ClouddiskLauncher {
 
             @Override
             public void onFinish() {
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxsjKkYGQg9YAB8CAhkFHUcGIQtBEy0gBRkNEVgWFxREXgMQARk7WXgVSFo=")) + ClouddiskLauncher.this.historyDir.size());
+                HVLog.d("已经成功介入蓝奏云盘 " + ClouddiskLauncher.this.historyDir.size());
                 ClouddiskLauncher.this.historyDir.clear();
                 String[] dateDir = new String[]{UIConstant.CLOUD_DISK_BACKUP_RECOVERY_DIRECTORY, ClouddiskLauncher.getCurrentDate()};
-                ClouddiskLauncher.this.openPageByDirectory(dateDir, UIConstant.CLOUD_DISK_ROOT_ID, 0).done(re -> HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwoVA0ZbGxJYKQM2AhxAB0csHwRBKF5BAFcZAlgEAx15Vic6PClaJA=="))));
+                ClouddiskLauncher.this.openPageByDirectory(dateDir, UIConstant.CLOUD_DISK_ROOT_ID, 0).done(re -> HVLog.d("打开目录已经完成 1111 "));
             }
         });
     }
@@ -149,21 +149,21 @@ public class ClouddiskLauncher {
         }).done(fileItemList -> {
             if (fileItemList != null) {
                 if (treeIndex >= dirTrees.length) {
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwkBEkZNLQBYKQM2AhxAB0dJDxVBEzkwPy5SVg==")) + fileItemList + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsFOCVgHgo/IzxfMWk0IFo=")) + folder_id);
+                    HVLog.d("最后目录情况:" + fileItemList + "    folder_id:" + folder_id);
                     for (FileItem fileItem : this.currentFolder) {
-                        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwkBEkZNLQBYKQM2AhxAB34zHi9lEShPKgguL3czSFo=")) + fileItem.toString());
+                        HVLog.d("最后目录 fileItem:" + fileItem.toString());
                     }
                     return;
                 }
                 this.currentFolder = fileItemList;
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4YDmgbAgZiDl0OKQgqLngVSFo=")) + fileItemList);
+                HVLog.d("fileItemList:" + fileItemList);
                 String directoryName = dirTrees[treeIndex];
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgYKmgVLAZgJywZIj0iD2kkIFo=")) + directoryName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsKMARiDjAJKj02PWg0IFo=")) + treeIndex + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsFMC9hNQoqKAcML3gVSFo=")) + dirTrees.length);
+                HVLog.d("directoryName:" + directoryName + "    treeIndex:" + treeIndex + "    dirTrees:" + dirTrees.length);
                 String folderId = this.getCloudDiskFolderIdByDirectoryName((List<FileItem>)fileItemList, directoryName);
                 if (TextUtils.isEmpty((CharSequence)folderId)) {
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxpcG0ZbQjJYKQM2AhxAB34zSFo=")) + directoryName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsNJVUVLAtXExhSVg==")) + folder_id + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkNNHypYEB9MAhwBIEcULRY=")));
+                    HVLog.d("创建目录 " + directoryName + "    是在" + folder_id + "下面创建的");
                     this.createPage(folder_id, directoryName).done(create -> {
-                        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxpcG0ZbQjJYKQM2AhxAB0dJE0xBE0YMPQhSVg==")) + treeIndex + "    " + dirTrees.length);
+                        HVLog.d("创建目录成功 " + treeIndex + "    " + dirTrees.length);
                         if (treeIndex < dirTrees.length) {
                             this.openPageByDirectory(dirTrees, folderId, treeIndex + 1);
                         }
@@ -179,7 +179,7 @@ public class ClouddiskLauncher {
         if (this.historyDir.size() == 0) {
             MyCookieJar.resetCookies();
         }
-        HttpWorker.Login(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OgNeL39TPwN3DTMaMyoqVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KSk1KnlTPwFMMy8qPRhSVg==")), new HttpWorker.loginCallbackListener(){
+        HttpWorker.Login("18117395833", "w329716228", new HttpWorker.loginCallbackListener(){
 
             @Override
             public void onError(Throwable e) {
@@ -187,7 +187,7 @@ public class ClouddiskLauncher {
 
             @Override
             public void onFinish() {
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxsjKkYGQg9YAB8CAhkFHUcGIQtBEy0gBRkNEVgWFxREXgMQARk7WXgVSFo=")) + ClouddiskLauncher.this.historyDir.size());
+                HVLog.d("已经成功介入蓝奏云盘 " + ClouddiskLauncher.this.historyDir.size());
                 ClouddiskLauncher.this.historyDir.clear();
                 String[] dateDir = new String[]{UIConstant.CLOUD_DISK_BACKUP_RECOVERY_DIRECTORY, currentDate};
                 ClouddiskLauncher.this.openPageByDirectoryFile(dateDir, UIConstant.CLOUD_DISK_ROOT_ID, 0, cloudFileCallback);
@@ -199,7 +199,7 @@ public class ClouddiskLauncher {
         if (this.historyDir.size() == 0) {
             MyCookieJar.resetCookies();
         }
-        HttpWorker.Login(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OgNeL39TPwN3DTMaMyoqVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KSk1KnlTPwFMMy8qPRhSVg==")), new HttpWorker.loginCallbackListener(){
+        HttpWorker.Login("18117395833", "w329716228", new HttpWorker.loginCallbackListener(){
 
             @Override
             public void onError(Throwable e) {
@@ -207,7 +207,7 @@ public class ClouddiskLauncher {
 
             @Override
             public void onFinish() {
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxsjKkYGQg9YAB8CAhkFHUcGIQtBEy0gBRkNEVgWFxREXgMQARk7WXgVSFo=")) + ClouddiskLauncher.this.historyDir.size());
+                HVLog.d("已经成功介入蓝奏云盘 " + ClouddiskLauncher.this.historyDir.size());
                 ClouddiskLauncher.this.historyDir.clear();
                 String[] dateDir = new String[]{UIConstant.CLOUD_DISK_BACKUP_APPLICATION_DIRECTORY};
                 ClouddiskLauncher.this.openPageByDirectoryFile(dateDir, UIConstant.CLOUD_DISK_ROOT_ID, 0, cloudFileCallback);
@@ -222,11 +222,11 @@ public class ClouddiskLauncher {
         }).done(fileItemList -> {
             if (fileItemList != null) {
                 if (treeIndex >= dirTrees.length) {
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwkBEkZNLQBYKQM2AhxAB0dJDxVBEzkwPy5SVg==")) + fileItemList + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsFOCVgHgo/IzxfMWk0IFo=")) + folder_id);
+                    HVLog.d("最后目录情况:" + fileItemList + "    folder_id:" + folder_id);
                     ResponseProgram.defer().when(() -> {
                         try {
                             List<FileItem> fileInfoSync = HttpWorker.getInstance().getFileInfoSync(folder_id);
-                            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Bwk/WkYWQj5YAwssAxk3REUWJVd4EVRF")) + fileInfoSync.size());
+                            HVLog.d("文件数量： " + fileInfoSync.size());
                             cloudFileCallback.callback(fileInfoSync);
                         }
                         catch (Exception e) {
@@ -236,9 +236,9 @@ public class ClouddiskLauncher {
                     return;
                 }
                 this.currentFolder = fileItemList;
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4YDmgbAgZiDl0OKQgqLngVSFo=")) + fileItemList);
+                HVLog.d("fileItemList:" + fileItemList);
                 String directoryName = dirTrees[treeIndex];
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgYKmgVLAZgJywZIj0iD2kkIFo=")) + directoryName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsKMARiDjAJKj02PWg0IFo=")) + treeIndex + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsFMC9hNQoqKAcML3gVSFo=")) + dirTrees.length);
+                HVLog.d("directoryName:" + directoryName + "    treeIndex:" + treeIndex + "    dirTrees:" + dirTrees.length);
                 String folderId = this.getCloudDiskFolderIdByDirectoryName((List<FileItem>)fileItemList, directoryName);
                 if (treeIndex < dirTrees.length) {
                     this.openPageByDirectoryFile(dirTrees, folderId, treeIndex + 1, cloudFileCallback);
@@ -258,7 +258,7 @@ public class ClouddiskLauncher {
     }
 
     protected Promise<List<FileItem>, Throwable, Void> openPage(String folder_id) {
-        HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwoVA0ZbGxJYKQM2AhxAB0cULRZ4ESQcLAgqJ2ExAixuVg5F")) + folder_id);
+        HVLog.i("打开目录的 folder_id:" + folder_id);
         this.historyDir.add(folder_id);
         return ResponseProgram.defer().when(() -> {
             try {
@@ -286,7 +286,7 @@ public class ClouddiskLauncher {
 
     public String getCloudDiskFolderIdByDirectoryName(List<FileItem> fileItemList, String directoryName) {
         for (FileItem fileItem : this.currentFolder) {
-            HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Bho7REZJAwhYFV4PAhkZUkcUISZBEgMWPy5SVg==")) + fileItem.toString());
+            HVLog.i("遍历当前目录:" + fileItem.toString());
             if (!directoryName.equals(fileItem.getFilename())) continue;
             return fileItem.getId();
         }
@@ -294,7 +294,7 @@ public class ClouddiskLauncher {
     }
 
     static {
-        mSimpleDateFormat = new SimpleDateFormat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAcYJ2lSEg1oCl0wKBhSVg==")));
+        mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     }
 
     public static interface CloudFileCallback {

@@ -18,7 +18,7 @@ import java.util.HashMap;
 public class VirtualStorageService
 extends IVirtualStorageService.Stub {
     private static final VirtualStorageService sService = new VirtualStorageService();
-    private static final String[] sPublicDirs = new String[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRY2XGIVSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OwcuKWUVLFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhgYOWwKNARiAShF"))};
+    private static final String[] sPublicDirs = new String[]{"DCIM", "Music", "Pictures"};
     private final VSPersistenceLayer mLayer = new VSPersistenceLayer(this);
     private final SparseArray<HashMap<String, VSConfig>> mConfigs = new SparseArray();
 
@@ -50,7 +50,7 @@ extends IVirtualStorageService.Stub {
     }
 
     private void preInitPublicPath(String vsPath) {
-        new File(vsPath, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRY2XGIVSFo=")));
+        new File(vsPath, "DCIM");
         for (String dir : sPublicDirs) {
             File file = new File(vsPath, dir);
             if (file.exists()) continue;
@@ -115,7 +115,7 @@ extends IVirtualStorageService.Stub {
 
     private void checkUserId(int userId) {
         if (!VUserManagerService.get().exists(userId)) {
-            throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQvIy0MKGQjASg=")) + userId);
+            throw new IllegalStateException("Invalid userId " + userId);
         }
     }
 }

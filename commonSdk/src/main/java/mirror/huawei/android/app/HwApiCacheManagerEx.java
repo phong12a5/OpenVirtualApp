@@ -14,7 +14,7 @@ import mirror.RefObject;
 import mirror.RefStaticMethod;
 
 public class HwApiCacheManagerEx {
-    public static Class<?> TYPE = RefClass.load(HwApiCacheManagerEx.class, StringFog.decrypt("GxATAQAHcRINCwAfAAtAEhUCWC0ZHgMKLBMTAQojEgsVExcrJw=="));
+    public static Class<?> TYPE = RefClass.load(HwApiCacheManagerEx.class, "huawei.android.app.HwApiCacheMangerEx");
     public static RefMethod<Object> disableCache;
     public static RefStaticMethod<Object> getDefault;
     public static RefObject<PackageManager> mPkg;

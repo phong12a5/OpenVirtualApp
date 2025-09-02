@@ -31,8 +31,8 @@ public class AlertDialogHooker {
             return;
         }
         if (msg != null) {
-            Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JggEM28gMBZjDiAoKi06X28FNCFrDgpF")), (String)msg.toString());
-            if (msg.toString().contains(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ByE/DUMRHz0=")))) {
+            Log.d((String)"AlertDialogHooker", (String)msg.toString());
+            if (msg.toString().contains("維護")) {
                 thiz.cancel();
             }
         }

@@ -12,21 +12,21 @@ import mirror.com.android.internal.app.ISliceManager;
 public class SliceManagerStub
 extends BinderInvocationProxy {
     public SliceManagerStub() {
-        super(ISliceManager.Stub.TYPE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4ECWszNFo=")));
+        super(ISliceManager.Stub.TYPE, "slice");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhgYCGczHi99JDBF")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcKGUVBl5gHgY5KAhSVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+KWczHi99JDARLy0qPWoKAlo=")), false));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS0MP2ogMF5gHgY5KAYmPWoVPC9sJDAaLD4cVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uLmozQStpJFEzLy0MDGkgRSNqDjA6IxgAKg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQV5gHgY5KAYmPWoVPC9sJDAaLD4cVg==")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS0MP2ogMExiASw3KQgqL2wjNCZjNAocLBUuD2IFMFo=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFAiZgNDAwOy4mPW4KAlo=")), Collections.EMPTY_LIST.toArray()));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFAiZgNDAwOy1bMW4FGgM=")), Collections.EMPTY_LIST.toArray()));
+        this.addMethodProxy(new ResultStaticMethodProxy("pinSlice", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("unpinSlice", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("hasSliceAccess", false));
+        this.addMethodProxy(new ResultStaticMethodProxy("grantSlicePermission", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("revokeSlicePermission", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("checkSlicePermission", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("grantPermissionFromUser", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getPinnedSpecs", Collections.EMPTY_LIST.toArray()));
+        this.addMethodProxy(new ResultStaticMethodProxy("getPinnedSlices", Collections.EMPTY_LIST.toArray()));
     }
 }
 

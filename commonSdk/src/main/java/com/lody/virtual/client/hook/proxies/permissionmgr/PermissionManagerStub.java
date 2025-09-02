@@ -37,14 +37,14 @@ extends MethodInvocationProxy<MethodInvocationStub<IInterface>> {
         IInterface hooked = (IInterface)((MethodInvocationStub)this.getInvocationStub()).getProxyInterface();
         ActivityThread.sPermissionManager.set(hooked);
         try {
-            Object mPermissionManager = Reflect.on(VirtualCore.getPM()).field(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwU6M28jEi9hJygzKi0YUm4jMDdrJyg5"))).get();
+            Object mPermissionManager = Reflect.on(VirtualCore.getPM()).field("mPermissionManager").get();
             Object packagemanager = VirtualCore.getPM();
             if (BuildCompat.isS()) {
                 packagemanager = mPermissionManager;
-                mPermissionManager = Reflect.on(mPermissionManager).field(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwU6M28jEi9hJygzKi0YUm4jMDdrJyg5"))).get();
+                mPermissionManager = Reflect.on(mPermissionManager).field("mPermissionManager").get();
             }
             if (mPermissionManager != hooked) {
-                Reflect.on(packagemanager).set(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwU6M28jEi9hJygzKi0YUm4jMDdrJyg5")), hooked);
+                Reflect.on(packagemanager).set("mPermissionManager", hooked);
             }
         }
         catch (Throwable e2) {
@@ -52,41 +52,41 @@ extends MethodInvocationProxy<MethodInvocationStub<IInterface>> {
         }
         BinderInvocationStub hookBinder = new BinderInvocationStub((IInterface)((MethodInvocationStub)this.getInvocationStub()).getBaseInterface());
         hookBinder.copyMethodProxies((MethodInvocationStub)this.getInvocationStub());
-        hookBinder.replaceService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmoVAgNhJAY1Kj1XM2oVSFo=")));
+        hookBinder.replaceService("permissionmgr");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGIzBkxiASw3KQgqL2wjNCZsJTAZLRgcIWIITSxlJzAuKRgACA=="))){
+        this.addMethodProxy(new StaticMethodProxy("addOnPermissionsChangeListener"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) {
                 return 0;
             }
         });
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtoJFkCKAguD2wgAgNqAQYbKTw2LH0KRSJuDF0iLAccJ2UzNCY="))){
+        this.addMethodProxy(new StaticMethodProxy("removeOnPermissionsChangeListener"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) {
                 return 0;
             }
         });
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGcFNARgDgYpIy0cDW8VSFo="))){
+        this.addMethodProxy(new StaticMethodProxy("addPermission"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) {
                 return true;
             }
         });
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQUxiASw3KQgqL2wjNCY="))){
+        this.addMethodProxy(new StaticMethodProxy("checkPermission"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) throws Throwable {
                 return VPackageManager.get().checkPermission((String)args[0], (String)args[1], (Integer)args[2]);
             }
         });
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki5fD2wVHixpJBo1LCwuPWogGitsJCwRLhcML2MFNDZvDlkdJBhbCmoFGgRrEQI0"))));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("shouldShowRequestPermissionRationale"));
     }
 
     @Override

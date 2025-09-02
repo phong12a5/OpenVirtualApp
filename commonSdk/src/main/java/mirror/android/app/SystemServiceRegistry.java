@@ -10,7 +10,7 @@ import mirror.RefStaticMethod;
 import mirror.android.app.ContextImpl;
 
 public class SystemServiceRegistry {
-    public static Class<?> TYPE = RefClass.load(SystemServiceRegistry.class, StringFog.decrypt("EgsWBAoHO10CHwJeOhYdBwAfJQAcKRoACiAVDgYdBxcL"));
+    public static Class<?> TYPE = RefClass.load(SystemServiceRegistry.class, "android.app.SystemServiceRegistry");
     @MethodParams(value={ContextImpl.class, String.class})
     public static RefStaticMethod<Object> getSystemService;
 }

@@ -251,7 +251,7 @@ View.OnLayoutChangeListener {
 
     public boolean setDisplayMatrix(Matrix finalMatrix) {
         if (finalMatrix == null) {
-            throw new IllegalArgumentException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Owg+LG8jAjBLHig7Kj0YDWU3TSprDTwbKhgEKA==")));
+            throw new IllegalArgumentException("Matrix cannot be null");
         }
         if (this.mImageView.getDrawable() == null) {
             return false;
@@ -410,7 +410,7 @@ View.OnLayoutChangeListener {
 
     public void setScale(float scale, float focalX, float focalY, boolean animate) {
         if (scale < this.mMinScale || scale > this.mMaxScale) {
-            throw new IllegalArgumentException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii42P2oFNyhgATApLF4mOGknTT1qDiwZIxgbJGYaBiB5ESgqKRgIJ3gVGjJ7AQ4wJjwuKmkKQTF+N105LV86DWsaRV59JCAoKAhSVg==")));
+            throw new IllegalArgumentException("Scale must be within the range of minScale and maxScale");
         }
         if (animate) {
             this.mImageView.post((Runnable)new AnimatedZoomRunnable(this.getScale(), scale, focalX, focalY));

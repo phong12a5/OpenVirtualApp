@@ -28,12 +28,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements ISyncContext {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSwhDwsNHBwNGxcIHQ==");
+        private static final String DESCRIPTOR = "android.content.ISyncContext";
         static final int TRANSACTION_sendHeartbeat = 1;
         static final int TRANSACTION_onFinished = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSwhDwsNHBwNGxcIHQ=="));
+            this.attachInterface(this, "android.content.ISyncContext");
         }
 
         public static ISyncContext asInterface(IBinder obj) {
@@ -77,7 +77,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(ISyncContext impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -104,7 +104,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSwhDwsNHBwNGxcIHQ==");
+                return "android.content.ISyncContext";
             }
 
             /*
@@ -115,7 +115,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSwhDwsNHBwNGxcIHQ=="));
+                    _data.writeInterfaceToken("android.content.ISyncContext");
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         Stub.getDefaultImpl().sendHeartbeat();
@@ -137,7 +137,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSwhDwsNHBwNGxcIHQ=="));
+                    _data.writeInterfaceToken("android.content.ISyncContext");
                     if (result != null) {
                         _data.writeInt(1);
                         result.writeToParcel(_data, 0);

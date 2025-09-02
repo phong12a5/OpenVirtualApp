@@ -10,7 +10,7 @@ import mirror.RefConstructor;
 import mirror.RefMethod;
 
 public class AndroidFuture {
-    public static Class<?> TYPE = RefClass.load(AndroidFuture.class, StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlANh0FHRNeKAEKAQobEiMbKwYRCg=="));
+    public static Class<?> TYPE = RefClass.load(AndroidFuture.class, "com.android.internal.infra.AndroidFuture");
     @MethodParams(value={Object.class})
     public static RefMethod<Boolean> complete;
     public static RefConstructor<Object> ctor;

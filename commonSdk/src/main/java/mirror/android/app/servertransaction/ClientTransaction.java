@@ -14,7 +14,7 @@ import mirror.RefMethod;
 import mirror.RefObject;
 
 public class ClientTransaction {
-    public static Class<?> TYPE = RefClass.load(ClientTransaction.class, StringFog.decrypt("EgsWBAoHO10CHwJeGgocBQAAAhcPMQACDAYZBgFAMAkbEwsaCwECAQERChsHHAs="));
+    public static Class<?> TYPE = RefClass.load(ClientTransaction.class, "android.app.servertransaction.ClientTransaction");
     public static RefMethod<List<Object>> getTransactionItems;
     public static RefObject<IBinder> mActivityToken;
     public static RefObject<Object> mLifecycleStateRequest;

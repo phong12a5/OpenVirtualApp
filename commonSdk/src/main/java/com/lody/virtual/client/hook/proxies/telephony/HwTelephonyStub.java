@@ -13,7 +13,7 @@ import mirror.com.android.internal.telephony.IHwTelephony;
 public class HwTelephonyStub
 extends BinderInvocationProxy {
     public HwTelephonyStub() {
-        super(IHwTelephony.Stub.TYPE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhhfD2ojNB9jETA7LC0MMQ==")));
+        super(IHwTelephony.Stub.TYPE, "phone_huawei");
     }
 
     @Override
@@ -28,7 +28,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQVBi9hATA/IBcMLGwjAitiASxF"));
+            return "getUniqueDeviceId";
         }
     }
 }

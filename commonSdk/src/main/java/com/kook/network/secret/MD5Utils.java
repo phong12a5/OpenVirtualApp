@@ -45,8 +45,8 @@ public class MD5Utils {
         MessageDigest md5 = null;
         StringBuffer hexValue = new StringBuffer();
         try {
-            md5 = MessageDigest.getInstance(StringFog.decrypt("Jita"));
-            byte[] byteArray = inStr.getBytes(StringFog.decrypt("PjspRhU="));
+            md5 = MessageDigest.getInstance("UN(");
+            byte[] byteArray = inStr.getBytes("M^[0p");
             byte[] md5Bytes = md5.digest(byteArray);
             String content = MD5Utils.binToHex(md5Bytes);
             return content;
@@ -67,7 +67,7 @@ public class MD5Utils {
                 read += 256;
             }
             if (read < 16) {
-                sb.append(StringFog.decrypt("Ww=="));
+                sb.append("(");
             }
             sb.append(Integer.toHexString(read));
         }
@@ -88,14 +88,14 @@ public class MD5Utils {
         if (file != null && file.exists()) {
             FileInputStream fis = null;
             try {
-                MessageDigest messageDigest = MessageDigest.getInstance(StringFog.decrypt("Jita"));
+                MessageDigest messageDigest = MessageDigest.getInstance("UN(");
                 fis = new FileInputStream(file);
                 MappedByteBuffer byteBuffer = fis.getChannel().map(FileChannel.MapMode.READ_ONLY, 0L, file.length());
                 messageDigest.update(byteBuffer);
                 BigInteger bigInt = new BigInteger(1, messageDigest.digest());
                 String md5 = bigInt.toString(16);
                 while (md5.length() < 32) {
-                    md5 = StringFog.decrypt("Ww==") + md5;
+                    md5 = "(" + md5;
                 }
                 String string2 = md5;
                 return string2;

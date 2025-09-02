@@ -26,12 +26,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IProcessObserver {
-        private static final String DESCRIPTOR = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxgqJmkgFiNqDyg1Ki4uKmwjNAQ="));
+        private static final String DESCRIPTOR = "com.lody.virtual.server.interfaces.IProcessObserver";
         static final int TRANSACTION_onProcessCreated = 1;
         static final int TRANSACTION_onProcessDied = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxgqJmkgFiNqDyg1Ki4uKmwjNAQ=")));
+            this.attachInterface(this, "com.lody.virtual.server.interfaces.IProcessObserver");
         }
 
         public static IProcessObserver asInterface(IBinder obj) {
@@ -78,7 +78,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IProcessObserver impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAFNC59ATAoLBUcD2ozOyB6DTwqLRgEKGIKESNqETwiKAgAVg==")));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -105,7 +105,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxgqJmkgFiNqDyg1Ki4uKmwjNAQ="));
+                return "com.lody.virtual.server.interfaces.IProcessObserver";
             }
 
             /*
@@ -116,7 +116,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxgqJmkgFiNqDyg1Ki4uKmwjNAQ=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IProcessObserver");
                     _data.writeString(pkg);
                     _data.writeString(processName);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
@@ -140,7 +140,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylvDh49Ly1fImgFLD9vMxoWLxgqJmkgFiNqDyg1Ki4uKmwjNAQ=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.interfaces.IProcessObserver");
                     _data.writeString(pkg);
                     _data.writeString(processName);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);

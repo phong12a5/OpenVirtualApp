@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class ILocaleManager {
-    public static Class<?> TYPE = RefClass.load(ILocaleManager.class, StringFog.decrypt("EgsWBAoHO10CHwJeICMBEAQeEygPMRIECgA="));
+    public static Class<?> TYPE = RefClass.load(ILocaleManager.class, "android.app.ILocaleManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10CHwJeICMBEAQeEygPMRIECgBUOhsbEQ=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.app.ILocaleManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

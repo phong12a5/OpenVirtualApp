@@ -56,7 +56,7 @@ implements InvocationHandler {
     }
 
     private static HookFetcher fetchHook(String authority) {
-        VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4uLGszRQpgJB4xPxciLWUzFiVsNx4/L15XVg==")) + authority, new Object[0]);
+        VLog.d("HV-", "fetchHook authority:" + authority, new Object[0]);
         HookFetcher fetcher = PROVIDER_MAP.get(authority);
         if (fetcher == null) {
             fetcher = new HookFetcher(){
@@ -137,20 +137,20 @@ implements InvocationHandler {
         MethodBox methodBox = new MethodBox(method, this.mBase, args);
         try {
             String name = method.getName();
-            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+DmoFSFo=")).equals(name)) {
+            if ("call".equals(name)) {
                 int start = this.getCallIndex(methodBox);
                 String methodName = (String)args[start];
                 String arg = (String)args[start + 1];
                 Bundle extras = (Bundle)args[start + 2];
                 return this.call(methodBox, methodName, arg, extras);
             }
-            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcKWgaFgY=")).equals(name)) {
+            if ("insert".equals(name)) {
                 int start = MethodParameterUtils.getIndex(args, Uri.class);
                 Uri url = (Uri)args[start];
                 ContentValues initialValues = (ContentValues)args[start + 1];
                 return this.insert(methodBox, url, initialValues);
             }
-            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KgcuM28gAlo=")).equals(name)) {
+            if ("query".equals(name)) {
                 int start = MethodParameterUtils.getIndex(args, Uri.class);
                 Uri url = (Uri)args[start];
                 String[] projection = (String[])args[start + 1];
@@ -172,13 +172,13 @@ implements InvocationHandler {
                 }
                 return this.query(methodBox, url, projection, selection, selectionArgs, sortOrder, queryArgs);
             }
-            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc2HGUVBixiASxF")).equals(name)) {
+            if ("asBinder".equals(name)) {
                 return this.mProxyBinder;
             }
             return methodBox.call();
         }
         catch (Throwable e) {
-            VLog.w(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhcMD2wjAixiASwKKi1fCQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+DmoOTChIASs8OV4ML3wnTT1qDiwZPQguCGEwAjU=")), method.getName(), Arrays.toString(args));
+            VLog.w("ProviderHook", "call: %s (%s) with error", method.getName(), Arrays.toString(args));
             if (e instanceof InvocationTargetException) {
                 throw e.getCause();
             }
@@ -190,32 +190,32 @@ implements InvocationHandler {
     }
 
     static {
-        QUERY_ARG_SQL_SELECTION = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iVgIrLAcMKGgnPDdsNyMeKT0+KE4FNCBsHgosIz42KWUzSFo="));
-        QUERY_ARG_SQL_SELECTION_ARGS = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iVgIrLAcMKGgnPDdsNyMeKT0+KE4FNCBsHgosIz42KWU3EjNvJyAc"));
-        QUERY_ARG_SQL_SORT_ORDER = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iVgIrLAcMKGgnPDdsNyMeKT0+KE4FNCplNzMcKQdfIGsKFlo="));
+        QUERY_ARG_SQL_SELECTION = "android:query-arg-sql-selection";
+        QUERY_ARG_SQL_SELECTION_ARGS = "android:query-arg-sql-selection-args";
+        QUERY_ARG_SQL_SORT_ORDER = "android:query-arg-sql-sort-order";
         PROVIDER_MAP = new HashMap<String, HookFetcher>();
-        PROVIDER_MAP.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGwFAiZiJyhF")), new HookFetcher(){
+        PROVIDER_MAP.put("settings", new HookFetcher(){
 
             @Override
             public ProviderHook fetch(boolean external, IInterface provider) {
                 return new SettingsProviderHook(provider);
             }
         });
-        PROVIDER_MAP.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgALWojHiV9Dgop")), new HookFetcher(){
+        PROVIDER_MAP.put("downloads", new HookFetcher(){
 
             @Override
             public ProviderHook fetch(boolean external, IInterface provider) {
                 return new DownloadProviderHook(provider);
             }
         });
-        PROVIDER_MAP.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1Dm4VQSxrJyhF")), new HookFetcher(){
+        PROVIDER_MAP.put("com.android.badge", new HookFetcher(){
 
             @Override
             public ProviderHook fetch(boolean external, IInterface provider) {
                 return new BadgeProviderHook(provider);
             }
         });
-        PROVIDER_MAP.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRQV9ATg/KQMYOW8VBgRlJx4vPC4EO2YKRSZvHgo7ORcYJ28aMAVqJyAc")), new HookFetcher(){
+        PROVIDER_MAP.put("com.huawei.android.launcher.settings", new HookFetcher(){
 
             @Override
             public ProviderHook fetch(boolean external, IInterface provider) {

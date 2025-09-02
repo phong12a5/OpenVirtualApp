@@ -13,7 +13,7 @@ import mirror.RefStaticInt;
 import mirror.RefStaticObject;
 
 public class WindowManagerGlobal {
-    public static Class<?> TYPE = RefClass.load(WindowManagerGlobal.class, StringFog.decrypt("EgsWBAoHO10VBhcHRzgHHQEdASgPMRIECgA3BQAMEgk="));
+    public static Class<?> TYPE = RefClass.load(WindowManagerGlobal.class, "android.view.WindowManagerGlobal");
     public static RefStaticObject<IInterface> sWindowManagerService;
     public static RefStaticInt ADD_PERMISSION_DENIED;
 }

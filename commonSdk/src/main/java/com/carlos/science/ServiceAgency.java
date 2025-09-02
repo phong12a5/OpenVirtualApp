@@ -26,11 +26,11 @@ public class ServiceAgency {
         Object service;
         if (!this.isServiceConfigExists) {
             try {
-                Class.forName(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsIMxwCGxEfBxscHAkeExdADBYRGRsTDCwBHQMbEQ=="));
+                Class.forName("com.kook.controller.floatcontroller.ServiceConfig");
                 this.isServiceConfigExists = true;
             }
             catch (ClassNotFoundException e) {
-                throw new AgencyException(StringFog.decrypt("PQpSFQkPLABDDhweBhsPBwBSAQwaN1MwCgAGAAwLMgIXGBFA"));
+                throw new AgencyException("No class annotate with ServiceAgent.");
             }
         }
         if ((service = this.cacheMap.get(tClass)) == null) {
@@ -48,7 +48,7 @@ public class ServiceAgency {
             }
         }
         if (service == null) {
-            throw new AgencyException(StringFog.decrypt("PQpSFQkPLABDBh8ABQoDFgsGBUU=") + tClass.getName() + StringFog.decrypt("UwQcEkUPMR0MGxMEDAtOBAwGHkU9OgEVBhEVKAgLHRFc"));
+            throw new AgencyException("No class implements " + tClass.getName() + " and annotated with ServiceAgent.");
         }
         return (T)service;
     }

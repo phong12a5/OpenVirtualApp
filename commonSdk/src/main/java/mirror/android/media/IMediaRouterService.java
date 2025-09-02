@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IMediaRouterService {
-    public static Class<?> TYPE = RefClass.load(IMediaRouterService.class, StringFog.decrypt("EgsWBAoHO10OChYZCEEnPgAWHwQ8MAYXCgAjDB0YGgYX"));
+    public static Class<?> TYPE = RefClass.load(IMediaRouterService.class, "android.media.IMediaRouterService");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10OChYZCEEnPgAWHwQ8MAYXCgAjDB0YGgYXUjYaKhE="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.media.IMediaRouterService$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

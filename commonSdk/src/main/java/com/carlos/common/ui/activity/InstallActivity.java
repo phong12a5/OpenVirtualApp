@@ -66,7 +66,7 @@ extends AppCompatActivity {
 
     private void installXapk() {
         if (Build.VERSION.SDK_INT < 21) {
-            Toast.makeText((Context)this, (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwlAHEYyOT5YXh8NAgoNDUdJJRFBFR9PBRwNGU5XAyofLD0KWDYBX1pWMVFVDzg5JBgqJm8KLzZ1Iy8dBxodX0YWQitYXh8IAj8ZX0dNJSQ=")), (int)0).show();
+            Toast.makeText((Context)this, (CharSequence)"暂时不支持安装,请更新到Android 5.0及以上版本", (int)0).show();
             this.finish();
         }
         this.mExecutorService = Executors.newSingleThreadExecutor();
@@ -137,17 +137,17 @@ extends AppCompatActivity {
             int status = -100;
             String message = "";
             if (extras != null) {
-                status = extras.getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1k5Ki0YLmkjMAZ1NDwePC4uPGYVMCR8NSwTICscXGQjSFo=")));
-                message = extras.getString(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1k5Ki0YLmkjMAZ1NDwePC4uPGYVMCR8NSwTICscXGQmGkhgHDBBIwU+Bg==")));
+                status = extras.getInt("android.content.pm.extra.STATUS");
+                message = extras.getString("android.content.pm.extra.STATUS_MESSAGE");
             }
             switch (status) {
                 case -1: {
-                    Intent confirmIntent = (Intent)extras.get(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmsIRVRmDB4T")));
+                    Intent confirmIntent = (Intent)extras.get("android.intent.extra.INTENT");
                     this.startActivity(confirmIntent);
                     break;
                 }
                 case 0: {
-                    Toast.makeText((Context)this, (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxwZXEMRFxVYAB8CAhkFHX4jSFo=")), (int)0).show();
+                    Toast.makeText((Context)this, (CharSequence)"安装成功!", (int)0).show();
                     this.finish();
                     break;
                 }
@@ -158,13 +158,13 @@ extends AppCompatActivity {
                 case 5: 
                 case 6: 
                 case 7: {
-                    Toast.makeText((Context)this, (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxwZXEMRFxVYEg8rA1cNPX87EyVVLxNJQFtcKVQFSFo=")), (int)0).show();
+                    Toast.makeText((Context)this, (CharSequence)"安装失败,请重试", (int)0).show();
                     this.finish();
-                    Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgcKWwFJCRgVyQ+LwccCGkjATd4EVRF")) + status + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186Vg==")) + message));
+                    Log.d((String)TAG, (String)("Install failed! " + status + ", " + message));
                     break;
                 }
                 default: {
-                    Toast.makeText((Context)this, (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxwZXEMRFxVYEg8rA1cNPX87Ey0dLy1ARDY/Xx8oEz4fPA9XEwAJH1cNMSFVLyEvRDUNIx4SIVMCUgcSXCYrHQY7BzQdUx81WSUZWBgrEyUYAVRF")), (int)0).show();
+                    Toast.makeText((Context)this, (CharSequence)"安装失败,解压文件可能已丢失或损坏，请重试", (int)0).show();
                     this.finish();
                 }
             }
@@ -180,9 +180,9 @@ extends AppCompatActivity {
     }
 
     static {
-        PACKAGE_INSTALLED_ACTION = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk4xBg59HAIOJDxbH2IhJFZgHAYWLjwuWGEIQV9hJRpF"));
-        KEY_XAPK_PATH = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KBg+KGU2GgJ9AQo0"));
-        KEY_APK_PATHS = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6MWYwIDdmHhpF"));
+        PACKAGE_INSTALLED_ACTION = "android.intent.action.XAPK_PACKAGE_INSTALLED";
+        KEY_XAPK_PATH = "xapk_path";
+        KEY_APK_PATHS = "apk_path";
         TAG = InstallActivity.class.getSimpleName();
     }
 }

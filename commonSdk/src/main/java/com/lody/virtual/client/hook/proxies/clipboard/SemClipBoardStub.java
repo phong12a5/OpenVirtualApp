@@ -11,13 +11,13 @@ import mirror.android.sec.clipboard.IClipboardService;
 public class SemClipBoardStub
 extends BinderInvocationProxy {
     public SemClipBoardStub() {
-        super(IClipboardService.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uDWszHi9hHiw1LwguPg==")));
+        super(IClipboardService.Stub.asInterface, "semclipboard");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMzHi9hHAo7LBciVg=="))));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("getClipData"));
     }
 
     @Override

@@ -54,7 +54,7 @@ import com.kook.controller.client.wechat.IWeChatController;
 public class FloatBall
 extends FrameLayout
 implements ICarrier {
-    String TAG = StringFog.decrypt("NQkdFxEsPh8P");
+    String TAG = "FloatBall";
     private FloatBallManager floatBallManager;
     private ImageView imageView;
     private WindowManager.LayoutParams mLayoutParams;
@@ -117,7 +117,7 @@ implements ICarrier {
         this.setOnKeyListener(new View.OnKeyListener(){
 
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                HVLog.d(FloatBall.this.TAG, StringFog.decrypt("HAs5ExxONkk=") + i + StringFog.decrypt("U0VSVg4LJjYVChwEUw==") + keyEvent.getAction());
+                HVLog.d(FloatBall.this.TAG, "onKey i:" + i + "    keyEvent:" + keyEvent.getAction());
                 return false;
             }
         });
@@ -228,7 +228,7 @@ implements ICarrier {
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        HVLog.d(this.TAG, StringFog.decrypt("HAs5ExwqMAQNTxkVECwBFwBI") + keyCode + StringFog.decrypt("U0VSVgAYOh0XVQ==") + event.getKeyCode());
+        HVLog.d(this.TAG, "onKeyDown keyCode:" + keyCode + "    event:" + event.getKeyCode());
         return super.onKeyDown(keyCode, event);
     }
 
@@ -256,7 +256,7 @@ implements ICarrier {
                 IBinder binder = floatTab.getClientBinder();
                 try {
                     if (binder != null) {
-                        HVLog.d(this.TAG, StringFog.decrypt("HAsmGRANNzYVChwESQ4NBwwdGF8=") + action + StringFog.decrypt("U0VSVgcHMRcGHUg=") + binder + "    " + binder.getInterfaceDescriptor());
+                        HVLog.d(this.TAG, "onTouchEvent action:" + action + "    binder:" + binder + "    " + binder.getInterfaceDescriptor());
                     }
                 }
                 catch (RemoteException e) {
@@ -430,7 +430,7 @@ implements ICarrier {
         } else {
             IWeChatController iWeChatController = IWeChatController.Stub.asInterface(this.floatBallManager.getFloatTab().getClientBinder());
             if (iWeChatController != null) {
-                HVLog.e(StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBQ=="), StringFog.decrypt("ldD5nsr7ud7GhtjU"));
+                HVLog.e("FloatWindowServices", "测试步骤");
             }
         }
     }

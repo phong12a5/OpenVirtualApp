@@ -188,7 +188,7 @@ public class VSettingsProvider {
                 } else if (tableIndex == 2) {
                     return VERSION.SDK_INT >= 17 ? Global.getString(this.mContentResolver, arg) : value;
                 } else if (tableIndex == 3 && VERSION.SDK_INT >= 29) {
-                    return sConfigTableCanLookup.contains(arg.split(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")))[0]) ? (String)Config.getString(this.mContentResolver, arg) : value;
+                    return sConfigTableCanLookup.contains(arg.split("/")[0]) ? (String)Config.getString(this.mContentResolver, arg) : value;
                 } else {
                     return value;
                 }
@@ -222,7 +222,7 @@ public class VSettingsProvider {
 
                     if (hasUpdate) {
                         if (this.mHandleThread == null) {
-                            this.mHandleThread = new HandlerThread(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IiwuBmQLAgBqJShAOysiBmEmNFF9IgZIOxYEGQ==")));
+                            this.mHandleThread = new HandlerThread("SETTINGS_SAVE_TO_FILE");
                             this.mHandleThread.start();
                             this.mHandlerSettingsSync = new HandlerSM(this.mHandleThread.getLooper());
                         }
@@ -259,8 +259,8 @@ public class VSettingsProvider {
     }
 
     static {
-        sConfigTableCanLookup.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRguIGwFLCR9ASgpKQc+MWkgRVo=")));
-        sConfigTableCanLookup.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj0uCGwFAiNiAVRF")));
+        sConfigTableCanLookup.add("textclassifier");
+        sConfigTableCanLookup.add("runtime");
     }
 
     class HandlerSM extends Handler {

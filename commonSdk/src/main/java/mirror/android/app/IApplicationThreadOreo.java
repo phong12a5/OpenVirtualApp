@@ -17,12 +17,12 @@ import mirror.RefMethod;
 import mirror.RefStaticMethod;
 
 public class IApplicationThreadOreo {
-    public static Class<?> TYPE = RefClass.load(IApplicationThreadOreo.class, StringFog.decrypt("EgsWBAoHO10CHwJeIC4eAwkbFQQaNhwNOxoCDA4K"));
+    public static Class<?> TYPE = RefClass.load(IApplicationThreadOreo.class, "android.app.IApplicationThread");
     @MethodReflectParams(value={"android.os.IBinder", "android.content.pm.ParceledListSlice"})
     public static RefMethod<Void> scheduleServiceArgs;
 
     public static final class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10CHwJeIC4eAwkbFQQaNhwNOxoCDA4KVzYGAwc="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.app.IApplicationThread$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

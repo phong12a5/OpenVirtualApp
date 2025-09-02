@@ -16,16 +16,16 @@ public class DateUtils {
         Calendar imageTime = Calendar.getInstance();
         imageTime.setTimeInMillis(time);
         if (DateUtils.sameDay(calendar, imageTime)) {
-            return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZYX0ZaPS8="));
+            return "今天";
         }
         if (DateUtils.sameWeek(calendar, imageTime)) {
-            return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwkBDkZNISA="));
+            return "本周";
         }
         if (DateUtils.sameMonth(calendar, imageTime)) {
-            return com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwkBDkYyGwo="));
+            return "本月";
         }
         Date date = new Date(time);
-        SimpleDateFormat sdf = new SimpleDateFormat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAcYJ2lSEg1oAVRF")), Locale.CANADA);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM", Locale.CANADA);
         return sdf.format(date);
     }
 

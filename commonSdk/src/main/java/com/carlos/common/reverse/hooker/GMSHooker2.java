@@ -15,7 +15,7 @@ import com.swift.sandhook.annotation.HookReflectClass;
 public class GMSHooker2 {
     @HookMethod(value="zba")
     public static boolean providesSignIn(Object thiz) throws Throwable {
-        Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4+LGgaLAY=")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KhcMD2wjAixiASgPKQc6DmQjMFo=")));
+        Log.d((String)"vatest", (String)"providesSignIn");
         return true;
     }
 }

@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class ISliceManager {
-    public static Class<?> TYPE = RefClass.load(ISliceManager.class, StringFog.decrypt("EgsWBAoHO10CHwJeGgMHEABcPzYCNhAGIhMeCAgLAQ=="));
+    public static Class<?> TYPE = RefClass.load(ISliceManager.class, "android.app.slice.ISliceManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10CHwJeGgMHEABcPzYCNhAGIhMeCAgLAUEhAhAM"));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.app.slice.ISliceManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

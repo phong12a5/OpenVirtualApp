@@ -218,10 +218,10 @@ public class SystemBarTintManager {
     static {
         if (Build.VERSION.SDK_INT >= 19) {
             try {
-                Class<?> c = Class.forName(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1k1IykYAWggAgZrAQ4RKS4ADmIFMD9vDgo8")));
-                Method m = c.getDeclaredMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS4uLA==")), String.class);
+                Class<?> c = Class.forName("android.os.SystemProperties");
+                Method m = c.getDeclaredMethod("get", String.class);
                 m.setAccessible(true);
-                sNavBarOverride = (String)m.invoke(null, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KgguDWxSBiBmIFk3LwccDmwFGj9sJ1RF")));
+                sNavBarOverride = (String)m.invoke(null, "qemu.hw.mainkeys");
             }
             catch (Throwable e) {
                 sNavBarOverride = null;
@@ -230,11 +230,11 @@ public class SystemBarTintManager {
     }
 
     public static class SystemBarConfig {
-        private static final String STATUS_BAR_HEIGHT_RES_NAME = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0qP2wKNANsJCw7IzxfMmkjLC1qHixF"));
-        private static final String NAV_BAR_HEIGHT_RES_NAME = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4+LmUVPDdmHgY1KjxfOG4gRR9qESgaLj5fCg=="));
-        private static final String NAV_BAR_HEIGHT_LANDSCAPE_RES_NAME = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4+LmUVPDdmHgY1KjxfOG4gRR9qESgaLj5fCmwgTSRsNDA8KAhbDmsFSFo="));
-        private static final String NAV_BAR_WIDTH_RES_NAME = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4+LmUVPDdmHgY1KjxfOG4gRR9vJx4vKghfVg=="));
-        private static final String SHOW_NAV_BAR_RES_NAME = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ACGgjAi1sJyg0Ki46QG4gHi9rJzg/IxgAKmUwPDU="));
+        private static final String STATUS_BAR_HEIGHT_RES_NAME = "status_bar_height";
+        private static final String NAV_BAR_HEIGHT_RES_NAME = "navigation_bar_height";
+        private static final String NAV_BAR_HEIGHT_LANDSCAPE_RES_NAME = "navigation_bar_height_landscape";
+        private static final String NAV_BAR_WIDTH_RES_NAME = "navigation_bar_width";
+        private static final String SHOW_NAV_BAR_RES_NAME = "config_showNavigationBar";
         private final boolean mTranslucentStatusBar;
         private final boolean mTranslucentNavBar;
         private final int mStatusBarHeight;
@@ -249,7 +249,7 @@ public class SystemBarTintManager {
             Resources res = activity.getResources();
             this.mInPortrait = res.getConfiguration().orientation == 1;
             this.mSmallestWidthDp = this.getSmallestWidthDp(activity);
-            this.mStatusBarHeight = this.getInternalDimensionSize(res, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0qP2wKNANsJCw7IzxfMmkjLC1qHixF")));
+            this.mStatusBarHeight = this.getInternalDimensionSize(res, "status_bar_height");
             this.mActionBarHeight = this.getActionBarHeight((Context)activity);
             this.mNavigationBarHeight = this.getNavigationBarHeight((Context)activity);
             this.mNavigationBarWidth = this.getNavigationBarWidth((Context)activity);
@@ -293,12 +293,12 @@ public class SystemBarTintManager {
         @TargetApi(value=14)
         private boolean hasNavBar(Context context) {
             Resources res = context.getResources();
-            int resourceId = res.getIdentifier(SHOW_NAV_BAR_RES_NAME, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lj4AD2oFSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iEVRF")));
+            int resourceId = res.getIdentifier(SHOW_NAV_BAR_RES_NAME, "bool", "android");
             if (resourceId != 0) {
                 boolean hasNav = res.getBoolean(resourceId);
-                if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OghSVg==")).equals(sNavBarOverride)) {
+                if ("1".equals(sNavBarOverride)) {
                     hasNav = false;
-                } else if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OhhSVg==")).equals(sNavBarOverride)) {
+                } else if ("0".equals(sNavBarOverride)) {
                     hasNav = true;
                 }
                 return hasNav;
@@ -308,7 +308,7 @@ public class SystemBarTintManager {
 
         private int getInternalDimensionSize(Resources res, String key) {
             int result = 0;
-            int resourceId = res.getIdentifier(key, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgYDWgVBlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iEVRF")));
+            int resourceId = res.getIdentifier(key, "dimen", "android");
             if (resourceId > 0) {
                 result = res.getDimensionPixelSize(resourceId);
             }

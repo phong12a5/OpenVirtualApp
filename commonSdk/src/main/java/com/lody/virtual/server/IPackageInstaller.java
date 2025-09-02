@@ -55,7 +55,7 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IPackageInstaller {
-        private static final String DESCRIPTOR = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo="));
+        private static final String DESCRIPTOR = "com.lody.virtual.server.IPackageInstaller";
         static final int TRANSACTION_createSession = 1;
         static final int TRANSACTION_updateSessionAppIcon = 2;
         static final int TRANSACTION_updateSessionAppLabel = 3;
@@ -70,7 +70,7 @@ extends IInterface {
         static final int TRANSACTION_setPermissionsResult = 12;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+            this.attachInterface(this, "com.lody.virtual.server.IPackageInstaller");
         }
 
         public static IPackageInstaller asInterface(IBinder obj) {
@@ -216,7 +216,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IPackageInstaller impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAFNC59ATAoLBUcD2ozOyB6DTwqLRgEKGIKESNqETwiKAgAVg==")));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -243,7 +243,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo="));
+                return "com.lody.virtual.server.IPackageInstaller";
             }
 
             /*
@@ -255,7 +255,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     if (params != null) {
                         _data.writeInt(1);
                         params.writeToParcel(_data, 0);
@@ -287,7 +287,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     _data.writeInt(sessionId);
                     if (appIcon != null) {
                         _data.writeInt(1);
@@ -316,7 +316,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     _data.writeInt(sessionId);
                     _data.writeString(appLabel);
                     boolean _status = this.mRemote.transact(3, _data, _reply, 0);
@@ -340,7 +340,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     _data.writeInt(sessionId);
                     boolean _status = this.mRemote.transact(4, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -364,7 +364,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     _data.writeInt(sessionId);
                     boolean _status = this.mRemote.transact(5, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -390,7 +390,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     _data.writeInt(sessionId);
                     boolean _status = this.mRemote.transact(6, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -416,7 +416,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     _data.writeInt(userId);
                     boolean _status = this.mRemote.transact(7, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -442,7 +442,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     _data.writeString(installerPackageName);
                     _data.writeInt(userId);
                     boolean _status = this.mRemote.transact(8, _data, _reply, 0);
@@ -468,7 +468,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     _data.writeStrongBinder(callback != null ? callback.asBinder() : null);
                     _data.writeInt(userId);
                     boolean _status = this.mRemote.transact(9, _data, _reply, 0);
@@ -492,7 +492,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     _data.writeStrongBinder(callback != null ? callback.asBinder() : null);
                     boolean _status = this.mRemote.transact(10, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -515,7 +515,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     _data.writeString(packageName);
                     _data.writeString(callerPackageName);
                     _data.writeInt(flags);
@@ -547,7 +547,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyAqKAg+O2sjNFBqJDAZOwdXO24FNFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IPackageInstaller");
                     _data.writeInt(sessionId);
                     _data.writeInt(accepted ? 1 : 0);
                     boolean _status = this.mRemote.transact(12, _data, _reply, 0);

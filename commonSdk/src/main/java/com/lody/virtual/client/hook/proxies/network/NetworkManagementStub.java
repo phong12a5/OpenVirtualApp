@@ -18,16 +18,16 @@ import mirror.android.os.INetworkManagementService;
 public class NetworkManagementStub
 extends BinderInvocationProxy {
     public NetworkManagementStub() {
-        super(INetworkManagementService.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4uLGwzGgRjJR43LwcYOWkFGiNrARo/")));
+        super(INetworkManagementService.Stub.asInterface, "network_management");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceUidMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQVAixlJFE/LwguLmkgFgZ9Nyg/Kj4ACGMhOCpsHhosLi5SVg==")), 0));
-        this.addMethodProxy(new ReplaceUidMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQVAixoDjAgKAguPWkxMCtvHiAcKS5bGGAaPCZvJF0iLAccVg==")), 0));
-        this.addMethodProxy(new ReplaceUidMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQVAixoDjAgKAguPWkxMCtvHiAcKS5bXmMaGj9uDl0iLAccVg==")), 0));
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGIjNAZmJB4qKSwqLm4gBgNnAR4vJgguCn0KGjc="))){
+        this.addMethodProxy(new ReplaceUidMethodProxy("setUidCleartextNetworkPolicy", 0));
+        this.addMethodProxy(new ReplaceUidMethodProxy("setUidMeteredNetworkBlacklist", 0));
+        this.addMethodProxy(new ReplaceUidMethodProxy("setUidMeteredNetworkWhitelist", 0));
+        this.addMethodProxy(new StaticMethodProxy("getNetworkStatsUidDetail"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) throws Throwable {

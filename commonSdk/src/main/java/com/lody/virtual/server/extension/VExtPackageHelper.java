@@ -41,7 +41,7 @@ public class VExtPackageHelper extends ContentProvider {
     private final Binder mExtHelperInterface = new IExtHelperInterface.Stub() {
         public void copyPackage(InstalledAppInfo appInfo) {
             String packageName = appInfo.packageName;
-            VLog.e(VExtPackageHelper.TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4AKGkYIDd9JA47KC0LIH4zSFo=")) + packageName);
+            VLog.e(VExtPackageHelper.TAG, "copyPackage: " + packageName);
             FileUtils.ensureDirCreate(new File[]{VEnvironment.getDataAppPackageDirectoryExt(packageName), VEnvironment.getDataAppLibDirectoryExt(packageName)});
             FileTransfer fileTransfer = FileTransfer.get();
             fileTransfer.copyFile(VEnvironment.getPackageFile(packageName), VEnvironment.getPackageFileExt(packageName));
@@ -143,7 +143,7 @@ public class VExtPackageHelper extends ContentProvider {
             if (context == null) {
                 return Collections.emptyList();
             } else {
-                ActivityManager am = (ActivityManager)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+                ActivityManager am = (ActivityManager)context.getSystemService("activity");
                 return am == null ? Collections.emptyList() : am.getRunningTasks(maxNum);
             }
         }
@@ -153,7 +153,7 @@ public class VExtPackageHelper extends ContentProvider {
             if (context == null) {
                 return Collections.emptyList();
             } else {
-                ActivityManager am = (ActivityManager)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+                ActivityManager am = (ActivityManager)context.getSystemService("activity");
                 return am == null ? Collections.emptyList() : am.getRecentTasks(maxNum, flags);
             }
         }
@@ -163,7 +163,7 @@ public class VExtPackageHelper extends ContentProvider {
             if (context == null) {
                 return Collections.emptyList();
             } else {
-                ActivityManager am = (ActivityManager)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+                ActivityManager am = (ActivityManager)context.getSystemService("activity");
                 return am == null ? Collections.emptyList() : am.getRunningAppProcesses();
             }
         }
@@ -176,7 +176,7 @@ public class VExtPackageHelper extends ContentProvider {
             if (!VirtualCore.get().isSharedUserId()) {
                 Context context = VExtPackageHelper.this.getContext();
                 if (context == null) {
-                    VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITw+Vg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGozAShhJwo7Iz42E24KBi9vNx4/L186In0KGjduDjMqOCpXJWUjBiBoHlkZDRcAOnkYAgtnNSRF")));
+                    VLog.e("VA", "addon startActivity failed!! context is NULL");
                 } else {
                     context.startActivity(intent, options);
                 }
@@ -213,9 +213,9 @@ public class VExtPackageHelper extends ContentProvider {
     }
 
     public Bundle call(String method, String arg, Bundle extras) {
-        if (method.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGojNClmEVRF")))) {
+        if (method.equals("connect")) {
             Bundle reply = new Bundle();
-            BundleCompat.putBinder(reply, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99NAY2KBcMKGMFSFo=")), this.mExtHelperInterface);
+            BundleCompat.putBinder(reply, "_VA_|_binder_", this.mExtHelperInterface);
             return reply;
         } else {
             return null;

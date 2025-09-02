@@ -15,10 +15,10 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public class ApkLibraryHelper {
-    public static final String[] DEFAULT_SUPPORTED_ABI_32BIT = new String[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDWgVJCpjAVRF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDWgVJCpjCl0uPC0iVg=="))};
-    public static final String[] DEFAULT_SUPPORTED_ABI_64BIT = new String[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDXwkMyNmMxo7"))};
-    public static final String[] ABI_32BIT = new String[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDWgVJCpjAVRF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDWgVJCpjCl0uPC0iVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KF5eLg=="))};
-    public static final String[] ABI_64BIT = new String[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDXwkMyNmMxo7")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KF5eLmY0OwY="))};
+    public static final String[] DEFAULT_SUPPORTED_ABI_32BIT = new String[]{"armeabi", "armeabi-v7a"};
+    public static final String[] DEFAULT_SUPPORTED_ABI_64BIT = new String[]{"arm64-v8a"};
+    public static final String[] ABI_32BIT = new String[]{"armeabi", "armeabi-v7a", "x86"};
+    public static final String[] ABI_64BIT = new String[]{"arm64-v8a", "x86_64"};
     public static final int INSTALL_SUCCEEDED = 1;
     public static final int INSTALL_FAILED_INVALID_APK = -2;
     public static final int INSTALL_FAILED_NO_MATCHING_ABIS = -113;
@@ -44,10 +44,10 @@ public class ApkLibraryHelper {
             String prefix;
             String name;
             ZipEntry entry = entries.nextElement();
-            if (entry.isDirectory() || !(name = entry.getName()).startsWith(prefix = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOnozSFo=")) + abi + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")))) continue;
+            if (entry.isDirectory() || !(name = entry.getName()).startsWith(prefix = "lib/" + abi + "/")) continue;
             String fileName = name.substring(prefix.length());
             File extractFile = new File(sharedLibraryDir, fileName);
-            VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgc6MWIFAiphNCAqLQUAPW8wTStsN1RF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IS0MCWwFAiZiIwU8")) + extractFile);
+            VLog.e("ApkLibraryHelper", "Writing: " + extractFile);
             try {
                 int rc;
                 extractFile.createNewFile();
@@ -76,9 +76,9 @@ public class ApkLibraryHelper {
             String name;
             status = -113;
             ZipEntry entry = entries.nextElement();
-            if (entry.isDirectory() || !(name = entry.getName()).startsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOnozSFo=")))) continue;
+            if (entry.isDirectory() || !(name = entry.getName()).startsWith("lib/")) continue;
             for (int i = 0; i < supportedAbis.length; ++i) {
-                String supportAbi = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOnozSFo=")) + supportedAbis[i];
+                String supportAbi = "lib/" + supportedAbis[i];
                 if (!name.startsWith(supportAbi)) continue;
                 return i;
             }

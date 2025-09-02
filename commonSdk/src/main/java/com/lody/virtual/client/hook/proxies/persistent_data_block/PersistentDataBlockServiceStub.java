@@ -11,19 +11,19 @@ import mirror.android.service.persistentdata.IPersistentDataBlockService;
 public class PersistentDataBlockServiceStub
 extends BinderInvocationProxy {
     public PersistentDataBlockServiceStub() {
-        super(IPersistentDataBlockService.Stub.TYPE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKm8zAgNmHjA2LBZfPm4gBjdhJwodLD42LQ==")));
+        super(IPersistentDataBlockService.Stub.TYPE, "persistent_data_block");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS0MCWwFNFo=")), -1));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uP2gFSFo=")), new byte[0]));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS4YKGgVSFo=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAFJAZ9DCwoKi0qCWIFLDJrAVRF")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGIVJDBjDl0vKgU2OWUzQRRlEQYqIzs2I2cwLFo=")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGIzNCNuDlkoKi0qCWEjMDdoNwIgLghSVg==")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGIzNCNuDlkoKi0qCWEjMDdoNwIgLghSVg==")), false));
+        this.addMethodProxy(new ResultStaticMethodProxy("write", -1));
+        this.addMethodProxy(new ResultStaticMethodProxy("read", new byte[0]));
+        this.addMethodProxy(new ResultStaticMethodProxy("wipe", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getDataBlockSize", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("getMaximumDataBlockSize", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("setOemUnlockEnabled", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("getOemUnlockEnabled", false));
     }
 }
 

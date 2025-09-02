@@ -11,7 +11,7 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class PackageParserPie {
-    public static Class<?> TYPE = RefClass.load(PackageParserPie.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBcgCB0dFhc="));
+    public static Class<?> TYPE = RefClass.load(PackageParserPie.class, "android.content.pm.PackageParser");
     @MethodReflectParams(value={"android.content.pm.PackageParser$Package", "boolean"})
     public static RefStaticMethod<Void> collectCertificates;
     @MethodParams(value={File.class, int.class})

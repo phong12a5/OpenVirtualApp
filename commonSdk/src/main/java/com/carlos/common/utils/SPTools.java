@@ -25,8 +25,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SPTools {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JC4AD2U2LCB9ASw/KBYmKGkjHitsNygbLT4uDw=="));
-    private static final String FILE_NAME = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki5fP28jNCxpESw/KD0MKGkjMClrDjBF"));
+    private static final String TAG = "KookSharedPreferences";
+    private static final String FILE_NAME = "sharedPreferences";
     private static SharedPreferences mSharedPreferences;
     private static SharedPreferences.OnSharedPreferenceChangeListener mOnSharedPreferenceChangeListener;
 
@@ -108,7 +108,7 @@ public class SPTools {
         SharedPreferences.Editor editor = shared.edit();
         editor.putInt(keyname, values.size());
         for (int i = 0; i < values.size(); ++i) {
-            editor.putInt(keyname + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + i, values.get(i).intValue());
+            editor.putInt(keyname + "_" + i, values.get(i).intValue());
         }
         boolean b = editor.commit();
         if (b) {
@@ -162,9 +162,9 @@ public class SPTools {
         SharedPreferences shared = SPTools.getSharedPreferences(context);
         int environNums = shared.getInt(keyname, 0);
         for (int i = 0; i < environNums; ++i) {
-            String key = keyname + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + i;
+            String key = keyname + "_" + i;
             if (!shared.contains(key)) continue;
-            int environItem = shared.getInt(keyname + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + i, 0);
+            int environItem = shared.getInt(keyname + "_" + i, 0);
             environmentList.add(environItem);
         }
         return environmentList;
@@ -175,7 +175,7 @@ public class SPTools {
         SharedPreferences.Editor editor = shared.edit();
         editor.putInt(keyname, values.size());
         for (int i = 0; i < values.size(); ++i) {
-            editor.putString(keyname + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + i, values.get(i));
+            editor.putString(keyname + "_" + i, values.get(i));
         }
         boolean b = editor.commit();
         if (b) {
@@ -188,9 +188,9 @@ public class SPTools {
         SharedPreferences shared = SPTools.getSharedPreferences(context);
         int environNums = shared.getInt(keyname, 0);
         for (int i = 0; i < environNums; ++i) {
-            String key = keyname + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + i;
+            String key = keyname + "_" + i;
             if (!shared.contains(key)) continue;
-            String environItem = shared.getString(keyname + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + i, null);
+            String environItem = shared.getString(keyname + "_" + i, null);
             environmentList.add(environItem);
         }
         return environmentList;
@@ -209,7 +209,7 @@ public class SPTools {
     public static void removeListItem(Context context, String keyname, Object value) {
         if (value instanceof String || value instanceof Integer) {
             try {
-                throw new Exception(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4+DmwVNyhYKyUhAhoVXEcsMRVAFT0yAD9cKUsaGilqVyIvXwkCLBVJNzRnNCwbJQdfLg==")));
+                throw new Exception("value 类型必须是 int 或者 String");
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -221,14 +221,14 @@ public class SPTools {
         for (int i = 0; i < environNums; ++i) {
             String environItem;
             if (value instanceof Integer) {
-                int environItem2 = shared.getInt(keyname + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + i, 0);
+                int environItem2 = shared.getInt(keyname + "_" + i, 0);
                 if (environItem2 != (Integer)value) continue;
-                editor.remove(keyname + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + i);
+                editor.remove(keyname + "_" + i);
                 editor.commit();
                 continue;
             }
-            if (!(value instanceof String) || !(environItem = shared.getString(keyname + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + i, null)).equals((String)value)) continue;
-            editor.remove(keyname + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + i);
+            if (!(value instanceof String) || !(environItem = shared.getString(keyname + "_" + i, null)).equals((String)value)) continue;
+            editor.remove(keyname + "_" + i);
             editor.commit();
         }
     }

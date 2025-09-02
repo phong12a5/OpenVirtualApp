@@ -146,8 +146,8 @@ implements ValueAnimator.AnimatorUpdateListener {
         this.mTabsContainer = new LinearLayout(context);
         this.addView((View)this.mTabsContainer);
         this.obtainAttributes(context, attrs);
-        String height = attrs.getAttributeValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8OTCVOJyg5KRcMD24gDSZoARovKS4AI2JTRSZsJFAeKC1XLXUgFj9vMwYoJj0MOWwgBjI=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ixg+J2owNAZsJBo/KQc6MmUzSFo=")));
-        if (!height.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("MwM+Vg=="))) && !height.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("MwMMVg==")))) {
+        String height = attrs.getAttributeValue("http://schemas.android.com/apk/res/android", "layout_height");
+        if (!height.equals("-1") && !height.equals("-2")) {
             int[] systemAttrs = new int[]{16842997};
             TypedArray a = context.obtainStyledAttributes(attrs, systemAttrs);
             this.mHeight = a.getDimensionPixelSize(0, -2);
@@ -160,7 +160,7 @@ implements ValueAnimator.AnimatorUpdateListener {
     private void obtainAttributes(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CommonTabLayout);
         this.mIndicatorStyle = ta.getInt(R.styleable.CommonTabLayout_tl_indicator_style, 0);
-        this.mIndicatorColor = ta.getColor(R.styleable.CommonTabLayout_tl_indicator_color, Color.parseColor((String)(this.mIndicatorStyle == 2 ? com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PikqHHwhJzBMJ1RF")) : com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pi4iPmgjOC5iN1RF")))));
+        this.mIndicatorColor = ta.getColor(R.styleable.CommonTabLayout_tl_indicator_color, Color.parseColor((String)(this.mIndicatorStyle == 2 ? "#4B6A87" : "#ffffff")));
         this.mIndicatorHeight = ta.getDimension(R.styleable.CommonTabLayout_tl_indicator_height, (float)this.dp2px(this.mIndicatorStyle == 1 ? 4.0f : (float)(this.mIndicatorStyle == 2 ? -1 : 2)));
         this.mIndicatorWidth = ta.getDimension(R.styleable.CommonTabLayout_tl_indicator_width, (float)this.dp2px(this.mIndicatorStyle == 1 ? 10.0f : -1.0f));
         this.mIndicatorCornerRadius = ta.getDimension(R.styleable.CommonTabLayout_tl_indicator_corner_radius, (float)this.dp2px(this.mIndicatorStyle == 2 ? -1.0f : 0.0f));
@@ -172,12 +172,12 @@ implements ValueAnimator.AnimatorUpdateListener {
         this.mIndicatorBounceEnable = ta.getBoolean(R.styleable.CommonTabLayout_tl_indicator_bounce_enable, true);
         this.mIndicatorAnimDuration = ta.getInt(R.styleable.CommonTabLayout_tl_indicator_anim_duration, -1);
         this.mIndicatorGravity = ta.getInt(R.styleable.CommonTabLayout_tl_indicator_gravity, 80);
-        this.mUnderlineColor = ta.getColor(R.styleable.CommonTabLayout_tl_underline_color, Color.parseColor((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pi4iPmgjOC5iN1RF"))));
+        this.mUnderlineColor = ta.getColor(R.styleable.CommonTabLayout_tl_underline_color, Color.parseColor((String)"#ffffff"));
         this.mUnderlineHeight = ta.getDimension(R.styleable.CommonTabLayout_tl_underline_height, (float)this.dp2px(0.0f));
         this.mUnderlineGravity = ta.getInt(R.styleable.CommonTabLayout_tl_underline_gravity, 80);
         this.mTextsize = ta.getDimension(R.styleable.CommonTabLayout_tl_textsize, (float)this.sp2px(13.0f));
-        this.mTextSelectColor = ta.getColor(R.styleable.CommonTabLayout_tl_textSelectColor, Color.parseColor((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pi4iPmgjOC5iN1RF"))));
-        this.mTextUnselectColor = ta.getColor(R.styleable.CommonTabLayout_tl_textUnselectColor, Color.parseColor((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Piw+EWgjOC5iNDw+"))));
+        this.mTextSelectColor = ta.getColor(R.styleable.CommonTabLayout_tl_textSelectColor, Color.parseColor((String)"#ffffff"));
+        this.mTextUnselectColor = ta.getColor(R.styleable.CommonTabLayout_tl_textUnselectColor, Color.parseColor((String)"#AAffffff"));
         this.mTextBold = ta.getInt(R.styleable.CommonTabLayout_tl_textBold, 0);
         this.mTextAllCaps = ta.getBoolean(R.styleable.CommonTabLayout_tl_textAllCaps, false);
         this.mIconVisible = ta.getBoolean(R.styleable.CommonTabLayout_tl_iconVisible, true);
@@ -193,7 +193,7 @@ implements ValueAnimator.AnimatorUpdateListener {
 
     public void setTabData(ArrayList<CustomTabEntity> tabEntitys) {
         if (tabEntitys == null || tabEntitys.size() == 0) {
-            throw new IllegalStateException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRg+OmAVBgZjAQoZIykmP24jMyhlNwY/PQgMJ0sYRVVkHFwpKQdeJGMLEg5kDBE3DQhSVg==")));
+            throw new IllegalStateException("TabEntitys can not be NULL or EMPTY !");
         }
         this.mTabEntitys.clear();
         this.mTabEntitys.addAll(tabEntitys);
@@ -758,16 +758,16 @@ implements ValueAnimator.AnimatorUpdateListener {
 
     protected Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgcKWwFJCZ9JDAPLBciLmkjSFo=")), super.onSaveInstanceState());
-        bundle.putInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwY2I28gFitgNwpLLwcuVg==")), this.mCurrentTab);
+        bundle.putParcelable("instanceState", super.onSaveInstanceState());
+        bundle.putInt("mCurrentTab", this.mCurrentTab);
         return bundle;
     }
 
     protected void onRestoreInstanceState(Parcelable state) {
         if (state instanceof Bundle) {
             Bundle bundle = (Bundle)state;
-            this.mCurrentTab = bundle.getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwY2I28gFitgNwpLLwcuVg==")));
-            state = bundle.getParcelable(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgcKWwFJCZ9JDAPLBciLmkjSFo=")));
+            this.mCurrentTab = bundle.getInt("mCurrentTab");
+            state = bundle.getParcelable("instanceState");
             if (this.mCurrentTab != 0 && this.mTabsContainer.getChildCount() > 0) {
                 this.updateTabSelection(this.mCurrentTab);
             }

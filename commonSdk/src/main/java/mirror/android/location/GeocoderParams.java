@@ -8,7 +8,7 @@ import mirror.RefClass;
 import mirror.RefObject;
 
 public class GeocoderParams {
-    public static Class<?> TYPE = RefClass.load(GeocoderParams.class, StringFog.decrypt("EgsWBAoHO10PABERHQYBHUs1EwoNMBcGHSIRGw4DAA=="));
+    public static Class<?> TYPE = RefClass.load(GeocoderParams.class, "android.location.GeocoderParams");
     public static RefObject<String> mPackageName;
     public static RefObject<Integer> mUid;
 

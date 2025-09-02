@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class ClassUtil {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ji4EP28wLFBmHgYo"));
+    private static final String TAG = "ClassUtil";
 
     public static void printMethodsInClass(String printTag, Class mClazz) {
         for (Method method : mClazz.getDeclaredMethods()) {
@@ -19,9 +19,9 @@ public class ClassUtil {
             Class<?>[] methodParameterTypes = method.getParameterTypes();
             String types = "";
             for (Class<?> clazz : methodParameterTypes) {
-                types = types + clazz.getName() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("MxhSVg=="));
+                types = types + clazz.getName() + ",";
             }
-            LogUtil.d(TAG, printTag + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhgIM2wFRSViHFk7KgcLJQ==")) + methodName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BSEBQGwKAgJiDFk7KgcLJQ==")) + typeName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mxg2P2ojGiZjDig7KhUYOW8jBTM=")) + canonicalName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BSEBQEMWB1FYEwNBLBgcKmkkPyA=")) + types + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PAhSVg==")));
+            LogUtil.d(TAG, printTag + " methodName=" + methodName + "，typeName=" + typeName + ",canonicalName=" + canonicalName + "，返回type=(" + types + ")");
             method.setAccessible(true);
         }
     }
@@ -31,7 +31,7 @@ public class ClassUtil {
             String fieldName = field.getName();
             field.setAccessible(true);
             try {
-                LogUtil.d(TAG, printTag + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhgiCWgVHixoNCA3KARXVg==")) + fieldName);
+                LogUtil.d(TAG, printTag + " fieldName=" + fieldName);
             }
             catch (Throwable e) {
                 e.printStackTrace();
@@ -44,7 +44,7 @@ public class ClassUtil {
             String fieldName = field.getName();
             field.setAccessible(true);
             try {
-                LogUtil.d(TAG, printTag + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhgiCWgVHixoNCA3KARXVg==")) + fieldName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M1srElQNJVUVJ1RF")) + field.get(object));
+                LogUtil.d(TAG, printTag + " fieldName=" + fieldName + ",值是" + field.get(object));
             }
             catch (Throwable e) {
                 e.printStackTrace();

@@ -28,7 +28,7 @@ implements Comparable {
     public static final int REASON_SYNC_AUTO = -6;
     public static final int REASON_MASTER_SYNC_AUTO = -7;
     public static final int REASON_USER_START = -8;
-    private static String[] REASON_NAMES = new String[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRg+LGsYLCtmEQozKj06L2YFFjdlNyAgLghSVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgg2OWowNCZmEShKIxc2OWUzGiw=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uKmwjAiliDCg0LwcYM2kjBlo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhguKmUVGixjDihF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAc2A2kVBil9DiwoKAhSVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGo2LD9gNChF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Owg+KWwFNARpJwY2LysiLWUzNFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQc2M28mLAZ9ASwg"))};
+    private static String[] REASON_NAMES = new String[]{"DataSettingsChanged", "AccountsUpdated", "ServiceChanged", "Periodic", "IsSyncable", "AutoSync", "MasterSyncAuto", "UserStart"};
     public final Account account;
     public final String authority;
     public final ComponentName service;
@@ -73,17 +73,17 @@ implements Comparable {
     }
 
     private void cleanBundle(Bundle bundle) {
-        this.removeFalseExtra(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6DmozJCw=")));
-        this.removeFalseExtra(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4AKmszNFo=")));
-        this.removeFalseExtra(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgmCGowFitsJyg/LBg2MW8VEgM=")));
-        this.removeFalseExtra(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgmCGowFitsJCw7Ly0EDWkVHlo=")));
-        this.removeFalseExtra(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgAH2ojGgZsJyw/LBguIQ==")));
-        this.removeFalseExtra(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYKWszJARiHx4wKAdbPWUzLCVlNDBF")));
-        this.removeFalseExtra(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfKGgVMC9mHjAw")));
-        this.removeFalseExtra(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguDmgaMC9gJFkpJi1fLGkgRQRqASwg")));
-        this.removeFalseExtra(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggEDmowPB9gDjAgKAguPWkzSFo=")));
-        bundle.remove(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfKGgVLAZiDgpALAgmCG8FQSw=")));
-        bundle.remove(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfKGgVLAZiDgpAKBdfI28VOCVoASxF")));
+        this.removeFalseExtra(bundle, "upload");
+        this.removeFalseExtra(bundle, "force");
+        this.removeFalseExtra(bundle, "ignore_settings");
+        this.removeFalseExtra(bundle, "ignore_backoff");
+        this.removeFalseExtra(bundle, "do_not_retry");
+        this.removeFalseExtra(bundle, "discard_deletions");
+        this.removeFalseExtra(bundle, "expedited");
+        this.removeFalseExtra(bundle, "deletions_override");
+        this.removeFalseExtra(bundle, "allow_metered");
+        bundle.remove("expected_upload");
+        bundle.remove("expected_download");
     }
 
     private void removeFalseExtra(Bundle bundle, String extraName) {
@@ -114,11 +114,11 @@ implements Comparable {
     }
 
     public String dump(PackageManager pm, boolean useOneLine) {
-        StringBuilder sb = new StringBuilder().append(this.account.name).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcuVg=="))).append(this.userId).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl9fVg=="))).append(this.account.type).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PAhSVg=="))).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Vg=="))).append(this.authority).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Vg=="))).append(SyncStorageEngine.SOURCES[this.syncSource]).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186DmsaMCthJwoALAcYAGwjPCt4EVRF"))).append(this.latestRunTime);
+        StringBuilder sb = new StringBuilder().append(this.account.name).append(" u").append(this.userId).append(" (").append(this.account.type).append(")").append(", ").append(this.authority).append(", ").append(SyncStorageEngine.SOURCES[this.syncSource]).append(", latestRunTime ").append(this.latestRunTime);
         if (this.expedited) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186WGEIIBVqHAZLIAU2Vg==")));
+            sb.append(", EXPEDITED");
         }
-        sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KmgVJANgJFgiPxhSVg==")));
+        sb.append(", reason: ");
         sb.append(SyncOperation.reasonToString(pm, this.reason));
         if (!useOneLine && !this.extras.keySet().isEmpty()) {
             sb.append("\n    ");
@@ -150,40 +150,40 @@ implements Comparable {
     }
 
     public boolean isMeteredDisallowed() {
-        return this.extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggEDmowPB9gDjAgKAguPWkzSFo=")), false);
+        return this.extras.getBoolean("allow_metered", false);
     }
 
     public boolean isInitialization() {
-        return this.extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcCWwFAjdgHgYiKAhSVg==")), false);
+        return this.extras.getBoolean("initialize", false);
     }
 
     public boolean isExpedited() {
-        return this.extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfKGgVMC9mHjAw")), false) || this.expedited;
+        return this.extras.getBoolean("expedited", false) || this.expedited;
     }
 
     public boolean ignoreBackoff() {
-        return this.extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgmCGowFitsJCw7Ly0EDWkVHlo=")), false);
+        return this.extras.getBoolean("ignore_backoff", false);
     }
 
     private String toKey() {
         StringBuilder sb = new StringBuilder();
         if (this.service == null) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUFGgRjAQoZPTkmVg=="))).append(this.authority);
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phg+OWszGgVgNw08LS0YOW8jBTM=")) + this.account.name + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186I28zNAR0AVRF")) + this.userId + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186LGkaICt0AVRF")) + this.account.type + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LwhSVg==")));
+            sb.append("authority: ").append(this.authority);
+            sb.append(" account {name=" + this.account.name + ", user=" + this.userId + ", type=" + this.account.type + "}");
         } else {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uKmwjAiliCiQhIxciP2wFQS1rCg5F"))).append(this.service.getPackageName()).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcuKWgaETM="))).append(this.userId).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186OWoFJANhI11F"))).append(this.service.getClassName()).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LwhSVg==")));
+            sb.append("service {package=").append(this.service.getPackageName()).append(" user=").append(this.userId).append(", class=").append(this.service.getClassName()).append("}");
         }
-        sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhguIGwKFjdhIwU8")));
+        sb.append(" extras: ");
         SyncOperation.extrasToStringBuilder(this.extras, sb);
         return sb.toString();
     }
 
     public static void extrasToStringBuilder(Bundle bundle, StringBuilder sb) {
-        sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IC5SVg==")));
+        sb.append("[");
         for (String key : bundle.keySet()) {
-            sb.append(key).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PwhSVg=="))).append(bundle.get(key)).append(" ");
+            sb.append(key).append("=").append(bundle.get(key)).append(" ");
         }
-        sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JwhSVg==")));
+        sb.append("]");
     }
 
     public void updateEffectiveRunTime() {

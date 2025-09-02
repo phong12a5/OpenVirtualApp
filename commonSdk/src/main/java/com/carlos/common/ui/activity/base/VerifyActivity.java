@@ -97,7 +97,7 @@ implements AppLauncherCallback {
     protected ViewOnclick mViewOnclick = new ViewOnclick();
     protected Dialog mDialog;
     AlertDialog.Builder mBuilder;
-    String[] whitelist = new String[]{com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4qD2szSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4qD2swRVo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz1XCW8FSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz0MP28jSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4+KGUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4YKGsVSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz0qIGwFSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4uIGgVSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("MzkmIg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4uVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz1XVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz42LA==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz5bMw==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz42M2wKFjdjDlk/Iz5SVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4qOg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz0qP28jSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz06PGgjSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz0lKWkFSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4uKGwVFlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4ID2sjAlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4+ImwzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4+Imw0LFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4AKWUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4AKWkjSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz1fKGsVSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz42KGUzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4EI2sVSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz5XP28jSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4qDWgzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz06KGwFSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz06KGwKRVo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz1fDm8zSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz1fDm8wRVo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4IKH8zSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4YKGsVSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4YKWozSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4YDWgzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4mCmozSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz0qLGgjSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz0qLGszSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz0qIGgjSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4qLWgzSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4MP2wFSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4qDmoFSFo="))};
+    String[] whitelist = new String[]{".doc", ".docx", ".zip", ".rar", ".apk", ".ipa", ".txt", ".exe", ".7z", ".e", ".z", ".ct", ".ke", ".cetrainer", ".db", ".tar", ".pdf", ".w3x", ".epub", ".mobi", ".azw", ".azw3", ".osk", ".osz", ".xpa", ".cpk", ".lua", ".jar", ".dmg", ".ppt", ".pptx", ".xls", ".xlsx", ".mp3", ".ipa", ".iso", ".img", ".gho", ".ttf", ".ttc", ".txf", ".dwg", ".bat", ".dll"};
     private List<String> history = new ArrayList<String>();
     private List<FileItem> currentFile = new ArrayList<FileItem>();
 
@@ -221,7 +221,7 @@ implements AppLauncherCallback {
         block18: {
             if (VirtualCore.get().isRunInExtProcess(packageName)) {
                 if (!VirtualCore.get().isExtPackageInstalled()) {
-                    Toast.makeText((Context)this, (CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IhgEM2saLCtLHgY2Iy42OW8zOyhjDlk/LhgcD2MKAil5HyAqKAg+O2sjNwQ=")), (int)0).show();
+                    Toast.makeText((Context)this, (CharSequence)"Please install Extension Package.", (int)0).show();
                     return;
                 }
                 if (!VExtPackageAccessor.hasExtPackageBootPermission()) {
@@ -251,7 +251,7 @@ implements AppLauncherCallback {
                     }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         if (BuildCompat.isR() && runHostTargetSdkVersion >= 30 && info.getApplicationInfo((int)0).targetSdkVersion < 30 && (isExt && !VExtPackageAccessor.isExternalStorageManager() || !isExt && !Environment.isExternalStorageManager())) {
-                            new AlertDialog.Builder(this.getContext()).setTitle(R.string.permission_boot_notice).setMessage(R.string.request_external_storage_manager_notice).setCancelable(false).setNegativeButton((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSwAVg==")), (dialog, which) -> RequestExternalStorageManagerActivity.request(VirtualCore.get().getContext(), isExt)).show();
+                            new AlertDialog.Builder(this.getContext()).setTitle(R.string.permission_boot_notice).setMessage(R.string.request_external_storage_manager_notice).setCancelable(false).setNegativeButton((CharSequence)"GO", (dialog, which) -> RequestExternalStorageManagerActivity.request(VirtualCore.get().getContext(), isExt)).show();
                             return;
                         }
                     }
@@ -260,33 +260,33 @@ implements AppLauncherCallback {
                         PermissionRequestActivity.requestPermission(this.getActivity(), permissions, appName, userId, packageName, 6);
                     }
                 }
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhcMI2ohJAJhHFk1LCklIA==")) + runAppNow);
+                HVLog.d(" runAppNow :" + runAppNow);
                 if (runAppNow) {
-                    this.channelLimit = this.getPersistentValueToInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li5fP2ojBitgHFEzKgccLg==")));
-                    this.channelStatus = this.getPersistentValueToInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li5fP2ojBitgHyggLwg2LWoFSFo=")));
-                    int channelLimitLocal = SPTools.getInt((Context)this, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li5fP2ojBitgHFEzKgccLg==")), 0);
+                    this.channelLimit = this.getPersistentValueToInt("channelLimit");
+                    this.channelStatus = this.getPersistentValueToInt("channelStatus");
+                    int channelLimitLocal = SPTools.getInt((Context)this, "channelLimit", 0);
                     long currentTimeMillisLimit = 0L;
                     if (channelLimitLocal == 0) {
-                        SPTools.putLong((Context)this, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li0uKm8jNCZmHwozKgcMUmwjOCRqDjBTIxgII2YVSFo=")), System.currentTimeMillis());
+                        SPTools.putLong((Context)this, "currentTimeMillisLimit", System.currentTimeMillis());
                     } else {
-                        currentTimeMillisLimit = SPTools.getLong((Context)this, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li0uKm8jNCZmHwozKgcMUmwjOCRqDjBTIxgII2YVSFo=")));
+                        currentTimeMillisLimit = SPTools.getLong((Context)this, "currentTimeMillisLimit");
                     }
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li5fP2ojBitgHFEzKgccLmczNCloAQUx")) + channelLimitLocal + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsFLCB9Dlk2KAdbU2wjPC9vV1FF")) + this.channelLimit);
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li5fP2ojBitgHyggLwg2LWoOIFo=")) + this.channelStatus + "    ");
+                    HVLog.d("channelLimitLocal:" + channelLimitLocal + "    channelLimit:" + this.channelLimit);
+                    HVLog.d("channelStatus:" + this.channelStatus + "    ");
                     if (this.channelLimit <= channelLimitLocal) {
-                        Toasty.warning(this.getContext(), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxpAH0MXFzNYEBNIAxoZDEQXWhFAXhs+AEABLFlbRgNEK0YdAQsJL0BJIQpGAgsuH1dYJkRaGyBHAiUBBkQ3WG8VAjBjDjMsMyolLGYzEiNoAR4dPC42KWAFSFo="))).show();
+                        Toasty.warning(this.getContext(), "功能受限、请在设置中联系软件作者qixie0306@gmail.com").show();
                         this.finish();
                         return;
                     }
                     if (this.channelStatus == 0) {
-                        Toasty.warning(this.getContext(), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxpAH0MXFzNYEBNIAxoZDEQXWhFAXhs+AEABLFlbRgNEK0YdAQsJL0BJIQpGAgsuH1dYJkRaGyBHAiUBBkQ3WG8VAjBjDjMsMyolLGYzEiNoAR4dPC42KWAFSFo="))).show();
+                        Toasty.warning(this.getContext(), "功能受限、请在设置中联系软件作者qixie0306@gmail.com").show();
                         this.finish();
                         return;
                     }
                     if (!this.checkUpgrade()) {
                         VActivityManager.get().launchApp(userId, packageName);
                     }
-                    SPTools.putInt((Context)this, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li5fP2ojBitgHFEzKgccLg==")), channelLimitLocal + 1);
+                    SPTools.putInt((Context)this, "channelLimit", channelLimitLocal + 1);
                     this.finish();
                 }
             }
@@ -311,16 +311,16 @@ implements AppLauncherCallback {
     }
 
     private void showOverlayPermissionDialog() {
-        new AlertDialog.Builder((Context)this).setTitle((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwodAkYBPTI="))).setMessage((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwoJCkZbBxVZEiUhAhojA0ctBxFAXh8zAAlAGlgXJSpEEAMhAVYZPUEXWgZGAC0RHxpYKUQXOUxHKS0dBwoZXUYWWgpZXzEUAiABBkdNORNAEBMRPC5SVg=="))).setCancelable(false).setNegativeButton((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSwAVg==")), (dialog, which) -> {
-            Intent intent = new Intent(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1kpKAg2LmwjMC1sIxosLT0qI2AgRClkDCRTICwIGWEhGgxgHAoRIwYAU30YFg5nJTBBIiwYUmIjSFo=")));
-            intent.setData(Uri.parse((String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Khg+OWUzJC1iDQJF")) + this.getPackageName())));
+        new AlertDialog.Builder((Context)this).setTitle((CharSequence)"提示").setMessage((CharSequence)"您必须向允许的启动活动界面后台授予覆盖权限.").setCancelable(false).setNegativeButton((CharSequence)"GO", (dialog, which) -> {
+            Intent intent = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION");
+            intent.setData(Uri.parse((String)("package:" + this.getPackageName())));
             this.startActivityForResult(intent, 0);
         }).show();
     }
 
     public void showPermissionDialog() {
         Intent intent = OemPermissionHelper.getPermissionActivityIntent((Context)this);
-        new AlertDialog.Builder((Context)this).setTitle(R.string.permission_boot_notice).setMessage(R.string.permission_boot_content).setCancelable(false).setNegativeButton((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSwAVg==")), (dialog, which) -> {
+        new AlertDialog.Builder((Context)this).setTitle(R.string.permission_boot_notice).setMessage(R.string.permission_boot_content).setCancelable(false).setNegativeButton((CharSequence)"GO", (dialog, which) -> {
             if (intent != null) {
                 try {
                     this.startActivity(intent);
@@ -346,16 +346,16 @@ implements AppLauncherCallback {
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 64);
             byte[] cert = info.signatures[0].toByteArray();
-            MessageDigest md = MessageDigest.getInstance(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IixfEX8VSFo=")));
+            MessageDigest md = MessageDigest.getInstance("SHA1");
             byte[] publicKey = md.digest(cert);
             StringBuffer hexString = new StringBuffer();
             for (int i = 0; i < publicKey.length; ++i) {
                 String appendString = Integer.toHexString(0xFF & publicKey[i]).toUpperCase(Locale.US);
                 if (appendString.length() == 1) {
-                    hexString.append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OhhSVg==")));
+                    hexString.append("0");
                 }
                 hexString.append(appendString);
-                hexString.append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OD5SVg==")));
+                hexString.append(":");
             }
             String result = hexString.toString();
             return result.substring(0, result.length() - 1);
@@ -372,17 +372,17 @@ implements AppLauncherCallback {
     @TargetApi(value=23)
     private boolean checkAndRequestPermission() {
         ArrayList<String> lackedPermission = new ArrayList<String>();
-        if (this.checkSelfPermission(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUIFl99HAZXIRYAE2QmMB1kDyhF"))) != PackageManager.PERMISSION_GRANTED) {
-            lackedPermission.add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUIFl99HAZXIRYAE2QmMB1kDyhF")));
+        if (this.checkSelfPermission("android.permission.READ_PHONE_STATE") != PackageManager.PERMISSION_GRANTED) {
+            lackedPermission.add("android.permission.READ_PHONE_STATE");
         }
-        if (this.checkSelfPermission(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsmU2sLFgpgIgoXOzwAU30xJExmMjBOLiwqAmYmFlo="))) != PackageManager.PERMISSION_GRANTED) {
-            lackedPermission.add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsmU2sLFgpgIgoXOzwAU30xJExmMjBOLiwqAmYmFlo=")));
+        if (this.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != PackageManager.PERMISSION_GRANTED) {
+            lackedPermission.add("android.permission.WRITE_EXTERNAL_STORAGE");
         }
-        if (this.checkSelfPermission(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCw+H2UmLBB9JVlKIiwqGWEhHl5jNThOLQUYHw=="))) != PackageManager.PERMISSION_GRANTED) {
-            lackedPermission.add(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCw+H2UmLBB9JVlKIiwqGWEhHl5jNThOLQUYHw==")));
+        if (this.checkSelfPermission("android.permission.ACCESS_FINE_LOCATION") != PackageManager.PERMISSION_GRANTED) {
+            lackedPermission.add("android.permission.ACCESS_FINE_LOCATION");
         }
         if (lackedPermission.size() == 0) {
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwkFE0NND0xZEC0dAhw3KEcWIQ9BAAdPABtABF4vWhFFEC0sAQsNBkEyQiBGKR80H1c/DEQtFz5+NFk0KRcuKmojSFo=")));
+            HVLog.d("权限都已经有了，那么直接调用 return");
             return true;
         }
         String[] requestPermissions = new String[lackedPermission.size()];
@@ -413,11 +413,11 @@ implements AppLauncherCallback {
     }
 
     static {
-        PKG_NAME_ARGUMENT = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwYAWWAbHh9lDywTJAVXWmcYBlo="));
-        KEY_PKGNAME = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JCwuGWY2IAtqIlkRIgUMVg=="));
-        APP_NAME = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JgU6AmYxBhFoDDBF"));
-        KEY_USER = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JCwuGWY2NF5qDyxF"));
-        META_DATA_KEY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii42D28gIC9gJFkPIBUEVg=="));
+        PKG_NAME_ARGUMENT = "MODEL_ARGUMENT";
+        KEY_PKGNAME = "KEY_PKGNAME";
+        APP_NAME = "APP_NAME";
+        KEY_USER = "KEY_USER";
+        META_DATA_KEY = "ScorpionSDK";
     }
 
     class ViewOnclick
@@ -434,13 +434,13 @@ implements AppLauncherCallback {
             } else if (v.getId() == R.id.btn_ok) {
                 VerifyActivity.this.mDialog.dismiss();
                 try {
-                    String assetFileName = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KhgEI2gzAiZsJyw/KhcMOWoFBSZoDjwi"));
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxwZXEMRFxVYABMAAlcBLA==")) + assetFileName);
+                    String assetFileName = "plugin_release.apk";
+                    HVLog.d("安装插件" + assetFileName);
                     InputStream inputStream = null;
                     File dir = VerifyActivity.this.getCacheDir();
                     try {
                         inputStream = VerifyActivity.this.getAssets().open(assetFileName);
-                        File apkFile = new File(dir, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KhgEI2gzAiZsJyw/KhcMOWoFBSZoDjwi")));
+                        File apkFile = new File(dir, "plugin_release.apk");
                         FileUtils.writeToFile(inputStream, apkFile);
                         InstallTools.install((Context)VerifyActivity.this, apkFile);
                     }

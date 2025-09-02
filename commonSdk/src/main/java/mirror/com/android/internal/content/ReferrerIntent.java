@@ -13,7 +13,7 @@ import mirror.RefClass;
 import mirror.RefConstructor;
 
 public class ReferrerIntent {
-    public static Class<?> TYPE = RefClass.load(ReferrerIntent.class, StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAPBwNGxceHUE8FgMXBBcLLToNGxceHQ=="));
+    public static Class<?> TYPE = RefClass.load(ReferrerIntent.class, "com.android.internal.content.ReferrerIntent");
     @MethodParams(value={Intent.class, String.class})
     public static RefConstructor<Intent> ctor;
 }

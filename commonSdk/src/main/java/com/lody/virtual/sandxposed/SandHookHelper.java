@@ -22,7 +22,7 @@ public class SandHookHelper {
 
     public static String MD5(String source) {
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OwYpIw==")));
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(source.getBytes());
             return new BigInteger(1, messageDigest.digest()).toString(32);
         }

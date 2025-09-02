@@ -123,7 +123,7 @@ public class HCallbackStub implements Handler.Callback, IInjector {
                 if (BuildCompat.isQ() && TopResumedActivityChangeItem.TYPE != null && item.getClass() == TopResumedActivityChangeItem.TYPE) {
                     try {
                         if (TopResumedActivityChangeItem.mOnTop.get(item) == ActivityClientRecord.isTopResumedActivity.get(r)) {
-                            Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgg2LGUaOC9mERk8LBdfKn4wTSVsJx4/IxgAKksaPDdlNAoqLz01JGwjNCB7Diw6DRcYJWIaRSZ7J1RF")) + TopResumedActivityChangeItem.mOnTop.get(item));
+                            Log.e(TAG, "Activity top position already set to onTop=" + TopResumedActivityChangeItem.mOnTop.get(item));
                             return false;
                         }
                     } catch (Throwable var8) {
@@ -242,7 +242,7 @@ public class HCallbackStub implements Handler.Callback, IInjector {
         Handler.Callback callback = getHCallback();
         boolean envBad = callback != this;
         if (callback != null && envBad) {
-            VLog.d(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBY2P2oFHip9DigxPxcAOWoJTSpoAS8dPQgACmMaLDV5HiwqKT4iJmgFLD17CgE3")) + callback, new Object[0]);
+            VLog.d(TAG, "HCallback has bad, other callback = " + callback, new Object[0]);
         }
 
         return envBad;

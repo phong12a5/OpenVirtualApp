@@ -12,10 +12,10 @@ import mirror.android.os.ServiceManager;
 
 public class LockSettingsStub
 extends BinderInvocationProxy {
-    private static final String SERVICE_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgAOWU2GgNiAQogKQcYM2oFSFo="));
+    private static final String SERVICE_NAME = "lock_settings";
 
     public LockSettingsStub() {
-        super(new EmptyLockSettings(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgAOWU2GgNiAQogKQcYM2oFSFo=")));
+        super(new EmptyLockSettings(), "lock_settings");
     }
 
     @Override
@@ -28,7 +28,7 @@ extends BinderInvocationProxy {
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcjNClgJzw/Iz4cAWUzQQZvDjBF")), Collections.emptyMap()));
+        this.addMethodProxy(new ResultStaticMethodProxy("getRecoveryStatus", Collections.emptyMap()));
     }
 
     static class EmptyLockSettings

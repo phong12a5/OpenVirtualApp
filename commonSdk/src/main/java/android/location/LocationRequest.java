@@ -17,28 +17,28 @@ implements Parcelable {
     public static final Parcelable.Creator<LocationRequest> CREATOR = new Parcelable.Creator<LocationRequest>(){
 
         public LocationRequest createFromParcel(Parcel in) {
-            throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+            throw new RuntimeException("Stub!");
         }
 
         public LocationRequest[] newArray(int size) {
-            throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+            throw new RuntimeException("Stub!");
         }
     };
 
     public LocationRequest setProvider(String provider) {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 
     public String getProvider() {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 
     public int describeContents() {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 }
 

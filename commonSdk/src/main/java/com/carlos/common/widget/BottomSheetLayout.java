@@ -42,8 +42,8 @@ import java.util.Locale;
 public class BottomSheetLayout
 extends LinearLayout {
     Handler mHandler = new Handler();
-    public static String PKG_KEY = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Khg+OWUzJC1iDFk7KgcMVg=="));
-    public static String PKG_USERID = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGwaLCthNAYw"));
+    public static String PKG_KEY = "packageName";
+    public static String PKG_USERID = "appuserid";
     BottomSheetDialog bottomSheetDialog;
     private EatBeansView loadingView;
 
@@ -68,7 +68,7 @@ extends LinearLayout {
         Drawable icon = applicationInfo.loadIcon(pm);
         iconView.setImageDrawable(icon);
         TextView nameView = (TextView)this.findViewById(R.id.app_name);
-        nameView.setText((CharSequence)String.format(Locale.ENGLISH, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oy06M2ojAiZiICc/IykXDn8VSFo=")), appName));
+        nameView.setText((CharSequence)String.format(Locale.ENGLISH, "Opening %s...", appName));
     }
 
     @SuppressLint(value={"WrongViewCast"})

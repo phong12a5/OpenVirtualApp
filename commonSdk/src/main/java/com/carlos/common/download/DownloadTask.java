@@ -53,7 +53,7 @@ extends Handler {
     private static final int MSG_PAUSE = 3;
     private static final int MSG_CANCEL = 4;
     private DownloadListner mListner;
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgALWojHiV9DgpLLwgqCQ=="));
+    private static final String TAG = "DownloadTask";
 
     DownloadTask(FilePoint point, DownloadListner l) {
         this.mPoint = point;
@@ -131,7 +131,7 @@ extends Handler {
                             byte[] bytes = new byte[1024];
                             int len = 0;
                             long fileSize = response.body().contentLength();
-                            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4YDmgYLC9nNDMi")) + fileSize);
+                            HVLog.d("fileSize:" + fileSize);
                             long sum = 0L;
                             int porSize = 0;
                             while ((len = is.read(bytes)) != -1) {
@@ -159,7 +159,7 @@ extends Handler {
                                 HVLog.printException(e);
                             }
                         }
-                        HVLog.i(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwcYBmsVPFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("B1ZcXkMWHzNYAB8CAhkFHQ==")));
+                        HVLog.i("myTag", "下载成功");
                     } else {
                         DownloadTask.this.mListner.onCancel();
                     }
@@ -173,7 +173,7 @@ extends Handler {
 
     public synchronized void start() {
         try {
-            Log.e((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0qP28gMzJLEVRF")) + this.isDownloading + "\t" + this.mPoint.getUrl()));
+            Log.e((String)TAG, (String)("start: " + this.isDownloading + "\t" + this.mPoint.getUrl()));
             if (this.isDownloading) {
                 return;
             }
@@ -181,7 +181,7 @@ extends Handler {
             this.mHttpUtil.getContentLength(this.mPoint.getUrl(), new okhttp3.Callback(){
 
                 public void onResponse(Call call, Response response) throws IOException {
-                    HVLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgALWojHiV9DgpLLwgqCQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0qP28gMzJLEVRF")) + response.code() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("DgQ6CW8xMCVmJFkoKi0iPmwjMC1+N1RF")) + DownloadTask.this.isDownloading + "\t" + DownloadTask.this.mPoint.getUrl());
+                    HVLog.e("DownloadTask", "start: " + response.code() + "	 isDownloading:" + DownloadTask.this.isDownloading + "\t" + DownloadTask.this.mPoint.getUrl());
                     if (response.code() != 200) {
                         DownloadTask.this.close(new Closeable[]{response.body()});
                         DownloadTask.this.resetStutus();
@@ -190,16 +190,16 @@ extends Handler {
                     DownloadTask.this.mFileLength = response.body().contentLength();
                     Headers headers = response.headers();
                     DownloadTask.this.close(new Closeable[]{response.body()});
-                    HVLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgALWojHiV9DgpLLwgqCQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwU6D2UVBgZ3MCRF")) + DownloadTask.this.mPoint.getFilePath() + "    " + DownloadTask.this.mPoint.getFileName());
-                    DownloadTask.this.mTmpFile = new File(DownloadTask.this.mPoint.getFilePath(), DownloadTask.this.mPoint.getFileName() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz0qDW8FSFo=")));
+                    HVLog.e("DownloadTask", "mPoint: " + DownloadTask.this.mPoint.getFilePath() + "    " + DownloadTask.this.mPoint.getFileName());
+                    DownloadTask.this.mTmpFile = new File(DownloadTask.this.mPoint.getFilePath(), DownloadTask.this.mPoint.getFileName() + ".tmp");
                     if (!DownloadTask.this.mTmpFile.getParentFile().exists()) {
-                        HVLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgALWojHiV9DgpLLwgqCQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PwMHO3knIFo=")));
+                        HVLog.e("DownloadTask", "===: ");
                         boolean mkdirs = DownloadTask.this.mTmpFile.getParentFile().mkdirs();
-                        HVLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgALWojHiV9DgpLLwgqCQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwhbPGUaFgN3MCRF")) + mkdirs);
+                        HVLog.e("DownloadTask", "mkdirs: " + mkdirs);
                     }
                     try {
-                        RandomAccessFile tmpAccessFile = new RandomAccessFile(DownloadTask.this.mTmpFile, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Kj0mVg==")));
-                        HVLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgALWojHiV9DgpLLwgqCQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwYiCWoFNA5iDlk9LBcfIH4zSFo=")) + DownloadTask.this.mFileLength);
+                        RandomAccessFile tmpAccessFile = new RandomAccessFile(DownloadTask.this.mTmpFile, "rw");
+                        HVLog.e("DownloadTask", "mFileLength: " + DownloadTask.this.mFileLength);
                         tmpAccessFile.setLength(DownloadTask.this.mFileLength);
                     }
                     catch (FileNotFoundException e) {
@@ -217,7 +217,7 @@ extends Handler {
                 }
 
                 public void onFailure(Call call, IOException e) {
-                    HVLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgALWojHiV9DgpLLwgqCQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0qP28gMzJqARo5KAgmLmwjNCZ4EVRF")) + e.getMessage() + "\n" + DownloadTask.this.mPoint.getUrl());
+                    HVLog.e("DownloadTask", "start:Exception " + e.getMessage() + "\n" + DownloadTask.this.mPoint.getUrl());
                     DownloadTask.this.resetStutus();
                 }
             });
@@ -232,8 +232,8 @@ extends Handler {
     private void download(final long startIndex, long endIndex, final int threadId) throws IOException {
         File cacheFile;
         long newStartIndex = startIndex;
-        this.mCacheFiles[threadId] = cacheFile = new File(this.mPoint.getFilePath(), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRhfKmgVJCw=")) + threadId + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy5SVg==")) + this.mPoint.getFileName() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz42P2szRSs=")));
-        final RandomAccessFile cacheAccessFile = new RandomAccessFile(cacheFile, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Kj0mPA==")));
+        this.mCacheFiles[threadId] = cacheFile = new File(this.mPoint.getFilePath(), "thread" + threadId + "_" + this.mPoint.getFileName() + ".cache");
+        final RandomAccessFile cacheAccessFile = new RandomAccessFile(cacheFile, "rwd");
         if (cacheFile.exists()) {
             String startIndexStr = cacheAccessFile.readLine();
             try {
@@ -247,21 +247,21 @@ extends Handler {
         this.mHttpUtil.downloadFileByRange(this.mPoint.getUrl(), finalStartIndex, endIndex, new okhttp3.Callback(){
 
             public void onResponse(Call call, Response response) throws IOException {
-                Log.e((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgALWojHiV9DgpLLwgqCQ==")), (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgALWojHiV9Dg0iPxhSVg==")) + response.code() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("DgQ6CW8xMCVmJFkoKi0iPmwjMC1+N1RF")) + DownloadTask.this.isDownloading + "\t" + DownloadTask.this.mPoint.getUrl()));
+                Log.e((String)"DownloadTask", (String)("download: " + response.code() + "	 isDownloading:" + DownloadTask.this.isDownloading + "\t" + DownloadTask.this.mPoint.getUrl()));
                 if (response.code() != 206) {
                     DownloadTask.this.resetStutus();
                     return;
                 }
-                HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ByBALkYtLRFYFUYSAhs3XH4zSFo=")));
+                HVLog.d("状态开始 ");
                 InputStream is = response.body().byteStream();
-                RandomAccessFile tmpAccessFile = new RandomAccessFile(DownloadTask.this.mTmpFile, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Kj0mVg==")));
+                RandomAccessFile tmpAccessFile = new RandomAccessFile(DownloadTask.this.mTmpFile, "rw");
                 tmpAccessFile.seek(finalStartIndex);
                 byte[] buffer = new byte[4096];
                 int length = -1;
                 int total = 0;
                 long progress = 0L;
                 while ((length = is.read(buffer)) > 0) {
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OH5THTNOClw3OgRWJXsnTCg=")));
+                    HVLog.d("   ===----===  ");
                     if (DownloadTask.this.cancel) {
                         DownloadTask.this.close(new Closeable[]{cacheAccessFile, is, response.body()});
                         DownloadTask.this.cleanFile(new File[]{cacheFile});
@@ -276,7 +276,7 @@ extends Handler {
                     tmpAccessFile.write(buffer, 0, length);
                     progress = finalStartIndex + (long)(total += length);
                     cacheAccessFile.seek(0L);
-                    cacheAccessFile.write((progress + "").getBytes(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQUqW3pTRVo="))));
+                    cacheAccessFile.write((progress + "").getBytes("UTF-8"));
                     ((DownloadTask)DownloadTask.this).mProgress[threadId] = progress - startIndex;
                     DownloadTask.this.sendEmptyMessage(1);
                 }

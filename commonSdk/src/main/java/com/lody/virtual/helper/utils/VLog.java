@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class VLog {
     public static boolean OPEN_LOG = true;
-    public static final String TAG_DEFAULT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITw9DQ=="));
+    public static final String TAG_DEFAULT = "VA-";
 
     public VLog() {
     }
@@ -82,24 +82,24 @@ public class VLog {
     public static String toString(Bundle bundle) {
         if (bundle == null) {
             return null;
-        } else if (Reflect.on(bundle).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwU6P28jLCtgHlE/KBU2OWUzQVo="))) == null) {
+        } else if (Reflect.on(bundle).get("mParcelledData") == null) {
             return bundle.toString();
         } else {
             Set<String> keys = bundle.keySet();
-            StringBuilder stringBuilder = new StringBuilder(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj0uCGgFHitvJ1RF")));
+            StringBuilder stringBuilder = new StringBuilder("Bundle[");
             if (keys != null) {
                 Iterator var3 = keys.iterator();
 
                 while(var3.hasNext()) {
                     String key = (String)var3.next();
                     stringBuilder.append(key);
-                    stringBuilder.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PwhSVg==")));
+                    stringBuilder.append("=");
                     stringBuilder.append(bundle.get(key));
-                    stringBuilder.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MxhSVg==")));
+                    stringBuilder.append(",");
                 }
             }
 
-            stringBuilder.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JwhSVg==")));
+            stringBuilder.append("]");
             return stringBuilder.toString();
         }
     }
@@ -119,15 +119,15 @@ public class VLog {
     public static void printException(Exception e) {
         StackTraceElement[] stackTrace = e.getStackTrace();
         Throwable cause = e.getCause();
-        d(TAG_DEFAULT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj0uCWoFMyZuMjAAOyscRGdSMF5jH10MOxYcXUtSQCM=")) + VERSION.SDK_INT);
+        d(TAG_DEFAULT, "Build.VERSION.SDK_INT = " + VERSION.SDK_INT);
         if (cause != null) {
             String stackTraceString = Log.getStackTraceString(cause);
-            e(TAG_DEFAULT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("BxsBHEZbRjBLHig7LAgqPXwwTQRqARo/JhdfJWIFOD9vDlkdOik6Vg==")) + stackTraceString);
+            e(TAG_DEFAULT, "异常 cause(printException):" + stackTraceString);
         } else {
-            e(TAG_DEFAULT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("BxsBHEZbRjB3N1RF")) + e.toString() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl85OHsJICl9ATApKAMmMWoJTSZvAQIdPQMAVg==")) + (cause == null));
+            e(TAG_DEFAULT, "异常:" + e.toString() + "     cause is null ?" + (cause == null));
 
             for(int i = 0; i < stackTrace.length; ++i) {
-                e(TAG_DEFAULT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQdfOWgaIAZjDh42PxcLIA==")) + stackTrace[i].toString());
+                e(TAG_DEFAULT, "Exception e:" + stackTrace[i].toString());
             }
         }
 

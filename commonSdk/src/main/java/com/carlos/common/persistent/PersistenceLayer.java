@@ -71,13 +71,13 @@ public abstract class PersistenceLayer {
             int len = fis.read(bytes);
             fis.close();
             if (len != bytes.length) {
-                throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OwgqJG43MC97NCc7OQccD24FATdiVg4pKQhaDmgFAjBuJxkoLzo+JGgnHlo=")));
+                throw new IOException("Unable to read Persistence file.");
             }
             p.unmarshall(bytes, 0, bytes.length);
             p.setDataPosition(0);
             if (!this.verifyMagic(p)) {
                 this.onPersistenceFileDamage();
-                throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IggqMW4JMCtoMw0cKhccJ2wKAgVpDSQ6LioLJ2kVIAN/N1RF")));
+                throw new IOException("Qdk|$eN4>li{ksu}&sf\"%Pv~*");
             }
             int fileVersion = p.readInt();
             this.readPersistenceData(p, fileVersion);

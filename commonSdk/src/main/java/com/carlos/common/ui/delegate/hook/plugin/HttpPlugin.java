@@ -18,7 +18,7 @@ import de.robv.android.xposed.XposedHelpers;
 import java.net.URL;
 
 public class HttpPlugin {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IgU+HG8jGj1hJDAqIRdfDWwLFgZvHjxF"));
+    private static final String TAG = "QQBrowserHookHttp";
     ClassLoader mClassLoader;
     String mVersionName;
     boolean isHooking = false;
@@ -34,9 +34,9 @@ public class HttpPlugin {
 
     private void hookHttp() {
         Class<?> MttRequestBaseClass;
-        HVLog.d(TAG, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IgU+HG8jGj1hJDAqAhxYHEcvHwtiEQYcIzxfCmYVOFo=")));
+        HVLog.d(TAG, "QQBrowser开始HookHttp");
         try {
-            Class<?> UrlParamsClass = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogMCtgNCg/Kj41Dm8gBgZ1Nwo5LD0mD2IFMylqJBodLz4uMXU2NCZqDDwoJz0mJGUjSFo=")), this.mClassLoader);
+            Class<?> UrlParamsClass = XposedHelpers.findClass("com.tencent.mtt.browser.window.UrlParams", this.mClassLoader);
             XposedBridge.hookAllConstructors(UrlParamsClass, new XC_MethodHook(){
 
                 @Override
@@ -48,7 +48,7 @@ public class HttpPlugin {
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     super.afterHookedMethod(param);
                     Object object = param.thisObject;
-                    ClassUtil.printFieldsInClassAndObject(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQcMDmcFJAR9Dl0p")), object.getClass(), object);
+                    ClassUtil.printFieldsInClassAndObject("UrlParams", object.getClass(), object);
                 }
             });
         }
@@ -56,7 +56,7 @@ public class HttpPlugin {
             e.printStackTrace();
         }
         try {
-            Class<?> httpUrlConnection = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LD4+LmtSBiZiAQ02IRg2Lmo2Gl99HzAcLC4cJ30jFixsJB5F")), this.mClassLoader);
+            Class<?> httpUrlConnection = XposedHelpers.findClass("java.net.HttpURLConnection", this.mClassLoader);
             XposedBridge.hookAllConstructors(httpUrlConnection, new XC_MethodHook(){
 
                 @Override
@@ -65,11 +65,13 @@ public class HttpPlugin {
                         return;
                     }
                     URL url = (URL)param.args[0];
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IgU+HG8jGj1hJDAqIRdfDWwLFgZvHjxF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBcqLG8INF9oHCg1Kj0YPW4KBi9lJx0xPQhSVg==")) + param.args[0] + "");
-                    if (url.toString().contains(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OgM9KXokDT4=")))) {
+                    HVLog.d("QQBrowserHookHttp", "HttpURLConnection: " + param.args[0] + "");
+                    if (url.toString().contains("113.96")) {
                         StringBuilder TraceString = new StringBuilder("");
-                        TraceString.append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("P14DJH4JHSNOClw3OgNWD38nPyN1DQEePF8HL04OQCh8ClAcOSolL3UJHQF6Vx0pMjpeD3lTP1E="))).append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Djo5JH4OGTROClw3OgNWD38nPyN1DQEePF8HL04OQCh8ClAcOSolL3UJHQF6VgE8MjpeD3g3Alo="))).append("\n");
-                        HVLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IgU+HG8jGj1hJDAqIRdfDWwLFgZvHjxF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Bxw3W0YvLQpYXhM7Agk/DUUWJVc=")) + TraceString.toString());
+                        TraceString.append("<<<<------------------------------>>>>>  
+").append("
+ <<<<------------------------------>>>>>").append("\n");
+                        HVLog.e("QQBrowserHookHttp", "堆栈信息：" + TraceString.toString());
                     }
                 }
             });
@@ -78,8 +80,8 @@ public class HttpPlugin {
             e.printStackTrace();
         }
         try {
-            MttRequestBaseClass = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogMCtgNCg/Kj41Dm4FNCNlAQYbPC5fCmYVOylkATA9JBgADW8FNCVsDwooJy02Vg==")), this.mClassLoader);
-            XposedBridge.hookAllMethods(MttRequestBaseClass, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggqPH0FNDdiHjAqIy5SVg==")), new XC_MethodHook(){
+            MttRequestBaseClass = XposedHelpers.findClass("com.tencent.common.http.MttRequestBase", this.mClassLoader);
+            XposedBridge.hookAllMethods(MttRequestBaseClass, "addHeaders", new XC_MethodHook(){
 
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -97,8 +99,8 @@ public class HttpPlugin {
             e.printStackTrace();
         }
         try {
-            MttRequestBaseClass = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogMCtgNCg/Kj41Dm4FNCNlAQYbPC5fCmYVOylkATA9JBgADW8FNCVsDwooJy02Vg==")), this.mClassLoader);
-            XposedBridge.hookAllMethods(MttRequestBaseClass, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggqPH0FNDdiHjAq")), new XC_MethodHook(){
+            MttRequestBaseClass = XposedHelpers.findClass("com.tencent.common.http.MttRequestBase", this.mClassLoader);
+            XposedBridge.hookAllMethods(MttRequestBaseClass, "addHeader", new XC_MethodHook(){
 
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -116,8 +118,8 @@ public class HttpPlugin {
             e.printStackTrace();
         }
         try {
-            Class<?> RequestClass = XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogLAFmDiAqKAgMKn8VNCFqHiw/KQQcU2IFPDBuASw9")), this.mClassLoader);
-            XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogLAFmDiAqKAgMKn8VNCFqHiw/KQQcA2MmBj9qESACKT42J2UwMFo=")), this.mClassLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4uLWMzJCRgEVRF")), RequestClass, new XC_MethodHook(){
+            Class<?> RequestClass = XposedHelpers.findClass("com.squareup.okhttp.Request", this.mClassLoader);
+            XposedHelpers.findAndHookMethod("com.squareup.okhttp.OkHttpClient", this.mClassLoader, "newCall", RequestClass, new XC_MethodHook(){
 
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -128,7 +130,7 @@ public class HttpPlugin {
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     super.afterHookedMethod(param);
                     Object param0 = param.args[0];
-                    ClassUtil.printFieldsInClassAndObject(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oy5bXWwKMAJlJFEzKAcYLn8VMCtvJTAsLAgDL2EaPDVpDlA5")), param0.getClass(), param0);
+                    ClassUtil.printFieldsInClassAndObject("OkHttpClient.newCall-param0", param0.getClass(), param0);
                 }
             });
         }
@@ -136,7 +138,7 @@ public class HttpPlugin {
             e.printStackTrace();
         }
         try {
-            XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogMCtgNCg/Kj41Dm8gBgZ1MiAaLC4qKWYmNCpsASAeKRgAKm8bNCxsASg5Jy0AJmw2BgNqN1RF")), this.mClassLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LD5SVg==")), new XC_MethodHook(){
+            XposedHelpers.findAndHookMethod("com.tencent.mtt.WindowComponentExtensionImp", this.mClassLoader, "j", new XC_MethodHook(){
 
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -146,7 +148,7 @@ public class HttpPlugin {
                 @Override
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     super.afterHookedMethod(param);
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IgU+HG8jGj1hJDAqIRdfDWwLFgZvHjxF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IS4YCGgFGj1lJB43IxdfDmkjMAZjDlk/LhgcD2MKAilnDlE5ORg5LHoJIjICXiI/RBlEIxwEJFo=")));
+                    HVLog.d("QQBrowserHookHttp", "WindowComponentExtensionImp.j() 执行了");
                 }
             });
         }
@@ -154,7 +156,7 @@ public class HttpPlugin {
             e.printStackTrace();
         }
         try {
-            XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXogMCtgNCg/Kj41Dm8gBgZ1Nwo5LD0mD2IFMylpNygqORccKWUjHjZrHg05JRhSVg==")), this.mClassLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iy4cE2oFAiljJ1RF")), View.class, new XC_MethodHook(){
+            XposedHelpers.findAndHookMethod("com.tencent.mtt.browser.bra.toolbar.h", this.mClassLoader, "onClick", View.class, new XC_MethodHook(){
 
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -164,7 +166,7 @@ public class HttpPlugin {
                 @Override
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     super.afterHookedMethod(param);
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IgU+HG8jGj1hJDAqIRdfDWwLFgZvHjxF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRgAD2oFFjdhMFk0Oj1fDmYFOC9oJ1wZM184IhwWJitXEF8tW0QEVg==")));
+                    HVLog.d("QQBrowserHookHttp", "toolbar.h.onClick() 执行了");
                 }
             });
         }

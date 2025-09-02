@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IAudioService {
-    public static Class<?> TYPE = RefClass.load(IAudioService.class, StringFog.decrypt("EgsWBAoHO10OChYZCEEnMhAWHwo9OgEVBhEV"));
+    public static Class<?> TYPE = RefClass.load(IAudioService.class, "android.media.IAudioService");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10OChYZCEEnMhAWHwo9OgEVBhEVTTwaBgc="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.media.IAudioService$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

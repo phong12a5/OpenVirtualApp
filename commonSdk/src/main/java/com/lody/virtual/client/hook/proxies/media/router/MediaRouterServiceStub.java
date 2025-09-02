@@ -16,13 +16,13 @@ import mirror.android.media.IMediaRouterService;
 public class MediaRouterServiceStub
 extends BinderInvocationProxy {
     public MediaRouterServiceStub() {
-        super(IMediaRouterService.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwguPGUVJB9hNB4vLBcMKA==")));
+        super(IMediaRouterService.Stub.asInterface, "media_router");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwfKhccPW8aBhFsIig6LhcMVg=="))));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("registerClientAsUser"));
     }
 }
 

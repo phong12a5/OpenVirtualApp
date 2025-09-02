@@ -49,7 +49,7 @@ import java.util.List;
 import java.util.Map;
 
 public class VPackageManagerService extends IPackageManager.Stub {
-    static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ihg+OWUzJC1iDF07Kj0iM2kgRVo="));
+    static final String TAG = "PackageManager";
     static final Comparator<ResolveInfo> sResolvePrioritySorter = new Comparator<ResolveInfo>() {
         public int compare(ResolveInfo r1, ResolveInfo r2) {
             int v1 = r1.priority;
@@ -130,7 +130,7 @@ public class VPackageManagerService extends IPackageManager.Stub {
                 a.info.processName = a.info.packageName;
             }
 
-            this.mActivities.addActivity(a, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+            this.mActivities.addActivity(a, "activity");
         }
 
         N = pkg.services.size();
@@ -152,7 +152,7 @@ public class VPackageManagerService extends IPackageManager.Stub {
                 a.info.processName = a.info.packageName;
             }
 
-            this.mReceivers.addActivity(a, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uOWgVAj5iASxF")));
+            this.mReceivers.addActivity(a, "receiver");
         }
 
         N = pkg.providers.size();
@@ -164,7 +164,7 @@ public class VPackageManagerService extends IPackageManager.Stub {
             }
 
             this.mProviders.addProvider(p);
-            String[] names = p.info.authority.split(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OC5SVg==")));
+            String[] names = p.info.authority.split(";");
             synchronized(this.mProvidersByAuthority) {
                 String[] var7 = names;
                 int var8 = names.length;
@@ -220,7 +220,7 @@ public class VPackageManagerService extends IPackageManager.Stub {
             VPackage.ActivityComponent a;
             for(i = 0; i < N; ++i) {
                 a = (VPackage.ActivityComponent)pkg.activities.get(i);
-                this.mActivities.removeActivity(a, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+                this.mActivities.removeActivity(a, "activity");
             }
 
             N = pkg.services.size();
@@ -234,7 +234,7 @@ public class VPackageManagerService extends IPackageManager.Stub {
 
             for(i = 0; i < N; ++i) {
                 a = (VPackage.ActivityComponent)pkg.receivers.get(i);
-                this.mReceivers.removeActivity(a, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uOWgVAj5iASxF")));
+                this.mReceivers.removeActivity(a, "receiver");
             }
 
             N = pkg.providers.size();
@@ -242,7 +242,7 @@ public class VPackageManagerService extends IPackageManager.Stub {
             for(i = 0; i < N; ++i) {
                 VPackage.ProviderComponent p = (VPackage.ProviderComponent)pkg.providers.get(i);
                 this.mProviders.removeProvider(p);
-                String[] names = p.info.authority.split(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OC5SVg==")));
+                String[] names = p.info.authority.split(";");
                 synchronized(this.mProvidersByAuthority) {
                     String[] var7 = names;
                     int var8 = names.length;
@@ -318,7 +318,7 @@ public class VPackageManagerService extends IPackageManager.Stub {
 
     private void checkUserId(int userId) {
         if (!VUserManagerService.get().exists(userId)) {
-            throw new SecurityException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQvIy0MKGQjASg=")) + userId);
+            throw new SecurityException("Invalid userId " + userId);
         }
     }
 
@@ -790,7 +790,7 @@ public class VPackageManagerService extends IPackageManager.Stub {
                 do {
                     if (!var5.hasNext()) {
                         if (pkgList.isEmpty()) {
-                            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFJCljJCA9KAgqWW8KRVBqAS8rKS4uCmYFMCl5HiQdOD4AL2waMCt7Dgo0Jy42O2pTAlo=")));
+                            VLog.e(TAG, "getPackagesForUid return an empty result.");
                             return null;
                         }
 
@@ -864,7 +864,7 @@ public class VPackageManagerService extends IPackageManager.Stub {
     }
 
     public void setComponentEnabledSetting(ComponentName component, int newState, int flags, int userId) {
-        VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMzGiNhHh42KAcYLmEjMDdoNwIgLgU2J2YVFixsND8p")) + component + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgcM2w2LAZ9AQo/PTkmVg==")) + newState + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgiDmsVPAN3MCRF")) + flags);
+        VLog.e(TAG, "setComponentEnabledSetting " + component + " newState: " + newState + " flags: " + flags);
         if (component != null) {
             this.checkUserId(userId);
             synchronized(this.mPackages) {
@@ -944,7 +944,7 @@ public class VPackageManagerService extends IPackageManager.Stub {
     }
 
     public int checkPermission(boolean isExt, String permission, String pkgName, int userId) {
-        if (!StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCwYDG4YLB9hDCwTJQZbH2QxGg9nMgZPLys2E30jSFo=")).equals(permission) && !StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCwYDG4YLB9hDCwTJQZbH2QxGg9nMgZPLys2E30hRVV9JSQR")).equals(permission)) {
+        if (!"android.permission.INTERACT_ACROSS_USERS".equals(permission) && !"android.permission.INTERACT_ACROSS_USERS_FULL".equals(permission)) {
             PermissionInfo permissionInfo = this.getPermissionInfo(permission, 0);
             return permissionInfo != null ? 0 : VirtualCore.getPM().checkPermission(permission, StubManifest.getStubPackageName(isExt));
         } else {
@@ -1159,9 +1159,9 @@ public class VPackageManagerService extends IPackageManager.Stub {
 
             for(int j = 0; j < NI; ++j) {
                 VPackage.ActivityIntentInfo intent = (VPackage.ActivityIntentInfo)a.intents.get(j);
-                if (intent.filter.getPriority() > 0 && StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")).equals(type)) {
+                if (intent.filter.getPriority() > 0 && "activity".equals(type)) {
                     intent.filter.setPriority(0);
-                    Log.w(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ihg+OWUzJC1iDF07Kj0iM2kgRVo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ihg+OWUzJC1iCiRF")) + a.info.applicationInfo.packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhhfP283IDd9JwozLD0cLmgnTVo=")) + a.className + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcmCWwFRChhESwzKi4uMWUwLyh5Mz87PAQ6ImAjMCZvDh4gOD0cKXhTIFo=")));
+                    Log.w("PackageManager", "Package " + a.info.applicationInfo.packageName + " has activity " + a.className + " with priority > 0, forcing to 0");
                 }
 
                 this.addFilter(intent);

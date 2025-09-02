@@ -141,8 +141,8 @@ implements ViewPager.OnPageChangeListener {
         this.mTabsContainer = new LinearLayout(context);
         this.addView((View)this.mTabsContainer);
         this.obtainAttributes(context, attrs);
-        String height = attrs.getAttributeValue(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8OTCVOJyg5KRcMD24gDSZoARovKS4AI2JTRSZsJFAeKC1XLXUgFj9vMwYoJj0MOWwgBjI=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ixg+J2owNAZsJBo/KQc6MmUzSFo=")));
-        if (!height.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("MwM+Vg=="))) && !height.equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("MwMMVg==")))) {
+        String height = attrs.getAttributeValue("http://schemas.android.com/apk/res/android", "layout_height");
+        if (!height.equals("-1") && !height.equals("-2")) {
             int[] systemAttrs = new int[]{16842997};
             TypedArray a = context.obtainStyledAttributes(attrs, systemAttrs);
             this.mHeight = a.getDimensionPixelSize(0, -2);
@@ -153,7 +153,7 @@ implements ViewPager.OnPageChangeListener {
     private void obtainAttributes(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingTabLayout);
         this.mIndicatorStyle = ta.getInt(R.styleable.SlidingTabLayout_tl_indicator_style, 0);
-        this.mIndicatorColor = ta.getColor(R.styleable.SlidingTabLayout_tl_indicator_color, Color.parseColor((String)(this.mIndicatorStyle == 2 ? com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PikqHHwhJzBMJ1RF")) : com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pi4iPmgjOC5iN1RF")))));
+        this.mIndicatorColor = ta.getColor(R.styleable.SlidingTabLayout_tl_indicator_color, Color.parseColor((String)(this.mIndicatorStyle == 2 ? "#4B6A87" : "#ffffff")));
         this.mIndicatorHeight = ta.getDimension(R.styleable.SlidingTabLayout_tl_indicator_height, (float)this.dp2px(this.mIndicatorStyle == 1 ? 4.0f : (float)(this.mIndicatorStyle == 2 ? -1 : 2)));
         this.mIndicatorWidth = ta.getDimension(R.styleable.SlidingTabLayout_tl_indicator_width, (float)this.dp2px(this.mIndicatorStyle == 1 ? 10.0f : -1.0f));
         this.mIndicatorCornerRadius = ta.getDimension(R.styleable.SlidingTabLayout_tl_indicator_corner_radius, (float)this.dp2px(this.mIndicatorStyle == 2 ? -1.0f : 0.0f));
@@ -163,15 +163,15 @@ implements ViewPager.OnPageChangeListener {
         this.mIndicatorMarginBottom = ta.getDimension(R.styleable.SlidingTabLayout_tl_indicator_margin_bottom, (float)this.dp2px(this.mIndicatorStyle == 2 ? 7.0f : 0.0f));
         this.mIndicatorGravity = ta.getInt(R.styleable.SlidingTabLayout_tl_indicator_gravity, 80);
         this.mIndicatorWidthEqualTitle = ta.getBoolean(R.styleable.SlidingTabLayout_tl_indicator_width_equal_title, false);
-        this.mUnderlineColor = ta.getColor(R.styleable.SlidingTabLayout_tl_underline_color, Color.parseColor((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pi4iPmgjOC5iN1RF"))));
+        this.mUnderlineColor = ta.getColor(R.styleable.SlidingTabLayout_tl_underline_color, Color.parseColor((String)"#ffffff"));
         this.mUnderlineHeight = ta.getDimension(R.styleable.SlidingTabLayout_tl_underline_height, (float)this.dp2px(0.0f));
         this.mUnderlineGravity = ta.getInt(R.styleable.SlidingTabLayout_tl_underline_gravity, 80);
-        this.mDividerColor = ta.getColor(R.styleable.SlidingTabLayout_tl_divider_color, Color.parseColor((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pi4iPmgjOC5iN1RF"))));
+        this.mDividerColor = ta.getColor(R.styleable.SlidingTabLayout_tl_divider_color, Color.parseColor((String)"#ffffff"));
         this.mDividerWidth = ta.getDimension(R.styleable.SlidingTabLayout_tl_divider_width, (float)this.dp2px(0.0f));
         this.mDividerPadding = ta.getDimension(R.styleable.SlidingTabLayout_tl_divider_padding, (float)this.dp2px(12.0f));
         this.mTextsize = ta.getDimension(R.styleable.SlidingTabLayout_tl_textsize, (float)this.sp2px(14.0f));
-        this.mTextSelectColor = ta.getColor(R.styleable.SlidingTabLayout_tl_textSelectColor, Color.parseColor((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pi4iPmgjOC5iN1RF"))));
-        this.mTextUnselectColor = ta.getColor(R.styleable.SlidingTabLayout_tl_textUnselectColor, Color.parseColor((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Piw+EWgjOC5iNDw+"))));
+        this.mTextSelectColor = ta.getColor(R.styleable.SlidingTabLayout_tl_textSelectColor, Color.parseColor((String)"#ffffff"));
+        this.mTextUnselectColor = ta.getColor(R.styleable.SlidingTabLayout_tl_textUnselectColor, Color.parseColor((String)"#AAffffff"));
         this.mTextBold = ta.getInt(R.styleable.SlidingTabLayout_tl_textBold, 0);
         this.mTextAllCaps = ta.getBoolean(R.styleable.SlidingTabLayout_tl_textAllCaps, false);
         this.mTabSpaceEqual = ta.getBoolean(R.styleable.SlidingTabLayout_tl_tab_space_equal, false);
@@ -182,7 +182,7 @@ implements ViewPager.OnPageChangeListener {
 
     public void setViewPager(ViewPager vp) {
         if (vp == null || vp.getAdapter() == null) {
-            throw new IllegalStateException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IT4YM2w2IDdiJDAqPxdfKH42Hi9rDiARLRgmJ2E0OCRuHiQ5Iz4ACHgVLDNqIzw5Ji4LL2kwETZnHAYRO185Pw==")));
+            throw new IllegalStateException("ViewPager or ViewPager adapter can not be NULL !");
         }
         this.mViewPager = vp;
         this.mViewPager.removeOnPageChangeListener((ViewPager.OnPageChangeListener)this);
@@ -192,13 +192,13 @@ implements ViewPager.OnPageChangeListener {
 
     public void setViewPager(ViewPager vp, String[] titles) {
         if (vp == null || vp.getAdapter() == null) {
-            throw new IllegalStateException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IT4YM2w2IDdiJDAqPxdfKH42Hi9rDiARLRgmJ2E0OCRuHiQ5Iz4ACHgVLDNqIzw5Ji4LL2kwETZnHAYRO185Pw==")));
+            throw new IllegalStateException("ViewPager or ViewPager adapter can not be NULL !");
         }
         if (titles == null || titles.length == 0) {
-            throw new IllegalStateException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRgYLGoFNANLHig7KjkmDm8KAShoNysrJhYIQG4bBSN5AVRF")));
+            throw new IllegalStateException("Titles can not be EMPTY !");
         }
         if (titles.length != vp.getAdapter().getCount()) {
-            throw new IllegalStateException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRgYLGoFNANLHlE/Kj06Lmw3TSNvDjA/PQgMJ0sVFituCiA8KC4mJ3gVJCV7Diw/JAMiP2kKIDF+Nx46KQgcLHsJJFo=")));
+            throw new IllegalStateException("Titles length must be the same as the page count !");
         }
         this.mViewPager = vp;
         this.mTitles = new ArrayList();
@@ -210,10 +210,10 @@ implements ViewPager.OnPageChangeListener {
 
     public void setViewPager(ViewPager vp, String[] titles, FragmentActivity fa, ArrayList<Fragment> fragments) {
         if (vp == null) {
-            throw new IllegalStateException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IT4YM2w2IDdiJDAqPxcqOW9STSZlJC8rLS4tJGgxLBFkVyMq")));
+            throw new IllegalStateException("ViewPager can not be NULL !");
         }
         if (titles == null || titles.length == 0) {
-            throw new IllegalStateException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IRgYLGoFNANLHig7KjkmDm8KAShoNysrJhYIQG4bBSN5AVRF")));
+            throw new IllegalStateException("Titles can not be EMPTY !");
         }
         this.mViewPager = vp;
         this.mViewPager.setAdapter((PagerAdapter)new InnerPagerAdapter(fa.getSupportFragmentManager(), fragments, titles));
@@ -738,16 +738,16 @@ implements ViewPager.OnPageChangeListener {
 
     protected Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgcKWwFJCZ9JDAPLBciLmkjSFo=")), super.onSaveInstanceState());
-        bundle.putInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwY2I28gFitgNwpLLwcuVg==")), this.mCurrentTab);
+        bundle.putParcelable("instanceState", super.onSaveInstanceState());
+        bundle.putInt("mCurrentTab", this.mCurrentTab);
         return bundle;
     }
 
     protected void onRestoreInstanceState(Parcelable state) {
         if (state instanceof Bundle) {
             Bundle bundle = (Bundle)state;
-            this.mCurrentTab = bundle.getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwY2I28gFitgNwpLLwcuVg==")));
-            state = bundle.getParcelable(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAgcKWwFJCZ9JDAPLBciLmkjSFo=")));
+            this.mCurrentTab = bundle.getInt("mCurrentTab");
+            state = bundle.getParcelable("instanceState");
             if (this.mCurrentTab != 0 && this.mTabsContainer.getChildCount() > 0) {
                 this.updateTabSelection(this.mCurrentTab);
                 this.scrollToCurrentTab();

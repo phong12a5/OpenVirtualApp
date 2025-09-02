@@ -21,7 +21,7 @@ import java.util.Set;
 import sun.misc.Unsafe;
 
 public final class HiddenApiBypass {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBgYPGgFNCZlASQzJz4cKm4gAgM="));
+    private static final String TAG = "HiddenApiBypass";
     private static final Unsafe unsafe;
     private static final long artOffset;
     private static final long infoOffset;
@@ -38,7 +38,7 @@ public final class HiddenApiBypass {
             return list;
         }
         try {
-            mh = MethodHandles.lookup().unreflect(Helper.NeverCall.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LghSVg==")), new Class[0]));
+            mh = MethodHandles.lookup().unreflect(Helper.NeverCall.class.getDeclaredMethod("a", new Class[0]));
         }
         catch (IllegalAccessException | NoSuchMethodException e) {
             return list;
@@ -64,8 +64,8 @@ public final class HiddenApiBypass {
 
     public static boolean setHiddenApiExemptions(String ... signaturePrefixes) {
         List<Executable> methods = HiddenApiBypass.getDeclaredMethods(VMRuntime.class);
-        Optional<Executable> getRuntime = methods.stream().filter(it -> it.getName().equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcgNCZmHgY3KAhSVg==")))).findFirst();
-        Optional<Executable> setHiddenApiExemptions = methods.stream().filter(it -> it.getName().equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLH0FAixiHjA2JwgmMWEgFitlDjw/IxgAKmEjSFo=")))).findFirst();
+        Optional<Executable> getRuntime = methods.stream().filter(it -> it.getName().equals("getRuntime")).findFirst();
+        Optional<Executable> setHiddenApiExemptions = methods.stream().filter(it -> it.getName().equals("setHiddenApiExemptions")).findFirst();
         if (getRuntime.isPresent() && setHiddenApiExemptions.isPresent()) {
             getRuntime.get().setAccessible(true);
             try {
@@ -96,14 +96,14 @@ public final class HiddenApiBypass {
     static {
         signaturePrefixes = new HashSet<String>();
         try {
-            unsafe = (Unsafe)Unsafe.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQVBgN9Djw/")), new Class[0]).invoke(null, new Object[0]);
+            unsafe = (Unsafe)Unsafe.class.getDeclaredMethod("getUnsafe", new Class[0]).invoke(null, new Object[0]);
             assert (unsafe != null);
-            artOffset = unsafe.objectFieldOffset(Helper.MethodHandle.class.getDeclaredField(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMLGAjAitgHgoLIztXPWUzFiVrEVRF"))));
-            infoOffset = unsafe.objectFieldOffset(Helper.MethodHandleImpl.class.getDeclaredField(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcPmozSFo="))));
-            methodsOffset = unsafe.objectFieldOffset(Helper.Class.class.getDeclaredField(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwguLGUFGixhJ1RF"))));
-            memberOffset = unsafe.objectFieldOffset(Helper.HandleInfo.class.getDeclaredField(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwguDWsjNAQ="))));
-            MethodHandle mhA = MethodHandles.lookup().unreflect(Helper.NeverCall.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LghSVg==")), new Class[0]));
-            MethodHandle mhB = MethodHandles.lookup().unreflect(Helper.NeverCall.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj5SVg==")), new Class[0]));
+            artOffset = unsafe.objectFieldOffset(Helper.MethodHandle.class.getDeclaredField("artFieldOrMethod"));
+            infoOffset = unsafe.objectFieldOffset(Helper.MethodHandleImpl.class.getDeclaredField("info"));
+            methodsOffset = unsafe.objectFieldOffset(Helper.Class.class.getDeclaredField("methods"));
+            memberOffset = unsafe.objectFieldOffset(Helper.HandleInfo.class.getDeclaredField("member"));
+            MethodHandle mhA = MethodHandles.lookup().unreflect(Helper.NeverCall.class.getDeclaredMethod("a", new Class[0]));
+            MethodHandle mhB = MethodHandles.lookup().unreflect(Helper.NeverCall.class.getDeclaredMethod("b", new Class[0]));
             long aAddr = unsafe.getLong(mhA, artOffset);
             long bAddr = unsafe.getLong(mhB, artOffset);
             long aMethods = unsafe.getLong(Helper.NeverCall.class, methodsOffset);

@@ -47,7 +47,7 @@ public class IntentBuilder {
         Intent intent = new Intent();
         String serviceName = StubManifest.getStubServiceName(vpid);
         intent.setClassName(StubManifest.getStubPackageName(isExt), serviceName);
-        intent.setType(String.format(Locale.ENGLISH, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4YCGgIGgNiASwuKQcqPWMJGixhIygvIDouD2RTLDY=")), Process.myPid(), sServiceBindCounter.getAndIncrement(), serviceInfo.packageName, serviceInfo.name));
+        intent.setType(String.format(Locale.ENGLISH, "bind_service_%d_%d_%s|%s", Process.myPid(), sServiceBindCounter.getAndIncrement(), serviceInfo.packageName, serviceInfo.name));
         ServiceData.ServiceBindData data = new ServiceData.ServiceBindData(new ComponentName(serviceInfo.packageName, serviceInfo.name), serviceInfo, service, flags, userId, connection);
         data.saveToIntent(intent);
         return intent;

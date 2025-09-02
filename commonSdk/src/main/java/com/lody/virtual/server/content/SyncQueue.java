@@ -22,7 +22,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class SyncQueue {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg=="));
+    private static final String TAG = "SyncManager";
     private final SyncStorageEngine mSyncStorageEngine;
     private final SyncAdaptersCache mSyncAdapters;
     private final HashMap<String, SyncOperation> mOperationsMap = new HashMap();
@@ -38,7 +38,7 @@ public class SyncQueue {
             Pair<Long, Long> backoff = this.mSyncStorageEngine.getBackoff(op.account, op.userId, op.authority);
             SyncAdaptersCache.SyncAdapterInfo syncAdapterInfo = this.mSyncAdapters.getServiceInfo(op.account, op.authority);
             if (syncAdapterInfo == null) {
-                Log.w((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OwgYKW8zAiZiICQpLQcYP34zQSxoDjw/LhcLJGMKRSFsICAvKQdeJGgKNCBlAQYbJQgMCnkVSFo=")) + op.authority + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186I28zNARrDg08")) + op.userId));
+                Log.w((String)TAG, (String)("Missing sync adapter info for authority " + op.authority + ", userId " + op.userId));
                 continue;
             }
             SyncOperation syncOperation = new SyncOperation(op.account, op.userId, op.reason, op.syncSource, op.authority, op.extras, 0L, 0L, backoff != null ? (Long)backoff.first : 0L, this.mSyncStorageEngine.getDelayUntilTime(op.account, op.userId, op.authority), syncAdapterInfo.type.allowParallelSyncs());
@@ -70,7 +70,7 @@ public class SyncQueue {
         if (operation.pendingOperation == null) {
             pop = new SyncStorageEngine.PendingOperation(operation.account, operation.userId, operation.reason, operation.syncSource, operation.authority, operation.extras, operation.expedited);
             if ((pop = this.mSyncStorageEngine.insertIntoPending(pop)) == null) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQcMKmowESh9DgowKQcYM34wTStlNywaLC4lJGEjGilpICAeLD4ACGgKMAVqNx03")) + operation);
+                throw new IllegalStateException("error adding pending sync operation " + operation);
             }
             operation.pendingOperation = pop;
         }
@@ -95,7 +95,7 @@ public class SyncQueue {
             return;
         }
         if (!this.mSyncStorageEngine.deleteFromPending(operationToRemove.pendingOperation)) {
-            String errorMessage = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcP2sjHitLEQo1Pxc+MW8VAShsESgbLggYKmIkODVsJz8pLxguCHgVSFo=")) + operationToRemove;
+            String errorMessage = "unable to find pending row for " + operationToRemove;
             Log.e((String)TAG, (String)errorMessage, (Throwable)new IllegalStateException(errorMessage));
         }
     }
@@ -124,7 +124,7 @@ public class SyncQueue {
             if (account != null && !syncOperation.account.equals((Object)account) || authority != null && !syncOperation.authority.equals(authority) || userId != syncOperation.userId) continue;
             entries.remove();
             if (this.mSyncStorageEngine.deleteFromPending(syncOperation.pendingOperation)) continue;
-            String errorMessage = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcP2sjHitLEQo1Pxc+MW8VAShsESgbLggYKmIkODVsJz8pLxguCHgVSFo=")) + syncOperation;
+            String errorMessage = "unable to find pending row for " + syncOperation;
             Log.e((String)TAG, (String)errorMessage, (Throwable)new IllegalStateException(errorMessage));
         }
     }

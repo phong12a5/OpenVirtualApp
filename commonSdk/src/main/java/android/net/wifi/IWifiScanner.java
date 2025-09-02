@@ -30,12 +30,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IWifiScanner {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10NCgZeHgYIGks7IQwINiAADhweDB0=");
+        private static final String DESCRIPTOR = "android.net.wifi.IWifiScanner";
         static final int TRANSACTION_getMessenger = 1;
         static final int TRANSACTION_getAvailableChannels = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10NCgZeHgYIGks7IQwINiAADhweDB0="));
+            this.attachInterface(this, "android.net.wifi.IWifiScanner");
         }
 
         public static IWifiScanner asInterface(IBinder obj) {
@@ -91,7 +91,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IWifiScanner impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -118,7 +118,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10NCgZeHgYIGks7IQwINiAADhweDB0=");
+                return "android.net.wifi.IWifiScanner";
             }
 
             /*
@@ -130,7 +130,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10NCgZeHgYIGks7IQwINiAADhweDB0="));
+                    _data.writeInterfaceToken("android.net.wifi.IWifiScanner");
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         Messenger messenger = Stub.getDefaultImpl().getMessenger();
@@ -155,7 +155,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10NCgZeHgYIGks7IQwINiAADhweDB0="));
+                    _data.writeInterfaceToken("android.net.wifi.IWifiScanner");
                     _data.writeInt(band);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {

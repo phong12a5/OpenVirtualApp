@@ -19,13 +19,13 @@ import java.nio.ByteOrder;
 import java.nio.charset.Charset;
 
 public class ImageHeaderParser {
-    private static final String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgIP2gzNApiDiAwKAguDG4gRQNrDgpF"));
+    private static final String TAG = "ImageHeaderParser";
     public static final int UNKNOWN_ORIENTATION = -1;
     private static final int EXIF_MAGIC_NUMBER = 65496;
     private static final int MOTOROLA_TIFF_MAGIC_NUMBER = 19789;
     private static final int INTEL_TIFF_MAGIC_NUMBER = 18761;
-    private static final String JPEG_EXIF_SEGMENT_PREAMBLE = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JQdfCWglIxI="));
-    private static final byte[] JPEG_EXIF_SEGMENT_PREAMBLE_BYTES = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JQdfCWglIxI=")).getBytes(Charset.forName(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQUqW3pTRVo="))));
+    private static final String JPEG_EXIF_SEGMENT_PREAMBLE = "Exif";
+    private static final byte[] JPEG_EXIF_SEGMENT_PREAMBLE_BYTES = "Exif".getBytes(Charset.forName("UTF-8"));
     private static final int SEGMENT_SOS = 218;
     private static final int MARKER_EOI = 217;
     private static final int SEGMENT_START_ID = 255;
@@ -42,14 +42,14 @@ public class ImageHeaderParser {
         int magicNumber = this.reader.getUInt16();
         if (!ImageHeaderParser.handles(magicNumber)) {
             if (Log.isLoggable((String)TAG, (int)3)) {
-                Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ihg+Km8zNARLHgo1KAgqDnkKAShqETgbLggEJ0saQSRuJBosOD4qCWUFFj9vIFA3")) + magicNumber));
+                Log.d((String)TAG, (String)("Parser doesn't handle magic number: " + magicNumber));
             }
             return -1;
         }
         int exifSegmentLength = this.moveToExifSegmentAndGetLength();
         if (exifSegmentLength == -1) {
             if (Log.isLoggable((String)TAG, (int)3)) {
-                Log.d((String)TAG, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JT4+CWoFNCxLEQo1PxgmOWoaAit4ESgzIxghJGEgLCJsDgodIzpXKGsFBjFsAVg7DRcYOXkaFi5sJwU3Ki4uPWoVNCZmVyQ2Ki41OmkVNAVlNyxF")));
+                Log.d((String)TAG, (String)"Failed to parse exif segment length, or exif segment not found");
             }
             return -1;
         }
@@ -61,7 +61,7 @@ public class ImageHeaderParser {
         int read = this.reader.read(tempArray, exifSegmentLength);
         if (read != exifSegmentLength) {
             if (Log.isLoggable((String)TAG, (int)3)) {
-                Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQgcP2sjHitLEQo1PxguPW4jAShrDlkaLio6D2IKJChuDh49OD4cO28VJwJ7AQI0Jj0+M29SHTY=")) + exifSegmentLength + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186P2swMAV9DlEoLQMmKGkjQSx+MzxF")) + read));
+                Log.d((String)TAG, (String)("Unable to read exif segment data, length: " + exifSegmentLength + ", actually read: " + read));
             }
             return -1;
         }
@@ -70,7 +70,7 @@ public class ImageHeaderParser {
             return ImageHeaderParser.parseExifSegment(new RandomAccessReader(tempArray, exifSegmentLength));
         }
         if (Log.isLoggable((String)TAG, (int)3)) {
-            Log.d((String)TAG, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwgYKW8zAiZiICQyIxcMM34zGjBqAScrKQcMJ30KQSVsHgpF")));
+            Log.d((String)TAG, (String)"Missing jpeg exif preamble");
         }
         return -1;
     }
@@ -97,7 +97,7 @@ public class ImageHeaderParser {
                 short segmentId;
                 if ((segmentId = this.reader.getUInt8()) != 255) {
                     if (Log.isLoggable((String)TAG, (int)3)) {
-                        Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQgcMWojGj1gMCQpKAc6D2kjMAZiAS8o")) + segmentId));
+                        Log.d((String)TAG, (String)("Unknown segmentId=" + segmentId));
                     }
                     return -1;
                 }
@@ -107,7 +107,7 @@ public class ImageHeaderParser {
                 }
                 if (segmentType == 217) {
                     if (Log.isLoggable((String)TAG, (int)3)) {
-                        Log.d((String)TAG, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JT4AI2ojMyhoDCAAISsMAmMLGg9iDTwaLCo6J2caGiF5ESwuLwgmJ2UwMFo=")));
+                        Log.d((String)TAG, (String)"Found MARKER_EOI in exif segment");
                     }
                     return -1;
                 }
@@ -115,7 +115,7 @@ public class ImageHeaderParser {
                 if (segmentType == 225) break block7;
             } while ((skipped = this.reader.skip(segmentLength)) == (long)segmentLength);
             if (Log.isLoggable((String)TAG, (int)3)) {
-                Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQgcP2sjHitLEQo1PxgqCWwgTChrARocKhgmLEsaFiRqHicbOD0cM2wVNy57AVRF")) + segmentType + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186LWsVBgZiDg08LBdeOmoFJC9sV1Ar")) + segmentLength + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("M186OmwaMyh9DiggLAciCG8wLyhsJ10aKQc6J2JSGSM=")) + skipped));
+                Log.d((String)TAG, (String)("Unable to skip enough data, type: " + segmentType + ", wanted to skip: " + segmentLength + ", but actually skipped: " + skipped));
             }
             return -1;
         }
@@ -132,7 +132,7 @@ public class ImageHeaderParser {
             byteOrder = ByteOrder.LITTLE_ENDIAN;
         } else {
             if (Log.isLoggable((String)TAG, (int)3)) {
-                Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQgcMWojGj1gMCQ/Kj02MW4jMCZrDjA6PQMHJA==")) + byteOrderIdentifier));
+                Log.d((String)TAG, (String)("Unknown endianness = " + byteOrderIdentifier));
             }
             byteOrder = ByteOrder.BIG_ENDIAN;
         }
@@ -147,32 +147,32 @@ public class ImageHeaderParser {
             short formatCode = segmentData.getInt16(tagOffset + 2);
             if (formatCode < 1 || formatCode > 12) {
                 if (!Log.isLoggable((String)TAG, (int)3)) continue;
-                Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JS4ALHsFAiZmNCAoKQc1OmkVNARlATg/PQg2KWIaLyN4CiBF")) + formatCode));
+                Log.d((String)TAG, (String)("Got invalid format code = " + formatCode));
                 continue;
             }
             int componentCount = segmentData.getInt32(tagOffset + 4);
             if (componentCount < 0) {
                 if (!Log.isLoggable((String)TAG, (int)3)) continue;
-                Log.d((String)TAG, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oz4uPWsaMC9mNDM8LBccPGlSTSllJw47LD4cJ2AzESNpJFk+KRccVg==")));
+                Log.d((String)TAG, (String)"Negative tiff component count");
                 continue;
             }
             if (Log.isLoggable((String)TAG, (int)3)) {
-                Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JS4ALHsKMDdiIgY2KBcMInsjSFo=")) + i + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhcqP2g2MD9hHjMd")) + tagType + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhgiD28jEjdmHCg1KBcLJQ==")) + formatCode + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Phg2D2oaICVgNDA2LBUqDWUjMAZ5AVRF")) + componentCount));
+                Log.d((String)TAG, (String)("Got tagIndex=" + i + " tagType=" + tagType + " formatCode=" + formatCode + " componentCount=" + componentCount));
             }
             if ((byteCount = componentCount + BYTES_PER_FORMAT[formatCode]) > 4) {
                 if (!Log.isLoggable((String)TAG, (int)3)) continue;
-                Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JS4ALHsFFj9mHjM8Ly1fLW8aASh5Mz8/PAQ6KmAjESNsJygiLy4qCmgKMAVqNx07DRcuJmwzLD1vHgYwIz4lDnsFOCVhNF07LBUqDWkzBTM=")) + formatCode));
+                Log.d((String)TAG, (String)("Got byte count > 4, not orientation, continuing, formatCode=" + formatCode));
                 continue;
             }
             int tagValueOffset = tagOffset + 8;
             if (tagValueOffset < 0 || tagValueOffset > segmentData.length()) {
                 if (!Log.isLoggable((String)TAG, (int)3)) continue;
-                Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgEDmgVPDdgVyQgLwc6Bm4jOAVrDwYtLi02J2ZSQVo=")) + tagValueOffset + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhcqP2g2MD9hHjMd")) + tagType));
+                Log.d((String)TAG, (String)("Illegal tagValueOffset=" + tagValueOffset + " tagType=" + tagType));
                 continue;
             }
             if (byteCount < 0 || tagValueOffset + byteCount > segmentData.length()) {
                 if (!Log.isLoggable((String)TAG, (int)3)) continue;
-                Log.d((String)TAG, (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgEDmgVPDdgVyQ2LAdXOGkgRChlJycrLS0YCmIFNyNuNFk7ODscBXgaMDNoMzwzOwgMKHkVLDVpDBogKhgtOw==")) + tagType));
+                Log.d((String)TAG, (String)("Illegal number of bytes for TI tag data tagType=" + tagType));
                 continue;
             }
             return segmentData.getInt16(tagValueOffset);
@@ -189,7 +189,7 @@ public class ImageHeaderParser {
     }
 
     public static void copyExif(ExifInterface originalExif, int width, int height, String imageOutputPath) {
-        String[] attributes = new String[]{com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JTwcI2oVFithN1RF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRg+LGgYMC9gDjBF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRg+LGgYMC9gDjAWKQc6MWUzLDJrASxF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JQdfKGowLAVhNDBLKQdXPQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JT4EP28zRVo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JT4AOWsVHg5iDlk9LBcAVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSs6A2MVHgZjAQovKBcMVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSs6A2MVHgZjAQovKBcMAmkjHlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSs6A2AFJAZiDyggLwdXKg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSs6A2IFJAZjAQovKBcMVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSs6A2IFJAZjAQovKBcMAmkjHlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSs6A2IFGiZiJAYgLAc2PQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSs6A2IFGiZiJAYgLAc2PWIVGi4=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSs6A2cKFiV9JDApIy0cDmkLPCtvEVkcLghSVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JSs6A2QFAiNiDyggLwdXKg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAU2UmcwICtiDgoALwg2MW8VEgM=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Owg+MWgVSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwgAPGgVHlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii0uOmczNCluHgY3KAhSVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii0uOmczNCluHgY3KAU2MWkFLAZqDlEgLghSVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ii0uOmczNCluHgY3KAVfKGwjEi9lNzgd")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IS5fCWwFNBR9DlE7Kj0qPQ=="))};
+        String[] attributes = new String[]{"FNumber", "DateTime", "DateTimeDigitized", "ExposureTime", "Flash", "FocalLength", "GPSAltitude", "GPSAltitudeRef", "GPSDateStamp", "GPSLatitude", "GPSLatitudeRef", "GPSLongitude", "GPSLongitudeRef", "GPSProcessingMethod", "GPSTimeStamp", "ISOSpeedRatings", "Make", "Model", "SubSecTime", "SubSecTimeDigitized", "SubSecTimeOriginal", "WhiteBalance"};
         try {
             ExifInterface newExif = new ExifInterface(imageOutputPath);
             for (String attribute : attributes) {
@@ -197,9 +197,9 @@ public class ImageHeaderParser {
                 if (TextUtils.isEmpty((CharSequence)value)) continue;
                 newExif.setAttribute(attribute, value);
             }
-            newExif.setAttribute(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgIP2gzNFJjDgogKRhSVg==")), String.valueOf(width));
-            newExif.setAttribute(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgIP2gzNA5iDlk9LBcAVg==")), String.valueOf(height));
-            newExif.setAttribute(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oy0MCWgVBgZ9AQozKi0YVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OhhSVg==")));
+            newExif.setAttribute("ImageWidth", String.valueOf(width));
+            newExif.setAttribute("ImageLength", String.valueOf(height));
+            newExif.setAttribute("Orientation", "0");
             newExif.saveAttributes();
         }
         catch (IOException e) {

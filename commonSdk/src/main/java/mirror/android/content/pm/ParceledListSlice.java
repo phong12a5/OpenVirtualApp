@@ -29,7 +29,7 @@ public class ParceledListSlice {
     public static RefMethod<List<?>> getList;
 
     static {
-        TYPE = RefClass.load(ParceledListSlice.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPLRAGAxcUJQYdBzYeHwYL"));
+        TYPE = RefClass.load(ParceledListSlice.class, "android.content.pm.ParceledListSlice");
     }
 }
 

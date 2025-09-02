@@ -101,7 +101,7 @@ extends TransformImageView {
     }
 
     public void setTargetAspectRatio(float targetAspectRatio) {
-        Log.i((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IT4YKmwKNDdgHCAsIxhSVg==")), (String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4uLGQFJARiJDAgJwgqKmkjAgZkNzg/IxgfJA==")) + targetAspectRatio));
+        Log.i((String)"VirtualApp", (String)("setTargetAspectRatio " + targetAspectRatio));
         Drawable drawable2 = this.getDrawable();
         if (drawable2 == null) {
             this.mTargetAspectRatio = targetAspectRatio;
@@ -132,7 +132,7 @@ extends TransformImageView {
 
     public void setImageToWrapCropBoundsAnimDuration(@IntRange(from=100L) long imageToWrapCropBoundsAnimDuration) {
         if (imageToWrapCropBoundsAnimDuration <= 0L) {
-            throw new IllegalArgumentException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JggcCWoVJAZjDh42Pxc2LWoVQQZqAQYbPQg2O2AwRSpqVyArLypXKmsFPDNsAR4hJAMiPWkKQSFpIyxF")));
+            throw new IllegalArgumentException("Animation duration cannot be negative value.");
         }
         this.mImageToWrapCropBoundsAnimDuration = imageToWrapCropBoundsAnimDuration;
     }

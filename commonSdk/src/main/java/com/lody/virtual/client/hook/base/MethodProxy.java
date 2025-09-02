@@ -183,7 +183,7 @@ public abstract class MethodProxy {
     }
 
     public String toString() {
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OwguLGUFGixLVgU8")) + this.getMethodName();
+        return "Method : " + this.getMethodName();
     }
 
     public long getIntOrLongValue(Object obj) {

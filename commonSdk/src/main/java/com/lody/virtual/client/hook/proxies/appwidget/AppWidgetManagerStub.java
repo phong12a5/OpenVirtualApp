@@ -16,36 +16,36 @@ import mirror.com.android.internal.appwidget.IAppWidgetService;
 public class AppWidgetManagerStub
 extends BinderInvocationProxy {
     public AppWidgetManagerStub() {
-        super(IAppWidgetService.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KGwzAixiJDAg")));
+        super(IAppWidgetService.Stub.asInterface, "appwidget");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMA5jASggKAcYMW8VElo=")), new int[0]));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qD28LHi9hJwo/Kj0cDmkFSFo=")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggEDmozLDdmHjARIxgmBWwjBi1rDixPLghSVg==")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguDmgaMCtlASQsJC0cPmkFGgZiASxF")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguDmgaMCtrHh4pLBhSVg==")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguDmgaMCtlDlEoIRdfL2UwAlo=")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJuJAYwKC0MLn0VLCtvJDBF")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJuJAYwKC0MLmQjBgNjNwY5OwgAD2YVSFo=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtlASQsJC0cPmkFGgZgJwYbLi4YIWsKRT9uDh49JAgAKmsVNCY=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtlASQsJC0cPmkFGgZiASw6")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtlASQsJC0cPmkFGgZ9JDw/IxgAKmEjSFo=")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJuJAYwKC0MLmcKTQZqAQYbKT5SVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+KmwFAjdgHlEZJAgmPm4gBitgDjw7Ij4YIGIgLD9nDjA8")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtlASQsJC0cPmkFGgZkHgocKi4YIGIFMFo=")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOD9lASQsJC0cPmkFGgZnNx4gKjwqO2YaPABvHiQdLwgAIA==")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLH0VBgNmHiAoKhcMPmIwRSVvNx4vLhcMD2owAjV9ESgeLxg2KGsFSFo=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJuJAYwKC0MLmQjMC5lJ1RF")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+KWMjAiZiHCAsIxY6MWkzEitvHDwgKS4II2EjNCxsJB5F")), false));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMjAiZiHCAsIxY6MWkzEitvHDwgKS4II2EjNCxsJB5F")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4YCGgLJAJhHzgzKBc6PWUxLCw=")), false));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4YCGgIFitgDh4gKAY+MWkgEgNkJyg5Ki4YJWIFSFo=")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcOmUVBixpNDA3Ki42PX0VLCtvJDAQLhcMMmMKNCA=")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJuJAYwKC0MLmQjBgM=")), new int[0]));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2HGowNCZiHzgzKBc6PWU2TTdoJ10sLj4uVg==")), false));
+        this.addMethodProxy(new ResultStaticMethodProxy("startListening", new int[0]));
+        this.addMethodProxy(new ResultStaticMethodProxy("stopListening", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("allocateAppWidgetId", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("deleteAppWidgetId", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("deleteHost", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("deleteAllHosts", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("getAppWidgetViews", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getAppWidgetIdsForHost", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("createAppWidgetConfigIntentSender", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("updateAppWidgetIds", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("updateAppWidgetOptions", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("getAppWidgetOptions", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("partiallyUpdateAppWidgetIds", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("updateAppWidgetProvider", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("notifyAppWidgetViewDataChanged", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("getInstalledProvidersForProfile", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getAppWidgetInfo", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("hasBindAppWidgetPermission", false));
+        this.addMethodProxy(new ResultStaticMethodProxy("setBindAppWidgetPermission", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("bindAppWidgetId", false));
+        this.addMethodProxy(new ResultStaticMethodProxy("bindRemoteViewsService", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("unbindRemoteViewsService", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("getAppWidgetIds", new int[0]));
+        this.addMethodProxy(new ResultStaticMethodProxy("isBoundWidgetPackage", false));
     }
 }
 

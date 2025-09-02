@@ -75,7 +75,7 @@ public class BackGroudSeletor {
     public static Bitmap getBitmap(String imagename, Context context) {
         Bitmap bitmap = null;
         try {
-            String imagePath = StringFog.decrypt("GggTEQBB") + imagename + StringFog.decrypt("XRUcEQ==");
+            String imagePath = "image/" + imagename + ".png";
             bitmap = BitmapFactory.decodeStream((InputStream)context.getAssets().open(imagePath));
         }
         catch (IOException e) {
@@ -92,7 +92,7 @@ public class BackGroudSeletor {
         Bitmap bitmap = null;
         try {
             BitmapDrawable bitmapDrawable;
-            String imagePath = StringFog.decrypt("GggTEQBB") + imagename + StringFog.decrypt("XRUcEQ==");
+            String imagePath = "image/" + imagename + ".png";
             bitmap = BitmapFactory.decodeStream((InputStream)context.getAssets().open(imagePath));
             drawable2 = bitmapDrawable = new BitmapDrawable(bitmap);
         }
@@ -107,7 +107,7 @@ public class BackGroudSeletor {
 
     public static NinePatchDrawable get9png(String imagename, Context context) {
         try {
-            Bitmap toast_bitmap = BitmapFactory.decodeStream((InputStream)context.getAssets().open(StringFog.decrypt("GggTEQBB") + imagename + StringFog.decrypt("XVxcBgsJ")));
+            Bitmap toast_bitmap = BitmapFactory.decodeStream((InputStream)context.getAssets().open("image/" + imagename + ".9.png"));
             byte[] temp = toast_bitmap.getNinePatchChunk();
             boolean is_nine = NinePatch.isNinePatchChunk((byte[])temp);
             if (is_nine) {

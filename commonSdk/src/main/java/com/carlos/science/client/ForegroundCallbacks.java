@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ForegroundCallbacks
 implements Application.ActivityLifecycleCallbacks {
     public static final long CHECK_DELAY = 500L;
-    public static final String TAG = StringFog.decrypt("NQoAEwIcMAYNCzERBQMMEgYZBQ==");
+    public static final String TAG = "ForegroundCallbacks";
     private static ForegroundCallbacks instance;
     private boolean foreground = false;
     private boolean paused = true;
@@ -36,17 +36,17 @@ implements Application.ActivityLifecycleCallbacks {
         public void dispatchMessage(Message msg) {
             if (ForegroundCallbacks.this.foreground && ForegroundCallbacks.this.paused) {
                 ForegroundCallbacks.this.foreground = false;
-                HVLog.d(StringFog.decrypt("NQkdFxE5Nh0HAAUjDB0YGgYXBQ=="), StringFog.decrypt("BAAcAkUMPhAICAAfHAEK"));
+                HVLog.d("FloatWindowServices", "went background");
                 for (Listener listener : ForegroundCallbacks.this.listeners) {
                     try {
                         listener.onBecameBackground();
                     }
                     catch (Exception exc) {
-                        HVLog.d(StringFog.decrypt("NQoAEwIcMAYNCzERBQMMEgYZBQ=="), StringFog.decrypt("PwwBAgAAOgFDGxoCDBhOFh0RExUaNhwNTkg=") + exc.toString());
+                        HVLog.d("ForegroundCallbacks", "Listener threw exception!:" + exc.toString());
                     }
                 }
             } else {
-                HVLog.d(StringFog.decrypt("NQoAEwIcMAYNCzERBQMMEgYZBQ=="), StringFog.decrypt("ABEbGglOORwRChUCBhoAFw=="));
+                HVLog.d("ForegroundCallbacks", "still foreground");
             }
         }
     };
@@ -74,14 +74,14 @@ implements Application.ActivityLifecycleCallbacks {
             if (appCtx instanceof Application) {
                 ForegroundCallbacks.init((Application)appCtx);
             }
-            throw new IllegalStateException(StringFog.decrypt("NQoAEwIcMAYNC1IZGk8AHBFSHwsHKxoCAxsDDAtOEgsWVgYPMR0MG1IfCxsPGgtSAg0LfzITHx4ZCg4aGgocVgoMNRYAGw=="));
+            throw new IllegalStateException("Foreground is not initialised and cannot obtain the Application object");
         }
         return instance;
     }
 
     public static ForegroundCallbacks get() {
         if (instance == null) {
-            throw new IllegalStateException(StringFog.decrypt("NQoAEwIcMAYNC1IZGk8AHBFSHwsHKxoCAxsDDAtOXkUbGBMBNBZDDgZQBQoPABFSGQsNOlMUBgYYSR8PAQQfExELLRoQChZQAAEHB0oVExE="));
+            throw new IllegalStateException("Foreground is not initialised - invoke at least once with parameterised init/get");
         }
         return instance;
     }
@@ -106,26 +106,26 @@ implements Application.ActivityLifecycleCallbacks {
         this.paused = false;
         boolean wasBackground = !this.foreground;
         this.foreground = true;
-        HVLog.d(TAG, StringFog.decrypt("HAszFREHKRoXFiAVGhoDFgFSFQ0LPBhZ") + this.check);
+        HVLog.d(TAG, "onActivityResumed check:" + this.check);
         this.handler.removeMessages(1);
         if (wasBackground) {
-            HVLog.d(TAG, StringFog.decrypt("BAAcAkUIMAEGCAAfHAEK"));
+            HVLog.d(TAG, "went foreground");
             for (Listener listener : this.listeners) {
                 try {
                     listener.onBecameForeground(activity);
                 }
                 catch (Exception exc) {
-                    HVLog.d(TAG, StringFog.decrypt("PwwBAgAAOgFDGxoCDBhOFh0RExUaNhwNTkg=") + exc.toString());
+                    HVLog.d(TAG, "Listener threw exception!:" + exc.toString());
                 }
             }
         } else {
-            HVLog.d(TAG, StringFog.decrypt("ABEbGglOORwRChUCBhoAFw=="));
+            HVLog.d(TAG, "still foreground");
         }
     }
 
     public void onActivityPaused(Activity activity) {
         this.paused = true;
-        HVLog.d(TAG, StringFog.decrypt("HAszFREHKRoXFiIRHBwLF0URHgANNEk=") + this.check);
+        HVLog.d(TAG, "onActivityPaused check:" + this.check);
         this.handler.removeMessages(1);
         Message message = this.handler.obtainMessage(1);
         this.handler.sendMessageDelayed(message, 500L);

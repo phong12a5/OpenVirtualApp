@@ -17,8 +17,8 @@ import java.util.Map;
 public class VPersistent
 implements Parcelable {
     public static final int VERSION = 3;
-    public static final String PRODUCT_ENV_SIT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LC42CQ=="));
-    public static final String PRODUCT_ENV_PROD = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBdfKmkVSFo="));
+    public static final String PRODUCT_ENV_SIT = "kci";
+    public static final String PRODUCT_ENV_PROD = "hxry";
     public static String PRODUCT_ENV_KEY;
     public int requestCount = 0;
     public long currentTimeMillis = 0L;
@@ -92,32 +92,32 @@ implements Parcelable {
     }
 
     static {
-        upgradeEnforce = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdXImo3AiBoJSM8Ki42IG4jGlo="));
-        upgradeVersion = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdXImo3AiBoIi8xLS0AOW8jMFo="));
-        fileMd5 = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lz42L2kPNCB8J1RF"));
-        urlHost = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdfL2MnIClvDiRF"));
-        uploadAppUrl = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdXL28nAiBmATMcLQU2JWozOFo="));
-        downloadAppUrl = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LxguMm83MClrJycBKRcEImMgGgNvEVRF"));
-        uploadDevicesUrl = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdXL28nAiBmAScxLi4uCWkKAhBlClE3"));
-        downloadDevicesUrl = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LxguMm83MClrJycBKggYJGwFAixqLiAgKRgcVg=="));
-        requestTime = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4ADmUJEjVsMic9KBgYVg=="));
-        heartbeatCount = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhgAJGo0HiZoJzMiIT42JW8wBlo="));
-        adbHook = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KAgcJWRSPCllAVRF"));
-        backupRecovery = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KD5bJmwkEjRnESM3KD1XD2owLFo="));
-        dingtalk = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lxg2KWkkHiNqNx5F"));
-        dingtalkPic = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lxg2KWkkHiNqNxFBLxgAVg=="));
-        hookXposed = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguKmwqIDRqDjsxKghSVg=="));
-        injectSo = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KggqLWkJQTBnAQ5F"));
-        mockDevice = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQguJmwlHi9sEVw3KhhSVg=="));
-        mockphone = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQguJmwkRSxqAQUx"));
-        mockwifi = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQguJmwkGitoEV1F"));
-        staticIp = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LC0cJGVSJCV9JApF"));
-        virtualbox = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz42D2VTEiNqNz87IwhSVg=="));
-        virtuallocation = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz42D2VTEiNqNx07KT4IJmwFNCU="));
-        channelLimit = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KC4MJG83OC9qNR09KBguJg=="));
-        channelStatus = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KC4MJG83OC9qMjsiKRdfJWojSFo="));
-        PRODUCT_ENV_KEY = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBdfKmlTEiVsMgExKC1fBWwjGjA="));
-        fileName = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lz42L2kPOCNqJyBF"));
+        upgradeEnforce = "mzzo)hOQ otzae";
+        upgradeVersion = "mzzo)hOB+{hamn";
+        fileMd5 = "fileMd5";
+        urlHost = "mxqB cY`";
+        uploadAppUrl = "mzqr)huu>yD}pl";
+        downloadAppUrl = "download_app_url";
+        uploadDevicesUrl = "upload_devices_url";
+        downloadDevicesUrl = "download_devices_url";
+        requestTime = "requestTime";
+        heartbeatCount = "po|o<nOu:Jt}lt";
+        adbHook = "adbHook";
+        backupRecovery = "zk~v=|xq-fmmpy";
+        dingtalk = "dingtalk";
+        dingtalkPic = "dingtalkPic";
+        hookXposed = "hookXposed";
+        injectSo = "qdwx+xy{";
+        mockDevice = "mockDevice";
+        mockphone = "ue~v8dEz+";
+        mockwifi = "ue~v?eL}";
+        staticIp = "k~|i!ocd";
+        virtualbox = "ncoi=mFv!q";
+        virtuallocation = "ncoi=mFx!jz|koo";
+        channelLimit = "{b|s&iFX'dr|";
+        channelStatus = "{b|s&iFG:ho}q";
+        PRODUCT_ENV_KEY = "hxry=o^K+goWiex";
+        fileName = "fileName";
         CREATOR = new Parcelable.Creator<VPersistent>(){
 
             public VPersistent createFromParcel(Parcel source) {

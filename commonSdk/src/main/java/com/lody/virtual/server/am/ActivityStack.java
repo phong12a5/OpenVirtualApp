@@ -58,7 +58,7 @@ import mirror.android.app.IActivityManager;
 import mirror.com.android.internal.R_Hide;
 
 class ActivityStack {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgg2LGUaOC9mEQYPLBciP2wFSFo="));
+    private static final String TAG = "ActivityStack";
     private static final boolean sTrace = true;
     private final VActivityManagerService mService;
     private final Set<ActivityRecord> mPendingLaunchActivities = Collections.synchronizedSet(new HashSet());
@@ -67,7 +67,7 @@ class ActivityStack {
 
     ActivityStack(VActivityManagerService mService) {
         this.mService = mService;
-        this.mAM = (ActivityManager)VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+        this.mAM = (ActivityManager)VirtualCore.get().getContext().getSystemService("activity");
     }
 
     private static void removeFlags(Intent intent, int flags) {
@@ -91,7 +91,7 @@ class ActivityStack {
         if (launchRecord == null) {
             return;
         }
-        String string2 = creator = sourceRecord != null ? sourceRecord.component.getPackageName() : StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iEVRF"));
+        String string2 = creator = sourceRecord != null ? sourceRecord.component.getPackageName() : "android";
         if (launchRecord.started && launchRecord.process != null && launchRecord.process.client != null) {
             try {
                 launchRecord.process.client.scheduleNewIntent(creator, launchRecord.token, intent);
@@ -192,95 +192,95 @@ class ActivityStack {
     private static String launchModeToString(int launchMode) {
         switch (launchMode) {
             case 0: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2ojMDdhNApF"));
+                return "standard";
             }
             case 1: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4YCGgzHituHh4s"));
+                return "singleTop";
             }
             case 2: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4YCGgzHituHiApKS5SVg=="));
+                return "singleTask";
             }
             case 3: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4YCGgzHitrDlkpLBciDm4FGlo="));
+                return "singleInstance";
             }
         }
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcMWojGj1gN1RF"));
+        return "unknown";
     }
 
     private static String documentLaunchModeToString(int launchMode) {
         switch (launchMode) {
             case 2: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggELWsaAgM="));
+                return "always";
             }
             case 1: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcLGoxNDBjASggKQcYMw=="));
+                return "intoExisting";
             }
             case 3: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4uLmgaFlo="));
+                return "never";
             }
             case 0: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ACGgVSFo="));
+                return "none";
             }
         }
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcMWojGj1gN1RF"));
+        return "unknown";
     }
 
     private static String componentInfoToString(ComponentInfo info) {
-        return info.packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + info.name;
+        return info.packageName + "/" + info.name;
     }
 
     private static String activityInfoFlagsToString(int flags) {
         StringBuilder sb = new StringBuilder();
         if (ActivityStack.containFlags(flags, 1)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2Gg1uDFFLIQYmAmcLAhVkIjMrKAQ6Vg==")));
+            sb.append("FLAG_MULTIPROCESS | ");
             flags = ActivityStack.removeFlags(flags, 1);
         }
         if (ActivityStack.containFlags(flags, 0x100000)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GlNrDygJJztbWmMIBg9hJR5AITsqHWgxFl9hDyAfOD0hJA==")));
+            sb.append("FLAG_VISIBLE_TO_INSTANT_APP | ");
             flags = ActivityStack.removeFlags(flags, 0x100000);
         }
         if (ActivityStack.containFlags(flags, 2)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GghrDFkJOysAHWcLMB9nHzgQOzsAAmULLBNhIhkpLTpXVg==")));
+            sb.append("FLAG_FINISH_ON_TASK_LAUNCH | ");
             flags = ActivityStack.removeFlags(flags, 2);
         }
         if (ActivityStack.containFlags(flags, 4)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhNoHDAROzxfAGYmAgthJQZAIDwEHW4IRQBnVyA1OD5SVg==")));
+            sb.append("FLAG_CLEAR_TASK_ON_LAUNCH | ");
             flags = ActivityStack.removeFlags(flags, 4);
         }
         if (ActivityStack.containFlags(flags, 8)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFoHzgRJQYqHWIbGlFgDx5AIDsqHWkmEl99JTAAOzwfJGlSIFo=")));
+            sb.append("FLAG_ALWAYS_RETAIN_TASK_STATE | ");
             flags = ActivityStack.removeFlags(flags, 8);
         }
         if (ActivityStack.containFlags(flags, 16)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2Gl5uHCBLIAZfQGcIBh99NShLJgYuGksVTCM=")));
+            sb.append("FLAG_STATE_NOT_NEEDED | ");
             flags = ActivityStack.removeFlags(flags, 16);
         }
         if (ActivityStack.containFlags(flags, 64)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFoHFELJCxfAGYmAgthIgpLIQY+U2oIRVRnDB5LOD0hJA==")));
+            sb.append("FLAG_ALLOW_TASK_REPARENTING | ");
             flags = ActivityStack.removeFlags(flags, 64);
         }
         if (ActivityStack.containFlags(flags, 128)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GgBoJR4KIQYqAGcIRVR4HgUr")));
+            sb.append("FLAG_NO_HISTORY | ");
             flags = ActivityStack.removeFlags(flags, 128);
         }
         if (ActivityStack.containFlags(flags, 256)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GghrDFkJOysAHWcLMB9gJQJBITwuE2khGhBiHApBJQYcBWALHl5gMjM3Il4iVg==")));
+            sb.append("FLAG_FINISH_ON_CLOSE_SYSTEM_DIALOGS | ");
             flags = ActivityStack.removeFlags(flags, 256);
         }
         if (ActivityStack.containFlags(flags, 512)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GgplDywWJCsiAmEmNBFgJTBLJAYuU2ULFgpmVyA1OD5SVg==")));
+            sb.append("FLAG_HARDWARE_ACCELERATED | ");
             flags = ActivityStack.removeFlags(flags, 512);
         }
         if (ActivityStack.containFlags(flags, 0x40000000)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2Gl5rDFkTIhUMHX0mAhVkMzw3PQhSVg==")));
+            sb.append("FLAG_SINGLE_USER | ");
             flags = ActivityStack.removeFlags(flags, 0x40000000);
         }
         if (ActivityStack.containFlags(flags, 32)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhVvHCgOJAU2WmMLHl99JQ4MISwuH2oIRVR9ICA1OD5SVg==")));
+            sb.append("FLAG_EXCLUDE_FROM_RECENTS | ");
             flags = ActivityStack.removeFlags(flags, 32);
         }
         if (flags != 0) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OhdfVg=="))).append(Integer.toHexString(flags));
+            sb.append("0x").append(Integer.toHexString(flags));
         } else if (sb.length() > 2) {
             sb.delete(sb.length() - 2, sb.length());
         }
@@ -289,73 +289,76 @@ class ActivityStack {
 
     private static String activityInfoToString(ActivityInfo info) {
         StringBuilder sb = new StringBuilder();
-        sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+I2ojLCBoDh4wKAQHOg==")));
+        sb.append("launchMode: ");
         sb.append(ActivityStack.launchModeToString(info.launchMode));
         if (Build.VERSION.SDK_INT >= 21) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Dj4qD2swNCNiDlkgIhciLW8VAiB9AQYvLl5WJA==")));
+            sb.append("
+documentLaunchMode: ");
             sb.append(ActivityStack.documentLaunchModeToString(info.documentLaunchMode));
         }
-        sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Dj4+PmgjAiZjAQoZPTkmVg=="))).append(info.taskAffinity);
-        sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Dj4iDmsVPAN3MCRF"))).append(ActivityStack.activityInfoFlagsToString(info.flags));
+        sb.append("
+affinity: ").append(info.taskAffinity);
+        sb.append("
+flags: ").append(ActivityStack.activityInfoFlagsToString(info.flags));
         return sb.toString();
     }
 
     private static String parseIntentFlagsToString(Intent intent) {
         int flags = intent.getFlags();
         if (flags == 0) {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OhdeKA=="));
+            return "0x0";
         }
         StringBuilder sb = new StringBuilder();
         if (ActivityStack.containFlags(flags, 0x10000000)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNABjDCAMIgY+UmskOAF5EVRF")));
+            sb.append("FLAG_ACTIVITY_NEW_TASK | ");
             flags = ActivityStack.removeFlags(flags, 0x10000000);
         }
         if (ActivityStack.containFlags(flags, 32768)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNBN9HygCISsAXWULNAh5EVwp")));
+            sb.append("FLAG_ACTIVITY_CLEAR_TASK | ");
             flags = ActivityStack.removeFlags(flags, 32768);
         }
         if (ActivityStack.containFlags(flags, 0x8000000)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNA1nDwIVOxU6AmoLAlRhDyxPOD0hJA==")));
+            sb.append("FLAG_ACTIVITY_MULTIPLE_TASK | ");
             flags = ActivityStack.removeFlags(flags, 0x8000000);
         }
         if (ActivityStack.containFlags(flags, 131072)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNF9jDwYfJgYuU2whFhRgIjgRIQYqXXgaGTQ=")));
+            sb.append("FLAG_ACTIVITY_REORDER_TO_FRONT | ");
             flags = ActivityStack.removeFlags(flags, 131072);
         }
         if (ActivityStack.containFlags(flags, 131072)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNF9jDwYfJgYuU2whFhRgIjgRIQYqXXgaGTQ=")));
+            sb.append("FLAG_ACTIVITY_REORDER_TO_FRONT | ");
             flags = ActivityStack.removeFlags(flags, 131072);
         }
         if (ActivityStack.containFlags(flags, 0x20000000)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNF5iDxpJJAYuE24YAh15EVwp")));
+            sb.append("FLAG_ACTIVITY_SINGLE_TOP | ");
             flags = ActivityStack.removeFlags(flags, 0x20000000);
         }
         if (ActivityStack.containFlags(flags, 0x8000000)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNA1nDwIVOxU6AmoLAlRhDyxPOD0hJA==")));
+            sb.append("FLAG_ACTIVITY_MULTIPLE_TASK | ");
             flags = ActivityStack.removeFlags(flags, 0x8000000);
         }
         if (ActivityStack.containFlags(flags, 0x2000000)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNAh9IgoUJRUMGmwhMAp9JQpAOzpXOHgVSFo=")));
+            sb.append("FLAG_ACTIVITY_FORWARD_RESULT | ");
             flags = ActivityStack.removeFlags(flags, 0x2000000);
         }
         if (ActivityStack.containFlags(flags, 16384)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNFFgDDBNIDwADGwmBhRkDA0pLTpXVg==")));
+            sb.append("FLAG_ACTIVITY_TASK_ON_HOME | ");
             flags = ActivityStack.removeFlags(flags, 16384);
         }
         if (ActivityStack.containFlags(flags, 0x4000000)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNBN9HygCISsAXWghOyNoVyBF")));
+            sb.append("FLAG_ACTIVITY_CLEAR_TOP | ");
             flags = ActivityStack.removeFlags(flags, 0x4000000);
         }
         if (ActivityStack.containFlags(flags, 262144)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNAB9IgYWITwuU2wmPABiHBpXIV9XOHgVSFo=")));
+            sb.append("FLAG_ACTIVITY_NO_USER_ACTION | ");
             flags = ActivityStack.removeFlags(flags, 262144);
         }
         if (ActivityStack.containFlags(flags, 8192)) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JTwEEWA2GhFlJQoJJDscAGAmNF9jDCwCOxYcE2sIRV99MgoCJywqXWQnICh7AVRF")));
+            sb.append("FLAG_ACTIVITY_RETAIN_IN_RECENTS | ");
             flags = ActivityStack.removeFlags(flags, 8192);
         }
         if (flags != 0) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OhdfVg=="))).append(Integer.toHexString(flags));
+            sb.append("0x").append(Integer.toHexString(flags));
         } else if (sb.length() >= 2) {
             sb.delete(sb.length() - 2, sb.length());
         }
@@ -435,9 +438,12 @@ class ActivityStack {
         }
         ActivityRecord sourceRecord = this.findActivityByToken(userId, resultTo);
         if (resultTo != null && sourceRecord == null) {
-            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4ALHsFOCVmDlkwPxgqDWUgRSlrDTw5Lhg2KWEwET15EVRF")) + resultTo);
+            VLog.e(TAG, "Not found source record: " + resultTo);
         }
-        VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMBF9JwozLD0cLmgkIww=")) + (sourceRecord == null ? StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDmoFSFo=")) : ActivityStack.componentInfoToString((ComponentInfo)sourceRecord.info)) + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl85DXpTAShLEVRF")) + ActivityStack.componentInfoToString((ComponentInfo)info) + "\n" + ActivityStack.activityInfoToString(info) + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Dj4YCGwFNCZmVyQ+KhciM2oOIyg=")) + ActivityStack.parseIntentFlagsToString(intent) + "\n" + intent + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Dj0MM28aNCthJwofKi02PXhSTVo=")) + requestCode);
+        VLog.e(TAG, "startActivity:
+" + (sourceRecord == null ? "null" : ActivityStack.componentInfoToString((ComponentInfo)sourceRecord.info)) + "  -->  " + ActivityStack.componentInfoToString((ComponentInfo)info) + "\n" + ActivityStack.activityInfoToString(info) + "
+intent flags: " + ActivityStack.parseIntentFlagsToString(intent) + "\n" + intent + "
+requestCode: " + requestCode);
         TaskRecord sourceTask = null;
         if (sourceRecord != null) {
             sourceTask = sourceRecord.task;
@@ -475,10 +481,10 @@ class ActivityStack {
                     mLauncherFlags |= 0x2000000;
                     resultTo = forwardTo.token;
                 } else {
-                    VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4AKmwzJARiHyw/Iy4MCGU3TS5oAR4dLhgpPksVSFo=")) + intent);
+                    VLog.e(TAG, "forwardResult failed: " + intent);
                 }
             } else {
-                VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4AKmwzJARiHyw/Iy4MCGU3TS5oAR4dLhgpPksVSFo=")) + intent);
+                VLog.e(TAG, "forwardResult failed: " + intent);
             }
         }
         ComponentName launchComponent = info.targetActivity != null ? new ComponentName(info.packageName, info.targetActivity) : new ComponentName(info.packageName, info.name);
@@ -501,7 +507,7 @@ class ActivityStack {
             }
         }
         if (reuseTask == null || reuseTask.isFinishing()) {
-            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMBF9JwozLD0cLmghLCZ9Nyg+Igg+D2MnGSM=")) + intent);
+            VLog.e(TAG, "startActivityInNewTask: " + intent);
             return this.startActivityInNewTaskLocked(mLauncherFlags, userId, intent, info, options);
         }
         try {
@@ -560,7 +566,7 @@ class ActivityStack {
         destIntent.addFlags(mLauncherFlags);
         ActivityRecord callerRecord = sourceTask == reuseTask ? sourceRecord : reuseTask.getTopActivityRecord(false);
         if (callerRecord == null || callerRecord.process == null) {
-            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMzJCRgHjAqOz0MP28KRSx4ESQsIxgEJ2JSGSM=")) + intent);
+            VLog.e(TAG, "getCallerRecord failed: " + intent);
             return -1;
         }
         launchRecord.started = true;
@@ -583,8 +589,8 @@ class ActivityStack {
         if (useBridgeActivity) {
             Intent gotoExtIntent = new Intent(VirtualCore.get().getContext(), BridgeActivity.class);
             gotoExtIntent.setFlags(0x10000000);
-            gotoExtIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlkgKAcYLmMFSFo=")), (Parcelable)intent);
-            gotoExtIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99NzA2KBdbPWMFSFo=")), options);
+            gotoExtIntent.putExtra("_VA_|_intent_", (Parcelable)intent);
+            gotoExtIntent.putExtra("_VA_|_bundle_", options);
             VirtualCore.get().getContext().startActivity(gotoExtIntent);
             return;
         }
@@ -754,7 +760,7 @@ class ActivityStack {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     void onActivityCreated(ProcessRecord targetApp, IBinder token, int taskId, ActivityRecord record) {
-        VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cEWswMC9mNAYgLQUqKGkjQQZrAS8r")) + record.info + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcqP28zQQliVgU8")) + taskId);
+        VLog.e(TAG, "onActivityCreated " + record.info + " taskId: " + taskId);
         SparseArray<TaskRecord> sparseArray = this.mHistory;
         synchronized (sparseArray) {
             List<ActivityRecord> list;
@@ -840,7 +846,7 @@ class ActivityStack {
             this.optimizeTasksLocked();
             ActivityRecord r = this.findActivityByToken(userId, token);
             if (r != null) {
-                VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cEWswMC9mNAYgLQU2PWoKBgRlJB4gLgQ6Vg==")) + r.info + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcqP28zQQliVgU8")) + r.task.taskId);
+                VLog.e(TAG, "onActivityDestroyed " + r.info + " taskId: " + r.task.taskId);
                 r.marked = true;
                 List<ActivityRecord> list = r.task.activities;
                 synchronized (list) {
@@ -961,13 +967,13 @@ class ActivityStack {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public int startActivityFromHistoryLocked(Intent intent) {
-        VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMBF9JwozLD0cLmghHgRlJw5OIxc2CmAjMAZ7MCBF")) + intent);
+        VLog.e(TAG, "startActivityFromHistory: " + intent);
         SparseArray<TaskRecord> sparseArray = this.mHistory;
         synchronized (sparseArray) {
             ShadowActivityInfo info = new ShadowActivityInfo(intent);
             ActivityRecord record = (ActivityRecord)info.virtualToken;
             if (record == null || !this.mPendingLaunchActivities.contains((Object)record)) {
-                VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uOWowFixLHlk1LF4mMW9STQJrARovIxgcIUsaTSxlJzMd")));
+                VLog.e(TAG, "record not in pending list.");
                 return -1;
             }
             if (record.task == null) {

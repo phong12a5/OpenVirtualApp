@@ -71,7 +71,7 @@ import mirror.android.content.pm.ParceledListSlice;
 class MethodProxies {
     private static final int MATCH_FACTORY_ONLY = 0x200000;
     private static final int MATCH_ANY_USER = 0x400000;
-    private static String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OwguLGUFGixpESw1LRccPWoFSFo="));
+    private static String TAG = "MethodProxies";
 
     MethodProxies() {
     }
@@ -83,7 +83,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJgHgY5Lwg2MW8FMBRlEQYqIz4uIGkgLD9qHhodLwZbD2cKLD9vJ1RF"));
+            return "getApplicationBlockedSettingAsUser";
         }
 
         @Override
@@ -100,7 +100,7 @@ class MethodProxies {
         }
 
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KgcuM28gAglgNwo/Kj42EW8FMAZrARo/IQcMKWYwGi9uASg8"));
+            return "queryIntentContentProviders";
         }
 
         public Object call(Object who, Method method, Object... args) throws Throwable {
@@ -144,7 +144,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGcFJCljJCA9KAYqLm8KTQJrASwQKgg+CmIFSFo="));
+            return "setPackageStoppedState";
         }
 
         @Override
@@ -168,7 +168,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFNARgDgYpIy0cDW8bHiRoASA6"));
+            return "getPermissionFlags";
         }
 
         @Override
@@ -192,7 +192,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcjNCliDgYuKAguXm8VHiU="));
+            return "getReceiverInfo";
         }
 
         @Override
@@ -226,7 +226,7 @@ class MethodProxies {
         }
 
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KgcuM28gAglgNwo/Kj42AmkjAitqDiQgKS02Vg=="));
+            return "queryIntentReceivers";
         }
 
         public Object call(Object who, Method method, Object... args) throws Throwable {
@@ -264,7 +264,7 @@ class MethodProxies {
         }
 
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLH0VBgNmHiAoKhcMPmIzQSlqJzguLhc2Vg=="));
+            return "getInstalledPackages";
         }
 
         public Object call(Object who, Method method, Object... args) throws Throwable {
@@ -302,7 +302,7 @@ class MethodProxies {
         }
 
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLH0VBgNmHiAoKhcMPmYgTQJlER4qLRcqI2AgRTY="));
+            return "getInstalledApplications";
         }
 
         public Object call(Object who, Method method, Object... args) throws Throwable {
@@ -337,7 +337,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMzGiNhHh42KAcYLmEjMDdoNwIgLgU2J2YVFixsNDxF"));
+            return "setComponentEnabledSetting";
         }
 
         @Override
@@ -362,7 +362,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcKFiVmNAYwKAguXm8VHiU="));
+            return "getProviderInfo";
         }
 
         @Override
@@ -394,7 +394,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJgHgY5Lwg2MW8FMAllNyQc"));
+            return "getApplicationInfo";
         }
 
         @Override
@@ -402,8 +402,8 @@ class MethodProxies {
             String pkg = (String)args[0];
             int flags = (int)this.getIntOrLongValue(args[1]);
             int userId = VUserHandle.myUserId();
-            if (pkg.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmkzGi5oJwYbKgg+I2AwLDU=")))) {
-                return VPackageManager.get().getApplicationInfo(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmowRSVvNx4vLhcMD04wFipqJB4bKQhbIGwjSFo=")), flags, userId);
+            if (pkg.equals("com.android.defcontainer")) {
+                return VPackageManager.get().getApplicationInfo("com.android.providers.downloads", flags, userId);
             }
             if (GetApplicationInfo.getHostPkg().equals(pkg)) {
                 GetApplicationInfo.replaceLastUserId(args);
@@ -435,7 +435,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uKWozHj5iDAY2LBcMDmUzSFo="));
+            return "resolveIntent";
         }
 
         @Override
@@ -464,7 +464,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQYPLAgmKm8KRQZsJR4bKgguKmYVSFo="));
+            return "activitySupportsIntent";
         }
 
         @Override
@@ -483,7 +483,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguDmgaMCtpHiA5KS0iM2kjSFo="));
+            return "deletePackage";
         }
 
         @Override
@@ -493,7 +493,7 @@ class MethodProxies {
                 VirtualCore.get().uninstallPackage(pkgName);
                 IPackageDeleteObserver2 observer = (IPackageDeleteObserver2)args[1];
                 if (observer != null) {
-                    observer.onPackageDeleted(pkgName, 0, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgACGhSBlo=")));
+                    observer.onPackageDeleted(pkgName, 0, "done.");
                 }
             }
             catch (Throwable throwable) {
@@ -510,7 +510,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGIjJCNiDDw1IzwMMWkzSFo="));
+            return "getNameForUid";
         }
 
         @Override
@@ -535,7 +535,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQVBjDgoPKQc6Dm4gBgVsNyg6"));
+            return "checkUidSignatures";
         }
 
         @Override
@@ -565,7 +565,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQV5jDjg2Lwg2LWoVGgM="));
+            return "checkSignatures";
         }
 
         @Override
@@ -589,7 +589,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaIAJgHgY5Lwg2MW8FMBVlNzgpLAguIGkgLD9qHhodLwhSVg=="));
+            return "setApplicationEnabledSetting";
         }
 
         @Override
@@ -609,7 +609,7 @@ class MethodProxies {
         }
 
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KgcuM28gAhNgJFkgKAcYLmIwRSVvNx4vLhcMDw=="));
+            return "queryContentProviders";
         }
 
         public Object call(Object who, Method method, Object... args) throws Throwable {
@@ -644,7 +644,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFNARhJAYpLBcMDmUxQQJsEQIaLT4+CmMKAillJ1RF"));
+            return "getPersistentApplications";
         }
 
         @Override
@@ -663,7 +663,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KgcuM28gAl5gHgY5KAUqDW8aBitlNCwRKS4AMmMKFiBlNyxF"));
+            return "querySliceContentProviders";
         }
     }
 
@@ -674,7 +674,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFJCljJCA9KAgqWW8KRVBqASxF"));
+            return "getPackagesForUid";
         }
 
         @Override
@@ -709,7 +709,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQUxiASw3KQgqL2wjNCY="));
+            return "checkPermission";
         }
 
         @Override
@@ -738,7 +738,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGcFJCljJCA9KAY2DWIwRStrNyg5KS4uIA=="));
+            return "addPackageToPreferred";
         }
 
         @Override
@@ -754,7 +754,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGcjNAFmDjApLBYmOW4FJDdrJyhPLC02Cn0KTTdlJ1RF"));
+            return "canRequestPackageInstalls";
         }
 
         @Override
@@ -775,7 +775,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJgHgY5Lwg2MW8FMBVlNzgpLAguIGkgLD9qHhodLwhSVg=="));
+            return "getApplicationEnabledSetting";
         }
 
         @Override
@@ -799,7 +799,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaIAJgHgY5Lwg2MW8FMBRlEQYqIz4uIGkgLD9qHhodLwZbD2cKLD9vJ1RF"));
+            return "setApplicationBlockedSettingAsUser";
         }
 
         @Override
@@ -822,7 +822,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguDmgaMCtlASQsKhccP24gBi9lJxoALRg2LGIIICxsHgo8"));
+            return "deleteApplicationCacheFiles";
         }
 
         @Override
@@ -860,7 +860,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFJCljJCA9KAUcDmkVNFo="));
+            return "getPackageInfo";
         }
 
         @Override
@@ -896,7 +896,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFNARgDgYpIy0cDW8bLCZrNwZF"));
+            return "getPermissionInfo";
         }
 
         @Override
@@ -923,7 +923,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFNARgDgYpIy0cDW8bEgRlJCg7OxgcImAjSFo="));
+            return "getPermissionGroupInfo";
         }
 
         @Override
@@ -950,7 +950,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EM2saFkx9DigxLwc6PWIzGgRsJx46KgguKmYbODVuDjguLBdfJ2sbJDVsAR4hJQgMIG4FMFo="));
+            return "clearPackagePersistentPreferredActivities";
         }
 
         @Override
@@ -968,7 +968,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uKWozHj5iDyg/Iz4+MW4FGlo="));
+            return "resolveService";
         }
 
         @Override
@@ -996,7 +996,7 @@ class MethodProxies {
         }
 
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KgcuM28gAglgNwo/Kj42E24KBi9vNx4/IxguDw=="));
+            return "queryIntentActivities";
         }
 
         public Object call(Object who, Method method, Object... args) throws Throwable {
@@ -1041,7 +1041,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return super.getMethodName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcqOQ=="));
+            return super.getMethodName() + "Etc";
         }
     }
 
@@ -1052,7 +1052,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2AmsVLCF9Djg/ID1fKGgVGiY="));
+            return "isPackageForzen";
         }
 
         @Override
@@ -1073,7 +1073,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFNARgDgYpIy0cDW8aAlo="));
+            return "getPermissions";
         }
 
         @Override
@@ -1088,7 +1088,7 @@ class MethodProxies {
         }
 
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KgcuM28gAglgNwo/Kj42AWkgRT5qATAgKT5SVg=="));
+            return "queryIntentServices";
         }
 
         public Object call(Object who, Method method, Object... args) throws Throwable {
@@ -1146,7 +1146,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uKWozHj5iDCg1Kj42PW8aBkxsNwY9IxgqJ2EzSFo="));
+            return "resolveContentProvider";
         }
 
         @Override
@@ -1173,7 +1173,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EM2saFkx9DigxLwc6PWIwRStrNyg5KS4uIGUKND9vATgiIz42J2wjSFo="));
+            return "clearPackagePreferredActivities";
         }
 
         @Override
@@ -1190,7 +1190,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uLmozQStpNzA2LBccD2kmTStsNw4aKT02I2AgRVo="));
+            return "revokeRuntimePermission";
         }
 
         @Override
@@ -1213,7 +1213,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFJCljJCA9KAU6MWkwAlo="));
+            return "getPackageGids";
         }
 
         @Override
@@ -1241,7 +1241,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFJCljJCA9KAUcDmoKBjdlEQIgKS5SVg=="));
+            return "getPackageInstaller";
         }
 
         @Override
@@ -1304,7 +1304,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return super.getMethodName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcqOQ=="));
+            return super.getMethodName() + "Etc";
         }
     }
 
@@ -1315,7 +1315,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLAZjATwzLBgcXm8VHiU="));
+            return "getActivityInfo";
         }
 
         @Override
@@ -1351,7 +1351,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFJCljJCA9KAYMMWkzSFo="));
+            return "getPackageUid";
         }
 
         @Override
@@ -1378,7 +1378,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGczNARmNAY5KAUcDmkVNFo="));
+            return "getServiceInfo";
         }
 
         @Override
@@ -1412,7 +1412,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtpHiA5KS0iM2khHgRlJw4RKS4uImIFMDVuDjBF"));
+            return "removePackageFromPreferred";
         }
 
         @Override
@@ -1429,7 +1429,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMzGiNhHh42KAcYLmEjMDdoNwIgLgU2J2YVFixsNDxF"));
+            return "getComponentEnabledSetting";
         }
 
         @Override
@@ -1446,7 +1446,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcKFitiNDAqIz0MPmYjAgZqDiQaKggYJ2EjSFo="));
+            return "getPreferredActivities";
         }
 
         @Override
@@ -1463,12 +1463,12 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLH0VBgNmHiAoKhcMKGIzQSlqJzguLhYcO2AKLFo="));
+            return "getInstallerPackageName";
         }
 
         @Override
         public Object call(Object who, Method method, Object ... args) throws Throwable {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmUVGiZrER4bLj5SVg=="));
+            return "com.android.vending";
         }
 
         @Override
@@ -1484,7 +1484,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2AmsVLCF9Djg/Jwg+OWwjODdoNwIg"));
+            return "isPackageAvailable";
         }
 
         @Override
@@ -1510,7 +1510,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGAjGgRmJCAqKBY2DQ=="));
+            return "canForwardTo";
         }
 
         @Override
@@ -1533,7 +1533,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQVAixqNB4qOy0AOWoVGixnDjAgKS5SVg=="));
+            return "getUidForSharedUser";
         }
 
         @Override
@@ -1555,7 +1555,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGczRTdhNDAwIhccOGoVQQRqASg6"));
+            return "getSharedLibraries";
         }
 
         @Override
@@ -1581,7 +1581,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQUx9DigxLwc6PWIKBjdsNCwsLS4EJw=="));
+            return "checkPackageStartable";
         }
 
         @Override
@@ -1607,7 +1607,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT0MM2gYLAZgJyw7KC0ME28VBgBlJCwaLi0YVg=="));
+            return "freeStorageAndNotify";
         }
 
         @Override
@@ -1632,7 +1632,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT0MM2gYLAZgJyw7KC0MVg=="));
+            return "freeStorage";
         }
 
         @Override

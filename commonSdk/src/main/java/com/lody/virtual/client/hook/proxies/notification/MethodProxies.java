@@ -29,7 +29,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaIAJlDiggKQg+PWcVNAZqASQaLT4+CmMKAillJ1RF"));
+            return "getAppActiveNotifications";
         }
 
         @Override
@@ -47,7 +47,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGIjGgZjDjwzLy0iLmwjNCZsJSgbLRgMKGIKFgtsJygfKC4YLWgFPD8="));
+            return "setNotificationsEnabledForPackage";
         }
 
         @Override
@@ -70,7 +70,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMM2IjGgZjDjwzLy0iLmwjNCZsJSgbLRgMKGIKFgtsJygfKC4YLWgFPD8="));
+            return "areNotificationsEnabledForPackage";
         }
 
         @Override
@@ -90,7 +90,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRlDlEoIj1fLmwjHi9oJzg/IxgAKmEjSFo="));
+            return "cancelAllNotifications";
         }
 
         @Override
@@ -112,7 +112,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRoNB4gKQc+MW4FQQZqAQYbIj4YCmMbFiRuJ1RF"));
+            return "cancelNotificationWithTag";
         }
 
         @Override
@@ -141,7 +141,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcL2wVNAViDFk1LBccPGwjAjdvER4cLCsmI2YaBlRpDjwfLBg2KWwzAiBpEVRF"));
+            return "enqueueNotificationWithTagPriority";
         }
     }
 
@@ -152,7 +152,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcL2wVNAViDFk1LBccPGwjAjdvER4cLCsmI2YaBlRpDjxF"));
+            return "enqueueNotificationWithTag";
         }
 
         @Override
@@ -191,7 +191,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcL2wVNAViDFk1LBccPGwjAjdvER4cLC5SVg=="));
+            return "enqueueNotification";
         }
 
         @Override

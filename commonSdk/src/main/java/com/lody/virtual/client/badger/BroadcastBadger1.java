@@ -40,12 +40,12 @@ implements IBadger {
 
         @Override
         public String getAction() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojGgJhHhE2LAcYL2kgBgZlESgvLhciJ2AzFlo="));
+            return "com.oppo.unsettledevent";
         }
 
         @Override
         public String getPackageKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+MWgVJC1iDFk7KgcMVg=="));
+            return "pakeageName";
         }
 
         @Override
@@ -55,7 +55,7 @@ implements IBadger {
 
         @Override
         public String getCountKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDWsjNAQ="));
+            return "number";
         }
     }
 
@@ -66,12 +66,12 @@ implements IBadger {
 
         @Override
         public String getAction() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRQZ9IFkoLwgMDm4FFitsMxosLT0qI2AgRCliDyBIICscGWEmLFFiMgpOIyw2WA=="));
+            return "com.htc.launcher.action.UPDATE_SHORTCUT";
         }
 
         @Override
         public String getPackageKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+OWUzJC1iDlk7KgcMVg=="));
+            return "packagename";
         }
 
         @Override
@@ -81,7 +81,7 @@ implements IBadger {
 
         @Override
         public String getCountKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4AI2ogMFo="));
+            return "count";
         }
     }
 
@@ -92,22 +92,22 @@ implements IBadger {
 
         @Override
         public String getAction() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42MA5mHDxJJQYYA2cLBgpmMihTLBUmWGYFSFo="));
+            return "android.intent.action.BADGE_COUNT_UPDATE";
         }
 
         @Override
         public String getPackageKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+PGgzNB99JB4vKj42HWozQSlqJzguLhUAKn0KQSA="));
+            return "badge_count_package_name";
         }
 
         @Override
         public String getClassNameKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+PGgzNB99JB4vKj42HW4FODdsJDAMLC4+L2IFSFo="));
+            return "badge_count_class_name";
         }
 
         @Override
         public String getCountKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+PGgzNB99JB4vKj42Vg=="));
+            return "badge_count";
         }
     }
 
@@ -118,22 +118,22 @@ implements IBadger {
 
         @Override
         public String getAction() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy0MPXojJCxmIFkoLwgMDm4FFitsMxoqLD0uKmYaLDV8NSxJIRYcVg=="));
+            return "org.adw.launcher.counter.SEND";
         }
 
         @Override
         public String getPackageKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhYcEWIbNFo="));
+            return "PNAME";
         }
 
         @Override
         public String getClassNameKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JiwcEWIbNFo="));
+            return "CNAME";
         }
 
         @Override
         public String getCountKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JiwABWImMFo="));
+            return "COUNT";
         }
     }
 
@@ -144,22 +144,22 @@ implements IBadger {
 
         @Override
         public String getAction() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42MA5mHDxJJQYYA2cLBgpmMihTLBUmWGYFSFo="));
+            return "android.intent.action.BADGE_COUNT_UPDATE";
         }
 
         @Override
         public String getPackageKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+PGgzNB99JB4vKj42HWozQSlqJzguLhUAKn0KQSA="));
+            return "badge_count_package_name";
         }
 
         @Override
         public String getClassNameKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+PGgzNB99JB4vKj42HW4FODdsJDAMLC4+L2IFSFo="));
+            return "badge_count_class_name";
         }
 
         @Override
         public String getCountKey() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+PGgzNB99JB4vKj42Vg=="));
+            return "badge_count";
         }
     }
 }

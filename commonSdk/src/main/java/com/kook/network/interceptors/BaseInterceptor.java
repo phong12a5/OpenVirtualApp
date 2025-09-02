@@ -69,7 +69,7 @@ implements Interceptor {
         try {
             source.request(Long.MAX_VALUE);
             Buffer buffer = source.buffer();
-            Charset charset = Charset.forName(StringFog.decrypt("PjspRhU="));
+            Charset charset = Charset.forName("M^[0p");
             MediaType contentType = responseBody.contentType();
             if (contentType != null) {
                 charset = contentType.charset(charset);

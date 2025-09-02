@@ -8,10 +8,10 @@ import mirror.RefClass;
 import mirror.com.android.internal.telephony.ITelephony;
 
 public class IHwTelephony {
-    public static Class<?> TYPE = RefClass.load(ITelephony.class, StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAKxYPCgIYBgEXXSw6ATELMxYTBx0eEA=="));
+    public static Class<?> TYPE = RefClass.load(ITelephony.class, "com.android.internal.telephony.IHwTelephony");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(ITelephony.Stub.class, StringFog.decrypt("EAofWAQAOwEMBhZeAAEaFhccFwlAKxYPCgIYBgEXXSw6ATELMxYTBx0eEEs9BxAQ"));
+        public static Class<?> TYPE = RefClass.load(ITelephony.Stub.class, "com.android.internal.telephony.IHwTelephony$Stub");
     }
 }
 

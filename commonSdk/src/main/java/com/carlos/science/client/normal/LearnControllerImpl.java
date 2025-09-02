@@ -47,7 +47,7 @@ import rx.android.schedulers.AndroidSchedulers;
 public class LearnControllerImpl
 extends ILearnController.Stub
 implements ClientActivityLifecycle {
-    String TAG = StringFog.decrypt("PwATBAstMB0XHR0cBQocOggCGg==");
+    String TAG = "LearnControllerImpl";
     Handler mHandler;
     Activity mCurrentActivity;
     IServerController mIServerController;
@@ -78,7 +78,7 @@ implements ClientActivityLifecycle {
     ViewTreeObserver.OnWindowFocusChangeListener onWindowFocusChangeListener = new ViewTreeObserver.OnWindowFocusChangeListener(){
 
         public void onWindowFocusChanged(boolean focus) {
-            HVLog.d(LearnControllerImpl.this.TAG, StringFog.decrypt("HAslHwsKMAQlABEFGiwGEgsVEwFOORwAGgFK") + focus);
+            HVLog.d(LearnControllerImpl.this.TAG, "onWindowFocusChanged focus:" + focus);
             if (focus) {
                 LearnControllerImpl.this.onSubscribe = new Observable.OnSubscribe<Activity>(){
 
@@ -104,7 +104,7 @@ implements ClientActivityLifecycle {
     public FeaturesStepController getFeaturesStepController(IBinder iBinder, boolean hasNeedCallBack) {
         if (this.mFeaturesStepController == null) {
             if (iBinder == null && hasNeedCallBack) {
-                throw new NullPointerException(StringFog.decrypt("lv7sntXtfxohBhwUDB1Ol93/nubTu8vZAQccBU8="));
+                throw new NullPointerException("回调 iBinder 不能为null ");
             }
             this.mFeaturesStepController = new FeaturesStepController(this, iBinder);
             this.mFeaturesStepController.setContainerId(1);
@@ -180,12 +180,12 @@ implements ClientActivityLifecycle {
         File file = new File(fileName);
         BufferedReader reader = null;
         try {
-            HVLog.i(this.TAG, StringFog.decrypt("l97XnsTiu8vZiv/ljdLjm8rJk+r4ueXki8nGjOnrlsvLmdniu8vjid7RgcDVl93ykPDat9LvgM7q"));
+            HVLog.i(this.TAG, "以行为单位读取文件内容，一次读一整行：");
             reader = new BufferedReader(new FileReader(file));
             String tempString = null;
             int line = 1;
             while ((tempString = reader.readLine()) != null) {
-                HVLog.d(StringFog.decrypt("BwQVKRYB"), StringFog.decrypt("HwwcE0U=") + line + StringFog.decrypt("SUU=") + tempString);
+                HVLog.d("tag_so", "line " + line + ": " + tempString);
                 ++line;
             }
             reader.close();

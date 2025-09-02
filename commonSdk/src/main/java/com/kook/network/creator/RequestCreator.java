@@ -50,13 +50,13 @@ public final class RequestCreator {
     }
 
     public static Retrofit getRetrofitClient(Context context, String baseUrl) {
-        if (baseUrl != null && !baseUrl.endsWith(StringFog.decrypt("RA=="))) {
-            baseUrl = baseUrl + StringFog.decrypt("RA==");
+        if (baseUrl != null && !baseUrl.endsWith("7")) {
+            baseUrl = baseUrl + "7";
         }
         if (RETROFIT_CLIENT != null) {
-            HVLog.d(StringFog.decrypt("DAobOUgWBwhLDx07BwYKBVlCFwZeAzwKB1U=") + baseUrl + StringFog.decrypt("S09POWg2JyhrLz0nKCMmLmM2WwVMFQwtGQNV") + RETROFIT_CLIENT.baseUrl());
+            HVLog.d("getRetrofitClient baseUrl:" + baseUrl + "   RETROFIT_CLIENT.baseUrl:" + RETROFIT_CLIENT.baseUrl());
         } else {
-            HVLog.d(StringFog.decrypt("DAobOUgWBwhLDx07BwYKBVlCFwZeAzwKB1U=") + baseUrl);
+            HVLog.d("getRetrofitClient baseUrl:" + baseUrl);
         }
         if (OK_HTTP_CLIENT == null) {
             OK_HTTP_CLIENT = new OkHttpClient.Builder().sslSocketFactory(HttpsUtils.initSSLSocketFactory(), HttpsUtils.initTrustManager()).addInterceptor((Interceptor)new DecryptionInterceptor(context, baseUrl)).connectTimeout(10L, TimeUnit.SECONDS).readTimeout(10L, TimeUnit.SECONDS).writeTimeout(10L, TimeUnit.SECONDS).build();

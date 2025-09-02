@@ -40,15 +40,15 @@ extends ExternalProviderHook {
 
     @Override
     public Object invoke(Object proxy, Method method, Object ... args) throws Throwable {
-        VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRgALWojHiV9DgoNLwcYOWkFGgQ=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+DmoJIFo=")) + method.getName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl8HJnsFSFo=")) + Arrays.toString(args));
+        VLog.e("DownloadManager", "call " + method.getName() + " -> " + Arrays.toString(args));
         return super.invoke(proxy, method, args);
     }
 
     @Override
     public Uri insert(MethodBox methodBox, Uri url, ContentValues initialValues) throws InvocationTargetException {
-        VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRgALWojHiV9DgoNLwcYOWkFGgQ=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcKWgaFgZ3MCRF")) + initialValues);
+        VLog.e("DownloadManager", "insert: " + initialValues);
         String notificationPkg = initialValues.getAsString(COLUMN_NOTIFICATION_PACKAGE);
-        VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRgALWojHiV9DgoNLwcYOWkFGgQ=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDmIzJC1+MzxF")) + notificationPkg);
+        VLog.e("DownloadManager", "notificationPkg: " + notificationPkg);
         if (notificationPkg == null) {
             return (Uri)methodBox.call();
         }
@@ -62,17 +62,17 @@ extends ExternalProviderHook {
 
     @Override
     public Cursor query(MethodBox methodBox, Uri url, String[] projection, String selection, String[] selectionArgs, String sortOrder, Bundle originQueryArgs) throws InvocationTargetException {
-        VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KgcuM28gDSh3MCQpKAdbPW4KBi9lJx0xPQhSVg==")) + selection + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186P28jPAN3MCRF")) + Arrays.toString(selectionArgs));
+        VLog.e(TAG, "query : selection: " + selection + ", args: " + Arrays.toString(selectionArgs));
         return super.query(methodBox, url, projection, selection, selectionArgs, sortOrder, originQueryArgs);
     }
 
     static {
-        COLUMN_NOTIFICATION_PACKAGE = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDmozQSlqJzguLhhSVg=="));
-        COLUMN_NOTIFICATION_CLASS = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDm4FODdsJDBF"));
-        COLUMN_IS_VISIBLE_IN_DOWNLOADS_UI = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2H2wjAgNjDiwoKAZfMW8YNCxlJCAbLAgAO2IVNF9qDhpF"));
-        COLUMN_VISIBILITY = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKWUVFi9gHgYgLQhSVg=="));
-        COLUMN_DESCRIPTION = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguKWswFi9hEQozKi0YVg=="));
-        COLUMN_FILE_NAME_HINT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBgYCGwFSFo="));
+        COLUMN_NOTIFICATION_PACKAGE = "notificationpackage";
+        COLUMN_NOTIFICATION_CLASS = "notificationclass";
+        COLUMN_IS_VISIBLE_IN_DOWNLOADS_UI = "is_visible_in_downloads_ui";
+        COLUMN_VISIBILITY = "visibility";
+        COLUMN_DESCRIPTION = "description";
+        COLUMN_FILE_NAME_HINT = "hint";
         TAG = DownloadProviderHook.class.getSimpleName();
     }
 }

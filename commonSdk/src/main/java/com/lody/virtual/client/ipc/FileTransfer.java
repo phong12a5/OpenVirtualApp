@@ -44,7 +44,7 @@ public class FileTransfer {
     }
 
     private Object getStubInterface() {
-        return IFileTransfer.Stub.asInterface(ServiceManagerNative.getService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YDmhSEgZhNCA2Iy0+PWoVSFo="))));
+        return IFileTransfer.Stub.asInterface(ServiceManagerNative.getService("file-transfer"));
     }
 
     public static FileTransfer get() {

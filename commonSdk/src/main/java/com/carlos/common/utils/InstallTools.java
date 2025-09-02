@@ -29,7 +29,7 @@ import java.util.Date;
 import java.util.List;
 
 public class InstallTools {
-    public static String TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ITw9DX0VBgNmHiAoKhY2DW8FOAM="));
+    public static String TAG = "VA-InstallTools";
 
     public static long getInstallTimeByApk(Context context) {
         try {
@@ -62,7 +62,7 @@ public class InstallTools {
         Date d = new Date();
         long timeStemp = 0L;
         try {
-            SimpleDateFormat sf = new SimpleDateFormat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAcYJ2lSEg1oCl0wKBhSVg==")));
+            SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
             d = sf.parse(timers);
         }
         catch (ParseException e) {
@@ -78,15 +78,15 @@ public class InstallTools {
 
     public static void install(Context context, File file) {
         try {
-            Intent intent = new Intent(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk4xIBZmDzxF")));
+            Intent intent = new Intent("android.intent.action.VIEW");
             intent.addFlags(0x10000000);
             intent.addFlags(1);
             if (Build.VERSION.SDK_INT >= 24) {
-                Uri uri = FileProvider.getUriForFile((Context)context, (String)context.getPackageName().concat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz06KmowOC9iHjAq"))), (File)file);
-                intent.setDataAndType(uri, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGoFAil9AQozKi0XDWUVMCx1NzgbLgcMKWMKESllHiQsKghbIWsJEjNvJzA/JQg6LA==")));
+                Uri uri = FileProvider.getUriForFile((Context)context, (String)context.getPackageName().concat(".provider"), (File)file);
+                intent.setDataAndType(uri, "application/vnd.android.package-archive");
             } else {
                 Uri uri = Uri.fromFile((File)file);
-                intent.setDataAndType(uri, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lgc6KGoFAil9AQozKi0XDWUVMCx1NzgbLgcMKWMKESllHiQsKghbIWsJEjNvJzA/JQg6LA==")));
+                intent.setDataAndType(uri, "application/vnd.android.package-archive");
             }
             context.startActivity(intent);
         }

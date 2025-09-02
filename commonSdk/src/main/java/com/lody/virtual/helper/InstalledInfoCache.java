@@ -14,23 +14,23 @@ import com.lody.virtual.helper.utils.ACache;
 import java.io.Serializable;
 
 public class InstalledInfoCache {
-    private static ACache diskCache = ACache.get(VirtualCore.get().getContext(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgc6KH0VBi5gIig7Ly0APQ==")));
+    private static ACache diskCache = ACache.get(VirtualCore.get().getContext(), "AppInfoCache");
 
     public static void save(CacheItem cacheItem) {
-        diskCache.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+H2UVBgNmHiAoKhcMPmMFLCZrNwYMLT4+JWMaLA0=")) + cacheItem.packageName, cacheItem);
+        diskCache.put("va_installed_info_cache@" + cacheItem.packageName, cacheItem);
         cacheItem.saveIcon();
     }
 
     public static CacheItem get(String packageName) {
-        return (CacheItem)diskCache.getAsObject(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+H2UVBgNmHiAoKhcMPmMFLCZrNwYMLT4+JWMaLA0=")) + packageName);
+        return (CacheItem)diskCache.getAsObject("va_installed_info_cache@" + packageName);
     }
 
     @Keep
     public static class CacheItem
     implements Serializable {
         private static final long serialVersionUID = 1L;
-        public static final transient String INFO_CACHE_PREFIX = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+H2UVBgNmHiAoKhcMPmMFLCZrNwYMLT4+JWMaLA0="));
-        public static final transient String ICON_CACHE_PREFIX = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4+H2UVBgNmHiAoKhcMPmMFLCllJxoMLT4+JWMaLA0="));
+        public static final transient String INFO_CACHE_PREFIX = "va_installed_info_cache@";
+        public static final transient String ICON_CACHE_PREFIX = "va_installed_icon_cache@";
         public String packageName;
         public String label;
         public transient Drawable icon;

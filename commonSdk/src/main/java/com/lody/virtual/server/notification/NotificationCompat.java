@@ -29,16 +29,16 @@ import java.util.List;
 import mirror.com.android.internal.R_Hide;
 
 public abstract class NotificationCompat {
-    public static final String EXTRA_TITLE = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kgKQg2CGkjSFo="));
-    public static final String EXTRA_TITLE_BIG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kgKQg2CGknMCpqASBF"));
-    public static final String EXTRA_TEXT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kgKAgALg=="));
-    public static final String EXTRA_SUB_TEXT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kpLAcuAGkgFgY="));
-    public static final String EXTRA_INFO_TEXT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj0+DX0zGjBvEVRF"));
-    public static final String EXTRA_SUMMARY_TEXT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kpLAdXD24gRT9nESgzKghSVg=="));
-    public static final String EXTRA_BIG_TEXT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k6KQc6AGkgFgY="));
-    public static final String EXTRA_PROGRESS = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksIz1fM2oVGgNsJ1RF"));
-    public static final String EXTRA_PROGRESS_MAX = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1ksIz1fM2oVGgNsJQ4sLwhSVg=="));
-    public static final String EXTRA_BUILDER_APPLICATION_INFO = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k7IxgmXm8VHiU="));
+    public static final String EXTRA_TITLE = "android.title";
+    public static final String EXTRA_TITLE_BIG = "android.title.big";
+    public static final String EXTRA_TEXT = "android.text";
+    public static final String EXTRA_SUB_TEXT = "android.subText";
+    public static final String EXTRA_INFO_TEXT = "android.infoText";
+    public static final String EXTRA_SUMMARY_TEXT = "android.summaryText";
+    public static final String EXTRA_BIG_TEXT = "android.bigText";
+    public static final String EXTRA_PROGRESS = "android.progress";
+    public static final String EXTRA_PROGRESS_MAX = "android.progressMax";
+    public static final String EXTRA_BUILDER_APPLICATION_INFO = "android.appInfo";
     static final String TAG;
     static final String SYSTEM_UI_PKG;
     private final List<Integer> sSystemLayoutResIds = new ArrayList<Integer>(10);
@@ -94,7 +94,7 @@ public abstract class NotificationCompat {
     public abstract boolean dealNotification(int var1, Notification var2, String var3);
 
     static {
-        SYSTEM_UI_PKG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmoKLANvESgeKhgYVg=="));
+        SYSTEM_UI_PKG = "com.android.systemui";
         TAG = NotificationCompat.class.getSimpleName();
     }
 }

@@ -21,7 +21,7 @@ import com.lody.virtual.server.interfaces.IVirtualLocationManager;
 import java.util.List;
 
 public class VirtualLocationManager {
-    public static final String GLOBAL_PACKAGE = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV1ksLwcqCW4jEit1NyAdLD4MO2AVSFo="));
+    public static final String GLOBAL_PACKAGE = "virtual.package.global";
     public static final int GLOBAL_USERID = 888888;
     public static final int MODE_CLOSE = 0;
     public static final int MODE_USE_GLOBAL = 1;
@@ -48,7 +48,7 @@ public class VirtualLocationManager {
     }
 
     private Object getRemoteInterface() {
-        return IVirtualLocationManager.Stub.asInterface(ServiceManagerNative.getService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV10oKi0qVg=="))));
+        return IVirtualLocationManager.Stub.asInterface(ServiceManagerNative.getService("virtual-loc"));
     }
 
     public int getMode(int userId, String pkg) {

@@ -46,8 +46,8 @@ public class FileUtils {
     public static File changeExt(File f, String targetExt) {
         String outPath = f.getAbsolutePath();
         if (!FileUtils.getFilenameExt(outPath).equals(targetExt)) {
-            int dotPos = outPath.lastIndexOf(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz5SVg==")));
-            outPath = dotPos > 0 ? outPath.substring(0, dotPos + 1) + targetExt : outPath + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz5SVg==")) + targetExt;
+            int dotPos = outPath.lastIndexOf(".");
+            outPath = dotPos > 0 ? outPath.substring(0, dotPos + 1) + targetExt : outPath + "." + targetExt;
             return new File(outPath);
         }
         return f;
@@ -82,11 +82,11 @@ public class FileUtils {
             }
         }
         File file = new File(path);
-        String cmd = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fDWozMyg="));
+        String cmd = "chmod ";
         if (file.isDirectory()) {
-            cmd = cmd + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl8IDHsFSFo="));
+            cmd = cmd + " -R ";
         }
-        String cmode = String.format(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PQgAVg==")), mode);
+        String cmode = String.format("%o", mode);
         try {
             Runtime.getRuntime().exec(cmd + cmode + " " + path).waitFor();
         }
@@ -115,7 +115,7 @@ public class FileUtils {
     public static boolean isSymlink(File file) throws IOException {
         File canon;
         if (file == null) {
-            throw new NullPointerException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JT4YDmhSICNmASggPxcYDWU3TSprDTwbKhgEKA==")));
+            throw new NullPointerException("File must not be null");
         }
         if (file.getParent() == null) {
             canon = file;
@@ -294,7 +294,7 @@ public class FileUtils {
         if (!ArrayUtils.isEmpty(files = source.listFiles())) {
             for (File file : files) {
                 try {
-                    Runtime.getRuntime().exec(String.format(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgbOHoaLyhIASs8OAgqVg==")), file.getAbsoluteFile(), new File(dest, file.getName()).getAbsolutePath())).waitFor();
+                    Runtime.getRuntime().exec(String.format("ln -s %s %s", file.getAbsoluteFile(), new File(dest, file.getName()).getAbsolutePath())).waitFor();
                 }
                 catch (Exception e) {
                     e.printStackTrace();
@@ -343,8 +343,8 @@ public class FileUtils {
     }
 
     public static String buildValidExtFilename(String name) {
-        if (TextUtils.isEmpty((CharSequence)name) || StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz5SVg==")).equals(name) || StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MzocVg==")).equals(name)) {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PBgYCGwjJCRjDg0z"));
+        if (TextUtils.isEmpty((CharSequence)name) || ".".equals(name) || "..".equals(name)) {
+            return "(invalid)";
         }
         StringBuilder res = new StringBuilder(name.length());
         for (int i = 0; i < name.length(); ++i) {
@@ -368,8 +368,8 @@ public class FileUtils {
 
     public static String getPathFileName(String file) {
         String fName = file.trim();
-        if (fName.indexOf(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="))) > -1) {
-            return fName.substring(fName.lastIndexOf(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="))) + 1);
+        if (fName.indexOf("/") > -1) {
+            return fName.substring(fName.lastIndexOf("/") + 1);
         }
         return file;
     }

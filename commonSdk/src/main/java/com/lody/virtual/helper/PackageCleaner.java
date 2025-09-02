@@ -52,7 +52,7 @@ public class PackageCleaner {
         if (appDirs != null) {
             for (File appDir : appDirs) {
                 String packageName = appDir.getName();
-                if (packageName.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YKWwFNCM="))) || installedPackageNames.contains(packageName)) continue;
+                if (packageName.equals("system") || installedPackageNames.contains(packageName)) continue;
                 PackageCleaner.cleanAllUserPackage(VEnvironment.getDataUserDirectoryExt(), packageName);
                 PackageCleaner.cleanAllUserPackage(VEnvironment.getDeDataUserDirectoryExt(), packageName);
                 FileUtils.deleteDir(appDir);

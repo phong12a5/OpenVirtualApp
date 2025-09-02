@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IDeviceIdleController {
-    public static Class<?> TYPE = RefClass.load(IDeviceIdleController.class, StringFog.decrypt("EgsWBAoHO10MHFw5LQoYGgYXPwECOjAMAQYCBgMCFhc="));
+    public static Class<?> TYPE = RefClass.load(IDeviceIdleController.class, "android.os.IDeviceIdleController");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10MHFw5LQoYGgYXPwECOjAMAQYCBgMCFhdWJREbPQ=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.os.IDeviceIdleController$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

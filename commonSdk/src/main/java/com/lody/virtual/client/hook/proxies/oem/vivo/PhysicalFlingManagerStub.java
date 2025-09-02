@@ -10,16 +10,16 @@ import mirror.oem.vivo.IPhysicalFlingManagerStub;
 
 public class PhysicalFlingManagerStub
 extends BinderInvocationProxy {
-    private static final String SERVER_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhhfJ28zAil9DlFAKD1bMW8VEh9sJyg5Ki4YJWIFSFo="));
+    private static final String SERVER_NAME = "physical_fling_service";
 
     public PhysicalFlingManagerStub() {
-        super(IPhysicalFlingManagerStub.Stub.TYPE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhhfJ28zAil9DlFAKD1bMW8VEh9sJyg5Ki4YJWIFSFo=")));
+        super(IPhysicalFlingManagerStub.Stub.TYPE, "physical_fling_service");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2A2waIAJgJywgOxcAIWoFLCloAQJILAgYKmIjSFo="))));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("isSupportPhysicalFling"));
     }
 }
 

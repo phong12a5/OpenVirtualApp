@@ -12,7 +12,7 @@ public class FrameworkPackageUserState {
     public static Class<?> TYPE;
 
     static {
-        TYPE = RefClass.load(FrameworkPackageUserState.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWBUFOF0lHRMdDBgBAQ4iFwYFPhQGOgEVGzwaEhEX"));
+        TYPE = RefClass.load(FrameworkPackageUserState.class, "android.content.pm.pkg.FrameworkPackageUserState");
     }
 }
 

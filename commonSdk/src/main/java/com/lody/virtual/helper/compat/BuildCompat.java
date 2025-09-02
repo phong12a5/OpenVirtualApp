@@ -63,40 +63,40 @@ public class BuildCompat {
     }
 
     public static boolean isSamsung() {
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4+DW8wNCZiJ1RF")).equalsIgnoreCase(Build.BRAND) || StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4+DW8wNCZiJ1RF")).equalsIgnoreCase(Build.MANUFACTURER);
+        return "samsung".equalsIgnoreCase(Build.BRAND) || "samsung".equalsIgnoreCase(Build.MANUFACTURER);
     }
 
     public static boolean isEMUI() {
-        if (Build.DISPLAY.toUpperCase().startsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQYIBX0VSFo=")))) {
+        if (Build.DISPLAY.toUpperCase().startsWith("EMUI")) {
             return true;
         }
-        String property = SystemPropertiesCompat.get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4fCGsgNC9gHg02LD0MKGoFLCVlMxogLBcuIw==")));
-        return property != null && property.contains(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQgID2wFAiVgNTAJ")));
+        String property = SystemPropertiesCompat.get("ro.build.version.emui");
+        return property != null && property.contains("EmotionUI");
     }
 
     public static boolean isMIUI() {
-        return SystemPropertiesCompat.getInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4fCGoVAgVjClkvKQMYLGkgRQNqAQYbPC42KWIaLFo=")), 0) > 0;
+        return SystemPropertiesCompat.getInt("ro.miui.ui.version.code", 0) > 0;
     }
 
     public static boolean isFlyme() {
-        return Build.DISPLAY.toLowerCase().contains(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4EJ2oVNFo=")));
+        return Build.DISPLAY.toLowerCase().contains("flyme");
     }
 
     public static boolean isColorOS() {
-        return SystemPropertiesCompat.isExist(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4fCGsgNC9gHg02LD0MKGoFLCVlMxocKQc6KWEwAig="))) || SystemPropertiesCompat.isExist(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4fCG8jGiNONAozKD0+PWoVGiZvVho9LhcMD2MKAik=")));
+        return SystemPropertiesCompat.isExist("ro.build.version.opporom") || SystemPropertiesCompat.isExist("ro.rom.different.version");
     }
 
     public static boolean is360UI() {
-        String property = SystemPropertiesCompat.get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4fCGsgNC9gHg02LAccLGkgRQNqAQYb")));
-        return property != null && property.toUpperCase().contains(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OikhKGQbAlo=")));
+        String property = SystemPropertiesCompat.get("ro.build.uiversion");
+        return property != null && property.toUpperCase().contains("360UI");
     }
 
     public static boolean isLetv() {
-        return Build.MANUFACTURER.equalsIgnoreCase(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OxguLGwjSFo=")));
+        return Build.MANUFACTURER.equalsIgnoreCase("Letv");
     }
 
     public static boolean isVivo() {
-        return SystemPropertiesCompat.isExist(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4fCGwjAj5gIFk1IykYOGUjLCRrVhovIxc2DmAaPAZ8NBot")));
+        return SystemPropertiesCompat.isExist("ro.vivo.os.build.display.id");
     }
 
     public static ROMType getROMType() {

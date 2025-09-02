@@ -53,7 +53,8 @@ public class UidSystem {
         File bakUidFile = VEnvironment.getBakUidListFile();
         if (uidFile.exists()) {
             if (bakUidFile.exists() && !bakUidFile.delete()) {
-                VLog.w(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IS4+KmojAiZiIwU8JAcYOW4VOCt4HiwcPQgqJ2AaLD9uCiA9Kj4fJGsKRSRlHgo0JF4iLW8KQTF+MyM8Djo6Vg==")) + bakUidFile.getPath(), new Object[0]);
+                VLog.w(TAG, "Warning: Unable to delete the expired file --
+ " + bakUidFile.getPath(), new Object[0]);
             }
             try {
                 FileUtils.copyFile(uidFile, bakUidFile);

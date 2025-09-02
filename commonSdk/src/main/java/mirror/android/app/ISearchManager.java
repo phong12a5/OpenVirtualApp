@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class ISearchManager {
-    public static Class<?> TYPE = RefClass.load(ISearchManager.class, StringFog.decrypt("EgsWBAoHO10CHwJeIDwLEhcRHigPMRIECgA="));
+    public static Class<?> TYPE = RefClass.load(ISearchManager.class, "android.app.ISearchManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10CHwJeIDwLEhcRHigPMRIECgBUOhsbEQ=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.app.ISearchManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

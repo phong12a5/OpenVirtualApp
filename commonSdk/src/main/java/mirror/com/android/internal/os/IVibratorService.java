@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IVibratorService {
-    public static Class<?> TYPE = RefClass.load(IVibratorService.class, StringFog.decrypt("EgsWBAoHO10MHFw5PwYMAQQGGRc9OgEVBhEV"));
+    public static Class<?> TYPE = RefClass.load(IVibratorService.class, "android.os.IVibratorService");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10MHFw5PwYMAQQGGRc9OgEVBhEVTTwaBgc="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.os.IVibratorService$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

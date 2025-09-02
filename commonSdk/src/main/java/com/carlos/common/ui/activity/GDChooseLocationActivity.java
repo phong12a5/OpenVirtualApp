@@ -176,40 +176,40 @@ Inputtips.InputtipsListener {
             Intent intent = this.getIntent();
             this.mLocation.latitude = 0.0;
             this.mLocation.longitude = 0.0;
-            intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgHx4oKi0qOWUzLCVlN1RF")), (Parcelable)this.mLocation);
-            intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgV1k/LRg2KG4gDSZsETgqIz4+IWIFSFo=")), this.mCurPkg);
-            intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgV1k/LRg2KG4gDSZvDjAgKS4YIA==")), this.mCurUserId);
-            intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgV1k/LRg2KG4gDSZoASwvKS4uD2EjSFo=")), this.mAddress);
+            intent.putExtra("virtual_location", (Parcelable)this.mLocation);
+            intent.putExtra("virtual.extras.package", this.mCurPkg);
+            intent.putExtra("virtual.extras.userid", this.mCurUserId);
+            intent.putExtra("virtual.extras.address", this.mAddress);
             this.setResult(-1, intent);
         });
         this.mMockBtn.setOnClickListener(v -> {
-            if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm4jMCxsNwYaLgQcCGMKQSBqEVRF")).equals(this.mCurPkg)) {
+            if ("com.alibaba.android.rimet".equals(this.mCurPkg)) {
                 CoordinateBean coordinateBean = PositionConvertUtil.gcj02ToWgs84(this.mLocation.getLatitude(), this.mLocation.getLongitude());
                 this.mLocation.latitude = coordinateBean.getLatitude();
                 this.mLocation.longitude = coordinateBean.getLongitude();
             }
-            VLog.e(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ITw9DQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PhgIQGozLDdmHgY1KjkmVg==")) + this.mLocation.getLatitude() + "  " + this.mLocation.getLongitude());
+            VLog.e("VA-", " mLocation " + this.mLocation.getLatitude() + "  " + this.mLocation.getLongitude());
             VirtualCore.get().killApp(this.mCurPkg, this.mCurUserId);
             VirtualLocationManager.get().setMode(this.mCurUserId, this.mCurPkg, 2);
             VirtualLocationManager.get().setLocation(this.mCurUserId, this.mCurPkg, this.mLocation);
             this.updateMock(true);
             Intent intent = this.getIntent();
-            intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgHx4oKi0qOWUzLCVlN1RF")), (Parcelable)this.mLocation);
-            intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgV1k/LRg2KG4gDSZsETgqIz4+IWIFSFo=")), this.mCurPkg);
-            intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgV1k/LRg2KG4gDSZvDjAgKS4YIA==")), this.mCurUserId);
-            intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgV1k/LRg2KG4gDSZoASwvKS4uD2EjSFo=")), this.mAddress);
+            intent.putExtra("virtual_location", (Parcelable)this.mLocation);
+            intent.putExtra("virtual.extras.package", this.mCurPkg);
+            intent.putExtra("virtual.extras.userid", this.mCurUserId);
+            intent.putExtra("virtual.extras.address", this.mAddress);
             this.setResult(-1, intent);
         });
         this.findViewById(R.id.img_loc).setOnClickListener(v -> this.startLocation());
         ((CheckBox)this.findViewById(R.id.checkbox)).setOnCheckedChangeListener((v, b) -> this.showInputWindow());
         this.mMockingView.setOnClickListener(v -> {});
-        this.mCurPkg = this.getIntent().getStringExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgV1k/LRg2KG4gDSZsETgqIz4+IWIFSFo=")));
-        this.mCurUserId = this.getIntent().getIntExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgV1k/LRg2KG4gDSZvDjAgKS4YIA==")), 0);
-        VLocation vLocation2 = vLocation = this.getIntent().hasExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgHx4oKi0qOWUzLCVlN1RF"))) ? (VLocation)this.getIntent().getParcelableExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4YKmwKNDdgHx4oKi0qOWUzLCVlN1RF"))) : null;
+        this.mCurPkg = this.getIntent().getStringExtra("virtual.extras.package");
+        this.mCurUserId = this.getIntent().getIntExtra("virtual.extras.userid", 0);
+        VLocation vLocation2 = vLocation = this.getIntent().hasExtra("virtual_location") ? (VLocation)this.getIntent().getParcelableExtra("virtual_location") : null;
         if (vLocation != null) {
             CoordinateBean coordinateBean = PositionConvertUtil.wgs84ToGcj02(vLocation.latitude, vLocation.longitude);
             VLocation mLatLng = new VLocation(coordinateBean.getLatitude(), coordinateBean.getLongitude());
-            this.mLocation = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm4jMCxsNwYaLgQcCGMKQSBqEVRF")).equals(this.mCurPkg) ? mLatLng : vLocation;
+            this.mLocation = "com.alibaba.android.rimet".equals(this.mCurPkg) ? mLatLng : vLocation;
             this.updateMock(VirtualLocationManager.get().isUseVirtualLocation(this.mCurUserId, this.mCurPkg));
             this.gotoLocation(null, vLocation.getLatitude(), vLocation.getLongitude(), true);
         } else {
@@ -246,7 +246,7 @@ Inputtips.InputtipsListener {
 
             public boolean onQueryTextSubmit(String newText) {
                 if (!TextUtils.isEmpty((CharSequence)newText)) {
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iz4uLWQFNDBmVgJF")) + newText);
+                    HVLog.d("newText:" + newText);
                     InputtipsQuery inputquery = new InputtipsQuery(newText, newText);
                     Inputtips inputTips = new Inputtips((Context)GDChooseLocationActivity.this, inputquery);
                     inputTips.setInputtipsListener((Inputtips.InputtipsListener)GDChooseLocationActivity.this);
@@ -290,9 +290,9 @@ Inputtips.InputtipsListener {
         }
         if (TextUtils.isEmpty((CharSequence)address)) {
             LatLonPoint latLonPoint = new LatLonPoint(lat, lng);
-            RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200.0f, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LgcuLGozBjdmNAZF")));
+            RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200.0f, "autonavi");
             this.geocoderSearch.getFromLocationAsyn(query);
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxsBHEYvHytZEDkUAhpYKkcUWghBKAcTAAw3HVlbDzJEBTkBOD4iO29WBygaJ1RF")) + lat + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsFHiZiICci")) + lng);
+            HVLog.d("异步逆地理编码请求 lat：" + lat + "    lng :" + lng);
         } else {
             this.setAddress(address);
         }
@@ -374,10 +374,10 @@ Inputtips.InputtipsListener {
     }
 
     public void onRegeocodeSearched(RegeocodeResult result, int rCode) {
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Kj4uKWwVHgZLVgJF")) + result + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OHsKFhNgJAo/PT5SVg==")) + rCode);
+        HVLog.d("result :" + result + "    rCode:" + rCode);
         if (rCode == 1000 && result != null && result.getRegeocodeAddress() != null && result.getRegeocodeAddress().getFormatAddress() != null) {
-            String addressName = result.getRegeocodeAddress().getFormatAddress() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BhkVWUMWB0g="));
-            HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggqPG8jNANhIlk7KgcLOngVSFo=")) + addressName);
+            String addressName = result.getRegeocodeAddress().getFormatAddress() + "附近";
+            HVLog.d("addressName :" + addressName);
             this.mCity = result.getRegeocodeAddress().getFormatAddress();
             this.setAddress(addressName);
         }
@@ -385,7 +385,7 @@ Inputtips.InputtipsListener {
 
 
     public void onGetInputtips(List<Tip> list, int rCode) {
-        HVLog.d(com.carlos.libcommon.StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cWmgaMAlgNyQvLBg2MWowDSh+N1RF")) + list + com.carlos.libcommon.StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl85OHsKFhNgJAo/PT5SVg==")) + rCode);
+        HVLog.d("onGetInputtips :" + list + "    rCode:" + rCode);
         if (rCode == 1000) {
             if (this.mSearchTip.getVisibility() != View.GONE) {
                 this.runOnUiThread(() -> {

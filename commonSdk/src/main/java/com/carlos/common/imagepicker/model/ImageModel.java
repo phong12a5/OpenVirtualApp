@@ -32,14 +32,14 @@ public class ImageModel {
             public void run() {
                 Uri mImageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
                 ContentResolver mContentResolver = context.getContentResolver();
-                Cursor mCursor = mContentResolver.query(mImageUri, new String[]{com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4qP2wFJFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4qCW8wICR9AQZAKj0iD2kjSFo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRg+LGgYGjdiHgo/KBhSVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4YPA=="))}, null, null, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRg+LGgYGjdiHgo/KBhSVg==")));
+                Cursor mCursor = mContentResolver.query(mImageUri, new String[]{"_data", "_display_name", "date_added", "_id"}, null, null, "date_added");
                 ArrayList<Image> images = new ArrayList<Image>();
                 if (mCursor != null) {
                     while (mCursor.moveToNext()) {
-                        String path = mCursor.getString(mCursor.getColumnIndex(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4qP2wFJFo="))));
-                        String name = mCursor.getString(mCursor.getColumnIndex(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Jy4qCW8wICR9AQZAKj0iD2kjSFo="))));
-                        long time = mCursor.getLong(mCursor.getColumnIndex(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRg+LGgYGjdiHgo/KBhSVg=="))));
-                        if (com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz4qD2wzBiRgJCAwKQcYMw==")).equals(ImageModel.getExtensionName(path))) continue;
+                        String path = mCursor.getString(mCursor.getColumnIndex("_data"));
+                        String name = mCursor.getString(mCursor.getColumnIndex("_display_name"));
+                        long time = mCursor.getLong(mCursor.getColumnIndex("date_added"));
+                        if (".downloading".equals(ImageModel.getExtensionName(path))) continue;
                         images.add(new Image(path, time, name));
                     }
                     mCursor.close();
@@ -52,7 +52,7 @@ public class ImageModel {
 
     private static ArrayList<Folder> splitFolder(ArrayList<Image> images) {
         ArrayList<Folder> folders = new ArrayList<Folder>();
-        folders.add(new Folder(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxorCkNJFyBYEwMcAj8ZWA==")), images));
+        folders.add(new Folder("全部图片", images));
         if (images != null && !images.isEmpty()) {
             int size = images.size();
             for (int i = 0; i < size; ++i) {

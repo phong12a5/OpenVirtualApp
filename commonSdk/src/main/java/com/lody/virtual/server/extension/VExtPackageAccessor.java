@@ -28,15 +28,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class VExtPackageAccessor {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITwuIGwIIDd9JA47KC0ME24FAitsJDAcKS5SVg=="));
+    private static final String TAG = "VExtPackageAccessor";
     private static IPCHelper<IExtHelperInterface> sHelper = new IPCHelper<IExtHelperInterface>() {
         public IExtHelperInterface getInterface() {
             Context context = VirtualCore.get().getContext();
 
             for(int i = 0; i < 3; ++i) {
-                Bundle response = (new ProviderCall.Builder(context, VExtPackageAccessor.getAuthority())).methodName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGojNClmEVRF"))).callSafely();
+                Bundle response = (new ProviderCall.Builder(context, VExtPackageAccessor.getAuthority())).methodName("connect").callSafely();
                 if (response != null) {
-                    IBinder binder = BundleCompat.getBinder(response, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99NAY2KBcMKGMFSFo=")));
+                    IBinder binder = BundleCompat.getBinder(response, "_VA_|_binder_");
                     return Stub.asInterface(binder);
                 }
 
@@ -52,7 +52,7 @@ public class VExtPackageAccessor {
     }
 
     private static Intent getLaunchIntentForPackage(PackageManager pm, String packageName) {
-        Intent intentToResolve = new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42TQ5iDB4CIjsuBmMLHg5gHApF")));
+        Intent intentToResolve = new Intent("android.intent.action.LAUNCH_HELPER");
         intentToResolve.setPackage(packageName);
         List<ResolveInfo> ris = pm.queryIntentActivities(intentToResolve, 0);
         if (ris.size() <= 0) {
@@ -99,17 +99,17 @@ public class VExtPackageAccessor {
 
     public static boolean callHelper() {
         try {
-            (new ProviderCall.Builder(VirtualCore.get().getContext(), getAuthority())).methodName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JhhSVg=="))).retry(0).call();
+            (new ProviderCall.Builder(VirtualCore.get().getContext(), getAuthority())).methodName("@").retry(0).call();
         } catch (IllegalAccessException var2) {
-            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+DmoLRStgESQ/IzkmLGwgRQZvATgdPC02J2EzICxpJA0dLy0MCmEjRT9qDjw0JzkiLWkKBgRpJx05MzocVg==")));
+            VLog.e(TAG, "callHelper virtual.service.ext_helper failed...");
             return false;
         }
 
         try {
-            (new ProviderCall.Builder(VirtualCore.get().getContext(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojLDdhNFE1IykYD2UjOAZqATg7KQQcMmMFMD9qDiQbJQcYCm8FFhNoHlkZKioiVg==")))).methodName(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JhhSVg=="))).retry(0).call();
+            (new ProviderCall.Builder(VirtualCore.get().getContext(), "com.carlos.multiapp.virtual_stub_ext_0")).methodName("@").retry(0).call();
             return true;
         } catch (IllegalAccessException var1) {
-            Log.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+DmoLRStgESQ/IzkmLGwgRQZvATgdID02CmYKMF9uAQY9JQNWJGszJAVqASgzCDleJXszSFo=")) + var1);
+            Log.e(TAG, "callHelper virtual_stub_ext_0 failed...:" + var1);
             return false;
         }
     }

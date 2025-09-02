@@ -11,13 +11,13 @@ import mirror.android.view.IGraphicsStats;
 public class GraphicsStatsStub
 extends BinderInvocationProxy {
     public GraphicsStatsStub() {
-        super(IGraphicsStats.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS0MP28FRS99JygpLBciLmoFSFo=")));
+        super(IGraphicsStats.Stub.asInterface, "graphicsstats");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uL2wVNANmHCwvKD0+PWobHiVsMjw5LD42J2EjNFo="))));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("requestBufferForProcess"));
     }
 }
 

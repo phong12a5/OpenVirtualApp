@@ -128,7 +128,7 @@ CompoundButton.OnCheckedChangeListener {
 
     protected void runOnUiThread(Runnable runnable) {
         if (this.mHandler == null) {
-            throw new NullPointerException(StringFog.decrypt("OwQcEgkLLVMKHFIeHAMC"));
+            throw new NullPointerException("Handler is null");
         }
         this.mHandler.post(runnable);
     }

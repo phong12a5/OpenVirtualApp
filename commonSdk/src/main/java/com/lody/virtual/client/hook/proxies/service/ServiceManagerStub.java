@@ -31,31 +31,31 @@ extends MethodInvocationProxy<MethodInvocationStub<IInterface>> {
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGczNARmNAY5KAhSVg=="))){
+        this.addMethodProxy(new StaticMethodProxy("getService"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) throws Throwable {
                 String name = (String)args[0];
                 BinderInvocationStub proxy = ServiceLocalManager.getService(name);
                 if (proxy != null) {
-                    VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uKmwjAiliDFE1Ly0iCGcjQSZoASAgKSocIWIFFhBuASg/Ki4YJ343NCV6Vx00Jy5SVg==")), name, proxy);
+                    VLog.d("HV-", "ServiceLocalManager.getService:%s->%s", name, proxy);
                     return proxy;
                 }
-                VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uKmwjAiliDFE1Ly0iCGcjQSZoASAgKSocIWIFFhBuASg/Ki4YJ343NCV7ARo6DRc6IGwwLFo=")), name);
+                VLog.d("HV-", "ServiceLocalManager.getService:%s no find", name);
                 return super.call(who, method, args);
             }
         });
-        this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQV5iASwuKQcqPQ=="))){
+        this.addMethodProxy(new StaticMethodProxy("checkService"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) throws Throwable {
                 String name = (String)args[0];
                 BinderInvocationStub proxy = ServiceLocalManager.getService(name);
                 if (proxy != null) {
-                    VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uKmwjAiliDFE1Ly0iCGcjQSZoASAgKSocJWMaLCZvJSwuLBcEI2gjNy54HjM8Mjk2Og==")), name, proxy);
+                    VLog.d("HV-", "ServiceLocalManager.checkService:%s->%s", name, proxy);
                     return proxy;
                 }
-                VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii4uKmwjAiliDFE1Ly0iCGcjQSZoASAgKSocJWMaLCZvJSwuLBcEI2gjNy54HjM3Jj0XL24wBgJpN1RF")), name);
+                VLog.d("HV-", "ServiceLocalManager.checkService:%s no find", name);
                 return super.call(who, method, args);
             }
         });

@@ -54,11 +54,11 @@ class MethodProxies {
                     cellLoc.fillInNotifierBundle(cellData);
                 }
                 catch (Throwable e) {
-                    cellData.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+KWgYLAZ9AQozKi0YXmkzSFo=")), cell.baseStationId);
-                    cellData.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+KWgYLAZ9AQozKi0YU24gBi9vHigvLhhSVg==")), Integer.MAX_VALUE);
-                    cellData.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+KWgYLAZ9AQozKi0YU28FMC1qDiwwLgguVg==")), Integer.MAX_VALUE);
-                    cellData.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YKWwFNCNrDgpF")), cell.systemId);
-                    cellData.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4uLGwzGgRjIgYw")), cell.networkId);
+                    cellData.putInt("baseStationId", cell.baseStationId);
+                    cellData.putInt("baseStationLatitude", Integer.MAX_VALUE);
+                    cellData.putInt("baseStationLongitude", Integer.MAX_VALUE);
+                    cellData.putInt("systemId", cell.systemId);
+                    cellData.putInt("networkId", cell.networkId);
                 }
             } else {
                 try {
@@ -67,9 +67,9 @@ class MethodProxies {
                     cellLoc.fillInNotifierBundle(cellData);
                 }
                 catch (Throwable e) {
-                    cellData.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+OQ==")), cell.lac);
-                    cellData.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4YPA==")), cell.cid);
-                    cellData.putInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khc2OQ==")), cell.psc);
+                    cellData.putInt("lac", cell.lac);
+                    cellData.putInt("cid", cell.cid);
+                    cellData.putInt("psc", cell.psc);
                 }
             }
             return cellData;
@@ -107,7 +107,7 @@ class MethodProxies {
     static class GetNeighboringCellInfo
     extends ReplaceCallingPkgMethodProxy {
         public GetNeighboringCellInfo() {
-            super(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGIjNC9iJBo6Ki4uMW8VEhNrAQIdOxgcImAjSFo=")));
+            super("getNeighboringCellInfo");
         }
 
         @Override
@@ -135,12 +135,12 @@ class MethodProxies {
     static class GetAllCellInfo
     extends ReplaceCallingPkgMethodProxy {
         public GetAllCellInfo() {
-            super(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVHiRlJDAoKhUcDmkVNFo=")));
+            super("getAllCellInfo");
         }
 
         @Override
         public Object call(Object who, Method method, Object ... args) throws Throwable {
-            if (GetAllCellInfo.isFakeLocationEnable() && !GetAllCellInfo.getAppPkg().equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCRjDiw7Lz0hDm4jMCxsNwYaLgQcCGMKQSBqEVRF")))) {
+            if (GetAllCellInfo.isFakeLocationEnable() && !GetAllCellInfo.getAppPkg().equals("com.alibaba.android.rimet")) {
                 List<VCell> cells = VirtualLocationManager.get().getAllCell(GetAllCellInfo.getAppUserId(), GetAllCellInfo.getAppPkg());
                 if (cells != null) {
                     ArrayList<CellInfo> result = new ArrayList<CellInfo>();
@@ -158,7 +158,7 @@ class MethodProxies {
     static class GetAllCellInfoUsingSubId
     extends ReplaceCallingPkgMethodProxy {
         public GetAllCellInfoUsingSubId() {
-            super(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVHiRlJDAoKhUcDmkVNFBsJx4bLjs2CX02Gi8=")));
+            super("getAllCellInfoUsingSubId");
         }
 
         @Override
@@ -174,7 +174,7 @@ class MethodProxies {
     static class GetCellLocation
     extends ReplaceCallingPkgMethodProxy {
         public GetCellLocation() {
-            super(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMzNCRgHFE1Ly0iLmwjNCY=")));
+            super("getCellLocation");
         }
 
         @Override
@@ -197,7 +197,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGIVNC9iHDw1IzwqCG8KBlo="));
+            return "getMeidForSlot";
         }
     }
 
@@ -208,14 +208,14 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLH0VEitjDDw1IzwqCG8KBlo="));
+            return "getImeiForSlot";
         }
     }
 
     static class GetDeviceId
     extends ReplaceLastPkgMethodProxy {
         public GetDeviceId() {
-            super(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAFND5jDig/IQc2Vg==")));
+            super("getDeviceId");
         }
 
         @Override

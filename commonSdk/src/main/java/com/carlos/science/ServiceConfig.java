@@ -6,7 +6,7 @@ package com.carlos.science;
 import com.carlos.libcommon.StringFog;
 
 public enum ServiceConfig {
-    CONFIG(StringFog.decrypt("EAofWBUPPBgCCBdeCgMPABYcFwgL"));
+    CONFIG("com.package.classname");
 
     public final String className;
 

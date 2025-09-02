@@ -49,7 +49,7 @@ public class IntArray {
 
     public void set(int index, int value) {
         if (index >= this.mSize) {
-            throw new IndexOutOfBoundsException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcPGgaRCg=")) + index + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgYKXsFPARiDiAgKAgtOmUzFjdlMzw/IwgtJGAaGjZqVyA8Ki06J3gVSFo=")) + this.mSize);
+            throw new IndexOutOfBoundsException("Index " + index + " is greater than the list size " + this.mSize);
         }
         this.mData[index] = value;
     }

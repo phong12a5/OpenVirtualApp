@@ -58,7 +58,7 @@ public class PreviewImageAdapter extends RecyclerView.Adapter<PreviewImageAdapte
     public void onBindViewHolder(@NonNull ImageHolder holder, int position) {
         String path = ((Image)this.mImgList.get(position)).getPath();
         Uri uri;
-        if (path.startsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBcqLG8FSFo=")))) {
+        if (path.startsWith("http")) {
             uri = Uri.parse(path);
         } else {
             uri = Uri.fromFile(new File(path));

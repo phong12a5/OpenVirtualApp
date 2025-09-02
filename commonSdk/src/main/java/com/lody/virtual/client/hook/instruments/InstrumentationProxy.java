@@ -229,7 +229,7 @@ extends Instrumentation {
             }
         }
         catch (Throwable e) {
-            VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITw9DQ==")), e);
+            VLog.e("VA-", e);
         }
         finally {
             this.avoidRecursive.finishCall(1);
@@ -518,10 +518,10 @@ extends Instrumentation {
     public Instrumentation.ActivityResult execStartActivity(Context context, IBinder iBinder, IBinder iBinder2, Activity activity, Intent intent, int i, Bundle bundle) throws Throwable {
         try {
             if (this.avoidRecursive.beginCall(20)) {
-                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.base, context, iBinder, iBinder2, activity, intent, i, bundle);
+                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, "execStartActivity", Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.base, context, iBinder, iBinder2, activity, intent, i, bundle);
                 return activityResult;
             }
-            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.root, context, iBinder, iBinder2, activity, intent, i, bundle);
+            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, "execStartActivity", Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.root, context, iBinder, iBinder2, activity, intent, i, bundle);
             return activityResult;
         }
         catch (InvocationTargetException e) {
@@ -547,10 +547,10 @@ extends Instrumentation {
     public Instrumentation.ActivityResult execStartActivity(Context context, IBinder iBinder, IBinder iBinder2, String str, Intent intent, int i, Bundle bundle) throws Throwable {
         try {
             if (this.avoidRecursive.beginCall(21)) {
-                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, String.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.base, context, iBinder, iBinder2, str, intent, i, bundle);
+                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, "execStartActivity", Context.class, IBinder.class, IBinder.class, String.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.base, context, iBinder, iBinder2, str, intent, i, bundle);
                 return activityResult;
             }
-            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, String.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.root, context, iBinder, iBinder2, str, intent, i, bundle);
+            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, "execStartActivity", Context.class, IBinder.class, IBinder.class, String.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.root, context, iBinder, iBinder2, str, intent, i, bundle);
             return activityResult;
         }
         catch (InvocationTargetException e) {
@@ -576,10 +576,10 @@ extends Instrumentation {
     public Instrumentation.ActivityResult execStartActivity(Context context, IBinder iBinder, IBinder iBinder2, Fragment fragment, Intent intent, int i) throws Throwable {
         try {
             if (this.avoidRecursive.beginCall(22)) {
-                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, Fragment.class, Intent.class, Integer.TYPE).invoke(this.base, context, iBinder, iBinder2, fragment, intent, i);
+                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, "execStartActivity", Context.class, IBinder.class, IBinder.class, Fragment.class, Intent.class, Integer.TYPE).invoke(this.base, context, iBinder, iBinder2, fragment, intent, i);
                 return activityResult;
             }
-            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, Fragment.class, Intent.class, Integer.TYPE).invoke(this.root, context, iBinder, iBinder2, fragment, intent, i);
+            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, "execStartActivity", Context.class, IBinder.class, IBinder.class, Fragment.class, Intent.class, Integer.TYPE).invoke(this.root, context, iBinder, iBinder2, fragment, intent, i);
             return activityResult;
         }
         catch (InvocationTargetException e) {
@@ -605,10 +605,10 @@ extends Instrumentation {
     public Instrumentation.ActivityResult execStartActivity(Context context, IBinder iBinder, IBinder iBinder2, Activity activity, Intent intent, int i) throws Throwable {
         try {
             if (this.avoidRecursive.beginCall(23)) {
-                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE).invoke(this.base, context, iBinder, iBinder2, activity, intent, i);
+                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, "execStartActivity", Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE).invoke(this.base, context, iBinder, iBinder2, activity, intent, i);
                 return activityResult;
             }
-            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE).invoke(this.root, context, iBinder, iBinder2, activity, intent, i);
+            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, "execStartActivity", Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE).invoke(this.root, context, iBinder, iBinder2, activity, intent, i);
             return activityResult;
         }
         catch (InvocationTargetException e) {
@@ -634,10 +634,10 @@ extends Instrumentation {
     public Instrumentation.ActivityResult execStartActivity(Context context, IBinder iBinder, IBinder iBinder2, Fragment fragment, Intent intent, int i, Bundle bundle) throws Throwable {
         try {
             if (this.avoidRecursive.beginCall(24)) {
-                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, Fragment.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.base, context, iBinder, iBinder2, fragment, intent, i, bundle);
+                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, "execStartActivity", Context.class, IBinder.class, IBinder.class, Fragment.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.base, context, iBinder, iBinder2, fragment, intent, i, bundle);
                 return activityResult;
             }
-            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, Fragment.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.root, context, iBinder, iBinder2, fragment, intent, i, bundle);
+            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, "execStartActivity", Context.class, IBinder.class, IBinder.class, Fragment.class, Intent.class, Integer.TYPE, Bundle.class).invoke(this.root, context, iBinder, iBinder2, fragment, intent, i, bundle);
             return activityResult;
         }
         catch (InvocationTargetException e) {
@@ -664,10 +664,10 @@ extends Instrumentation {
     public Instrumentation.ActivityResult execStartActivity(Context context, IBinder iBinder, IBinder iBinder2, Activity activity, Intent intent, int i, Bundle bundle, UserHandle userHandle) throws Throwable {
         try {
             if (this.avoidRecursive.beginCall(25)) {
-                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE, Bundle.class, UserHandle.class).invoke(this.base, context, iBinder, iBinder2, activity, intent, i, bundle, userHandle);
+                Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.base, "execStartActivity", Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE, Bundle.class, UserHandle.class).invoke(this.base, context, iBinder, iBinder2, activity, intent, i, bundle, userHandle);
                 return activityResult;
             }
-            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfM2s2LAZ9ASwgJwcqLmwgHi9vHh5F")), Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE, Bundle.class, UserHandle.class).invoke(this.root, context, iBinder, iBinder2, activity, intent, i, bundle, userHandle);
+            Instrumentation.ActivityResult activityResult = (Instrumentation.ActivityResult)InstrumentationProxy.findDeclaredMethod(this.root, "execStartActivity", Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, Integer.TYPE, Bundle.class, UserHandle.class).invoke(this.root, context, iBinder, iBinder2, activity, intent, i, bundle, userHandle);
             return activityResult;
         }
         catch (InvocationTargetException e) {
@@ -700,7 +700,7 @@ extends Instrumentation {
                 continue;
             }
         }
-        throw new NoSuchMethodException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OwguLGUFGixLEVRF")) + name + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcmCWwFRChhHiAqLwdXPWUzGgRsIzxF")) + Arrays.asList(args) + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgcD2wJIC5gJzA2KF4mMW9STVo=")) + obj.getClass());
+        throw new NoSuchMethodException("Method " + name + " with parameters " + Arrays.asList(args) + " not found in " + obj.getClass());
     }
 }
 

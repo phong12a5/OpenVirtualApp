@@ -112,22 +112,22 @@ public class VEnvironment {
     }
 
     public static File getDataAppLibDirectoryExt(String packageName) {
-        return VEnvironment.buildPath(VEnvironment.getDataAppPackageDirectoryExt(packageName), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOg==")));
+        return VEnvironment.buildPath(VEnvironment.getDataAppPackageDirectoryExt(packageName), "lib");
     }
 
     public static File getPackageFile(String packageName) {
-        return new File(VEnvironment.getDataAppPackageDirectory(packageName), EncodeUtils.decodeBase64(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IAgIW2kmTV5MDho5IC4pJQ=="))));
+        return new File(VEnvironment.getDataAppPackageDirectory(packageName), EncodeUtils.decodeBase64("YmFzZS5hcGs="));
     }
 
     public static String getPackageFileStub(String packageName) {
         if (BuildCompat.isOreo()) {
-            return String.format(EncodeUtils.decodeBase64(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("O14MDGUFMBdqATxOJRUuI2cwLFNuNQIQIi1XAk82HitpIygUIys2WWAwFlo="))), packageName, Base64.encodeToString((byte[])packageName.getBytes(), (int)10));
+            return String.format(EncodeUtils.decodeBase64("L2RhdGEvYXBwLyVzLSVzL2Jhc2UuYXBr"), packageName, Base64.encodeToString((byte[])packageName.getBytes(), (int)10));
         }
-        return String.format(EncodeUtils.decodeBase64(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("O14MDGUFMBdqATxOJRUuI2cwLFNuNQIVJhciWGAIID1jNS8+Kj4YG2wkElo="))), packageName);
+        return String.format(EncodeUtils.decodeBase64("L2RhdGEvYXBwLyVzLTEvYmFzZS5hcGs="), packageName);
     }
 
     public static String getSplitFileName(String splitName) {
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki06DmUaMB8=")) + splitName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz4+KGUzSFo="));
+        return "split_" + splitName + ".apk";
     }
 
     public static File getSplitPackageFile(String packageName, String splitName) {
@@ -135,7 +135,7 @@ public class VEnvironment {
     }
 
     public static File getPackageFileExt(String packageName) {
-        return new File(VEnvironment.getDataAppPackageDirectoryExt(packageName), EncodeUtils.decodeBase64(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IAgIW2kmTV5MDho5IC4pJQ=="))));
+        return new File(VEnvironment.getDataAppPackageDirectoryExt(packageName), EncodeUtils.decodeBase64("YmFzZS5hcGs="));
     }
 
     public static File getSplitPackageFileExt(String packageName, String splitName) {
@@ -151,63 +151,63 @@ public class VEnvironment {
     }
 
     public static File getDingConfigFile() {
-        return new File(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYCGg3EilgJFk+KQc5DmwjMC8=")));
+        return new File(DATA_APP_SYSTEM_DIRECTORY, "ding-config.ini");
     }
 
     public static File getUidListFile() {
-        return new File(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgYPHoVHi9hJw02KQcYMQ==")));
+        return new File(DATA_APP_SYSTEM_DIRECTORY, "uid-list.ini");
     }
 
     public static File getBakUidListFile() {
-        return new File(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgYPHoVHi9hJw02KQcYMX8VRTdqJ1RF")));
+        return new File(DATA_APP_SYSTEM_DIRECTORY, "uid-list.ini.bak");
     }
 
     public static File getAccountConfigFile() {
-        return new File(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmV10oKQgqLn8VLCZqAVRF")));
+        return new File(DATA_APP_SYSTEM_DIRECTORY, "account-list.ini");
     }
 
     public static File getSyncDirectory() {
-        return VEnvironment.buildPath(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YCGszSFo=")));
+        return VEnvironment.buildPath(DATA_APP_SYSTEM_DIRECTORY, "sync");
     }
 
     public static File getAccountVisibilityConfigFile() {
-        return new File(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmV10uKQgqMW4VLCRqDiw0PBgEI2EjESlvDh4i")));
+        return new File(DATA_APP_SYSTEM_DIRECTORY, "account-visibility-list.ini");
     }
 
     public static File getVirtualLocationFile() {
-        return new File(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV10oKi0pDmwjMC8=")));
+        return new File(DATA_APP_SYSTEM_DIRECTORY, "virtual-loc.ini");
     }
 
     public static File getDeviceInfoFile() {
-        return new File(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguLmUVLCtODig1Kj0+MWkJMC9lNx5F")));
+        return new File(DATA_APP_SYSTEM_DIRECTORY, "device-config.ini");
     }
 
     public static File getPackageListFile() {
-        return new File(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+OWUzJC1iASs2KQcYMQ==")));
+        return new File(DATA_APP_SYSTEM_DIRECTORY, "packages.ini");
     }
 
     public static File getVSConfigFile() {
-        return new File(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT02KXojAiZjAVRF")));
+        return new File(DATA_APP_SYSTEM_DIRECTORY, "vss.ini");
     }
 
     public static File getJobConfigFile() {
-        return new File(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4AOnoVHi9hJw02KQcYMQ==")));
+        return new File(DATA_APP_SYSTEM_DIRECTORY, "job-list.ini");
     }
 
     public static File getOatDirectory(String packageName) {
-        return VEnvironment.buildPath(VEnvironment.getDataAppPackageDirectory(packageName), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4+LA==")));
+        return VEnvironment.buildPath(VEnvironment.getDataAppPackageDirectory(packageName), "oat");
     }
 
     public static File getOatDirectoryExt(String packageName) {
-        return VEnvironment.buildPath(VEnvironment.getDataAppPackageDirectoryExt(packageName), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4+LA==")));
+        return VEnvironment.buildPath(VEnvironment.getDataAppPackageDirectoryExt(packageName), "oat");
     }
 
     public static File getOatFile(String packageName, String instructionSet) {
-        return VEnvironment.buildPath(VEnvironment.getOatDirectory(packageName), instructionSet, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+KWhSBiViHjAa")));
+        return VEnvironment.buildPath(VEnvironment.getOatDirectory(packageName), instructionSet, "base.odex");
     }
 
     public static File getOatFileExt(String packageName, String instructionSet) {
-        return VEnvironment.buildPath(VEnvironment.getOatDirectoryExt(packageName), instructionSet, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+KWhSBiViHjAa")));
+        return VEnvironment.buildPath(VEnvironment.getOatDirectoryExt(packageName), instructionSet, "base.odex");
     }
 
     public static File getDataAppPackageDirectory(String packageName) {
@@ -219,23 +219,23 @@ public class VEnvironment {
     }
 
     public static File getDataAppLibDirectory(String packageName) {
-        return VEnvironment.buildPath(VEnvironment.getDataAppPackageDirectory(packageName), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOg==")));
+        return VEnvironment.buildPath(VEnvironment.getDataAppPackageDirectory(packageName), "lib");
     }
 
     public static File getUserAppLibDirectory(int userId, String packageName) {
-        return new File(VEnvironment.getDataUserPackageDirectory(userId, packageName), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOg==")));
+        return new File(VEnvironment.getDataUserPackageDirectory(userId, packageName), "lib");
     }
 
     public static File getUserAppLibDirectoryExt(int userId, String packageName) {
-        return new File(VEnvironment.getDataUserPackageDirectoryExt(userId, packageName), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOg==")));
+        return new File(VEnvironment.getDataUserPackageDirectoryExt(userId, packageName), "lib");
     }
 
     public static File getPackageCacheFile(String packageName) {
-        return new File(VEnvironment.getDataAppPackageDirectory(packageName), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+OWUzJC1iClkzKj0cVg==")));
+        return new File(VEnvironment.getDataAppPackageDirectory(packageName), "package.ini");
     }
 
     public static File getSignatureFile(String packageName) {
-        return new File(VEnvironment.getDataAppPackageDirectory(packageName), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4YPWojJAZmASw/Oj0cDmwjSFo=")));
+        return new File(VEnvironment.getDataAppPackageDirectory(packageName), "signature.ini");
     }
 
     public static File getFrameworkDirectory(String name) {
@@ -243,11 +243,11 @@ public class VEnvironment {
     }
 
     public static File getOptimizedFrameworkFile(String name) {
-        return new File(VEnvironment.getFrameworkDirectory(name), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EP28wLCthIFkwKAgAVg==")));
+        return new File(VEnvironment.getFrameworkDirectory(name), "classes.dex");
     }
 
     public static File getFrameworkFile(String name) {
-        return new File(VEnvironment.getFrameworkDirectory(name), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfLG8jJClmHjAwOj0IOWoVSFo=")));
+        return new File(VEnvironment.getFrameworkDirectory(name), "extracted.jar");
     }
 
     public static File getDataUserDirectory() {
@@ -283,18 +283,18 @@ public class VEnvironment {
     }
 
     public static File getDataSystemDirectory(int userId) {
-        return VEnvironment.buildPath(VEnvironment.getDataUserDirectory(userId), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YKWwFNCM=")));
+        return VEnvironment.buildPath(VEnvironment.getDataUserDirectory(userId), "system");
     }
 
     public static File getDataSystemDirectoryExt(int userId) {
-        return VEnvironment.buildPath(VEnvironment.getDataUserDirectoryExt(userId), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YKWwFNCM=")));
+        return VEnvironment.buildPath(VEnvironment.getDataUserDirectoryExt(userId), "system");
     }
 
     public static File getWifiMacFile(int userId, boolean isExt) {
         if (isExt) {
-            return new File(VEnvironment.getDataSystemDirectoryExt(userId), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS4YPmUbEjd9IiAwKBguPWoKAlo=")));
+            return new File(VEnvironment.getDataSystemDirectoryExt(userId), "wifiMacAddress");
         }
-        return new File(VEnvironment.getDataSystemDirectory(userId), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS4YPmUbEjd9IiAwKBguPWoKAlo=")));
+        return new File(VEnvironment.getDataSystemDirectory(userId), "wifiMacAddress");
     }
 
     public static File getDataDirectory() {
@@ -302,11 +302,11 @@ public class VEnvironment {
     }
 
     public static File getPackageInstallerStageDir() {
-        return VEnvironment.buildPath(DATA_APP_SYSTEM_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz02M28wLC9gJFlAKBccKA==")));
+        return VEnvironment.buildPath(DATA_APP_SYSTEM_DIRECTORY, ".session_dir");
     }
 
     public static File getNativeCacheDir(boolean isExt) {
-        return VEnvironment.buildPath(isExt ? ROOT_EXT : ROOT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz4cP2wFAj5iAVRF")));
+        return VEnvironment.buildPath(isExt ? ROOT_EXT : ROOT, ".native");
     }
 
     public static File getFrameworkDirectory() {
@@ -318,7 +318,7 @@ public class VEnvironment {
     }
 
     public static File getSystemSettingsFile(int userId) {
-        return new File(VEnvironment.getDataSystemDirectory(userId), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGwFAiZiJys2KQcYMQ==")));
+        return new File(VEnvironment.getDataSystemDirectory(userId), "settings.ini");
     }
 
     public static boolean enableMediaRedirect() {
@@ -341,20 +341,20 @@ public class VEnvironment {
             hostUserDir = new File(VEnvironment.getContext().getApplicationInfo().dataDir).getParentFile();
         }
         File host = new File(hostUserDir, StubManifest.PACKAGE_NAME);
-        ROOT = VEnvironment.buildPath(host, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgEVRF")));
-        FRAMEWORK_DIRECTORY = VEnvironment.buildPath(ROOT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT0MP2oVND1gJywx")));
-        DATA_DIRECTORY = VEnvironment.buildPath(ROOT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRg+LGsVSFo=")));
-        DATA_USER_DIRECTORY = VEnvironment.buildPath(DATA_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28jSFo=")));
-        DATA_USER_DE_DIRECTORY = VEnvironment.buildPath(DATA_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28mGixiAVRF")));
-        DATA_APP_DIRECTORY = VEnvironment.buildPath(DATA_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KA==")));
-        DATA_APP_SYSTEM_DIRECTORY = VEnvironment.buildPath(DATA_APP_DIRECTORY, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YKWwFNCM=")));
+        ROOT = VEnvironment.buildPath(host, "virtual");
+        FRAMEWORK_DIRECTORY = VEnvironment.buildPath(ROOT, "framework");
+        DATA_DIRECTORY = VEnvironment.buildPath(ROOT, "data");
+        DATA_USER_DIRECTORY = VEnvironment.buildPath(DATA_DIRECTORY, "user");
+        DATA_USER_DE_DIRECTORY = VEnvironment.buildPath(DATA_DIRECTORY, "user_de");
+        DATA_APP_DIRECTORY = VEnvironment.buildPath(DATA_DIRECTORY, "app");
+        DATA_APP_SYSTEM_DIRECTORY = VEnvironment.buildPath(DATA_APP_DIRECTORY, "system");
         File hostExt = new File(hostUserDir, StubManifest.EXT_PACKAGE_NAME);
-        ROOT_EXT = VEnvironment.buildPath(hostExt, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgEVRF")));
-        DATA_DIRECTORY_EXT = VEnvironment.buildPath(ROOT_EXT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRg+LGsVSFo=")));
-        DATA_USER_DIRECTORY_EXT = VEnvironment.buildPath(DATA_DIRECTORY_EXT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28jSFo=")));
-        DATA_APP_DIRECTORY_EXT = VEnvironment.buildPath(DATA_DIRECTORY_EXT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KA==")));
-        DATA_USER_DE_DIRECTORY_EXT = VEnvironment.buildPath(DATA_DIRECTORY_EXT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28mGixiAVRF")));
-        FRAMEWORK_DIRECTORY_EXT = VEnvironment.buildPath(ROOT_EXT, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT0MP2oVND1gJywx")));
+        ROOT_EXT = VEnvironment.buildPath(hostExt, "virtual");
+        DATA_DIRECTORY_EXT = VEnvironment.buildPath(ROOT_EXT, "data");
+        DATA_USER_DIRECTORY_EXT = VEnvironment.buildPath(DATA_DIRECTORY_EXT, "user");
+        DATA_APP_DIRECTORY_EXT = VEnvironment.buildPath(DATA_DIRECTORY_EXT, "app");
+        DATA_USER_DE_DIRECTORY_EXT = VEnvironment.buildPath(DATA_DIRECTORY_EXT, "user_de");
+        FRAMEWORK_DIRECTORY_EXT = VEnvironment.buildPath(ROOT_EXT, "framework");
     }
 }
 

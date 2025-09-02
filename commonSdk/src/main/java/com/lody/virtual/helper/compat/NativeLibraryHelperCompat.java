@@ -33,7 +33,7 @@ public class NativeLibraryHelperCompat {
             this.handle = NativeLibraryHelper.Handle.create.callWithException(packageFile);
         }
         catch (Throwable e) {
-            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4+CWoFNCxLEQo1PxcqKGkjQQZrDTxALRcqI2YwLBFvDig7KC1fM2IVNAJvASgbDRccKGwwLARpIyxF")));
+            VLog.e(TAG, "failed to create NativeLibraryHelper handle.");
             e.printStackTrace();
         }
     }
@@ -43,7 +43,7 @@ public class NativeLibraryHelperCompat {
             return NativeLibraryHelper.copyNativeBinaries.callWithException(this.handle, sharedLibraryDir, abi);
         }
         catch (Throwable e) {
-            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4+CWoFNCxLEQo1PxcqDWowLABoDiwaKi4uGGMKRSRlNBouLAQqVg==")));
+            VLog.e(TAG, "failed to copyNativeBinaries.");
             e.printStackTrace();
             return -1;
         }
@@ -51,11 +51,11 @@ public class NativeLibraryHelperCompat {
 
     @TargetApi(value=21)
     public static boolean is64bitAbi(String abi) {
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDXwkMyNmMxo7")).equals(abi) || StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwgYKG80OwY=")).equals(abi);
+        return "arm64-v8a".equals(abi) || "mips64".equals(abi);
     }
 
     public static boolean is32bitAbi(String abi) {
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDWgVJCpjAVRF")).equals(abi) || StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcMDWgVJCpjCl0uPC0iVg==")).equals(abi) || StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwgYKG8zSFo=")).equals(abi);
+        return "armeabi".equals(abi) || "armeabi-v7a".equals(abi) || "mips".equals(abi);
     }
 
     public static boolean isHandledAbi(String abi) {
@@ -95,8 +95,8 @@ public class NativeLibraryHelperCompat {
             while (entries.hasMoreElements()) {
                 ZipEntry entry = entries.nextElement();
                 String name = entry.getName();
-                if (name.contains(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MzobDw=="))) || !name.startsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOnozSFo="))) || entry.isDirectory() || !name.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz02Dw==")))) continue;
-                String supportedAbi = name.substring(name.indexOf(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="))) + 1, name.lastIndexOf(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="))));
+                if (name.contains("../") || !name.startsWith("lib/") || entry.isDirectory() || !name.endsWith(".so")) continue;
+                String supportedAbi = name.substring(name.indexOf("/") + 1, name.lastIndexOf("/"));
                 supportedABIs.add(supportedAbi);
             }
             return supportedABIs;
@@ -133,8 +133,8 @@ public class NativeLibraryHelperCompat {
             while (entries.hasMoreElements()) {
                 ZipEntry entry = entries.nextElement();
                 String name = entry.getName();
-                if (name.contains(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MzobDw=="))) || !name.startsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYOnozSFo="))) || entry.isDirectory() || !name.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz02Dw==")))) continue;
-                String supportedAbi = name.substring(name.indexOf(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="))) + 1, name.lastIndexOf(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg=="))));
+                if (name.contains("../") || !name.startsWith("lib/") || entry.isDirectory() || !name.endsWith(".so")) continue;
+                String supportedAbi = name.substring(name.indexOf("/") + 1, name.lastIndexOf("/"));
                 supportedABIs.add(supportedAbi);
             }
             return supportedABIs;

@@ -8,7 +8,7 @@ import mirror.RefClass;
 import mirror.RefMethod;
 
 public class ActivityLifecycleItem {
-    public static Class<?> TYPE = RefClass.load(ActivityLifecycleItem.class, StringFog.decrypt("EgsWBAoHO10CHwJeGgocBQAAAhcPMQACDAYZBgFAMgYGHxMHKwovBhQVChYNHwA7AgAD"));
+    public static Class<?> TYPE = RefClass.load(ActivityLifecycleItem.class, "android.app.servertransaction.ActivityLifecycleItem");
     public static RefMethod<Integer> getTargetState;
     public static final int UNDEFINED = -1;
     public static final int PRE_ON_CREATE = 0;

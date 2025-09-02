@@ -37,7 +37,7 @@ public class VirtualStorageManager {
     }
 
     private Object getRemoteInterface() {
-        return IVirtualStorageService.Stub.asInterface(ServiceManagerNative.getService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT02Vg=="))));
+        return IVirtualStorageService.Stub.asInterface(ServiceManagerNative.getService("vs"));
     }
 
     public String getVirtualStorage(String packageName, int userId) {

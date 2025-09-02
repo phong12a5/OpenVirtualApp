@@ -26,12 +26,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IHYXDController {
-        private static final String DESCRIPTOR = StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeARYWF0s7Pjw2GzAMAQYCBgMCFhc=");
+        private static final String DESCRIPTOR = "com.kook.controller.client.hyxd.IHYXDController";
         static final int TRANSACTION_memorySRWData = 1;
         static final int TRANSACTION_memoryTest = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeARYWF0s7Pjw2GzAMAQYCBgMCFhc="));
+            this.attachInterface(this, "com.kook.controller.client.hyxd.IHYXDController");
         }
 
         public static IHYXDController asInterface(IBinder obj) {
@@ -79,7 +79,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IHYXDController impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -106,7 +106,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeARYWF0s7Pjw2GzAMAQYCBgMCFhc=");
+                return "com.kook.controller.client.hyxd.IHYXDController";
             }
 
             /*
@@ -118,7 +118,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeARYWF0s7Pjw2GzAMAQYCBgMCFhc="));
+                    _data.writeInterfaceToken("com.kook.controller.client.hyxd.IHYXDController");
                     _data.writeString(searchValue);
                     _data.writeString(writeValue);
                     _data.writeInt(permission2 ? 1 : 0);
@@ -146,7 +146,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeARYWF0s7Pjw2GzAMAQYCBgMCFhc="));
+                    _data.writeInterfaceToken("com.kook.controller.client.hyxd.IHYXDController");
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         boolean bl = Stub.getDefaultImpl().memoryTest();

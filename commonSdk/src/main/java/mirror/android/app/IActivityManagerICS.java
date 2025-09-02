@@ -15,7 +15,7 @@ import mirror.RefClass;
 import mirror.RefMethod;
 
 public class IActivityManagerICS {
-    public static Class<?> TYPE = RefClass.load(IActivityManagerICS.class, StringFog.decrypt("EgsWBAoHO10CHwJeIC4NBwwEHxEXEhINDhUVGw=="));
+    public static Class<?> TYPE = RefClass.load(IActivityManagerICS.class, "android.app.IActivityManager");
     @MethodParams(value={IBinder.class, int.class, Intent.class})
     public static RefMethod<Boolean> finishActivity;
 }

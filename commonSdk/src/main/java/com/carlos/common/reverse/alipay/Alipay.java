@@ -19,7 +19,7 @@ extends ReflectionApplication {
             return;
         }
         try {
-            XposedHelpers.findAndHookMethod(XposedHelpers.findClass(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADXojJCRjASQ7LQMYOWozPCVoNx4dLhc2J30jLDVvATAyLAgcLXUwLDVrERooIBgMKGkgGQJuASg8IwgACHomLCl9DlkRLBg2OW4FJFo=")), classLoader), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LS4uLGMbMwFPVgpF")), Context.class, Integer.TYPE, Integer.TYPE, Boolean.TYPE, Integer.TYPE, Integer.TYPE, String.class, new XC_MethodHook(){
+            XposedHelpers.findAndHookMethod(XposedHelpers.findClass("com.alipay.apmobilesecuritysdk.scanattack.common.ScanAttack", classLoader), "getAD104", Context.class, Integer.TYPE, Integer.TYPE, Boolean.TYPE, Integer.TYPE, Integer.TYPE, String.class, new XC_MethodHook(){
 
                 @Override
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {

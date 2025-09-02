@@ -24,7 +24,7 @@ public class ParceledListSliceJBMR2 {
     public static RefMethod<List> getList;
 
     static {
-        TYPE = RefClass.load(ParceledListSliceJBMR2.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPLRAGAxcUJQYdBzYeHwYL"));
+        TYPE = RefClass.load(ParceledListSliceJBMR2.class, "android.content.pm.ParceledListSlice");
     }
 }
 

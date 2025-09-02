@@ -28,11 +28,11 @@ import mirror.android.view.IAutoFillManager;
 
 public class AutoFillManagerStub
 extends BinderInvocationProxy {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGoxOC9gHlENLwcYOWkFGgRkJCwwLS5SVg=="));
-    private static final String AUTO_FILL_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGozOC9gHlFF"));
+    private static final String TAG = "AutoFillManagerStub";
+    private static final String AUTO_FILL_NAME = "autofill";
 
     public AutoFillManagerStub() {
-        super(IAutoFillManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGozOC9gHlFF")));
+        super(IAutoFillManager.Stub.asInterface, "autofill");
     }
 
     @Override
@@ -42,27 +42,27 @@ extends BinderInvocationProxy {
         try {
             Object AutoFillManagerInstance;
             Object mainThread = ActivityThread.currentActivityThread.call(new Object[0]);
-            VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhY+I2wFGghjDlEoIgciDm4jEitsMjA/KhgLJGMKRS1uDiw9OD4mO2oFBgplDgo0OwcLMQ==")) + mainThread);
+            VLog.e("HV-", " AutoFillManagerStub inject mainThread:" + mainThread);
             if (mainThread != null) {
                 Application application = ActivityThread.mInitialApplication.get(mainThread);
-                VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhY+I2wFGghjDlEoIgciDm4jEitsMjA/KhgLJGMKRS1uDiw9OD5bDmwVHgVrNzgZJQcYJXszSFo=")) + application);
+                VLog.e("HV-", " AutoFillManagerStub inject application:" + application);
             }
             if ((AutoFillManagerInstance = this.getContext().getSystemService(AUTO_FILL_NAME)) == null) {
-                throw new NullPointerException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGoxOC9gHlENLwcYOWkFGgRiARo6Kgg+Kn0gLyNvAS8pKRcAKGVSBlo=")));
+                throw new NullPointerException("AutoFillManagerInstance is null.");
             }
             Object AutoFillManagerProxy = ((BinderInvocationStub)this.getInvocationStub()).getProxyInterface();
             if (AutoFillManagerProxy == null) {
-                throw new NullPointerException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGoxOC9gHlENLwcYOWkFGgRkHgocLwcXJGMFNyNsNwobKToqVg==")));
+                throw new NullPointerException("AutoFillManagerProxy is null.");
             }
-            Field AutoFillManagerServiceField = AutoFillManagerInstance.getClass().getDeclaredField(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwU2M28gOC99JDBF")));
+            Field AutoFillManagerServiceField = AutoFillManagerInstance.getClass().getDeclaredField("mService");
             AutoFillManagerServiceField.setAccessible(true);
             AutoFillManagerServiceField.set(AutoFillManagerInstance, AutoFillManagerProxy);
         }
         catch (Throwable tr) {
-            Log.e((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGoxOC9gHlENLwcYOWkFGgRkJCwwLSo6I2AwHiBpJzMpLy1fCGUgEQQ=")), (Throwable)tr);
+            Log.e((String)TAG, (String)"AutoFillManagerStub inject error.", (Throwable)tr);
             return;
         }
-        this.addMethodProxy(new ReplacePkgAndComponentProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMF5iASgpKQdfDg=="))){
+        this.addMethodProxy(new ReplacePkgAndComponentProxy("startSession"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) throws Throwable {
@@ -70,18 +70,18 @@ extends BinderInvocationProxy {
                 return super.call(who, method, args);
             }
         });
-        this.addMethodProxy(new ReplacePkgAndComponentProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtoJywAKAgqLm4gRQZkJyg6KT4YKWAzSFo="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2A2gaFj5jDig/IAcYOW4VOCtrEVRF"))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGMzHi9iDlkg"))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtlJFEzKAcYLg=="))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtpJDApIy0cDW8VSFo="))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YCGUaLCBpJDApIy0cDW8VSFo="))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRpJDApIy0cDW8VSFo="))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaNAZjHjA2LBccP24gBi9lJxofLhc2CWAVFlo="))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLH0FJANlJCAoKhcuOW4FJFo="))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYKWsVFiRiDB4tKj0MPmYgGgZlJyQaLAgEUmIFMDFvDiwuLAhSVg=="))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2A2gaFj5jDig/Oy4MKmozNARvESgv"))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2A2gaFj5jDig/IAcYOW4VOCtrEVRF"))){
+        this.addMethodProxy(new ReplacePkgAndComponentProxy("updateOrRestartSession"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("isServiceEnabled"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("addClient"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("removeClient"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("updateSession"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("finishSession"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("cancelSession"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("setAuthenticationResult"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("setHasCallback"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("disableOwnedAutofillServices"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("isServiceSupported"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("isServiceEnabled"){
 
             @Override
             public boolean beforeCall(Object who, Method method, Object ... args) {
@@ -94,14 +94,14 @@ extends BinderInvocationProxy {
     public static void disableAutoFill(Object object) {
         try {
             if (object == null) {
-                throw new NullPointerException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGoxOC9gHlENLwcYOWkFGgRiARo6Kgg+Kn0gLyNvAS8pKRcAKGVSBlo=")));
+                throw new NullPointerException("AutoFillManagerInstance is null.");
             }
-            Field AutoFillManagerServiceField = object.getClass().getDeclaredField(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwU2M28gOC99JDBF")));
+            Field AutoFillManagerServiceField = object.getClass().getDeclaredField("mService");
             AutoFillManagerServiceField.setAccessible(true);
             AutoFillManagerServiceField.set(object, null);
         }
         catch (Throwable tr) {
-            Log.e((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JgcuLGoxOC9gHlENLwcYOWkFGgRkJCwwLSo6I2AwHiBpJzMpLy1fCGUgEQQ=")), (Throwable)tr);
+            Log.e((String)TAG, (String)"AutoFillManagerStub inject error.", (Throwable)tr);
             return;
         }
     }

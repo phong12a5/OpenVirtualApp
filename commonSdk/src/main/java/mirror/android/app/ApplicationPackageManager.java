@@ -9,7 +9,7 @@ import mirror.RefMethod;
 import mirror.RefObject;
 
 public class ApplicationPackageManager {
-    public static Class<?> TYPE = RefClass.load(ApplicationPackageManager.class, StringFog.decrypt("EgsWBAoHO10CHwJeKB8eHwwRFxEHMB0zDhEbCAgLPgQcFwILLQ=="));
+    public static Class<?> TYPE = RefClass.load(ApplicationPackageManager.class, "android.app.ApplicationPackageManager");
     public static RefMethod getPermissionManager;
     public static RefObject<Object> mPermissionManager;
 }

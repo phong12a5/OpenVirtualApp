@@ -22,17 +22,17 @@ import mirror.com.android.internal.app.IBatteryStats;
 @TargetApi(value=24)
 public class BatteryStatsHub
 extends BinderInvocationProxy {
-    private static final String SERVICE_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+LGwFNARnASggLwg2Lw=="));
+    private static final String SERVICE_NAME = "batterystats";
 
     public BatteryStatsHub() {
-        super(IBatteryStats.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+LGwFNARnASggLwg2Lw==")));
+        super(IBatteryStats.Stub.asInterface, "batterystats");
     }
 
     @Override
     public void inject() throws Throwable {
         super.inject();
         if (mirror.android.os.health.SystemHealthManager.mBatteryStats != null) {
-            SystemHealthManager manager = (SystemHealthManager)VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YKWwFNCNjHjA7Khg2Mg==")));
+            SystemHealthManager manager = (SystemHealthManager)VirtualCore.get().getContext().getSystemService("systemhealth");
             mirror.android.os.health.SystemHealthManager.mBatteryStats.set(manager, (IInterface)((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());
         }
     }
@@ -40,7 +40,7 @@ extends BinderInvocationProxy {
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceLastUidMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRg+MWgYNC9iHyg2LwgmL2wzNAY="))){
+        this.addMethodProxy(new ReplaceLastUidMethodProxy("takeUidSnapshot"){
 
             @Override
             public Object call(Object who, Method method, Object ... args) {

@@ -26,7 +26,7 @@ implements Closeable {
 
     public DataReader(File file) throws Exception {
         this.mFile = file;
-        this.mRaf = new RandomAccessFile(this.mFile, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj5SVg==")));
+        this.mRaf = new RandomAccessFile(this.mFile, "r");
         this.mMappedBuffer = this.mRaf.getChannel().map(FileChannel.MapMode.READ_ONLY, 0L, file.length());
         this.mMappedBuffer.rewind();
         this.setLittleEndian(true);

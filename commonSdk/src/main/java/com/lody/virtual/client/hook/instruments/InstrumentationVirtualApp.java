@@ -76,7 +76,7 @@ implements IInjector {
             Field[] fields;
             for (Field field : fields = this.base.getClass().getDeclaredFields()) {
                 if (!field.getType().isAssignableFrom(Instrumentation.class)) continue;
-                VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uKWozHj5iCiQ5Ki0YPG8zLClvVjwaLC02CmEzLChuDh49KC0cI2UjAS57DSgcCAReLGUjSFo=")), this.base.getClass().getName(), field.getName());
+                VLog.e(TAG, "resolve conflict instrumentation: %s->%s", this.base.getClass().getName(), field.getName());
                 field.setAccessible(true);
                 field.set(this.base, this.root);
             }
@@ -195,7 +195,7 @@ implements IInjector {
         if (Instrumentation.class.equals(cls)) {
             return false;
         }
-        if (TextUtils.equals((CharSequence)VClient.get().getCurrentPackage(), (CharSequence)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogTSBjDlEzLwdfOWowTCZlDig6Ixg2O2AaTQY="))) && Build.VERSION.SDK_INT == 26) {
+        if (TextUtils.equals((CharSequence)VClient.get().getCurrentPackage(), (CharSequence)"com.zhiliaoapp.musically") && Build.VERSION.SDK_INT == 26) {
             return false;
         }
         do {

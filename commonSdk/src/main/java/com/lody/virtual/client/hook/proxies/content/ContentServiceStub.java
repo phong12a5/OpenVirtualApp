@@ -23,7 +23,7 @@ extends BinderInvocationProxy {
     private static final String TAG = ContentServiceStub.class.getSimpleName();
 
     public ContentServiceStub() {
-        super(IContentService.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGwFNCZmEVRF")));
+        super(IContentService.Stub.asInterface, "content");
     }
 
     @Override

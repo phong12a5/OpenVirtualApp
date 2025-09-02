@@ -24,7 +24,7 @@ public class Util {
     }
 
     public static boolean isOnePlus() {
-        return Util.getManufacturer().contains(StringFog.decrypt("HAsXBgkbLA=="));
+        return Util.getManufacturer().contains("oneplus");
     }
 
     public static String getManufacturer() {

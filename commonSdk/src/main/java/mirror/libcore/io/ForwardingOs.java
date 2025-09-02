@@ -8,7 +8,7 @@ import mirror.RefClass;
 import mirror.RefObject;
 
 public class ForwardingOs {
-    public static Class<?> TYPE = RefClass.load(ForwardingOs.class, StringFog.decrypt("HwwQFQocOl0KAFw2Bh0ZEhcWHwsJEAA="));
+    public static Class<?> TYPE = RefClass.load(ForwardingOs.class, "libcore.io.ForwardingOs");
     public static RefObject<Object> os;
 }
 

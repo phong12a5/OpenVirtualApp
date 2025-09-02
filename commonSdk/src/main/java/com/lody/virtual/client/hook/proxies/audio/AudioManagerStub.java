@@ -13,37 +13,37 @@ import mirror.android.media.IAudioService.Stub;
 
 public class AudioManagerStub extends BinderInvocationProxy {
     public AudioManagerStub() {
-        super(Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuPGUVGlo=")));
+        super(Stub.asInterface, "audio");
     }
 
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqMmwaLAZuNB4oLAdXPQ=="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqMmwaLAZoHh45LwdbRGoYRStlAQY/LhU2CmEwLCRsDzgeKT0AL2sFSFo="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqMmwaLAZpJzA9KC0ML2UzGixkJCw5Lhg+L24wAjdqDlEu"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqMmwaLAZpJwoqKAciD30VNCRvAQ4g"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqMmwaLAZoDiApLBcMKH0VNCRvAQ4g"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGcwMARiDiA3JD1fCGUjPCs="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGIVJANmHjAqJD1fCGUjPCs="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGIVAilhNB4sKRdfDmkhPAVvEShF"))) {
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("adjustVolume"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("adjustLocalOrRemoteStreamVolume"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("adjustSuggestedStreamVolume"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("adjustStreamVolume"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("adjustMasterVolume"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("setStreamVolume"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("setMasterVolume"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("setMicrophoneMute") {
             public Object call(Object who, Method method, Object... args) throws Throwable {
                 replaceLastUserId(args);
                 return super.call(who, method, args);
             }
         });
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGcjAiZiJDAqIgdfPmkhGjBvESg5LC4+KA=="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGcjAiZiJDAqIgdfPmkhLCZvESg5LC4+KA=="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGIVGixiAVRF"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgciKmswIF5mASQsKi4uLmoLQSpsJwYdKhcqJ24wAjdqDlEu"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggMP2ojMCVgMiAvKBccDWEVNClvDjBF"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uL2wVNANmHCAvKBccDWEVNClvDjBF"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQzAgRiDgoWKAg+MW4FGhNlJxobLhg2CmMKAil9JzAqIz4AVg=="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGcwICt9Dg4/Iz4mMm8FMCt9JxpF"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMjHgViAQo1Ki42MmIFAiV9JxpF"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qD28LFiRmDjAgKi1fLmw2AillJ1RF"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMBRgETA/LBdfDWUzFl5oJwZF"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYKWsVFiRiDyg7KD0MUmkjBi9oDCQcLAcuL2IFSFo="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwAKAdXDWUzGhNlJxo/KS4AKGUgTSxuDh49"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcKmgVPC9hJwo/IzsiLWkzLCVjNwYqKhc2H2AaGiBsNzBF"))));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("setRingerModeExternal"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("setRingerModeInternal"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("setMode"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("avrcpSupportsAbsoluteVolume"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("abandonAudioFocus"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("requestAudioFocus"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("setWiredDeviceConnectionState"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("setSpeakerphoneOn"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("setBluetoothScoOn"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("stopBluetoothSco"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("startBluetoothSco"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("disableSafeMediaVolume"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("registerRemoteControlClient"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("unregisterAudioFocusClient"));
     }
 }

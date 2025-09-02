@@ -35,7 +35,7 @@ import okio.BufferedSource;
 
 public class DecryptionInterceptor
 implements Interceptor {
-    private static String INTERCEPTOR = StringFog.decrypt("AgEbDl8BEBdZCRtVGB8=");
+    private static String INTERCEPTOR = "qdix:oOd:fi%qp";
     public Context mContext;
     public String mBaseUrl;
 
@@ -64,7 +64,7 @@ implements Interceptor {
         SharedPreferences sharedPreferences = this.mContext.getSharedPreferences(INTERCEPTOR, 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(requestUrl, encryptContent);
-        HVLog.d(StringFog.decrypt("GQoeHkgRATJfClM=") + requestUrl + StringFog.decrypt("S09PS0gMFhVUFh07BAEbDkMWTw==") + encryptContent);
+        HVLog.d("requestUrl:" + requestUrl + "8*==-bIf7yoKmnu}&d9" + encryptContent);
         if (Build.VERSION.SDK_INT >= 9) {
             editor.apply();
         }
@@ -74,7 +74,7 @@ implements Interceptor {
         SharedPreferences sharedPreferences = context.getSharedPreferences(INTERCEPTOR, 4);
         String encryptContent = sharedPreferences.getString(requestUrl, null);
         if (encrypt) {
-            return CipherUtil.decrypt(StringFog.decrypt("IwcFWR1QQUkdXkdIXUJfXA=="), encryptContent);
+            return CipherUtil.decrypt("Hhj2024.08.06-07", encryptContent);
         }
         return encryptContent;
     }
@@ -84,7 +84,7 @@ implements Interceptor {
         String requestUrl = request.url().toString();
         Response response = chain.proceed(request);
         int code = response.code();
-        HVLog.d(StringFog.decrypt("g8DYjZzgkPSgg9PsUQ==") + code);
+        HVLog.d("请求响应:" + code);
         if (code == 200) {
             ResponseBody responseBody = response.body();
             BufferedSource source = responseBody.source();
@@ -93,7 +93,7 @@ implements Interceptor {
             String encryptedString = buffer.clone().readString(StandardCharsets.UTF_8);
             String encryptContent = this.removeQuotes(encryptedString);
             this.setPersistent(requestUrl, encryptContent);
-            String desDecrypt = CipherUtil.decrypt(StringFog.decrypt("IwcFWR1QQUkdXkdIXUJfXA=="), encryptContent);
+            String desDecrypt = CipherUtil.decrypt("Hhj2024.08.06-07", encryptContent);
             ResponseBody newResponseBody = ResponseBody.create((MediaType)responseBody.contentType(), (String)desDecrypt);
             return response.newBuilder().body(newResponseBody).build();
         }

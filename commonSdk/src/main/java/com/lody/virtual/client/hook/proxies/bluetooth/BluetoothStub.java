@@ -25,7 +25,7 @@ import mirror.android.bluetooth.IBluetooth;
 
 public class BluetoothStub
 extends BinderInvocationProxy {
-    private static final String SERVER_NAME = Build.VERSION.SDK_INT >= 17 ? StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4EI2gaMCVgJwo0Ji1XOW8VQS1rDgpF")) : StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4EI2gaMCVgJwo0"));
+    private static final String SERVER_NAME = Build.VERSION.SDK_INT >= 17 ? "bluetooth_manager" : "bluetooth";
 
     public BluetoothStub() {
         super(IBluetooth.Stub.asInterface, SERVER_NAME);
@@ -35,26 +35,26 @@ extends BinderInvocationProxy {
     protected void onBindMethods() {
         super.onBindMethods();
         this.addMethodProxy(new GetAddress());
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcwAgNmHjA3Jy1fDmkVLC1jARosLS4EJ2IbODVsJDgiKT4AD2MzGiZnATg2JS0mLm4FSFo="))));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getSystemConfigEnabledProfilesForPackage"));
         if (BuildCompat.isS()) {
-            this.addMethodProxy(new FixAttributionSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcP2sjHis="))));
-            this.addMethodProxy(new FixAttributionSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcP2sjHitoNB4RLAg2DWYFNCZlNygqKghSVg=="))));
-            this.addMethodProxy(new FixAttributionSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYKWsVFiRiAVRF"))));
-            this.addMethodProxy(new FixAttributionSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVMCxhNDApIy5SVg=="))));
-            this.addMethodProxy(new FixAttributionSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGIjJCNiAVRF"))));
-            this.addMethodProxy(new FixAttributionSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cW2sVLAZgJywZOz0ML2kgBlo="))));
-            this.addMethodProxy(new FixAttributionSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcP2sjHitlNFE/"))));
-            this.addMethodProxy(new FixAttributionSourceMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYKWsVFiRiDCwoKAhSVg=="))));
+            this.addMethodProxy(new FixAttributionSourceMethodProxy("enable"));
+            this.addMethodProxy(new FixAttributionSourceMethodProxy("enableNoAutoConnect"));
+            this.addMethodProxy(new FixAttributionSourceMethodProxy("disable"));
+            this.addMethodProxy(new FixAttributionSourceMethodProxy("getAddress"));
+            this.addMethodProxy(new FixAttributionSourceMethodProxy("getName"));
+            this.addMethodProxy(new FixAttributionSourceMethodProxy("onFactoryReset"));
+            this.addMethodProxy(new FixAttributionSourceMethodProxy("enableBle"));
+            this.addMethodProxy(new FixAttributionSourceMethodProxy("disableBle"));
         } else {
-            this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcP2sjHis="))));
-            this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYKWsVFiRiAVRF"))));
-            this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcP2sjHitoNB4RLAg2DWYFNCZlNygqKghSVg=="))));
-            this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtlNFE/JwgmKmYFNAVlNCxF"))));
-            this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcP2sjHitlNFE/"))));
-            this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYKWsVFiRiDCwoKAhSVg=="))));
+            this.addMethodProxy(new ReplaceCallingPkgMethodProxy("enable"));
+            this.addMethodProxy(new ReplaceCallingPkgMethodProxy("disable"));
+            this.addMethodProxy(new ReplaceCallingPkgMethodProxy("enableNoAutoConnect"));
+            this.addMethodProxy(new ReplaceCallingPkgMethodProxy("updateBleAppCount"));
+            this.addMethodProxy(new ReplaceCallingPkgMethodProxy("enableBle"));
+            this.addMethodProxy(new ReplaceCallingPkgMethodProxy("disableBle"));
         }
         if (Build.VERSION.SDK_INT >= 17) {
-            this.addMethodProxy(new ResultBinderMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwRKBciKmUzGgQ="))){
+            this.addMethodProxy(new ResultBinderMethodProxy("registerAdapter"){
 
                 @Override
                 public InvocationHandler createProxy(final IInterface base) {
@@ -62,7 +62,7 @@ extends BinderInvocationProxy {
 
                         @Override
                         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVMCxhNDApIy5SVg==")).equals(method.getName())) {
+                            if ("getAddress".equals(method.getName())) {
                                 String mac = getDeviceConfig().bluetoothMac;
                                 VDeviceConfig config = getDeviceConfig();
                                 if (config.enable && !TextUtils.isEmpty((CharSequence)(getDeviceConfig().bluetoothMac))) {
@@ -80,7 +80,7 @@ extends BinderInvocationProxy {
     private static class GetAddress
     extends ReplaceLastPkgMethodProxy {
         public GetAddress() {
-            super(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVMCxhNDApIy5SVg==")));
+            super("getAddress");
         }
 
         @Override

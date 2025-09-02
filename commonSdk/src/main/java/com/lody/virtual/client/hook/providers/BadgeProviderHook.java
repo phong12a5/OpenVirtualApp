@@ -26,25 +26,25 @@ extends ExternalProviderHook {
 
     @Override
     public Bundle call(MethodBox methodBox, String method, String arg, Bundle extras) throws InvocationTargetException {
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fP2ojPCtsJCw7KBc6PQ==")).equals(method)) {
+        if ("change_badge".equals(method)) {
             BadgerInfo info = new BadgerInfo();
             info.userId = VUserHandle.myUserId();
-            info.packageName = extras.getString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+OWUzJC1iAVRF")));
-            info.className = extras.getString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EP28wLFo=")));
-            info.badgerCount = extras.getInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+PGgzNCZmDl06KAguVg==")));
+            info.packageName = extras.getString("package");
+            info.className = extras.getString("class");
+            info.badgerCount = extras.getInt("badgenumber");
             VActivityManager.get().notifyBadgerChange(info);
             Bundle out = new Bundle();
-            out.putBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0uOWszNANhJ1RF")), true);
+            out.putBoolean("success", true);
             return out;
         }
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMaIAJlNCAwKC0MEW8KGiZvEVRF")).equals(method)) {
+        if ("setAppBadgeCount".equals(method)) {
             BadgerInfo info = new BadgerInfo();
             info.userId = VUserHandle.myUserId();
             info.packageName = VClient.get().getCurrentPackage();
-            info.badgerCount = extras.getInt(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KGYzFjdiHjg/Ji0qDWUjMAY=")));
+            info.badgerCount = extras.getInt("app_badge_count");
             VActivityManager.get().notifyBadgerChange(info);
             Bundle out = new Bundle();
-            out.putBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0uOWszNANhJ1RF")), true);
+            out.putBoolean("success", true);
         }
         return super.call(methodBox, method, arg, extras);
     }

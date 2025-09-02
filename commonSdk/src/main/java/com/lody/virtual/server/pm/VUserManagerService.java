@@ -57,20 +57,20 @@ import org.xmlpull.v1.XmlPullParserException;
 
 public class VUserManagerService
 extends IUserManager.Stub {
-    private static final String LOG_TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITsuKWgaFg19Dlk7KC0MKGIFGgRvNx4qLhhSVg=="));
+    private static final String LOG_TAG = "VUserManagerService";
     private static final boolean DBG = false;
-    private static final String TAG_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+DWgVSFo="));
-    private static final String ATTR_FLAGS = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4EP2gwLFo="));
-    private static final String ATTR_ICON_PATH = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAg2D2ojSFo="));
-    private static final String ATTR_ID = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgqVg=="));
-    private static final String ATTR_CREATION_TIME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtiEVRF"));
-    private static final String ATTR_LAST_LOGGED_IN_TIME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+KWwLHiViJDg/KBUcDg=="));
-    private static final String ATTR_SERIAL_NO = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uKmUVJCRoNzA3Lz0MKA=="));
-    private static final String ATTR_NEXT_SERIAL_NO = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4uIGwILCthNAY7KhUYLW8jRStsN1RF"));
-    private static final String ATTR_PARTIAL = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+KmwFAjdgEVRF"));
-    private static final String ATTR_USER_VERSION = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4uKm8zAiVgN1RF"));
-    private static final String TAG_USERS = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28gLFo="));
-    private static final String TAG_USER = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28jSFo="));
+    private static final String TAG_NAME = "name";
+    private static final String ATTR_FLAGS = "flags";
+    private static final String ATTR_ICON_PATH = "icon";
+    private static final String ATTR_ID = "id";
+    private static final String ATTR_CREATION_TIME = "created";
+    private static final String ATTR_LAST_LOGGED_IN_TIME = "lastLoggedIn";
+    private static final String ATTR_SERIAL_NO = "serialNumber";
+    private static final String ATTR_NEXT_SERIAL_NO = "nextSerialNumber";
+    private static final String ATTR_PARTIAL = "partial";
+    private static final String ATTR_USER_VERSION = "version";
+    private static final String TAG_USERS = "users";
+    private static final String TAG_USER = "user";
     private static final String USER_INFO_DIR;
     private static final String USER_LIST_FILENAME;
     private static final String USER_PHOTO_FILENAME;
@@ -94,7 +94,7 @@ extends IUserManager.Stub {
     private int mUserVersion = 0;
 
     VUserManagerService(Context context, VPackageManagerService pm, Object installLock, Object packagesLock) {
-        this(context, pm, installLock, packagesLock, VEnvironment.getDataDirectory(), new File(VEnvironment.getDataDirectory(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28jSFo="))));
+        this(context, pm, installLock, packagesLock, VEnvironment.getDataDirectory(), new File(VEnvironment.getDataDirectory(), "user"));
     }
 
     /*
@@ -113,10 +113,10 @@ extends IUserManager.Stub {
                 int i;
                 this.mUsersDir = new File(dataDir, USER_INFO_DIR);
                 this.mUsersDir.mkdirs();
-                File userZeroDir = new File(this.mUsersDir, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OhhSVg==")));
+                File userZeroDir = new File(this.mUsersDir, "0");
                 userZeroDir.mkdirs();
                 this.mBaseUserPath = baseUserPath;
-                this.mUserListFile = new File(this.mUsersDir, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28jHi9hJw02LRdXCA==")));
+                this.mUserListFile = new File(this.mUsersDir, "userlist.xml");
                 this.readUserListLocked();
                 ArrayList<VUserInfo> partials = new ArrayList<VUserInfo>();
                 for (i = 0; i < this.mUsers.size(); ++i) {
@@ -126,7 +126,7 @@ extends IUserManager.Stub {
                 }
                 for (i = 0; i < partials.size(); ++i) {
                     ui = (VUserInfo)partials.get(i);
-                    VLog.w(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITsuKWgaFg19Dlk7KC0MKGIFGgRvNx4qLhhSVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uDWowOC9gNDs8IxciKGUzLDdlEQI0PQg2CGIKPD9uDjMpIy0YJ2w3IzU=")) + i + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl9fCGsVEit0AVRF")) + ui.name + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PAhSVg==")), new Object[0]);
+                    VLog.w("VUserManagerService", "Removing partially created user #" + i + " (name=" + ui.name + ")", new Object[0]);
                     this.removeUserStateLocked(ui.id);
                 }
                 sInstance = this;
@@ -176,7 +176,7 @@ extends IUserManager.Stub {
     private VUserInfo getUserInfoLocked(int userId) {
         VUserInfo ui = (VUserInfo)this.mUsers.get(userId);
         if (ui != null && ui.partial && !this.mRemovingUserIds.contains(userId)) {
-            VLog.w(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQaLCthMgY2KD1eIH4wGiZqJxocKj4bJGYFNCBlMCMs")) + userId, new Object[0]);
+            VLog.w(LOG_TAG, "getUserInfo: unknown user #" + userId, new Object[0]);
             return null;
         }
         return ui;
@@ -202,7 +202,7 @@ extends IUserManager.Stub {
         synchronized (object) {
             VUserInfo info = (VUserInfo)this.mUsers.get(userId);
             if (info == null || info.partial) {
-                VLog.w(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQaLCthMlk7KgcLIH4wGiZqJxocKj4bJGYFNCBlMCMs")) + userId, new Object[0]);
+                VLog.w(LOG_TAG, "setUserName: unknown user #" + userId, new Object[0]);
                 return;
             }
             if (name != null && !name.equals(info.name)) {
@@ -225,7 +225,7 @@ extends IUserManager.Stub {
         synchronized (object) {
             VUserInfo info = (VUserInfo)this.mUsers.get(userId);
             if (info == null || info.partial) {
-                VLog.w(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQaLCthMgY5Ki0XIH4wGiZqJxocKj4bJGYFNCBlMCMs")) + userId, new Object[0]);
+                VLog.w(LOG_TAG, "setUserIcon: unknown user #" + userId, new Object[0]);
                 return;
             }
             this.writeBitmapLocked(info, bitmap);
@@ -235,8 +235,8 @@ extends IUserManager.Stub {
     }
 
     private void sendUserInfoChangedBroadcast(int userId) {
-        Intent changedIntent = new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV1k7Kj02KG8FLCx1Nx4bKgguKmZTRSRpJzAiKQgpKmcILFRnIgYMLRUmH2YmFlc=")));
-        changedIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmYFNCBlNVkhKC4qIGUVNFo=")), userId);
+        Intent changedIntent = new Intent("virtual.android.intent.action.USER_CHANGED");
+        changedIntent.putExtra("android.intent.extra.user_handle", userId);
         changedIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         VActivityManagerService.get().sendBroadcastAsUser(changedIntent, new VUserHandle(userId));
     }
@@ -250,7 +250,7 @@ extends IUserManager.Stub {
         synchronized (object) {
             VUserInfo info = (VUserInfo)this.mUsers.get(userId);
             if (info == null || info.partial) {
-                VLog.w(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQaLCthMgY5Ki0XIH4wGiZqJxocKj4bJGYFNCBlMCMs")) + userId, new Object[0]);
+                VLog.w(LOG_TAG, "getUserIcon: unknown user #" + userId, new Object[0]);
                 return null;
             }
             if (info.iconPath == null) {
@@ -289,7 +289,7 @@ extends IUserManager.Stub {
                     return;
                 }
                 if (enable) {
-                    this.createUser(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JS0uM28wMFo=")), 4);
+                    this.createUser("Guest", 4);
                 }
             }
         }
@@ -307,7 +307,7 @@ extends IUserManager.Stub {
         synchronized (object) {
             VUserInfo info = (VUserInfo)this.mUsers.get(userId);
             if (info == null || info.partial) {
-                VLog.w(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+MWgbAiZjAQozLwdbMWgVGix+MzwwLC5bKmAjJCl5EQo8Ly1eJHgjSFo=")) + userId, new Object[0]);
+                VLog.w(LOG_TAG, "makeInitialized: unknown user #" + userId, new Object[0]);
             }
             if ((info.flags & 0x10) == 0) {
                 info.flags |= 0x10;
@@ -338,7 +338,7 @@ extends IUserManager.Stub {
             catch (IOException iOException) {}
         }
         catch (FileNotFoundException e) {
-            VLog.w(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShhJDAgLBccDmkJTQJqEQY/LDo6ImAjMyNqASwuLF9XVg==")), e);
+            VLog.w(LOG_TAG, "Error setting photo for user ", e);
         }
     }
 
@@ -385,7 +385,7 @@ extends IUserManager.Stub {
             while ((type = parser.next()) != 2 && type != 1) {
             }
             if (type != 2) {
-                VLog.e(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1PxguPW4jAShvDjAgKSo6KGMFND8=")));
+                VLog.e(LOG_TAG, "Unable to read user list");
                 this.fallbackToSingleUserLocked();
                 return;
             }
@@ -436,14 +436,14 @@ extends IUserManager.Stub {
         int userVersion = this.mUserVersion;
         if (userVersion < 1) {
             VUserInfo user = (VUserInfo)this.mUsers.get(0);
-            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhcMCWoVJARnAVRF")).equals(user.name)) {
-                user.name = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JggqDWUVBlo="));
+            if ("Primary".equals(user.name)) {
+                user.name = "Admin";
                 this.writeUserLocked(user);
             }
             userVersion = 1;
         }
         if (userVersion < 1) {
-            VLog.w(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQc2M28nID5iASwpKQdfDn4zSFo=")) + this.mUserVersion + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgqCWgFAS1mVyQvIxc6KG4jBit4ETg6PQguPGEaLCZqHgotOD0cKXgVSFo=")) + 1, new Object[0]);
+            VLog.w(LOG_TAG, "User version " + this.mUserVersion + " didn't upgrade as expected to " + 1, new Object[0]);
         } else {
             this.mUserVersion = userVersion;
             this.writeUserListLocked();
@@ -461,14 +461,14 @@ extends IUserManager.Stub {
 
     private void writeUserLocked(VUserInfo userInfo) {
         FileOutputStream fos = null;
-        AtomicFile userFile = new AtomicFile(new File(this.mUsersDir, userInfo.id + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz1fDWoFSFo="))));
+        AtomicFile userFile = new AtomicFile(new File(this.mUsersDir, userInfo.id + ".xml"));
         try {
             fos = userFile.startWrite();
             BufferedOutputStream bos = new BufferedOutputStream(fos);
             FastXmlSerializer serializer = new FastXmlSerializer();
-            serializer.setOutput(bos, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQcqPnpTRVo=")));
+            serializer.setOutput(bos, "utf-8");
             serializer.startDocument(null, true);
-            serializer.setFeature(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBcqLG8OTCVOJxo3KhgmLW8zOyZlJAouPD0hDU4gFippIFkvLy5bCm8KFj9vMxo/IBdbO3kgBgJpNwY5KV8ID2waMAJmAQpF")), true);
+            serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
             serializer.startTag(null, TAG_USER);
             serializer.attribute(null, ATTR_ID, Integer.toString(userInfo.id));
             serializer.attribute(null, ATTR_SERIAL_NO, Integer.toString(userInfo.serialNumber));
@@ -479,7 +479,7 @@ extends IUserManager.Stub {
                 serializer.attribute(null, ATTR_ICON_PATH, userInfo.iconPath);
             }
             if (userInfo.partial) {
-                serializer.attribute(null, ATTR_PARTIAL, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcMI2gVSFo=")));
+                serializer.attribute(null, ATTR_PARTIAL, "true");
             }
             serializer.startTag(null, TAG_NAME);
             serializer.text(userInfo.name);
@@ -489,7 +489,7 @@ extends IUserManager.Stub {
             userFile.finishWrite(fos);
         }
         catch (Exception ioe) {
-            VLog.e(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShmJywzLBccDmkJTQVsJyg5PQgYKmIwDSM=")) + userInfo.id + "\n" + ioe);
+            VLog.e(LOG_TAG, "Error writing user info " + userInfo.id + "\n" + ioe);
             userFile.failWrite(fos);
         }
     }
@@ -501,9 +501,9 @@ extends IUserManager.Stub {
             fos = userListFile.startWrite();
             BufferedOutputStream bos = new BufferedOutputStream(fos);
             FastXmlSerializer serializer = new FastXmlSerializer();
-            serializer.setOutput(bos, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQcqPnpTRVo=")));
+            serializer.setOutput(bos, "utf-8");
             serializer.startDocument(null, true);
-            serializer.setFeature(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBcqLG8OTCVOJxo3KhgmLW8zOyZlJAouPD0hDU4gFippIFkvLy5bCm8KFj9vMxo/IBdbO3kgBgJpNwY5KV8ID2waMAJmAQpF")), true);
+            serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
             serializer.startTag(null, TAG_USERS);
             serializer.attribute(null, ATTR_NEXT_SERIAL_NO, Integer.toString(this.mNextSerialNumber));
             serializer.attribute(null, ATTR_USER_VERSION, Integer.toString(this.mUserVersion));
@@ -519,7 +519,7 @@ extends IUserManager.Stub {
         }
         catch (Exception e) {
             userListFile.failWrite(fos);
-            VLog.e(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQcMKmowEShmJywzLBccDmkJTQVsJyg5PQgEI2EjFlo=")));
+            VLog.e(LOG_TAG, "Error writing user list");
         }
     }
 
@@ -540,21 +540,21 @@ extends IUserManager.Stub {
         FileInputStream fis = null;
         try {
             int type;
-            AtomicFile userFile = new AtomicFile(new File(this.mUsersDir, Integer.toString(id2) + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz1fDWoFSFo="))));
+            AtomicFile userFile = new AtomicFile(new File(this.mUsersDir, Integer.toString(id2) + ".xml"));
             fis = userFile.openRead();
             XmlPullParser parser = Xml.newPullParser();
             parser.setInput((InputStream)fis, null);
             while ((type = parser.next()) != 2 && type != 1) {
             }
             if (type != 2) {
-                VLog.e(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1PxguPW4jAShvDjAgKSo6Vg==")) + id2);
+                VLog.e(LOG_TAG, "Unable to read user " + id2);
                 VUserInfo vUserInfo = null;
                 return vUserInfo;
             }
             if (parser.getName().equals(TAG_USER)) {
                 int storedId = this.readIntAttribute(parser, ATTR_ID, -1);
                 if (storedId != id2) {
-                    VLog.e(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQc2M28nIC9iVyQwKi0ML34zMCVvVjweLRcqJWNTOD9vHg0pLxg2KGsJIARrEQ40")));
+                    VLog.e(LOG_TAG, "User id does not match the file name");
                     VUserInfo vUserInfo = null;
                     return vUserInfo;
                 }
@@ -564,7 +564,7 @@ extends IUserManager.Stub {
                 creationTime = this.readLongAttribute(parser, ATTR_CREATION_TIME, 0L);
                 lastLoggedInTime = this.readLongAttribute(parser, ATTR_LAST_LOGGED_IN_TIME, 0L);
                 String valueString = parser.getAttributeValue(null, ATTR_PARTIAL);
-                if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRcMI2gVSFo=")).equals(valueString)) {
+                if ("true".equals(valueString)) {
                     partial = true;
                 }
                 while ((type = parser.next()) != 2 && type != 1) {
@@ -659,8 +659,8 @@ extends IUserManager.Stub {
                     this.updateUserIdsLocked();
                 }
             }
-            Intent addedIntent = new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV1k7Kj02KG8FLCx1Nx4bKgguKmZTRSRpJzAiKQgpKmcILFRnIgYOLBUMBmYVSFo=")));
-            addedIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmYFNCBlNVkhKC4qIGUVNFo=")), userInfo.id);
+            Intent addedIntent = new Intent("virtual.android.intent.action.USER_ADDED");
+            addedIntent.putExtra("android.intent.extra.user_handle", userInfo.id);
             VActivityManagerService.get().sendBroadcastAsUser(addedIntent, VUserHandle.ALL, null);
         }
         finally {
@@ -714,8 +714,8 @@ extends IUserManager.Stub {
     void finishRemoveUser(final int userHandle) {
         long identity = Binder.clearCallingIdentity();
         try {
-            Intent addedIntent = new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV1k7Kj02KG8FLCx1Nx4bKgguKmZTRSRpJzAiKQgpKmcILFRnIgZALAVbGGI2Flc=")));
-            addedIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmYFNCBlNVkhKC4qIGUVNFo=")), userHandle);
+            Intent addedIntent = new Intent("virtual.android.intent.action.USER_REMOVED");
+            addedIntent.putExtra("android.intent.extra.user_handle", userHandle);
             VActivityManagerService.get().sendOrderedBroadcastAsUser(addedIntent, VUserHandle.ALL, null, new BroadcastReceiver(){
 
                 public void onReceive(Context context, Intent intent) {
@@ -747,7 +747,7 @@ extends IUserManager.Stub {
         this.mPm.cleanUpUser(userHandle);
         this.mUsers.remove(userHandle);
         this.mRemovingUserIds.remove(userHandle);
-        AtomicFile userFile = new AtomicFile(new File(this.mUsersDir, userHandle + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz1fDWoFSFo="))));
+        AtomicFile userFile = new AtomicFile(new File(this.mUsersDir, userHandle + ".xml"));
         userFile.delete();
         this.writeUserListLocked();
         this.updateUserIdsLocked();
@@ -818,7 +818,7 @@ extends IUserManager.Stub {
             VUserInfo user = (VUserInfo)this.mUsers.get(userId);
             long now = System.currentTimeMillis();
             if (user == null || user.partial) {
-                VLog.w(LOG_TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28hOCVhNDA9Iz1fLW8VATJ4HigbIz4cKWYgRCNqASwuLF9WJQ==")) + userId, new Object[0]);
+                VLog.w(LOG_TAG, "userForeground: unknown user #" + userId, new Object[0]);
                 return;
             }
             if (now > 946080000000L) {
@@ -843,9 +843,9 @@ extends IUserManager.Stub {
     }
 
     static {
-        USER_LIST_FILENAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28jHi9hJw02LRdXCA=="));
-        USER_PHOTO_FILENAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhhfD2wFBSZhHlk9"));
-        USER_INFO_DIR = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YKWwFNCM=")) + File.separator + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28gLFo="));
+        USER_LIST_FILENAME = "userlist.xml";
+        USER_PHOTO_FILENAME = "photo.png";
+        USER_INFO_DIR = "system" + File.separator + "users";
     }
 }
 

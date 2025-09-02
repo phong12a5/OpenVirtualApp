@@ -44,7 +44,7 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IConnectivityManager {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10NCgZeICwBHQsXFREHKRoXFj8RBw4JFhc=");
+        private static final String DESCRIPTOR = "android.net.IConnectivityManager";
         static final int TRANSACTION_getActiveNetworkInfo = 1;
         static final int TRANSACTION_getActiveNetworkInfoForUid = 2;
         static final int TRANSACTION_getNetworkInfo = 3;
@@ -55,7 +55,7 @@ extends IInterface {
         static final int TRANSACTION_getLinkProperties = 8;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10NCgZeICwBHQsXFREHKRoXFj8RBw4JFhc="));
+            this.attachInterface(this, "android.net.IConnectivityManager");
         }
 
         public static IConnectivityManager asInterface(IBinder obj) {
@@ -173,7 +173,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IConnectivityManager impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -200,7 +200,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10NCgZeICwBHQsXFREHKRoXFj8RBw4JFhc=");
+                return "android.net.IConnectivityManager";
             }
 
             /*
@@ -212,7 +212,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10NCgZeICwBHQsXFREHKRoXFj8RBw4JFhc="));
+                    _data.writeInterfaceToken("android.net.IConnectivityManager");
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         NetworkInfo networkInfo = Stub.getDefaultImpl().getActiveNetworkInfo();
@@ -237,7 +237,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10NCgZeICwBHQsXFREHKRoXFj8RBw4JFhc="));
+                    _data.writeInterfaceToken("android.net.IConnectivityManager");
                     _data.writeInt(uid);
                     _data.writeInt(ignoreBlocked ? 1 : 0);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
@@ -264,7 +264,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10NCgZeICwBHQsXFREHKRoXFj8RBw4JFhc="));
+                    _data.writeInterfaceToken("android.net.IConnectivityManager");
                     _data.writeInt(networkType);
                     boolean _status = this.mRemote.transact(3, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -290,7 +290,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10NCgZeICwBHQsXFREHKRoXFj8RBw4JFhc="));
+                    _data.writeInterfaceToken("android.net.IConnectivityManager");
                     boolean _status = this.mRemote.transact(4, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         NetworkInfo[] networkInfoArray = Stub.getDefaultImpl().getAllNetworkInfo();
@@ -315,7 +315,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10NCgZeICwBHQsXFREHKRoXFj8RBw4JFhc="));
+                    _data.writeInterfaceToken("android.net.IConnectivityManager");
                     boolean _status = this.mRemote.transact(5, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         boolean bl = Stub.getDefaultImpl().isActiveNetworkMetered();
@@ -340,7 +340,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10NCgZeICwBHQsXFREHKRoXFj8RBw4JFhc="));
+                    _data.writeInterfaceToken("android.net.IConnectivityManager");
                     _data.writeInt(networkType);
                     _data.writeInt(address);
                     boolean _status = this.mRemote.transact(6, _data, _reply, 0);
@@ -367,7 +367,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10NCgZeICwBHQsXFREHKRoXFj8RBw4JFhc="));
+                    _data.writeInterfaceToken("android.net.IConnectivityManager");
                     boolean _status = this.mRemote.transact(7, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         LinkProperties linkProperties = Stub.getDefaultImpl().getActiveLinkProperties();
@@ -392,7 +392,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10NCgZeICwBHQsXFREHKRoXFj8RBw4JFhc="));
+                    _data.writeInterfaceToken("android.net.IConnectivityManager");
                     _data.writeInt(networkType);
                     boolean _status = this.mRemote.transact(8, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {

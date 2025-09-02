@@ -15,7 +15,7 @@ import mirror.RefClass;
 import mirror.RefObject;
 
 public class ContentProviderHolderOreo {
-    public static Class<?> TYPE = RefClass.load(ContentProviderHolderOreo.class, StringFog.decrypt("EgsWBAoHO10CHwJeKgAABwAcAjUcMAUKCxcCIQACFwAA"));
+    public static Class<?> TYPE = RefClass.load(ContentProviderHolderOreo.class, "android.app.ContentProviderHolder");
     public static RefObject<ProviderInfo> info;
     public static RefObject<IInterface> provider;
     public static RefBoolean noReleaseNeeded;

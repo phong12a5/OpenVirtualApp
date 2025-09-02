@@ -30,7 +30,7 @@ import mirror.android.content.pm.ParceledListSlice;
 public class JobServiceStub
 extends BinderInvocationProxy {
     public JobServiceStub() {
-        super(IJobScheduler.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4AOm8zLCBiDgovKhcMKA==")));
+        super(IJobScheduler.Stub.asInterface, "jobscheduler");
     }
 
     @Override
@@ -56,7 +56,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcL2wVNAViAVRF"));
+            return "enqueue";
         }
 
         @Override
@@ -80,7 +80,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFNCZiHgY2KCsIDW4VSFo="));
+            return "getPendingJob";
         }
 
         @Override
@@ -97,7 +97,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCQ="));
+            return "cancel";
         }
 
         @Override
@@ -115,7 +115,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRlDlEo"));
+            return "cancelAll";
         }
 
         @Override
@@ -132,7 +132,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVHiRpHjA2KBccDmkLICVoNDBF"));
+            return "getAllPendingJobs";
         }
 
         @Override
@@ -155,7 +155,7 @@ extends BinderInvocationProxy {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki42CmgVMAVgHjBF"));
+            return "schedule";
         }
 
         @Override

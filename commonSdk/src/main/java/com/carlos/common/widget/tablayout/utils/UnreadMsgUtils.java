@@ -40,7 +40,7 @@ public class UnreadMsgUtils {
             } else {
                 lp.width = -2;
                 msgView.setPadding((int)(6.0f * dm.density), 0, (int)(6.0f * dm.density), 0);
-                msgView.setText(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OAMXMQ==")));
+                msgView.setText("99+");
             }
             msgView.setLayoutParams((ViewGroup.LayoutParams)lp);
         }

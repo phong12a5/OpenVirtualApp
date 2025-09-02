@@ -38,10 +38,10 @@ extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
         this.mContext = context;
-        Log.d((String)StringFog.decrypt("AAAAAEENEg=="), (String)StringFog.decrypt("OQoMDkQUEBVhCQ5YBAE9Dk4HHBFI"));
+        Log.d((String)"serv$cM", (String)"ReceiverLog onReceive");
         if (intent.hasExtra(LOG_LEVEL)) {
             int logLevel = intent.getIntExtra(LOG_LEVEL, 0);
-            Log.d((String)StringFog.decrypt("AAAAAEENEg=="), (String)(StringFog.decrypt("BwAIJ0gUEAsX") + logLevel));
+            Log.d((String)"serv$cM", (String)("tezQ-zOxt" + logLevel));
             ReceiverLog.putInt(context, LOG_LEVEL, logLevel);
         }
     }
@@ -52,14 +52,14 @@ extends BroadcastReceiver {
             logTagList = new ArrayList<String>();
         }
         logTagList.add(logTag);
-        String listAsString = TextUtils.join((CharSequence)StringFog.decrypt("Rw=="), logTagList);
+        String listAsString = TextUtils.join((CharSequence)"4", logTagList);
         Settings.System.putString((ContentResolver)context.getContentResolver(), (String)SYSTEM_SETTINGS_KEY, (String)listAsString);
     }
 
     public static List<String> getLogTag(Context context) {
         String listAsString = Settings.System.getString((ContentResolver)context.getContentResolver(), (String)SYSTEM_SETTINGS_KEY);
         if (listAsString != null) {
-            List<String> myList = Arrays.asList(listAsString.split(StringFog.decrypt("Rw==")));
+            List<String> myList = Arrays.asList(listAsString.split("4"));
             return myList;
         }
         return null;
@@ -96,10 +96,10 @@ extends BroadcastReceiver {
     }
 
     static {
-        FILE_NAME = StringFog.decrypt("GAcOGUgGJRVIAAwKDgEMDl4=");
-        LOG_LEVEL = StringFog.decrypt("BwAIJ0gUEAs=");
-        LOG_TAG = StringFog.decrypt("BwAIP0wF");
-        SYSTEM_SETTINGS_KEY = StringFog.decrypt("Hw4INEELBhNyDQwB");
+        FILE_NAME = "kb|o-hzf+o~zgnb};";
+        LOG_LEVEL = "tezQ-zOx";
+        LOG_TAG = "tezI)k";
+        SYSTEM_SETTINGS_KEY = "tag_list_key";
     }
 }
 

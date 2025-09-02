@@ -12,37 +12,37 @@ import mirror.android.app.backup.IBackupManager;
 public class BackupManagerStub
 extends BinderInvocationProxy {
     public BackupManagerStub() {
-        super(IBackupManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+OWUwNAI=")));
+        super(IBackupManager.Stub.asInterface, "backup");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRg+LGsbLCB9Dlk9KAc2Vg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EM2saFhR9DigxLAgmW24gBjc=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggmM2ogMBNgJFk2KAcqLmkjBlo=")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggmM2ogMBZjASg5Ki0YDmkjAgZrASxF")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uKWwFGgRiDCAgIQcYL2UzQSRlEVRF")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMjJCljJzAsIAcYOW4VOCtrEVRF")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMjJCljJzAsOxguDWUVLANqAQYbLhgqVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4+OWUwNAJoNB4t")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT0uDmoLFjd9JA4vIxhSVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT0uDmoIMAR9DlkpIxdfKGUxRTdoJ10wKQhSVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT0uDmoIFithJwo1Iz0MVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2MWojGj1gHjAwKC0MWWUjOCRgNzgqIz0uDmgjMB9uASw9KQdfJw==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMwNARhNDA2LBY2KG4jMANsEQY5KghSVg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgYKWwLJCRgHwoqLwcYL2ozNARvHjBF")), new String[0]));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uDmgVLAZlNCA5KS4MKn0wRTdlNDA7LD0MCg==")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2HGsVLCFmASQVKj0iOG8zGiw=")), false));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMjJCljJzAsOxciL2oKEiVsNyxF")), true));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+KWMjJCljJzAsOxciL2oKEiVsNyxF")), false));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4uPWUVBl9iASggKi4uPWIFGgNsJx4cLC5SVg==")), null));
+        this.addMethodProxy(new ResultStaticMethodProxy("dataChanged", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("clearBackupData", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("agentConnected", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("agentDisconnected", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("restoreAtInstall", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("setBackupEnabled", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("setBackupProvisioned", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("backupNow", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("fullBackup", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("fullTransportBackup", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("fullRestore", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("acknowledgeFullBackupOrRestore", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getCurrentTransport", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("listAllTransports", new String[0]));
+        this.addMethodProxy(new ResultStaticMethodProxy("selectBackupTransport", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("isBackupEnabled", false));
+        this.addMethodProxy(new ResultStaticMethodProxy("setBackupPassword", true));
+        this.addMethodProxy(new ResultStaticMethodProxy("hasBackupPassword", false));
+        this.addMethodProxy(new ResultStaticMethodProxy("beginRestoreSession", null));
         if (BuildCompat.isOreo()) {
-            this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uDmgVLAZlNCA5KS4MKn0wRTdlNDA7LD0MCmUFNAZsNCxF")), null));
+            this.addMethodProxy(new ResultStaticMethodProxy("selectBackupTransportAsync", null));
         }
         if (BuildCompat.isPie()) {
-            this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6PGsaMCtuESw7Kj4qKm8KRQZgDiw/KS4YJmYFFiBlJ1RF")), null));
-            this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2HGsVLCFmASQPKAguLGwjAitgATA/IxciJw==")), false));
+            this.addMethodProxy(new ResultStaticMethodProxy("updateTransportAttributes", null));
+            this.addMethodProxy(new ResultStaticMethodProxy("isBackupServiceActive", false));
         }
     }
 }

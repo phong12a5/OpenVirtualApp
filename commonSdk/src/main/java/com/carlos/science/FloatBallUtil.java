@@ -30,7 +30,7 @@ public class FloatBallUtil {
         if (listenBackEvent) {
             layoutParams.flags &= 0xFFFFFFF7;
         }
-        layoutParams.type = context == null || !(context instanceof Activity) ? ((sdkInt = Build.VERSION.SDK_INT) < 19 ? 2002 : (sdkInt < 25 ? (StringFog.decrypt("KwwTGQgH").equalsIgnoreCase(Build.MANUFACTURER) ? 2002 : 2005) : (sdkInt < 26 ? 2002 : 2038))) : 2;
+        layoutParams.type = context == null || !(context instanceof Activity) ? ((sdkInt = Build.VERSION.SDK_INT) < 19 ? 2002 : (sdkInt < 25 ? ("Xiaomi".equalsIgnoreCase(Build.MANUFACTURER) ? 2002 : 2005) : (sdkInt < 26 ? 2002 : 2038))) : 2;
         layoutParams.format = 1;
         layoutParams.gravity = 51;
         layoutParams.width = -2;

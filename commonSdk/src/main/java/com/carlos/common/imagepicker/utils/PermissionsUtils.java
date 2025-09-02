@@ -26,7 +26,7 @@ public class PermissionsUtils {
         if (Build.VERSION.SDK_INT < 16) {
             return true;
         }
-        int readStoragePermissionState = ContextCompat.checkSelfPermission((Context)activity, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsMGWUIFl9mDwYTJytfDGALHhNnMiwQLzsmAGYFSFo=")));
+        int readStoragePermissionState = ContextCompat.checkSelfPermission((Context)activity, (String)"android.permission.READ_EXTERNAL_STORAGE");
         boolean bl = readStoragePermissionGranted = readStoragePermissionState == 0;
         if (!readStoragePermissionGranted) {
             ActivityCompat.requestPermissions((Activity)activity, (String[])PermissionsConstant.PERMISSIONS_EXTERNAL_READ, (int)2);
@@ -37,7 +37,7 @@ public class PermissionsUtils {
     @RequiresApi(api=23)
     public static boolean checkWriteStoragePermission(Activity activity) {
         boolean writeStoragePermissionGranted;
-        int writeStoragePermissionState = ContextCompat.checkSelfPermission((Context)activity, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsmU2sLFgpgIgoXOzwAU30xJExmMjBOLiwqAmYmFlo=")));
+        int writeStoragePermissionState = ContextCompat.checkSelfPermission((Context)activity, (String)"android.permission.WRITE_EXTERNAL_STORAGE");
         boolean bl = writeStoragePermissionGranted = writeStoragePermissionState == 0;
         if (!writeStoragePermissionGranted) {
             activity.requestPermissions(PermissionsConstant.PERMISSIONS_EXTERNAL_WRITE, 3);
@@ -48,7 +48,7 @@ public class PermissionsUtils {
     @RequiresApi(api=23)
     public static boolean checkCameraPermission(Activity activity) {
         boolean cameraPermissionGranted;
-        int cameraPermissionState = ContextCompat.checkSelfPermission((Context)activity, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCw2HWgILB9hAVRF")));
+        int cameraPermissionState = ContextCompat.checkSelfPermission((Context)activity, (String)"android.permission.CAMERA");
         boolean bl = cameraPermissionGranted = cameraPermissionState == 0;
         if (!cameraPermissionGranted) {
             activity.requestPermissions(PermissionsConstant.PERMISSIONS_CAMERA, 1);

@@ -34,7 +34,7 @@ public class AccountAndUser {
     }
 
     public String toString() {
-        return this.account.toString() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcuVg==")) + this.userId;
+        return this.account.toString() + " u" + this.userId;
     }
 }
 

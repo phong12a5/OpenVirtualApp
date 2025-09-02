@@ -67,7 +67,7 @@ extends PagerAdapter {
         View itemView = LayoutInflater.from((Context)this.mContext).inflate(R.layout.item_view_pager, container, false);
         ImageView imageView = (ImageView)itemView.findViewById(R.id.iv_pager);
         String path = this.mImgList.get(position).getPath();
-        Uri uri = path.startsWith(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8FSFo="))) ? Uri.parse((String)path) : Uri.fromFile((File)new File(path));
+        Uri uri = path.startsWith("http") ? Uri.parse((String)path) : Uri.fromFile((File)new File(path));
         final Image image = this.mImgList.get(position);
         Glide.with((Context)this.mContext).setDefaultRequestOptions(new RequestOptions().dontTransform().placeholder(R.drawable.ic_image).error(R.drawable.ic_img_load_fail).override(800, 1200)).load(uri).into(imageView);
         imageView.setOnClickListener(new View.OnClickListener(){

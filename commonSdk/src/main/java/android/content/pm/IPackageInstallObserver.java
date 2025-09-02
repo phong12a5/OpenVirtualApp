@@ -24,11 +24,11 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IPackageInstallObserver {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGioMLBYRGRcC");
+        private static final String DESCRIPTOR = "android.content.pm.IPackageInstallObserver";
         static final int TRANSACTION_packageInstalled = 1;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGioMLBYRGRcC"));
+            this.attachInterface(this, "android.content.pm.IPackageInstallObserver");
         }
 
         public static IPackageInstallObserver asInterface(IBinder obj) {
@@ -67,7 +67,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IPackageInstallObserver impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -94,7 +94,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGioMLBYRGRcC");
+                return "android.content.pm.IPackageInstallObserver";
             }
 
             /*
@@ -105,7 +105,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWCw+PhAIDhUVIAEdBwQeGioMLBYRGRcC"));
+                    _data.writeInterfaceToken("android.content.pm.IPackageInstallObserver");
                     _data.writeString(packageName);
                     _data.writeInt(returnCode);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);

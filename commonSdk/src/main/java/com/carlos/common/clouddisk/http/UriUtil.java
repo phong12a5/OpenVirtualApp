@@ -18,12 +18,12 @@ public class UriUtil {
     public static final String MYGITHUB = "";
 
     static {
-        LOGIN = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAihsHlkgKi4pKmwVRSQ="));
-        TASK = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAi9sJwo5KT4uO2tSBiRlDjxF"));
-        UPLOADFILE = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4sLykYI28FNDJlJwYcPC42KWAOAiFvDl0uIy1WKmwVRSQ="));
-        SHAREHEAD = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4tLC4pDm8zQSZuNwYwIyocJWAgQCo="));
-        DOWNFILEHEAD = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LBcqLG8KLzJOIB4uKQglDmk0TCZoNzgaLgcuDn0KRClpJFkcOQgEI2UVNwM="));
-        DOWNFILEPATH = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My4iCWoFNyU="));
+        LOGIN = "https://pc.woozooo.com/mlogin.php";
+        TASK = "https://pc.woozooo.com/doupload.php";
+        UPLOADFILE = "https://pc.woozooo.com/fileup.php";
+        SHAREHEAD = "https://wws.lanzouj.com/";
+        DOWNFILEHEAD = "https://vip.d0.baidupan.com/file/";
+        DOWNFILEPATH = "/file/";
         HttpPaths = new ArrayList<String>();
     }
 }

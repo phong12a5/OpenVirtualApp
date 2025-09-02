@@ -15,7 +15,7 @@ import mirror.RefClass;
 import mirror.RefMethod;
 
 public class IIntentReceiverJB {
-    public static Class<?> TYPE = RefClass.load(IIntentReceiverJB.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSw7GBELMQcxChEVABkLAQ=="));
+    public static Class<?> TYPE = RefClass.load(IIntentReceiverJB.class, "android.content.IIntentReceiver");
     @MethodParams(value={Intent.class, int.class, String.class, Bundle.class, boolean.class, boolean.class, int.class})
     public static RefMethod<Void> performReceive;
 }

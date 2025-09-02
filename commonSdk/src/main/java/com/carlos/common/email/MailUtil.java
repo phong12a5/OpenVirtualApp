@@ -41,12 +41,12 @@ public class MailUtil {
 
     public void send(String senderObject, String title, String content) throws MessagingException, GeneralSecurityException {
         Properties properties = System.getProperties();
-        properties.setProperty(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+CWoJBgNgAQosOj0ADWoKBlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4ILG8JBgFhClk5Ki1XVg==")));
-        properties.put(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+CWoJBgNgAQosOj0iLWUzFlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRcMI2gVSFo=")));
+        properties.setProperty("mail.smtp.host", "smtp.qq.com");
+        properties.put("mail.smtp.auth", "true");
         MailSSLSocketFactory sf = new MailSSLSocketFactory();
         sf.setTrustAllHosts(true);
-        properties.put(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+CWoJBgNgAQosOj4qL283MCtlNzgpLAguVg==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRcMI2gVSFo=")));
-        properties.put(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+CWoJBgNgAQosOj4qL283MANlJzAiLhcqBH0KND9sJygy")), sf);
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.ssl.socketFactory", sf);
         Session session = Session.getDefaultInstance((Properties)properties, (Authenticator)new Authenticator(){
 
             public PasswordAuthentication getPasswordAuthentication() {

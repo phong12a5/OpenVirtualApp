@@ -93,12 +93,12 @@ extends AppCompatActivity {
         tempImages = images;
         tempSelectImages = selectImages;
         Intent intent = new Intent((Context)activity, PreviewActivity.class);
-        intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+IGYwLCtgHjA5LBcMPmMFAiVvARo/")), maxSelectCount);
-        intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YCGgzHis=")), isSingle);
-        intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KhgAKWUaMC9gJFlF")), position);
-        intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRgAD2oLFjdhMig1KhdfKA==")), topBarColor);
-        intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lj4ALGwFGiNlNCAqJy1fCG8KRVo=")), bottomBarColor);
-        intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0qP2wKNANlNCAqJy1fCG8KRVo=")), statusBarColor);
+        intent.putExtra("max_selected_count", maxSelectCount);
+        intent.putExtra("single", isSingle);
+        intent.putExtra("position", position);
+        intent.putExtra("toolBarColor", topBarColor);
+        intent.putExtra("bottomBarColor", bottomBarColor);
+        intent.putExtra("statusBarColor", statusBarColor);
         activity.startActivityForResult(intent, 1000);
     }
 
@@ -113,8 +113,8 @@ extends AppCompatActivity {
         this.mSelectImages = tempSelectImages;
         tempSelectImages = null;
         Intent intent = this.getIntent();
-        this.mMaxCount = intent.getIntExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+IGYwLCtgHjA5LBcMPmMFAiVvARo/")), 0);
-        this.isSingle = intent.getBooleanExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YCGgzHis=")), false);
+        this.mMaxCount = intent.getIntExtra("max_selected_count", 0);
+        this.isSingle = intent.getBooleanExtra("single", false);
         Resources resources = this.getResources();
         Bitmap selectBitmap = BitmapFactory.decodeResource((Resources)resources, (int)R.drawable.ic_image_select);
         this.mSelectDrawable = new BitmapDrawable(resources, selectBitmap);
@@ -122,15 +122,15 @@ extends AppCompatActivity {
         Bitmap unSelectBitmap = BitmapFactory.decodeResource((Resources)resources, (int)R.drawable.ic_image_un_select);
         this.mUnSelectDrawable = new BitmapDrawable(resources, unSelectBitmap);
         this.mUnSelectDrawable.setBounds(0, 0, unSelectBitmap.getWidth(), unSelectBitmap.getHeight());
-        this.setStatusBarColor(intent.getIntExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0qP2wKNANlNCAqJy1fCG8KRVo=")), R.color.blue));
+        this.setStatusBarColor(intent.getIntExtra("statusBarColor", R.color.blue));
         this.initView();
-        this.setToolBarColor(intent.getIntExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRgAD2oLFjdhMig1KhdfKA==")), R.color.blue));
-        this.setBottomBarColor(intent.getIntExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lj4ALGwFGiNlNCAqJy1fCG8KRVo=")), R.color.blue));
+        this.setToolBarColor(intent.getIntExtra("toolBarColor", R.color.blue));
+        this.setBottomBarColor(intent.getIntExtra("bottomBarColor", R.color.blue));
         this.initListener();
         this.initViewPager();
-        this.tvIndicator.setText((CharSequence)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OgQAVg==")) + this.mImages.size()));
+        this.tvIndicator.setText((CharSequence)("1/" + this.mImages.size()));
         this.changeSelect(this.mImages.get(0));
-        this.vpImage.setCurrentItem(intent.getIntExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KhgAKWUaMC9gJFlF")), 0));
+        this.vpImage.setCurrentItem(intent.getIntExtra("position", 0));
     }
 
     private void initView() {
@@ -190,7 +190,7 @@ extends AppCompatActivity {
 
             @SuppressLint(value={"SetTextI18n"})
             public void onPageSelected(int position) {
-                PreviewActivity.this.tvIndicator.setText((CharSequence)(position + 1 + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")) + PreviewActivity.this.mImages.size()));
+                PreviewActivity.this.tvIndicator.setText((CharSequence)(position + 1 + "/" + PreviewActivity.this.mImages.size()));
                 PreviewActivity.this.changeSelect((Image)PreviewActivity.this.mImages.get(position));
             }
 
@@ -217,7 +217,7 @@ extends AppCompatActivity {
 
     public static int getStatusBarHeight(Context context) {
         int result = 0;
-        int resourceId = context.getResources().getIdentifier(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0qP2wKNANsJCw7IzxfMmkjLC1qHixF")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LRgYDWgVBlo=")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iEVRF")));
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
             result = context.getResources().getDimensionPixelSize(resourceId);
         }
@@ -242,7 +242,7 @@ extends AppCompatActivity {
             @Override
             public void run() {
                 if (PreviewActivity.this.rlTopBar != null) {
-                    ObjectAnimator animator = ObjectAnimator.ofFloat((Object)PreviewActivity.this.rlTopBar, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRcMP2ogLCR9AQozKi0YGw==")), (float[])new float[]{PreviewActivity.this.rlTopBar.getTranslationY(), 0.0f}).setDuration(300L);
+                    ObjectAnimator animator = ObjectAnimator.ofFloat((Object)PreviewActivity.this.rlTopBar, (String)"translationY", (float[])new float[]{PreviewActivity.this.rlTopBar.getTranslationY(), 0.0f}).setDuration(300L);
                     animator.addListener((Animator.AnimatorListener)new AnimatorListenerAdapter(){
 
                         public void onAnimationStart(Animator animation) {
@@ -253,7 +253,7 @@ extends AppCompatActivity {
                         }
                     });
                     animator.start();
-                    ObjectAnimator.ofFloat((Object)PreviewActivity.this.rlBottomBar, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRcMP2ogLCR9AQozKi0YGw==")), (float[])new float[]{PreviewActivity.this.rlBottomBar.getTranslationY(), 0.0f}).setDuration(300L).start();
+                    ObjectAnimator.ofFloat((Object)PreviewActivity.this.rlBottomBar, (String)"translationY", (float[])new float[]{PreviewActivity.this.rlBottomBar.getTranslationY(), 0.0f}).setDuration(300L).start();
                 }
             }
         }, 100L);
@@ -261,7 +261,7 @@ extends AppCompatActivity {
 
     private void hideBar() {
         this.isShowBar = false;
-        ObjectAnimator animator = ObjectAnimator.ofFloat((Object)this.rlTopBar, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRcMP2ogLCR9AQozKi0YGw==")), (float[])new float[]{0.0f, -this.rlTopBar.getHeight()}).setDuration(300L);
+        ObjectAnimator animator = ObjectAnimator.ofFloat((Object)this.rlTopBar, (String)"translationY", (float[])new float[]{0.0f, -this.rlTopBar.getHeight()}).setDuration(300L);
         animator.addListener((Animator.AnimatorListener)new AnimatorListenerAdapter(){
 
             public void onAnimationEnd(Animator animation) {
@@ -280,7 +280,7 @@ extends AppCompatActivity {
             }
         });
         animator.start();
-        ObjectAnimator.ofFloat((Object)this.rlBottomBar, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRcMP2ogLCR9AQozKi0YGw==")), (float[])new float[]{0.0f, this.rlBottomBar.getHeight()}).setDuration(300L).start();
+        ObjectAnimator.ofFloat((Object)this.rlBottomBar, (String)"translationY", (float[])new float[]{0.0f, this.rlBottomBar.getHeight()}).setDuration(300L).start();
     }
 
     private void clickSelect() {
@@ -308,22 +308,22 @@ extends AppCompatActivity {
     private void setSelectImageCount(int count) {
         if (count == 0) {
             this.btnConfirm.setEnabled(false);
-            this.tvConfirm.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ByI7CEZaA1c=")));
+            this.tvConfirm.setText((CharSequence)"确定");
         } else {
             this.btnConfirm.setEnabled(true);
             if (this.isSingle) {
-                this.tvConfirm.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ByI7CEZaA1c=")));
+                this.tvConfirm.setText((CharSequence)"确定");
             } else if (this.mMaxCount > 0) {
-                this.tvConfirm.setText((CharSequence)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ByI7CEZaA1dJEVRF")) + count + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg==")) + this.mMaxCount + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PAhSVg=="))));
+                this.tvConfirm.setText((CharSequence)("确定(" + count + "/" + this.mMaxCount + ")"));
             } else {
-                this.tvConfirm.setText((CharSequence)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ByI7CEZaA1dJEVRF")) + count + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("PAhSVg=="))));
+                this.tvConfirm.setText((CharSequence)("确定(" + count + ")"));
             }
         }
     }
 
     public void finish() {
         Intent intent = new Intent();
-        intent.putExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAc2H2szGiZiNAYqKghSVg==")), this.isConfirm);
+        intent.putExtra("is_confirm", this.isConfirm);
         this.setResult(1000, intent);
         super.finish();
     }

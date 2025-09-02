@@ -8,7 +8,7 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class HwFrameworkFactory {
-    public static Class<?> TYPE = RefClass.load(HwFrameworkFactory.class, StringFog.decrypt("EgsWBAoHO10AAB8dBgFAOxI0BAQDOgQMHRk2CAwaHBcL"));
+    public static Class<?> TYPE = RefClass.load(HwFrameworkFactory.class, "android.common.HwFrameworkFactory");
     public static RefStaticMethod<Object> getHwApiCacheManagerEx;
 
     public static Object getHwApiCacheManagerEx() {

@@ -31,7 +31,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwhbPGUaFgM="));
+            return "mkdirs";
         }
 
         @Override
@@ -61,7 +61,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQjGiRmDl0/IhccL2UzSFo="));
+            return "getVolumeList";
         }
 
         @Override
@@ -77,19 +77,19 @@ class MethodProxies {
         }
 
         private boolean checkPackageSdcard(String appPkg) {
-            return appPkg.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojBitnHh42Oj0AMWU0RVo="))) || appPkg.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojBitnHh42Oj0MKA==")));
+            return appPkg.equals("com.nexon.hit2") || appPkg.equals("com.nexon.er");
         }
 
         @Override
         public Object afterCall(Object who, Method method, Object[] args, Object result) throws Throwable {
-            if (this.checkPackageSdcard(GetVolumeList.getAppPkg()) && StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4+DW8wNCZiJ1RF")).equals(Build.BRAND) && Build.VERSION.SDK_INT == 29) {
-                VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Bz8nL0YWWgBgDh4vKj41OmoFGgRvNx4qLhc1JGgKLD9vHlktJD1fKW4VAj9vMzw2Ji1aJWwwFi5vAS85LBgYLH8nIi4YXhw+XkBdPRQBFjdlNyw5LD4YIEtSPzN5UwsxX1sNGwINMQQaLy1TER8NABw4LUwfPwtNWDYVOhoJGCAZKRgzXT9ZPR8HGC8UKQAgWT9EJ1dJPiIUAAgiRBwoIx0ERzBUBRw0QEBZLRkEATZ+N1RF")) + GetVolumeList.getAppPkg());
+            if (this.checkPackageSdcard(GetVolumeList.getAppPkg()) && "samsung".equals(Build.BRAND) && Build.VERSION.SDK_INT == 29) {
+                VLog.e("HV-", "由于mount services MethodProxies com.nexon.hit2 游戏在android 10 上重定向出现问题,这里将重定向的问题修复掉  " + GetVolumeList.getAppPkg());
                 StorageVolume[] storageVolumes = (StorageVolume[])result;
                 if (file == null) {
                     // empty if block
                 }
                 if (file == null) {
-                    new NullPointerException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YDmhSIC9hICQ2Ki41Om8aGiRlHjwcIxgcCmIFMFo=")));
+                    new NullPointerException("file is not nullpointer");
                 }
                 if (!file.exists()) {
                     file.mkdirs();

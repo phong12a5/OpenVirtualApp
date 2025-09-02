@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class ITetheringConnector {
-    public static Class<?> TYPE = RefClass.load(ITetheringConnector.class, StringFog.decrypt("EgsWBAoHO10NCgZeIDsLBw0XBAwAODAMARwVChsBAQ=="));
+    public static Class<?> TYPE = RefClass.load(ITetheringConnector.class, "android.net.ITetheringConnector");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10NCgZeIDsLBw0XBAwAODAMARwVChsBAUEhAhAM"));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.net.ITetheringConnector$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

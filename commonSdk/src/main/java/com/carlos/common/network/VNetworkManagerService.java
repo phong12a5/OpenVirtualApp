@@ -43,7 +43,7 @@ import java.util.Set;
 import okhttp3.ResponseBody;
 
 public class VNetworkManagerService {
-    public static String SERVICE_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4ACWUnPDZlDAEdIxgMCQ=="));
+    public static String SERVICE_NAME = "voij'~AK=puk";
     public static final int oneHourMillis = 360000;
     public static final int oneDayMillis = 86400000;
     public Context mContext;
@@ -69,12 +69,12 @@ public class VNetworkManagerService {
         }
         VPersistent persistent = storagePersistenceServices.getVPersistent();
         boolean isRequestConfigUrl = this.configRequestCan(storagePersistenceServices, persistent);
-        String hostUrl = isRequestConfigUrl ? Constant.API_URL.ENV_PROD : persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdfL2MnIClvDiRF")));
+        String hostUrl = isRequestConfigUrl ? Constant.API_URL.ENV_PROD : persistent.getBuildConfig("mxqB cY`");
         String env_config = persistent.getBuildConfig(VPersistent.PRODUCT_ENV_KEY);
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LC42CQ==")).equals(env_config)) {
+        if ("kci".equals(env_config)) {
             hostUrl = Constant.API_URL.ENV_DEV;
         }
-        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkrIEcuPRd7NycxLi4uCWkKAg1vIxk7Iz4HDmgIAixvVzxF")) + hostUrl + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OF9WO2kJODJmATs7KC5XOWkkIFo=")) + env_config + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OF9WO35SJDVnESMbLhgYJ2UbAiZvMxo0LgUlDW4OOFo=")) + isRequestConfigUrl);
+        HVLog.d("查看 devicesLog hostUrl:" + hostUrl + "8*=x&zuw!g}ae:" + env_config + "    isRequestConfigUrl:" + isRequestConfigUrl);
         DeviceInfo deviceInfo = DeviceInfo.getInstance(this.mContext);
         String deviceNo = deviceInfo.getDevicesNo();
         String channelNo = deviceInfo.getChannelNo();
@@ -84,59 +84,59 @@ public class VNetworkManagerService {
         int versionCode = deviceInfo.getVersionCode();
         long currentTimestamp = deviceInfo.getCurrentTimestamp();
         if (System.currentTimeMillis() - this.devicelogTime < 5000L) {
-            HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LxgAMWwJQS9vDx07KjoCOlUGNiACLyYzEhorIR4tEDVUAF8xWx4YVg==")));
+            HVLog.d("devicesLog 访问过于频繁");
             this.devicelogTime = System.currentTimeMillis();
             return;
         }
         HttpManager.getInstance(this.mContext, hostUrl).syncLogOrConfigAction(deviceNo, channelNo, softId, applicationName, packgeName, versionCode, isRequestConfigUrl, String.valueOf(currentTimestamp)).subscribe(messageEntity -> {
             if (messageEntity.getCode() == 4004) {
-                HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OFsJJFpaByBXUi4AXVsVElQNHyJVKx8pWiYoExpWPT9XCQ86WgwFLBUNQx8YCSEdXQABMh0vHwgcP0I7HFsnPBw7BysaJ1gvOTkMMX8FSFo=")));
+                HVLog.d(" 表示服务端没有该设备需要添加该设备 4004 ");
             } else if (messageEntity.getCode() == 4015) {
                 String md5;
                 JSONObject jsonObject;
-                HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OFsJKh4vAzMUVgoiPQMHJX4VSFo=")));
+                HVLog.d(" 请求 4015 ");
                 String config = messageEntity.getData();
-                HVLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ARs3XEcuGyxDNhwMARxAXkcXOQhHLA8+ABldG0oyDy5HAyU6AVojL0ZJFCR1J1RF")) + config);
+                HVLog.e("应用需要升级的数据信息:" + config);
                 this.persistentConfig(storagePersistenceServices, messageEntity.getData(), persistent);
-                String downloadUrl = persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LxguMm83MClrJycBKRcEImMgGgNvEVRF")));
-                if (downloadUrl != null && !downloadUrl.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OS5SVg==")))) {
-                    downloadUrl = downloadUrl + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OS5SVg=="));
+                String downloadUrl = persistent.getBuildConfig("download_app_url");
+                if (downloadUrl != null && !downloadUrl.endsWith("7")) {
+                    downloadUrl = downloadUrl + "7";
                 }
-                String fileName = (jsonObject = JSON.parseObject((String)messageEntity.getData())).containsKey((Object)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lz42L2kPOCNqJyBF"))) ? jsonObject.getString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lz42L2kPOCNqJyBF"))) : null;
-                String string2 = md5 = jsonObject.containsKey((Object)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lz42L2kPNCB8J1RF"))) ? jsonObject.getString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lz42L2kPNCB8J1RF"))) : null;
+                String fileName = (jsonObject = JSON.parseObject((String)messageEntity.getData())).containsKey((Object)"fileName") ? jsonObject.getString("fileName") : null;
+                String string2 = md5 = jsonObject.containsKey((Object)"fileMd5") ? jsonObject.getString("fileMd5") : null;
                 if (!TextUtils.isEmpty((CharSequence)fileName) && !TextUtils.isEmpty((CharSequence)md5)) {
                     HashMap<String, String> headers = new HashMap<String, String>();
-                    headers.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LxgAMWwJQS9vDwU7")), deviceNo);
-                    headers.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KC4MJG83OC9qNQU7")), channelNo);
-                    headers.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBhbJmwnGi9iETM5KhhSVg==")), packgeName);
-                    String localApk = this.mContext.getFilesDir().getAbsolutePath() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OSwcKmUnOChqATMyOD5SVg==")) + fileName;
+                    headers.put("|okt+iYZ!", deviceNo);
+                    headers.put("{b|s&iFZ!", channelNo);
+                    headers.put("hk~v/idu#l", packgeName);
+                    String localApk = this.mContext.getFilesDir().getAbsolutePath() + "7Nrj&`Eu*&" + fileName;
                     File apkFile = new File(localApk);
                     String fileMD5Sync = MD5Utils.fileMD5Sync(apkFile);
                     if (apkFile.exists() && md5.equals(fileMD5Sync)) {
-                        HVLog.d(fileName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OFsdMh8BBz0GCSI5RAAVAFpSOisdUCo0XQoJLVotEgRvJA46KV8mL2g3Fil/DQUhOF9WO24ORS1gEVw6Kl4iVg==")) + apkFile.exists() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OF9WO29SPCVrJx0LLQglKA==")) + localApk);
+                        HVLog.d(fileName + " 已经存在,不需要download        apkFile:" + apkFile.exists() + "   localApk:" + localApk);
                     } else {
                         apkFile.deleteOnExit();
                         this.downloadFile(downloadUrl + fileName, headers, fileName, md5);
                     }
                 }
             } else if (messageEntity.getCode() == 4016) {
-                HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OFsJKh4vAzMUVgoiPQMHJH4VSFo=")) + messageEntity.getData());
+                HVLog.d(" 请求 4016 " + messageEntity.getData());
                 this.persistentConfig(storagePersistenceServices, messageEntity.getData(), persistent);
             } else if (messageEntity.getCode() == 4017) {
-                HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("DFcrMkc4DwB7MCQcPV5aMg==")));
+                HVLog.d("请求 4017 ");
             }
             if (isRequestConfigUrl) {
                 storagePersistenceServices.updatePersistent(persistent);
             }
         }, (Consumer)new ErrorAction());
-        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LxgAMWwJQS9vDx07Kj5SVg==")));
+        HVLog.d("|okt+iYX!n");
     }
 
     @RequiresApi(api=26)
     public void checkDevicesUpload(String filePath) {
-        File kookCustom = new File(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OS0YPGokHi9qIwE/KD42Pw==")));
+        File kookCustom = new File("7ydn<iG;%ftc");
         if (kookCustom.exists()) {
-            HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uKmwjRy8fSVoxXBtXIG8jPFo=")));
+            HVLog.d("kook 定制rom");
             return;
         }
         StoragePersistenceServices storagePersistenceServices = StoragePersistenceServices.get();
@@ -144,13 +144,13 @@ public class VNetworkManagerService {
             return;
         }
         VPersistent persistent = storagePersistenceServices.getVPersistent();
-        String urlHost = persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdfL2MnIClvDiRF")));
+        String urlHost = persistent.getBuildConfig("mxqB cY`");
         if (TextUtils.isEmpty((CharSequence)urlHost)) {
             this.devicesLog();
             return;
         }
-        String hostUrl = persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdfL2MnIClvDiRF")));
-        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkrIEcuPRdrAVAxKT4mU2kKHiBuIw4qIi0LKW4zEgR+EQo5LCkEWG8VBj8=")) + hostUrl);
+        String hostUrl = persistent.getBuildConfig("mxqB cY`");
+        HVLog.d("查看checkDevicesUpload hostUrl:" + hostUrl);
         DeviceInfo deviceInfo = DeviceInfo.getInstance(this.mContext);
         String model = deviceInfo.model;
         String manufacturer = deviceInfo.manufacturer;
@@ -163,9 +163,9 @@ public class VNetworkManagerService {
         String leaveme = "";
         long currentTimestamp = deviceInfo.getCurrentTimestamp();
         HttpManager.getInstance(this.mContext, hostUrl).syncCheckDevices(model, manufacturer, product, channelNo, devicesNo, cardNumber, uploadVersion, leaveme, String.valueOf(currentTimestamp)).subscribe(messageEntity -> {
-            HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("DFcrMkc4DwBGTUJBDEQ/BXgzSFo=")) + messageEntity);
+            HVLog.d("请求成功:" + messageEntity);
             if (messageEntity.getCode() == 4004) {
-                HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdXL28nAiB7Ny89KAgXKA==")) + messageEntity + " " + persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdXL28nAiBmAScxLi4uCWkKAhBlClE3"))));
+                HVLog.d("upload file:" + messageEntity + " " + persistent.getBuildConfig("upload_devices_url"));
                 this.uploadDevices(persistent, filePath);
             }
         }, (Consumer)new ErrorAction());
@@ -196,37 +196,37 @@ public class VNetworkManagerService {
     private boolean configRequestCan(StoragePersistenceServices storagePersistenceServices, VPersistent persistent) {
         block8: {
             block7: {
-                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdfL2MnIClvDiRF"))))) break block7;
-                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdXL28nAiBmATMcLQU2JWozOFo="))))) break block7;
-                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LxguMm83MClrJycBKRcEImMgGgNvEVRF"))))) break block7;
-                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdXL28nAiBmAScxLi4uCWkKAhBlClE3"))))) break block7;
-                if (!TextUtils.isEmpty((CharSequence)persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LxguMm83MClrJycBKggYJGwFAixqLiAgKRgcVg=="))))) break block8;
+                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("mxqB cY`"))) break block7;
+                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("mzqr)huu>yD}pl"))) break block7;
+                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("download_app_url"))) break block7;
+                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("upload_devices_url"))) break block7;
+                if (!TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("download_devices_url"))) break block8;
             }
             return true;
         }
-        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4ADmUJEjVsNTs7LhgMJngzSFo=")) + persistent.requestCount);
+        HVLog.d("requestCount:" + persistent.requestCount);
         int heartbeatCount = 0;
-        String heartbeatCountStr = persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhgAJGo0HiZoJzMiIT42JW8wBlo=")));
+        String heartbeatCountStr = persistent.getBuildConfig("po|o<nOu:Jt}lt");
         if (!TextUtils.isEmpty((CharSequence)heartbeatCountStr)) {
             heartbeatCount = Integer.parseInt(heartbeatCountStr);
         }
-        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4ADmUJEjVsNTs7LhgMJngzSFo=")) + persistent.requestCount + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OF9WO35SIC9rJD8iKS4YMWUbAiZlDSQvPxhSVg==")) + heartbeatCount);
+        HVLog.d("requestCount:" + persistent.requestCount + "8*== iKf:k~ivCnm&d9" + heartbeatCount);
         if (persistent.requestCount >= 20 || persistent.requestCount >= heartbeatCount) {
-            HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("DFYBGkpXOQt8IA80EhwGDRUHACwcLV8zHBs7LR8EMgIVXio/UlldIB1JFy4bKCIpEyEGIR8TXiIbAxsxXCIGDxURETc=")) + persistent.requestCount);
+            HVLog.d("超过50次的心跳还是需要去请求服务器 " + persistent.requestCount);
             persistent.requestCount = 0;
             this.updatePersistent(storagePersistenceServices, persistent);
             return true;
         }
         ++persistent.requestCount;
-        String requestTimeAppConfig = persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4ADmUJEjVsMic9KBgYVg==")));
-        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("DFYBGkpXOQt7ND8xLRcYD2ogBlBsDSgwJS0LD2czLDBpNzAxOFcdXxU7MlEdLy0OWFsJOhVaA1EfCV8AXgAnDhsNBw8dKzE2HAAoCBgrWgwYCRsUEhwFXB43Flo=")) + requestTimeAppConfig);
+        String requestTimeAppConfig = persistent.getBuildConfig("requestTime");
+        HVLog.d("超过 requestTimeAppConfig 的时间还是需要去请求服务器 " + requestTimeAppConfig);
         if (TextUtils.isEmpty((CharSequence)requestTimeAppConfig)) {
             return true;
         }
         int requestConfig = Integer.parseInt(requestTimeAppConfig);
         int requestTime = 360000 * requestConfig;
         if (System.currentTimeMillis() - persistent.currentTimeMillis > (long)requestTime) {
-            HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("DFYBGkpXOQtGKAANARtYJ0cXGw5HPyE8BQwGCkosH1E=")));
+            HVLog.d("超过心跳再次请求");
             persistent.currentTimeMillis = System.currentTimeMillis();
             this.updatePersistent(storagePersistenceServices, persistent);
             return true;
@@ -251,23 +251,23 @@ public class VNetworkManagerService {
         String uploadVersion = Constant.UPLOAD_VERSION_V2_0;
         String uploadNote = null;
         try {
-            uploadNote = URLEncoder.encode(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz5ZIBguDC8bTRMzRCBdDVVaOisdUFs/EQxcIBpJMgIUXiRF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OwUcG38KIFo=")));
+            uploadNote = URLEncoder.encode("va发型的第一个版本", "M^[0p");
         }
         catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
         String leaveme = "";
         long currentTimestamp = deviceInfo.getCurrentTimestamp();
-        String urlHost = persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdfL2MnIClvDiRF")));
-        HttpManager.getInstance(this.mContext, urlHost).syncAddDevices(model, manufacturer, product, channelNo, devicesNo, cardNumber, uploadVersion, uploadNote, leaveme, String.valueOf(currentTimestamp)).subscribe(messageEntity -> HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("DFcrMkc4DwBGTUJBDEQ/BXgzSFo=")) + messageEntity), (Consumer)new ErrorAction());
+        String urlHost = persistent.getBuildConfig("mxqB cY`");
+        HttpManager.getInstance(this.mContext, urlHost).syncAddDevices(model, manufacturer, product, channelNo, devicesNo, cardNumber, uploadVersion, uploadNote, leaveme, String.valueOf(currentTimestamp)).subscribe(messageEntity -> HVLog.d("请求成功:" + messageEntity), (Consumer)new ErrorAction());
     }
 
     public void uploadDevices(final VPersistent persistent, String uploadFile) {
-        String baseUrl = persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdfL2MnIClvDiRF")));
-        if (baseUrl != null && !baseUrl.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OS5SVg==")))) {
-            baseUrl = baseUrl + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OS5SVg=="));
+        String baseUrl = persistent.getBuildConfig("mxqB cY`");
+        if (baseUrl != null && !baseUrl.endsWith("7")) {
+            baseUrl = baseUrl + "7";
         }
-        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("DBk/HUpWAw1GAkIWDBs3MmEVGj1sDV0wKQAgOFVWWlJVIyYwWiM8JxUXAywCKVlOKAcYIH0OTSh5EVRF")) + baseUrl);
+        HVLog.d("需要上传Devices信息,这里的BaseUrl:" + baseUrl);
         DeviceInfo deviceInfo = DeviceInfo.getInstance(this.mContext);
         String deviceNo = deviceInfo.getDevicesNo();
         String uploadVersion = Constant.UPLOAD_VERSION_V2_0;
@@ -276,24 +276,24 @@ public class VNetworkManagerService {
 
             @Override
             public void onUpLoadSuccess() {
-                HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkBBEdXFzJqAQVMLQY6M24FBl9lDV06Li09Dn8NRiYZPx8sElcZGhg7PgkGN1RF")));
+                HVLog.d("文件onUpLoadSuccess 上传成功");
                 VNetworkManagerService.this.addDeviceByRemote(persistent);
             }
 
             @Override
             @RequiresApi(api=26)
             public void onUpLoadNext(ResponseBody responseBody) {
-                HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkBBEdXFzJ7NwE8JhcEW28jQStnMw4ZKjoJIR4XOgQcXkIyX1hdIwJNElo=")));
+                HVLog.d("文件 onUpLoadNext 上传成功");
             }
 
             @Override
             public void onUpLoadFail(Throwable e) {
-                HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkBBEdXFzJGAkIWDBs3MkcRAwJKUwcw")));
+                HVLog.d("文件上传失败");
             }
 
             @Override
             public void onProgress(int progress) {
-                HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkBBEdXFzJGAkIWDBs3MmoaRSZpIFEwKQc+Mw==")) + progress);
+                HVLog.d("文件上传progress:" + progress);
             }
         });
     }
@@ -305,44 +305,44 @@ public class VNetworkManagerService {
             return;
         }
         VPersistent persistent = storagePersistenceServices.getVPersistent();
-        String hostUrl = persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwdfL2MnIClvDiRF")));
+        String hostUrl = persistent.getBuildConfig("mxqB cY`");
         if (TextUtils.isEmpty((CharSequence)hostUrl)) {
             this.devicesLog();
             return;
         }
-        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkrIEcuPRd7ND81KC5fM28LBixlMzg6Li0+JWkFLCtlHAYcKRcMVg==")) + hostUrl);
+        HVLog.d("查看 randomDevices hostUrl:" + hostUrl);
         DeviceInfo deviceInfo = DeviceInfo.getInstance(this.mContext);
         String deviceNo = deviceInfo.getDevicesNo();
         String channelNo = deviceInfo.getChannelNo();
         String packgeName = this.mContext.getPackageName();
         long currentTimestamp = deviceInfo.getCurrentTimestamp();
         HttpManager.getInstance(this.mContext, hostUrl).syncRandomDevices(channelNo, deviceNo, packgeName, String.valueOf(currentTimestamp)).subscribe(messageEntity -> {
-            HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("DBk3DEcAPT5DAgBNDEAjBkdbExFHUzExLj4lCWkVGgNqI0I0WiYWLhQvHyEfAFscUz8oIQISRyIGKwIg")) + messageEntity);
+            HVLog.d("随机返回一个devices 信息返回数据:" + messageEntity);
             if (messageEntity != null && messageEntity.getCode() == 4020) {
                 String md5;
                 JSONObject jsonObject;
-                String downloadUrl = persistent.getBuildConfig(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LxguMm83MClrJycBKggYJGwFAixqLiAgKRgcVg==")));
-                if (downloadUrl != null && !downloadUrl.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OS5SVg==")))) {
-                    downloadUrl = downloadUrl + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OS5SVg=="));
+                String downloadUrl = persistent.getBuildConfig("download_devices_url");
+                if (downloadUrl != null && !downloadUrl.endsWith("7")) {
+                    downloadUrl = downloadUrl + "7";
                 }
-                String fileName = (jsonObject = JSON.parseObject((String)messageEntity.getData())).containsKey((Object)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lz42L2kPOCNqJyBF"))) ? jsonObject.getString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lz42L2kPOCNqJyBF"))) : null;
-                String string2 = md5 = jsonObject.containsKey((Object)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgbCg=="))) ? jsonObject.getString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgbCg=="))) : null;
+                String fileName = (jsonObject = JSON.parseObject((String)messageEntity.getData())).containsKey((Object)"fileName") ? jsonObject.getString("fileName") : null;
+                String string2 = md5 = jsonObject.containsKey((Object)"un(") ? jsonObject.getString("un(") : null;
                 if (!TextUtils.isEmpty((CharSequence)fileName) && !TextUtils.isEmpty((CharSequence)md5)) {
                     HashMap<String, String> headers = new HashMap<String, String>();
-                    headers.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LxgAMWwJQS9vDwU7")), deviceNo);
-                    headers.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KC4MJG83OC9qNQU7")), channelNo);
-                    headers.put(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBhbJmwnGi9iETM5KhhSVg==")), packgeName);
+                    headers.put("|okt+iYZ!", deviceNo);
+                    headers.put("{b|s&iFZ!", channelNo);
+                    headers.put("hk~v/idu#l", packgeName);
                     this.downloadFile(downloadUrl + fileName, headers, fileName, md5);
                 }
             }
         }, (Consumer)new ErrorAction());
-        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD5bKWlSPDdgNyMaLxgAD2ojSFo=")));
+        HVLog.d("jksy'anq8`xmq");
     }
 
     public void downloadFile(String downloadUrl, Map<String, String> headers, String fileName, final String fileMd5) {
-        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkBBEdXFzJGAkIVARs7LX4VBiZlIyQ3LAg1IWAaBjJFKDlJ")) + downloadUrl + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OF9WO35SBitqNyMSKRg+D3gzSFo=")) + fileName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OF9WO35SBitqNyMfKgMWMxxNIFo=")) + fileMd5);
-        if (Environment.getExternalStorageState().equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQguCm80Hi9oN1RF")))) {
-            String fileDirPath = this.mContext.getFilesDir().getAbsolutePath() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OSwcKmUnOChqATMyOD5SVg=="));
+        HVLog.d("文件下载 downloadUrl：" + downloadUrl + "    fileName:" + fileName + "    fileMd5：" + fileMd5);
+        if (Environment.getExternalStorageState().equals("uehs<iN")) {
+            String fileDirPath = this.mContext.getFilesDir().getAbsolutePath() + "7Nrj&`Eu*&";
             File fileDir = new File(fileDirPath);
             try {
                 if (null == fileDir || !fileDir.exists()) {
@@ -354,23 +354,23 @@ public class VNetworkManagerService {
                     @Override
                     public void onDownloadSuccess() {
                         String fileMD5Sync = MD5Utils.fileMD5Sync(filePath);
-                        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lz42L2kPNCB8IFlF")) + fileMd5 + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OF9WO35SBitqNyMfIgMYGWgFMCp4N1RF")) + fileMD5Sync);
+                        HVLog.d("fileMd5:" + fileMd5 + "    fileMD5Sync:" + fileMD5Sync);
                         if (fileMD5Sync.equals(fileMd5)) {
-                            HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkBBEdXFzJGAkIVARs7LUcHE0hHFw9B")));
+                            HVLog.d("文件下载成功");
                         } else {
-                            HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkBBEdXFzJGAkIVARs7LUcWJRNHFjEZPDwfG3hSGAJUXl8/HA4oIx0GFyEdFR5F")));
+                            HVLog.d("文件下载异常,MD5 校验失败");
                         }
                     }
 
                     @Override
                     public void onDownloadFail(Exception exception) {
-                        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkBBEdXFzJGAkIVARs7LUcRAwJKUwcw")));
+                        HVLog.d("文件下载失败");
                         HVLog.printException(exception);
                     }
 
                     @Override
                     public void onProgress(int progress) {
-                        HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("AQkBBEdXFzJGAkIVARs7LUpbMVdHFg89PxhSVg==")) + progress);
+                        HVLog.d("文件下载进度:" + progress);
                     }
                 }).download(downloadUrl, headers, filePath);
             }
@@ -379,7 +379,7 @@ public class VNetworkManagerService {
                 HVLog.printException(e);
             }
         } else {
-            HVLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JCwaIBgNDCIbBVo0XRoaOhwWPFo=")));
+            HVLog.d("SD卡未挂载");
         }
     }
 }

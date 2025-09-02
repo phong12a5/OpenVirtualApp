@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Oat {
-    public static final String SECTION_RODATA = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz0MD2gFJAZ9AVRF"));
+    public static final String SECTION_RODATA = ".rodata";
     public final long oatPosition;
     public final Header header;
     public final OatDexFile[] oatDexFiles;
@@ -21,7 +21,7 @@ public class Oat {
     public Oat(DataReader reader) throws Exception {
         this.oatPosition = reader.position();
         if (this.oatPosition != 4096L) {
-            throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0qKmsVBi1iCiQ1Lwg1OmozNANqDiwaLD4bJA==")) + this.oatPosition);
+            throw new IOException("Strange oat position " + this.oatPosition);
         }
         this.srcFile = reader.getFile();
         this.header = new Header(reader);
@@ -72,11 +72,11 @@ public class Oat {
             r.readBytes(this.dex_file_location_data_);
             this.dex_file_location_checksum_ = r.readInt();
             this.dex_file_offset_ = r.readInt();
-            File vdex = FileUtils.changeExt(r.getFile(), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4qM2kFSFo=")));
+            File vdex = FileUtils.changeExt(r.getFile(), "vdex");
             if (vdex.exists()) {
                 this.dex_file_pointer_ = vdex;
             } else if (this.dex_file_offset_ == 28) {
-                throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguIGYzOC9gHjBAKi0+PGoFGgZhIA5F")) + this.dex_file_offset_ + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186PGozNANLEVRF")) + vdex.getName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgICW8wLzU=")));
+                throw new IOException("dex_file_offset_=" + this.dex_file_offset_ + ", does " + vdex.getName() + " miss?");
             }
             if (version >= Version.N_70.oat) {
                 this.class_offsets_offset_ = r.readInt();
@@ -117,7 +117,7 @@ public class Oat {
         public Header(DataReader r) throws IOException {
             r.readBytes(this.magic_);
             if (this.magic_[0] != 'o' || this.magic_[1] != 'a' || this.magic_[2] != 't') {
-                throw new IOException(String.format(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQ7Iz41Om8jQS1qATMrPhg1J30kLCY=")), Character.valueOf(this.magic_[0]), Character.valueOf(this.magic_[1]), Character.valueOf(this.magic_[2])));
+                throw new IOException(String.format("Invalid art magic %c%c%c", Character.valueOf(this.magic_[0]), Character.valueOf(this.magic_[1]), Character.valueOf(this.magic_[2])));
             }
             r.readBytes(this.version_);
             this.artVersion = DataReader.toInt(new String(this.version_));

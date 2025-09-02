@@ -12,7 +12,7 @@ import com.carlos.common.persistent.StoragePersistenceLayer;
 import com.carlos.common.persistent.VPersistent;
 
 public class StoragePersistenceServices {
-    public static String SERVICE_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LC0cKmo3AiFoIgEcKhccJ2wKAgVpDSQ6Li5SVg=="));
+    public static String SERVICE_NAME = "k~ro)kOK>li{ksu}&sf";
     static StoragePersistenceServices mStoragePersistenceServices = new StoragePersistenceServices();
     Context mContext;
     private StoragePersistenceLayer mPersistenceLayer = new StoragePersistenceLayer(this);

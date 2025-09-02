@@ -38,7 +38,7 @@ public class DownloadManager {
     }
 
     public String getFileName(String url) {
-        return url.substring(url.lastIndexOf(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("My5SVg=="))) + 1);
+        return url.substring(url.lastIndexOf("/") + 1);
     }
 
     public void pause(String ... urls) {
@@ -107,7 +107,7 @@ public class DownloadManager {
     }
 
     static {
-        TAG = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JRgALWojHiV9DgoNLwcYOWkFGgQ="));
+        TAG = "DownloadManager";
     }
 }
 

@@ -28,12 +28,12 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IAccountManagerResponse {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10CDBEfHAEaAEs7NwYNMAYNGz8RBw4JFhcgExYeMB0QCg==");
+        private static final String DESCRIPTOR = "android.accounts.IAccountManagerResponse";
         static final int TRANSACTION_onResult = 1;
         static final int TRANSACTION_onError = 2;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10CDBEfHAEaAEs7NwYNMAYNGz8RBw4JFhcgExYeMB0QCg=="));
+            this.attachInterface(this, "android.accounts.IAccountManagerResponse");
         }
 
         public static IAccountManagerResponse asInterface(IBinder obj) {
@@ -79,7 +79,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IAccountManagerResponse impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -106,7 +106,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10CDBEfHAEaAEs7NwYNMAYNGz8RBw4JFhcgExYeMB0QCg==");
+                return "android.accounts.IAccountManagerResponse";
             }
 
             /*
@@ -117,7 +117,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10CDBEfHAEaAEs7NwYNMAYNGz8RBw4JFhcgExYeMB0QCg=="));
+                    _data.writeInterfaceToken("android.accounts.IAccountManagerResponse");
                     if (value != null) {
                         _data.writeInt(1);
                         value.writeToParcel(_data, 0);
@@ -145,7 +145,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10CDBEfHAEaAEs7NwYNMAYNGz8RBw4JFhcgExYeMB0QCg=="));
+                    _data.writeInterfaceToken("android.accounts.IAccountManagerResponse");
                     _data.writeInt(errorCode);
                     _data.writeString(errorMessage);
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);

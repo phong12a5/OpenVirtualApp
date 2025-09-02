@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class ISuperResolutionManager {
-    public static Class<?> TYPE = RefClass.load(ISuperResolutionManager.class, StringFog.decrypt("BQwEGUsPLwNNHAcADB0cFhYdGhAaNhwNQTsjHB8LATcXBQoCKgcKABw9CAEPFAAA"));
+    public static Class<?> TYPE = RefClass.load(ISuperResolutionManager.class, "vivo.app.superresolution.ISuperResolutionManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("BQwEGUsPLwNNHAcADB0cFhYdGhAaNhwNQTsjHB8LATcXBQoCKgcKABw9CAEPFAAAUjYaKhE="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "vivo.app.superresolution.ISuperResolutionManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

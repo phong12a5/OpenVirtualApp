@@ -26,11 +26,11 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IServiceConnection {
-        private static final String DESCRIPTOR = StringFog.decrypt("EgsWBAoHO10CHwJeIDwLARMbFQAtMB0NChEEAAAA");
+        private static final String DESCRIPTOR = "android.app.IServiceConnection";
         static final int TRANSACTION_connected = 1;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EgsWBAoHO10CHwJeIDwLARMbFQAtMB0NChEEAAAA"));
+            this.attachInterface(this, "android.app.IServiceConnection");
         }
 
         public static IServiceConnection asInterface(IBinder obj) {
@@ -69,7 +69,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IServiceConnection impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -96,7 +96,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EgsWBAoHO10CHwJeIDwLARMbFQAtMB0NChEEAAAA");
+                return "android.app.IServiceConnection";
             }
 
             /*
@@ -107,7 +107,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EgsWBAoHO10CHwJeIDwLARMbFQAtMB0NChEEAAAA"));
+                    _data.writeInterfaceToken("android.app.IServiceConnection");
                     if (name != null) {
                         _data.writeInt(1);
                         name.writeToParcel(_data, 0);

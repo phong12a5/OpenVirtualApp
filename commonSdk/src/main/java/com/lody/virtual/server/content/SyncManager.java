@@ -87,7 +87,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class SyncManager {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg=="));
+    private static final String TAG = "SyncManager";
     private static final long LOCAL_SYNC_DELAY;
     private static final long MAX_TIME_PER_SYNC;
     private static final long SYNC_NOTIFICATION_DELAY;
@@ -116,12 +116,12 @@ public class SyncManager {
 
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42FgpiMhoCJysuUmcbGgBjHyAKKitXGGIjSFo=")).equals(action)) {
-                Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLGgaFiZ9DlA8Iy42DWoVQS1rDTwaKTo6KGAjJyk=")));
+            if ("android.intent.action.DEVICE_STORAGE_LOW".equals(action)) {
+                Log.v((String)"SyncManager", (String)"Internal storage is low.");
                 SyncManager.this.mStorageIsLow = true;
                 SyncManager.this.cancelActiveSync(null, -1, null);
-            } else if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42FgpiMhoCJysuUmcbGgBjHyAKKisYBA==")).equals(action)) {
-                Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLGgaFiZ9DlA8Iy42DWoVQS1rDTwaKTo6KWMkRVo=")));
+            } else if ("android.intent.action.DEVICE_STORAGE_OK".equals(action)) {
+                Log.v((String)"SyncManager", (String)"Internal storage is ok.");
                 SyncManager.this.mStorageIsLow = false;
                 SyncManager.this.sendCheckAlarmsMessage();
             }
@@ -163,7 +163,7 @@ public class SyncManager {
             SyncManager.this.mDataConnectionIsConnected = SyncManager.this.readDataConnectionState();
             if (SyncManager.this.mDataConnectionIsConnected) {
                 if (!wasConnected) {
-                    Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij4uOWozBiZiDiggKQdfDn4zBitvESgqKgguIHc0OCZsHgoqLBg2KmsnIDNqAQU3Oz0mKm8gRTBpHh5F")));
+                    Log.v((String)"SyncManager", (String)"Reconnection detected: clearing all backoffs");
                     SyncQueue syncQueue = SyncManager.this.mSyncQueue;
                     synchronized (syncQueue) {
                         SyncManager.this.mSyncStorageEngine.clearAllBackoffsLocked(SyncManager.this.mSyncQueue);
@@ -176,7 +176,7 @@ public class SyncManager {
     private BroadcastReceiver mShutdownIntentReceiver = new BroadcastReceiver(){
 
         public void onReceive(Context context, Intent intent) {
-            Log.w((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IS0MCWwFAiZiICQpLQcYP34wAgZoDiwgPQgMJ2IwAjVuCiA8Kj0ACmsVGiFqIx05CD5SVg==")));
+            Log.w((String)"SyncManager", (String)"Writing sync state before shutdown...");
             SyncManager.this.getSyncStorageEngine().writeAllState();
         }
     };
@@ -184,15 +184,15 @@ public class SyncManager {
 
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            int userId = intent.getIntExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZrDlk/KS49KmYFNCBlNVkhKC4qIGUVNFo=")), -10000);
+            int userId = intent.getIntExtra("android.intent.extra.user_handle", -10000);
             if (userId == -10000) {
                 return;
             }
-            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV1k7Kj02KG8FLCx1Nx4bKgguKmZTRSRpJzAiKQgpKmcILFRnIgZALAVbGGI2Flc=")).equals(action)) {
+            if ("virtual.android.intent.action.USER_REMOVED".equals(action)) {
                 SyncManager.this.onUserRemoved(userId);
-            } else if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV1k7Kj02KG8FLCx1Nx4bKgguKmZTRSRpJzAiKQgpKmcILFRnIgYOLBUMBmYVSFo=")).equals(action)) {
+            } else if ("virtual.android.intent.action.USER_ADDED".equals(action)) {
                 SyncManager.this.onUserStarting(userId);
-            } else if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV1k7Kj02KG8FLCx1Nx4bKgguKmZTRSRpJzAiKQgpKmcILFRnIgZALAVbGGI2Flc=")).equals(action)) {
+            } else if ("virtual.android.intent.action.USER_REMOVED".equals(action)) {
                 SyncManager.this.onUserStopping(userId);
             }
         }
@@ -222,7 +222,7 @@ public class SyncManager {
         }
         for (ActiveSyncContext currentSyncContext : this.mActiveSyncContexts) {
             if (this.containsAccountAndUser(this.mRunningAccounts, currentSyncContext.mSyncOperation.account, currentSyncContext.mSyncOperation.userId)) continue;
-            Log.d((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRjDlk9PxgqIW8VDShsJx4bLT4tJGYaBiB5HiQsKAguCWUwMzRlHjM3Jj0XL2waRQJpAQYbPhcMI2ojBi9gNDhF")));
+            Log.d((String)TAG, (String)"canceling sync since the account is no longer running");
             this.sendSyncFinishedOrCanceledMessage(currentSyncContext, null);
         }
         this.sendCheckAlarmsMessage();
@@ -248,7 +248,7 @@ public class SyncManager {
         SyncManager syncManager = this;
         synchronized (syncManager) {
             if (this.mConnManagerDoNotUseDirectly == null) {
-                this.mConnManagerDoNotUseDirectly = (ConnectivityManager)this.mContext.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGojNClmHgYuKQg2IQ==")));
+                this.mConnManagerDoNotUseDirectly = (ConnectivityManager)this.mContext.getSystemService("connectivity");
             }
             return this.mConnManagerDoNotUseDirectly;
         }
@@ -269,26 +269,26 @@ public class SyncManager {
         this.mSyncAdapters.refreshServiceCache(null);
         this.mSyncQueue = new SyncQueue(this.mSyncStorageEngine, this.mSyncAdapters);
         this.mSyncHandler = new SyncHandler(BackgroundThread.get().getLooper());
-        this.mSyncAlarmIntent = Build.VERSION.SDK_INT >= 31 ? PendingIntent.getBroadcast((Context)this.mContext, (int)0, (Intent)new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k5Ki0YLmkjMAZ1NDA0LC42L30KRSRuJAo7ORUYWH0xLBNjHwIOLztbVg=="))), (int)0x4000000) : PendingIntent.getBroadcast((Context)this.mContext, (int)0, (Intent)new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k5Ki0YLmkjMAZ1NDA0LC42L30KRSRuJAo7ORUYWH0xLBNjHwIOLztbVg=="))), (int)0);
-        IntentFilter intentFilter = new IntentFilter(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k2KAg1Dm4FNCZlMxoAJDwcDGoINFRnDzhNOzs2E2AhRR1iJSAK")));
+        this.mSyncAlarmIntent = Build.VERSION.SDK_INT >= 31 ? PendingIntent.getBroadcast((Context)this.mContext, (int)0, (Intent)new Intent("android.content.syncmanager.SYNC_ALARM"), (int)0x4000000) : PendingIntent.getBroadcast((Context)this.mContext, (int)0, (Intent)new Intent("android.content.syncmanager.SYNC_ALARM"), (int)0);
+        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         context.registerReceiver(this.mConnectivityIntentReceiver, intentFilter);
-        intentFilter = new IntentFilter(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42MBRkJTAOIAYuAWQbHlRkDygJ")));
+        intentFilter = new IntentFilter("android.intent.action.BOOT_COMPLETED");
         context.registerReceiver(this.mBootCompletedReceiver, intentFilter);
-        intentFilter = new IntentFilter(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k2KAg1Dm4FNCZlMxoPJRY2B2ohMBRiDB5IJQYcHWcbJBNnNShOKBUAH2YhRR1kNV0fJSwuWQ==")));
+        intentFilter = new IntentFilter("android.net.conn.BACKGROUND_DATA_SETTING_CHANGED");
         context.registerReceiver(this.mBackgroundDataSettingChanged, intentFilter);
-        intentFilter = new IntentFilter(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42FgpiMhoCJysuUmcbGgBjHyAKKitXGGIjSFo=")));
-        intentFilter.addAction(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42FgpiMhoCJysuUmcbGgBjHyAKKisYBA==")));
+        intentFilter = new IntentFilter("android.intent.action.DEVICE_STORAGE_LOW");
+        intentFilter.addAction("android.intent.action.DEVICE_STORAGE_OK");
         context.registerReceiver(this.mStorageIntentReceiver, intentFilter);
-        intentFilter = new IntentFilter(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kzKj42PW8aASZoATA/IxgAKk42PABiHBpXIRUuUmIYNApgDwZNLj5SVg==")));
+        intentFilter = new IntentFilter("android.intent.action.ACTION_SHUTDOWN");
         intentFilter.setPriority(100);
         context.registerReceiver(this.mShutdownIntentReceiver, intentFilter);
         intentFilter = new IntentFilter();
-        intentFilter.addAction(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV1k7Kj02KG8FLCx1Nx4bKgguKmZTRSRpJzAiKQgpKmcILFRnIgZALAVbGGI2Flc=")));
-        intentFilter.addAction(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV1k7Kj02KG8FLCx1Nx4bKgguKmZTRSRpJzAiKQgpKmcILFRnIgYOLBUMBmYVSFo=")));
-        intentFilter.addAction(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV1k7Kj02KG8FLCx1Nx4bKgguKmZTRSRpJzAiKQgpKmcILFRnIgZALAVbGGI2Flc=")));
+        intentFilter.addAction("virtual.android.intent.action.USER_REMOVED");
+        intentFilter.addAction("virtual.android.intent.action.USER_ADDED");
+        intentFilter.addAction("virtual.android.intent.action.USER_REMOVED");
         this.mContext.registerReceiver(this.mUserIntentReceiver, intentFilter);
-        context.registerReceiver((BroadcastReceiver)new SyncAlarmIntentReceiver(), new IntentFilter(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k5Ki0YLmkjMAZ1NDA0LC42L30KRSRuJAo7ORUYWH0xLBNjHwIOLztbVg=="))));
-        this.mPowerManager = (PowerManager)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhgALWgaFlo=")));
+        context.registerReceiver((BroadcastReceiver)new SyncAlarmIntentReceiver(), new IntentFilter("android.content.syncmanager.SYNC_ALARM"));
+        this.mPowerManager = (PowerManager)context.getSystemService("power");
         this.mUserManager = VUserManager.get();
         this.mSyncStorageEngine.addStatusChangeListener(1, new ISyncStatusObserver.Stub(){
 
@@ -304,7 +304,7 @@ public class SyncManager {
         Random random = new Random(SystemClock.elapsedRealtime());
         long spread = maxValue - minValue;
         if (spread > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRhfM3sFMC9iNDw/Iz0MDm4FBShoNyg/Kj4uJ2A0OD9vHg0pKS5bPGczJAJsESs3OwdfI3kVLD5pI1E8LAgcAGsVHgViCiQ3LAgqLn4zRSt4EQIgKT01JGYaBiRsMCM7PCkbMX9TRCV8IC8i")));
+            throw new IllegalArgumentException("the difference between the maxValue and the minValue must be less than 2147483647");
         }
         return minValue + (long)random.nextInt((int)spread);
     }
@@ -328,7 +328,7 @@ public class SyncManager {
 
     private void ensureAlarmService() {
         if (this.mAlarmService == null) {
-            this.mAlarmService = (AlarmManager)this.mContext.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggEP28jElo=")));
+            this.mAlarmService = (AlarmManager)this.mContext.getSystemService("alarm");
         }
     }
 
@@ -339,8 +339,8 @@ public class SyncManager {
         if (extras == null) {
             extras = new Bundle();
         }
-        Log.d((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cM3oaMC9gDjM8Iy4cDm4JTS5lJA0xPQhSVg==")) + requestedAccount + " " + extras.toString() + " " + requestedAuthority));
-        Boolean expedited = extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfKGgVMC9mHjAw")), false);
+        Log.d((String)TAG, (String)("one-time sync for: " + requestedAccount + " " + extras.toString() + " " + requestedAuthority));
+        Boolean expedited = extras.getBoolean("expedited", false);
         if (expedited.booleanValue()) {
             runtimeMillis = -1L;
         }
@@ -349,17 +349,17 @@ public class SyncManager {
         } else {
             accounts = this.mRunningAccounts;
             if (accounts.length == 0) {
-                Log.v((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki42CmgVMAVgHjAPLQcYP3hSTSZlIzwsLT42KWYKRT9lICAsKQgqImoFPC9vJygzCF4iI2UwRSZqNzA5LS5SVg==")));
+                Log.v((String)TAG, (String)"scheduleSync: no accounts configured, dropping");
                 return;
             }
         }
-        boolean uploadOnly = extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6DmozJCw=")), false);
-        boolean manualSync = extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4AKmszNFo=")), false);
+        boolean uploadOnly = extras.getBoolean("upload", false);
+        boolean manualSync = extras.getBoolean("force", false);
         if (manualSync) {
-            extras.putBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgmCGowFitsJCw7Ly0EDWkVHlo=")), true);
-            extras.putBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgmCGowFitsJyg/LBg2MW8VEgM=")), true);
+            extras.putBoolean("ignore_backoff", true);
+            extras.putBoolean("ignore_settings", true);
         }
-        boolean ignoreSettings = extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgmCGowFitsJyg/LBg2MW8VEgM=")), false);
+        boolean ignoreSettings = extras.getBoolean("ignore_settings", false);
         int source = uploadOnly ? 1 : (manualSync ? 3 : (requestedAuthority == null ? 2 : 0));
         for (AccountAndUser account : accounts) {
             HashSet<String> syncableAuthorities = new HashSet<String>();
@@ -388,7 +388,7 @@ public class SyncManager {
                 if (onlyThoseWithUnkownSyncableState && isSyncable >= 0 || !syncAdapterInfo.type.supportsUploading() && uploadOnly) continue;
                 boolean bl2 = syncAllowed = isSyncable < 0 || ignoreSettings || backgroundDataUsageAllowed && this.mSyncStorageEngine.getMasterSyncAutomatically(account.userId) && this.mSyncStorageEngine.getSyncAutomatically(account.account, account.userId, authority);
                 if (!syncAllowed) {
-                    Log.d((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki42CmgVMAVgHjAPLQcYP3hSTQNuARoqPQgAIksVSFo=")) + account + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Vg==")) + authority + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgYKXsFBiVmVyQ7KhdbDWUFGix1VjwvKS4ADmEaGiluICA7Ly1bCWsKLCA="))));
+                    Log.d((String)TAG, (String)("scheduleSync: sync of " + account + ", " + authority + " is not allowed, dropping request"));
                     continue;
                 }
                 Pair<Long, Long> backoff = this.mSyncStorageEngine.getBackoff(account.account, account.userId, authority);
@@ -396,12 +396,12 @@ public class SyncManager {
                 long l = backoffTime = backoff != null ? (Long)backoff.first : 0L;
                 if (isSyncable < 0) {
                     Bundle newExtras = new Bundle();
-                    newExtras.putBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcCWwFAjdgHgYiKAhSVg==")), true);
-                    Log.v((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki42CmgVMAVgHjM8KQcYMWUzLDdlER46LRcqI2AgRCN9JxodKAM5KHgVMD9qATggDRg2JWoaBgR+N1RF")) + delayUntil + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KmwVASh9Nxk8")) + 0 + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KWowNAR9JDM8")) + source + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186P2szLCVmDlkgPxhSVg==")) + account + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186P2waMCBgJywzLBgbOg==")) + authority + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186M2kKMAR9ASs8")) + newExtras));
+                    newExtras.putBoolean("initialize", true);
+                    Log.v((String)TAG, (String)("schedule initialisation Sync:, delay until " + delayUntil + ", run by " + 0 + ", source " + source + ", account " + account + ", authority " + authority + ", extras " + newExtras));
                     this.scheduleSyncOperation(new SyncOperation(account.account, account.userId, reason, source, authority, newExtras, 0L, 0L, backoffTime, delayUntil, allowParallelSyncs));
                 }
                 if (onlyThoseWithUnkownSyncableState) continue;
-                Log.v((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki42CmgVMAVgHjAPLQcYP3hSTSxrAQIsL186CWAzFixsVyBF")) + delayUntil + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcMI2onICpnCiRF")) + runtimeMillis + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgiDmgaRCg=")) + beforeRuntimeMillis + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KWowNAR9JDM8")) + source + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186P2szLCVmDlkgPxhSVg==")) + account + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186P2waMCBgJywzLBgbOg==")) + authority + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186M2kKMAR9ASs8")) + extras));
+                Log.v((String)TAG, (String)("scheduleSync: delay until " + delayUntil + " run by " + runtimeMillis + " flex " + beforeRuntimeMillis + ", source " + source + ", account " + account + ", authority " + authority + ", extras " + extras));
                 this.scheduleSyncOperation(new SyncOperation(account.account, account.userId, reason, source, authority, extras, runtimeMillis, beforeRuntimeMillis, backoffTime, delayUntil, allowParallelSyncs));
             }
         }
@@ -409,7 +409,7 @@ public class SyncManager {
 
     public void scheduleLocalSync(Account account, int userId, int reason, String authority) {
         Bundle extras = new Bundle();
-        extras.putBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6DmozJCw=")), true);
+        extras.putBoolean("upload", true);
         this.scheduleSync(account, userId, reason, authority, extras, LOCAL_SYNC_DELAY, 2L * LOCAL_SYNC_DELAY, false);
     }
 
@@ -425,18 +425,18 @@ public class SyncManager {
     }
 
     private void sendSyncAlarmMessage() {
-        Log.v((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uCGgFAiZiICQNIAYqAWYhEhVhIjAKJCw2E2UITQ59MlFF")));
+        Log.v((String)TAG, (String)"sending MESSAGE_SYNC_ALARM");
         this.mSyncHandler.sendEmptyMessage(2);
     }
 
     private void sendCheckAlarmsMessage() {
-        Log.v((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uCGgFAiZiICQNIAYqAWYhEhVhJTBOJhY2B2wmPBFhDyhBJAhSVg==")));
+        Log.v((String)TAG, (String)"sending MESSAGE_CHECK_ALARMS");
         this.mSyncHandler.removeMessages(3);
         this.mSyncHandler.sendEmptyMessage(3);
     }
 
     private void sendSyncFinishedOrCanceledMessage(ActiveSyncContext syncContext, SyncResult syncResult) {
-        Log.v((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uCGgFAiZiICQNIAYqAWYhEhVhIjAKJCw2E2o2GhNnDyxMJywcVg==")));
+        Log.v((String)TAG, (String)"sending MESSAGE_SYNC_FINISHED");
         Message msg = this.mSyncHandler.obtainMessage();
         msg.what = 1;
         msg.obj = new SyncHandlerMessagePayload(syncContext, syncResult);
@@ -444,7 +444,7 @@ public class SyncManager {
     }
 
     private void sendCancelSyncsMessage(Account account, int userId, String authority) {
-        Log.v((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uCGgFAiZiICQNIAYqAWYhEhVhJTACJCw2GWgVSFo=")));
+        Log.v((String)TAG, (String)"sending MESSAGE_CANCEL");
         Message msg = this.mSyncHandler.obtainMessage();
         msg.what = 6;
         msg.obj = Pair.create((Object)account, (Object)authority);
@@ -473,7 +473,7 @@ public class SyncManager {
         long newDelayInMs = -1L;
         if (previousSettings != null) {
             if (now < (Long)previousSettings.first) {
-                Log.v((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0qCWoFGShjDlg8Lz0iP2wFNC5rMwUrLggfJGAwAj95HhodKAdfJ2gKLD97AR4ZCDkiE24KTTVsJywwIz4lInsFSFo=")) + ((Long)previousSettings.first - now) / 1000L + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phc2M2szGiZiESs2"))));
+                Log.v((String)TAG, (String)("Still in backoff, do not increase it. Remaining: " + ((Long)previousSettings.first - now) / 1000L + " seconds."));
                 return;
             }
             newDelayInMs = (Long)previousSettings.second * 2L;
@@ -522,10 +522,10 @@ public class SyncManager {
             queueChanged = this.mSyncQueue.add(syncOperation);
         }
         if (queueChanged) {
-            Log.v((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki42CmgVMAVgHjAPLQcYP2cKTStsNzg/IxgAKnc0OCBsNyQ+Ly0AJ2tSIFo=")) + syncOperation));
+            Log.v((String)TAG, (String)("scheduleSyncOperation: enqueued " + syncOperation));
             this.sendCheckAlarmsMessage();
         } else {
-            Log.v((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki42CmgVMAVgHjAPLQcYP2cKTStsNzg/IxgAKnc0OC9lNFk5LD42KmsnIDBsHjw7JQcuKGoaETZqDjA5Lio6D28FNAR9AQozKi0XOg==")) + syncOperation));
+            Log.v((String)TAG, (String)("scheduleSyncOperation: dropping duplicate sync operation " + syncOperation));
         }
     }
 
@@ -541,30 +541,30 @@ public class SyncManager {
     }
 
     void maybeRescheduleSync(SyncResult syncResult, SyncOperation operation) {
-        Log.d((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQgcOWowNCZmHjAqKAc1OmkgRQRlJA0ZKToXJGIVLDVvDh4gOD0cLGsJICVpERo2MTkiVg==")) + syncResult + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Vg==")) + operation));
+        Log.d((String)TAG, (String)("encountered error(s) during the sync: " + syncResult + ", " + operation));
         operation = new SyncOperation(operation);
-        if (operation.extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgmCGowFitsJCw7Ly0EDWkVHlo=")), false)) {
-            operation.extras.remove(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgmCGowFitsJCw7Ly0EDWkVHlo=")));
+        if (operation.extras.getBoolean("ignore_backoff", false)) {
+            operation.extras.remove("ignore_backoff");
         }
-        if (operation.extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgAH2ojGgZsJyw/LBguIQ==")), false)) {
-            Log.d((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALHsKFitmESwZKQcYM34wAj9lNzMrLD06J2EwPD9vDlkdOD5fJ2gjJC9vNys3LywAH2EhRVZgMhpAJgU2H2ALGh9oMh5LJiwuWn02RVR4HiAsKTo6D2EaLCZvDjgiLy4bJA==")) + operation));
-        } else if (operation.extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6DmozJCw=")), false) && !syncResult.syncAlreadyInProgress) {
-            operation.extras.remove(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc6DmozJCw=")));
-            Log.d((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uLG8gAi9gNDs8Iy4cDm4JTSVsESg5LRcqI2AgRCNpAS8pKCpXCm8jBQFsNzggDRguCmwwMzZuEQY2LgcuKWhSIDdgMCQvIxdbDW4jASNlJxodL186D2cKRSZ5HgodKAguCWUwMD9vJygzDRcmJXkaFiRqESgbODo6Vg==")) + operation));
+        if (operation.extras.getBoolean("do_not_retry", false)) {
+            Log.d((String)TAG, (String)("not retrying sync operation because SYNC_EXTRAS_DO_NOT_RETRY was specified " + operation));
+        } else if (operation.extras.getBoolean("upload", false) && !syncResult.syncAlreadyInProgress) {
+            operation.extras.remove("upload");
+            Log.d((String)TAG, (String)("retrying sync operation as a two-way sync because an upload-only sync encountered an error: " + operation));
             this.scheduleSyncOperation(operation);
         } else if (syncResult.tooManyRetries) {
-            Log.d((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALHsKFitmESwZKQcYM34wAj9lNzMrLD06J2EwPD9vDlkdOD5fJ2gjJC9vNys3JQgLL2UwFiJqETA0LV86LGozBShgDiA2LQMmLmwjPCtsIFAr")) + operation));
+            Log.d((String)TAG, (String)("not retrying sync operation because it retried too many times: " + operation));
         } else if (syncResult.madeSomeProgress()) {
-            Log.d((String)TAG, (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uLG8gAi9gNDs8Iy4cDm4JTSVsESg5LRcqI2AgRCNpNAosKC0AD2sJID9sJyg5DRgMJ2wjFj9sM1EwKV86CmsVMyh9Dlg8KAguKG8KRChqDi8rLRg2LGMKLDFuDjMpLAguL2sJICVsETA2JAguOg==")));
+            Log.d((String)TAG, (String)"retrying sync operation because even though it had an error it achieved some success");
             this.scheduleSyncOperation(operation);
         } else if (syncResult.syncAlreadyInProgress) {
-            Log.d((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uLG8gAi9gNDs8Iy4cDm4JTSVsESg5LRcqI2AgRCNqHgYqIzpXImgFAgJoES83Oz02KmkFFiNpI1EZLBguKmhSID19ASs8LwdbKGkjQSxuDTwsPQc2M2AwNyNvDhEpLD1fKWsgFj9vNDMtDRhSVg==")) + operation));
+            Log.d((String)TAG, (String)("retrying sync operation that failed because there was already a sync in progress: " + operation));
             this.scheduleSyncOperation(new SyncOperation(operation.account, operation.userId, operation.reason, operation.syncSource, operation.authority, operation.extras, 10000L, operation.flexTime, operation.backoff, operation.delayUntil, operation.allowParallelSyncs));
         } else if (syncResult.hasSoftError()) {
-            Log.d((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uLG8gAi9gNDs8Iy4cDm4JTSVsESg5LRcqI2AgRCNpNAosKC0AD2sJIAVsDTw0Jj0uJmoKAiJpJFk0LV86P3sKLCViNw08KAguKG8KRDJ4EVRF")) + operation));
+            Log.d((String)TAG, (String)("retrying sync operation because it encountered a soft error: " + operation));
             this.scheduleSyncOperation(operation);
         } else {
-            Log.d((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALHsKFitmESwZKQcYM34wAj9lNzMrLD06J2EwPD9vDlkdOD5fJ2gjJC9vNys3IBccLHkaFiRqESgbPhgYKXsFJyhjHiAqKF4mPWoaRSVsMFAr")) + operation));
+            Log.d((String)TAG, (String)("not retrying sync operation because the error is a hard error: " + operation));
         }
     }
 
@@ -605,37 +605,37 @@ public class SyncManager {
     static String formatTime(long time) {
         Time tobj = new Time();
         tobj.set(time);
-        return tobj.format(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PQUXDXgVHSNIDg08OAUfIHkhPzJ7DDBF")));
+        return tobj.format("%Y-%m-%d %H:%M:%S");
     }
 
     private String getLastFailureMessage(int code) {
         switch (code) {
             case 1: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YCGs3IDdgESw/Lwc2IX4zLCZ4Hjw5LD4mCGIFNDY="));
+                return "sync already in progress";
             }
             case 2: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUFNCZmHgY5Lwg2MW8FMyhrDgo5LD0MVg=="));
+                return "authentication error";
             }
             case 3: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAQAUnsFNARhNB4q"));
+                return "I/O error";
             }
             case 4: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+Km8zNyhiASwqKi4uVg=="));
+                return "parse error";
             }
             case 5: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGgjHi99Jw08KAguKG8KRVo="));
+                return "conflict error";
             }
             case 6: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRgAD3sFEjdgNxk8KBcMCGkgBi9lJxo6PQguCGEwAjU="));
+                return "too many deletions error";
             }
             case 7: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KRgAD3sFEjdgNxk8Iz0MLmoVLCtsIzwgKS0MKWEzSFo="));
+                return "too many retries error";
             }
             case 8: {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcLGgaFiZ9DlA8KAguKG8KRVo="));
+                return "internal error";
             }
         }
-        return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcMWojGj1gN1RF"));
+        return "unknown";
     }
 
     private boolean isSyncStillActive(ActiveSyncContext activeSyncContext) {
@@ -647,10 +647,10 @@ public class SyncManager {
     }
 
     static {
-        SYNC_WAKE_LOCK_PREFIX = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PD02J2ojLyI="));
-        HANDLE_SYNC_ALARM_WAKE_LOCK = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguX24jMCxlESgQLxgcJWUKTSRlNFFF"));
-        SYNC_LOOP_WAKE_LOCK = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxHiVgJyRILwcEPWczNClqJ1RF"));
-        ACTION_SYNC_ALARM = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k5Ki0YLmkjMAZ1NDA0LC42L30KRSRuJAo7ORUYWH0xLBNjHwIOLztbVg=="));
+        SYNC_WAKE_LOCK_PREFIX = "*sync*";
+        HANDLE_SYNC_ALARM_WAKE_LOCK = "SyncManagerHandleSyncAlarm";
+        SYNC_LOOP_WAKE_LOCK = "SyncLoopWakeLock";
+        ACTION_SYNC_ALARM = "android.content.syncmanager.SYNC_ALARM";
         boolean isLargeRAM = true;
         int defaultMaxInitSyncs = 5;
         int defaultMaxRegularSyncs = 2;
@@ -679,7 +679,7 @@ public class SyncManager {
          * WARNING - Removed try catching itself - possible behaviour change.
          */
         public void onBootCompleted() {
-            Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj4AD2wJIClgJF0sKhcMLmkjASR4ETAdLhg+CGMKRSJ5HigeKQcbJGwKND9sESs5")));
+            Log.v((String)"SyncManager", (String)"Boot completed, clearing boot queue.");
             SyncManager.this.doDatabaseCleanup();
             SyncHandler syncHandler = this;
             synchronized (syncHandler) {
@@ -731,16 +731,16 @@ public class SyncManager {
                 switch (msg.what) {
                     case 6: {
                         Pair payload = (Pair)msg.obj;
-                        Log.d((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+CGgFHitpJwY2LysAOW8VBiRrDgpXLhc2D30KJCB7MCBBJysYUmALPFRmMjAKLzw6GmEmFhFmD10fJiwuQHknIFo=")) + payload.first + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Vg==")) + (String)payload.second));
+                        Log.d((String)"SyncManager", (String)("handleSyncHandlerMessage: MESSAGE_SERVICE_CANCEL: " + payload.first + ", " + (String)payload.second));
                         this.cancelActiveSyncLocked((Account)payload.first, msg.arg1, (String)payload.second);
                         nextPendingSyncTime = this.maybeStartNextSyncLocked();
                         return;
                     }
                     case 1: {
-                        Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+CGgFHitpJwY2LysAOW8VBiRrDgpXLhc2D30KJCB7MCBBJysYUmALPFRmMjBLLjsuU2Y2BkxkIh4VJQYqVg==")));
+                        Log.v((String)"SyncManager", (String)"handleSyncHandlerMessage: MESSAGE_SYNC_FINISHED");
                         SyncHandlerMessagePayload payload = (SyncHandlerMessagePayload)msg.obj;
                         if (!SyncManager.this.isSyncStillActive(payload.activeSyncContext)) {
-                            Log.d((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+CGgFHitpJwY2LysAOW8VBiRrDgpXLhc2D30KJCB7MCAtLBguDmwVAgRoMzwcJQdfKm4OPCJsNxk3Ki0YCGs3IC9hICQ2KikmCG8FMC1rDg0rLRg2CmMFICB7MCBF")) + payload.activeSyncContext));
+                            Log.d((String)"SyncManager", (String)("handleSyncHandlerMessage: dropping since the sync is no longer active: " + payload.activeSyncContext));
                             return;
                         }
                         this.runSyncFinishedOrCanceledLocked(payload.syncResult, payload.activeSyncContext);
@@ -749,14 +749,14 @@ public class SyncManager {
                     }
                     case 4: {
                         ServiceConnectionData msgData = (ServiceConnectionData)msg.obj;
-                        Log.d((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+CGgFHitpJwY2LysAOW8VBiRrDgpXLhc2D30KJCB7MCBBJysYUmALPFRmMjAKLzw6GmEmFhFmDygfOzwuE2QLNBZ3MCRF")) + msgData.activeSyncContext));
+                        Log.d((String)"SyncManager", (String)("handleSyncHandlerMessage: MESSAGE_SERVICE_CONNECTED: " + msgData.activeSyncContext));
                         if (!SyncManager.this.isSyncStillActive(msgData.activeSyncContext)) return;
                         this.runBoundToSyncAdapter(msgData.activeSyncContext, msgData.syncAdapter);
                         return;
                     }
                     case 5: {
                         ActiveSyncContext currentSyncContext = ((ServiceConnectionData)msg.obj).activeSyncContext;
-                        Log.d((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+CGgFHitpJwY2LysAOW8VBiRrDgpXLhc2D30KJCB7MCBBJysYUmALPFRmMjAKLzw6GmEmFhFhNTBBJiwAU2IhNBNuHDAWPTkmVg==")) + currentSyncContext));
+                        Log.d((String)"SyncManager", (String)("handleSyncHandlerMessage: MESSAGE_SERVICE_DISCONNECTED: " + currentSyncContext));
                         if (!SyncManager.this.isSyncStillActive(currentSyncContext)) return;
                         if (currentSyncContext.mSyncAdapter != null) {
                             try {
@@ -774,13 +774,13 @@ public class SyncManager {
                     }
                     case 2: {
                         boolean isLoggable = true;
-                        Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+CGgFHitpJwY2LysAOW8VBiRrDgpXLhc2D30KJCB7MCBBJysYUmALPFRmMjBLLjsuU2EIQR9iHyBF")));
+                        Log.v((String)"SyncManager", (String)"handleSyncHandlerMessage: MESSAGE_SYNC_ALARM");
                         this.mAlarmScheduleTime = null;
                         nextPendingSyncTime = this.maybeStartNextSyncLocked();
                         return;
                     }
                     case 3: {
-                        Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LBg+CGgFHitpJwY2LysAOW8VBiRrDgpXLhc2D30KJCB7MCBBJysYUmALPFRmNTAVLAUuBGAmOF9mIlkSIi5SVg==")));
+                        Log.v((String)"SyncManager", (String)"handleSyncHandlerMessage: MESSAGE_CHECK_ALARMS");
                         nextPendingSyncTime = this.maybeStartNextSyncLocked();
                         return;
                     }
@@ -795,7 +795,7 @@ public class SyncManager {
         }
 
         private long scheduleReadyPeriodicSyncs() {
-            Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki42CmgVMAVgHjAAKAciPmgmTStsNx4cLggYJWkjGilpJyxF")));
+            Log.v((String)"SyncManager", (String)"scheduleReadyPeriodicSyncs");
             boolean backgroundDataUsageAllowed = SyncManager.this.getConnectivityManager().getBackgroundDataSetting();
             long earliestFuturePollTime = Long.MAX_VALUE;
             if (!backgroundDataUsageAllowed) {
@@ -809,7 +809,7 @@ public class SyncManager {
                 SyncStorageEngine.AuthorityInfo authorityInfo = (SyncStorageEngine.AuthorityInfo)info.first;
                 SyncStatusInfo status = (SyncStatusInfo)info.second;
                 if (TextUtils.isEmpty((CharSequence)authorityInfo.authority)) {
-                    Log.e((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JS4ALHsFJCZLHjA3Ixg2IX4wTQRlJCQaLgguCEsVND9lNBodLwQpJGQjQQVvDjwwJj09MXkVSFo=")) + authorityInfo));
+                    Log.e((String)"SyncManager", (String)("Got an empty provider string. Skipping: " + authorityInfo));
                     continue;
                 }
                 if (!SyncManager.this.containsAccountAndUser(accounts, authorityInfo.account, authorityInfo.userId) || !SyncManager.this.mSyncStorageEngine.getMasterSyncAutomatically(authorityInfo.userId) || !SyncManager.this.mSyncStorageEngine.getSyncAutomatically(authorityInfo.account, authorityInfo.userId, authorityInfo.authority) || SyncManager.this.getIsSyncable(authorityInfo.account, authorityInfo.userId, authorityInfo.authority) == 0) continue;
@@ -825,7 +825,7 @@ public class SyncManager {
                     long remainingMillis = periodInMillis - shiftedNowAbsolute % periodInMillis;
                     long timeSinceLastRunMillis = nowAbsolute - lastPollTimeAbsolute;
                     boolean runEarly = remainingMillis <= flexInMillis && timeSinceLastRunMillis > periodInMillis - flexInMillis;
-                    Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YCGs0TCg=")) + i + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgiD28nIFo=")) + authorityInfo.authority + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mzo6KGgaFi9gJA0iPxhSVg==")) + periodInMillis + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgiDmgaRDJLEVRF")) + flexInMillis + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcMM2oVJC9gNAY2KCoHOg==")) + remainingMillis + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcqCWoVNB9hJAY2Ly0MHW8zQQNvV1Ar")) + timeSinceLastRunMillis + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgEP28wMyhhHh4oKl4mOW4aAiVlV1Ar")) + lastPollTimeAbsolute + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phc2CmUVOAZiDg08Kj1fI3hSTVo=")) + shiftedNowAbsolute + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcMI2omGit9ASwoLQQHOg==")) + runEarly));
+                    Log.v((String)"SyncManager", (String)("sync: " + i + " for " + authorityInfo.authority + ". period: " + periodInMillis + " flex: " + flexInMillis + " remaining: " + remainingMillis + " time_since_last: " + timeSinceLastRunMillis + " last poll absol: " + lastPollTimeAbsolute + " shifted now: " + shiftedNowAbsolute + " run_early: " + runEarly));
                     if (runEarly || remainingMillis == periodInMillis || lastPollTimeAbsolute > nowAbsolute || timeSinceLastRunMillis >= periodInMillis) {
                         Pair<Long, Long> backoff = SyncManager.this.mSyncStorageEngine.getBackoff(authorityInfo.account, authorityInfo.userId, authorityInfo.authority);
                         SyncAdaptersCache.SyncAdapterInfo syncAdapterInfo = SyncManager.this.mSyncAdapters.getServiceInfo(authorityInfo.account, authorityInfo.authority);
@@ -849,18 +849,18 @@ public class SyncManager {
         private long maybeStartNextSyncLocked() {
             boolean isLoggable = true;
             if (isLoggable) {
-                Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+J2sjNF5mHiAqLBUYPWgwBl5uARoq")));
+                Log.v("SyncManager", "maybeStartNextSync");
             }
 
             if (!SyncManager.this.mDataConnectionIsConnected) {
                 if (isLoggable) {
-                    Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+J2sjNF5mHiAqLBUYPWgwBl5uARoqPyo6KmAkOC9pATAqOD4YKWUzBj9rNCwwJi1eO3kVMAVsJFEdLAgcPQ==")));
+                    Log.v("SyncManager", "maybeStartNextSync: no data connection, skipping");
                 }
 
                 return Long.MAX_VALUE;
             } else if (SyncManager.this.mStorageIsLow) {
                 if (isLoggable) {
-                    Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+J2sjNF5mHiAqLBUYPWgwBl5uARoqPyo6L2IKQSplNx0pKT4uMXVSICVlNx4dJxcAJW4jSFo=")));
+                    Log.v("SyncManager", "maybeStartNextSync: memory low, skipping");
                 }
 
                 return Long.MAX_VALUE;
@@ -868,7 +868,7 @@ public class SyncManager {
                 AccountAndUser[] accounts = SyncManager.this.mRunningAccounts;
                 if (accounts == SyncManager.INITIAL_ACCOUNTS_ARRAY) {
                     if (isLoggable) {
-                        Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+J2sjNF5mHiAqLBUYPWgwBl5uARoqPyo6O30gNCpqDh49LARXKmUgMzRlNxo6IC1eO3kVMAVsJFEdLAgcPQ==")));
+                        Log.v("SyncManager", "maybeStartNextSync: accounts not known, skipping");
                     }
 
                     return Long.MAX_VALUE;
@@ -879,7 +879,7 @@ public class SyncManager {
                     int numInit;
                     synchronized(SyncManager.this.mSyncQueue) {
                         if (isLoggable) {
-                            Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj0uCWoFMyhmHho/PxdfKmkgRTdvER4cLCo6O2EzMCRrClwpLAc2KmgmJC9oHig0DRguIGswETZsJBE3")) + SyncManager.this.mSyncQueue.getOperations().size());
+                            Log.v("SyncManager", "build the operation array, syncQueue size is " + SyncManager.this.mSyncQueue.getOperations().size());
                         }
 
                         Iterator<SyncOperation> operationIterator = SyncManager.this.mSyncQueue.getOperations().iterator();
@@ -903,7 +903,7 @@ public class SyncManager {
                                 operationIterator.remove();
                                 SyncManager.this.mSyncStorageEngine.deleteFromPending(op.pendingOperation);
                                 if (isLoggable) {
-                                    Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl85OHsLMARgJyQsKQcYM34wAj9lNzMrLD06J2EwPD9vDlkdPl9XO2gjLANsERoZDRcMJm4FMAJ5Dh03LQdfCW8wMyY=")));
+                                    Log.v("SyncManager", "    Dropping sync operation: account doesn't exist.");
                                 }
                             } else {
                                 numInit = SyncManager.this.getIsSyncable(op.account, op.userId, op.authority);
@@ -911,7 +911,7 @@ public class SyncManager {
                                     operationIterator.remove();
                                     SyncManager.this.mSyncStorageEngine.deleteFromPending(op.pendingOperation);
                                     if (isLoggable) {
-                                        Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl85OHsLMARgJyQsKQcYM34wAj9lNzMrLD06J2EwPD9vDlkdPl9XI2wmLCtqJzAoOz1XLHlSTCl+MFA5")));
+                                        Log.v("SyncManager", "    Dropping sync operation: isSyncable == 0.");
                                     }
                                 } else {
                                     VUserInfo userInfo = SyncManager.this.mUserManager.getUserInfo(op.userId);
@@ -920,7 +920,7 @@ public class SyncManager {
                                     }
 
                                     if (isLoggable) {
-                                        Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl85OHsLMARgJyQsKQcYM34wAj9lNzMrLD06J2EwPD9vDlkdPl9XCWwjNCZ7ARo6IF4iOWoKAgJsJywyMz5SVg==")));
+                                        Log.v("SyncManager", "    Dropping sync operation: user not running.");
                                     }
                                 }
                             }
@@ -928,12 +928,12 @@ public class SyncManager {
                     }
 
                     if (isLoggable) {
-                        Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4AKmwJIAZjHjM8Ly0iDmkzLCxoDiwgPQgADmIFMCRqHhoeKRcXKHgaLAVpJys3")) + operations.size());
+                        Log.v("SyncManager", "sort the candidate operations, size " + operations.size());
                     }
 
                     Collections.sort(operations);
                     if (isLoggable) {
-                        Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYKW8FJAZ9JB08LwdbCH4wRStoASw0PQc2M2AwNyNsJyAuLBhbCmoFGgRvN1RF")));
+                        Log.v("SyncManager", "dispatch all ready sync operations");
                     }
 
                     int i = 0;
@@ -970,37 +970,37 @@ public class SyncManager {
                             }
 
                             if (isLoggable) {
-                                Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGgFAix9AQo/PxhSVg==")) + (i + 1) + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhgAPnsFSFo=")) + N + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ODo6Vg==")) + candidate);
-                                Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl86CGwVEhF9JwozLD0MXm8VLAZ5AVRF")) + numInit + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186CGwVEhF9JwozLD0MAmkjEgVlETg5OBhSVg==")) + numRegular);
-                                Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl86DmozBi1pNzA2Kj0cDmkOIyg=")) + longRunning);
-                                Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl86OWozBi5gHgY5LF8HOg==")) + conflict);
-                                Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl86D2oFMCthJwoMKi0YWmgwTStrER4/LhgqU2IKJDBsHiQ7Pl9XVg==")) + oldestNonExpeditedRegular);
+                                Log.v("SyncManager", "candidate " + (i + 1) + " of " + N + ": " + candidate);
+                                Log.v("SyncManager", "  numActiveInit=" + numInit + ", numActiveRegular=" + numRegular);
+                                Log.v("SyncManager", "  longRunning: " + longRunning);
+                                Log.v("SyncManager", "  conflict: " + conflict);
+                                Log.v("SyncManager", "  oldestNonExpeditedRegular: " + oldestNonExpeditedRegular);
                             }
 
                             boolean roomAvailable = candidateIsInitialization ? numInit < SyncManager.MAX_SIMULTANEOUS_INITIALIZATION_SYNCS : numRegular < SyncManager.MAX_SIMULTANEOUS_REGULAR_SYNCS;
                             if (conflict != null) {
                                 if (candidateIsInitialization && !conflict.mSyncOperation.isInitialization() && numInit < SyncManager.MAX_SIMULTANEOUS_INITIALIZATION_SYNCS) {
                                     toReschedule = conflict;
-                                    Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRjDlk9PxciDmk3TQRrDjAqIwguIGYKTSxsND8pLAc2KmgnICVlERo2JAMiKGw0PD1vETAZLAg+DmUaTTdmHgY1KjkmLm4jJCtsIzwZIxgmLGIFMyNlESgiKQdfI28aDQJ7AVRF")) + conflict);
+                                    Log.v("SyncManager", "canceling and rescheduling sync since an initialization takes higher priority, " + conflict);
                                 } else {
                                     if (!candidate.expedited || conflict.mSyncOperation.expedited || candidateIsInitialization != conflict.mSyncOperation.isInitialization()) {
                                         break;
                                     }
 
                                     toReschedule = conflict;
-                                    Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRjDlk9PxciDmk3TQRrDjAqIwguIGYKTSxsND8pLAc2KmgnICVlERo2JAMiKGw0PDFoNFE0LRgYLGgVMyhmHiAxKAgpOmwzLC1qESg5PQc6CGMKAjVvATAyOTpXVg==")) + conflict);
+                                    Log.v("SyncManager", "canceling and rescheduling sync since an expedited takes higher priority, " + conflict);
                                 }
                             } else if (!roomAvailable) {
                                 if (candidate.isExpedited() && oldestNonExpeditedRegular != null && !candidateIsInitialization) {
                                     toReschedule = oldestNonExpeditedRegular;
-                                    Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRjDlk9PxciDmk3TQRrDjAqIwguIGYKTSxsND8pLAc2KmgnICVlERo2JAMiKGw0PDFoNFE0LRgYLGgVMyhjASs8Iz0MOWkwLyhvERkrKS0uKk5TOFo=")) + oldestNonExpeditedRegular);
+                                    Log.v("SyncManager", "canceling and rescheduling sync since an expedited is ready to run, " + oldestNonExpeditedRegular);
                                 } else {
                                     if (longRunning == null || candidateIsInitialization != longRunning.mSyncOperation.isInitialization()) {
                                         break;
                                     }
 
                                     toReschedule = longRunning;
-                                    Log.v(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRjDlk9PxciDmk3TQRrDjAqIwguIGYKTSxsND8pLAc2KmgnICVlERo2JAMiIGpTPCRuJy83Kj4AD3sFHiVgNDsoPxhSVg==")) + longRunning);
+                                    Log.v("SyncManager", "canceling and rescheduling sync since it ran roo long, " + longRunning);
                                 }
                             }
 
@@ -1023,23 +1023,23 @@ public class SyncManager {
             }
         }
         private boolean dispatchSyncOperation(SyncOperation op) {
-            Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYKW8FJAZ9JBoPLQcYP2cKTStsNzg/IxgAKnc0ODJuCiAqLBgfJGsjGgVqJyM3IBcXL2UjBgJuDVFF")) + op));
-            Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz0uDXsFJClmHgYuKAMmL2gjMClsIFAr")) + SyncManager.this.mActiveSyncContexts.size()));
+            Log.v((String)"SyncManager", (String)("dispatchSyncOperation: we are going to sync " + op));
+            Log.v((String)"SyncManager", (String)("num active syncs: " + SyncManager.this.mActiveSyncContexts.size()));
             for (ActiveSyncContext syncContext : SyncManager.this.mActiveSyncContexts) {
-                Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)syncContext.toString());
+                Log.v((String)"SyncManager", (String)syncContext.toString());
             }
             SyncAdaptersCache.SyncAdapterInfo syncAdapterInfo = SyncManager.this.mSyncAdapters.getServiceInfo(op.account, op.authority);
             if (syncAdapterInfo == null) {
-                Log.d((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CHgwMyhiNAY2KF4mOX4wAj9lNzMrLRgqO2EVFiBlMCAvKQdeJA==")) + op.authority + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KmgVEiVmNAY2KCkmL2kgBgZqARouKTo6ImAjMyNvATBF"))));
+                Log.d((String)"SyncManager", (String)("can't find a sync adapter for " + op.authority + ", removing settings for it"));
                 SyncManager.this.mSyncStorageEngine.removeAuthority(op.account, op.userId, op.authority);
                 return false;
             }
             ActiveSyncContext activeSyncContext = new ActiveSyncContext(op, this.insertStartSyncEvent(op));
             activeSyncContext.mSyncInfo = SyncManager.this.mSyncStorageEngine.addActiveSync(activeSyncContext);
             SyncManager.this.mActiveSyncContexts.add(activeSyncContext);
-            Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRgYKW8FJAZ9JBoPLQcYP2cKTStsNzg/IxgAKnc0ODZqHiQ7Iz42KmsnIFo=")) + activeSyncContext));
+            Log.v((String)"SyncManager", (String)("dispatchSyncOperation: starting " + activeSyncContext));
             if (!activeSyncContext.bindToSyncAdapter(syncAdapterInfo, op.userId)) {
-                Log.e((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj4YCGgJIDdmEQo/KggmLn4zHjdqAQIgLgQ6CmAkOFo=")) + syncAdapterInfo));
+                Log.e((String)"SyncManager", (String)("Bind attempt failed to " + syncAdapterInfo));
                 this.closeActiveSyncContext(activeSyncContext);
                 return false;
             }
@@ -1055,14 +1055,14 @@ public class SyncManager {
                 syncAdapter.startSync(activeSyncContext, syncOperation.authority, syncOperation.account, syncOperation.extras);
             }
             catch (RemoteException remoteExc) {
-                Log.d((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+J2sjNF5mHiAqLBUYPWgwBl5uARoqPyo6JX0FLCJvETMpKCpXU2sFEgNsASgKIRcuLGUVLD1vAS87PhcMM28zLCBiDgovKhccDmkFSFo=")), (Throwable)remoteExc);
+                Log.d((String)"SyncManager", (String)"maybeStartNextSync: caught a RemoteException, rescheduling", (Throwable)remoteExc);
                 this.closeActiveSyncContext(activeSyncContext);
                 SyncManager.this.increaseBackoffSetting(syncOperation);
                 SyncManager.this.scheduleSyncOperation(new SyncOperation(syncOperation));
             }
             catch (RuntimeException exc) {
                 this.closeActiveSyncContext(activeSyncContext);
-                Log.e((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji4+I2gzRQZLHywvKj42MW8jGhVuETAgKQcqI2AgRCNqJAYiKT4fJGwgMDNvJCwwJj09L2oaGjF+NB4gIz41OA==")) + syncOperation), (Throwable)exc);
+                Log.e((String)"SyncManager", (String)("Caught RuntimeException while starting the sync " + syncOperation), (Throwable)exc);
             }
         }
 
@@ -1086,14 +1086,14 @@ public class SyncManager {
             SyncOperation syncOperation = activeSyncContext.mSyncOperation;
             long elapsedTime = SystemClock.elapsedRealtime() - activeSyncContext.mStartTime;
             if (syncResult != null) {
-                Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj0uCGcwAiZ9IjwzKj0cL2wzGix9JAoALRgcJWIKTSBuVyAKLxg2KmoKLAZoESwCMTkiVg==")) + syncOperation + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KmgaLAVgEQ08")) + syncResult));
+                Log.v((String)"SyncManager", (String)("runSyncFinishedOrCanceled [finished]: " + syncOperation + ", result " + syncResult));
                 if (!syncResult.hasError()) {
-                    historyMessage = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0uOWszNANhJ1RF"));
+                    historyMessage = "success";
                     downstreamActivity = 0;
                     upstreamActivity = 0;
                     SyncManager.this.clearBackoffSetting(syncOperation);
                 } else {
-                    Log.d((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4+CWoFNCxLESgZKj0pOm8KTStsNzg/IxgAKksVSFo=")) + syncOperation + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Vg==")) + syncResult));
+                    Log.d((String)"SyncManager", (String)("failed sync operation " + syncOperation + ", " + syncResult));
                     if (!syncResult.syncAlreadyInProgress) {
                         SyncManager.this.increaseBackoffSetting(syncOperation);
                     }
@@ -1104,7 +1104,7 @@ public class SyncManager {
                 }
                 SyncManager.this.setDelayUntilTime(syncOperation, syncResult.delayUntil);
             } else {
-                Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj0uCGcwAiZ9IjwzKj0cL2wzGix9JAoALRgcJWIKTSBuVyAKKAhbKmgjNAJoESwCMTkiVg==")) + syncOperation));
+                Log.v((String)"SyncManager", (String)("runSyncFinishedOrCanceled [canceled]: " + syncOperation));
                 if (activeSyncContext.mSyncAdapter != null) {
                     try {
                         activeSyncContext.mSyncAdapter.cancelSync(activeSyncContext);
@@ -1113,7 +1113,7 @@ public class SyncManager {
                         // empty catch block
                     }
                 }
-                historyMessage = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRiDgpF"));
+                historyMessage = "canceled";
                 downstreamActivity = 0;
                 upstreamActivity = 0;
             }
@@ -1154,7 +1154,7 @@ public class SyncManager {
             if (syncResult.databaseError) {
                 return 8;
             }
-            throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KS4tOGsaFitLHlk1LF4mMW9STTdlMzwgKS0MKWE0ODZqHiQ9LyohJA==")) + syncResult);
+            throw new IllegalStateException("we are not in an error state, " + syncResult);
         }
 
         private void manageSyncNotificationLocked() {
@@ -1181,7 +1181,7 @@ public class SyncManager {
                     } else {
                         shouldInstall = false;
                         for (ActiveSyncContext activeSyncContext : SyncManager.this.mActiveSyncContexts) {
-                            boolean manualSync = activeSyncContext.mSyncOperation.extras.getBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4AKmszNFo=")), false);
+                            boolean manualSync = activeSyncContext.mSyncOperation.extras.getBoolean("force", false);
                             if (!manualSync) continue;
                             shouldInstall = true;
                             break;
@@ -1211,23 +1211,23 @@ public class SyncManager {
             long earliestTimeoutTime = Long.MAX_VALUE;
             for (ActiveSyncContext currentSyncContext : SyncManager.this.mActiveSyncContexts) {
                 long currentSyncTimeoutTime = currentSyncContext.mTimeoutStartTime + MAX_TIME_PER_SYNC;
-                Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+CGsVPCtpJwY2LysiCG4gRSN+MzwsLT0qI2YwLyNlJxodKAQhJGUIMAVqESg6IAgMHGoaOCRlMhowIwgtOHU3IA1lDx08KQgpOg==")) + currentSyncTimeoutTime));
+                Log.v((String)"SyncManager", (String)("manageSyncAlarm: active sync, mTimeoutStartTime + MAX is " + currentSyncTimeoutTime));
                 if (earliestTimeoutTime <= currentSyncTimeoutTime) continue;
                 earliestTimeoutTime = currentSyncTimeoutTime;
             }
-            Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+CGsVPCtpJwY2LysiCG4gRSN+MzwbLD0qI2IwGiZpATAiKQgqXWoFEj97AR4cDRhSVg==")) + notificationTime));
-            Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+CGsVPCtpJwY2LysiCG4gRSN+MzwgLRcMKGMKLDZqHzAiKS4AKW8KMAplEQ40DRcAOnkVSFo=")) + earliestTimeoutTime));
-            Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+CGsVPCtpJwY2LysiCG4gRSN+MzwbLhdfCmkaLDVvDlktKi4YGW8zNARsDyg7OwgiOm4KLAxsJyA0PhgYKXsFSFo=")) + nextPeriodicEventElapsedTime));
-            Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+CGsVPCtpJwY2LysiCG4gRSN+MzwbLhdfCmkaLCluHhodLwYAMmsFBiBgEQIoJxguLG4bLD1vJxk3LAc1OA==")) + nextPendingEventElapsedTime));
+            Log.v((String)"SyncManager", (String)("manageSyncAlarm: notificationTime is " + notificationTime));
+            Log.v((String)"SyncManager", (String)("manageSyncAlarm: earliestTimeoutTime is " + earliestTimeoutTime));
+            Log.v((String)"SyncManager", (String)("manageSyncAlarm: nextPeriodicEventElapsedTime is " + nextPeriodicEventElapsedTime));
+            Log.v((String)"SyncManager", (String)("manageSyncAlarm: nextPendingEventElapsedTime is " + nextPendingEventElapsedTime));
             long alarmTime = Math.min(notificationTime, earliestTimeoutTime);
             alarmTime = Math.min(alarmTime, nextPeriodicEventElapsedTime);
             alarmTime = Math.min(alarmTime, nextPendingEventElapsedTime);
             long now = SystemClock.elapsedRealtime();
             if (alarmTime < now + 30000L) {
-                Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+CGsVPCtpJwY2LysiCG4gRSN+Mzw/IwgtJH0KTSRlNFETKi4mJ3gVAiV7Diw6JikiOmwKOARvMyc3")) + alarmTime + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KWgaMAZjDlk9Pxg2DX4zSFo=")) + (now + 30000L)));
+                Log.v((String)"SyncManager", (String)("manageSyncAlarm: the alarmTime is too small, " + alarmTime + ", setting to " + (now + 30000L)));
                 alarmTime = now + 30000L;
             } else if (alarmTime > now + 0x6DDD00L) {
-                Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iwg+CGsVPCtpJwY2LysiCG4gRSN+Mzw/IwgtJH0KTSRlNFETKi4mJ3gVAiV7Diw6JikiO2kFND9pIyc3")) + alarmTime + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KWgaMAZjDlk9Pxg2DX4zSFo=")) + (now + 30000L)));
+                Log.v((String)"SyncManager", (String)("manageSyncAlarm: the alarmTime is too large, " + alarmTime + ", setting to " + (now + 30000L)));
                 alarmTime = now + 0x6DDD00L;
             }
             boolean shouldSet = false;
@@ -1243,7 +1243,7 @@ public class SyncManager {
             }
             SyncManager.this.ensureAlarmService();
             if (shouldSet) {
-                Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uL2wVNANmHgY2KCkmLmwzQQZ4HiwZLl86O2AaPDVsCiAcKC4qO2sjNCZ7DiAoJS01L2oFMzZlJFA3LgcpOGgVHjdhESg/KF4mLmwjPCt4EVRF")) + alarmTime + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186CGowPyhjASs8")) + now + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Vg==")) + (alarmTime - now) / 1000L + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phc2M2swLyhiNyw1KgMmDm8KElo="))));
+                Log.v((String)"SyncManager", (String)("requesting that the alarm manager wake us up at elapsed time " + alarmTime + ", now is " + now + ", " + (alarmTime - now) / 1000L + " secs from now"));
                 this.mAlarmScheduleTime = alarmTime;
                 SyncManager.this.mAlarmService.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, alarmTime, SyncManager.this.mSyncAlarmIntent);
             } else if (shouldCancel) {
@@ -1273,7 +1273,7 @@ public class SyncManager {
             }
 
             public void toString(StringBuilder sb) {
-                sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2EWswMC9mNDM8"))).append(this.isActive).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KWwFJARmHwozKgcLOg=="))).append(this.startTime);
+                sb.append("isActive ").append(this.isActive).append(", startTime ").append(this.startTime);
             }
 
             public String toString() {
@@ -1352,12 +1352,12 @@ public class SyncManager {
 
         @Override
         public void onFinished(SyncResult result) {
-            Log.v((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cW2UVBi9hJBo/KF8HOg==")) + this));
+            Log.v((String)"SyncManager", (String)("onFinished: " + this));
             SyncManager.this.sendSyncFinishedOrCanceledMessage(this, result);
         }
 
         public void toString(StringBuilder sb) {
-            sb.append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMFFjDl0/PxhSVg=="))).append(this.mStartTime).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186DWQFAiNiDh4vLBYqLm4gRQZnER4eLl86Vg=="))).append(this.mTimeoutStartTime).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186DX0FAgNmHh4qLQYuDWULLCx4EVRF"))).append(this.mHistoryRowId).append(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KWkVBiloJyQ/Iz0iLmwjNCZ4EVRF"))).append(this.mSyncOperation);
+            sb.append("startTime ").append(this.mStartTime).append(", mTimeoutStartTime ").append(this.mTimeoutStartTime).append(", mHistoryRowId ").append(this.mHistoryRowId).append(", syncOperation ").append(this.mSyncOperation);
         }
 
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -1375,9 +1375,9 @@ public class SyncManager {
         }
 
         boolean bindToSyncAdapter(SyncAdaptersCache.SyncAdapterInfo info, int userId) {
-            Log.d((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lj4YCGgIMCVpJwY2LysiPm4gTQZrDg0xPQhSVg==")) + info.serviceInfo + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186OWozBiZiDiggKQdfDn4zSFo=")) + this));
+            Log.d((String)"SyncManager", (String)("bindToSyncAdapter: " + info.serviceInfo + ", connection " + this));
             Intent intent = new Intent();
-            intent.setAction(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1k5Ki0YLmkjMAZ1MjA0LC42HWIaPDNqHgo7")));
+            intent.setAction("android.content.SyncAdapter");
             intent.setComponent(info.componentName);
             this.mBound = true;
             boolean bindResult = VActivityManager.get().bindService(SyncManager.this.mContext, intent, this, 21, this.mSyncOperation.userId);
@@ -1388,7 +1388,7 @@ public class SyncManager {
         }
 
         protected void close() {
-            Log.d((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0YCGsxEjdgNCA9KAguVg==")), (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcHGUVBixqNyw1KgYqIW8VAhFrETg7KgguCHc0OCZsJB4dLy4YCmoFGgR7AVRF")) + this));
+            Log.d((String)"SyncManager", (String)("unBindFromSyncAdapter: connection " + this));
             if (this.mBound) {
                 this.mBound = false;
                 VActivityManager.get().unbindService(SyncManager.this.mContext, this);

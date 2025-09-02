@@ -54,24 +54,24 @@ extends DialogFragment {
 
     protected static Bundle getArgumentBundle(Builder b) {
         Bundle bundle = new Bundle();
-        bundle.putInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwUmCWgKMCA=")), b.mWidth);
-        bundle.putInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwZfM2UVPCBmEVRF")), b.mHeight);
-        bundle.putInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwYmKmsaOC9mEQZF")), b.mGravity);
-        bundle.putInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwYAPmggLCtmHxpF")), b.mOffsetX);
-        bundle.putInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwYAPmggLCtmHwZF")), b.mOffsetY);
-        bundle.putInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwY+CGUVEjdmHgY1Kj5SVg==")), b.mAnimation);
+        bundle.putInt("mWidth", b.mWidth);
+        bundle.putInt("mHeight", b.mHeight);
+        bundle.putInt("mGravity", b.mGravity);
+        bundle.putInt("mOffsetX", b.mOffsetX);
+        bundle.putInt("mOffsetY", b.mOffsetY);
+        bundle.putInt("mAnimation", b.mAnimation);
         return bundle;
     }
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (this.getArguments() != null) {
-            this.mWidth = this.getArguments().getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwUmCWgKMCA=")));
-            this.mHeight = this.getArguments().getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwZfM2UVPCBmEVRF")));
-            this.mOffsetX = this.getArguments().getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwYAPmggLCtmHxpF")));
-            this.mOffsetY = this.getArguments().getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwYAPmggLCtmHwZF")));
-            this.mAnimation = this.getArguments().getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwY+CGUVEjdmHgY1Kj5SVg==")));
-            this.mGravity = this.getArguments().getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwYmKmsaOC9mEQZF")));
+            this.mWidth = this.getArguments().getInt("mWidth");
+            this.mHeight = this.getArguments().getInt("mHeight");
+            this.mOffsetX = this.getArguments().getInt("mOffsetX");
+            this.mOffsetY = this.getArguments().getInt("mOffsetY");
+            this.mAnimation = this.getArguments().getInt("mAnimation");
+            this.mGravity = this.getArguments().getInt("mGravity");
         }
     }
 

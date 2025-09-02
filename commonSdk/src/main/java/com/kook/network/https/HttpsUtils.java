@@ -28,7 +28,7 @@ public class HttpsUtils {
         try {
             TrustManager[] trustManagers = HttpsUtils.prepareTrustManager(certificates);
             KeyManager[] keyManagers = HttpsUtils.prepareKeyManager(bksFile, password);
-            SSLContext sslContext = SSLContext.getInstance(StringFog.decrypt("ODwj"));
+            SSLContext sslContext = SSLContext.getInstance("KYQ");
             sslContext.init(keyManagers, new TrustManager[]{new MyTrustManager(HttpsUtils.chooseTrustManager(trustManagers))}, new SecureRandom());
             return sslContext.getSocketFactory();
         }
@@ -48,7 +48,7 @@ public class HttpsUtils {
             return null;
         }
         try {
-            CertificateFactory certificateFactory = CertificateFactory.getInstance(StringFog.decrypt("M0FaWxQ="));
+            CertificateFactory certificateFactory = CertificateFactory.getInstance("@$(-q");
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
             keyStore.load(null);
             int index = 0;
@@ -89,7 +89,7 @@ public class HttpsUtils {
             if (bksFile == null || password == null) {
                 return null;
             }
-            KeyStore clientKeyStore = KeyStore.getInstance(StringFog.decrypt("KSQ8"));
+            KeyStore clientKeyStore = KeyStore.getInstance("ZAN");
             clientKeyStore.load(bksFile, password.toCharArray());
             KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
             keyManagerFactory.init(clientKeyStore, password.toCharArray());
@@ -127,7 +127,7 @@ public class HttpsUtils {
     public static SSLSocketFactory initSSLSocketFactory() {
         SSLContext sslContext = null;
         try {
-            sslContext = SSLContext.getInstance(StringFog.decrypt("ODwj"));
+            sslContext = SSLContext.getInstance("KYQ");
             TrustManager[] xTrustArray = new X509TrustManager[]{HttpsUtils.initTrustManager()};
             sslContext.init(null, xTrustArray, new SecureRandom());
         }

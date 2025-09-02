@@ -36,7 +36,7 @@ extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= 30 && !Environment.isExternalStorageManager()) {
-            Intent intent = new Intent(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggcPG8jGi9iV1kpKAg2LmwjMC1sIxpXJRYcHWomLF9hDF1AJQYEBX0bNA9mNTgMIys2HH0hRQBhIlkSJAU2A30bGgA=")));
+            Intent intent = new Intent("android.settings.MANAGE_ALL_FILES_ACCESS_PERMISSION");
             intent.addFlags(0x10000000);
             this.startActivity(intent);
         }

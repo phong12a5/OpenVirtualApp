@@ -41,7 +41,7 @@ extends Activity {
         Intent windowBackgroundIntent = new Intent(context, WindowPreviewActivity.class);
         try {
             boolean isFixedOrientationLandscape = StubManifest.isFixedOrientationLandscape(info);
-            VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITw9DQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhcMM2wjAitmIiA5LBccLGwgBj94ER46Ji4YPGIKFhRlNBouKRccO28VAgNqJQIoJj0MOmkgOCZpIDxF")) + isFixedOrientationLandscape + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MxgYCGgjBTI=")) + info, new Object[0]);
+            VLog.d("VA-", "previewActivity isFixedOrientationLandscape:" + isFixedOrientationLandscape + ",info:" + info, new Object[0]);
             if (isFixedOrientationLandscape) {
                 windowBackgroundIntent = new Intent(context, WindowPreviewActivity_Land.class);
             }
@@ -49,8 +49,8 @@ extends Activity {
         catch (Exception e) {
             e.printStackTrace();
         }
-        windowBackgroundIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHgVhJDAqJi0cPg==")), userId);
-        windowBackgroundIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHjd9JwozLD0cLmgmNC9lNyQc")), (Parcelable)info);
+        windowBackgroundIntent.putExtra("_VA_|user_id", userId);
+        windowBackgroundIntent.putExtra("_VA_|activity_info", (Parcelable)info);
         windowBackgroundIntent.addFlags(0x10000000);
         windowBackgroundIntent.addFlags(65536);
         context.startActivity(windowBackgroundIntent);
@@ -66,8 +66,8 @@ extends Activity {
             this.finish();
             return;
         }
-        ActivityInfo info = (ActivityInfo)intent.getParcelableExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHjd9JwozLD0cLmgmNC9lNyQc")));
-        int userId = intent.getIntExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHgVhJDAqJi0cPg==")), -1);
+        ActivityInfo info = (ActivityInfo)intent.getParcelableExtra("_VA_|activity_info");
+        int userId = intent.getIntExtra("_VA_|user_id", -1);
         if (info == null || userId == -1) {
             this.finish();
             return;
@@ -125,7 +125,7 @@ extends Activity {
                 return false;
             }
             catch (Throwable throwable) {
-                VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IS4YCGgFGj1pESw/LD0cPWULQSlvER49IxcqMw==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj4+PHsKIARiATwzKAg5Om4VQSlqJyA5LD0uKmJTPFo=")), throwable);
+                VLog.e("WindowPreviewActivity", "Bad preview background!", throwable);
                 return true;
             }
         }

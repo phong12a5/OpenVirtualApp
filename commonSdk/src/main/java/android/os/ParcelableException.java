@@ -34,15 +34,15 @@ implements Parcelable {
     }
 
     public <T extends Throwable> void maybeRethrow(Class<T> clazz) throws T {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 
     public static Throwable readFromParcel(Parcel in) {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 
     public static void writeToParcel(Parcel out, Throwable t) {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 
     public int describeContents() {
@@ -50,7 +50,7 @@ implements Parcelable {
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        throw new RuntimeException(StringFog.decrypt("IBEHFEQ="));
+        throw new RuntimeException("Stub!");
     }
 }
 

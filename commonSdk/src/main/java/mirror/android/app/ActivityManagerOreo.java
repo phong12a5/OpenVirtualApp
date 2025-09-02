@@ -13,7 +13,7 @@ import mirror.RefStaticMethod;
 import mirror.RefStaticObject;
 
 public class ActivityManagerOreo {
-    public static Class<?> TYPE = RefClass.load(ActivityManagerOreo.class, StringFog.decrypt("EgsWBAoHO10CHwJeKAwaGhMbAhwjPh0CCBcC"));
+    public static Class<?> TYPE = RefClass.load(ActivityManagerOreo.class, "android.app.ActivityManager");
     public static RefStaticMethod<IInterface> getService;
     public static RefStaticObject<Object> IActivityManagerSingleton;
 }

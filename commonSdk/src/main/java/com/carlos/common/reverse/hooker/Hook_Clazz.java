@@ -24,7 +24,7 @@ public class Hook_Clazz {
     @HookMethod(value="invoke")
     @MethodParams(value={Object.class, Object[].class})
     public static Object m1(Method method, Object v1, Object[] v2) throws Throwable {
-        Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4+LGgaLAY=")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBgAD2U2GhNgHiAiLTkmMW8aHiVqJyhF")));
+        Log.d((String)"vatest", (String)"Hook_Clazz invoke");
         return SandHook.callOriginByBackup(method_m1, method, v1, v2);
     }
 }

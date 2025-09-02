@@ -18,12 +18,12 @@ public class MediaRouter {
     public static RefStaticObject sStatic;
 
     public static class StaticKitkat {
-        public static Class<?> TYPE = RefClass.load(StaticKitkat.class, StringFog.decrypt("EgsWBAoHO10OChYZCEEjFgEbFzcBKgcGHVYjHQ4aGgY="));
+        public static Class<?> TYPE = RefClass.load(StaticKitkat.class, "android.media.MediaRouter$Static");
         public static RefObject<IInterface> mMediaRouterService;
     }
 
     public static class Static {
-        public static Class<?> TYPE = RefClass.load(Static.class, StringFog.decrypt("EgsWBAoHO10OChYZCEEjFgEbFzcBKgcGHVYjHQ4aGgY="));
+        public static Class<?> TYPE = RefClass.load(Static.class, "android.media.MediaRouter$Static");
         public static RefObject<IInterface> mAudioService;
     }
 }

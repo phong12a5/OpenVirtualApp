@@ -29,7 +29,7 @@ public class HookBase {
             catch (Exception e) {
                 HVLog.printException(e);
             }
-            XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1k7IxglDmYgTQJgJwYeKQg+CmUgPDdsHigqKAg+Dw==")), classLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAc2E2UFJCZiJDAVKj0iOG8zGiw=")), Long.TYPE, new XC_MethodHook(){
+            XposedHelpers.findAndHookMethod("android.app.AppCompatCallbacks", classLoader, "isChangeEnabled", Long.TYPE, new XC_MethodHook(){
 
                 @Override
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -43,7 +43,7 @@ public class HookBase {
                     param.setResult(false);
                 }
             });
-            XposedHelpers.findAndHookMethod(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1k7IxglDmIzGiZrER4bLjwYKmYaLClqEVRF")), classLoader, com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li5fM2szQQhgHiA9Iy5SVg==")), Integer.TYPE, String.class, new XC_MethodHook(){
+            XposedHelpers.findAndHookMethod("android.app.PendingIntent", classLoader, "checkFlags", Integer.TYPE, String.class, new XC_MethodHook(){
 
                 @Override
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -57,7 +57,7 @@ public class HookBase {
                     String packageName = (String)param.args[1];
                     boolean flagImmutableSet = (flags & 0x4000000) != 0;
                     boolean flagMutableSet = (flags & 0x2000000) != 0;
-                    HVLog.d(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ITw9DQ==")), com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LT4EP2gxAiNgATAgLwcuCGkmAitvV1FF")) + flagImmutableSet + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Pl85OGgjHjdiIl0vLBciOG8zGl5rDi8x")) + flagMutableSet);
+                    HVLog.d("VA-", "flagImmutableSet:" + flagImmutableSet + "   flagMutableSet:" + flagMutableSet);
                 }
             });
         }

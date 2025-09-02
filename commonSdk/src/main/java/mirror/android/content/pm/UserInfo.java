@@ -10,7 +10,7 @@ import mirror.RefConstructor;
 import mirror.RefStaticInt;
 
 public class UserInfo {
-    public static Class<?> TYPE = RefClass.load(UserInfo.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDAdOgEqARQf"));
+    public static Class<?> TYPE = RefClass.load(UserInfo.class, "android.content.pm.UserInfo");
     public static RefStaticInt FLAG_PRIMARY;
     @MethodParams(value={int.class, String.class, int.class})
     public static RefConstructor<Object> ctor;

@@ -8,7 +8,7 @@ import mirror.RefClass;
 import mirror.RefObject;
 
 public class ReceiverResourceLP {
-    public static Class<?> TYPE = RefClass.load(ReceiverResourceLP.class, StringFog.decrypt("EgsWBAoHO10RAgFeGwodHBAAFQBADRYAChsGDB08FhYdAxcNOg=="));
+    public static Class<?> TYPE = RefClass.load(ReceiverResourceLP.class, "android.rms.resource.ReceiverResource");
     public static RefObject<Object> mResourceConfig;
 }
 

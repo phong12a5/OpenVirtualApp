@@ -18,7 +18,7 @@ public class RefMethod<T> {
                     // 查找 TYPE 字段
                     try {
                         Class.forName(clazz.getName());
-                        type = (Class<?>) clazz.getField(StringFog.decrypt("JzwiMw==")).get(null);
+                        type = (Class<?>) clazz.getField("TYPE").get(null);
                         types[i] = type;
                     } catch (Throwable e) {
                         throw new RuntimeException(e);

@@ -24,11 +24,11 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IRequestPermissionsResult {
-        private static final String DESCRIPTOR = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyguLC0AJ2wgMA5oHgo8JQguOm8KRQJqDFk0Ki0uDmwFSFo="));
+        private static final String DESCRIPTOR = "com.lody.virtual.server.IRequestPermissionsResult";
         static final int TRANSACTION_onResult = 1;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyguLC0AJ2wgMA5oHgo8JQguOm8KRQJqDFk0Ki0uDmwFSFo=")));
+            this.attachInterface(this, "com.lody.virtual.server.IRequestPermissionsResult");
         }
 
         public static IRequestPermissionsResult asInterface(IBinder obj) {
@@ -69,7 +69,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IRequestPermissionsResult impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAFNC59ATAoLBUcD2ozOyB6DTwqLRgEKGIKESNqETwiKAgAVg==")));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -96,7 +96,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyguLC0AJ2wgMA5oHgo8JQguOm8KRQJqDFk0Ki0uDmwFSFo="));
+                return "com.lody.virtual.server.IRequestPermissionsResult";
             }
 
             /*
@@ -108,7 +108,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojHiViERk2LD0cKGUwGjdlVho6LhcMMmIFMylnDyguLC0AJ2wgMA5oHgo8JQguOm8KRQJqDFk0Ki0uDmwFSFo=")));
+                    _data.writeInterfaceToken("com.lody.virtual.server.IRequestPermissionsResult");
                     _data.writeInt(requestCode);
                     _data.writeStringArray(permissions);
                     _data.writeIntArray(grantResults);

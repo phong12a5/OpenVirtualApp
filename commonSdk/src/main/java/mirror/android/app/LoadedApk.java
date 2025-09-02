@@ -32,7 +32,7 @@ import mirror.RefMethod;
 import mirror.RefObject;
 
 public class LoadedApk {
-    public static Class Class = RefClass.load(LoadedApk.class, StringFog.decrypt("EgsWBAoHO10CHwJeJQAPFwAWNxUF"));
+    public static Class Class = RefClass.load(LoadedApk.class, "android.app.LoadedApk");
     public static RefObject<ApplicationInfo> mApplicationInfo;
     @MethodParams(value={boolean.class, Instrumentation.class})
     public static RefMethod<Application> makeApplication;
@@ -46,24 +46,24 @@ public class LoadedApk {
     public static RefObject<Application> mApplication;
 
     public static class ServiceDispatcher {
-        public static Class Class = RefClass.load(ServiceDispatcher.class, StringFog.decrypt("EgsWBAoHO10CHwJeJQAPFwAWNxUFeyAGHQQZCgoqGhYCFxENNxYR"));
+        public static Class Class = RefClass.load(ServiceDispatcher.class, "android.app.LoadedApk$ServiceDispatcher");
         public static RefObject<ServiceConnection> mConnection;
         public static RefObject<Context> mContext;
 
         public static class InnerConnection {
-            public static Class Class = RefClass.load(InnerConnection.class, StringFog.decrypt("EgsWBAoHO10CHwJeJQAPFwAWNxUFeyAGHQQZCgoqGhYCFxENNxYRSzseBwocMAocGAANKxoMAQ=="));
+            public static Class Class = RefClass.load(InnerConnection.class, "android.app.LoadedApk$ServiceDispatcher$InnerConnection");
             public static RefObject<WeakReference> mDispatcher;
         }
     }
 
     public static class ReceiverDispatcher {
-        public static Class Class = RefClass.load(ReceiverDispatcher.class, StringFog.decrypt("EgsWBAoHO10CHwJeJQAPFwAWNxUFeyEGDBcZHwocNwwBBgQaPBsGHQ=="));
+        public static Class Class = RefClass.load(ReceiverDispatcher.class, "android.app.LoadedApk$ReceiverDispatcher");
         public static RefMethod<IInterface> getIIntentReceiver;
         public static RefObject<BroadcastReceiver> mReceiver;
         public static RefObject<IIntentReceiver> mIIntentReceiver;
 
         public static class InnerReceiver {
-            public static Class Class = RefClass.load(InnerReceiver.class, StringFog.decrypt("EgsWBAoHO10CHwJeJQAPFwAWNxUFeyEGDBcZHwocNwwBBgQaPBsGHVY5BwELATcXFQAHKRYR"));
+            public static Class Class = RefClass.load(InnerReceiver.class, "android.app.LoadedApk$ReceiverDispatcher$InnerReceiver");
             public static RefObject<WeakReference> mDispatcher;
         }
     }

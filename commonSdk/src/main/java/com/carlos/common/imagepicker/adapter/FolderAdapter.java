@@ -66,10 +66,10 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
         holder.tvFolderName.setText((CharSequence)folder.getName());
         holder.ivSelect.setVisibility(this.mSelectItem == position ? View.VISIBLE : View.GONE);
         if (images != null && !images.isEmpty()) {
-            holder.tvFolderSize.setText((CharSequence)(images.size() + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxsBOA=="))));
+            holder.tvFolderSize.setText((CharSequence)(images.size() + "张"));
             Glide.with((Context)this.mContext).load(new File(images.get(0).getPath())).apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)).into(holder.ivImage);
         } else {
-            holder.tvFolderSize.setText((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OlsrJBwFSFo=")));
+            holder.tvFolderSize.setText((CharSequence)"0张");
             holder.ivImage.setImageBitmap(null);
         }
         holder.itemView.setOnClickListener(new View.OnClickListener(){

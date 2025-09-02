@@ -38,7 +38,7 @@ extends RequestBody {
         this.listener = listener;
         this.fileLength = this.contentLength();
         this.segmentSize = 2048;
-        Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OSleJw==")), (String)(this.fileLength + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OD5SVg==")) + this.segmentSize));
+        Log.d((String)"789", (String)(this.fileLength + ":" + this.segmentSize));
     }
 
     protected FileProgressRequestBody() {

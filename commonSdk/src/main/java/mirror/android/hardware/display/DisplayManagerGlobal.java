@@ -13,7 +13,7 @@ import mirror.RefObject;
 import mirror.RefStaticMethod;
 
 public class DisplayManagerGlobal {
-    public static Class<?> TYPE = RefClass.load(DisplayManagerGlobal.class, StringFog.decrypt("EgsWBAoHO10LDgAUHg4cFksWHxYeMxIaQTYZGh8CEhw/FwsPOBYRKB4fCw4C"));
+    public static Class<?> TYPE = RefClass.load(DisplayManagerGlobal.class, "android.hardware.display.DisplayManagerGlobal");
     public static RefStaticMethod<Object> getInstance;
     public static RefObject<IInterface> mDm;
 }

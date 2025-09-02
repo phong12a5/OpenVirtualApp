@@ -42,7 +42,7 @@ public class VDeviceManager {
     }
 
     private Object getRemoteInterface() {
-        return IDeviceManager.Stub.asInterface(ServiceManagerNative.getService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguLmUVLCs="))));
+        return IDeviceManager.Stub.asInterface(ServiceManagerNative.getService("device"));
     }
 
     public VDeviceConfig getDeviceConfig(int userId) {
@@ -91,7 +91,7 @@ public class VDeviceManager {
             }
         }
         if (config.serial != null) {
-            Reflect.on(Build.TYPE).set(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IiwuDH0bJA4=")), config.serial);
+            Reflect.on(Build.TYPE).set("SERIAL", config.serial);
         }
     }
 }

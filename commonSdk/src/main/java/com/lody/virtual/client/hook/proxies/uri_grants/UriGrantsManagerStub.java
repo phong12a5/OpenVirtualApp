@@ -16,13 +16,13 @@ import mirror.android.app.IUriGrantsManager;
 public class UriGrantsManagerStub
 extends BinderInvocationProxy {
     public UriGrantsManagerStub() {
-        super(IUriGrantsManager.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQcMCWYzPAR9DlkgIy5SVg==")));
+        super(IUriGrantsManager.Stub.asInterface, "uri_grants");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGQaFi9pHjAqKgccL2oFLCVlNDBF"))));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getUriPermissions"));
     }
 }
 

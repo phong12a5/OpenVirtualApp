@@ -16,10 +16,10 @@ class Util {
 
     static void checkZoomLevels(float minZoom, float midZoom, float maxZoom) {
         if (minZoom >= midZoom) {
-            throw new IllegalArgumentException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwgYCGUVEgVgCiQiKi1fD34zFjdsIzw/LDo6JmIOODduASw8OD0cLGgFATRiESgzJQg2JHkVEgFvASM5PhY2P2oFGShhJDAgIgccDmwjPAVlDFEcLD4HLEkOODJvATAhOD5aJGUFGiZoVjwoJxgiOWwjPCRsJ10ZLQQ6LmsVHgViAVRF")));
+            throw new IllegalArgumentException("Minimum zoom has to be less than Medium zoom. Call setMinimumZoom() with a more appropriate value");
         }
         if (midZoom >= maxZoom) {
-            throw new IllegalArgumentException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwguPGUaNCNLEQI1Ki1WOmwzQQN4HiwcPQgMJ0saTSBlJy8pIz4MO2U3IEhrHlkwJgg2JHkVEgFvASM5PhY2P2oFGShhJDAgIgciImwjPAVlDFEcLD4HLEkOODJvATAhOD5aJGUFGiZoVjwoJxgiOWwjPCRsJ10ZLQQ6LmsVHgViAVRF")));
+            throw new IllegalArgumentException("Medium zoom has to be less than Maximum zoom. Call setMaximumZoom() with a more appropriate value");
         }
     }
 
@@ -33,7 +33,7 @@ class Util {
         }
         switch (scaleType) {
             case MATRIX: {
-                throw new IllegalStateException(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Owg+LG8jAjBLESg5LwdbPX4wBj9sESsrIxc1JGAwAj95ESw+LD1XKWwwMD9oAVRF")));
+                throw new IllegalStateException("Matrix scale type is not supported");
             }
         }
         return true;

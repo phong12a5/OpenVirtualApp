@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IClipboardService {
-    public static Class<?> TYPE = RefClass.load(IClipboardService.class, StringFog.decrypt("EgsWBAoHO10QChFeCgMHAwcdFxcKcTogAxsACwAPAQEhExcYNhAG"));
+    public static Class<?> TYPE = RefClass.load(IClipboardService.class, "android.sec.clipboard.IClipboardService");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10QChFeCgMHAwcdFxcKcTogAxsACwAPAQEhExcYNhAGSyEEHA0="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.sec.clipboard.IClipboardService$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

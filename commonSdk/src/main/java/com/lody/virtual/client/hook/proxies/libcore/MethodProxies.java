@@ -35,14 +35,14 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2wFSFo="));
+            return "stat";
         }
 
         static {
             try {
-                Method stat = Os.TYPE.getMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP2wFSFo=")), String.class);
+                Method stat = Os.TYPE.getMethod("stat", String.class);
                 Class<?> StructStat = stat.getReturnType();
-                st_uid = StructStat.getDeclaredField(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qH2wVAiw=")));
+                st_uid = StructStat.getDeclaredField("st_uid");
                 st_uid.setAccessible(true);
             }
             catch (Throwable e) {
@@ -58,15 +58,15 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLG8zGiljJB4sLBYMP2oVGiw="));
+            return "getsockoptUcred";
         }
 
         @Override
         public Object afterCall(Object who, Method method, Object[] args, Object result) throws Throwable {
             Reflect ucred;
             int uid;
-            if (result != null && (uid = ((Integer)(ucred = Reflect.on(result)).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgYPA==")))).intValue()) == VirtualCore.get().myUid()) {
-                ucred.set(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgYPA==")), GetsockoptUcred.getBaseVUid());
+            if (result != null && (uid = ((Integer)(ucred = Reflect.on(result)).get("uid")).intValue()) == VirtualCore.get().myUid()) {
+                ucred.set("uid", GetsockoptUcred.getBaseVUid());
             }
             return result;
         }
@@ -79,7 +79,7 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGwVAiw="));
+            return "getuid";
         }
 
         @Override
@@ -96,15 +96,15 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLG8KPCZ9Dl1F"));
+            return "getpwnam";
         }
 
         @Override
         public Object afterCall(Object who, Method method, Object[] args, Object result) throws Throwable {
             Reflect pwd;
             int uid;
-            if (result != null && (uid = ((Integer)(pwd = Reflect.on(result)).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhcmH2wVAiw=")))).intValue()) == VirtualCore.get().myUid()) {
-                pwd.set(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhcmH2wVAiw=")), VClient.get().getVUid());
+            if (result != null && (uid = ((Integer)(pwd = Reflect.on(result)).get("pw_uid")).intValue()) == VirtualCore.get().myUid()) {
+                pwd.set("pw_uid", VClient.get().getVUid());
             }
             return result;
         }
@@ -117,15 +117,15 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT02LGsaMFo="));
+            return "fstat";
         }
 
         @Override
         public Object afterCall(Object who, Method method, Object[] args, Object result) throws Throwable {
             Reflect pwd;
             int uid;
-            if (result != null && (uid = ((Integer)(pwd = Reflect.on(result)).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qH2wVAiw=")))).intValue()) == VirtualCore.get().myUid()) {
-                pwd.set(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qH2wVAiw=")), VClient.get().getVUid());
+            if (result != null && (uid = ((Integer)(pwd = Reflect.on(result)).get("st_uid")).intValue()) == VirtualCore.get().myUid()) {
+                pwd.set("st_uid", VClient.get().getVUid());
             }
             return result;
         }
@@ -138,15 +138,15 @@ class MethodProxies {
 
         @Override
         public String getMethodName() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixc2LGsaMFo="));
+            return "lstat";
         }
 
         @Override
         public Object afterCall(Object who, Method method, Object[] args, Object result) throws Throwable {
             Reflect pwd;
             int uid;
-            if (result != null && (uid = ((Integer)(pwd = Reflect.on(result)).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qH2wVAiw=")))).intValue()) == VirtualCore.get().myUid()) {
-                pwd.set(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qH2wVAiw=")), VClient.get().getVUid());
+            if (result != null && (uid = ((Integer)(pwd = Reflect.on(result)).get("st_uid")).intValue()) == VirtualCore.get().myUid()) {
+                pwd.set("st_uid", VClient.get().getVUid());
             }
             return result;
         }

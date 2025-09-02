@@ -14,15 +14,15 @@ public final class MemorySRWData {
     private SearchValueType defaultType = SearchValueType.i32;
     private String writeValue;
     private boolean addressPermission = false;
-    private static final String ARRY_SPLIT = StringFog.decrypt("SA==");
-    private static final String ARRY_DATA_SPLIT = StringFog.decrypt("LA==");
+    private static final String ARRY_SPLIT = ";";
+    private static final String ARRY_DATA_SPLIT = "_";
 
     private MemorySRWData() {
     }
 
     public static MemorySRWData AddMemorySearch(String value, SearchValueType type) {
         if (TextUtils.isEmpty((CharSequence)value) || type == null) {
-            throw new NullPointerException(StringFog.decrypt("BQQeAwBOYlM=") + value + StringFog.decrypt("U0UGDxULf05D") + (Object)((Object)type) + StringFog.decrypt("U4by9wwdfx0WAx4="));
+            throw new NullPointerException("value = " + value + "  type = " + (Object)((Object)type) + " 、is null");
         }
         MemorySRWData memorySearch = new MemorySRWData();
         String searchValueType = SearchValueType.toString(type);
@@ -92,30 +92,30 @@ public final class MemorySRWData {
             switch (type) {
                 case i8: 
                 case I8: {
-                    return StringFog.decrypt("Gl0=");
+                    return "i8";
                 }
                 case i16: 
                 case I16: {
-                    return StringFog.decrypt("GlRE");
+                    return "i16";
                 }
                 case i32: 
                 case I32: {
-                    return StringFog.decrypt("GlZA");
+                    return "i32";
                 }
                 case i64: 
                 case I64: {
-                    return StringFog.decrypt("GlNG");
+                    return "i64";
                 }
                 case f32: 
                 case F32: {
-                    return StringFog.decrypt("FVZA");
+                    return "f32";
                 }
                 case f64: 
                 case F64: {
-                    return StringFog.decrypt("FVNG");
+                    return "f64";
                 }
             }
-            throw new RuntimeException(StringFog.decrypt("FhcAGRdOKwoTClM="));
+            throw new RuntimeException("error type!");
         }
     }
 }

@@ -39,14 +39,14 @@ public class NativeMethods {
     @SuppressLint(value={"PrivateApi"})
     private static void init() {
         try {
-            gNativeMask = NativeEngine.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+LGUaOCtoDiAqKS5SVg==")), new Class[0]);
+            gNativeMask = NativeEngine.class.getDeclaredMethod("nativeMark", new Class[0]);
         }
         catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
         if (BuildCompat.isR()) {
             try {
-                gNativeLoad = Runtime.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+LGUaOCtoHh47KBhSVg==")), String.class, ClassLoader.class, Class.class);
+                gNativeLoad = Runtime.class.getDeclaredMethod("nativeLoad", String.class, ClassLoader.class, Class.class);
             }
             catch (NoSuchMethodException e) {
                 e.printStackTrace();
@@ -55,14 +55,14 @@ public class NativeMethods {
         gMediaRecorderNativeSetup = NativeMethods.getMediaRecorderNativeSetup();
         gAudioRecordNativeSetup = NativeMethods.getAudioRecordNativeSetup();
         gAudioRecordMethodType = gAudioRecordNativeSetup != null && gAudioRecordNativeSetup.getParameterTypes().length == 10 ? 2 : 1;
-        String methodName = Build.VERSION.SDK_INT >= 19 ? StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy06M2ohMCtnHDwzKhcMQG4gBi9vNyhF")) : StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy06M2ohMCtnHDwzKhcMVg=="));
+        String methodName = Build.VERSION.SDK_INT >= 19 ? "openDexFileNative" : "openDexFile";
         for (Method method : DexFile.class.getDeclaredMethods()) {
             if (!method.getName().equals(methodName)) continue;
             gOpenDexFileNative = method;
             break;
         }
         if (gOpenDexFileNative == null) {
-            throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1Pxc+MW8VAShlASg/IwgAIEtSGSM=")) + methodName);
+            throw new RuntimeException("Unable to find method : " + methodName);
         }
         gOpenDexFileNative.setAccessible(true);
         gCameraMethodType = -1;
@@ -73,7 +73,7 @@ public class NativeMethods {
             gCameraMethodType = 16 + index;
         }
         for (Method mth : AudioRecord.class.getDeclaredMethods()) {
-            if (!mth.getName().equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+LGUaOCtsJCg0KAcqCWMKTStsNw4aKT02I2AgRVo="))) || mth.getParameterTypes().length != 1 || mth.getParameterTypes()[0] != String.class) continue;
+            if (!mth.getName().equals("native_check_permission") || mth.getParameterTypes().length != 1 || mth.getParameterTypes()[0] != String.class) continue;
             gAudioRecordNativeCheckPermission = mth;
             mth.setAccessible(true);
             break;
@@ -84,7 +84,7 @@ public class NativeMethods {
         Method[] methods = Camera.class.getDeclaredMethods();
         if (methods != null) {
             for (Method method : methods) {
-                if (!StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+LGUaOCtsJyg/LBgMKg==")).equals(method.getName())) continue;
+                if (!"native_setup".equals(method.getName())) continue;
                 return method;
             }
         }
@@ -95,14 +95,14 @@ public class NativeMethods {
     private static Method getMediaRecorderNativeSetup() {
         Method native_setup = null;
         try {
-            native_setup = BuildCompat.isS() ? MediaRecorder.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+LGUaOCtsJyg/LBgMKg==")), Object.class, String.class, Parcelable.class) : MediaRecorder.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+LGUaOCtsJyg/LBgMKg==")), Object.class, String.class, String.class);
+            native_setup = BuildCompat.isS() ? MediaRecorder.class.getDeclaredMethod("native_setup", Object.class, String.class, Parcelable.class) : MediaRecorder.class.getDeclaredMethod("native_setup", Object.class, String.class, String.class);
         }
         catch (NoSuchMethodException noSuchMethodException) {
             // empty catch block
         }
         if (native_setup == null) {
             try {
-                native_setup = MediaRecorder.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+LGUaOCtsJyg/LBgMKg==")), Object.class, String.class);
+                native_setup = MediaRecorder.class.getDeclaredMethod("native_setup", Object.class, String.class);
             }
             catch (NoSuchMethodException noSuchMethodException) {
                 // empty catch block
@@ -115,14 +115,14 @@ public class NativeMethods {
     private static Method getAudioRecordNativeSetup() {
         Method native_setup = null;
         try {
-            native_setup = AudioRecord.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+LGUaOCtsJyg/LBgMKg==")), Object.class, Object.class, int[].class, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, int[].class, String.class, Long.TYPE);
+            native_setup = AudioRecord.class.getDeclaredMethod("native_setup", Object.class, Object.class, int[].class, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, int[].class, String.class, Long.TYPE);
         }
         catch (NoSuchMethodException noSuchMethodException) {
             // empty catch block
         }
         if (native_setup == null) {
             try {
-                native_setup = AudioRecord.class.getDeclaredMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4+LGUaOCtsJyg/LBgMKg==")), Object.class, Object.class, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, int[].class, String.class);
+                native_setup = AudioRecord.class.getDeclaredMethod("native_setup", Object.class, Object.class, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, int[].class, String.class);
             }
             catch (NoSuchMethodException noSuchMethodException) {
                 // empty catch block

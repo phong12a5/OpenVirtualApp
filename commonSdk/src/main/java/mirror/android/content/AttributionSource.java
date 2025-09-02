@@ -21,9 +21,9 @@ import mirror.RefObject;
 import mirror.android.content.AttributionSourceState;
 
 public class AttributionSource {
-    private static final String TAG = StringFog.decrypt("MhEGBAwMKgcKABwjBhocEAA=");
-    public static Class<?> TYPE = RefClass.load(AttributionSource.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSQGAhcHPQYXBh0eOgAbAQYX"));
-    public static Class<?> TYPE_COMP = RefClass.load(AttributionSource.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSQGAhcHPQYXBh0eOgAbAQYXUgQX"));
+    private static final String TAG = "AttributionSource";
+    public static Class<?> TYPE = RefClass.load(AttributionSource.class, "android.content.AttributionSource");
+    public static Class<?> TYPE_COMP = RefClass.load(AttributionSource.class, "android.content.AttributionSource$ay");
     @MethodParams(value={Object.class})
     public static RefMethod<Boolean> equals;
     public static RefMethod<String> getAttributionTag;
@@ -77,7 +77,7 @@ public class AttributionSource {
         Object mAttributionSourceState2;
         Parcelable withToken2;
         if (obj == null || (withToken2 = AttributionSource.withToken(obj, null)) == null || (mAttributionSourceState2 = AttributionSource.mAttributionSourceState(withToken2)) == null) {
-            Log.w((String)TAG, (String)StringFog.decrypt("HQAFPwsdKxINDBdQGwoKBgYXVgMPNh8GC14CDBsbAQtSGBACMw=="));
+            Log.w((String)TAG, (String)"newInstance reduce failed,return null");
             return null;
         }
         AttributionSourceState.token(mAttributionSourceState2, AttributionSource.getToken(obj));
@@ -109,8 +109,8 @@ public class AttributionSource {
             // empty if block
         }
         Class<AttributionSource> cls = AttributionSource.class;
-        TYPE = RefClass.load(cls, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSQGAhcHPQYXBh0eOgAbAQYX"));
-        TYPE_COMP = RefClass.load(cls, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXSQGAhcHPQYXBh0eOgAbAQYXUg=="));
+        TYPE = RefClass.load(cls, "android.content.AttributionSource");
+        TYPE_COMP = RefClass.load(cls, "android.content.AttributionSource$");
     }
 }
 

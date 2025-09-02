@@ -34,7 +34,7 @@ import java.math.RoundingMode;
 
 public class MRFZTab
 extends TabContainer {
-    String TAG = StringFog.decrypt("Pjc0LDEPPQ==");
+    String TAG = "MRFZTab";
     public static final int VIEW_ACTION_WD = 1;
     public static final int VIEW_ACTION_SX = 2;
     public static final int VIEW_ACTION_XDL = 3;
@@ -89,10 +89,10 @@ extends TabContainer {
         this.skill = (Switch)root.findViewById(R.id.switchskill);
         this.atkSeek.setMax(9999);
         this.atkSeek.setProgress(680);
-        this.atkText.setText((CharSequence)StringFog.decrypt("QktF"));
+        this.atkText.setText((CharSequence)"1.7");
         this.yxjsSeek.setMax(9999);
         this.yxjsSeek.setProgress(1000);
-        this.yxjsText.setText((CharSequence)StringFog.decrypt("RktC"));
+        this.yxjsText.setText((CharSequence)"5.0");
         this.wd.setChecked(false);
         this.sx.setChecked(false);
         this.xdl.setChecked(false);
@@ -102,10 +102,10 @@ extends TabContainer {
         this.szjs.setChecked(false);
         this.atk.setChecked(false);
         this.atkSeek.setProgress(680);
-        this.atkText.setText((CharSequence)StringFog.decrypt("QktF"));
+        this.atkText.setText((CharSequence)"1.7");
         this.yxjs.setChecked(false);
         this.yxjsSeek.setProgress(1000);
-        this.yxjsText.setText((CharSequence)StringFog.decrypt("RktC"));
+        this.yxjsText.setText((CharSequence)"5.0");
         this.wd.setOnCheckedChangeListener((buttonView, isChecked) -> {
             IMRFZController mrfzController = this.getMRFZController();
             try {
@@ -229,7 +229,7 @@ extends TabContainer {
 
     IMRFZController getMRFZController() {
         IBinder binder = this.floatTab.getClientBinder();
-        HVLog.i(this.TAG, StringFog.decrypt("UwIXAig8GSkgABwEGwACHwAAVgcHMRcGHUg=") + binder + StringFog.decrypt("U0VSVgwdHRoNCxcCKAMHBQBITA==") + binder.isBinderAlive());
+        HVLog.i(this.TAG, " getMRFZController binder:" + binder + "    isBinderAlive::" + binder.isBinderAlive());
         return IMRFZController.Stub.asInterface(binder);
     }
 

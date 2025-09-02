@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class ISystemDefenceManager {
-    public static Class<?> TYPE = RefClass.load(ISystemDefenceManager.class, StringFog.decrypt("BQwEGUsPLwNNHAsDHQoDFwAUEwsNOl0qPAsDHQoDNwAUEwsNOj4CARMXDB0="));
+    public static Class<?> TYPE = RefClass.load(ISystemDefenceManager.class, "vivo.app.systemdefence.ISystemDefenceManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("BQwEGUsPLwNNHAsDHQoDFwAUEwsNOl0qPAsDHQoDNwAUEwsNOj4CARMXDB1KIBEHFA=="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "vivo.app.systemdefence.ISystemDefenceManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

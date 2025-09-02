@@ -7,7 +7,7 @@ import com.lody.virtual.StringFog;
 
 public class VMRuntime {
     public static VMRuntime getRuntime() {
-        throw new IllegalArgumentException(StringFog.decrypt("ABEHFA=="));
+        throw new IllegalArgumentException("stub");
     }
 
     public native void setHiddenApiExemptions(String[] var1);

@@ -158,7 +158,7 @@ public final class VClient extends IVClient.Stub {
     private static final int NEW_INTENT = 11;
     private static final int RECEIVER = 12;
     private static final int FINISH_ACTIVITY = 13;
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")) + VClient.class.getSimpleName();
+    private static final String TAG = "HV-" + VClient.class.getSimpleName();
     @SuppressLint(value={"StaticFieldLeak"})
     private static final VClient gClient = new VClient();
     private final H mH = new H();
@@ -293,7 +293,7 @@ public final class VClient extends IVClient.Stub {
 
     public void initProcess(ClientConfig clientConfig) {
         if (this.clientConfig != null) {
-            throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uMmgVLAZLHgY2KQg1OmowRSVoJyg6KTo6Vg==")) + clientConfig.vpid + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl5WOA==")) + clientConfig.processName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186LGUFAgNLESQqKi0qPWoKDShqDjMrPyo6Vg==")) + this.clientConfig.processName);
+            throw new RuntimeException("reject init process " + clientConfig.vpid + " : " + clientConfig.processName + ", this process is : " + this.clientConfig.processName);
         }
         this.clientConfig = clientConfig;
     }
@@ -327,7 +327,7 @@ public final class VClient extends IVClient.Stub {
             }
         }
         if (this.clientConfig == null) {
-            throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcKmgVLCVhNAo/KF4mKmoVNClrDjA6Pyo6Vg==")) + processName);
+            throw new RuntimeException("Unrecorded process: " + processName);
         }
         if (Looper.myLooper() != Looper.getMainLooper()) {
             final ConditionVariable cond = new ConditionVariable();
@@ -365,7 +365,7 @@ public final class VClient extends IVClient.Stub {
                 }
             }
             VirtualCore.getConfig();
-            Log.e((String)StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT49O35SIClgJFk+KQc5OnozSFo=")), (String)(SettingConfig.isUseNativeEngine2(packageName) + ""));
+            Log.e((String)"va== config 0", (String)(SettingConfig.isUseNativeEngine2(packageName) + ""));
             if (VirtualCore.get().isExtHelperProcess()) {
                 VExtPackageAccessor.syncPackages();
             }
@@ -394,7 +394,7 @@ public final class VClient extends IVClient.Stub {
             AppBindData data = new AppBindData();
             info = VirtualCore.get().getInstalledAppInfo(packageName, 0);
             if (info == null) {
-                new Exception(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KHsFBiVmVyQ/LRccL2UzSFo="))).printStackTrace();
+                new Exception("app not exist").printStackTrace();
                 Process.killProcess((int)0);
                 System.exit(0);
             }
@@ -411,7 +411,7 @@ public final class VClient extends IVClient.Stub {
                 iterator.remove();
             }
             boolean isExt = VirtualCore.get().isExtPackage();
-            VLog.i(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj4YCGgFAiZiICQ7IxgmCGwjAjdvER4cLCo5J2EkOyt+AS8pJgQAIGEJAlo=")), data.appInfo.packageName, data.processName, Process.myPid());
+            VLog.i(TAG, "Binding application %s (%s [%d])", data.appInfo.packageName, data.processName, Process.myPid());
             if (isInitialApp) {
                 VirtualCore.getConfig();
                 this.mBoundApplication = data;
@@ -428,7 +428,7 @@ public final class VClient extends IVClient.Stub {
                 if (targetSdkVersion < 21) {
                     Message.updateCheckRecycle.call(targetSdkVersion);
                 }
-                android.app.AlarmManager alarmManager = (android.app.AlarmManager)VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggEP28jElo=")));
+                android.app.AlarmManager alarmManager = (android.app.AlarmManager)VirtualCore.get().getContext().getSystemService("alarm");
                 if (AlarmManager.mTargetSdkVersion != null) {
                     try {
                         AlarmManager.mTargetSdkVersion.set(alarmManager, targetSdkVersion);
@@ -438,11 +438,11 @@ public final class VClient extends IVClient.Stub {
                     }
                 }
                 if (isExt) {
-                    System.setProperty(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4+LmtSBi9gIFkgKggmPmwgRVo=")), new File(VEnvironment.getDataUserPackageDirectoryExt(userId, info.packageName), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+OWUFNFo="))).getAbsolutePath());
+                    System.setProperty("java.io.tmpdir", new File(VEnvironment.getDataUserPackageDirectoryExt(userId, info.packageName), "cache").getAbsolutePath());
                 } else {
-                    System.setProperty(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4+LmtSBi9gIFkgKggmPmwgRVo=")), new File(VEnvironment.getDataUserPackageDirectory(userId, info.packageName), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+OWUFNFo="))).getAbsolutePath());
+                    System.setProperty("java.io.tmpdir", new File(VEnvironment.getDataUserPackageDirectory(userId, info.packageName), "cache").getAbsolutePath());
                 }
-                VLog.i(TAG + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LC4AD2UzHiViJ1RF")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ixg+I2ojLCBqDlk9KQcYPX43TCh4ESAgKgY2KWAzFiBrETMhOik6Vg==")) + VirtualCore.get().getContext(), new Object[0]);
+                VLog.i(TAG + "kooklog", "launchEngine    getContext():" + VirtualCore.get().getContext(), new Object[0]);
                 NativeEngine.launchEngine(VirtualCore.get().getContext(), packageName);
                 if (VirtualCore.getConfig().isEnableIORedirect()) {
                     this.mountVirtualFS(info, isExt);
@@ -453,7 +453,7 @@ public final class VClient extends IVClient.Stub {
             this.initDataStorage(isExt, userId, packageName);
             Context context = this.createPackageContext(data.appInfo.packageName);
             if (isInitialApp) {
-                VLog.i(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qP28gMBZiARoLLD0MKGoVLCxrAVRF")), new Object[0]);
+                VLog.i(TAG, "startDexOverride", new Object[0]);
                 NativeEngine.startDexOverride();
                 StaticReceiverSystem.get().attach(packageName, VirtualCore.get().getContext(), data.appInfo, userId);
                 File codeCacheDir = Build.VERSION.SDK_INT >= 23 ? context.getCodeCacheDir() : context.getCacheDir();
@@ -499,7 +499,7 @@ public final class VClient extends IVClient.Stub {
                 if (Build.VERSION.SDK_INT >= 30) {
                     ApplicationConfig.setDefaultInstance(null);
                 }
-                VLog.i(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("BxpcHUZaOQtYEEZJKRdfDWwNGzcUPzkLHC5SVg==")), new Object[0]);
+                VLog.i(TAG, "初始化hook框架", new Object[0]);
                 PineXposed.initForXposed(context, processName);
                 this.fixSystem();
                 VirtualCore.get().getAppCallback().beforeStartApplication(packageName, processName, context);
@@ -510,11 +510,11 @@ public final class VClient extends IVClient.Stub {
             if (CheckJunitClazz && BuildCompat.isR() && data.appInfo.targetSdkVersion < 30) {
                 ClassLoader cl = LoadedApk.getClassLoader.call(data.info, new Object[0]);
                 if (Build.VERSION.SDK_INT >= 30) {
-                    Reflect.on(cl).set(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+KmgVBgY=")), new ClassLoader(){
+                    Reflect.on(cl).set("parent", new ClassLoader(){
 
                         @Override
                         protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-                            if (name.startsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD0uCGUaMFo=")))) {
+                            if (name.startsWith("junit")) {
                                 return VClient.class.getClassLoader().loadClass(name);
                             }
                             return super.loadClass(name, resolve);
@@ -535,7 +535,7 @@ public final class VClient extends IVClient.Stub {
                 }
             }
             catch (Throwable e) {
-                throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1PxdXOWwFGhFsHjwdIxg2O2YaGipsN1RF")), e);
+                throw new RuntimeException("Unable to makeApplication", e);
             }
             ContextFixer.fixContext((Context)app, data.appInfo.packageName);
             WeChat.disableBinderHook(packageName, app);
@@ -543,21 +543,21 @@ public final class VClient extends IVClient.Stub {
                 this.mInitialApplication = app;
                 ActivityThread.mInitialApplication.set(mainThread, app);
             }
-            VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LC4AD2UzSFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2XGojAgZjDiAoJwgmKmczSFo=")) + isInitialApp + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl85OHsFEglgNAYgKQciCGYgTQJlER4qLRcqI2AgRD0=")) + this.mInitialApplication);
-            boolean bl = isTargetGame = packageName.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogPCtgDiAwKAMYD2wgRSM="))) || packageName.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojQTdjJCA1KC0iD2kgDSZlJywaLC5SVg=="))) || packageName.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojQTdjJCA1KC0iD2kgDSZoDgoqIwguMX0FMFo=")));
+            VLog.e("kook", "isInitialAppL" + isInitialApp + "    mInitialApplication:" + this.mInitialApplication);
+            boolean bl = isTargetGame = packageName.equals("com.wemade.mirm") || packageName.equals("com.kakaogames.odin") || packageName.equals("com.kakaogames.archewar");
             if (isTargetGame && (providers = ActivityThread.AppBindData.providers.get(boundApp = ActivityThread.mBoundApplication.get(mainThread))) != null && !providers.isEmpty()) {
                 this.installContentProviders((Context)app, providers);
             }
             if (LoadedApk.mApplication != null && (loadedApk = ContextImpl.mPackageInfo.get(context)) != null) {
                 LoadedApk.mApplication.set(loadedApk, app);
             }
-            if (Build.VERSION.SDK_INT >= 24 && StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogMCtgNCg/Kj41Dm8jPzJsNygqLD0iJ2EzGlo=")).equals(processName)) {
+            if (Build.VERSION.SDK_INT >= 24 && "com.tencent.mm:recovery".equals(processName)) {
                 this.fixWeChatRecovery(this.mInitialApplication);
             }
-            if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojJCZiESw1KQc1DmUVGiZrER4bLj5SVg==")).equals(packageName)) {
+            if ("com.android.vending".equals(packageName)) {
                 try {
-                    context.getSharedPreferences(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4uCGgFAiZiJR4sIz0MPGkgRStlNzAgKT5SVg==")), 0).edit().putBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOD9sJzAsKBciLmkgAlo=")), false).putBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOD9sJzAsKBciLmkgAh9oJwYeKQgEJ2YaGipsN1RF")), false).apply();
-                    context.getSharedPreferences(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YCG8zQT8=")), 0).edit().putBoolean(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGo2GgVhHgo7LBcMHWkjMDdoNwIgLghSVg==")), false).apply();
+                    context.getSharedPreferences("vending_preferences", 0).edit().putBoolean("notify_updates", false).putBoolean("notify_updates_completion", false).apply();
+                    context.getSharedPreferences("finsky", 0).edit().putBoolean("auto_update_enabled", false).apply();
                 }
                 catch (Throwable e) {
                     e.printStackTrace();
@@ -568,13 +568,13 @@ public final class VClient extends IVClient.Stub {
                 this.mAllApplications.put(packageName, app);
             }
             if (!isTargetGame && (providers = ActivityThread.AppBindData.providers.get(boundApp = ActivityThread.mBoundApplication.get(mainThread))) != null && !providers.isEmpty()) {
-                VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhcMD2wjAixiASwpPT5SVg==")) + providers.size() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl85OHsFJAJhVgJF")) + app, new Object[0]);
+                VLog.d("HV-", "providers:" + providers.size() + "    app:" + app, new Object[0]);
                 this.installContentProviders((Context)app, providers);
             }
             if (isInitialApp) {
                 VirtualCore.get().getAppCallback().beforeApplicationCreate(packageName, processName, app);
                 try {
-                    XposedHelpers.findAndHookMethod(Binder.class, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMzJCRgHgY2KCwMMWkzSFo=")), new XC_MethodReplacement(){
+                    XposedHelpers.findAndHookMethod(Binder.class, "getCallingUid", new XC_MethodReplacement(){
 
                         @Override
                         protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -584,7 +584,7 @@ public final class VClient extends IVClient.Stub {
                     });
                 }
                 catch (Throwable th) {
-                    VLog.i(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMzJCRgHgY2KCwMMWk3TStsNAocKSlXVg==")) + th.getMessage(), new Object[0]);
+                    VLog.i(TAG, "getCallingUid error:" + th.getMessage(), new Object[0]);
                     th.printStackTrace();
                 }
             }
@@ -601,12 +601,12 @@ public final class VClient extends IVClient.Stub {
             }
             catch (Exception e2) {
                 if (this.mInstrumentation.onException((Object)app, (Throwable)e2)) break block66;
-                throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1PxcqKGkjQQZrDTwsKQc6KGMKNCRqHhoeKV9XVg==")) + data.appInfo.name + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ODo6Vg==")) + e2.toString(), e2);
+                throw new RuntimeException("Unable to create application " + data.appInfo.name + ": " + e2.toString(), e2);
             }
         }
-        if (!packageName.contains(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojRQV9ATg/KQMYMmUFLCw=")))) {
+        if (!packageName.contains("com.huawei.hwid")) {
             LaunchCallBack launchDelegate = VirtualCore.get().getLaunchDelegate();
-            VLog.i(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oxg+I2ojLCBlJCAoKhUuOW4FJFo=")), new Object[0]);
+            VLog.i(TAG, "LaunchCallBack", new Object[0]);
             if (launchDelegate != null) {
                 launchDelegate.onLaunch(packageName, VirtualCore.get().getHostPkg(), VirtualCore.get().getContext(), app);
             }
@@ -614,7 +614,7 @@ public final class VClient extends IVClient.Stub {
         if (isInitialApp) {
             VirtualCore.get().getAppCallback().afterApplicationCreate(packageName, processName, app);
         }
-        VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("MwQHDXpSHSNOClw3OgNWD38nPyN1DQEePF8HL04OQCNpJFkcORgiKWsaDQRsJx4bIBg2KGxTAiNuJywzKBc6D28zNCxONSg7Kj02BGozNANrAS8bIxgcLmIKND9jESAeLAgAIH0FGjBsEQI0DV5aJHwOTAN/IyM8MwQHDXpSHSNOCl1F")), new Object[0]);
+        VLog.d("HV-", "----------------------- com.lody.virtual.sandxposed.SandXposed.injectXposedModule ----------------", new Object[0]);
         VActivityManager.get().appDoneExecuting(info.packageName);
     }
 
@@ -630,7 +630,7 @@ public final class VClient extends IVClient.Stub {
 
     private void fixWeChatRecovery(Application app) {
         try {
-            Field field = app.getClassLoader().loadClass(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXogMCtgNCg/Kj41DmoVGillJCQgKS0XKmkwLCZsJzguLBc2Vg=="))).getField(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGwFNDBmEVRF")));
+            Field field = app.getClassLoader().loadClass("com.tencent.recovery.Recovery").getField("context");
             field.setAccessible(true);
             if (field.get(null) != null) {
                 return;
@@ -646,14 +646,14 @@ public final class VClient extends IVClient.Stub {
     private void fixSystem() {
         if (BuildCompat.isS()) {
             try {
-                Reflect.on(Canvas.class).call(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGMzGiNhHiAgKQcuMW8zLAZuDCQgKS02I2AgRVo=")), 26);
+                Reflect.on(Canvas.class).call("setCompatibilityVersion", 26);
             }
             catch (Exception exception) {
                 // empty catch block
             }
         }
         if (BuildCompat.isQ() && BuildCompat.isEMUI()) {
-            XposedBridge.hookAllMethods(AutofillManager.class, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOD9uNAY/LCsMDmUzGgRrASxF")), new XC_MethodHook(){
+            XposedBridge.hookAllMethods(AutofillManager.class, "notifyViewEntered", new XC_MethodHook(){
 
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -731,25 +731,25 @@ public final class VClient extends IVClient.Stub {
         VDeviceConfig deviceConfig = this.getDeviceConfig();
         if (deviceConfig.enable && (wifiMacAddressFile = this.getDeviceConfig().getWifiFile(userId, isExt)) != null && wifiMacAddressFile.exists()) {
             String wifiMacAddressPath = wifiMacAddressFile.getPath();
-            NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J283GilgHiApIylfDmkgASVvJwIsLCk5KX0KFi9lNAo8LAhSVg==")), wifiMacAddressPath);
-            NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J283GilgHiApIylfDmkgASVrDiwZOQQAO2IaFjVuASw8")), wifiMacAddressPath);
-            NativeEngine.redirectFile(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02J283GilgHiApIylfDmkgASVvJx4tI18AO2IaFjVuASw8")), wifiMacAddressPath);
+            NativeEngine.redirectFile("/sys/class/net/wlan0/address", wifiMacAddressPath);
+            NativeEngine.redirectFile("/sys/class/net/eth0/address", wifiMacAddressPath);
+            NativeEngine.redirectFile("/sys/class/net/wifi/address", wifiMacAddressPath);
         }
         this.forbidHost();
-        String cache = new File(dataDir, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+OWUFNFo="))).getAbsolutePath();
-        NativeEngine.redirectDirectory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My0qDW8JGlo=")), cache);
-        NativeEngine.redirectDirectory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyViHiAgLwNfVg==")) + packageName, dataDir);
+        String cache = new File(dataDir, "cache").getAbsolutePath();
+        NativeEngine.redirectDirectory("/tmp/", cache);
+        NativeEngine.redirectDirectory("/data/data/" + packageName, dataDir);
         int realUserId = VUserHandle.realUserId();
-        NativeEngine.redirectDirectory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVmASg/IzlfVg==")) + realUserId + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + packageName, dataDir);
+        NativeEngine.redirectDirectory("/data/user/" + realUserId + "/" + packageName, dataDir);
         if (Build.VERSION.SDK_INT >= 24) {
-            NativeEngine.redirectDirectory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVmASg/IzxfPmknNFo=")) + realUserId + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")), de_dataDir);
+            NativeEngine.redirectDirectory("/data/user_de/" + realUserId + "/", de_dataDir);
         }
         NativeEngine.whitelist(libPath);
         if (info.dynamic) {
-            NativeEngine.whitelist(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVmASg/IzlfVg==")) + realUserId + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4ECWsnGlo=")));
+            NativeEngine.whitelist("/data/user/" + realUserId + "/" + packageName + "/lib/");
         } else {
-            NativeEngine.redirectDirectory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyViHiAgLwNfVg==")) + packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4ECWsnGlo=")), libPath);
-            NativeEngine.redirectDirectory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVmASg/IzlfVg==")) + realUserId + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4ECWsnGlo=")), libPath);
+            NativeEngine.redirectDirectory("/data/data/" + packageName + "/lib/", libPath);
+            NativeEngine.redirectDirectory("/data/user/" + realUserId + "/" + packageName + "/lib/", libPath);
         }
         File userLibDir = VEnvironment.getUserAppLibDirectory(userId, packageName);
         NativeEngine.redirectDirectory(userLibDir.getPath(), libPath);
@@ -776,41 +776,41 @@ public final class VClient extends IVClient.Stub {
         }
         if (VirtualCore.getConfig().isEnableIORedirect()) {
             if (VirtualCore.getConfig().isDisableTinker(packageName)) {
-                NativeEngine.forbid(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyViHiAgLwNfVg==")) + packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My0qCWojQSthMB5F")), false);
-                NativeEngine.forbid(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyViHiAgLwNfVg==")) + packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My0qCWojQSthNR4pKAguLGkgRCU=")), false);
-                NativeEngine.forbid(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyViHiAgLwNfVg==")) + packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My0qCWojQSthNR4gKAdXKn8FSFo=")), false);
-                NativeEngine.forbid(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVmASg/IzlfVg==")) + realUserId + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My0qCWojQSthMB5F")), false);
-                NativeEngine.forbid(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVmASg/IzlfVg==")) + realUserId + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My0qCWojQSthNR4pKAguLGkgRCU=")), false);
-                NativeEngine.forbid(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4qP2wFJyVmASg/IzlfVg==")) + realUserId + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My0qCWojQSthNR4gKAdXKn8FSFo=")), false);
+                NativeEngine.forbid("/data/data/" + packageName + "/tinker/", false);
+                NativeEngine.forbid("/data/data/" + packageName + "/tinker_server/", false);
+                NativeEngine.forbid("/data/data/" + packageName + "/tinker_temp/", false);
+                NativeEngine.forbid("/data/user/" + realUserId + "/" + packageName + "/tinker/", false);
+                NativeEngine.forbid("/data/user/" + realUserId + "/" + packageName + "/tinker_server/", false);
+                NativeEngine.forbid("/data/user/" + realUserId + "/" + packageName + "/tinker_temp/", false);
             }
             NativeEngine.enableIORedirect(info);
         }
     }
 
     private void forbidHost() {
-        ActivityManager am = (ActivityManager)VirtualCore.get().getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")));
+        ActivityManager am = (ActivityManager)VirtualCore.get().getContext().getSystemService("activity");
         for (ActivityManager.RunningAppProcessInfo info : am.getRunningAppProcesses()) {
             if (info.pid == Process.myPid() || info.uid != VirtualCore.get().myUid() || VActivityManager.get().isAppPid(info.pid) || !info.processName.startsWith(StubManifest.PACKAGE_NAME) && (StubManifest.EXT_PACKAGE_NAME == null || !info.processName.startsWith(StubManifest.EXT_PACKAGE_NAME))) continue;
-            NativeEngine.forbid(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My06KmozLyU=")) + info.pid + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4IP28KLFo=")), false);
-            NativeEngine.forbid(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My06KmozLyU=")) + info.pid + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My42DWgFHi9gNDBF")), false);
+            NativeEngine.forbid("/proc/" + info.pid + "/maps", false);
+            NativeEngine.forbid("/proc/" + info.pid + "/cmdline", false);
         }
     }
 
     @SuppressLint(value={"SdCardPath"})
     private HashSet<String> getMountPoints() {
         HashSet<String> mountPoints = new HashSet<String>(3);
-        mountPoints.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My4ICGwJGgNiHig7Iz01DQ==")));
-        mountPoints.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02PGszJARiVx5F")));
-        mountPoints.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My02LGowFjdiJDM1KAdXLW8zQQZrAS8c")) + VUserHandle.realUserId() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")));
-        mountPoints.add(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0qD28jJC1iCh4/KggMCG4gBitrVgZF")) + VUserHandle.realUserId() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")));
+        mountPoints.add("/mnt/sdcard/");
+        mountPoints.add("/sdcard/");
+        mountPoints.add("/storage/emulated/" + VUserHandle.realUserId() + "/");
+        mountPoints.add("storage/emulated/" + VUserHandle.realUserId() + "/");
         String[] points = StorageManagerCompat.getAllPoints(VirtualCore.get().getContext());
         if (points != null) {
             for (String point : points) {
-                if (point.endsWith(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")))) {
+                if (point.endsWith("/")) {
                     mountPoints.add(point);
                     continue;
                 }
-                mountPoints.add(point + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")));
+                mountPoints.add(point + "/");
             }
         }
         return mountPoints;
@@ -821,7 +821,7 @@ public final class VClient extends IVClient.Stub {
             Context hostContext = VirtualCore.get().getContext();
             Context packageContext = hostContext.createPackageContext(packageName, 3);
             PackageManager packageManager = packageContext.getPackageManager();
-            VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhZfD28wMBNgJFkgKAgALn40IFo=")) + hostContext + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl85OGszGiZmHjAaLBccD2ozOzI=")) + packageContext + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl85OHsKIDd9JA47KC0MQG4jPCt+N1RF")) + packageName, new Object[0]);
+            VLog.d("HV-", " HostContext :" + hostContext + "   contextimpl:" + packageContext + "    packageName:" + packageName, new Object[0]);
             return packageContext;
         } catch (PackageManager.NameNotFoundException var5) {
             var5.printStackTrace();
@@ -854,7 +854,7 @@ public final class VClient extends IVClient.Stub {
     public IBinder acquireProviderClient(ProviderInfo info) {
         this.bindApplication(info.packageName, info.processName);
         IInterface provider = null;
-        String[] authorities = info.authority.split(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OC5SVg==")));
+        String[] authorities = info.authority.split(";");
         String authority = authorities.length == 0 ? info.authority : authorities[0];
         ContentResolver resolver = VirtualCore.get().getContext().getContentResolver();
         ContentProviderClient client = null;
@@ -868,7 +868,7 @@ public final class VClient extends IVClient.Stub {
             provider = mirror.android.content.ContentProviderClient.mContentProvider.get(client);
             client.release();
         }
-        VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2L2wVAgRiDyQqKi4+MWkzGgRgJwIaLhgcCksVSFo=")) + info + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PhcMM28wNCRmVgU8")) + provider + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Phc6KmozLCthJysiPxhSVg==")) + VirtualRuntime.getProcessName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl85OHsFJAVmHho1Iz0cLmgkIFo=")) + authority);
+        VLog.e(TAG, "acquireProviderClient " + info + " result: " + provider + " process: " + VirtualRuntime.getProcessName() + "    authority:" + authority);
         return provider != null ? provider.asBinder() : null;
     }
 
@@ -988,7 +988,7 @@ public final class VClient extends IVClient.Stub {
 
         } catch (Exception var9) {
             data.stacktrace.printStackTrace();
-            throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1PxgqLm4gRQZ4HgogLT4uI2YwLDV5EVRF")) + data.component + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ODo6Vg==")) + var9.toString(), var9);
+            throw new RuntimeException("Unable to start receiver " + data.component + ": " + var9.toString(), var9);
         }
     }
 
@@ -1005,7 +1005,7 @@ public final class VClient extends IVClient.Stub {
             service = (android.app.Service)classLoader.loadClass(info.name).newInstance();
         }
         catch (Exception e) {
-            throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1PxccDmoKBjdlNCwaLRcqJ0sVNCBlNzgiKAgfJA==")) + info.name + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ODo6Vg==")) + e.toString(), e);
+            throw new RuntimeException("Unable to instantiate service " + info.name + ": " + e.toString(), e);
         }
         try {
             Context context = VirtualCore.get().getContext().createPackageContext(info.packageName, Context.CONTEXT_INCLUDE_CODE);
@@ -1016,7 +1016,7 @@ public final class VClient extends IVClient.Stub {
             return service;
         }
         catch (Exception e) {
-            throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1PxcqKGkjQQZrDTw6LhcMMmMKNCB5EVRF")) + info.name + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ODo6Vg==")) + e.toString(), e);
+            throw new RuntimeException("Unable to create service " + info.name + ": " + e.toString(), e);
         }
     }
 
@@ -1043,25 +1043,25 @@ public final class VClient extends IVClient.Stub {
     private void redirectSdcardAndroidData(InstalledAppInfo info) {
         SettingConfig config = VirtualCore.getConfig();
         HashSet<String> mountPoints = this.getMountPoints();
-        String[] dirs = new String[]{StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Myw+CGgKFiVjDg01KBciLm4nNFo=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Myw+CGgKFiVjDg01KgcMPmwjQCU=")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Myw+CGgKFiVjDg01Ki0uOH8FSFo="))};
-        File replace = VirtualCore.get().getContext().getExternalFilesDir(config.getVirtualSdcardAndroidDataName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + VUserHandle.myUserId() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")));
-        if (info.packageName.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojBitnHh42Oj0AMWU0RVo="))) && StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4+DW8wNCZiJ1RF")).equals(Build.BRAND) && Build.VERSION.SDK_INT == 29) {
-            VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Bz8nL0YWWgBLHig1KgMYDmkgFiVlMxoZIxcpCEtXLQUcUz1MXgAdEh8VJARoDgo6JQcLL3UJPzZHAg8TBhojREZaA1dYEzkBAhk3IEcXPQJAECUbBVcJWU5XAwQUFh9LXjYdDhQ7D1YGUi05EzUNEQISLRYaPwtNWDYVOhoNPTUVPAswXx87QBknTVo=")) + info.packageName);
+        String[] dirs = new String[]{"/Android/data/", "/Android/media/", "/Android/obb/"};
+        File replace = VirtualCore.get().getContext().getExternalFilesDir(config.getVirtualSdcardAndroidDataName() + "/" + VUserHandle.myUserId() + "/");
+        if (info.packageName.equals("com.nexon.hit2") && "samsung".equals(Build.BRAND) && Build.VERSION.SDK_INT == 29) {
+            VLog.e("HV-", "由于 com.nexon.hit2 游戏在android 10 上重定向出现问题,这里将重定向的问题修复掉 " + info.packageName);
             return;
         }
-        if (info.packageName.equals(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ADXojBitnHh42Oj0MKA=="))) && StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4+DW8wNCZiJ1RF")).equals(Build.BRAND) && Build.VERSION.SDK_INT == 29) {
-            VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JBUhDQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Bz8nL0YWWgBLHig1KgMYDmkgFiVlMxogKSo4IhhaACEYSVsuUgwMO2UzMCZqNx4zDV8lP3lXFy4ZUgsIRAArCBorMUxXFgsTWjU3QB87F1IePxMpXAQCLBktBCwbNl8uWQoCIxQtHD8fNkI0EUQkLhQEFD0CFS4wWwldPFQBACsGSV8+XwkbOg==")) + info.packageName);
+        if (info.packageName.equals("com.nexon.er") && "samsung".equals(Build.BRAND) && Build.VERSION.SDK_INT == 29) {
+            VLog.e("HV-", "由于 com.nexon.er 游戏在android 10 上重定向出现问题,这里将重定向的问题修复掉 " + info.packageName);
             return;
         }
         if (!replace.exists() && !replace.mkdirs()) {
-            VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4+CWoFNCxLEQo1PxcqKGkjQQZrDTwvIxcLPksVSFo=")) + replace);
+            VLog.e(TAG, "failed to create dir: " + replace);
         }
         for (String mountPoint : mountPoints) {
             for (String dir : dirs) {
                 File origin = new File(mountPoint + dir);
                 File target = new File(replace.getPath() + dir);
                 if (!target.exists() && !target.mkdirs()) {
-                    VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4+CWoFNCxLEQo1PxcqKGkjQQZrDTwvIxcLPksVSFo=")) + target);
+                    VLog.e(TAG, "failed to create dir: " + target);
                 }
                 NativeEngine.redirectDirectory(origin.getPath(), replace.getPath() + dir);
             }
@@ -1080,21 +1080,21 @@ public final class VClient extends IVClient.Stub {
             int targetSdkVersion = applicationInfo.targetSdkVersion;
             if (targetSdkVersion < 30) {
                 HashSet<String> mountPoints = this.getMountPoints();
-                File replace = VirtualCore.get().getContext().getExternalFilesDir(config.getVirtualSdcardAndroidDataName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")) + VUserHandle.myUserId() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")));
+                File replace = VirtualCore.get().getContext().getExternalFilesDir(config.getVirtualSdcardAndroidDataName() + "/" + VUserHandle.myUserId() + "/");
                 if (VirtualCore.get().isSharedUserId()) {
                     replace = new File(replace.toString().replace(StubManifest.EXT_PACKAGE_NAME, StubManifest.PACKAGE_NAME));
                 }
                 if (!replace.exists() && !replace.mkdirs()) {
-                    VLog.e(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4+CWoFNCxLEQo1PxcqKGkjQQZrDTwvIxcLPksVSFo=")) + replace);
+                    VLog.e(TAG, "failed to create dir: " + replace);
                 }
                 for (String mountPoint : mountPoints) {
-                    File origin = new File(mountPoint + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("My5SVg==")));
+                    File origin = new File(mountPoint + "/");
                     NativeEngine.redirectDirectory(origin.getPath(), replace.getPath());
                 }
                 for (String mountPoint : mountPoints) {
                     try {
                         String[] standardDirectories;
-                        for (String directory : standardDirectories = (String[])Reflect.on(Environment.class).field(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IisqEWIhMBFpMgpAIBUcAmEhAlF9IgpPJhU2Vg=="))).get()) {
+                        for (String directory : standardDirectories = (String[])Reflect.on(Environment.class).field("STANDARD_DIRECTORIES").get()) {
                             String standardPath = NativeEngine.pathCat(mountPoint, directory);
                             NativeEngine.whitelist(standardPath);
                         }
@@ -1164,7 +1164,7 @@ public final class VClient extends IVClient.Stub {
     private static class RootThreadGroup
     extends ThreadGroup {
         RootThreadGroup(ThreadGroup parent) {
-            super(parent, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("ITw+Vg==")));
+            super(parent, "VA");
         }
 
         @Override
@@ -1173,7 +1173,7 @@ public final class VClient extends IVClient.Stub {
             if (handler != null) {
                 handler.handleUncaughtException(t, e);
             } else {
-                VLog.e(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQgcOWsaNC1jEQpF")), e);
+                VLog.e("uncaught", e);
             }
         }
     }

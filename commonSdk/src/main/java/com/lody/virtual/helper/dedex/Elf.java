@@ -16,13 +16,13 @@ public class Elf implements Closeable {
     static final int EI_DATA = 5;
     static final int EI_NIDENT = 16;
     final char[] e_ident;
-    public static final String SHN_DYNSYM = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz4qJ2ogLD9gAVRF"));
-    public static final String SHN_DYNSTR = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz4qJ2ogLAZhN1RF"));
-    public static final String SHN_HASH = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz5fP28zRVo="));
-    public static final String SHN_RODATA = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz0MD2gFJAZ9AVRF"));
-    public static final String SHN_TEXT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz0qM2kKMFo="));
-    public static final String SHN_DYNAMIC = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz4qJ2ojJCNjDihF"));
-    public static final String SHN_SHSTRTAB = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Mz02Cm8wMARmHiA6"));
+    public static final String SHN_DYNSYM = ".dynsym";
+    public static final String SHN_DYNSTR = ".dynstr";
+    public static final String SHN_HASH = ".hash";
+    public static final String SHN_RODATA = ".rodata";
+    public static final String SHN_TEXT = ".text";
+    public static final String SHN_DYNAMIC = ".dynamic";
+    public static final String SHN_SHSTRTAB = ".shstrtab";
     static final int SHN_UNDEF = 0;
     static final int SHT_PROGBITS = 1;
     static final int SHT_SYMTAB = 2;
@@ -99,7 +99,7 @@ public class Elf implements Closeable {
         DataReader r = this.mReader = new DataReader(file);
         r.readBytes(this.e_ident);
         if (!this.checkMagic()) {
-            throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQ/Khc9Om8jQS1qATMxPQhSVg==")) + file);
+            throw new IOException("Invalid elf magic: " + file);
         } else {
             r.setLittleEndian(this.isLittleEndian());
             this.is64bit = this.getFileClass() == 2;
@@ -178,10 +178,10 @@ public class Elf implements Closeable {
                     }
 
                 } else {
-                    throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IS0MD2ojPyhhJwoqKQcYM34wAitoJCwaLD4bJGILAjZvESw9LBgqIG5TElo=")) + h.e_shstrndx);
+                    throw new IOException("Wrong string section e_shstrndx=" + h.e_shstrndx);
                 }
             } else {
-                throw new IOException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLmsVHi9iVyQ/Ji4qMmoKBgRlNywzOBhSVg==")) + h.e_shstrndx);
+                throw new IOException("Invalid e_shstrndx=" + h.e_shstrndx);
             }
         }
     }
@@ -296,7 +296,7 @@ public class Elf implements Closeable {
 
     public final String getString(int index) {
         if (index == 0) {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IixfU2Y2NABqHDAU"));
+            return "SHN_UNDEF";
         } else {
             int end;
             for(end = index; this.mStringTable[end] != 0; ++end) {
@@ -308,7 +308,7 @@ public class Elf implements Closeable {
 
     public final String getDynString(int index) {
         if (index == 0) {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IixfU2Y2NABqHDAU"));
+            return "SHN_UNDEF";
         } else {
             int end;
             for(end = index; this.mDynStringTable[end] != 0; ++end) {
@@ -364,27 +364,27 @@ public class Elf implements Closeable {
         abstract long getFlags();
 
         String flagsString() {
-            return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PBhSVg==")) + ((this.getFlags() & 4L) != 0L ? StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ij5SVg==")) : StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jy5SVg=="))) + ((this.getFlags() & 2L) != 0L ? StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IS5SVg==")) : StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jy5SVg=="))) + ((this.getFlags() & 1L) != 0L ? StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IBhSVg==")) : StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jy5SVg=="))) + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PAhSVg=="));
+            return "(" + ((this.getFlags() & 4L) != 0L ? "R" : "_") + ((this.getFlags() & 2L) != 0L ? "W" : "_") + ((this.getFlags() & 1L) != 0L ? "X" : "_") + ")";
         }
 
         String programType() {
             switch (this.p_type) {
                 case 0:
-                    return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OzsuQGIFSFo="));
+                    return "NULL";
                 case 1:
-                    return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OxgAP2gFJCpgHjM8Oy0MM28jGiZvEVRF"));
+                    return "Loadable Segment";
                 case 2:
-                    return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRcYCGsVEi99ICQPKAc6D2kjMAY="));
+                    return "Dynamic Segment";
                 case 3:
-                    return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JAgcLGgaFgJhNDAgKAgtOmIzQQZqEVRF"));
+                    return "Interpreter Path";
                 case 4:
-                    return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Oz4ALGgVSFo="));
+                    return "Note";
                 case 5:
-                    return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhUqH2cxRQ5rDCxF"));
+                    return "PT_SHLIB";
                 case 6:
-                    return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IhcMD2gwFjdgCiQKKAciPmkgRVo="));
+                    return "Program Header";
                 default:
-                    return StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcMWojGj1gMCQPKAcqLmwjNCY="));
+                    return "Unknown Section";
             }
         }
     }

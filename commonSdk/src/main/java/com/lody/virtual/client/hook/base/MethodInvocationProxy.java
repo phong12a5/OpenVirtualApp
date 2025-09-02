@@ -65,7 +65,7 @@ implements IInjector {
             ((MethodInvocationStub)this.mInvocationStub).addMethodProxy(methodProxy);
         }
         catch (Throwable e) {
-            throw new RuntimeException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1PxccDmoKBjdlNzAgPQZfKWAgHSN7MCBF")) + hookType + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Pl5WOA==")) + e.getMessage());
+            throw new RuntimeException("Unable to instance Hook : " + hookType + " : " + e.getMessage());
         }
     }
 

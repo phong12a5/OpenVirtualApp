@@ -19,7 +19,7 @@ import mirror.RefMethod;
 import mirror.RefObject;
 
 public class IActivityManager {
-    public static Class<?> TYPE = RefClass.load(IActivityManager.class, StringFog.decrypt("EgsWBAoHO10CHwJeIC4NBwwEHxEXEhINDhUVGw=="));
+    public static Class<?> TYPE = RefClass.load(IActivityManager.class, "android.app.IActivityManager");
     @MethodParams(value={IBinder.class, boolean.class})
     public static RefMethod<Integer> getTaskForActivity;
     @MethodParams(value={IBinder.class, int.class})
@@ -30,7 +30,7 @@ public class IActivityManager {
     public static RefMethod<Integer> startActivities;
 
     public static class ContentProviderHolderMIUI {
-        public static Class<?> TYPE = RefClass.load(ContentProviderHolder.class, StringFog.decrypt("EgsWBAoHO10CHwJeIC4NBwwEHxEXEhINDhUVG0stHAsGEwsaDwEMGRsUDB0mHAkWExc="));
+        public static Class<?> TYPE = RefClass.load(ContentProviderHolder.class, "android.app.IActivityManager$ContentProviderHolder");
         public static RefObject<ProviderInfo> info;
         public static RefObject<IInterface> provider;
         public static RefBoolean noReleaseNeeded;
@@ -38,7 +38,7 @@ public class IActivityManager {
     }
 
     public static class ContentProviderHolder {
-        public static Class<?> TYPE = RefClass.load(ContentProviderHolder.class, StringFog.decrypt("EgsWBAoHO10CHwJeIC4NBwwEHxEXEhINDhUVG0stHAsGEwsaDwEMGRsUDB0mHAkWExc="));
+        public static Class<?> TYPE = RefClass.load(ContentProviderHolder.class, "android.app.IActivityManager$ContentProviderHolder");
         public static RefObject<ProviderInfo> info;
         public static RefObject<IInterface> provider;
         public static RefBoolean noReleaseNeeded;

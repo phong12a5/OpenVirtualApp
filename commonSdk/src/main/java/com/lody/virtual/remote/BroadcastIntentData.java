@@ -23,15 +23,15 @@ public class BroadcastIntentData {
     }
 
     public BroadcastIntentData(Intent proxyIntent) {
-        this.userId = proxyIntent.getIntExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), -1);
-        this.intent = (Intent)proxyIntent.getParcelableExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlkgKAcYLmMFSFo=")));
-        this.targetPackage = proxyIntent.getStringExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mHiAqKC0MLmMKTSFrIgZF")));
+        this.userId = proxyIntent.getIntExtra("_VA_|_user_id_", -1);
+        this.intent = (Intent)proxyIntent.getParcelableExtra("_VA_|_intent_");
+        this.targetPackage = proxyIntent.getStringExtra("_VA_|_target_pkg_");
     }
 
     public void saveIntent(Intent proxyIntent) {
-        proxyIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mASg/IzxfMWk2NFo=")), this.userId);
-        proxyIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9jDlkgKAcYLmMFSFo=")), (Parcelable)this.intent);
-        proxyIntent.putExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh9mHiAqKC0MLmMKTSFrIgZF")), this.targetPackage);
+        proxyIntent.putExtra("_VA_|_user_id_", this.userId);
+        proxyIntent.putExtra("_VA_|_intent_", (Parcelable)this.intent);
+        proxyIntent.putExtra("_VA_|_target_pkg_", this.targetPackage);
     }
 }
 

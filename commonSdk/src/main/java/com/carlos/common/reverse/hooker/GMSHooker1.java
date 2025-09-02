@@ -19,28 +19,28 @@ public class GMSHooker1 {
     @HookMethod(value="isGooglePlayServicesAvailable")
     @MethodParams(value={Context.class})
     public static boolean isGooglePlayServicesAvailable(Context v1) throws Throwable {
-        Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4+LGgaLAY=")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAc2WmozGi1gHjACKhciIWIFGgRvNx4qLhc2HWYwPCxsHiQrKT4fDQ==")));
+        Log.d((String)"vatest", (String)"isGooglePlayServicesAvailable1");
         return true;
     }
 
     @HookMethod(value="isGooglePlayServicesAvailable")
     @MethodParams(value={Context.class, int.class})
     public static boolean isGooglePlayServicesAvailable2(Context v1, int v2) throws Throwable {
-        Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4+LGgaLAY=")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAc2WmozGi1gHjACKhciIWIFGgRvNx4qLhc2HWYwPCxsHiQrKT4fCA==")));
+        Log.d((String)"vatest", (String)"isGooglePlayServicesAvailable2");
         return true;
     }
 
     @HookMethod(value="isPlayServicesPossiblyUpdating")
     @MethodParams(value={Context.class, int.class})
     public static boolean isGooglePlayServicesUid(Context v1, int v2) throws Throwable {
-        Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4+LGgaLAY=")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAc2AmoFJD9pJDAqLD0cP2kgAkxlJDA6IxgMKGcLLDNuHiQ9Ki4qIQ==")));
+        Log.d((String)"vatest", (String)"isPlayServicesPossiblyUpdating");
         return true;
     }
 
     @HookMethod(value="isPlayStorePossiblyUpdating")
     @MethodParams(value={Context.class, int.class})
     public static boolean isPlayStorePossiblyUpdating(Context v1, int v2) throws Throwable {
-        Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KT4+LGgaLAY=")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAc2AmoFJD9pJwo1Iz0MDG8KAgNqAQodLxUuDmIaPD9vDh4g")));
+        Log.d((String)"vatest", (String)"isPlayStorePossiblyUpdating");
         return true;
     }
 }

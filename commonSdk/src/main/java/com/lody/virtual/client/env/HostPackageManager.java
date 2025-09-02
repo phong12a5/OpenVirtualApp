@@ -64,7 +64,7 @@ public abstract class HostPackageManager {
                     sIsAndroid13Beta = Build.VERSION.SDK_INT >= 33;
                     if (!sIsAndroid13Beta.booleanValue()) {
                         try {
-                            IPackageManager.class.getMethod(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcFJCljJCA9KAUcDmkVNFo=")), String.class, Long.TYPE, Integer.TYPE);
+                            IPackageManager.class.getMethod("getPackageInfo", String.class, Long.TYPE, Integer.TYPE);
                             sIsAndroid13Beta = true;
                         }
                         catch (NoSuchMethodException e) {

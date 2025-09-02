@@ -48,10 +48,10 @@ extends MethodInvocationProxy<BinderInvocationStub> {
     }
 
     private static IInterface getInterface() {
-        IBinder base = ServiceManager.getService.call(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgAOWsaMC9gJFlF")));
+        IBinder base = ServiceManager.getService.call("location");
         if (base instanceof Binder) {
             try {
-                return (IInterface)Reflect.on(base).get(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwYYQGozLDdmHgY1KjtXOW8VQS1rDgpF")));
+                return (IInterface)Reflect.on(base).get("mILocationManager");
             }
             catch (ReflectException e) {
                 e.printStackTrace();
@@ -62,13 +62,13 @@ extends MethodInvocationProxy<BinderInvocationStub> {
 
     @Override
     public void inject() {
-        android.location.LocationManager locationManager = (android.location.LocationManager)this.getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgAOWsaMC9gJFlF")));
+        android.location.LocationManager locationManager = (android.location.LocationManager)this.getContext().getSystemService("location");
         IInterface base = LocationManager.mService.get(locationManager);
         if (base instanceof Binder) {
-            Reflect.on(base).set(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IwYYQGozLDdmHgY1KjtXOW8VQS1rDgpF")), ((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());
+            Reflect.on(base).set("mILocationManager", ((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());
         }
         LocationManager.mService.set(locationManager, (IInterface)((BinderInvocationStub)this.getInvocationStub()).getProxyInterface());
-        ((BinderInvocationStub)this.getInvocationStub()).replaceService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IxgAOWsaMC9gJFlF")));
+        ((BinderInvocationStub)this.getInvocationStub()).replaceService("location");
     }
 
     @Override
@@ -80,28 +80,28 @@ extends MethodInvocationProxy<BinderInvocationStub> {
     protected void onBindMethods() {
         super.onBindMethods();
         if (Build.VERSION.SDK_INT >= 23) {
-            this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGQFNANmHyQqKi4+MWkzGgQ="))));
-            this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtuHjApLBYmKG8KHi9rESg5"))));
-            this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQFNANmHyQqKi4+MWkzGgR9EQYqLRcqI2AgRVo="))));
-            this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EM2saFlFiASggOxguDWUVLCxrDgpTLD42O2YaGipsN1RF"))));
-            this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQFNANmHyQqKi4+MWkzGgRjARosLS4EJ2IVSFo="))));
-            this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EM2saFlFiASggOxguDWUVLCxrDgpLLC4+JmAaLC8="))));
-            this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGQFNANmHyQqKi4+MWkzGgRkJCwsKgcuDw=="))));
-            this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4EM2saFlFiASggOxguDWUVLCxrDgoQKgg+CmYFNFo="))));
+            this.addMethodProxy(new ReplaceLastPkgMethodProxy("addTestProvider"));
+            this.addMethodProxy(new ReplaceLastPkgMethodProxy("removeTestProvider"));
+            this.addMethodProxy(new ReplaceLastPkgMethodProxy("setTestProviderLocation"));
+            this.addMethodProxy(new ReplaceLastPkgMethodProxy("clearTestProviderLocation"));
+            this.addMethodProxy(new ReplaceLastPkgMethodProxy("setTestProviderEnabled"));
+            this.addMethodProxy(new ReplaceLastPkgMethodProxy("clearTestProviderEnabled"));
+            this.addMethodProxy(new ReplaceLastPkgMethodProxy("setTestProviderStatus"));
+            this.addMethodProxy(new ReplaceLastPkgMethodProxy("clearTestProviderStatus"));
         }
         if (Build.VERSION.SDK_INT >= 21) {
-            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGAwIANoDjA7Iy4MKGkjPCtlNCxTIxc2CmIKRSBlN1RF")), true));
-            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGAwIANoNCAuKQc6OWUzLCVlNQ4gKT02O2IgLBFvASw9Ly4qJ2wzSFo=")), true));
-            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtqJyQpIgcMOWoKGgRrAQ4gLC0qAmMFND9uDh4uLBhSVg==")), 0));
-            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtqJyQpIj0iLGwjEjdvER4cLCwIJ2EjNCRuJApAKi0YCmsFBj9vJ1RF")), 0));
+            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy("addGpsMeasurementListener", true));
+            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy("addGpsNavigationMessageListener", true));
+            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy("removeGpsMeasurementListener", 0));
+            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy("removeGpsNavigationMessageListener", 0));
         }
         if (Build.VERSION.SDK_INT >= 17) {
-            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uL2wVNANmHDg/Ki0+PW8VAis=")), 0));
-            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtqJDA1KD0MDm4FGlo=")), 0));
+            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy("requestGeofence", 0));
+            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy("removeGeofence", 0));
         }
         if (Build.VERSION.SDK_INT <= 16) {
             this.addMethodProxy(new MethodProxies.GetLastKnownLocation());
-            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGcKFiVnHgY3KQg2IWYjOCtsNCxF")), 0));
+            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy("addProximityAlert", 0));
         }
         if (Build.VERSION.SDK_INT <= 16) {
             this.addMethodProxy(new MethodProxies.RequestLocationUpdatesPI());
@@ -117,35 +117,35 @@ extends MethodInvocationProxy<BinderInvocationStub> {
             this.addMethodProxy(new MethodProxies.GetLastLocation());
             this.addMethodProxy(new MethodProxies.AddGpsStatusListener());
             this.addMethodProxy(new MethodProxies.RemoveGpsStatusListener());
-            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGIjEit9DFEzIy42PW8VGgQ=")), 0));
-            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtoNF0/LwVbMWoKBitlNyg5")), 0));
+            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy("addNmeaListener", 0));
+            this.addMethodProxy(new FakeReplaceLastPkgMethodProxy("removeNmeaListener", 0));
         }
         if (Build.VERSION.SDK_INT >= 24) {
             if (BuildCompat.isS()) {
-                this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwTKj4qL2IKBjdvHig6JT4+KGAaMCRpJAJF"))));
+                this.addMethodProxy(new ReplaceFirstPkgMethodProxy("registerGnssStatusCallback"));
             } else {
                 this.addMethodProxy(new MethodProxies.RegisterGnssStatusCallback());
             }
             this.addMethodProxy(new MethodProxies.UnregisterGnssStatusCallback());
         }
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2Am8jGj5jDgo/IzsMDm4jRSRrASxILD0MXGEgLDU="))));
-        this.addMethodProxy(new ReplaceLastUserIdMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2QGozLDdmHgY1KjsMDm4jRSRrASxILD0MXGEgLDU="))));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("isProviderEnabledForUser"));
+        this.addMethodProxy(new ReplaceLastUserIdMethodProxy("isLocationEnabledForUser"));
         if (BuildCompat.isQ()) {
-            this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGIFGil9AQozKi0YEW8FMAZsNwYdLAguCGoFBj9lNCQfKC4YLWgFPD9gERooOz1XLG4VSFo="))){
+            this.addMethodProxy(new StaticMethodProxy("setLocationControllerExtraPackageEnabled"){
 
                 @Override
                 public Object call(Object who, Method method, Object ... args) throws Throwable {
                     return null;
                 }
             });
-            this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAaRQZhNCAOKi0qOWUzLCVlNTAcLC0qCGAgTTduASgfKC4YLWgFPD9gERooOz1XLG4VSFo="))){
+            this.addMethodProxy(new StaticMethodProxy("setExtraLocationControllerPackageEnabled"){
 
                 @Override
                 public Object call(Object who, Method method, Object ... args) throws Throwable {
                     return null;
                 }
             });
-            this.addMethodProxy(new StaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGAaRQZhNCAOKi0qOWUzLCVlNTAcLC0qCGAgTTduASgfKC4YLWgFPD8="))){
+            this.addMethodProxy(new StaticMethodProxy("setExtraLocationControllerPackage"){
 
                 @Override
                 public Object call(Object who, Method method, Object ... args) throws Throwable {
@@ -154,14 +154,14 @@ extends MethodInvocationProxy<BinderInvocationStub> {
             });
         }
         if (BuildCompat.isR()) {
-            this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uLGIFGil9AQozKi0YWm8VQSplESgvJi4ACG4FNCBlN1RF")), null));
+            this.addMethodProxy(new ResultStaticMethodProxy("setLocationEnabledForUser", null));
         }
         if (BuildCompat.isS()) {
-            this.addMethodProxy(new ReplaceSequencePkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwOKi0qOWUzLCVlMjwgLC4qI2AwJBZsNzAuKRccVg==")), 2));
-            this.addMethodProxy(new ReplaceSequencePkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwOKi0qOWUzLCVlMjwgLC4qI2AwJBZsNzAuKRccVg==")), 2));
-            this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwTKj4qL2cVPCtoDzAsLAgEJn0KNC4="))));
-            this.addMethodProxy(new GetFromLocation(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAgFiVgDFE1Ly0iLmwjNCZ9NzgeLhhSVg=="))));
-            this.addMethodProxy(new GetFromLocation(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGAgFiVgDFE1Ly0iLmwjNCY="))));
+            this.addMethodProxy(new ReplaceSequencePkgMethodProxy("registerLocationPendingIntent", 2));
+            this.addMethodProxy(new ReplaceSequencePkgMethodProxy("registerLocationPendingIntent", 2));
+            this.addMethodProxy(new ReplaceCallingPkgMethodProxy("registerGnssNmeaCallback"));
+            this.addMethodProxy(new GetFromLocation("getFromLocationName"));
+            this.addMethodProxy(new GetFromLocation("getFromLocation"));
         }
     }
 

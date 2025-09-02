@@ -147,18 +147,18 @@ extends AppCompatActivity {
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         assert (bundle != null);
-        this.mMaxCount = bundle.getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+IGYwLCtgHjA5LBcMPmMFAiVvARo/")), 9);
-        this.column = bundle.getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li4ADmwVEiY=")), 3);
-        this.isSingle = bundle.getBoolean(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4YCGgzHis=")), false);
-        this.cropMode = bundle.getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Li0MD28IGiNgJAo/")), 1);
-        this.showCamera = bundle.getBoolean(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki5fD2w2Gil9Dl0/Iz0iVg==")), true);
-        this.isCrop = bundle.getBoolean(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAc2H2swFiVhEVRF")), false);
-        this.mSelectedImages = bundle.getStringArrayList(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4uDmgVLAZiDgpAKQdXOWkFGgM=")));
+        this.mMaxCount = bundle.getInt("max_selected_count", 9);
+        this.column = bundle.getInt("column", 3);
+        this.isSingle = bundle.getBoolean("single", false);
+        this.cropMode = bundle.getInt("crop_mode", 1);
+        this.showCamera = bundle.getBoolean("show_camera", true);
+        this.isCrop = bundle.getBoolean("is_crop", false);
+        this.mSelectedImages = bundle.getStringArrayList("selected_images");
         this.captureManager = new ImageCaptureManager((Context)this);
-        this.toolBarColor = bundle.getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KRgAD2oLFjdhMig1KhdfKA==")), ContextCompat.getColor((Context)this, (int)R.color.blue));
-        this.bottomBarColor = bundle.getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Lj4ALGwFGiNlNCAqJy1fCG8KRVo=")), ContextCompat.getColor((Context)this, (int)R.color.blue));
-        this.statusBarColor = bundle.getInt(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki0qP2wKNANlNCAqJy1fCG8KRVo=")), ContextCompat.getColor((Context)this, (int)R.color.blue));
-        boolean materialDesign = bundle.getBoolean(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Iwg+LGgaFi99DlFAKBcML2wjEiY=")), false);
+        this.toolBarColor = bundle.getInt("toolBarColor", ContextCompat.getColor((Context)this, (int)R.color.blue));
+        this.bottomBarColor = bundle.getInt("bottomBarColor", ContextCompat.getColor((Context)this, (int)R.color.blue));
+        this.statusBarColor = bundle.getInt("statusBarColor", ContextCompat.getColor((Context)this, (int)R.color.blue));
+        boolean materialDesign = bundle.getBoolean("material_design", false);
         if (materialDesign) {
             this.setContentView(R.layout.activity_image_select);
         } else {
@@ -254,10 +254,10 @@ extends AppCompatActivity {
 
     private void crop(@NonNull String imagePath, int requestCode) {
         Uri selectUri = Uri.fromFile((File)new File(imagePath));
-        SimpleDateFormat timeFormatter = new SimpleDateFormat(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KAcYJ2kbEg1iHgpAIRUAD28gAgM=")), Locale.CHINA);
+        SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA);
         long time = System.currentTimeMillis();
         String imageName = timeFormatter.format(new Date(time));
-        UCrop uCrop = UCrop.of(this.getIntent(), selectUri, Uri.fromFile((File)new File(this.getCacheDir(), imageName + com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Mz5XKGgzSFo=")))));
+        UCrop uCrop = UCrop.of(this.getIntent(), selectUri, Uri.fromFile((File)new File(this.getCacheDir(), imageName + ".jpg")));
         UCrop.Options options = new UCrop.Options();
         if (this.cropMode == 2) {
             options.setCircleDimmedLayer(true);
@@ -324,7 +324,7 @@ extends AppCompatActivity {
         try {
             Intent intent = this.captureManager.dispatchTakePictureIntent();
             if (this.isCrop && this.isSingle) {
-                this.filePath = intent.getStringExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("KhhfD2wFGh9hHiAgKRhSVg==")));
+                this.filePath = intent.getStringExtra("photo_path");
                 this.startActivityForResult(intent, 1001);
             } else {
                 this.startActivityForResult(intent, 1002);
@@ -334,7 +334,7 @@ extends AppCompatActivity {
             e.printStackTrace();
         }
         catch (ActivityNotFoundException e) {
-            Log.e((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IhhfD2wFGkxjDigxKAguWWoVQS1lASgbKghSVg==")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Oz4fOGMVLAZjATwzLBgbOmEVNAVlNy8rKggfJGMaPCluHl0uODw2Km8VNARsAVRF")), (Throwable)e);
+            Log.e((String)"PhotoPickerFragment", (String)"No Activity Found to handle Intent", (Throwable)e);
         }
     }
 
@@ -398,14 +398,14 @@ extends AppCompatActivity {
 
     private void hideTime() {
         if (this.isShowTime) {
-            ObjectAnimator.ofFloat((Object)this.tvTime, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggEKGUFJFo=")), (float[])new float[]{1.0f, 0.0f}).setDuration(300L).start();
+            ObjectAnimator.ofFloat((Object)this.tvTime, (String)"alpha", (float[])new float[]{1.0f, 0.0f}).setDuration(300L).start();
             this.isShowTime = false;
         }
     }
 
     private void showTime() {
         if (!this.isShowTime) {
-            ObjectAnimator.ofFloat((Object)this.tvTime, (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggEKGUFJFo=")), (float[])new float[]{0.0f, 1.0f}).setDuration(300L).start();
+            ObjectAnimator.ofFloat((Object)this.tvTime, (String)"alpha", (float[])new float[]{0.0f, 1.0f}).setDuration(300L).start();
             this.isShowTime = true;
         }
     }
@@ -436,7 +436,7 @@ extends AppCompatActivity {
             images.add(image.getPath());
         }
         Intent intent = this.getIntent();
-        intent.putStringArrayListExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Ki4uDmgVLAZsJyw/Iy4MCGUzSFo=")), images);
+        intent.putStringArrayListExtra("select_result", images);
         this.setResult(-1, intent);
         this.finish();
     }
@@ -457,10 +457,10 @@ extends AppCompatActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d((String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JBUhDQ==")), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("JAgIP2gzNF5iDlE/Ly42DWobQSlvER49IxcqM0tTOCpsMiQsIz42MmoKMCtnJygcIAdXM3szSFo=")));
+        Log.d((String)"HV-", (String)"ImageSelectorActivity  onActivityResult:");
         switch (requestCode) {
             case 1000: {
-                if (data != null && data.getBooleanExtra(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LAc2H2szGiZiNAYqKghSVg==")), false)) {
+                if (data != null && data.getBooleanExtra("is_confirm", false)) {
                     if (this.isSingle && this.isCrop) {
                         this.crop(this.mAdapter.getSelectImages().get(0).getPath(), 69);
                         break;
@@ -528,14 +528,14 @@ extends AppCompatActivity {
     }
 
     private void checkPermissionAndLoadImages() {
-        if (!Environment.getExternalStorageState().equals(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IwgAI2ogMCtiEVRF")))) {
+        if (!Environment.getExternalStorageState().equals("mounted")) {
             return;
         }
-        int hasWriteContactsPermission = ContextCompat.checkSelfPermission((Context)this.getApplication(), (String)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsmU2sLFgpgIgoXOzwAU30xJExmMjBOLiwqAmYmFlo=")));
+        int hasWriteContactsPermission = ContextCompat.checkSelfPermission((Context)this.getApplication(), (String)"android.permission.WRITE_EXTERNAL_STORAGE");
         if (hasWriteContactsPermission == 0) {
             this.loadImageForSDCard();
         } else {
-            ActivityCompat.requestPermissions((Activity)this, (String[])new String[]{com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1ksKAguD2wgAgNqAQYbPCsmU2sLFgpgIgoXOzwAU30xJExmMjBOLiwqAmYmFlo="))}, (int)17);
+            ActivityCompat.requestPermissions((Activity)this, (String[])new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, (int)17);
         }
     }
 
@@ -550,13 +550,13 @@ extends AppCompatActivity {
     }
 
     private void showExceptionDialog() {
-        new AlertDialog.Builder((Context)this).setCancelable(false).setTitle((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BwodAkYBPTI="))).setMessage((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BlcdM0YEQjBYEDEOAxpYHEoBGxFAXy1NABtABllbRgRFEzEdASIjWUEXEwZGAEYJHgpYDEUXAwBFEjkRBlcdLUZJRgJbADlXA1YVJEcWOSZGAzEOOCYJHlpXFz0GUzETHDZcHhoOADYUEAQxHBksIBQXPjQbACIzElcGCRVJHC0ZEls+UxkoMRUyXikVTQpF"))).setNegativeButton((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("BxodAEYsJQo=")), new DialogInterface.OnClickListener(){
+        new AlertDialog.Builder((Context)this).setCancelable(false).setTitle((CharSequence)"提示").setMessage((CharSequence)"该相册需要赋予访问存储的权限，请到“设置”>“应用”>“权限”中配置权限。").setNegativeButton((CharSequence)"取消", new DialogInterface.OnClickListener(){
 
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
                 ImageSelectorActivity.this.finish();
             }
-        }).setPositiveButton((CharSequence)com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("ByI7CEZaA1c=")), new DialogInterface.OnClickListener(){
+        }).setPositiveButton((CharSequence)"确定", new DialogInterface.OnClickListener(){
 
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -592,8 +592,8 @@ extends AppCompatActivity {
     }
 
     private void startAppSettings() {
-        Intent intent = new Intent(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("LggcPG8jGi9iV1kpKAg2LmwjMC1sIxoCIQU6AmsINA5iHBpXIRUuGmMIMB19HwJBKiwuBmIbLFJnHw5B")));
-        intent.setData(Uri.parse((String)(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("Khg+OWUzJC1iDQJF")) + this.getPackageName())));
+        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+        intent.setData(Uri.parse((String)("package:" + this.getPackageName())));
         this.startActivity(intent);
     }
 }

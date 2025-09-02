@@ -45,8 +45,8 @@ public class MD5Utils {
         MessageDigest md5 = null;
         StringBuffer hexValue = new StringBuffer();
         try {
-            md5 = MessageDigest.getInstance(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwYpIw==")));
-            byte[] byteArray = inStr.getBytes(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("IQUqW3pTRVo=")));
+            md5 = MessageDigest.getInstance("MD5");
+            byte[] byteArray = inStr.getBytes("UTF-8");
             byte[] md5Bytes = md5.digest(byteArray);
             String content = MD5Utils.binToHex(md5Bytes);
             return content;
@@ -67,7 +67,7 @@ public class MD5Utils {
                 read += 256;
             }
             if (read < 16) {
-                sb.append(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OhhSVg==")));
+                sb.append("0");
             }
             sb.append(Integer.toHexString(read));
         }
@@ -88,14 +88,14 @@ public class MD5Utils {
         if (file != null && file.exists()) {
             FileInputStream fis = null;
             try {
-                MessageDigest messageDigest = MessageDigest.getInstance(com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OwYpIw==")));
+                MessageDigest messageDigest = MessageDigest.getInstance("MD5");
                 fis = new FileInputStream(file);
                 MappedByteBuffer byteBuffer = fis.getChannel().map(FileChannel.MapMode.READ_ONLY, 0L, file.length());
                 messageDigest.update(byteBuffer);
                 BigInteger bigInt = new BigInteger(1, messageDigest.digest());
                 String md5 = bigInt.toString(16);
                 while (md5.length() < 32) {
-                    md5 = com.carlos.libcommon.StringFog.decrypt(StringFog.decrypt("OhhSVg==")) + md5;
+                    md5 = "0" + md5;
                 }
                 String string2 = md5;
                 return string2;

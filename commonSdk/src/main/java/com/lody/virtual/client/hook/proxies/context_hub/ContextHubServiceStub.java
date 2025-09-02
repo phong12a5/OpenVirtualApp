@@ -16,15 +16,15 @@ extends BinderInvocationProxy {
     }
 
     private static String getServiceName() {
-        return BuildCompat.isOreo() ? StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGwFNDBmHhovLz5SVg==")) : StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGwFNDBmHhovLzxfL2kgRT5qATAg"));
+        return BuildCompat.isOreo() ? "contexthub" : "contexthub_service";
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uPWUaLAZiASwfLwdbCG4VQSlqJ1RF")), 0));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMzGiZmHjAaLBUALW4bLCZrNwZF")), null));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMzGiZmHjAaLBUALW4bFjdlNywdLhc2Vg==")), new int[0]));
+        this.addMethodProxy(new ResultStaticMethodProxy("registerCallback", 0));
+        this.addMethodProxy(new ResultStaticMethodProxy("getContextHubInfo", null));
+        this.addMethodProxy(new ResultStaticMethodProxy("getContextHubHandles", new int[0]));
     }
 }
 

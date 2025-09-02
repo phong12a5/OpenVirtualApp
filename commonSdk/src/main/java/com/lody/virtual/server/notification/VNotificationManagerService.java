@@ -37,7 +37,7 @@ extends INotificationManager.Stub {
 
     private void init(Context context) {
         this.mContext = context;
-        this.mNotificationManager = (NotificationManager)context.getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDg==")));
+        this.mNotificationManager = (NotificationManager)context.getSystemService("notification");
     }
 
     public static void systemReady(Context context) {
@@ -59,19 +59,19 @@ extends INotificationManager.Stub {
             return tag;
         }
         if (tag == null) {
-            return packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JhhSVg==")) + userId;
+            return packageName + "@" + userId;
         }
-        return packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD5SVg==")) + tag + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JhhSVg==")) + userId;
+        return packageName + ":" + tag + "@" + userId;
     }
 
     @Override
     public boolean areNotificationsEnabledForPackage(String packageName, int userId) {
-        return !this.mDisables.contains(packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD5SVg==")) + userId);
+        return !this.mDisables.contains(packageName + ":" + userId);
     }
 
     @Override
     public void setNotificationsEnabledForPackage(String packageName, boolean enable, int userId) {
-        String key = packageName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD5SVg==")) + userId;
+        String key = packageName + ":" + userId;
         if (enable) {
             if (this.mDisables.contains(key)) {
                 this.mDisables.remove(key);
@@ -120,7 +120,7 @@ extends INotificationManager.Stub {
             }
         }
         for (NotificationInfo info : infos) {
-            VLog.d(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4+CGszNCRLEVRF")) + info.tag + " " + info.id, new Object[0]);
+            VLog.d(TAG, "cancel " + info.tag + " " + info.id, new Object[0]);
             this.mNotificationManager.cancel(info.tag, info.id);
         }
     }

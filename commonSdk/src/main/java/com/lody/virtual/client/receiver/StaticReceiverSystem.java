@@ -46,7 +46,7 @@ import java.util.Map;
 import mirror.android.content.BroadcastReceiver;
 
 public class StaticReceiverSystem {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0qP2wFAilpNDA5KAccLGkgRV5uDjA/LhgIVg=="));
+    private static final String TAG = "StaticReceiverSystem";
     private static final StaticReceiverSystem mSystem = new StaticReceiverSystem();
     private static final int BROADCAST_TIME_OUT = 8500;
     private Context mContext;
@@ -58,13 +58,13 @@ public class StaticReceiverSystem {
 
     public void attach(String processName, Context context, ApplicationInfo appInfo, int userId) {
         if (this.mApplicationInfo != null) {
-            throw new IllegalStateException(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcqLGsVLCBiDgpF")));
+            throw new IllegalStateException("attached");
         }
         this.mContext = context;
         this.mApplicationInfo = appInfo;
         this.mUserId = userId;
-        HandlerThread broadcastThread = new HandlerThread(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj0MD2sVMCl9ASggJBcAKGkjQSw=")));
-        HandlerThread anrThread = new HandlerThread(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj0MD2sVMCl9ASggJwcYKH0zFgRrATgv")));
+        HandlerThread broadcastThread = new HandlerThread("BroadcastThread");
+        HandlerThread anrThread = new HandlerThread("BroadcastAnrThread");
         broadcastThread.start();
         anrThread.start();
         this.mScheduler = new StaticScheduler(broadcastThread.getLooper());
@@ -73,11 +73,11 @@ public class StaticReceiverSystem {
         for (ReceiverInfo receiverInfo : receiverList) {
             String componentAction = ComponentUtils.getComponentAction(receiverInfo.info);
             IntentFilter componentFilter = new IntentFilter(componentAction);
-            componentFilter.addCategory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysAAGMYGh9kHx4pLBciLmwjAh9sNygqLhgYMmIFMF8=")));
+            componentFilter.addCategory("__VA__|_static_receiver_");
             this.mContext.registerReceiver((android.content.BroadcastReceiver)new StaticReceiver(receiverInfo.info), componentFilter, null, (Handler)this.mScheduler);
             for (IntentFilter filter : receiverInfo.filters) {
                 SpecialComponentList.protectIntentFilter(filter);
-                filter.addCategory(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysAAGMYGh9kHx4pLBciLmwjAh9sNygqLhgYMmIFMF8=")));
+                filter.addCategory("__VA__|_static_receiver_");
                 this.mContext.registerReceiver((android.content.BroadcastReceiver)new StaticReceiver(receiverInfo.info), filter, null, (Handler)this.mScheduler);
             }
         }
@@ -162,7 +162,7 @@ public class StaticReceiverSystem {
             IBinder token = (IBinder)msg.obj;
             BroadcastRecord r = (BroadcastRecord)StaticReceiverSystem.this.mBroadcastRecords.remove(token);
             if (r != null) {
-                VLog.w(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ii0qP2wFAilpNDA5KAccLGkgRV5uDjA/LhgIVg==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj0MD2sVMCl9ASggPxg2MW8jGiVvDi8dPQg2O2AwNCBsVyA9KQRXIGoKLCRrHiw2JV4iIGpTAlo=")), new Object[0]);
+                VLog.w("StaticReceiverSystem", "Broadcast timeout, cancel to dispatch it.", new Object[0]);
                 r.pendingResult.finish();
             }
         }

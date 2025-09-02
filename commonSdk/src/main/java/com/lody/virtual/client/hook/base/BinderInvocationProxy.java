@@ -39,7 +39,7 @@ extends MethodInvocationProxy<BinderInvocationStub> {
     public BinderInvocationProxy(BinderInvocationStub hookDelegate, String serviceName) {
         super(hookDelegate);
         if (hookDelegate.getBaseInterface() == null) {
-            VLog.d(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj4YCGgFNARrDlkuKi0qOWUzLCVlMjw5LD1fMw==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("IQgcP2sjHitLEQo1PxcuLWwjOCx4H1kcLD5bGmIKTSBuJCQ9Lyk5JHsKLwQ=")), serviceName);
+            VLog.d("BinderInvocationProxy", "Unable to build HookDelegate: %s.", serviceName);
         }
         this.mServiceName = serviceName;
     }

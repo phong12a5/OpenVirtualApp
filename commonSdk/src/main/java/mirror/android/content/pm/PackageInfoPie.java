@@ -8,7 +8,7 @@ import mirror.RefClass;
 import mirror.RefObject;
 
 public class PackageInfoPie {
-    public static Class<?> TYPE = RefClass.load(PackageInfoPie.class, StringFog.decrypt("EgsWBAoHO10AABwEDAEaXRUfWDUPPBgCCBc5BwkB"));
+    public static Class<?> TYPE = RefClass.load(PackageInfoPie.class, "android.content.pm.PackageInfo");
     public static RefObject<Object> signingInfo;
 }
 

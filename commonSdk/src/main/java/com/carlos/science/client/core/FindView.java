@@ -43,7 +43,7 @@ public class FindView {
                 while (views == null || views.size() <= 0) {
                     boolean findResult;
                     if (stepImpl.finishStep) {
-                        HVLog.i(StringFog.decrypt("ltjhk+zju8jYivjRSRwaFhU7GxUCf5bU3ZXL5ojV4IPv6Q=="));
+                        HVLog.i("当前任务 stepImpl 已经结束");
                         return null;
                     }
                     views = FindView.getAllChildViews(view, idRes);
@@ -69,7 +69,7 @@ public class FindView {
         int targetViewId = idRes;
 
         try {
-            wmGlobalField = context.getSystemService(StringFog.decrypt("BAwcEgoZ")).getClass().getDeclaredField(StringFog.decrypt("HiIeGQcPMw=="));
+            wmGlobalField = context.getSystemService("window").getClass().getDeclaredField("mGlobal");
         } catch (Exception var14) {
             wmGlobalField = null;
             HVLog.printException(var14);
@@ -80,8 +80,8 @@ public class FindView {
         if (wmGlobalField != null) {
             try {
                 wmGlobalField.setAccessible(true);
-                Object wmGlobal = wmGlobalField.get(context.getSystemService(StringFog.decrypt("BAwcEgoZ")));
-                Field viewsField = wmGlobal.getClass().getDeclaredField(StringFog.decrypt("HjMbExId"));
+                Object wmGlobal = wmGlobalField.get(context.getSystemService("window"));
+                Field viewsField = wmGlobal.getClass().getDeclaredField("mViews");
                 viewsField.setAccessible(true);
                 ArrayList<View> views = (ArrayList)viewsField.get(wmGlobal);
                 Iterator var18 = views.iterator();
@@ -102,10 +102,10 @@ public class FindView {
             }
         } else {
             try {
-                Field wmLocalField = context.getSystemService(StringFog.decrypt("BAwcEgoZ")).getClass().getSuperclass().getDeclaredField(StringFog.decrypt("HjIbGAEBKD4CARMXDB0="));
+                Field wmLocalField = context.getSystemService("window").getClass().getSuperclass().getDeclaredField("mWindowManager");
                 wmLocalField.setAccessible(true);
-                Object wmLocal = wmLocalField.get(context.getSystemService(StringFog.decrypt("BAwcEgoZ")));
-                Field viewsField = wmLocal.getClass().getDeclaredField(StringFog.decrypt("HjMbExId"));
+                Object wmLocal = wmLocalField.get(context.getSystemService("window"));
+                Field viewsField = wmLocal.getClass().getDeclaredField("mViews");
                 viewsField.setAccessible(true);
                 List<View> views = Arrays.asList((View[])viewsField.get(wmLocal));
                 Iterator var9 = views.iterator();
@@ -150,7 +150,7 @@ public class FindView {
     public static View findView(Activity activity, Object idRes) {
         View viewByIdRes = null;
         if (!(idRes instanceof Integer || idRes instanceof String || idRes instanceof Class)) {
-            HVLog.e(StringFog.decrypt("m9rrn+Liu8vuh9TxjOXOluDXk+DYu8j1iMPLjPHllP/2kPDeuf7Nh83rj/LLnNn+kt3jt/Deifj6gdD3muL+k+T0uOnnitbajMvjlfjwkt/o"));
+            HVLog.e("这里不要加入其他类型的数据进来，不能把这里做的太复杂了");
         }
         if (idRes instanceof Integer) {
             viewByIdRes = activity.findViewById(((Integer)idRes).intValue());
@@ -164,7 +164,7 @@ public class FindView {
             if (viewListByClass.size() == 1) {
                 viewByIdRes = viewListByClass.get(0);
             } else {
-                throw new NullPointerException(StringFog.decrypt("lfrXkOzQuOnnGRsVHk+I5tWb8eqK5/6H1/JQSU9OAAwIE18=") + viewListByClass.size());
+                throw new NullPointerException("查找的view 数量不一    size:" + viewListByClass.size());
             }
         }
         return viewByIdRes;
@@ -188,23 +188,23 @@ public class FindView {
 
     public static int getViewIdByName(Context context, String viewIdName) {
         if (TextUtils.isEmpty((CharSequence)viewIdName)) {
-            HVLog.e(StringFog.decrypt("AQABOAQDOlMKHFIeHAMC"));
+            HVLog.e("resName is null");
             return -1;
         }
-        int targetViewId = context.getResources().getIdentifier(viewIdName, StringFog.decrypt("GgE="), context.getPackageName());
+        int targetViewId = context.getResources().getIdentifier(viewIdName, "id", context.getPackageName());
         return targetViewId;
     }
 
     private static View getViewByWindow(Context context, String resName) {
         if (TextUtils.isEmpty(resName)) {
-            HVLog.e(StringFog.decrypt("FAAGIAwLKDEaOBseDQAZUxcXBSsPMhZDBgFQBxoCHw=="));
+            HVLog.e("getViewByWindow resName is null");
             return null;
         } else {
             Field wmGlobalField = null;
-            int targetViewId = context.getResources().getIdentifier(resName, StringFog.decrypt("GgE="), context.getPackageName());
+            int targetViewId = context.getResources().getIdentifier(resName, "id", context.getPackageName());
 
             try {
-                wmGlobalField = context.getSystemService(StringFog.decrypt("BAwcEgoZ")).getClass().getDeclaredField(StringFog.decrypt("HiIeGQcPMw=="));
+                wmGlobalField = context.getSystemService("window").getClass().getDeclaredField("mGlobal");
             } catch (Exception var14) {
                 wmGlobalField = null;
                 HVLog.printException(var14);
@@ -213,8 +213,8 @@ public class FindView {
             if (wmGlobalField != null) {
                 try {
                     wmGlobalField.setAccessible(true);
-                    Object wmGlobal = wmGlobalField.get(context.getSystemService(StringFog.decrypt("BAwcEgoZ")));
-                    Field viewsField = wmGlobal.getClass().getDeclaredField(StringFog.decrypt("HjMbExId"));
+                    Object wmGlobal = wmGlobalField.get(context.getSystemService("window"));
+                    Field viewsField = wmGlobal.getClass().getDeclaredField("mViews");
                     viewsField.setAccessible(true);
                     ArrayList<View> views = (ArrayList)viewsField.get(wmGlobal);
                     Iterator var18 = views.iterator();
@@ -237,10 +237,10 @@ public class FindView {
                 }
             } else {
                 try {
-                    Field wmLocalField = context.getSystemService(StringFog.decrypt("BAwcEgoZ")).getClass().getSuperclass().getDeclaredField(StringFog.decrypt("HjIbGAEBKD4CARMXDB0="));
+                    Field wmLocalField = context.getSystemService("window").getClass().getSuperclass().getDeclaredField("mWindowManager");
                     wmLocalField.setAccessible(true);
-                    Object wmLocal = wmLocalField.get(context.getSystemService(StringFog.decrypt("BAwcEgoZ")));
-                    Field viewsField = wmLocal.getClass().getDeclaredField(StringFog.decrypt("HjMbExId"));
+                    Object wmLocal = wmLocalField.get(context.getSystemService("window"));
+                    Field viewsField = wmLocal.getClass().getDeclaredField("mViews");
                     viewsField.setAccessible(true);
                     List<View> viewList = Arrays.asList((View[])viewsField.get(wmLocal));
                     ArrayList<View> views = new ArrayList();
@@ -270,7 +270,7 @@ public class FindView {
             View decorView = activity.getWindow().getDecorView();
             List<View> allChildViews = FindView.getAllChildViews(decorView, classz);
             if (allChildViews == null || allChildViews.size() == 0) {
-                HVLog.e(StringFog.decrypt("FQwcEjMHOgQvBgEEKxYtHwQBBUUNMxIQHAhK") + classz + "    " + activity.getLocalClassName() + StringFog.decrypt("U0VSVkUYNhYUTxsDSQEbHwk="));
+                HVLog.e("findViewListByClass classz:" + classz + "    " + activity.getLocalClassName() + "     view is null");
             }
             return allChildViews;
         }

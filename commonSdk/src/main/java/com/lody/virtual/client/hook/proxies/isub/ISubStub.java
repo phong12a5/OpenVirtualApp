@@ -18,28 +18,28 @@ import mirror.com.android.internal.telephony.ISub;
 public class ISubStub
 extends BinderInvocationProxy {
     public ISubStub() {
-        super(ISub.Stub.asInterface, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2I2sjSFo=")));
+        super(ISub.Stub.asInterface, "isub");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLAZjATw/Oy4MOGQjMC5lJTAcKhgcCg=="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGcwNCphJCgqKQgmLmwjNCZkHgocKQguCGYVGlo="))));
-        this.addMethodProxy(new StaticMethodProxy(Build.VERSION.SDK_INT >= 24 ? StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGczAiNpJwo7LBcMWW8KRV5lEQY/OxgqPA==")) : StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGczAiNpJwo7LBcMWW8KRV5vAQo6LT0MI30wLDU="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLAZjATw/Oy4MOGoFAgRqDjw/IxgAKmsKRSFsJ1RF"))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLAZjATw/Oy4MOGoFAgRqDjw/IxgAKmsKRSFsIjgeLBY2JWghAjA="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLAZjATw/Oy4MOGoFAgRqDjw/IxgAKmsKRSFsIjgeLBUYI2UILAJqNCwWJj0MLGsVSFo="))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVHiRpJzA6IQcYPG8LOC9sJCxF"))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVHiRpJzA6IQcYPG8LAiVvARo/"))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLAZjATw/Oy4MOGoFAgRqDjw/IxgAKmsKRSFsIl0iLAccVg=="))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMaODdjDlE7Lz1bPWIKGipsJzA5Ixc6CmMKAilnDh4vKQYiI2wgMFo="))));
-        this.addMethodProxy(new ReplaceCallingPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLCliASgpKQcuCGkmAgVoNDAqKS4YDmYaGipsMhodLxguAmoKLCA="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAc2EWswMC9mNDAPLAcuXmkzSFo="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGIwIAJgJywgLAcYMWoKBi9oIjAwLS02JWEwGjNqHhoeKRcYVg=="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li0MM2saMCtpJzA6Iy0qKGwgTQZqAQYbJj0MKWYFOFo="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uDWowOCtpJzA6Iy0qKGwgTQZqAQYbKTwiCGAgQQxlNFk+LD5SVg=="))));
-        this.addMethodProxy(new ResultStaticMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LS4uLGMVLAZjATw/Oy4MOGQjBg5qDjA/")), new int[0]));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("getActiveSubInfoCount"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("getSubscriptionProperty"));
+        this.addMethodProxy(new StaticMethodProxy(Build.VERSION.SDK_INT >= 24 ? "getSimStateForSlotIdx" : "getSimStateForSubscriber"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("getActiveSubscriptionInfo"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("getActiveSubscriptionInfoForIccId"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("getActiveSubscriptionInfoForSimSlotIndex"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getAllSubInfoList"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getAllSubInfoCount"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getActiveSubscriptionInfoList"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getAvailableSubscriptionInfoList"));
+        this.addMethodProxy(new ReplaceCallingPkgMethodProxy("getAccessibleSubscriptionInfoList"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("isActiveSubId"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("getOpportunisticSubscriptions"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("createSubscriptionGroup"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("removeSubscriptionsFromGroup"));
+        this.addMethodProxy(new ResultStaticMethodProxy("getActiveSubIdList", new int[0]));
     }
 }
 

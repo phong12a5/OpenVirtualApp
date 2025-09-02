@@ -11,22 +11,22 @@ import mirror.oem.vivo.ISystemDefenceManager;
 
 public class SystemDefenceManagerStub
 extends BinderInvocationProxy {
-    private static final String SERVER_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YKWwFNCNsJAo/KD0MDm4FGh9sJyg5Ki4YJWIFSFo="));
+    private static final String SERVER_NAME = "system_defence_service";
 
     public SystemDefenceManagerStub() {
-        super(ISystemDefenceManager.Stub.TYPE, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki0YKWwFNCNsJAo/KD0MDm4FGh9sJyg5Ki4YJWIFSFo=")));
+        super(ISystemDefenceManager.Stub.TYPE, "system_defence_service");
     }
 
     @Override
     protected void onBindMethods() {
         super.onBindMethods();
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQVFhNCA2Iy0cLmwjNCZnER4eLD0uCmoFMDVsJyhILy4EJ2UzLD8="))));
-        this.addMethodProxy(new ReplaceLastPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQV5jJAYsIS0cCG8zGixgNB4fLhgIKWYwLFRpASwa"))));
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQV5gDiAoKhUcP28FMABnDwJTIQg+JWMgPCJuAVRF"))));
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQRZiDlE7LQYMKmkzQQZrAVRF"))));
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iy4cA2gaMBF9JwozLD0cLmgmRStsJCgeLhgqVg=="))));
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li5fM2szQV9iDgY2Iy42OW8zOExoATAsIz4mJw=="))));
-        this.addMethodProxy(new ReplaceFirstPkgMethodProxy(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj4uKGowFgZqNDgfIz0iL2wxBjdvEThF"))));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("checkTransitionTimoutErrorDefence"));
+        this.addMethodProxy(new ReplaceLastPkgMethodProxy("checkSkipKilledByRemoveTask"));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("checkSmallIconNULLPackage"));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("checkDelayUpdate"));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("onSetActivityResumed"));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("checkReinstallPacakge"));
+        this.addMethodProxy(new ReplaceFirstPkgMethodProxy("reportFgCrashData"));
     }
 }
 

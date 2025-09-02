@@ -10,27 +10,27 @@ public class StringToAscii {
         String rt = "";
         switch (n) {
             case 10: {
-                rt = rt + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JghSVg=="));
+                rt = rt + "A";
                 break;
             }
             case 11: {
-                rt = rt + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj5SVg=="));
+                rt = rt + "B";
                 break;
             }
             case 12: {
-                rt = rt + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji5SVg=="));
+                rt = rt + "C";
                 break;
             }
             case 13: {
-                rt = rt + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JRhSVg=="));
+                rt = rt + "D";
                 break;
             }
             case 14: {
-                rt = rt + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JQhSVg=="));
+                rt = rt + "E";
                 break;
             }
             case 15: {
-                rt = rt + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JT5SVg=="));
+                rt = rt + "F";
                 break;
             }
             default: {
@@ -61,8 +61,8 @@ public class StringToAscii {
     }
 
     public static void main(String[] args) {
-        String s = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KBcYIg=="));
-        System.out.println(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("BlYFDkYtHypYEzkMAiAFW0cvOVJBKwctABtcCFgHAypKK14J")) + StringToAscii.parseAscii(s));
+        String s = "xyz";
+        System.out.println("转换后的字符串是：" + StringToAscii.parseAscii(s));
     }
 }
 

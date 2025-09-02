@@ -15,10 +15,10 @@ import mirror.RefClass;
 import mirror.RefStaticMethod;
 
 public class IWindowManager {
-    public static Class<?> TYPE = RefClass.load(IWindowManager.class, StringFog.decrypt("EgsWBAoHO10VBhcHRyY5GgsWGRIjPh0CCBcC"));
+    public static Class<?> TYPE = RefClass.load(IWindowManager.class, "android.view.IWindowManager");
 
     public static class Stub {
-        public static Class<?> TYPE = RefClass.load(Stub.class, StringFog.decrypt("EgsWBAoHO10VBhcHRyY5GgsWGRIjPh0CCBcCTTwaBgc="));
+        public static Class<?> TYPE = RefClass.load(Stub.class, "android.view.IWindowManager$Stub");
         @MethodParams(value={IBinder.class})
         public static RefStaticMethod<IInterface> asInterface;
     }

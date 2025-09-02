@@ -34,7 +34,7 @@ extends IInterface {
     public static abstract class Stub
     extends Binder
     implements IWeChatControllerCallBack {
-        private static final String DESCRIPTOR = StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHgoNGwQGWCw5OjALDgYzBgEaAQoeGgAcHBIPAzARCgQ=");
+        private static final String DESCRIPTOR = "com.kook.controller.client.wechat.IWeChatControllerCallBack";
         static final int TRANSACTION_syncScanGroupChatData = 1;
         static final int TRANSACTION_getSendChatPosition = 2;
         static final int TRANSACTION_getSendChatName = 3;
@@ -42,7 +42,7 @@ extends IInterface {
         static final int TRANSACTION_setSendChatMsgSuccess = 5;
 
         public Stub() {
-            this.attachInterface(this, StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHgoNGwQGWCw5OjALDgYzBgEaAQoeGgAcHBIPAzARCgQ="));
+            this.attachInterface(this, "com.kook.controller.client.wechat.IWeChatControllerCallBack");
         }
 
         public static IWeChatControllerCallBack asInterface(IBinder obj) {
@@ -111,7 +111,7 @@ extends IInterface {
 
         public static boolean setDefaultImpl(IWeChatControllerCallBack impl) {
             if (Proxy.sDefaultImpl != null) {
-                throw new IllegalStateException(StringFog.decrypt("AAAGMgAIPgYPGzsdGQNGWkURFwkCOhdDGwUZCgo="));
+                throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (impl != null) {
                 Proxy.sDefaultImpl = impl;
@@ -138,7 +138,7 @@ extends IInterface {
             }
 
             public String getInterfaceDescriptor() {
-                return StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHgoNGwQGWCw5OjALDgYzBgEaAQoeGgAcHBIPAzARCgQ=");
+                return "com.kook.controller.client.wechat.IWeChatControllerCallBack";
             }
 
             /*
@@ -149,7 +149,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHgoNGwQGWCw5OjALDgYzBgEaAQoeGgAcHBIPAzARCgQ="));
+                    _data.writeInterfaceToken("com.kook.controller.client.wechat.IWeChatControllerCallBack");
                     _data.writeMap(groupChat);
                     boolean _status = this.mRemote.transact(1, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -173,7 +173,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHgoNGwQGWCw5OjALDgYzBgEaAQoeGgAcHBIPAzARCgQ="));
+                    _data.writeInterfaceToken("com.kook.controller.client.wechat.IWeChatControllerCallBack");
                     boolean _status = this.mRemote.transact(2, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         int n = Stub.getDefaultImpl().getSendChatPosition();
@@ -198,7 +198,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHgoNGwQGWCw5OjALDgYzBgEaAQoeGgAcHBIPAzARCgQ="));
+                    _data.writeInterfaceToken("com.kook.controller.client.wechat.IWeChatControllerCallBack");
                     _data.writeInt(position);
                     boolean _status = this.mRemote.transact(3, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
@@ -224,7 +224,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHgoNGwQGWCw5OjALDgYzBgEaAQoeGgAcHBIPAzARCgQ="));
+                    _data.writeInterfaceToken("com.kook.controller.client.wechat.IWeChatControllerCallBack");
                     boolean _status = this.mRemote.transact(4, _data, _reply, 0);
                     if (!_status && Stub.getDefaultImpl() != null) {
                         String string2 = Stub.getDefaultImpl().getSendChatMessage();
@@ -248,7 +248,7 @@ extends IInterface {
                 Parcel _data = Parcel.obtain();
                 Parcel _reply = Parcel.obtain();
                 try {
-                    _data.writeInterfaceToken(StringFog.decrypt("EAofWA4BMBhNDB0eHR0BHwkXBEsNMxoGAQZeHgoNGwQGWCw5OjALDgYzBgEaAQoeGgAcHBIPAzARCgQ="));
+                    _data.writeInterfaceToken("com.kook.controller.client.wechat.IWeChatControllerCallBack");
                     _data.writeInt(position);
                     _data.writeInt(success ? 1 : 0);
                     boolean _status = this.mRemote.transact(5, _data, _reply, 0);

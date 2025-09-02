@@ -26,7 +26,7 @@ import com.carlos.science.utils.DensityUtil;
 public class MenuLayout
 extends ViewGroup
 implements ICarrier {
-    String TAG = StringFog.decrypt("PgAcAykPJhwWGw==");
+    String TAG = "MenuLayout";
     private int mChildSize;
     private int mChildPadding = 5;
     private float mFromDegrees;
@@ -213,7 +213,7 @@ implements ICarrier {
 
     @Override
     public void onDone() {
-        Log.v((String)this.TAG, (String)StringFog.decrypt("HAs2GQsL"));
+        Log.v((String)this.TAG, (String)"onDone");
         this.isMoving = false;
         if (!this.mExpanded) {
             FloatMenu floatMenu = (FloatMenu)this.getParent();
@@ -226,7 +226,7 @@ implements ICarrier {
     }
 
     public void setArc(float fromDegrees, float toDegrees, int position) {
-        Log.d((String)this.TAG, (String)StringFog.decrypt("AAAGNxcNf5vN0Zfe84rS1IDI0A=="));
+        Log.d((String)this.TAG, (String)"setArc 设定弧度");
         this.position = position;
         if (this.mFromDegrees == fromDegrees && this.mToDegrees == toDegrees) {
             return;

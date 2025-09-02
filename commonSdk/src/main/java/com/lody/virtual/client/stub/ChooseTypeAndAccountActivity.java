@@ -40,27 +40,27 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class ChooseTypeAndAccountActivity extends Activity implements AccountManagerCallback<Bundle> {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jgg2OWowNCZmHCg0Ki1fL2kgRVo="));
+    private static final String TAG = "AccountChooser";
     private static final boolean DEBUG = false;
-    public static final String EXTRA_ALLOWABLE_ACCOUNTS_ARRAYLIST = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggEDmowPDd9NFE/JwcqP28KGiZvHjBF"));
-    public static final String EXTRA_ALLOWABLE_ACCOUNT_TYPES_STRING_ARRAY = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggEDmowPDd9NFE/JwcqP28KGiZvHCw0KQguDw=="));
-    public static final String EXTRA_ADD_ACCOUNT_OPTIONS_BUNDLE = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGMVLClgJzA2LBVfKmUzLCVlNDBF"));
-    public static final String EXTRA_ADD_ACCOUNT_REQUIRED_FEATURES_STRING_ARRAY = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggqPGMVLClgJzA2LBYuPWogGi9sNygvJi4uO2YVLDVuASxF"));
-    public static final String EXTRA_ADD_ACCOUNT_AUTH_TOKEN_TYPE_STRING = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGUIMCVjJDA2JBgcKmkjSFo="));
-    public static final String EXTRA_SELECTED_ACCOUNT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uDmgVLAZiDgoRLy0qDWUjMAY="));
+    public static final String EXTRA_ALLOWABLE_ACCOUNTS_ARRAYLIST = "allowableAccounts";
+    public static final String EXTRA_ALLOWABLE_ACCOUNT_TYPES_STRING_ARRAY = "allowableAccountTypes";
+    public static final String EXTRA_ADD_ACCOUNT_OPTIONS_BUNDLE = "addAccountOptions";
+    public static final String EXTRA_ADD_ACCOUNT_REQUIRED_FEATURES_STRING_ARRAY = "addAccountRequiredFeatures";
+    public static final String EXTRA_ADD_ACCOUNT_AUTH_TOKEN_TYPE_STRING = "authTokenType";
+    public static final String EXTRA_SELECTED_ACCOUNT = "selectedAccount";
     /** @deprecated */
     @Deprecated
-    public static final String EXTRA_ALWAYS_PROMPT_FOR_ACCOUNT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggELWsaAgNpESw1KggmLmEVNARgATAqLD0uKmYVSFo="));
-    public static final String EXTRA_DESCRIPTION_TEXT_OVERRIDE = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguKWswFi9hEQozKi0YAGkgFgZ9JCQgKS0MI2IaLFo="));
+    public static final String EXTRA_ALWAYS_PROMPT_FOR_ACCOUNT = "alwaysPromptForAccount";
+    public static final String EXTRA_DESCRIPTION_TEXT_OVERRIDE = "descriptionTextOverride";
     public static final int REQUEST_NULL = 0;
     public static final int REQUEST_CHOOSE_TYPE = 1;
     public static final int REQUEST_ADD_ACCOUNT = 2;
-    private static final String KEY_INSTANCE_STATE_PENDING_REQUEST = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KhguCGgFAiZiJSw/IwgMPWoKBlo="));
-    private static final String KEY_INSTANCE_STATE_EXISTING_ACCOUNTS = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQdfCW8wMC9gNDgRLy0qDWUjMAZsJ1RF"));
-    private static final String KEY_INSTANCE_STATE_SELECTED_ACCOUNT_NAME = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uDmgVLAZiDgoRLy0qDWUjMAZ9NzgeLhhSVg=="));
-    private static final String KEY_INSTANCE_STATE_SELECTED_ADD_ACCOUNT = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uDmgVLAZiDgoRKBc2E24FAiVvARo/"));
-    private static final String KEY_INSTANCE_STATE_ACCOUNT_LIST = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmHFEzIy42Vg=="));
-    public static final String KEY_USER_ID = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28hAiw="));
+    private static final String KEY_INSTANCE_STATE_PENDING_REQUEST = "pendingRequest";
+    private static final String KEY_INSTANCE_STATE_EXISTING_ACCOUNTS = "existingAccounts";
+    private static final String KEY_INSTANCE_STATE_SELECTED_ACCOUNT_NAME = "selectedAccountName";
+    private static final String KEY_INSTANCE_STATE_SELECTED_ADD_ACCOUNT = "selectedAddAccount";
+    private static final String KEY_INSTANCE_STATE_ACCOUNT_LIST = "accountList";
+    public static final String KEY_USER_ID = "userId";
     private static final int SELECTED_ITEM_NONE = -1;
     private Set<Account> mSetOfAllowableAccounts;
     private Set<String> mSetOfRelevantAccountTypes;
@@ -98,7 +98,7 @@ public class ChooseTypeAndAccountActivity extends Activity implements AccountMan
             }
         }
 
-        VLog.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uDmgVLAZiDg08LwcqP28KGiZvVjwbLRgIJ0saGjZ5EVRF")) + this.mSelectedAccountName);
+        VLog.v(TAG, "selected account name is " + this.mSelectedAccountName);
         this.mSetOfAllowableAccounts = this.getAllowableAccountSet(intent);
         this.mSetOfRelevantAccountTypes = this.getReleventAccountTypes(intent);
         this.mDescriptionOverride = intent.getStringExtra(EXTRA_DESCRIPTION_TEXT_OVERRIDE);
@@ -128,7 +128,7 @@ public class ChooseTypeAndAccountActivity extends Activity implements AccountMan
 
     protected void onDestroy() {
         if (Log.isLoggable(TAG, Log.VERBOSE)) {
-            Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji5fD2owLCtuEQYsKAUiDmkxQSloJwYwLC0qHX0jFixqNBo9LioqKWUxMD9vNCwbJi4fJ38FSFo=")));
+            Log.v(TAG, "ChooseTypeAndAccountActivity.onDestroy()");
         }
 
         super.onDestroy();
@@ -173,7 +173,7 @@ public class ChooseTypeAndAccountActivity extends Activity implements AccountMan
             }
 
             Bundle extras = data != null ? data.getExtras() : null;
-            Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji5fD2owLCtuEQYsKAUiDmkxQSloJwYwLC0qHX0jFixqNBo9LioqKWUxJDVsAR4hJQgMCn0wFiNlJyQZPBcMM28bLCViHjMd")) + requestCode + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186KmgaLBNgJAo/PghSVg==")) + resultCode + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186M2kKMAR9ASsd")) + extras + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("PAhSVg==")));
+            Log.v(TAG, "ChooseTypeAndAccountActivity.onActivityResult(reqCode=" + requestCode + ", resCode=" + resultCode + ", extras=" + extras + ")");
         }
 
         this.mPendingRequest = 0;
@@ -188,20 +188,20 @@ public class ChooseTypeAndAccountActivity extends Activity implements AccountMan
                 String accountName;
                 if (requestCode == 1) {
                     if (data != null) {
-                        accountName = data.getStringExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmHwoZIxcMVg==")));
+                        accountName = data.getStringExtra("accountType");
                         if (accountName != null) {
                             this.runAddAccountForAuthenticator(accountName);
                             return;
                         }
                     }
 
-                    Log.d(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji5fD2owLCtuEQYsKAUiDmkxQSloJwYwLC0qHX0jFixqNBo9LioqKWUxJDVsAR4hJQgMCn0wFiNlJyQZODo6I2ojJCpgHjM8LBdeOmkVLCZrVjwsLT42KWYKRT95ETAyLD4fKHgaICZoHiw0Jj0MIGwwIzZlNwo0PhcMM28aNCthJw08LC0iL34zAjdlNzAgLAguIA==")));
+                    Log.d(TAG, "ChooseTypeAndAccountActivity.onActivityResult: unable to find account type, pretending the request was canceled");
                 } else if (requestCode == 2) {
                     accountName = null;
                     String accountType = null;
                     if (data != null) {
-                        accountName = data.getStringExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGULJCl9JB4vKj42Vg==")));
-                        accountType = data.getStringExtra(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmHwoZIxcMVg==")));
+                        accountName = data.getStringExtra("authAccount");
+                        accountType = data.getStringExtra("accountType");
                     }
 
                     if (accountName == null || accountType == null) {
@@ -235,11 +235,11 @@ public class ChooseTypeAndAccountActivity extends Activity implements AccountMan
                     }
                 }
 
-                Log.d(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji5fD2owLCtuEQYsKAUiDmkxQSloJwYwLC0qHX0jFixqNBo9LioqKWUxJDVsAR4hJQgMCn0wFiNlJyQZODo6I2ojJCpgHjM8LBdeOmkVLCZrVjwsLggqJ2JTOCRpJCweIy4qCnVSICRvJygZJAdfI28KAj9+NBo/LQQ6KmgaJAViASggPxg6OWoJTSloARoqLhgEJ2IVSFo=")));
+                Log.d(TAG, "ChooseTypeAndAccountActivity.onActivityResult: unable to find added account, pretending the request was canceled");
             }
 
             if (Log.isLoggable(TAG, Log.VERBOSE)) {
-                Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji5fD2owLCtuEQYsKAUiDmkxQSloJwYwLC0qHX0jFixqNBo9LioqKWUxJDVsAR4hJQgMCn0wFiNlJyQZODo6OWsVBiliDlE/KBhSVg==")));
+                Log.v(TAG, "ChooseTypeAndAccountActivity.onActivityResult: canceled");
             }
 
             this.setResult(0);
@@ -249,7 +249,7 @@ public class ChooseTypeAndAccountActivity extends Activity implements AccountMan
 
     protected void runAddAccountForAuthenticator(String type) {
         if (Log.isLoggable(TAG, Log.VERBOSE)) {
-            Log.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Kj0uCGMVMCxlDig5Ki4MDmUxHiVsNTgwKghfJ2AzFixpJCQ9KQdePngVSFo=")) + type);
+            Log.v(TAG, "runAddAccountForAuthenticator: " + type);
         }
 
         Bundle options = this.getIntent().getBundleExtra(EXTRA_ADD_ACCOUNT_OPTIONS_BUNDLE);
@@ -263,7 +263,7 @@ public class ChooseTypeAndAccountActivity extends Activity implements AccountMan
         Bundle bundle;
         try {
             bundle = (Bundle)accountManagerFuture.getResult();
-            Intent intent = (Intent)bundle.getParcelable(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LAgcLGgVBgY=")));
+            Intent intent = (Intent)bundle.getParcelable("intent");
             if (intent != null) {
                 this.mPendingRequest = 2;
                 this.mExistingAccounts = VAccountManager.get().getAccounts(this.mCallingUserId, (String)null);
@@ -280,7 +280,7 @@ public class ChooseTypeAndAccountActivity extends Activity implements AccountMan
         }
 
         bundle = new Bundle();
-        bundle.putString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQcMKmowFg1iASgpLwc6PQ==")), StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LQcMKmowESh9JB43KggMDmwjAjdvER4bLjo6MWMFFit5ESwuLBcEJ2wzSFo=")));
+        bundle.putString("errorMessage", "error communicating with server");
         this.setResult(-1, (new Intent()).putExtras(bundle));
         this.finish();
     }
@@ -297,16 +297,16 @@ public class ChooseTypeAndAccountActivity extends Activity implements AccountMan
     }
 
     private void onAccountSelected(Account account) {
-        Log.d(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ki4uDmgVLAZiDg08LwcqP28KGiZvVjxF")) + account);
+        Log.d(TAG, "selected account " + account);
         this.setResultAndFinish(account.name, account.type);
     }
 
     private void setResultAndFinish(String accountName, String accountType) {
         Bundle bundle = new Bundle();
-        bundle.putString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LgcuLGULJCl9JB4vKj42Vg==")), accountName);
-        bundle.putString(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmHwoZIxcMVg==")), accountType);
+        bundle.putString("authAccount", accountName);
+        bundle.putString("accountType", accountType);
         this.setResult(-1, (new Intent()).putExtras(bundle));
-        VLog.v(TAG, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Ji5fD2owLCtuEQYsKAUiDmkxQSloJwYwLC0qHX0jFixqNBo9LioqD2sKMABoHjAaJhgMAmwwLFVsJywwKi5eInsKLCtgHjA5LBcMPn4zQSloJwYwLC0pJA==")) + accountName + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("M186Vg==")) + accountType);
+        VLog.v(TAG, "ChooseTypeAndAccountActivity.setResultAndFinish: selected account " + accountName + ", " + accountType);
         this.finish();
     }
 

@@ -54,7 +54,7 @@ import com.lody.virtual.server.vs.VirtualStorageService;
 
 public final class BinderProvider
 extends ContentProvider {
-    private static final String TAG = StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Jj4YCGgFNARpESw1LD0cPmkgRVo="));
+    private static final String TAG = "BinderProvider";
     private final ServiceFetcher mServiceFetcher = new ServiceFetcher();
     private static boolean sInitialized = false;
     public static boolean scanApps = true;
@@ -70,8 +70,8 @@ extends ContentProvider {
         Context context = this.getContext();
         if (context != null) {
             if (Build.VERSION.SDK_INT >= 26) {
-                NotificationChannelCompat.checkOrCreateChannel(context, NotificationChannelCompat.DAEMON_ID, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRg+M2oVGiY=")));
-                NotificationChannelCompat.checkOrCreateChannel(context, NotificationChannelCompat.DEFAULT_ID, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguPmsaNCRmEVRF")));
+                NotificationChannelCompat.checkOrCreateChannel(context, NotificationChannelCompat.DAEMON_ID, "daemon");
+                NotificationChannelCompat.checkOrCreateChannel(context, NotificationChannelCompat.DEFAULT_ID, "default");
             }
             try {
                 context.startService(new Intent(context, KeepAliveService.class));
@@ -83,24 +83,24 @@ extends ContentProvider {
         if (!VirtualCore.get().isStartup()) {
             return false;
         }
-        this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LT4YDmhSEgZhNCA2Iy0+PWoVSFo=")), (IBinder)FileTransfer.get());
+        this.addService("file-transfer", (IBinder)FileTransfer.get());
         VPackageManagerService.systemReady();
-        this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Khg+OWUzJC1iAVRF")), (IBinder)VPackageManagerService.get());
-        this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")), (IBinder)VActivityManagerService.get());
-        this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KQc2M28jSFo=")), (IBinder)VUserManagerService.get());
+        this.addService("package", (IBinder)VPackageManagerService.get());
+        this.addService("activity", (IBinder)VActivityManagerService.get());
+        this.addService("user", (IBinder)VUserManagerService.get());
         VAppManagerService.systemReady();
-        this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgc6KA==")), (IBinder)VAppManagerService.get());
+        this.addService("app", (IBinder)VAppManagerService.get());
         if (Build.VERSION.SDK_INT >= 21) {
-            this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LD4AOg==")), (IBinder)VJobSchedulerService.get());
+            this.addService("job", (IBinder)VJobSchedulerService.get());
         }
         VNotificationManagerService.systemReady(context);
-        this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Iz4ALGUVOC99JCAgKQdfDg==")), (IBinder)VNotificationManagerService.get());
+        this.addService("notification", (IBinder)VNotificationManagerService.get());
         VContentService.systemReady();
-        this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2OWowNCZmEVRF")), (IBinder)VAccountManagerService.get());
-        this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Li4ACGwFNCZmEVRF")), (IBinder)VContentService.get());
-        this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT02Vg==")), (IBinder)VirtualStorageService.get());
-        this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LRguLmUVLCs=")), (IBinder)VDeviceManagerService.get());
-        this.addService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("KT4YKmwKNDdgV10oKi0qVg==")), (IBinder)VirtualLocationService.get());
+        this.addService("account", (IBinder)VAccountManagerService.get());
+        this.addService("content", (IBinder)VContentService.get());
+        this.addService("vs", (IBinder)VirtualStorageService.get());
+        this.addService("device", (IBinder)VDeviceManagerService.get());
+        this.addService("virtual-loc", (IBinder)VirtualLocationService.get());
         this.killAllProcess();
         sInitialized = true;
         if (scanApps) {
@@ -118,9 +118,9 @@ extends ContentProvider {
         if (!sInitialized) {
             this.init();
         }
-        if (StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JhhSVg==")).equals(method)) {
+        if ("@".equals(method)) {
             Bundle bundle = new Bundle();
-            BundleCompat.putBinder(bundle, StringFog.decrypt(com.kook.librelease.StringFog.decrypt("JysiEWYwHh99NAY2KBcMKGMFSFo=")), (IBinder)this.mServiceFetcher);
+            BundleCompat.putBinder(bundle, "_VA_|_binder_", (IBinder)this.mServiceFetcher);
             return bundle;
         }
         return null;
@@ -149,10 +149,10 @@ extends ContentProvider {
     private void killAllProcess() {
         try {
             int uid = this.getContext().getPackageManager().getApplicationInfo((String)this.getContext().getPackageName(), (int)0).uid;
-            String str = this.getContext().getPackageName() + StringFog.decrypt(com.kook.librelease.StringFog.decrypt("OD06Vg=="));
-            for (ActivityManager.RunningAppProcessInfo runningAppProcessInfo : ((ActivityManager)this.getContext().getSystemService(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("Lgg2LGUaOC9mEQZF")))).getRunningAppProcesses()) {
+            String str = this.getContext().getPackageName() + ":p";
+            for (ActivityManager.RunningAppProcessInfo runningAppProcessInfo : ((ActivityManager)this.getContext().getSystemService("activity")).getRunningAppProcesses()) {
                 if (runningAppProcessInfo.uid != uid || !runningAppProcessInfo.processName.startsWith(str)) continue;
-                Log.w((String)TAG, (String)(StringFog.decrypt(com.kook.librelease.StringFog.decrypt("LggiLGgaEShhESw1LD0cPmkgRChsJCwsKS0pKGMgGjdsVyMpLD1fKWgjNCVvMFFF")) + runningAppProcessInfo.processName));
+                Log.w((String)TAG, (String)("after provider start,kill  process:" + runningAppProcessInfo.processName));
                 Process.killProcess((int)runningAppProcessInfo.pid);
             }
         }

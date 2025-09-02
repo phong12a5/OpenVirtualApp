@@ -10,7 +10,7 @@ import mirror.RefMethod;
 import mirror.RefStaticMethod;
 
 public class VMRuntime {
-    public static Class<?> TYPE = RefClass.load(VMRuntime.class, StringFog.decrypt("FwQeAAwFcQAaHAYVBEE4PjcHGBEHMhY="));
+    public static Class<?> TYPE = RefClass.load(VMRuntime.class, "dalvik.system.VMRuntime");
     public static RefStaticMethod<Object> getRuntime;
     @MethodParams(value={int.class})
     public static RefMethod<Void> setTargetSdkVersion;
