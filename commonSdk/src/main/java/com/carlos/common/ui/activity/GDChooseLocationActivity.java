@@ -188,7 +188,7 @@ Inputtips.InputtipsListener {
                 this.mLocation.latitude = coordinateBean.getLatitude();
                 this.mLocation.longitude = coordinateBean.getLongitude();
             }
-            VLog.e("VA-", "mLocation" + this.mLocation.getLatitude() + "  " + this.mLocation.getLongitude());
+            VLog.e("VA-", " mLocation " + this.mLocation.getLatitude() + "  " + this.mLocation.getLongitude());
             VirtualCore.get().killApp(this.mCurPkg, this.mCurUserId);
             VirtualLocationManager.get().setMode(this.mCurUserId, this.mCurPkg, 2);
             VirtualLocationManager.get().setLocation(this.mCurUserId, this.mCurPkg, this.mLocation);
@@ -292,7 +292,7 @@ Inputtips.InputtipsListener {
             LatLonPoint latLonPoint = new LatLonPoint(lat, lng);
             RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200.0f, "autonavi");
             this.geocoderSearch.getFromLocationAsyn(query);
-            HVLog.d("异步逆地理编码请求 lat：" + lat + "lng :" + lng);
+            HVLog.d("异步逆地理编码请求 lat：" + lat + "    lng :" + lng);
         } else {
             this.setAddress(address);
         }
@@ -374,7 +374,7 @@ Inputtips.InputtipsListener {
     }
 
     public void onRegeocodeSearched(RegeocodeResult result, int rCode) {
-        HVLog.d("result :" + result + "rCode:" + rCode);
+        HVLog.d("result :" + result + "    rCode:" + rCode);
         if (rCode == 1000 && result != null && result.getRegeocodeAddress() != null && result.getRegeocodeAddress().getFormatAddress() != null) {
             String addressName = result.getRegeocodeAddress().getFormatAddress() + "附近";
             HVLog.d("addressName :" + addressName);
@@ -385,7 +385,7 @@ Inputtips.InputtipsListener {
 
 
     public void onGetInputtips(List<Tip> list, int rCode) {
-        HVLog.d("onGetInputtips :" + list + "rCode:" + rCode);
+        HVLog.d("onGetInputtips :" + list + "    rCode:" + rCode);
         if (rCode == 1000) {
             if (this.mSearchTip.getVisibility() != View.GONE) {
                 this.runOnUiThread(() -> {

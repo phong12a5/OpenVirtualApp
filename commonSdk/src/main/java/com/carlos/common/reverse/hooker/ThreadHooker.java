@@ -32,11 +32,11 @@ public class ThreadHooker {
         }
         String packageName = VClient.get().getCurrentPackage();
         String clzName = thiz.getClass().getName();
-        Log.e((String)"ThreadHooker", (String)("hooked Thread start packageName:" + packageName + "thiz:" + thiz + "clzName:" + clzName));
+        Log.e((String)"ThreadHooker", (String)("hooked Thread start packageName:" + packageName + "  thiz:" + thiz + "  clzName:" + clzName));
         thiz.dumpStack();
         if (bypassList.contains(clzName)) {
             thiz.interrupt();
-            Log.e((String)"ThreadHooker", (String)(clzName + "hooked pass"));
+            Log.e((String)"ThreadHooker", (String)(clzName + " hooked pass"));
             return;
         }
         SandHook.callOriginByBackup(methodStart, thiz, new Object[0]);

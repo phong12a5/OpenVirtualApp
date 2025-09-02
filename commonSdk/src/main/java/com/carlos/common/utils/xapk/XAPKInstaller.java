@@ -50,7 +50,7 @@ public class XAPKInstaller {
             ++apkSize;
         }
         XAPKInstaller.unzipObbToAndroidObbDir(xapkFile, new File(XAPKInstaller.getMobileAndroidObbDir()));
-        HVLog.i("yzh", "apkSize:" + apkSize);
+        HVLog.i("yzh", "apkSize:  " + apkSize);
         if (apkSize > 0) {
             XAPKInstaller.doInstallApk(context, xapkFilePath, unzipOutputDir);
         }

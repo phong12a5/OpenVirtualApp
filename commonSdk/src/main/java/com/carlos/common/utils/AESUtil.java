@@ -48,7 +48,7 @@ public class AESUtil {
     }
 
     public static String desDecrypt(String content) {
-        VLog.e("VA-DSD", "content  111  :" + content);
+        VLog.e("VA-DSD", " content  111  :" + content);
         byte[] bytes = AESUtil.hexStringToByteArray(content);
         byte[] desDecrypt = AESUtil.desDecrypt(bytes, SECRET_KEY.getBytes());
         if (desDecrypt == null) {
@@ -74,7 +74,7 @@ public class AESUtil {
             return result;
         }
         catch (Exception e) {
-            VLog.e("VA-DSD", "desDecrypt exception  :" + e.toString());
+            VLog.e("VA-DSD", " desDecrypt exception  :" + e.toString());
             return null;
         }
     }

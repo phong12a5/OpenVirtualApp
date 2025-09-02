@@ -160,7 +160,7 @@ extends AppCompatActivity {
                 case 7: {
                     Toast.makeText((Context)this, (CharSequence)"安装失败,请重试", (int)0).show();
                     this.finish();
-                    Log.d((String)TAG, (String)("Install failed!" + status + "," + message));
+                    Log.d((String)TAG, (String)("Install failed! " + status + ", " + message));
                     break;
                 }
                 default: {

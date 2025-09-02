@@ -17,7 +17,7 @@ public class Nexon {
     public static File file = new File("/sdcard/Android/data/com.carlos.multiapp/files/Android_va/0/Android/data/com.nexon.hit2/");
 
     public static void hook(ClassLoader classLoader, Application application) {
-        HVLog.d("开始 hook com.nexon.hit2");
+        HVLog.d(" 开始 hook com.nexon.hit2  ");
         XposedHelpers.findAndHookMethod("com.nexon.pub.bar.NXPatcher$Config", classLoader, "isDebugMode", new XC_MethodHook(){
 
             @Override

@@ -118,7 +118,7 @@ public class AppComponentDelegate implements AppCallback {
     public void afterApplicationCreate(String packageName, String processName, Application application) {
         ClassLoader classLoader;
         if (packageName.equals("com.alibaba.android.rimet")) {
-            VLog.d("VA-", "开始 hook 丁丁打卡 9.19" + SysUtils.getCurrentProcessName(), new Object[0]);
+            VLog.d("VA-", "开始 hook 丁丁打卡 9.19   " + SysUtils.getCurrentProcessName(), new Object[0]);
             classLoader = VClient.get().getClassLoader();
             DingTalk.hook(classLoader);
         }

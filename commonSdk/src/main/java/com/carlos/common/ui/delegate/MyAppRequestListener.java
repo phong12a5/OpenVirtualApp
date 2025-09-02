@@ -29,15 +29,15 @@ implements VirtualCore.AppRequestListener {
 
     @Override
     public void onRequestInstall(String path) {
-        MyAppRequestListener.info("Start installing:" + path);
+        MyAppRequestListener.info("Start installing: " + path);
         VAppInstallerParams params = new VAppInstallerParams();
         VAppInstallerResult res = VirtualCore.get().installPackage(Uri.fromFile((File)new File(path)), params);
         if (res.status == 0) {
-            MyAppRequestListener.info("Install" + res.packageName + "success.");
+            MyAppRequestListener.info("Install " + res.packageName + " success.");
             boolean success = VActivityManager.get().launchApp(0, res.packageName);
-            MyAppRequestListener.info("launch app" + (success ? "success." : "fail."));
+            MyAppRequestListener.info("launch app " + (success ? "success." : "fail."));
         } else {
-            MyAppRequestListener.info("Install" + res.packageName + "fail, error code:" + res.status);
+            MyAppRequestListener.info("Install " + res.packageName + " fail, error code: " + res.status);
         }
     }
 
@@ -47,7 +47,7 @@ implements VirtualCore.AppRequestListener {
 
     @Override
     public void onRequestUninstall(String pkg) {
-        Toast.makeText((Context)this.mContext, (CharSequence)("Intercept uninstall request:" + pkg), (int)0).show();
+        Toast.makeText((Context)this.mContext, (CharSequence)("Intercept uninstall request: " + pkg), (int)0).show();
     }
 }
 

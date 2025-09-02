@@ -34,7 +34,7 @@ public class ToolsSettings {
         }
 
         public static String onCreateTable() {
-            HVLog.d("onCreateTable :");
+            HVLog.d(" onCreateTable :");
             return "CREATE TABLE serverinfo (_id INTEGER PRIMARY KEY,serverIp TEXT,serverPort TEXT);";
         }
 

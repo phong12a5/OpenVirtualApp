@@ -42,7 +42,7 @@ public class ImageHeaderParser {
         int magicNumber = this.reader.getUInt16();
         if (!ImageHeaderParser.handles(magicNumber)) {
             if (Log.isLoggable((String)TAG, (int)3)) {
-                Log.d((String)TAG, (String)("Parser doesn't handle magic number:" + magicNumber));
+                Log.d((String)TAG, (String)("Parser doesn't handle magic number: " + magicNumber));
             }
             return -1;
         }
@@ -61,7 +61,7 @@ public class ImageHeaderParser {
         int read = this.reader.read(tempArray, exifSegmentLength);
         if (read != exifSegmentLength) {
             if (Log.isLoggable((String)TAG, (int)3)) {
-                Log.d((String)TAG, (String)("Unable to read exif segment data, length:" + exifSegmentLength + ", actually read:" + read));
+                Log.d((String)TAG, (String)("Unable to read exif segment data, length: " + exifSegmentLength + ", actually read: " + read));
             }
             return -1;
         }
@@ -115,7 +115,7 @@ public class ImageHeaderParser {
                 if (segmentType == 225) break block7;
             } while ((skipped = this.reader.skip(segmentLength)) == (long)segmentLength);
             if (Log.isLoggable((String)TAG, (int)3)) {
-                Log.d((String)TAG, (String)("Unable to skip enough data, type:" + segmentType + ", wanted to skip:" + segmentLength + ", but actually skipped:" + skipped));
+                Log.d((String)TAG, (String)("Unable to skip enough data, type: " + segmentType + ", wanted to skip: " + segmentLength + ", but actually skipped: " + skipped));
             }
             return -1;
         }
@@ -132,7 +132,7 @@ public class ImageHeaderParser {
             byteOrder = ByteOrder.LITTLE_ENDIAN;
         } else {
             if (Log.isLoggable((String)TAG, (int)3)) {
-                Log.d((String)TAG, (String)("Unknown endianness =" + byteOrderIdentifier));
+                Log.d((String)TAG, (String)("Unknown endianness = " + byteOrderIdentifier));
             }
             byteOrder = ByteOrder.BIG_ENDIAN;
         }
@@ -147,7 +147,7 @@ public class ImageHeaderParser {
             short formatCode = segmentData.getInt16(tagOffset + 2);
             if (formatCode < 1 || formatCode > 12) {
                 if (!Log.isLoggable((String)TAG, (int)3)) continue;
-                Log.d((String)TAG, (String)("Got invalid format code =" + formatCode));
+                Log.d((String)TAG, (String)("Got invalid format code = " + formatCode));
                 continue;
             }
             int componentCount = segmentData.getInt32(tagOffset + 4);
@@ -157,7 +157,7 @@ public class ImageHeaderParser {
                 continue;
             }
             if (Log.isLoggable((String)TAG, (int)3)) {
-                Log.d((String)TAG, (String)("Got tagIndex=" + i + "tagType=" + tagType + "formatCode=" + formatCode + "componentCount=" + componentCount));
+                Log.d((String)TAG, (String)("Got tagIndex=" + i + " tagType=" + tagType + " formatCode=" + formatCode + " componentCount=" + componentCount));
             }
             if ((byteCount = componentCount + BYTES_PER_FORMAT[formatCode]) > 4) {
                 if (!Log.isLoggable((String)TAG, (int)3)) continue;
@@ -167,7 +167,7 @@ public class ImageHeaderParser {
             int tagValueOffset = tagOffset + 8;
             if (tagValueOffset < 0 || tagValueOffset > segmentData.length()) {
                 if (!Log.isLoggable((String)TAG, (int)3)) continue;
-                Log.d((String)TAG, (String)("Illegal tagValueOffset=" + tagValueOffset + "tagType=" + tagType));
+                Log.d((String)TAG, (String)("Illegal tagValueOffset=" + tagValueOffset + " tagType=" + tagType));
                 continue;
             }
             if (byteCount < 0 || tagValueOffset + byteCount > segmentData.length()) {

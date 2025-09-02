@@ -93,7 +93,7 @@ extends ReflectionApplication {
             });
         }
         catch (Throwable throwable) {
-            Log.e((String)TAG, (String)("DingTalk hook exception:" + throwable.toString()));
+            Log.e((String)TAG, (String)("DingTalk hook exception: " + throwable.toString()));
             HVLog.printThrowable(throwable);
         }
     }
@@ -105,18 +105,18 @@ extends ReflectionApplication {
 
                 @Override
                 public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
-                    HVLog.i("------------- method" + method.getName());
+                    HVLog.i("------------- method " + method.getName());
                     return null;
                 }
             });
-            HVLog.i("method -----------------------------------------");
+            HVLog.i("method ----------------------------------------- ");
             XposedHelpers.callMethod(pthis, "a", obj_proxy);
         }
         catch (NoClassDefFoundError fe) {
-            HVLog.i("fe" + fe.getMessage());
+            HVLog.i("fe " + fe.getMessage());
         }
         catch (Exception e) {
-            HVLog.i("e" + e.getMessage());
+            HVLog.i("e " + e.getMessage());
         }
     }
 }

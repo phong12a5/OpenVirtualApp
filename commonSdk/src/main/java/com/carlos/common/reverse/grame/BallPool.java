@@ -14,7 +14,7 @@ import de.robv.android.xposed.XposedHelpers;
 
 public class BallPool {
     public static void hook(ClassLoader classLoader, Application application) {
-        HVLog.d("开始 hook com.miniclip.eightballpool");
+        HVLog.d(" 开始 hook com.miniclip.eightballpool  ");
         XposedHelpers.findAndHookMethod("com.google.firebase.crashlytics.internal.Logger", classLoader, "canLog", Integer.TYPE, new XC_MethodHook(){
 
             @Override
