@@ -126,7 +126,7 @@ extends VActivity {
             this.mTitle = this.getIntent().getStringExtra("title");
         }
         this.mDeviceID = DeviceDetailActiivty.getDeviceId(this.mPackageName, this.mUserId);
-        HVLog.d("mDeviceID：" + this.mDeviceID + "   mUserId:" + this.mUserId + "    mPackageName:" + this.mPackageName);
+        HVLog.d("mDeviceID：" + this.mDeviceID + "mUserId:" + this.mUserId + "mPackageName:" + this.mPackageName);
         this.setTitle(this.mTitle);
         this.setTitleColor(-1);
         this.mDeviceConfig = VDeviceManager.get().getDeviceConfig(this.mDeviceID);

@@ -108,7 +108,7 @@ public class MirrorAdapter extends RecyclerView.Adapter<MirrorAdapter.ViewHolder
             holder.menu_action_btn2.setText(data.getSubTitle());
             holder.menu_action_btn2.setOnClickListener(v -> {
                 if (this.mAppClickListener != null) {
-                    HVLog.d("onclick " + position);
+                    HVLog.d("onclick" + position);
                     this.mAppClickListener.onAppClick(position, data, (String)holder.menu_action_btn2.getTag());
                 }
             });
@@ -116,7 +116,7 @@ public class MirrorAdapter extends RecyclerView.Adapter<MirrorAdapter.ViewHolder
         holder.menu_action_btn.setText(data.getActionBtn());
         holder.menu_action_btn.setOnClickListener(v -> {
             if (this.mAppClickListener != null) {
-                HVLog.d("onclick " + position);
+                HVLog.d("onclick" + position);
                 this.mAppClickListener.onAppClick(position, data, (String)holder.menu_action_btn.getTag());
             }
         });

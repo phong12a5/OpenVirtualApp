@@ -35,7 +35,7 @@ extends RequestBody {
 
     public UploadFileRequestBody(File file, FileUploadObserver<ResponseBody> fileUploadObserver) {
         this.mRequestBody = RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (File)file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData((String)"~cqx", (String)file.getName(), (RequestBody)this.mRequestBody);
+        MultipartBody.Part body = MultipartBody.Part.createFormData((String)"file", (String)file.getName(), (RequestBody)this.mRequestBody);
         this.mFileUploadObserver = fileUploadObserver;
     }
 

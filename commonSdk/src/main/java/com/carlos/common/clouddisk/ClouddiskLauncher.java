@@ -134,10 +134,10 @@ public class ClouddiskLauncher {
 
             @Override
             public void onFinish() {
-                HVLog.d("已经成功介入蓝奏云盘 " + ClouddiskLauncher.this.historyDir.size());
+                HVLog.d("已经成功介入蓝奏云盘" + ClouddiskLauncher.this.historyDir.size());
                 ClouddiskLauncher.this.historyDir.clear();
                 String[] dateDir = new String[]{UIConstant.CLOUD_DISK_BACKUP_RECOVERY_DIRECTORY, ClouddiskLauncher.getCurrentDate()};
-                ClouddiskLauncher.this.openPageByDirectory(dateDir, UIConstant.CLOUD_DISK_ROOT_ID, 0).done(re -> HVLog.d("打开目录已经完成 1111 "));
+                ClouddiskLauncher.this.openPageByDirectory(dateDir, UIConstant.CLOUD_DISK_ROOT_ID, 0).done(re -> HVLog.d("打开目录已经完成 1111"));
             }
         });
     }
@@ -149,7 +149,7 @@ public class ClouddiskLauncher {
         }).done(fileItemList -> {
             if (fileItemList != null) {
                 if (treeIndex >= dirTrees.length) {
-                    HVLog.d("最后目录情况:" + fileItemList + "    folder_id:" + folder_id);
+                    HVLog.d("最后目录情况:" + fileItemList + "folder_id:" + folder_id);
                     for (FileItem fileItem : this.currentFolder) {
                         HVLog.d("最后目录 fileItem:" + fileItem.toString());
                     }
@@ -158,12 +158,12 @@ public class ClouddiskLauncher {
                 this.currentFolder = fileItemList;
                 HVLog.d("fileItemList:" + fileItemList);
                 String directoryName = dirTrees[treeIndex];
-                HVLog.d("directoryName:" + directoryName + "    treeIndex:" + treeIndex + "    dirTrees:" + dirTrees.length);
+                HVLog.d("directoryName:" + directoryName + "treeIndex:" + treeIndex + "dirTrees:" + dirTrees.length);
                 String folderId = this.getCloudDiskFolderIdByDirectoryName((List<FileItem>)fileItemList, directoryName);
                 if (TextUtils.isEmpty((CharSequence)folderId)) {
-                    HVLog.d("创建目录 " + directoryName + "    是在" + folder_id + "下面创建的");
+                    HVLog.d("创建目录" + directoryName + "是在" + folder_id + "下面创建的");
                     this.createPage(folder_id, directoryName).done(create -> {
-                        HVLog.d("创建目录成功 " + treeIndex + "    " + dirTrees.length);
+                        HVLog.d("创建目录成功" + treeIndex + "    " + dirTrees.length);
                         if (treeIndex < dirTrees.length) {
                             this.openPageByDirectory(dirTrees, folderId, treeIndex + 1);
                         }
@@ -187,7 +187,7 @@ public class ClouddiskLauncher {
 
             @Override
             public void onFinish() {
-                HVLog.d("已经成功介入蓝奏云盘 " + ClouddiskLauncher.this.historyDir.size());
+                HVLog.d("已经成功介入蓝奏云盘" + ClouddiskLauncher.this.historyDir.size());
                 ClouddiskLauncher.this.historyDir.clear();
                 String[] dateDir = new String[]{UIConstant.CLOUD_DISK_BACKUP_RECOVERY_DIRECTORY, currentDate};
                 ClouddiskLauncher.this.openPageByDirectoryFile(dateDir, UIConstant.CLOUD_DISK_ROOT_ID, 0, cloudFileCallback);
@@ -207,7 +207,7 @@ public class ClouddiskLauncher {
 
             @Override
             public void onFinish() {
-                HVLog.d("已经成功介入蓝奏云盘 " + ClouddiskLauncher.this.historyDir.size());
+                HVLog.d("已经成功介入蓝奏云盘" + ClouddiskLauncher.this.historyDir.size());
                 ClouddiskLauncher.this.historyDir.clear();
                 String[] dateDir = new String[]{UIConstant.CLOUD_DISK_BACKUP_APPLICATION_DIRECTORY};
                 ClouddiskLauncher.this.openPageByDirectoryFile(dateDir, UIConstant.CLOUD_DISK_ROOT_ID, 0, cloudFileCallback);
@@ -222,11 +222,11 @@ public class ClouddiskLauncher {
         }).done(fileItemList -> {
             if (fileItemList != null) {
                 if (treeIndex >= dirTrees.length) {
-                    HVLog.d("最后目录情况:" + fileItemList + "    folder_id:" + folder_id);
+                    HVLog.d("最后目录情况:" + fileItemList + "folder_id:" + folder_id);
                     ResponseProgram.defer().when(() -> {
                         try {
                             List<FileItem> fileInfoSync = HttpWorker.getInstance().getFileInfoSync(folder_id);
-                            HVLog.d("文件数量： " + fileInfoSync.size());
+                            HVLog.d("文件数量：" + fileInfoSync.size());
                             cloudFileCallback.callback(fileInfoSync);
                         }
                         catch (Exception e) {
@@ -238,7 +238,7 @@ public class ClouddiskLauncher {
                 this.currentFolder = fileItemList;
                 HVLog.d("fileItemList:" + fileItemList);
                 String directoryName = dirTrees[treeIndex];
-                HVLog.d("directoryName:" + directoryName + "    treeIndex:" + treeIndex + "    dirTrees:" + dirTrees.length);
+                HVLog.d("directoryName:" + directoryName + "treeIndex:" + treeIndex + "dirTrees:" + dirTrees.length);
                 String folderId = this.getCloudDiskFolderIdByDirectoryName((List<FileItem>)fileItemList, directoryName);
                 if (treeIndex < dirTrees.length) {
                     this.openPageByDirectoryFile(dirTrees, folderId, treeIndex + 1, cloudFileCallback);

@@ -24,7 +24,7 @@ public class ZipTools {
      */
     public static int compressZip(String src, String dest, ZipCallback zipCallback) {
         ZipOutputStream out = null;
-        HVLog.d("被压缩src:" + src + "    zip输出路径:" + dest);
+        HVLog.d("被压缩src:" + src + "zip输出路径:" + dest);
         try {
             File outFile = new File(dest);
             File fileOrDirectory = new File(src);
@@ -72,7 +72,7 @@ public class ZipTools {
             Enumeration<? extends ZipEntry> e = zipFile.entries();
             ZipEntry zipEntry = null;
             File dest = new File(outputDirectory);
-            HVLog.d(" dest :" + dest.exists());
+            HVLog.d("dest :" + dest.exists());
             if (!dest.exists()) {
                 dest.mkdirs();
             }
@@ -82,7 +82,7 @@ public class ZipTools {
                 InputStream in = null;
                 FileOutputStream out = null;
                 unZipCallback.callbackName(entryName);
-                HVLog.d(" entryName :" + entryName);
+                HVLog.d("entryName :" + entryName);
                 try {
                     int c;
                     File df;

@@ -37,7 +37,7 @@ public class DialogFragmentHooker {
         }
         String packageName = VClient.get().getCurrentPackage();
         String clzName = thiz.getClass().getName();
-        Log.e((String)"Hooker", (String)(packageName + " DialogFragment onStart " + clzName + "  " + thiz.getDialog().hashCode()));
+        Log.e((String)"Hooker", (String)(packageName + "DialogFragment onStart" + clzName + "  " + thiz.getDialog().hashCode()));
         if (HookDialogUtils.isHiddDialog(clzName, packageName)) {
             HookDialogUtils.addHiddenDialogCode(thiz.getDialog().hashCode());
         }

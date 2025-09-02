@@ -2044,14 +2044,12 @@ public class SyncStorageEngine extends Handler {
     }
 
     public void dumpPendingOperations(StringBuilder sb) {
-        sb.append("Pending Ops: ").append(this.mPendingOperations.size()).append(" operation(s)
-");
+        sb.append("Pending Ops: ").append(this.mPendingOperations.size()).append(" operation(s)\n");
         Iterator var2 = this.mPendingOperations.iterator();
 
         while(var2.hasNext()) {
             PendingOperation pop = (PendingOperation)var2.next();
-            sb.append("(" + pop.account).append(", u" + pop.userId).append(", " + pop.authority).append(", " + pop.extras).append(")
-");
+            sb.append("(" + pop.account).append(", u" + pop.userId).append(", " + pop.authority).append(", " + pop.extras).append(")\n");
         }
 
     }

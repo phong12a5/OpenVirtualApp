@@ -553,7 +553,7 @@ extends AppCompatActivity {
             @Override
             public void onBitmapCropped(@NonNull Uri resultUri, int offsetX, int offsetY, int imageWidth, int imageHeight) {
                 Log.i((String)"VirtualApp", (String)("resultUri:" + resultUri));
-                Log.i((String)"VirtualApp", (String)("offsetX:" + offsetX + "  offsetY:" + offsetY + "    imageWidth:" + imageWidth + "    imageHeight:" + imageHeight));
+                Log.i((String)"VirtualApp", (String)("offsetX:" + offsetX + "offsetY:" + offsetY + "imageWidth:" + imageWidth + "imageHeight:" + imageHeight));
                 UCropActivity.this.setResultUri(resultUri, UCropActivity.this.mGestureCropImageView.getTargetAspectRatio(), offsetX, offsetY, imageWidth, imageHeight);
                 UCropActivity.this.finish();
             }

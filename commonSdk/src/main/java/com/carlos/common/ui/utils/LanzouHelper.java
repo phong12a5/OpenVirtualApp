@@ -164,7 +164,7 @@ public class LanzouHelper {
             try {
                 Response response = client.newCall(request).execute();
                 if (!response.isSuccessful()) {
-                    throw new IOException("Unexpected code " + response);
+                    throw new IOException("Unexpected code" + response);
                 }
                 String body = response.body().string();
                 HVLog.d("body:" + body);
@@ -191,14 +191,14 @@ public class LanzouHelper {
         try {
             Pattern pattern = Pattern.compile("(data)? : (\\{[\\s\\S]*\\},)\\n");
             Matcher matcher = pattern.matcher(content);
-            HVLog.d("matcherJSON:" + matcher + "    matcher:" + matcher.find() + "    matcher.groupCount():" + matcher.groupCount());
+            HVLog.d("matcherJSON:" + matcher + "matcher:" + matcher.find() + "matcher.groupCount():" + matcher.groupCount());
             String group = matcher.group(0);
             String[] strings = group.split("\n");
             String requestData = strings[1];
             int startIndexOf = requestData.indexOf("{");
             int endIndexOf = requestData.indexOf("}");
             String substring = requestData.substring(startIndexOf, endIndexOf + 1);
-            HVLog.d(" matcher data substring:" + substring);
+            HVLog.d("matcher data substring:" + substring);
             return substring;
         }
         catch (Exception e) {

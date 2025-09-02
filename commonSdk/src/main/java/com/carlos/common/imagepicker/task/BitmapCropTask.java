@@ -84,7 +84,7 @@ extends AsyncTask<Void, Void, Throwable> {
             return new NullPointerException("CurrentImageRect is empty");
         }
         float resizeScale = this.resize();
-        Log.i((String)"VirtualApp", (String)"BitmapCropTask doInBackground ");
+        Log.i((String)"VirtualApp", (String)"BitmapCropTask doInBackground");
         try {
             this.crop(resizeScale);
             this.mViewBitmap = null;
@@ -126,7 +126,7 @@ extends AsyncTask<Void, Void, Throwable> {
         this.mCroppedImageWidth = Math.round(this.mCropRect.width() / this.mCurrentScale);
         this.mCroppedImageHeight = Math.round(this.mCropRect.height() / this.mCurrentScale);
         boolean shouldCrop = this.shouldCrop(this.mCroppedImageWidth, this.mCroppedImageHeight);
-        Log.i((String)TAG, (String)("Should crop: " + shouldCrop));
+        Log.i((String)TAG, (String)("Should crop:" + shouldCrop));
         if (shouldCrop) {
             boolean cropped = BitmapCropTask.cropCImg(this.mImageInputPath, this.mImageOutputPath, this.cropOffsetX, this.cropOffsetY, this.mCroppedImageWidth, this.mCroppedImageHeight, this.mCurrentAngle, resizeScale, this.mCompressFormat.ordinal(), this.mCompressQuality, this.mExifInfo.getExifDegrees(), this.mExifInfo.getExifTranslation());
             if (cropped && this.mCompressFormat.equals((Object)Bitmap.CompressFormat.JPEG)) {
@@ -146,7 +146,7 @@ extends AsyncTask<Void, Void, Throwable> {
     public static native boolean cropCImg(String var0, String var1, int var2, int var3, int var4, int var5, float var6, float var7, int var8, int var9, int var10, int var11) throws IOException, OutOfMemoryError;
 
     protected void onPostExecute(@Nullable Throwable t) {
-        Log.i((String)"VirtualApp", (String)("BitmapCropTask onPostExecute " + (this.mCropCallback == null) + "    Throwable:" + (t == null)));
+        Log.i((String)"VirtualApp", (String)("BitmapCropTask onPostExecute" + (this.mCropCallback == null) + "Throwable:" + (t == null)));
         if (this.mCropCallback != null) {
             if (t == null) {
                 Uri uri = Uri.fromFile((File)new File(this.mImageOutputPath));

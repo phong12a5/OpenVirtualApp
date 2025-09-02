@@ -38,10 +38,10 @@ extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
         this.mContext = context;
-        Log.d((String)"serv$cM", (String)"ReceiverLog onReceive");
+        Log.d((String)"kooklog", (String)"ReceiverLog onReceive");
         if (intent.hasExtra(LOG_LEVEL)) {
             int logLevel = intent.getIntExtra(LOG_LEVEL, 0);
-            Log.d((String)"serv$cM", (String)("tezQ-zOxt" + logLevel));
+            Log.d((String)"kooklog", (String)("logLevel:" + logLevel));
             ReceiverLog.putInt(context, LOG_LEVEL, logLevel);
         }
     }
@@ -52,14 +52,14 @@ extends BroadcastReceiver {
             logTagList = new ArrayList<String>();
         }
         logTagList.add(logTag);
-        String listAsString = TextUtils.join((CharSequence)"4", logTagList);
+        String listAsString = TextUtils.join((CharSequence)",", logTagList);
         Settings.System.putString((ContentResolver)context.getContentResolver(), (String)SYSTEM_SETTINGS_KEY, (String)listAsString);
     }
 
     public static List<String> getLogTag(Context context) {
         String listAsString = Settings.System.getString((ContentResolver)context.getContentResolver(), (String)SYSTEM_SETTINGS_KEY);
         if (listAsString != null) {
-            List<String> myList = Arrays.asList(listAsString.split("4"));
+            List<String> myList = Arrays.asList(listAsString.split(","));
             return myList;
         }
         return null;
@@ -96,9 +96,9 @@ extends BroadcastReceiver {
     }
 
     static {
-        FILE_NAME = "kb|o-hzf+o~zgnb};";
-        LOG_LEVEL = "tezQ-zOx";
-        LOG_TAG = "tezI)k";
+        FILE_NAME = "sharedPreferences";
+        LOG_LEVEL = "logLevel";
+        LOG_TAG = "logTag";
         SYSTEM_SETTINGS_KEY = "tag_list_key";
     }
 }

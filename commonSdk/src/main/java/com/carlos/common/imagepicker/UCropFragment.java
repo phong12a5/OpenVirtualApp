@@ -163,7 +163,7 @@ extends Fragment {
             this.callback = (UCropFragmentCallback)context;
         }
         catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement UCropFragmentCallback");
+            throw new ClassCastException(context.toString() + "must implement UCropFragmentCallback");
         }
     }
 

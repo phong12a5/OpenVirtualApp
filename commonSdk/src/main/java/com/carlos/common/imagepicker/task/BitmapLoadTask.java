@@ -103,7 +103,7 @@ extends AsyncTask<Void, Void, BitmapLoadTask.BitmapWorkerResult> {
                 decodeAttemptSuccess = true;
             }
             catch (OutOfMemoryError error) {
-                Log.e((String)TAG, (String)"doInBackground: BitmapFactory.decodeFileDescriptor: ", (Throwable)error);
+                Log.e((String)TAG, (String)"doInBackground: BitmapFactory.decodeFileDescriptor:", (Throwable)error);
                 options.inSampleSize *= 2;
             }
         }
@@ -132,7 +132,7 @@ extends AsyncTask<Void, Void, BitmapLoadTask.BitmapWorkerResult> {
 
     private void processInputUri() throws NullPointerException, IOException {
         String inputUriScheme = this.mInputUri.getScheme();
-        Log.d((String)TAG, (String)("Uri scheme: " + inputUriScheme));
+        Log.d((String)TAG, (String)("Uri scheme:" + inputUriScheme));
         if ("http".equals(inputUriScheme) || "https".equals(inputUriScheme)) {
             try {
                 this.downloadFile(this.mInputUri, this.mOutputUri);
@@ -155,7 +155,7 @@ extends AsyncTask<Void, Void, BitmapLoadTask.BitmapWorkerResult> {
                 }
             }
         } else if (!"file".equals(inputUriScheme)) {
-            Log.e((String)TAG, (String)("Invalid Uri scheme " + inputUriScheme));
+            Log.e((String)TAG, (String)("Invalid Uri scheme" + inputUriScheme));
             throw new IllegalArgumentException("Invalid Uri scheme" + inputUriScheme);
         }
     }

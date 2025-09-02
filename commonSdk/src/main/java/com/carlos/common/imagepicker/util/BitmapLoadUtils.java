@@ -53,7 +53,7 @@ public class BitmapLoadUtils {
             }
         }
         catch (OutOfMemoryError error) {
-            Log.e((String)TAG, (String)"transformBitmap: ", (Throwable)error);
+            Log.e((String)TAG, (String)"transformBitmap:", (Throwable)error);
         }
         return bitmap;
     }
@@ -81,7 +81,7 @@ public class BitmapLoadUtils {
             BitmapLoadUtils.close(stream);
         }
         catch (IOException e) {
-            Log.e((String)TAG, (String)("getExifOrientation: " + imageUri.toString()), (Throwable)e);
+            Log.e((String)TAG, (String)("getExifOrientation:" + imageUri.toString()), (Throwable)e);
         }
         return orientation;
     }
@@ -147,7 +147,7 @@ public class BitmapLoadUtils {
         if ((maxTextureSize = EglUtils.getMaxTextureSize()) > 0) {
             maxBitmapSize = Math.min(maxBitmapSize, maxTextureSize);
         }
-        Log.d((String)TAG, (String)("maxBitmapSize: " + maxBitmapSize));
+        Log.d((String)TAG, (String)("maxBitmapSize:" + maxBitmapSize));
         return maxBitmapSize;
     }
 

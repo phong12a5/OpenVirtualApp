@@ -149,7 +149,7 @@ implements MirrorAdapter.OnAppClickListener {
             loadingPageIntent.addFlags(0x10000000);
             loadingPageIntent.putExtra(KEY_PKGNAME, (Parcelable)intent);
             loadingPageIntent.putExtra(KEY_USER, userId);
-            HVLog.d("packageName:" + packageName + "   userId:" + userId);
+            HVLog.d("packageName:" + packageName + "userId:" + userId);
             context.startActivity(loadingPageIntent);
         }
     }
@@ -254,7 +254,7 @@ implements MirrorAdapter.OnAppClickListener {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        HVLog.d("onActivityResult  requestCode：" + requestCode + "  resultCode:" + resultCode + "    data:" + data);
+        HVLog.d("onActivityResult  requestCode：" + requestCode + "resultCode:" + resultCode + "data:" + data);
         if (requestCode == 12 && resultCode == -1) {
             int position = data.getIntExtra("position", -1);
             HVLog.d("position：" + position);
@@ -267,7 +267,7 @@ implements MirrorAdapter.OnAppClickListener {
             String pkg = data.getStringExtra(KEY_PKGNAME);
             String appName = data.getStringExtra(APP_NAME);
             int userId = data.getIntExtra(KEY_USER, -1);
-            HVLog.d("startActivity  ： " + pkg + "   userId : " + userId);
+            HVLog.d("startActivity  ：" + pkg + "userId :" + userId);
             this.launchMirrorApp(userId, this.packageName, appName);
             return;
         }
@@ -281,7 +281,7 @@ implements MirrorAdapter.OnAppClickListener {
         }
         switch (model.getMenuType()) {
             case 0: {
-                HVLog.d(" model.getMenuType():" + model.getMenuType() + "    position:" + position + "    tsp_mockwifi:" + this.tsp_mockwifi);
+                HVLog.d("model.getMenuType():" + model.getMenuType() + "position:" + position + "tsp_mockwifi:" + this.tsp_mockwifi);
                 if (this.tsp_mockwifi != 2) {
                     Toasty.warning(this.getContext(), "功能受限、请在设置中联系软件作者qixie0306@gmail.com").show();
                     return;
@@ -290,7 +290,7 @@ implements MirrorAdapter.OnAppClickListener {
                 break;
             }
             case 1: {
-                HVLog.d(" model.getMenuType():" + model.getMenuType() + "    position:" + position + "    tsp_virtuallocation:" + this.tsp_virtuallocation);
+                HVLog.d("model.getMenuType():" + model.getMenuType() + "position:" + position + "tsp_virtuallocation:" + this.tsp_virtuallocation);
                 if (this.tsp_virtuallocation != 2) {
                     Toasty.warning(this.getContext(), "功能受限、请在设置中联系软件作者qixie0306@gmail.com").show();
                     return;
@@ -302,7 +302,7 @@ implements MirrorAdapter.OnAppClickListener {
                 if (Build.VERSION.SDK_INT >= 23 && VirtualCore.get().getTargetSdkVersion() >= 23) {
                     ActivityCompat.requestPermissions((Activity)this, (String[])new String[]{"android.permission.READ_PHONE_STATE"}, (int)0);
                 }
-                HVLog.d(" model.getMenuType():" + model.getMenuType() + "    position:" + position + "    tsp_mockphone:" + this.tsp_mockphone);
+                HVLog.d("model.getMenuType():" + model.getMenuType() + "position:" + position + "tsp_mockphone:" + this.tsp_mockphone);
                 if (this.tsp_mockphone != 2) {
                     Toasty.warning(this.getContext(), "功能受限、请在设置中联系软件作者qixie0306@gmail.com").show();
                     return;
@@ -318,7 +318,7 @@ implements MirrorAdapter.OnAppClickListener {
                 HVLog.d("tag:" + tag);
                 if ("BTN1".equals(tag)) {
                     boolean res = VirtualCore.get().cleanPackageData(this.packageName, this.userId);
-                    Toast.makeText((Context)this, (CharSequence)("clean app data " + (res ? "success." : "failed.")), (int)0).show();
+                    Toast.makeText((Context)this, (CharSequence)("clean app data" + (res ? "success." : "failed.")), (int)0).show();
                     break;
                 }
                 if (!"BTN2".equals(tag)) break;
@@ -329,7 +329,7 @@ implements MirrorAdapter.OnAppClickListener {
                 break;
             }
             case 5: {
-                HVLog.d(" model.getMenuType():" + model.getMenuType() + "    position:" + position + "    MENU_TYPE_BACKUP_RECOVERY:" + 5);
+                HVLog.d("model.getMenuType():" + model.getMenuType() + "position:" + position + "MENU_TYPE_BACKUP_RECOVERY:" + 5);
                 if (this.tsp_backupRecovery != 2) {
                     Toasty.warning(this.getContext(), "功能受限、请在设置中联系软件作者qixie0306@gmail.com").show();
                     return;
@@ -338,11 +338,7 @@ implements MirrorAdapter.OnAppClickListener {
                 ClouddiskLauncher.getInstance().launcherCloud((Context)this);
                 String content = "";
                 if ("BTN1".equals(tag)) {
-                    content = "备份不超过100M应用数据到云端服务器,数据信息及应用信息都是加密的,如有疑惑请停止使用该功能,备份数据有:
-1:虚拟定位
-2：Wifi信息
-3：机型模拟
-4:应用缓存数据";
+                    content = "备份不超过100M应用数据到云端服务器,数据信息及应用信息都是加密的,如有疑惑请停止使用该功能,备份数据有:\n1:虚拟定位\n2：Wifi信息\n3：机型模拟\n4:应用缓存数据";
                     MirrorDialog.getInstance().showBakupAndRecovery((Activity)this, content, (view, dialog, textProgressBar) -> {
                         textProgressBar.setVisibility(0);
                         HVLog.d("备份好,定位,wifi,机型数据");
@@ -366,22 +362,22 @@ implements MirrorAdapter.OnAppClickListener {
                             textProgressBar.setVisibility(0);
                             textProgressBar.setText("开始解析还原码");
                             String fileNameByPath = FileTools.getFileNameByPath(desDecrypt, false);
-                            HVLog.d("desDecrypt:" + desDecrypt + "     fileNameByPath:" + fileNameByPath);
+                            HVLog.d("desDecrypt:" + desDecrypt + "fileNameByPath:" + fileNameByPath);
                             if (!TextUtils.isEmpty((CharSequence)fileNameByPath) && (strings = fileNameByPath.split("_")).length == 4) {
                                 String deviceNo = strings[0];
                                 String pkgName = strings[1];
                                 String userId = strings[2];
                                 String time = strings[3];
                                 String currentDate = ClouddiskLauncher.getCurrentDate(time);
-                                HVLog.d("deviceNo:" + deviceNo + "  pkgName:" + pkgName + "    userId:" + userId + "    time:" + time + "   currentDate:" + currentDate);
+                                HVLog.d("deviceNo:" + deviceNo + "pkgName:" + pkgName + "userId:" + userId + "time:" + time + "currentDate:" + currentDate);
                                 if (this.packageName.equals(pkgName)) {
                                     textProgressBar.setText("下载数据包");
                                     boolean res = VirtualCore.get().cleanPackageData(this.packageName, this.userId);
-                                    Toast.makeText((Context)this, (CharSequence)("clean app data " + (res ? "success." : "failed.")), (int)0).show();
+                                    Toast.makeText((Context)this, (CharSequence)("clean app data" + (res ? "success." : "failed.")), (int)0).show();
                                     ClouddiskLauncher.getInstance().launcherCloud((Context)this, currentDate, fileItemList -> {
                                         final String fileName = FileTools.getFileNameByPath(desDecrypt, true);
                                         for (FileItem fileItem : fileItemList) {
-                                            HVLog.d("fileName: " + fileName + "  " + fileItem.toString());
+                                            HVLog.d("fileName:" + fileName + "  " + fileItem.toString());
                                             if (!fileName.equals(fileItem.getFilename())) continue;
                                             HVLog.d("找到了要下载的文件列表 Z");
                                             ClouddiskLauncher.getInstance().downFileByCloud(fileItem.getId()).done(downloadLink -> {
@@ -391,7 +387,7 @@ implements MirrorAdapter.OnAppClickListener {
                                                         Toasty.warning((Context)this, "还原功能异常").show();
                                                     });
                                                 } else {
-                                                    HVLog.d("  开始下载 ");
+                                                    HVLog.d("开始下载");
                                                     DownloadManager mDownloadManager = DownloadManager.getInstance();
                                                     final File dataUserPackageDirectory = VEnvironment.getDataUserPackageDirectory(this.userId, this.packageName);
                                                     if (!dataUserPackageDirectory.exists()) {
@@ -404,7 +400,7 @@ implements MirrorAdapter.OnAppClickListener {
                                                             MirrorActivity.this.getHandler().post(() -> {
                                                                 Toasty.success(MirrorActivity.this.getContext(), "下载完成!", 0).show();
                                                                 File file = new File(dataUserPackageDirectory.getPath(), fileName);
-                                                                HVLog.d("file 下载完成 " + file.getAbsolutePath() + "  file is exists :" + file.exists());
+                                                                HVLog.d("file 下载完成" + file.getAbsolutePath() + "file is exists :" + file.exists());
                                                                 String fileMD5Sync = MD5Utils.fileMD5Sync(file);
                                                                 HVLog.d("fileMD5Sync:" + fileMD5Sync);
                                                                 int i = ZipTools.uncompressZip(file.getAbsolutePath(), dataUserPackageDirectory.getPath(), zipName -> MirrorActivity.this.getHandler().post(() -> textProgressBar.setText("解压" + zipName)));
@@ -464,7 +460,7 @@ implements MirrorAdapter.OnAppClickListener {
         String devicesNo = instance.getDevicesNo();
         textProgressBar.setText("开始处理应用数据");
         File dataUserPackageDirectory = VEnvironment.getDataUserPackageDirectory(this.userId, this.packageName);
-        HVLog.d(" 应用数据目录 ：" + dataUserPackageDirectory.getAbsolutePath() + "   是否存在：" + dataUserPackageDirectory.exists());
+        HVLog.d("应用数据目录 ：" + dataUserPackageDirectory.getAbsolutePath() + "是否存在：" + dataUserPackageDirectory.exists());
         if (!dataUserPackageDirectory.exists()) {
             this.getHandler().post(() -> {
                 Toasty.error((Context)this, "当前应用数据为空").show();
@@ -480,7 +476,7 @@ implements MirrorAdapter.OnAppClickListener {
         long currentTimeMillis = System.currentTimeMillis();
         final String zipFile = this.getSavePath() + devicesNo + "_" + this.packageName + "_" + this.userId + "_" + currentTimeMillis + ".zip";
         final String desEncrypt = AESUtil.desEncrypt(zipFile);
-        HVLog.d("zipFile:" + zipFile + "    加密:" + desEncrypt);
+        HVLog.d("zipFile:" + zipFile + "加密:" + desEncrypt);
         String desDecrypt = AESUtil.desDecrypt(desEncrypt);
         HVLog.d("解密 desDecrypt：" + desDecrypt);
         ResponseProgram.defer().when(() -> {
@@ -496,7 +492,7 @@ implements MirrorAdapter.OnAppClickListener {
                     File file = new File(zipFile);
                     long sizeKb = file.length() / 1024L;
                     long sizeMb = sizeKb / 1024L;
-                    HVLog.d("文件大小：" + sizeKb + "kb   sizeMb:" + sizeMb + " MB");
+                    HVLog.d("文件大小：" + sizeKb + "kb   sizeMb:" + sizeMb + "MB");
                     if (file.length() >= (long)maxlength) {
                         this.getHandler().post(() -> MirrorDialog.getInstance().tipsSingleDialog((Activity)this, "应用数据超过100MB,当前" + sizeMb + "MB,不能上传", new MirrorDialog.SingleDialogClickListener(){
 

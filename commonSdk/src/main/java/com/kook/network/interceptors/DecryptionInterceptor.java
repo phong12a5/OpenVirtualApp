@@ -35,7 +35,7 @@ import okio.BufferedSource;
 
 public class DecryptionInterceptor
 implements Interceptor {
-    private static String INTERCEPTOR = "qdix:oOd:fi%qp";
+    private static String INTERCEPTOR = "interceptor-sp";
     public Context mContext;
     public String mBaseUrl;
 
@@ -64,7 +64,7 @@ implements Interceptor {
         SharedPreferences sharedPreferences = this.mContext.getSharedPreferences(INTERCEPTOR, 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(requestUrl, encryptContent);
-        HVLog.d("requestUrl:" + requestUrl + "8*==-bIf7yoKmnu}&d9" + encryptContent);
+        HVLog.d("requestUrl:" + requestUrl + "    encryptContent:" + encryptContent);
         if (Build.VERSION.SDK_INT >= 9) {
             editor.apply();
         }

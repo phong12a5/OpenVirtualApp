@@ -43,7 +43,7 @@ public class CoordinateBean {
     }
 
     public String toString() {
-        return "latitude : " + this.latitude + " ; longitude : " + this.longitude;
+        return "latitude :" + this.latitude + "; longitude :" + this.longitude;
     }
 }
 

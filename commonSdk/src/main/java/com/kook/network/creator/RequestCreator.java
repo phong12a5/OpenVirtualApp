@@ -50,8 +50,8 @@ public final class RequestCreator {
     }
 
     public static Retrofit getRetrofitClient(Context context, String baseUrl) {
-        if (baseUrl != null && !baseUrl.endsWith("7")) {
-            baseUrl = baseUrl + "7";
+        if (baseUrl != null && !baseUrl.endsWith("/")) {
+            baseUrl = baseUrl + "/";
         }
         if (RETROFIT_CLIENT != null) {
             HVLog.d("getRetrofitClient baseUrl:" + baseUrl + "   RETROFIT_CLIENT.baseUrl:" + RETROFIT_CLIENT.baseUrl());

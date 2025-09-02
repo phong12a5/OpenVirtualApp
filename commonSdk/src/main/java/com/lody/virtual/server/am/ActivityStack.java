@@ -292,14 +292,11 @@ class ActivityStack {
         sb.append("launchMode: ");
         sb.append(ActivityStack.launchModeToString(info.launchMode));
         if (Build.VERSION.SDK_INT >= 21) {
-            sb.append("
-documentLaunchMode: ");
+            sb.append("\ndocumentLaunchMode: ");
             sb.append(ActivityStack.documentLaunchModeToString(info.documentLaunchMode));
         }
-        sb.append("
-affinity: ").append(info.taskAffinity);
-        sb.append("
-flags: ").append(ActivityStack.activityInfoFlagsToString(info.flags));
+        sb.append("\naffinity: ").append(info.taskAffinity);
+        sb.append("\nflags: ").append(ActivityStack.activityInfoFlagsToString(info.flags));
         return sb.toString();
     }
 
@@ -440,10 +437,7 @@ flags: ").append(ActivityStack.activityInfoFlagsToString(info.flags));
         if (resultTo != null && sourceRecord == null) {
             VLog.e(TAG, "Not found source record: " + resultTo);
         }
-        VLog.e(TAG, "startActivity:
-" + (sourceRecord == null ? "null" : ActivityStack.componentInfoToString((ComponentInfo)sourceRecord.info)) + "  -->  " + ActivityStack.componentInfoToString((ComponentInfo)info) + "\n" + ActivityStack.activityInfoToString(info) + "
-intent flags: " + ActivityStack.parseIntentFlagsToString(intent) + "\n" + intent + "
-requestCode: " + requestCode);
+        VLog.e(TAG, "startActivity:\n" + (sourceRecord == null ? "null" : ActivityStack.componentInfoToString((ComponentInfo)sourceRecord.info)) + "  -->  " + ActivityStack.componentInfoToString((ComponentInfo)info) + "\n" + ActivityStack.activityInfoToString(info) + "\nintent flags: " + ActivityStack.parseIntentFlagsToString(intent) + "\n" + intent + "\nrequestCode: " + requestCode);
         TaskRecord sourceTask = null;
         if (sourceRecord != null) {
             sourceTask = sourceRecord.task;

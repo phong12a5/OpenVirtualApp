@@ -139,7 +139,7 @@ public class HVLog {
         String className = HVLog.getSimpleName(element.getClassName());
         String methodName = element.getMethodName();
         int lineNumber = element.getLineNumber();
-        String tag = TAG + "5Q" + className + "EQ" + methodName + "EQ" + lineNumber + "E";
+        String tag = TAG + "-[" + className + "][" + methodName + "][" + lineNumber + "]";
         return tag;
     }
 
@@ -147,7 +147,7 @@ public class HVLog {
         if (LOG_SWITCH.booleanValue()) {
             if (!TAG.equals(tag)) {
                 boolean bit = false;
-                tag = bit ? TAG + "5" + tag : TAG + "5" + tag;
+                tag = bit ? TAG + "-" + tag : TAG + "-" + tag;
             }
             int logLevel = HVLog.getSystemSettings();
             Object tagList = null;
@@ -217,9 +217,9 @@ public class HVLog {
             String stackTraceString = Log.getStackTraceString((Throwable)cause);
             HVLog.e(subtag, "异常 cause:" + stackTraceString);
         } else {
-            Log.e((String)subtag, (String)("异常:" + e.toString() + "8*==hoKa=l;aq om$|#=" + (cause == null)));
+            Log.e((String)subtag, (String)("异常:" + e.toString() + "     cause is null ?" + (cause == null)));
             for (int i = 0; i < stackTrace.length; ++i) {
-                HVLog.e(subtag, "]r~x8xC{ )~2" + stackTrace[i].toString());
+                HVLog.e(subtag, "Exception e:" + stackTrace[i].toString());
             }
         }
     }
@@ -232,9 +232,9 @@ public class HVLog {
             String stackTraceString = Log.getStackTraceString((Throwable)cause);
             HVLog.e("异常 cause(printException):" + stackTraceString);
         } else {
-            HVLog.e("异常:" + e.toString() + "8*==hoKa=l;aq om$|#=" + (cause == null));
+            HVLog.e("异常:" + e.toString() + "     cause is null ?" + (cause == null));
             for (int i = 0; i < stackTrace.length; ++i) {
-                HVLog.e("]r~x8xC{ )~2" + stackTrace[i].toString());
+                HVLog.e("Exception e:" + stackTrace[i].toString());
             }
         }
     }
@@ -242,13 +242,13 @@ public class HVLog {
     public static void printThrowable(Throwable throwable) {
         String stackTraceString = Log.getStackTraceString((Throwable)throwable);
         HVLog.d("Build.VERSION.SDK_INT = " + Build.VERSION.SDK_INT);
-        HVLog.e(TAG, "hxts<XBf!~zjne!}r" + stackTraceString);
+        HVLog.e(TAG, "printThrowable e:" + stackTraceString);
     }
 
     public static void printThrowable(String subtag, Throwable throwable) {
         String stackTraceString = Log.getStackTraceString((Throwable)throwable);
         HVLog.d("Build.VERSION.SDK_INT = " + Build.VERSION.SDK_INT);
-        HVLog.e(subtag, "hxts<XBf!~zjne!}r" + stackTraceString);
+        HVLog.e(subtag, "printThrowable e:" + stackTraceString);
     }
 
     public static void printInfo() {
@@ -257,7 +257,7 @@ public class HVLog {
         if (stackElements != null) {
             for (int i = 0; i < stackElements.length; ++i) {
                 StackTraceElement stackTraceElement = stackElements[i];
-                String output = String.format("=y54r)Y8n,h(*%r1", stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), HVLog.getSimpleName(stackTraceElement.getClassName()), HVLog.getPackageName(stackTraceElement.getClassName()));
+                String output = String.format("%s():%s, %s (%s)", stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), HVLog.getSimpleName(stackTraceElement.getClassName()), HVLog.getPackageName(stackTraceElement.getClassName()));
                 Log.i((String)TAG, (String)output);
             }
         }
@@ -269,7 +269,7 @@ public class HVLog {
         if (stackElements != null) {
             for (int i = 0; i < stackElements.length; ++i) {
                 StackTraceElement stackTraceElement = stackElements[i];
-                String output = String.format("=y54r)Y8n,h(*%r1", stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), HVLog.getSimpleName(stackTraceElement.getClassName()), HVLog.getPackageName(stackTraceElement.getClassName()));
+                String output = String.format("%s():%s, %s (%s)", stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), HVLog.getSimpleName(stackTraceElement.getClassName()), HVLog.getPackageName(stackTraceElement.getClassName()));
                 HVLog.i(tag, output);
             }
         }
@@ -316,14 +316,14 @@ public class HVLog {
     }
 
     static {
-        SIMPLE_NAME = "serv$cM";
+        SIMPLE_NAME = "kooklog";
         LOG_SWITCH = true;
         LOG_WRITE_TO_FILE = false;
         LOG_PATH_SDCARD_DIR = "/sdcard/Theme";
         SDCARD_LOG_FILE_SAVE_DAYS = 0;
         LOG_FILE_NAME = "";
-        myLogSdf = new SimpleDateFormat("asddeAg9*m;@J:lurcp");
-        logfile = new SimpleDateFormat("asddeAg9*m");
+        myLogSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        logfile = new SimpleDateFormat("yyyy-MM-dd");
         TAG = "kooklog-Rommock";
         DEBUG = true;
     }

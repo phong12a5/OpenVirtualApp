@@ -73,18 +73,42 @@ class StringFogDecryptor:
                 continue
         return None, None
     
+    def escape_java_string(self, text):
+        """Escape string for Java string literal"""
+        if not text:
+            return '""'
+        
+        # Clean up null bytes first
+        cleaned = text.rstrip('\x00')
+        
+        # Escape special characters for Java
+        escaped = (cleaned
+                  .replace('\\', '\\\\')    # Escape backslashes
+                  .replace('"', '\\"')      # Escape quotes
+                  .replace('\n', '\\n')     # Escape newlines
+                  .replace('\r', '\\r')     # Escape carriage returns
+                  .replace('\t', '\\t')     # Escape tabs
+                  )
+        
+        return f'"{escaped}"'
+    
     def is_valid_decryption(self, text):
         """Kiểm tra xem kết quả decrypt có hợp lệ không"""
         if not text:
             return False
         
         # Strip null bytes and whitespace
-        cleaned_text = text.rstrip('\x00').strip()
+        cleaned_text = text.rstrip('\x00')
         if not cleaned_text:
             return False
             
-        # Cho phép các ký tự printable và whitespace thông thường
-        return all(c.isprintable() or c in '\n\r\t ' for c in cleaned_text)
+        # Check if contains reasonable characters (not just binary data)
+        try:
+            # Must be valid UTF-8 and contain some reasonable characters
+            cleaned_text.encode('utf-8')
+            return len(cleaned_text) > 0
+        except UnicodeEncodeError:
+            return False
     
     def get_key_from_imports(self, content):
         """Xác định key dựa trên import statements trong file"""
@@ -240,9 +264,8 @@ class StringFogDecryptor:
                     print(f"  Decrypted: {match['encrypted_string'][:50]}... -> {decrypted}")
                     print(f"  Key used: {key_used}")
                     
-                    # Escape special characters trong decrypted string
-                    escaped_decrypted = decrypted.replace('\\', '\\\\').replace('"', '\\"')
-                    replacement = f'"{escaped_decrypted}"'
+                    # Properly escape for Java string literal
+                    replacement = self.escape_java_string(decrypted)
                     
                     replacements.append({
                         'start': match['start'],

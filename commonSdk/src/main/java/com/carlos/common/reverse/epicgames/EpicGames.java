@@ -14,7 +14,7 @@ import de.robv.android.xposed.XposedHelpers;
 
 public class EpicGames {
     public static void hook(ClassLoader classLoader, Application application) {
-        HVLog.d(" 开始 Logger  ======================================================      2  ");
+        HVLog.d("开始 Logger  ======================================================      2");
         final Class<?> Logger2 = XposedHelpers.findClass("com.epicgames.ue4.Logger", classLoader);
         XposedHelpers.callStaticMethod(Logger2, "SuppressLogs", new Object[0]);
         XposedHelpers.findAndHookMethod("com.epicgames.ue4.Logger", classLoader, "debug", String.class, new XC_MethodHook(){
@@ -28,7 +28,7 @@ public class EpicGames {
             protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                 boolean bAllowLogging = XposedHelpers.getStaticBooleanField(Logger2, "bAllowLogging");
                 boolean bAllowExceptionLogging = XposedHelpers.getStaticBooleanField(Logger2, "bAllowExceptionLogging");
-                HVLog.d("epicgames 游戏 debug log:" + param.args[0] + "    bAllowLogging:" + bAllowLogging + "    bAllowExceptionLogging:" + bAllowExceptionLogging);
+                HVLog.d("epicgames 游戏 debug log:" + param.args[0] + "bAllowLogging:" + bAllowLogging + "bAllowExceptionLogging:" + bAllowExceptionLogging);
                 XposedHelpers.setStaticBooleanField(Logger2, "bAllowLogging", true);
                 XposedHelpers.setStaticBooleanField(Logger2, "bAllowExceptionLogging", true);
             }
@@ -37,7 +37,7 @@ public class EpicGames {
 
             @Override
             protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                HVLog.d("epicgames 游戏 error log:" + param.args[0] + "    result:" + param.getResult());
+                HVLog.d("epicgames 游戏 error log:" + param.args[0] + "result:" + param.getResult());
             }
 
             @Override
@@ -56,7 +56,7 @@ public class EpicGames {
             protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                 boolean bAllowLogging = XposedHelpers.getStaticBooleanField(Logger2, "bAllowLogging");
                 boolean bAllowExceptionLogging = XposedHelpers.getStaticBooleanField(Logger2, "bAllowExceptionLogging");
-                HVLog.d("epicgames 游戏 verbose log:" + param.args[0] + "    bAllowLogging:" + bAllowLogging + "    bAllowExceptionLogging:" + bAllowExceptionLogging);
+                HVLog.d("epicgames 游戏 verbose log:" + param.args[0] + "bAllowLogging:" + bAllowLogging + "bAllowExceptionLogging:" + bAllowExceptionLogging);
                 XposedHelpers.setStaticBooleanField(Logger2, "bAllowLogging", true);
                 XposedHelpers.setStaticBooleanField(Logger2, "bAllowExceptionLogging", true);
             }
@@ -77,19 +77,19 @@ public class EpicGames {
 
             @Override
             protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                HVLog.d("epicgames 游戏 AndroidThunkJava_GetMetaDataInt log:" + param.args[0] + "    result:" + param.getResult());
+                HVLog.d("epicgames 游戏 AndroidThunkJava_GetMetaDataInt log:" + param.args[0] + "result:" + param.getResult());
             }
 
             @Override
             protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                HVLog.d("epicgames 游戏 AndroidThunkJava_GetMetaDataInt log:" + param.args[0] + "    result:" + param.getResult());
+                HVLog.d("epicgames 游戏 AndroidThunkJava_GetMetaDataInt log:" + param.args[0] + "result:" + param.getResult());
             }
         });
         XposedHelpers.findAndHookMethod("com.epicgames.ue4.GameActivity", classLoader, "AndroidThunkJava_ForceQuit", new XC_MethodHook(){
 
             @Override
             protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                HVLog.d("epicgames 游戏 AndroidThunkJava_ForceQuit ");
+                HVLog.d("epicgames 游戏 AndroidThunkJava_ForceQuit");
                 HVLog.printInfo();
             }
 

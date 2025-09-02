@@ -77,7 +77,7 @@ public abstract class PersistenceLayer {
             p.setDataPosition(0);
             if (!this.verifyMagic(p)) {
                 this.onPersistenceFileDamage();
-                throw new IOException("Qdk|$eN4>li{ksu}&sf\"%Pv~*");
+                throw new IOException("Invalid persistence file.");
             }
             int fileVersion = p.readInt();
             this.readPersistenceData(p, fileVersion);

@@ -43,7 +43,7 @@ import java.util.Set;
 import okhttp3.ResponseBody;
 
 public class VNetworkManagerService {
-    public static String SERVICE_NAME = "voij'~AK=puk";
+    public static String SERVICE_NAME = "network_sync";
     public static final int oneHourMillis = 360000;
     public static final int oneDayMillis = 86400000;
     public Context mContext;
@@ -69,12 +69,12 @@ public class VNetworkManagerService {
         }
         VPersistent persistent = storagePersistenceServices.getVPersistent();
         boolean isRequestConfigUrl = this.configRequestCan(storagePersistenceServices, persistent);
-        String hostUrl = isRequestConfigUrl ? Constant.API_URL.ENV_PROD : persistent.getBuildConfig("mxqB cY`");
+        String hostUrl = isRequestConfigUrl ? Constant.API_URL.ENV_PROD : persistent.getBuildConfig("url_host");
         String env_config = persistent.getBuildConfig(VPersistent.PRODUCT_ENV_KEY);
-        if ("kci".equals(env_config)) {
+        if ("sit".equals(env_config)) {
             hostUrl = Constant.API_URL.ENV_DEV;
         }
-        HVLog.d("查看 devicesLog hostUrl:" + hostUrl + "8*=x&zuw!g}ae:" + env_config + "    isRequestConfigUrl:" + isRequestConfigUrl);
+        HVLog.d("查看 devicesLog hostUrl:" + hostUrl + "   env_config:" + env_config + "    isRequestConfigUrl:" + isRequestConfigUrl);
         DeviceInfo deviceInfo = DeviceInfo.getInstance(this.mContext);
         String deviceNo = deviceInfo.getDevicesNo();
         String channelNo = deviceInfo.getChannelNo();
@@ -99,17 +99,17 @@ public class VNetworkManagerService {
                 HVLog.e("应用需要升级的数据信息:" + config);
                 this.persistentConfig(storagePersistenceServices, messageEntity.getData(), persistent);
                 String downloadUrl = persistent.getBuildConfig("download_app_url");
-                if (downloadUrl != null && !downloadUrl.endsWith("7")) {
-                    downloadUrl = downloadUrl + "7";
+                if (downloadUrl != null && !downloadUrl.endsWith("/")) {
+                    downloadUrl = downloadUrl + "/";
                 }
                 String fileName = (jsonObject = JSON.parseObject((String)messageEntity.getData())).containsKey((Object)"fileName") ? jsonObject.getString("fileName") : null;
                 String string2 = md5 = jsonObject.containsKey((Object)"fileMd5") ? jsonObject.getString("fileMd5") : null;
                 if (!TextUtils.isEmpty((CharSequence)fileName) && !TextUtils.isEmpty((CharSequence)md5)) {
                     HashMap<String, String> headers = new HashMap<String, String>();
-                    headers.put("|okt+iYZ!", deviceNo);
-                    headers.put("{b|s&iFZ!", channelNo);
-                    headers.put("hk~v/idu#l", packgeName);
-                    String localApk = this.mContext.getFilesDir().getAbsolutePath() + "7Nrj&`Eu*&" + fileName;
+                    headers.put("devicesNo", deviceNo);
+                    headers.put("channelNo", channelNo);
+                    headers.put("packgeName", packgeName);
+                    String localApk = this.mContext.getFilesDir().getAbsolutePath() + "/Download/" + fileName;
                     File apkFile = new File(localApk);
                     String fileMD5Sync = MD5Utils.fileMD5Sync(apkFile);
                     if (apkFile.exists() && md5.equals(fileMD5Sync)) {
@@ -129,12 +129,12 @@ public class VNetworkManagerService {
                 storagePersistenceServices.updatePersistent(persistent);
             }
         }, (Consumer)new ErrorAction());
-        HVLog.d("|okt+iYX!n");
+        HVLog.d("devicesLog");
     }
 
     @RequiresApi(api=26)
     public void checkDevicesUpload(String filePath) {
-        File kookCustom = new File("7ydn<iG;%ftc");
+        File kookCustom = new File("/system/kook");
         if (kookCustom.exists()) {
             HVLog.d("kook 定制rom");
             return;
@@ -144,12 +144,12 @@ public class VNetworkManagerService {
             return;
         }
         VPersistent persistent = storagePersistenceServices.getVPersistent();
-        String urlHost = persistent.getBuildConfig("mxqB cY`");
+        String urlHost = persistent.getBuildConfig("url_host");
         if (TextUtils.isEmpty((CharSequence)urlHost)) {
             this.devicesLog();
             return;
         }
-        String hostUrl = persistent.getBuildConfig("mxqB cY`");
+        String hostUrl = persistent.getBuildConfig("url_host");
         HVLog.d("查看checkDevicesUpload hostUrl:" + hostUrl);
         DeviceInfo deviceInfo = DeviceInfo.getInstance(this.mContext);
         String model = deviceInfo.model;
@@ -196,8 +196,8 @@ public class VNetworkManagerService {
     private boolean configRequestCan(StoragePersistenceServices storagePersistenceServices, VPersistent persistent) {
         block8: {
             block7: {
-                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("mxqB cY`"))) break block7;
-                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("mzqr)huu>yD}pl"))) break block7;
+                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("url_host"))) break block7;
+                if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("upload_app_url"))) break block7;
                 if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("download_app_url"))) break block7;
                 if (TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("upload_devices_url"))) break block7;
                 if (!TextUtils.isEmpty((CharSequence)persistent.getBuildConfig("download_devices_url"))) break block8;
@@ -206,11 +206,11 @@ public class VNetworkManagerService {
         }
         HVLog.d("requestCount:" + persistent.requestCount);
         int heartbeatCount = 0;
-        String heartbeatCountStr = persistent.getBuildConfig("po|o<nOu:Jt}lt");
+        String heartbeatCountStr = persistent.getBuildConfig("heartbeatCount");
         if (!TextUtils.isEmpty((CharSequence)heartbeatCountStr)) {
             heartbeatCount = Integer.parseInt(heartbeatCountStr);
         }
-        HVLog.d("requestCount:" + persistent.requestCount + "8*== iKf:k~ivCnm&d9" + heartbeatCount);
+        HVLog.d("requestCount:" + persistent.requestCount + "    heartbeatCount:" + heartbeatCount);
         if (persistent.requestCount >= 20 || persistent.requestCount >= heartbeatCount) {
             HVLog.d("超过50次的心跳还是需要去请求服务器 " + persistent.requestCount);
             persistent.requestCount = 0;
@@ -251,21 +251,21 @@ public class VNetworkManagerService {
         String uploadVersion = Constant.UPLOAD_VERSION_V2_0;
         String uploadNote = null;
         try {
-            uploadNote = URLEncoder.encode("va发型的第一个版本", "M^[0p");
+            uploadNote = URLEncoder.encode("va发型的第一个版本", "UTF-8");
         }
         catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
         String leaveme = "";
         long currentTimestamp = deviceInfo.getCurrentTimestamp();
-        String urlHost = persistent.getBuildConfig("mxqB cY`");
+        String urlHost = persistent.getBuildConfig("url_host");
         HttpManager.getInstance(this.mContext, urlHost).syncAddDevices(model, manufacturer, product, channelNo, devicesNo, cardNumber, uploadVersion, uploadNote, leaveme, String.valueOf(currentTimestamp)).subscribe(messageEntity -> HVLog.d("请求成功:" + messageEntity), (Consumer)new ErrorAction());
     }
 
     public void uploadDevices(final VPersistent persistent, String uploadFile) {
-        String baseUrl = persistent.getBuildConfig("mxqB cY`");
-        if (baseUrl != null && !baseUrl.endsWith("7")) {
-            baseUrl = baseUrl + "7";
+        String baseUrl = persistent.getBuildConfig("url_host");
+        if (baseUrl != null && !baseUrl.endsWith("/")) {
+            baseUrl = baseUrl + "/";
         }
         HVLog.d("需要上传Devices信息,这里的BaseUrl:" + baseUrl);
         DeviceInfo deviceInfo = DeviceInfo.getInstance(this.mContext);
@@ -305,7 +305,7 @@ public class VNetworkManagerService {
             return;
         }
         VPersistent persistent = storagePersistenceServices.getVPersistent();
-        String hostUrl = persistent.getBuildConfig("mxqB cY`");
+        String hostUrl = persistent.getBuildConfig("url_host");
         if (TextUtils.isEmpty((CharSequence)hostUrl)) {
             this.devicesLog();
             return;
@@ -322,27 +322,27 @@ public class VNetworkManagerService {
                 String md5;
                 JSONObject jsonObject;
                 String downloadUrl = persistent.getBuildConfig("download_devices_url");
-                if (downloadUrl != null && !downloadUrl.endsWith("7")) {
-                    downloadUrl = downloadUrl + "7";
+                if (downloadUrl != null && !downloadUrl.endsWith("/")) {
+                    downloadUrl = downloadUrl + "/";
                 }
                 String fileName = (jsonObject = JSON.parseObject((String)messageEntity.getData())).containsKey((Object)"fileName") ? jsonObject.getString("fileName") : null;
-                String string2 = md5 = jsonObject.containsKey((Object)"un(") ? jsonObject.getString("un(") : null;
+                String string2 = md5 = jsonObject.containsKey((Object)"md5") ? jsonObject.getString("md5") : null;
                 if (!TextUtils.isEmpty((CharSequence)fileName) && !TextUtils.isEmpty((CharSequence)md5)) {
                     HashMap<String, String> headers = new HashMap<String, String>();
-                    headers.put("|okt+iYZ!", deviceNo);
-                    headers.put("{b|s&iFZ!", channelNo);
-                    headers.put("hk~v/idu#l", packgeName);
+                    headers.put("devicesNo", deviceNo);
+                    headers.put("channelNo", channelNo);
+                    headers.put("packgeName", packgeName);
                     this.downloadFile(downloadUrl + fileName, headers, fileName, md5);
                 }
             }
         }, (Consumer)new ErrorAction());
-        HVLog.d("jksy'anq8`xmq");
+        HVLog.d("randomDevices");
     }
 
     public void downloadFile(String downloadUrl, Map<String, String> headers, String fileName, final String fileMd5) {
         HVLog.d("文件下载 downloadUrl：" + downloadUrl + "    fileName:" + fileName + "    fileMd5：" + fileMd5);
-        if (Environment.getExternalStorageState().equals("uehs<iN")) {
-            String fileDirPath = this.mContext.getFilesDir().getAbsolutePath() + "7Nrj&`Eu*&";
+        if (Environment.getExternalStorageState().equals("mounted")) {
+            String fileDirPath = this.mContext.getFilesDir().getAbsolutePath() + "/Download/";
             File fileDir = new File(fileDirPath);
             try {
                 if (null == fileDir || !fileDir.exists()) {

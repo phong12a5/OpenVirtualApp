@@ -216,8 +216,7 @@ implements AdapterView.OnItemClickListener {
             }
         }
         catch (PackageManager.NameNotFoundException e) {
-            VLog.e(TAG, "Couldn't find resources for package
-" + VLog.getStackTraceString(e));
+            VLog.e(TAG, "Couldn't find resources for package\n" + VLog.getStackTraceString(e));
         }
         return ri.loadIcon(this.mPm);
     }
@@ -307,8 +306,7 @@ implements AdapterView.OnItemClickListener {
                     try {
                         filter.addDataType(mimeType);
                     } catch (IntentFilter.MalformedMimeTypeException var14) {
-                        VLog.w(TAG, "mimeType
-" + VLog.getStackTraceString(var14), new Object[0]);
+                        VLog.w(TAG, "mimeType\n" + VLog.getStackTraceString(var14), new Object[0]);
                         filter = null;
                     }
                 }
@@ -377,8 +375,7 @@ implements AdapterView.OnItemClickListener {
                     try {
                         Reflect.on(VClient.get().getCurrentApplication().getPackageManager()).call("setLastChosenActivity", new Object[]{intent, intent.resolveTypeIfNeeded(this.getContentResolver()), 65536, filter, bestMatch, intent.getComponent()});
                     } catch (Exception var13) {
-                        VLog.d(TAG, "Error calling setLastChosenActivity
-" + VLog.getStackTraceString(var13), new Object[0]);
+                        VLog.d(TAG, "Error calling setLastChosenActivity\n" + VLog.getStackTraceString(var13), new Object[0]);
                     }
                 }
             }

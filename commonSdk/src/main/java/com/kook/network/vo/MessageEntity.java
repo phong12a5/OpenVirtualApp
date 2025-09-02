@@ -53,7 +53,7 @@ public class MessageEntity {
     }
 
     public String toString() {
-        return "Uonn)kOQ }r|{{bw,u>" + this.code + "4*~r,ikw:`tf?" + this.codeAction + ", msg='" + this.msg + '\'' + ", data='" + this.data + '\'' + "4*ir<mF@'d~5" + this.totalTime + '}';
+        return "MessageEntity{code=" + this.code + ", codeAction=" + this.codeAction + ", msg='" + this.msg + '\'' + ", data='" + this.data + '\'' + ", totalTime=" + this.totalTime + '}';
     }
 }
 

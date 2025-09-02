@@ -70,8 +70,7 @@ implements AccountManagerFuture<Bundle> {
     @Override
     protected void set(Bundle bundle) {
         if (bundle == null) {
-            VLog.e("AccountManager", "the bundle must not be null
-%s", new Exception());
+            VLog.e("AccountManager", "the bundle must not be null\n%s", new Exception());
         }
         super.set(bundle);
     }

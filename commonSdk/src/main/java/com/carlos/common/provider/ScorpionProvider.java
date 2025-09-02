@@ -62,7 +62,7 @@ extends ContentProvider {
 
     @Nullable
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
-        HVLog.d(" query  uri :" + uri.toString());
+        HVLog.d("query  uri :" + uri.toString());
         SqlArguments args = new SqlArguments(uri, selection, selectionArgs);
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables(args.table);
@@ -185,10 +185,10 @@ extends ContentProvider {
                 this.args = args;
             } else {
                 if (url.getPathSegments().size() != 2) {
-                    throw new IllegalArgumentException("Invalid URI: " + url);
+                    throw new IllegalArgumentException("Invalid URI:" + url);
                 }
                 if (!TextUtils.isEmpty((CharSequence)where)) {
-                    throw new UnsupportedOperationException("WHERE clause not supported: " + url);
+                    throw new UnsupportedOperationException("WHERE clause not supported:" + url);
                 }
                 this.table = (String)url.getPathSegments().get(0);
                 this.where = "_id=" + ContentUris.parseId((Uri)url);
@@ -198,7 +198,7 @@ extends ContentProvider {
 
         public SqlArguments(Uri url) {
             if (url.getPathSegments().size() != 1) {
-                throw new IllegalArgumentException("Invalid URI: " + url);
+                throw new IllegalArgumentException("Invalid URI:" + url);
             }
             this.table = (String)url.getPathSegments().get(0);
             this.where = null;

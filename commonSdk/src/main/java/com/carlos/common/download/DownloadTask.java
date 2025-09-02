@@ -173,7 +173,7 @@ extends Handler {
 
     public synchronized void start() {
         try {
-            Log.e((String)TAG, (String)("start: " + this.isDownloading + "\t" + this.mPoint.getUrl()));
+            Log.e((String)TAG, (String)("start:" + this.isDownloading + "\t" + this.mPoint.getUrl()));
             if (this.isDownloading) {
                 return;
             }
@@ -181,7 +181,7 @@ extends Handler {
             this.mHttpUtil.getContentLength(this.mPoint.getUrl(), new okhttp3.Callback(){
 
                 public void onResponse(Call call, Response response) throws IOException {
-                    HVLog.e("DownloadTask", "start: " + response.code() + "	 isDownloading:" + DownloadTask.this.isDownloading + "\t" + DownloadTask.this.mPoint.getUrl());
+                    HVLog.e("DownloadTask", "start:" + response.code() + "isDownloading:" + DownloadTask.this.isDownloading + "\t" + DownloadTask.this.mPoint.getUrl());
                     if (response.code() != 200) {
                         DownloadTask.this.close(new Closeable[]{response.body()});
                         DownloadTask.this.resetStutus();
@@ -190,16 +190,16 @@ extends Handler {
                     DownloadTask.this.mFileLength = response.body().contentLength();
                     Headers headers = response.headers();
                     DownloadTask.this.close(new Closeable[]{response.body()});
-                    HVLog.e("DownloadTask", "mPoint: " + DownloadTask.this.mPoint.getFilePath() + "    " + DownloadTask.this.mPoint.getFileName());
+                    HVLog.e("DownloadTask", "mPoint:" + DownloadTask.this.mPoint.getFilePath() + "    " + DownloadTask.this.mPoint.getFileName());
                     DownloadTask.this.mTmpFile = new File(DownloadTask.this.mPoint.getFilePath(), DownloadTask.this.mPoint.getFileName() + ".tmp");
                     if (!DownloadTask.this.mTmpFile.getParentFile().exists()) {
-                        HVLog.e("DownloadTask", "===: ");
+                        HVLog.e("DownloadTask", "===:");
                         boolean mkdirs = DownloadTask.this.mTmpFile.getParentFile().mkdirs();
-                        HVLog.e("DownloadTask", "mkdirs: " + mkdirs);
+                        HVLog.e("DownloadTask", "mkdirs:" + mkdirs);
                     }
                     try {
                         RandomAccessFile tmpAccessFile = new RandomAccessFile(DownloadTask.this.mTmpFile, "rw");
-                        HVLog.e("DownloadTask", "mFileLength: " + DownloadTask.this.mFileLength);
+                        HVLog.e("DownloadTask", "mFileLength:" + DownloadTask.this.mFileLength);
                         tmpAccessFile.setLength(DownloadTask.this.mFileLength);
                     }
                     catch (FileNotFoundException e) {
@@ -217,7 +217,7 @@ extends Handler {
                 }
 
                 public void onFailure(Call call, IOException e) {
-                    HVLog.e("DownloadTask", "start:Exception " + e.getMessage() + "\n" + DownloadTask.this.mPoint.getUrl());
+                    HVLog.e("DownloadTask", "start:Exception" + e.getMessage() + "\n" + DownloadTask.this.mPoint.getUrl());
                     DownloadTask.this.resetStutus();
                 }
             });
@@ -247,12 +247,12 @@ extends Handler {
         this.mHttpUtil.downloadFileByRange(this.mPoint.getUrl(), finalStartIndex, endIndex, new okhttp3.Callback(){
 
             public void onResponse(Call call, Response response) throws IOException {
-                Log.e((String)"DownloadTask", (String)("download: " + response.code() + "	 isDownloading:" + DownloadTask.this.isDownloading + "\t" + DownloadTask.this.mPoint.getUrl()));
+                Log.e((String)"DownloadTask", (String)("download:" + response.code() + "isDownloading:" + DownloadTask.this.isDownloading + "\t" + DownloadTask.this.mPoint.getUrl()));
                 if (response.code() != 206) {
                     DownloadTask.this.resetStutus();
                     return;
                 }
-                HVLog.d("状态开始 ");
+                HVLog.d("状态开始");
                 InputStream is = response.body().byteStream();
                 RandomAccessFile tmpAccessFile = new RandomAccessFile(DownloadTask.this.mTmpFile, "rw");
                 tmpAccessFile.seek(finalStartIndex);
@@ -261,7 +261,7 @@ extends Handler {
                 int total = 0;
                 long progress = 0L;
                 while ((length = is.read(buffer)) > 0) {
-                    HVLog.d("   ===----===  ");
+                    HVLog.d("===----===");
                     if (DownloadTask.this.cancel) {
                         DownloadTask.this.close(new Closeable[]{cacheAccessFile, is, response.body()});
                         DownloadTask.this.cleanFile(new File[]{cacheFile});

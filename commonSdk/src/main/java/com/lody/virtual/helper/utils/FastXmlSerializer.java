@@ -170,8 +170,7 @@ implements XmlSerializer {
     public XmlSerializer endTag(String namespace, String name) throws IOException, IllegalArgumentException, IllegalStateException {
         --this.mNesting;
         if (this.mInTag) {
-            this.append(" />
-");
+            this.append(" />\n");
         } else {
             if (this.mIndent && this.mLineStart) {
                 this.appendIndent(this.mNesting);
@@ -182,8 +181,7 @@ implements XmlSerializer {
                 this.append(':');
             }
             this.append(name);
-            this.append(">
-");
+            this.append(">\n");
         }
         this.mLineStart = true;
         this.mInTag = false;
@@ -295,14 +293,13 @@ implements XmlSerializer {
     }
 
     public void startDocument(String encoding, Boolean standalone) throws IOException, IllegalArgumentException, IllegalStateException {
-        this.append("<?xml version='1.0' encoding='utf-8' standalone='" + (standalone != false ? "yes" : "no") + "?*\"#B");
+        this.append("<?xml version='1.0' encoding='utf-8' standalone='" + (standalone != false ? "yes" : "no") + "' ?>\n");
         this.mLineStart = true;
     }
 
     public XmlSerializer startTag(String namespace, String name) throws IOException, IllegalArgumentException, IllegalStateException {
         if (this.mInTag) {
-            this.append(">
-");
+            this.append(">\n");
         }
         if (this.mIndent) {
             this.appendIndent(this.mNesting);

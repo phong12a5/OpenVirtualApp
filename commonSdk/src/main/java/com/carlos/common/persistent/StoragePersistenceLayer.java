@@ -18,7 +18,7 @@ extends PersistenceLayer {
     private StoragePersistenceServices mService;
 
     StoragePersistenceLayer(StoragePersistenceServices service) {
-        super(new File("/data/data/com.carlos.multiapp", "yzm0+cDr'n5ali"));
+        super(new File("/data/data/com.carlos.multiapp", "app-config.ini"));
         this.mService = service;
     }
 

@@ -133,13 +133,13 @@ implements View.OnClickListener {
         int upgradeVersion = this.getPersistentValueToInt("upgradeVersion");
         String fileName = this.getVPersistent().getBuildConfig(VPersistent.fileName);
         VPersistent persistent = this.getVPersistent();
-        HVLog.d("versionCode:" + versionCode + "    upgradeVersion:" + upgradeVersion);
+        HVLog.d("versionCode:" + versionCode + "upgradeVersion:" + upgradeVersion);
         if (versionCode < upgradeVersion) {
             String appConfigMd5 = persistent.getBuildConfig("fileMd5");
             String localApk = this.getFilesDir().getAbsolutePath() + "/Download/" + fileName;
             File apkFile = new File(localApk);
             String fileMD5Sync = MD5Utils.fileMD5Sync(apkFile);
-            HVLog.d("fileMD5Sync:" + fileMD5Sync + "    apkFile:" + apkFile.exists() + "   localApk:" + localApk + "    appConfigMd5:" + appConfigMd5);
+            HVLog.d("fileMD5Sync:" + fileMD5Sync + "apkFile:" + apkFile.exists() + "localApk:" + localApk + "appConfigMd5:" + appConfigMd5);
             if (fileMD5Sync.equals(appConfigMd5)) {
                 HVLog.d("文件下载成功");
                 this.installApkWindow(localApk);
@@ -269,7 +269,7 @@ implements View.OnClickListener {
         if (softVersions != null && !TextUtils.isEmpty((CharSequence)(versionsNumber = softVersions.getNumber()))) {
             int versionNumber = Integer.parseInt(versionsNumber);
             int versionCode = DeviceInfo.getInstance((Context)this).getVersionCode((Context)this);
-            HVLog.d("isUpgrade versionsNumber:" + versionsNumber + "    本地版本号：" + versionCode);
+            HVLog.d("isUpgrade versionsNumber:" + versionsNumber + "本地版本号：" + versionCode);
             if (versionCode < versionNumber) {
                 this.downloadVersion();
                 return true;
@@ -295,7 +295,7 @@ implements View.OnClickListener {
 
                 @Override
                 public void onFinished() {
-                    HVLog.d(" onFinished ");
+                    HVLog.d("onFinished");
                 }
 
                 @Override

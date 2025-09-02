@@ -17,7 +17,7 @@ public class CipherUtil {
         byte[] encrypted = Base64.getDecoder().decode(cipherText);
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
-            SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), "YON");
+            SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), "AES");
             cipher.init(2, key);
             return new String(cipher.doFinal(encrypted));
         }
@@ -29,9 +29,9 @@ public class CipherUtil {
     public static String encrypt(String secretKey, String plainText) {
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
-            SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), "YON");
+            SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), "AES");
             cipher.init(1, key);
-            return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes(Charset.forName("M^[0p"))));
+            return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes(Charset.forName("UTF-8"))));
         }
         catch (Exception e) {
             throw new RuntimeException(e);

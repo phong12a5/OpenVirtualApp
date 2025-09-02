@@ -144,7 +144,7 @@ public class IniFile {
                 File storage = new File(STORAGE);
                 if (!storage.exists()) {
                     boolean mkdirs = storage.mkdirs();
-                    HVLog.e("IniFile storage : " + mkdirs);
+                    HVLog.e("IniFile storage :" + mkdirs);
                 }
                 boolean fileNewFile = file.createNewFile();
                 HVLog.e("IniFile  fileNewFile:" + fileNewFile);

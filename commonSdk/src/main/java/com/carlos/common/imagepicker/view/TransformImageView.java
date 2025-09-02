@@ -235,7 +235,7 @@ extends ImageView {
         float y = this.getMatrixValue(matrix, 5);
         float rScale = this.getMatrixScale(matrix);
         float rAngle = this.getMatrixAngle(matrix);
-        Log.d((String)TAG, (String)(logPrefix + ": matrix: { x: " + x + ", y: " + y + ", scale: " + rScale + ", angle: " + rAngle + " }"));
+        Log.d((String)TAG, (String)(logPrefix + ": matrix: { x:" + x + ", y:" + y + ", scale:" + rScale + ", angle:" + rAngle + "}"));
     }
 
     private void updateCurrentImagePoints() {

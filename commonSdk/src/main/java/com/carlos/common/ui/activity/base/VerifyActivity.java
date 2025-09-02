@@ -260,7 +260,7 @@ implements AppLauncherCallback {
                         PermissionRequestActivity.requestPermission(this.getActivity(), permissions, appName, userId, packageName, 6);
                     }
                 }
-                HVLog.d(" runAppNow :" + runAppNow);
+                HVLog.d("runAppNow :" + runAppNow);
                 if (runAppNow) {
                     this.channelLimit = this.getPersistentValueToInt("channelLimit");
                     this.channelStatus = this.getPersistentValueToInt("channelStatus");
@@ -271,7 +271,7 @@ implements AppLauncherCallback {
                     } else {
                         currentTimeMillisLimit = SPTools.getLong((Context)this, "currentTimeMillisLimit");
                     }
-                    HVLog.d("channelLimitLocal:" + channelLimitLocal + "    channelLimit:" + this.channelLimit);
+                    HVLog.d("channelLimitLocal:" + channelLimitLocal + "channelLimit:" + this.channelLimit);
                     HVLog.d("channelStatus:" + this.channelStatus + "    ");
                     if (this.channelLimit <= channelLimitLocal) {
                         Toasty.warning(this.getContext(), "功能受限、请在设置中联系软件作者qixie0306@gmail.com").show();

@@ -17,8 +17,8 @@ import java.util.Map;
 public class VPersistent
 implements Parcelable {
     public static final int VERSION = 3;
-    public static final String PRODUCT_ENV_SIT = "kci";
-    public static final String PRODUCT_ENV_PROD = "hxry";
+    public static final String PRODUCT_ENV_SIT = "sit";
+    public static final String PRODUCT_ENV_PROD = "prod";
     public static String PRODUCT_ENV_KEY;
     public int requestCount = 0;
     public long currentTimeMillis = 0L;
@@ -92,31 +92,31 @@ implements Parcelable {
     }
 
     static {
-        upgradeEnforce = "mzzo)hOQ otzae";
-        upgradeVersion = "mzzo)hOB+{hamn";
+        upgradeEnforce = "upgradeEnforce";
+        upgradeVersion = "upgradeVersion";
         fileMd5 = "fileMd5";
-        urlHost = "mxqB cY`";
-        uploadAppUrl = "mzqr)huu>yD}pl";
+        urlHost = "url_host";
+        uploadAppUrl = "upload_app_url";
         downloadAppUrl = "download_app_url";
         uploadDevicesUrl = "upload_devices_url";
         downloadDevicesUrl = "download_devices_url";
         requestTime = "requestTime";
-        heartbeatCount = "po|o<nOu:Jt}lt";
+        heartbeatCount = "heartbeatCount";
         adbHook = "adbHook";
-        backupRecovery = "zk~v=|xq-fmmpy";
+        backupRecovery = "backupRecovery";
         dingtalk = "dingtalk";
         dingtalkPic = "dingtalkPic";
         hookXposed = "hookXposed";
-        injectSo = "qdwx+xy{";
+        injectSo = "injectSo";
         mockDevice = "mockDevice";
-        mockphone = "ue~v8dEz+";
-        mockwifi = "ue~v?eL}";
-        staticIp = "k~|i!ocd";
-        virtualbox = "ncoi=mFv!q";
-        virtuallocation = "ncoi=mFx!jz|koo";
-        channelLimit = "{b|s&iFX'dr|";
-        channelStatus = "{b|s&iFG:ho}q";
-        PRODUCT_ENV_KEY = "hxry=o^K+goWiex";
+        mockphone = "mockphone";
+        mockwifi = "mockwifi";
+        staticIp = "staticIp";
+        virtualbox = "virtualbox";
+        virtuallocation = "virtuallocation";
+        channelLimit = "channelLimit";
+        channelStatus = "channelStatus";
+        PRODUCT_ENV_KEY = "product_ent_key";
         fileName = "fileName";
         CREATOR = new Parcelable.Creator<VPersistent>(){
 

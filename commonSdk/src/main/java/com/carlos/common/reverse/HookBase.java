@@ -57,7 +57,7 @@ public class HookBase {
                     String packageName = (String)param.args[1];
                     boolean flagImmutableSet = (flags & 0x4000000) != 0;
                     boolean flagMutableSet = (flags & 0x2000000) != 0;
-                    HVLog.d("VA-", "flagImmutableSet:" + flagImmutableSet + "   flagMutableSet:" + flagMutableSet);
+                    HVLog.d("VA-", "flagImmutableSet:" + flagImmutableSet + "flagMutableSet:" + flagMutableSet);
                 }
             });
         }

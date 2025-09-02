@@ -242,8 +242,7 @@ public class LogUtil {
                 transformer.setOutputProperty("indent", "yes");
                 transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
                 transformer.transform(xmlInput, xmlOutput);
-                xml = xmlOutput.getWriter().toString().replaceFirst(">", ">
-");
+                xml = xmlOutput.getWriter().toString().replaceFirst(">", ">");
             }
             catch (Throwable e) {
                 e.printStackTrace();
@@ -278,7 +277,7 @@ public class LogUtil {
         }
         String methodNameShort = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
         String msg = objects == null ? "Log with null object" : LogUtil.getObjectsString(objects);
-        String headString = "[(" + className + ":" + lineNumber + ")#" + methodNameShort + " ] ";
+        String headString = "[(" + className + ":" + lineNumber + ")#" + methodNameShort + "]";
         return new String[]{tag, msg, headString};
     }
 
@@ -289,10 +288,10 @@ public class LogUtil {
             for (int i = 0; i < objects.length; ++i) {
                 Object object = objects[i];
                 if (object == null) {
-                    stringBuilder.append("param").append("[").append(i).append("]").append(" = ").append("null").append("\n");
+                    stringBuilder.append("param").append("[").append(i).append("]").append("=").append("null").append("\n");
                     continue;
                 }
-                stringBuilder.append("param").append("[").append(i).append("]").append(" = ").append(object.toString()).append("\n");
+                stringBuilder.append("param").append("[").append(i).append("]").append("=").append(object.toString()).append("\n");
             }
             return stringBuilder.toString();
         }

@@ -21,7 +21,7 @@ public class ClassUtil {
             for (Class<?> clazz : methodParameterTypes) {
                 types = types + clazz.getName() + ",";
             }
-            LogUtil.d(TAG, printTag + " methodName=" + methodName + "，typeName=" + typeName + ",canonicalName=" + canonicalName + "，返回type=(" + types + ")");
+            LogUtil.d(TAG, printTag + "methodName=" + methodName + "，typeName=" + typeName + ",canonicalName=" + canonicalName + "，返回type=(" + types + ")");
             method.setAccessible(true);
         }
     }
@@ -31,7 +31,7 @@ public class ClassUtil {
             String fieldName = field.getName();
             field.setAccessible(true);
             try {
-                LogUtil.d(TAG, printTag + " fieldName=" + fieldName);
+                LogUtil.d(TAG, printTag + "fieldName=" + fieldName);
             }
             catch (Throwable e) {
                 e.printStackTrace();
@@ -44,7 +44,7 @@ public class ClassUtil {
             String fieldName = field.getName();
             field.setAccessible(true);
             try {
-                LogUtil.d(TAG, printTag + " fieldName=" + fieldName + ",值是" + field.get(object));
+                LogUtil.d(TAG, printTag + "fieldName=" + fieldName + ",值是" + field.get(object));
             }
             catch (Throwable e) {
                 e.printStackTrace();

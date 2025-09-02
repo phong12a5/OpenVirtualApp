@@ -35,18 +35,18 @@ public class ToastHooker {
             for (Thread eachThread : map.keySet()) {
                 StackTraceElement[] array = map.get(eachThread);
                 System.out.println("------每个线程的基本信息");
-                System.out.println(" 线程名称：" + eachThread.getName());
-                System.out.println(" StackTraceElement[].length=" + array.length);
-                System.out.println(" 线程的状态：" + (Object)((Object)eachThread.getState()));
+                System.out.println("线程名称：" + eachThread.getName());
+                System.out.println("StackTraceElement[].length=" + array.length);
+                System.out.println("线程的状态：" + (Object)((Object)eachThread.getState()));
                 if (array.length != 0) {
-                    System.out.println(" 输出StackTraceElement[]数组具体信息：");
+                    System.out.println("输出StackTraceElement[]数组具体信息：");
                     for (int i = 0; i < array.length; ++i) {
                         StackTraceElement eachElement = array[i];
                         System.out.println(" " + eachElement.getClassName() + " " + eachElement.getMethodName() + " " + eachElement.getFileName() + " " + eachElement.getLineNumber());
                     }
                     continue;
                 }
-                System.out.println(" 没有StackTraceElement[]信息，因为线程" + eachThread.getName() + "中的stackTraceElement[].length==" + array.length);
+                System.out.println("没有StackTraceElement[]信息，因为线程" + eachThread.getName() + "中的stackTraceElement[].length==" + array.length);
             }
         }
     }
@@ -54,7 +54,7 @@ public class ToastHooker {
     @HookMethod(value="makeText")
     @MethodParams(value={Context.class, CharSequence.class, int.class})
     public static Toast makeText(Context context, CharSequence cs, int d) throws Throwable {
-        Log.d((String)"ToastHooker", (String)("makeText:" + cs.toString() + " packageName:" + context.getPackageName() + "Thread:" + Thread.currentThread().getClass().getName()));
+        Log.d((String)"ToastHooker", (String)("makeText:" + cs.toString() + "packageName:" + context.getPackageName() + "Thread:" + Thread.currentThread().getClass().getName()));
         ToastHooker.e();
         return (Toast)SandHook.callOriginByBackup(method_m2, null, context, cs, d);
     }
@@ -62,7 +62,7 @@ public class ToastHooker {
     @HookMethod(value="show")
     public static void show(Toast thiz) throws Throwable {
         try {
-            Log.d((String)"ToastHooker", (String)" show");
+            Log.d((String)"ToastHooker", (String)"show");
         }
         catch (Exception e) {
             e.printStackTrace();

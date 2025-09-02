@@ -26,7 +26,7 @@ extends BaseInterceptor {
     }
 
     public Response intercept(Interceptor.Chain chain) throws IOException {
-        Request.Builder builder = chain.request().newBuilder().addHeader("MyxoeMMq }", this.APP_TAG);
+        Request.Builder builder = chain.request().newBuilder().addHeader("User-Agent", this.APP_TAG);
         HVLog.d(this.APP_TAG);
         Request request = builder.build();
         Response response = null;
@@ -45,7 +45,7 @@ extends BaseInterceptor {
         private String appTag;
 
         public Builder getTag() {
-            this.appTag = "serv$cM";
+            this.appTag = "kooklog";
             return this;
         }
 

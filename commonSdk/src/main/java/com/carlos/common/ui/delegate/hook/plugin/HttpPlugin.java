@@ -65,12 +65,10 @@ public class HttpPlugin {
                         return;
                     }
                     URL url = (URL)param.args[0];
-                    HVLog.d("QQBrowserHookHttp", "HttpURLConnection: " + param.args[0] + "");
+                    HVLog.d("QQBrowserHookHttp", "HttpURLConnection:" + param.args[0] + "");
                     if (url.toString().contains("113.96")) {
                         StringBuilder TraceString = new StringBuilder("");
-                        TraceString.append("<<<<------------------------------>>>>>  
-").append("
- <<<<------------------------------>>>>>").append("\n");
+                        TraceString.append("<<<<------------------------------>>>>>").append("<<<<------------------------------>>>>>").append("\n");
                         HVLog.e("QQBrowserHookHttp", "堆栈信息：" + TraceString.toString());
                     }
                 }

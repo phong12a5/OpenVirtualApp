@@ -12,7 +12,7 @@ import com.carlos.common.persistent.StoragePersistenceLayer;
 import com.carlos.common.persistent.VPersistent;
 
 public class StoragePersistenceServices {
-    public static String SERVICE_NAME = "k~ro)kOK>li{ksu}&sf";
+    public static String SERVICE_NAME = "storage_persistence";
     static StoragePersistenceServices mStoragePersistenceServices = new StoragePersistenceServices();
     Context mContext;
     private StoragePersistenceLayer mPersistenceLayer = new StoragePersistenceLayer(this);

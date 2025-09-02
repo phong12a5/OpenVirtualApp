@@ -52,11 +52,11 @@ public class FileUploadService {
 
     public void uploadDevices(File file, String deviceNo, String uploadVersion, FileUploadObserver<ResponseBody> fileUploadObserver) {
         HashMap<String, RequestBody> params = new HashMap<String, RequestBody>();
-        params.put("@'PY}", RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (String)MD5Utils.fileMD5Sync(file)));
-        params.put("|okt+id{", RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (String)deviceNo));
-        params.put("mzqr)h|q<zrgl", RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (String)uploadVersion));
+        params.put("X-MD5", RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (String)MD5Utils.fileMD5Sync(file)));
+        params.put("deviceNo", RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (String)deviceNo));
+        params.put("uploadVersion", RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (String)uploadVersion));
         RequestBody requestFile = RequestBody.create((MediaType)MediaType.parse((String)"multipart/form-data"), (File)file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData((String)"~cqx", (String)file.getName(), (RequestBody)requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData((String)"file", (String)file.getName(), (RequestBody)requestFile);
         mApiService.uploadDevices(body, params).filter(responseBody -> this.handleResponse((ResponseBody)responseBody)).compose(HttpManager.io_main()).doOnError((Consumer)new ErrorAction()).subscribe(fileUploadObserver);
     }
 
@@ -65,7 +65,7 @@ public class FileUploadService {
         UploadFileRequestBody uploadFileRequestBody = new UploadFileRequestBody(file, fileUploadObserver);
         uploadInfo.put("image\"; filename=\"" + file.getName() + "", uploadFileRequestBody);
         if (!TextUtils.isEmpty((CharSequence)usercode)) {
-            uploadInfo.put("myxo+cNq", RequestBody.create((MediaType)MediaType.parse((String)"loeig|Fu'g"), (String)usercode.trim()));
+            uploadInfo.put("usercode", RequestBody.create((MediaType)MediaType.parse((String)"text/plain"), (String)usercode.trim()));
         }
         mApiService.uploadAvatar2((Map<String, RequestBody>)uploadInfo).filter(responseBody -> this.handleResponse((ResponseBody)responseBody)).compose(HttpManager.io_main()).doOnError((Consumer)new ErrorAction()).subscribe(fileUploadObserver);
     }
@@ -75,7 +75,7 @@ public class FileUploadService {
         try {
             source.request(Long.MAX_VALUE);
             Buffer buffer = source.buffer();
-            Charset charset = Charset.forName("M^[0p");
+            Charset charset = Charset.forName("UTF-8");
             MediaType contentType = responseBody.contentType();
             if (contentType != null) {
                 charset = contentType.charset(charset);
