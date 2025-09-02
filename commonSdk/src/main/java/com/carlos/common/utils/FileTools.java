@@ -294,7 +294,7 @@ public class FileTools {
             int bytesum = 0;
             int byteread = 0;
             File oldfile = new File(oldPath);
-            HVLog.d("复制单个文件 到:" + newPath + "oldfile.exists():" + oldfile.exists());
+            HVLog.d("复制单个文件 到:" + newPath + "    oldfile.exists():" + oldfile.exists());
             if (oldfile.exists()) {
                 FileInputStream inStream = new FileInputStream(oldPath);
                 FileOutputStream fs = new FileOutputStream(newPath);
@@ -320,7 +320,7 @@ public class FileTools {
 
     public static String getFileNameWithParams(String path, int type) {
         if (TextUtils.isEmpty((CharSequence)path) || type <= 0 || type > 4) {
-            throw new RuntimeException("传入参数异常");
+            throw new RuntimeException(" 传入参数异常 ");
         }
         int start = path.lastIndexOf("/");
         if (start != -1) {

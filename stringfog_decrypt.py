@@ -78,7 +78,7 @@ class StringFogDecryptor:
         if not text:
             return '""'
         
-        # Clean up null bytes first
+        # Clean up null bytes but preserve other whitespace including trailing spaces
         cleaned = text.rstrip('\x00')
         
         # Escape special characters for Java
@@ -97,7 +97,7 @@ class StringFogDecryptor:
         if not text:
             return False
         
-        # Strip null bytes and whitespace
+        # Strip null bytes but preserve other whitespace
         cleaned_text = text.rstrip('\x00')
         if not cleaned_text:
             return False
@@ -161,9 +161,9 @@ class StringFogDecryptor:
         try:
             final_decrypted = self.xor_decrypt(inner_decrypted, outer_key)
             if final_decrypted and self.is_valid_decryption(final_decrypted):
-                # Clean up null bytes and whitespace
-                cleaned_result = final_decrypted.rstrip('\x00').strip()
-                print(f"    Final result: {cleaned_result}")
+                # Clean up null bytes but preserve trailing spaces
+                cleaned_result = final_decrypted.rstrip('\x00')
+                print(f"    Final result: '{cleaned_result}'")
                 return cleaned_result, f"{inner_package}({inner_key}) -> {outer_package}({outer_key})"
         except:
             print("    Outer decryption exception")

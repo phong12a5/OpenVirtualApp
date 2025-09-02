@@ -69,7 +69,7 @@ public class MirrorDataParse {
 
     public void parseBackupData(String filePath) {
         String readFile = FileTools.readFile(filePath);
-        HVLog.d("readFile:" + readFile + "filePath:" + filePath);
+        HVLog.d("readFile:" + readFile + "    filePath:" + filePath);
         JSONObject jsonObject = JSON.parseObject((String)readFile);
         if (jsonObject == null) {
             HVLog.d("还原数据异常");
@@ -134,7 +134,7 @@ public class MirrorDataParse {
         } else if (object instanceof Float) {
             this.mElement.put(property, (Object)((Float)object));
         } else {
-            throw new NullPointerException(property + ":" + object + "不能转成json 格式数据");
+            throw new NullPointerException(property + " :   " + object + "不能转成json 格式数据");
         }
     }
 

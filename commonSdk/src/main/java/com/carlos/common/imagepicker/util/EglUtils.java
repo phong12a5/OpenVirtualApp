@@ -47,7 +47,7 @@ public class EglUtils {
             return EglUtils.getMaxTextureEgl10();
         }
         catch (Exception e) {
-            Log.d((String)TAG, (String)"getMaxTextureSize:", (Throwable)e);
+            Log.d((String)TAG, (String)"getMaxTextureSize: ", (Throwable)e);
             return 0;
         }
     }

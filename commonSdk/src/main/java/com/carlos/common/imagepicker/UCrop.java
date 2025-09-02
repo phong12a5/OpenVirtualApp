@@ -76,7 +76,7 @@ public class UCrop {
             this.mCropIntent = intent;
             String packageName = intent.getStringExtra("packageName");
             int userId = intent.getIntExtra("appuserid", -1);
-            Log.d((String)"HV-", (String)("UCropActivity  packageName:" + packageName + "userId:" + userId));
+            Log.d((String)"HV-", (String)("UCropActivity  packageName:" + packageName + "    userId:" + userId));
         }
         this.mCropOptionsBundle = new Bundle();
         this.mCropOptionsBundle.putParcelable("com.carlos.multiapp.InputUri", (Parcelable)source);

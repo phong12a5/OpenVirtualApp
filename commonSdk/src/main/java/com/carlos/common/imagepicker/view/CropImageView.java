@@ -101,7 +101,7 @@ extends TransformImageView {
     }
 
     public void setTargetAspectRatio(float targetAspectRatio) {
-        Log.i((String)"VirtualApp", (String)("setTargetAspectRatio" + targetAspectRatio));
+        Log.i((String)"VirtualApp", (String)("setTargetAspectRatio " + targetAspectRatio));
         Drawable drawable2 = this.getDrawable();
         if (drawable2 == null) {
             this.mTargetAspectRatio = targetAspectRatio;

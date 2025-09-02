@@ -17,7 +17,7 @@ public class XHSHook {
     public static String XPOSED_MAIN = "de.robv.android.xposed.XposedHelpers";
 
     public static void hook(ClassLoader classLoader, Application application) {
-        HVLog.d("开始 hook com.xingin.xhs");
+        HVLog.d(" 开始 hook com.xingin.xhs  ");
         XposedHelpers.findAndHookMethod("java.lang.String", classLoader, "format", String.class, Object[].class, new XC_MethodHook(){
 
             @Override
@@ -26,11 +26,11 @@ public class XHSHook {
                 Object[] args1 = (Object[])param.args[1];
                 Object paramResult = param.getResult();
                 if ("/data/data/%s".equals(args0)) {
-                    HVLog.e("hook", "String.format" + args0 + "paramResult:" + paramResult);
+                    HVLog.e("hook", "  String.format " + args0 + "   paramResult:" + paramResult);
                     if (!"/data/data/com.xingin.xhs".equals(paramResult)) {
                         param.setResult("/data/data/com.xingin.xhs.hook");
                         boolean exists = new File("/data/data/com.xingin.xhs.hook").exists();
-                        HVLog.e("hook", "String.format  /data/data/com.xingin.xhs.hook  exists:" + exists);
+                        HVLog.e("hook", "  String.format  /data/data/com.xingin.xhs.hook  exists:" + exists);
                     }
                 }
             }

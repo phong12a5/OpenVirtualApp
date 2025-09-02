@@ -143,7 +143,7 @@ public class DeviceInfo {
         }
         catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-            HVLog.d("getMetaDataFromApp" + e.toString());
+            HVLog.d("getMetaDataFromApp " + e.toString());
         }
         return value;
     }
@@ -256,7 +256,7 @@ public class DeviceInfo {
         } else if (object instanceof Long) {
             this.mElement.put(property, (Object)((Long)object));
         } else {
-            throw new NullPointerException(property + ":" + object + "不能转成json 格式数据");
+            throw new NullPointerException(property + " :   " + object + "不能转成json 格式数据");
         }
     }
 
