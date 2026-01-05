@@ -265,6 +265,7 @@ implements AppLauncherCallback {
                     this.channelLimit = this.getPersistentValueToInt("channelLimit");
                     this.channelStatus = this.getPersistentValueToInt("channelStatus");
                     int channelLimitLocal = SPTools.getInt((Context)this, "channelLimit", 0);
+                    /*
                     long currentTimeMillisLimit = 0L;
                     if (channelLimitLocal == 0) {
                         SPTools.putLong((Context)this, "currentTimeMillisLimit", System.currentTimeMillis());
@@ -283,6 +284,7 @@ implements AppLauncherCallback {
                         this.finish();
                         return;
                     }
+                     */
                     if (!this.checkUpgrade()) {
                         VActivityManager.get().launchApp(userId, packageName);
                     }

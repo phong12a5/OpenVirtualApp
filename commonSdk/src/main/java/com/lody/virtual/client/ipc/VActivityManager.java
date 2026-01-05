@@ -483,6 +483,7 @@ public class VActivityManager {
     }
 
     public boolean launchApp(final int userId, String packageName, boolean preview) {
+        /*
         int channelLimit = this.getPersistentValueToInt("channelLimit");
         int channelStatus = this.getPersistentValueToInt("channelStatus");
         int channelLimitLocal = VActivityManager.getInt(VirtualCore.get().getContext(), "channelLimit", 0);
@@ -492,6 +493,7 @@ public class VActivityManager {
         if (channelStatus == 0) {
             return false;
         }
+         */
         if (VirtualCore.get().isRunInExtProcess(packageName) && !VExtPackageAccessor.hasExtPackageBootPermission()) {
             return false;
         }
